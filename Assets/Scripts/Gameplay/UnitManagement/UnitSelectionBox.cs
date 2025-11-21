@@ -43,13 +43,15 @@ namespace Gameplay.UnitManagement
 
         private void StartBoxSelection(BaseEventData arg)
         {
+            if (IsSelecting || ! Mouse.current.leftButton.isPressed)
+                return;
             SelectionStartPosition = Mouse.current.position.ReadValue();
             IsSelecting = true;
         }
 
         private void FinishBoxSelection(BaseEventData arg)
         {
-            if ( ! IsSelecting)
+            if ( ! IsSelecting || ! Mouse.current.leftButton.wasReleasedThisFrame)
                 return;
             
             IsSelecting = false;
@@ -78,6 +80,9 @@ namespace Gameplay.UnitManagement
 
         private void SelectSingleUnit(BaseEventData arg)
         {
+            if (! Mouse.current.leftButton.wasReleasedThisFrame)
+                return;
+            
             Vector2 currentMousePosition = Mouse.current.position.ReadValue();
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(currentMousePosition);
             
