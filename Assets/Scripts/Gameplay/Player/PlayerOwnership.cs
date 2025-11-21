@@ -24,7 +24,5 @@ namespace Gameplay.Player
                 return;
             _ownedUnits.Remove(unit);
         }
-        
-        public bool IsUnitOwnedByPlayer(Unit unit) => _ownedUnits.Contains(unit.Ownership); 
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Zenject;
+using PlayerInput = Gameplay.Player.PlayerInput;
 
 namespace Gameplay.UnitManagement
 {
@@ -23,14 +24,15 @@ namespace Gameplay.UnitManagement
         
         [SerializeField]
         private int _clickEventIndex;
-
-        private bool IsShiftHeld => Keyboard.current.shiftKey.isPressed;
-
+        
         public Vector2 SelectionStartPosition { get; private set; }
         public bool IsSelecting { get; private set; }
         
         [Inject]
         private PlayerSelection PlayerSelection { get; set; }
+        
+        [Inject]
+        private PlayerInput PlayerInput { get; set; }
         
         private void Awake()
         {
@@ -63,7 +65,7 @@ namespace Gameplay.UnitManagement
             if (selectedUnits.Length == 0)
                 return;
             
-            if (IsShiftHeld)
+            if (PlayerInput.SelectMultipleBinding.IsHeld)
                 PlayerSelection.AddUnitsToSelection(selectedUnits);
             else
                 PlayerSelection.SelectUnits(selectedUnits);
@@ -83,7 +85,7 @@ namespace Gameplay.UnitManagement
             if (selectedUnits.Length == 0)
                 return;
             
-            if (IsShiftHeld)
+            if (PlayerInput.SelectMultipleBinding.IsHeld)
                 PlayerSelection.ToggleUnitSelection(selectedUnits[0]);
             else
                 PlayerSelection.SelectUnits(selectedUnits);

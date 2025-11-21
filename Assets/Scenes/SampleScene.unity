@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Architecture::Architecture.GameplayInstaller
   _playerSelection: {fileID: 1164900124}
   _playerOwnership: {fileID: 1164900126}
+  _playerInput: {fileID: 1164900127}
 --- !u!4 &189624905
 Transform:
   m_ObjectHideFlags: 0
@@ -822,6 +823,7 @@ GameObject:
   - component: {fileID: 1164900125}
   - component: {fileID: 1164900124}
   - component: {fileID: 1164900126}
+  - component: {fileID: 1164900127}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -868,6 +870,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff7bcda33664ce989ff1736d9e53050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.PlayerOwnership
+--- !u!114 &1164900127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164900123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f0bcb7a4194775bbab6f9fe15bc614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Player.PlayerInput
 --- !u!1 &1184607831
 GameObject:
   m_ObjectHideFlags: 0

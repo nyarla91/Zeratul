@@ -1,6 +1,7 @@
 ﻿using Gameplay;
 using Gameplay.Player;
 using Source.Extentions;
+using Source.Extentions.Pause;
 using UnityEngine;
 
 namespace Architecture
@@ -13,11 +14,18 @@ namespace Architecture
         [SerializeField]
         private PlayerOwnership _playerOwnership;
         
+        [SerializeField]
+        private PlayerInput _playerInput;
+        
         public override void InstallBindings()
         {
+            Pause pause = new();
+            Container.Bind<IPauseRead>().FromInstance(pause).AsSingle();
+            Container.Bind<IPauseSet>().FromInstance(pause).AsSingle();
+            
             BindFromInstance(_playerSelection);
             BindFromInstance(_playerOwnership);
-            Debug.Log(_playerSelection);
+            BindFromInstance(_playerInput);
         }
     }
 }
