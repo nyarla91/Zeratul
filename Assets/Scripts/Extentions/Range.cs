@@ -17,6 +17,8 @@ namespace Source.Extentions
          /// Returns -1 if value is lesser than Min, 1 if value is greater than Max, 0 if value firs the range
          /// </summary>
         public int UnfitSign(float value) => value < Min ? -1 : (value > Max ? 1 : 0);
+         
+         public float Clamp(float value) => Mathf.Clamp(value, Min, Max);
 
         private void OnValidate()
         {
