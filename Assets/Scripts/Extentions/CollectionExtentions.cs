@@ -184,5 +184,25 @@ namespace Source.Extentions
         }
         
         public static T[] ClearNull<T>(this IEnumerable<T> source) => source.Where(element => element != null).ToArray();
+
+        public static T MaxElement<T>(this IEnumerable<T> source, Func<T, float> selector)
+        {
+            return source.MinElement(element => - selector(element));
+        }
+        public static T MinElement<T>(this IEnumerable<T> source, Func<T, float> selector)
+        {
+            T[] array = source.ToArray();
+            T result = default;
+            float minValue = Single.MaxValue;
+            foreach (T element in array)
+            {
+                float value = selector.Invoke(element);
+                if (value >= minValue)
+                    continue;
+                minValue = value;
+                result = element;
+            }
+            return result;
+        }
     }
 }
