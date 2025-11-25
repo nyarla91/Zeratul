@@ -9,6 +9,8 @@ namespace Gameplay.Pathfinding
         public Vector2 WorldPosition { get; }
         public Vector2Int MapCoordinates { get; }
         
+        public int LastQuery { get; set; }
+        public bool WasProcessedThisQuery { get; set; }
         public Node PreviousNode { get; set; }
         public int H { get; set; }
         public int G { get; set; }
@@ -25,13 +27,13 @@ namespace Gameplay.Pathfinding
         public void CalculateTravelCost()
         {
             Collider2D[] overlap = Physics2D.OverlapPointAll(WorldPosition);
-            PathfindingObstacle[] obstacles = overlap.Select(c => c.GetComponent<PathfindingObstacle>()).ClearNull();
+            NodeModifier[] obstacles = overlap.Select(c => c.GetComponent<NodeModifier>()).ClearNull();
             if (obstacles.Length == 0)
             {
                 TravelCost = 0;
                 return;
             }
-            TravelCost = obstacles.Max(ob => ob.TravelCost);
+            TravelCost = obstacles.Max(ob => ob.ExtraTravelCost);
         }
     }
 }

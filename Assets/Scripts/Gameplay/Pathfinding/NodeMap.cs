@@ -21,6 +21,8 @@ namespace Gameplay.Pathfinding
 
         private Node _closestToMouseNode;
         private Node[] _path = Array.Empty<Node>();
+
+        private int _lastQuery = -1;
         
         private void Awake()
         {
@@ -48,16 +50,18 @@ namespace Gameplay.Pathfinding
         {
             if (startNode == targetNode)
                 return Array.Empty<Node>();
-            
+
+            _lastQuery++;
             List<Node> pendingNodes = new(){startNode};
-            List<Node> processedNodes = new();
             
             startNode.G = 0;
             startNode.H = GetNodeH(startNode, targetNode.MapCoordinates);
+            startNode.LastQuery = _lastQuery;
+            startNode.WasProcessedThisQuery = false;
 
             while (pendingNodes.Count > 0)
             {
-                Node currentNode = GetBestPendingNode(pendingNodes);
+                Node currentNode = GetBestPendingNode(pendingNodes, out int currentNodeIndex);
                 if (currentNode.Equals(targetNode))
                     return GetPathFromFinalNode(currentNode);
                 
@@ -74,40 +78,60 @@ namespace Gameplay.Pathfinding
                         if (y < 0 || y >= _nodes.GetLength(1))
                             continue;
                         Node adjacentNode = _nodes[x, y];
-                        if (processedNodes.Contains(adjacentNode))
+                        if (adjacentNode.LastQuery < _lastQuery)
+                        {
+                            adjacentNode.LastQuery = _lastQuery;
+                            adjacentNode.WasProcessedThisQuery = false;
+                            adjacentNode.PreviousNode = null;
+                            adjacentNode.H = GetNodeH(adjacentNode, targetNode.MapCoordinates);
+                            adjacentNode.G = int.MaxValue;
+                            pendingNodes.Add(adjacentNode);
+                        }
+                        if (adjacentNode.WasProcessedThisQuery)
                             continue;
 
-                        bool diagonal = Mathf.Abs(xOffset) == Mathf.Abs(yOffset);
+                        bool diagonal = xOffset != 0 && yOffset != 0;
                         
                         int newG = currentNode.G;
                         newG += diagonal ? _diagonalTravelCost : _ortogonalTravelCost;
                         newG += adjacentNode.TravelCost;
 
-                        if (!pendingNodes.Contains(adjacentNode) || newG < adjacentNode.G)
-                        {
-                            adjacentNode.PreviousNode = currentNode;
-                            adjacentNode.G = newG;
-                        }
-
-                        if ( ! pendingNodes.Contains(adjacentNode))
-                        {
-                            adjacentNode.H = GetNodeH(adjacentNode, targetNode.MapCoordinates);
-                            pendingNodes.Add(adjacentNode);
-                        }
+                        if (newG >= adjacentNode.G)
+                            continue;
+                        adjacentNode.PreviousNode = currentNode;
+                        adjacentNode.G = newG;
                     }
                 }
-                pendingNodes.Remove(currentNode);
-                processedNodes.Add(currentNode);
+                pendingNodes.RemoveAt(currentNodeIndex);
+                currentNode.WasProcessedThisQuery = true;
             }
             return Array.Empty<Node>();
         }
 
-        private static Node GetBestPendingNode(List<Node> pendingNodes)
+        private static Node GetBestPendingNode(List<Node> pendingNodes, out int index)
         {
-            int minF = pendingNodes.Min(node => node.F);
-            IEnumerable<Node> bestFNodes = pendingNodes.Where(node => node.F == minF);
-            Node currentNode = bestFNodes.MinElement(node => node.H);
-            return currentNode;
+            Node result = null;
+            index = 0;
+            int minF = Int32.MaxValue;
+            int minH = Int32.MaxValue;
+            for (int i = 0; i < pendingNodes.Count; i++)
+            {
+                Node pendingNode = pendingNodes[i];
+                if (pendingNode.F < minF)
+                {
+                    index = i;
+                    result = pendingNode;
+                    minH = pendingNode.H;
+                    minF = pendingNode.F;
+                }
+                else if (pendingNode.F == minF && pendingNode.H < minH)
+                {
+                    index = i;
+                    result = pendingNode;
+                    minH = pendingNode.H;
+                }
+            }
+            return result;
         }
 
         private Node[] GetPathFromFinalNode(Node finalNode)
@@ -185,10 +209,7 @@ namespace Gameplay.Pathfinding
                     else
                         Gizmos.color = Color.white;
                     
-                    Gizmos.DrawCube(_nodes[x, y].WorldPosition, Vector3.one * 0.1f);
-                    /*Handles.Label(node.WorldPosition + new Vector2(0, 0.2f), node.G.ToString());
-                    Handles.Label(node.WorldPosition, node.H.ToString());
-                    Handles.Label(node.WorldPosition - new Vector2(0, 0.2f), node.F.ToString());*/
+                    Gizmos.DrawCube(node.WorldPosition, Vector3.one * 0.05f);
                 }
             }
         }
