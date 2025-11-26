@@ -16,8 +16,7 @@ namespace Gameplay.Player
 
         public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
         
-        [Inject]
-        public PlayerOwnership Ownership { get; set; }
+        [Inject] public PlayerOwnership Ownership { get; set; }
 
         public void SelectUnits(Unit[] units)
         {

@@ -223,6 +223,18 @@ namespace Source.Extentions
             float z = Mathf.Abs(vector.z);
             return new Vector2(x, y);
         }
+
+        public static float OrtogonalDistance(this Vector2 vector, Vector2 target)
+        {
+            Vector2 difference = (target - vector).Abs();
+            return difference.x + difference.y;
+        }
+
+        public static float OrtogonalDistance(this Vector3 vector, Vector3 target)
+        {
+            Vector3 difference = (target - vector).Abs();
+            return difference.x + difference.y + difference.z;
+        }
     }
 
     public enum Axis

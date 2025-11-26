@@ -115,8 +115,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5439672414855075461}
   - component: {fileID: 2437650351244750624}
+  - component: {fileID: 2212058817159712324}
   - component: {fileID: 8007228053672921509}
   - component: {fileID: 2112355908016722340}
+  - component: {fileID: 8859186920833209595}
+  - component: {fileID: 4296649418421086999}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -170,12 +173,39 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.07
+  m_Radius: 0.6
+--- !u!50 &2212058817159712324
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932572241072970818}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 1000
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &8007228053672921509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb12d4597a7469cae486d4079dad2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitMarker
+  _type: {fileID: 11400000, guid: ff145961d4a429c4d9ce9d6e089bbae0, type: 2}
 --- !u!114 &2112355908016722340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,3 +232,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitOwnership
   _ownedByPlayer: 1
+--- !u!114 &8859186920833209595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932572241072970818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49dbe4fbf3c3c6498514909129bba0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitMovement
+  _rigidbody: {fileID: 2212058817159712324}
+--- !u!114 &4296649418421086999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932572241072970818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8374768bb30f42af9475e5ed94fe025c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitOrders

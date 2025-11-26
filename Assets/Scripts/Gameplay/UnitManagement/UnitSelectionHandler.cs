@@ -11,28 +11,21 @@ using PlayerInput = Gameplay.Player.PlayerInput;
 namespace Gameplay.UnitManagement
 {
     
-    public class UnitSelectionBox : MonoBehaviour
+    public class UnitSelectionHandler : MonoBehaviour
     {
-        [SerializeField]
-        private EventTrigger _eventTrigger;
-
-        [SerializeField]
-        private int _beginDragEventIndex;
+        [SerializeField] private EventTrigger _eventTrigger;
+        [SerializeField] private int _beginDragEventIndex;
         
-        [SerializeField]
-        private int _endDragEventIndex;
+        [SerializeField] private int _endDragEventIndex;
         
-        [SerializeField]
-        private int _clickEventIndex;
+        [SerializeField] private int _clickEventIndex;
         
         public Vector2 SelectionStartPosition { get; private set; }
         public bool IsSelecting { get; private set; }
         
-        [Inject]
-        private PlayerSelection PlayerSelection { get; set; }
+        [Inject] private PlayerSelection PlayerSelection { get; set; }
         
-        [Inject]
-        private PlayerInput PlayerInput { get; set; }
+        [Inject] private PlayerInput PlayerInput { get; set; }
         
         private void Awake()
         {
@@ -75,7 +68,7 @@ namespace Gameplay.UnitManagement
         }
 
         private static Unit[] GetUnitsFromColliders(Collider2D[] colliders) =>
-            colliders.Select(unit => unit.GetComponent<Unit>())
+            colliders.Select(unit => unit.GetComponent<Unit>()).ClearNull()
                 .Where(unit => unit.Ownership.OwnedByPlayer).ClearNull();
 
         private void SelectSingleUnit(BaseEventData arg)

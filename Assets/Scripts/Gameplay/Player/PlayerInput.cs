@@ -17,8 +17,7 @@ namespace Gameplay.Player
 
         public float ZoomDelta => _actions.Player.ZoomDelta.ReadValue<float>();
 
-        [Inject]
-        public IPauseRead PauseRead { get; set; }
+        [Inject] public IPauseRead PauseRead { get; set; }
 
         private void Awake()
         {

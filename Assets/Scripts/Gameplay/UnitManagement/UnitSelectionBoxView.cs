@@ -7,7 +7,7 @@ namespace Gameplay.UnitManagement
     public class UnitSelectionBoxView : MonoBehaviour
     {
         [SerializeField]
-        private UnitSelectionBox _model;
+        private UnitSelectionHandler _model;
         
         [SerializeField]
         private RectTransform _rectTransform;

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Source.Extentions;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +17,6 @@ namespace Gameplay.Pathfinding
         private Node[,] _nodes;
 
         private Node _closestToMouseNode;
-        private Node[] _path = Array.Empty<Node>();
 
         private int _lastQuery = -1;
         
@@ -39,17 +35,26 @@ namespace Gameplay.Pathfinding
             CalculateAllTravelCosts();
         }
 
-        private Node[] FindPath(Vector2 worldStart, Vector2 worldTarget)
+        public bool IsPointPassable(Vector2 worldPoint)
+        {
+            Node node = GetClosestNode(worldPoint);
+            return node.Passable;
+        }
+
+        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path)
         {
             Node startNode = GetClosestNode(worldStart);
             Node targetNode = GetClosestNode(worldTarget);
-            return FindPath(startNode, targetNode);
+            return TryFindPath(startNode, targetNode, out path);
         }
         
-        private Node[] FindPath(Node startNode, Node targetNode)
+        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path)
         {
-            if (startNode == targetNode)
-                return Array.Empty<Node>();
+            if (startNode == targetNode || ! targetNode.Passable)
+            {
+                path = Array.Empty<Node>();
+                return false;
+            }
 
             _lastQuery++;
             List<Node> pendingNodes = new(){startNode};
@@ -63,7 +68,10 @@ namespace Gameplay.Pathfinding
             {
                 Node currentNode = GetBestPendingNode(pendingNodes, out int currentNodeIndex);
                 if (currentNode.Equals(targetNode))
-                    return GetPathFromFinalNode(currentNode);
+                {
+                    path = GetPathFromFinalNode(currentNode);
+                    return true;
+                }
                 
                 for (int yOffset = -1; yOffset <= 1; yOffset++)
                 {
@@ -73,11 +81,11 @@ namespace Gameplay.Pathfinding
                             continue;
                         int x = currentNode.MapCoordinates.x + xOffset;
                         int y = currentNode.MapCoordinates.y + yOffset;
-                        if (x < 0 || x >= _nodes.GetLength(0))
-                            continue;
-                        if (y < 0 || y >= _nodes.GetLength(1))
+                        if (x < 0 || x >= _nodes.GetLength(0) || y < 0 || y >= _nodes.GetLength(1))
                             continue;
                         Node adjacentNode = _nodes[x, y];
+                        if ( ! adjacentNode.Passable)
+                            continue;
                         if (adjacentNode.LastQuery < _lastQuery)
                         {
                             adjacentNode.LastQuery = _lastQuery;
@@ -94,9 +102,8 @@ namespace Gameplay.Pathfinding
                         
                         int newG = currentNode.G;
                         newG += diagonal ? _diagonalTravelCost : _ortogonalTravelCost;
-                        newG += adjacentNode.TravelCost;
 
-                        if (newG >= adjacentNode.G)
+                        if (newG > adjacentNode.G)
                             continue;
                         adjacentNode.PreviousNode = currentNode;
                         adjacentNode.G = newG;
@@ -105,7 +112,9 @@ namespace Gameplay.Pathfinding
                 pendingNodes.RemoveAt(currentNodeIndex);
                 currentNode.WasProcessedThisQuery = true;
             }
-            return Array.Empty<Node>();
+            Debug.LogError($"No path was found from {startNode.WorldPosition} to {targetNode.WorldPosition}");
+            path = Array.Empty<Node>();
+            return false;
         }
 
         private static Node GetBestPendingNode(List<Node> pendingNodes, out int index)
@@ -140,6 +149,8 @@ namespace Gameplay.Pathfinding
             Node currentNode = finalNode;
             while (currentNode != null)
             {
+                if (result.Contains(currentNode))
+                    break;
                 result.Insert(0, currentNode);
                 currentNode = currentNode.PreviousNode;
             }
@@ -182,17 +193,13 @@ namespace Gameplay.Pathfinding
         private void Update()
         {
             _closestToMouseNode = GetClosestNode(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
-            if (Keyboard.current.cKey.wasPressedThisFrame)
-                CalculateAllTravelCosts();
-            if (Keyboard.current.vKey.wasPressedThisFrame)
-                _path = FindPath(_nodes[0, 0], _closestToMouseNode);
         }
 
         private void OnDrawGizmos()
         {
             if (_nodes == null)
                 return;
-            
+
             for (int y = 0; y < _nodes.GetLength(1); y++)
             {
                 for (int x = 0; x < _nodes.GetLength(0); x++)
@@ -200,16 +207,23 @@ namespace Gameplay.Pathfinding
                     Node node = _nodes[x, y];
                     if (node == _closestToMouseNode)
                         Gizmos.color = Color.yellow;
-                    else if (_path.Contains(node))
-                        Gizmos.color = Color.deepSkyBlue;
-                    else if (node.TravelCost > 1000000)
+                    else if ( ! node.Passable)
                         Gizmos.color = Color.black;
-                    else if (node.TravelCost > 0)
-                        Gizmos.color = Color.gray5;
                     else
-                        Gizmos.color = Color.white;
-                    
-                    Gizmos.DrawCube(node.WorldPosition, Vector3.one * 0.05f);
+                        continue;
+
+                    Gizmos.DrawCube(_nodes[x, y].WorldPosition, Vector3.one * 0.1f);
+                }
+            }
+
+            for (int y = 0; y < _nodes.GetLength(1); y++)
+            {
+                for (int x = 0; x < _nodes.GetLength(0); x++)
+                {
+                    if (_nodes[x, y].PreviousNode == null)
+                        continue;
+                    Gizmos.color = Color.yellow;
+                    Gizmos.DrawLine(_nodes[x,  y].WorldPosition, _nodes[x, y].PreviousNode.WorldPosition);
                 }
             }
         }
