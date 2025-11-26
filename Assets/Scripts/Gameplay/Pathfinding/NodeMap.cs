@@ -69,7 +69,7 @@ namespace Gameplay.Pathfinding
                 Node currentNode = GetBestPendingNode(pendingNodes, out int currentNodeIndex);
                 if (currentNode.Equals(targetNode))
                 {
-                    path = GetPathFromFinalNode(currentNode);
+                    path = GetPathFromFinalNode(currentNode, startNode);
                     return true;
                 }
                 
@@ -143,13 +143,13 @@ namespace Gameplay.Pathfinding
             return result;
         }
 
-        private Node[] GetPathFromFinalNode(Node finalNode)
+        private Node[] GetPathFromFinalNode(Node finalNode, Node originNode)
         {
             List<Node> result = new();
             Node currentNode = finalNode;
             while (currentNode != null)
             {
-                if (result.Contains(currentNode))
+                if (currentNode == originNode || result.Contains(currentNode))
                     break;
                 result.Insert(0, currentNode);
                 currentNode = currentNode.PreviousNode;
@@ -215,7 +215,7 @@ namespace Gameplay.Pathfinding
                     Gizmos.DrawCube(_nodes[x, y].WorldPosition, Vector3.one * 0.1f);
                 }
             }
-
+/*
             for (int y = 0; y < _nodes.GetLength(1); y++)
             {
                 for (int x = 0; x < _nodes.GetLength(0); x++)
@@ -225,7 +225,7 @@ namespace Gameplay.Pathfinding
                     Gizmos.color = Color.yellow;
                     Gizmos.DrawLine(_nodes[x,  y].WorldPosition, _nodes[x, y].PreviousNode.WorldPosition);
                 }
-            }
+            }*/
         }
     }
 }

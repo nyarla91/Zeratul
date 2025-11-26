@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Bibika
   m_EditorClassIdentifier: GameplayData::GaameplayData.Units.UnitType
   _movement:
-    _maxSpeed: 14.7
+    _maxSpeed: 6
