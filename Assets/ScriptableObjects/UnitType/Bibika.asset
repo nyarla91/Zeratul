@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Bibika
   m_EditorClassIdentifier: GameplayData::GaameplayData.Units.UnitType
+  _life:
+    _maxHitPoints: 50
+    _maxShieldPoints: 25
+    _shieldsRecoveryDelay: 3
   _movement:
     _maxSpeed: 6
+    _size: 0
+  _weapons:
+  - _baseDamage: 0
+    _cooldown: 0
+    _range: 0
+  - _baseDamage: 0
+    _cooldown: 0
+    _range: 0

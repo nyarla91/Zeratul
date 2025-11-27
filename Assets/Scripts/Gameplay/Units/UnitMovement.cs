@@ -11,6 +11,7 @@ namespace Gameplay.Units
         private const float NodeProximityDistance = 1;
 
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private CircleCollider2D _collider;
         
         private Vector2 _destination;
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
@@ -20,9 +21,14 @@ namespace Gameplay.Units
 
         [Inject] public NodeMap NodeMap { get; private set; }
 
+        private void Awake()
+        {
+            _collider.radius = Composition.Type.Movement.Size;
+        }
+
         public void Move(Vector2 destination)
         {
-            NodeMap.TryFindPath(transform.position, destination, out _path);
+            NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size);
             _nodesPassed = 0;
         }
 

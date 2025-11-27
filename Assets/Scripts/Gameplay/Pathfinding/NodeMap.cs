@@ -32,7 +32,7 @@ namespace Gameplay.Pathfinding
                     _nodes[x, y] = new Node(nodeWorldPosition, new Vector2Int(x, y));
                 }
             }
-            CalculateAllTravelCosts();
+            RecalculateAllObstacles();
         }
 
         public bool IsPointPassable(Vector2 worldPoint)
@@ -41,14 +41,14 @@ namespace Gameplay.Pathfinding
             return node.Passable;
         }
 
-        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path)
+        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, float agentRadius = 0)
         {
             Node startNode = GetClosestNode(worldStart);
             Node targetNode = GetClosestNode(worldTarget);
-            return TryFindPath(startNode, targetNode, out path);
+            return TryFindPath(startNode, targetNode, out path, agentRadius);
         }
         
-        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path)
+        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, float agentRadius = 0)
         {
             if (startNode == targetNode || ! targetNode.Passable)
             {
@@ -84,7 +84,7 @@ namespace Gameplay.Pathfinding
                         if (x < 0 || x >= _nodes.GetLength(0) || y < 0 || y >= _nodes.GetLength(1))
                             continue;
                         Node adjacentNode = _nodes[x, y];
-                        if ( ! adjacentNode.Passable)
+                        if ( ! adjacentNode.Passable || adjacentNode.DistanceToClosestObstacle <= agentRadius)
                             continue;
                         if (adjacentNode.LastQuery < _lastQuery)
                         {
@@ -121,8 +121,8 @@ namespace Gameplay.Pathfinding
         {
             Node result = null;
             index = 0;
-            int minF = Int32.MaxValue;
-            int minH = Int32.MaxValue;
+            int minF = int.MaxValue;
+            int minH = int.MaxValue;
             for (int i = 0; i < pendingNodes.Count; i++)
             {
                 Node pendingNode = pendingNodes[i];
@@ -179,13 +179,13 @@ namespace Gameplay.Pathfinding
             return _nodes[nodeCoordinates.x, nodeCoordinates.y];
         }
 
-        private void CalculateAllTravelCosts()
+        private void RecalculateAllObstacles()
         {
             for (int y = 0; y < _nodes.GetLength(1); y++)
             {
                 for (int x = 0; x < _nodes.GetLength(0); x++)
                 {
-                    _nodes[x, y].CalculateTravelCost();
+                    _nodes[x, y].RecalculateObstacles();
                 }
             }
         }
