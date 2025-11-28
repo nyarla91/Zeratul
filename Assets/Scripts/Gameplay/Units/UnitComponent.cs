@@ -1,4 +1,4 @@
-﻿using GaameplayData.Units;
+﻿using Gameplay.Data;
 using UnityEngine;
 
 namespace Gameplay.Units

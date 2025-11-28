@@ -1,7 +1,9 @@
 ﻿using System;
+using Gameplay.Data.Orders;
+using Gameplay.Units;
 using UnityEngine;
 
-namespace GaameplayData.Units
+namespace Gameplay.Data
 {
     [Serializable]
     [CreateAssetMenu(menuName = "Gameplay Data/Unit", order = 0)]
@@ -10,9 +12,12 @@ namespace GaameplayData.Units
         [SerializeField] private UnitLifeData _life;
         [SerializeField] private UnitMovementData _movement;
         [SerializeField] private UnitWeaponData[] _weapons;
+        [SerializeField] private OrderType[] _availableOrders;
 
         public UnitLifeData Life => _life;
         public UnitMovementData Movement => _movement;
+        public UnitWeaponData[] Weapons => _weapons;
+        public OrderType[] AvailableOrders => _availableOrders;
     }
 
     [Serializable]

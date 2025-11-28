@@ -21,13 +21,12 @@ namespace Gameplay.UnitManagement
         {
             if ( ! Mouse.current.rightButton.wasReleasedThisFrame)
                 return;
-            
-            Vector2 point =  Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            
+            /*Vector2 point =  Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
             foreach (Unit selectedUnit in _playerSelection.SelectedUnits)
             {
                 selectedUnit.Orders.IssueSmartOrder(point, false);
-            }
+            }*/
         }
         
     }
