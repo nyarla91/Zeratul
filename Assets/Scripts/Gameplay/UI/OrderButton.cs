@@ -62,12 +62,13 @@ namespace Gameplay.UI
             if (_orderType == null || _orderType.TargetRequirement == TargetRequirement.None)
                 return;
             OrderTarget target = TargetSelector.FinishTargeting();
+            if (_orderType.TargetRequirement == TargetRequirement.Unit && target.Unit == null)
+                return;
             Dispatcher.IssueOrderToSelection(_orderType, target);
         }
 
         private void IssueWithoutTarget(BaseEventData _)
         {
-            
             if (Mouse.current.leftButton.wasReleasedThisFrame)
                 IssueWithoutTarget();
         }

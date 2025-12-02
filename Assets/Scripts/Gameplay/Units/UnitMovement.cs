@@ -9,6 +9,7 @@ namespace Gameplay.Units
     public class UnitMovement : UnitComponent
     {
         private const float NodeProximityDistance = 1;
+        private const float MinPathRecalculationPeriod = 0.5f;
 
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private CircleCollider2D _collider;
@@ -16,6 +17,7 @@ namespace Gameplay.Units
         private Vector2 _destination;
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
         private int _nodesPassed;
+        private float _lastPathRecalculationTime;
         
         public bool HasPath => _path.Length > 0;
 
@@ -28,7 +30,10 @@ namespace Gameplay.Units
 
         public void Move(Vector2 destination)
         {
+            if (HasPath && Time.time < _lastPathRecalculationTime + MinPathRecalculationPeriod)
+                return;
             NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size);
+            _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
         }
 

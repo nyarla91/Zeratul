@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effaeb26ab694bc3b9ee9142c5a1f134, type: 3}
   m_Name: PatrolOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.PatrolOrder
-  _icon: {fileID: -536773092774984861, guid: 240c04b3bb5718042bbb01bcea84ac7f, type: 3}
+  _icon: {fileID: 21300000, guid: 240c04b3bb5718042bbb01bcea84ac7f, type: 3}
+  _hotkeyAlias: 

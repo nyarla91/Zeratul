@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13bf076fab154f23b72d8f54cae0d20c, type: 3}
   m_Name: StopOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.StopOrder
-  _icon: {fileID: -4665686187047379928, guid: 81ea5a981d17d964d971e730c2b80fe4, type: 3}
+  _icon: {fileID: 21300000, guid: 81ea5a981d17d964d971e730c2b80fe4, type: 3}
   _hotkeyAlias: Stop
