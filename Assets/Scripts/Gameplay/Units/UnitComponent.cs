@@ -9,6 +9,6 @@ namespace Gameplay.Units
         
         protected Unit Composition => _composition ??= GetComponent<Unit>();
         
-        public UnitType Type => Composition.Type;
+        public UnitType UnitType => Composition.Type;
     }
 }

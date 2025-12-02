@@ -34,6 +34,9 @@ namespace Gameplay.Units
 
         public void IssueOrder(Order order,  bool queue)
         {
+            if ( ! UnitType.AvailableOrders.Contains(order.Type))
+                return;
+            
             if (queue)
             {
                 _pendingOrders.Add(order);
@@ -80,37 +83,38 @@ namespace Gameplay.Units
 
         private void Update()
         {
-            for (int i = 0; i < Keys.Length && i < Type.AvailableOrders.Length; i++)
+            for (int i = 0; i < Keys.Length && i < UnitType.AvailableOrders.Length; i++)
             {
                 if ( ! Keys[i].Invoke().wasPressedThisFrame)
                     continue;
                 
-                OrderType orderType = Type.AvailableOrders[i];
+                OrderType orderType = UnitType.AvailableOrders[i];
                 bool queue = Keyboard.current.leftShiftKey.isPressed;
-
+                OrderTarget target = new OrderTarget();
+                
                 if (orderType.TargetRequirement == TargetRequirement.None)
                 {
-                    IssueOrder(new Order(orderType, Composition, default, null), queue);
+                    IssueOrder(new Order(orderType, Composition, target), queue);
                     return;
                 }
                 
-                Vector2 targetPoint = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                target.Point = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 if (orderType.TargetRequirement == TargetRequirement.Point)
                 {
-                    IssueOrder(new Order(orderType, Composition, targetPoint, null), queue);
+                    IssueOrder(new Order(orderType, Composition, target), queue);
                     return;
                 }
                 
-                Unit targetUnit = Physics2D.OverlapPointAll(targetPoint).Select(col => col?.GetComponent<Unit>())
+                target.Unit = Physics2D.OverlapPointAll(target.Point).Select(col => col?.GetComponent<Unit>())
                     .ClearNull()?[0];
                 if (orderType.TargetRequirement == TargetRequirement.PointOrUnit)
                 {
-                    IssueOrder(new Order(orderType, Composition, targetPoint, targetUnit), queue);
+                    IssueOrder(new Order(orderType, Composition, target), queue);
                     return;
                 }
-                if (targetUnit is null)
+                if (target.Unit is null)
                     return;
-                IssueOrder(new Order(orderType, Composition, default, targetUnit), queue);
+                IssueOrder(new Order(orderType, Composition, target), queue);
             }
         }
     }

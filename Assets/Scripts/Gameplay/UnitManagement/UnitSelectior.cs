@@ -11,13 +11,11 @@ using PlayerInput = Gameplay.Player.PlayerInput;
 namespace Gameplay.UnitManagement
 {
     
-    public class UnitSelectionHandler : MonoBehaviour
+    public class UnitSelectior : MonoBehaviour
     {
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _beginDragEventIndex;
-        
         [SerializeField] private int _endDragEventIndex;
-        
         [SerializeField] private int _clickEventIndex;
         
         public Vector2 SelectionStartPosition { get; private set; }
@@ -34,7 +32,7 @@ namespace Gameplay.UnitManagement
             _eventTrigger.triggers[_clickEventIndex].callback.AddListener(SelectSingleUnit);
         }
 
-        private void StartBoxSelection(BaseEventData arg)
+        private void StartBoxSelection(BaseEventData _)
         {
             if (IsSelecting || ! Mouse.current.leftButton.isPressed)
                 return;
@@ -42,7 +40,7 @@ namespace Gameplay.UnitManagement
             IsSelecting = true;
         }
 
-        private void FinishBoxSelection(BaseEventData arg)
+        private void FinishBoxSelection(BaseEventData _)
         {
             if ( ! IsSelecting || ! Mouse.current.leftButton.wasReleasedThisFrame)
                 return;

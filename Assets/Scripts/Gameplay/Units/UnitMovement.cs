@@ -34,13 +34,17 @@ namespace Gameplay.Units
 
         public void Stop()
         {
+            _rigidbody.linearVelocity = Vector2.zero;
             _path = Array.Empty<INodeWorld>();
         }
         
         private void FixedUpdate()
         {
-            if ( ! HasPath)
+            if (!HasPath)
+            {
+                _rigidbody.linearVelocity = Vector2.zero;
                 return;
+            }
             if (_nodesPassed == _path.Length)
             {
                 Stop();
@@ -52,7 +56,7 @@ namespace Gameplay.Units
                 _nodesPassed = nextNodeIndex + 1;
 
             Vector2 delta = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition) * Composition.Type.Movement.MaxSpeed;
-            _rigidbody.MovePosition(transform.position + (Vector3) delta * Time.fixedDeltaTime);
+            _rigidbody.linearVelocity = delta;
         }
 
         private void OnDrawGizmos()

@@ -16,7 +16,7 @@ namespace Gameplay.Data.Orders
         public override void OnProceed(Order order)
         {
             _originalPoint = order.Actor.transform.position;
-            order.Actor.Movement.Move(order.TargetPoint);
+            order.Actor.Movement.Move(order.Target.Point);
         }
 
         public override void OnUpdate(Order order)
@@ -24,7 +24,7 @@ namespace Gameplay.Data.Orders
             if (order.Actor.Movement.HasPath)
                 return;
             
-            Vector2 nextPoint = _isMovingBack ? order.TargetPoint : _originalPoint;
+            Vector2 nextPoint = _isMovingBack ? order.Target.Point : _originalPoint;
             order.Actor.Movement.Move(nextPoint);
             _isMovingBack = !_isMovingBack;
         }

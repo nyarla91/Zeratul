@@ -11,8 +11,8 @@ namespace Gameplay.Units
         public int HitPoints { get; private set; }
         public int ShieldPoints { get; private set; }
 
-        public int MaxHitPoints => Type.Life.MaxHitPoints; 
-        public int MaxShieldPoints => Type.Life.MaxShieldPoints;
+        public int MaxHitPoints => UnitType.Life.MaxHitPoints; 
+        public int MaxShieldPoints => UnitType.Life.MaxShieldPoints;
 
         private Timer _shieldRecoveryTimer;
         
@@ -22,7 +22,7 @@ namespace Gameplay.Units
         {
             HitPoints = MaxHitPoints;
             ShieldPoints = MaxShieldPoints;
-            _shieldRecoveryTimer = new Timer(this, Type.Life.ShieldsRecoveryDelay, PauseRead);
+            _shieldRecoveryTimer = new Timer(this, UnitType.Life.ShieldsRecoveryDelay, PauseRead);
             _shieldRecoveryTimer.Expired += RecoverShields;
         }
 

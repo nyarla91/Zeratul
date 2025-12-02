@@ -7,15 +7,13 @@ namespace Gameplay.Units
     {
         public OrderType Type { get; }
         public Unit Actor { get; }
-        public Vector2 TargetPoint { get; }
-        public Unit TargetUnit { get; }
+        public OrderTarget Target { get; }
         
-        public Order(OrderType type, Unit actor, Vector2 targetPoint, Unit targetUnit)
+        public Order(OrderType type, Unit actor, OrderTarget target)
         {
             Type = type;
             Actor = actor;
-            TargetPoint = targetPoint;
-            TargetUnit = targetUnit;
+            Target = target;
         }
 
         public void OnProceed() => Type.OnProceed(this);
@@ -25,5 +23,17 @@ namespace Gameplay.Units
         public bool IsCarriedOut() => Type.IsCarriedOut(this);
 
         public void Dispose() => Type.Dispose(this);
+    }
+
+    public struct OrderTarget
+    {
+        public Vector2 Point { get; set; }
+        public Unit Unit { get; set; }
+        
+        public OrderTarget(Vector2 point, Unit unit)
+        {
+            Point = point;
+            Unit = unit;
+        }
     }
 }

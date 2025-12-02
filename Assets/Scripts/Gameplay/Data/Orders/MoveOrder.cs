@@ -12,7 +12,7 @@ namespace Gameplay.Data.Orders
         
         public override void OnProceed(Order order)
         {
-            order.Actor.Movement.Move(order.TargetPoint);
+            order.Actor.Movement.Move(order.Target.Point);
         }
 
         public override void OnUpdate(Order order) { }

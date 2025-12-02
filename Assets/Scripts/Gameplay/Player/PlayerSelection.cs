@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Units;
 using Source.Extentions;
@@ -12,11 +13,13 @@ namespace Gameplay.Player
 
         private List<Unit> _selectedUnits = new();
 
-        public List<Unit> SelectedUnits => _selectedUnits.ToList();
+        public Unit[] SelectedUnits => _selectedUnits.ToArray();
 
         public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
         
-        [Inject] public PlayerOwnership Ownership { get; set; }
+        [Inject] private PlayerOwnership Ownership { get; set; }
+
+        public event Action<Unit[]> SelectionUpdated;
 
         public void SelectUnits(Unit[] units)
         {
@@ -52,6 +55,7 @@ namespace Gameplay.Player
             _selectedUnits = _selectedUnits.Where(unit => unit.Ownership.OwnedByPlayer).ToList();
             _selectedUnits = _selectedUnits.ClearCopies().ToList();
             _selectedUnits = _selectedUnits.ClearNull().ToList();
+            SelectionUpdated?.Invoke(SelectedUnits);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Gameplay;
 using Gameplay.Pathfinding;
 using Gameplay.Player;
+using Gameplay.UnitManagement;
 using Source.Extentions;
 using Source.Extentions.Pause;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Architecture
         [SerializeField] private PlayerOwnership _playerOwnership;
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private NodeMap _nodeMap;
+        [SerializeField] private UnitOrderTargetSelector _unitOrderTargetSelector;
+        [SerializeField] private UnitOrdersDispatcher _unitOrdersDispatcher;
         
         public override void InstallBindings()
         {
@@ -24,6 +27,8 @@ namespace Architecture
             BindFromInstance(_playerOwnership);
             BindFromInstance(_playerInput);
             BindFromInstance(_nodeMap);
+            BindFromInstance(_unitOrderTargetSelector);
+            BindFromInstance(_unitOrdersDispatcher);
         }
     }
 }
