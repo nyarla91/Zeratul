@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public class MonoInstaller : Zenject.MonoInstaller
     {

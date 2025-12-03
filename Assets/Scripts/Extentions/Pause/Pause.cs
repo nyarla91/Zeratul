@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Source.Extentions.Pause
+namespace Extentions.Pause
 {
     public class Pause : IPauseRead, IPauseSet
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     [Serializable]
     public class SerializedDictionary<TKey, TValue>

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public static class MiscExtentions
     {

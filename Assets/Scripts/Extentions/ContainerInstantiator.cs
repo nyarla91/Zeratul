@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Component = UnityEngine.Component;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public class ContainerInstantiator : MonoInstaller
     {

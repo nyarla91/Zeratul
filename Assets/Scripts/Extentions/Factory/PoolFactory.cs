@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Source.Extentions.Factory
+namespace Extentions.Factory
 {
     public class PoolFactory : Transformable
     {

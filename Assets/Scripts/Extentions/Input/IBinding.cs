@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Source.Extentions.Input
+namespace Extentions.Input
 {
     public interface IBinding
     {

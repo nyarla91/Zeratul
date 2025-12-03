@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Source.Extentions.Factory
+namespace Extentions.Factory
 {
     public class PoolObject : Transformable
     {

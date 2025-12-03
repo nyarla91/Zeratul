@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     [RequireComponent(typeof(Camera))]
     public class CameraProperties : Transformable

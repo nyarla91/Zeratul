@@ -1,4 +1,4 @@
-﻿namespace Source.Extentions.Pause
+﻿namespace Extentions.Pause
 {
     public interface IPauseRead
     {

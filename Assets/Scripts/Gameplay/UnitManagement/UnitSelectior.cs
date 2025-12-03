@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using Extentions;
 using Gameplay.Player;
 using Gameplay.Units;
-using Source.Extentions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -66,7 +66,7 @@ namespace Gameplay.UnitManagement
         }
 
         private static Unit[] GetUnitsFromColliders(Collider2D[] colliders) =>
-            colliders.Select(unit => unit.GetComponent<Unit>()).ClearNull()
+            colliders.Select(unit => unit.GetComponentInParent<Unit>()).ClearNull()
                 .Where(unit => unit.Ownership.OwnedByPlayer).ClearNull();
 
         private void SelectSingleUnit(BaseEventData arg)

@@ -1,9 +1,9 @@
-﻿using Gameplay;
+﻿using Extentions;
+using Extentions.Pause;
+using Gameplay;
 using Gameplay.Pathfinding;
 using Gameplay.Player;
 using Gameplay.UnitManagement;
-using Source.Extentions;
-using Source.Extentions.Pause;
 using UnityEngine;
 
 namespace Architecture

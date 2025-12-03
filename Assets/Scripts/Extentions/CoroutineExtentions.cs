@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
-using Source.Extentions.Pause;
+using Extentions.Pause;
 using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public static class CoroutineExtentions
     {

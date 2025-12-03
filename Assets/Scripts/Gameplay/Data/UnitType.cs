@@ -12,11 +12,13 @@ namespace Gameplay.Data
         [SerializeField] private UnitLifeData _life;
         [SerializeField] private UnitMovementData _movement;
         [SerializeField] private UnitWeaponType[] _weapons;
+        [SerializeField] private UnitGraphicsData _graphics;
         [SerializeField] private OrderType[] _availableOrders;
 
         public UnitLifeData Life => _life;
         public UnitMovementData Movement => _movement;
         public UnitWeaponType[] Weapons => _weapons;
+        public UnitGraphicsData Graphics => _graphics;
         public OrderType[] AvailableOrders => _availableOrders;
     }
 
@@ -52,5 +54,13 @@ namespace Gameplay.Data
         public int BaseDamage => _baseDamage;
         public float Cooldown => _cooldown;
         public float MaxDistance => _maxDistance;
+    }
+
+    [Serializable]
+    public struct UnitGraphicsData
+    {
+        [SerializeField] private UnitSpriteMap _spriteMap;
+        
+        public UnitSpriteMap SpriteMap => _spriteMap;
     }
 }

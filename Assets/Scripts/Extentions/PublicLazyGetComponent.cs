@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public class PublicLazyGetComponent<T> : LazyGetComponent<T> where T : Component
     {

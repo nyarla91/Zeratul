@@ -17,7 +17,7 @@ namespace Gameplay.Units
         
         private void Update()
         {
-            _spriteRenderer.color = _playerSelection.IsUnitSelected(_model) ? Color.green : Color.white;
+            _spriteRenderer.color = _playerSelection.IsUnitSelected(_model) ? Color.green : Color.clear;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source.Extentions.Pause
+namespace Extentions.Pause
 {
     public interface IPauseSet
     {

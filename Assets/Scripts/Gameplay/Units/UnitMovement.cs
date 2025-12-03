@@ -1,6 +1,6 @@
 ﻿using System;
+using Extentions;
 using Gameplay.Pathfinding;
-using Source.Extentions;
 using UnityEngine;
 using Zenject;
 
@@ -12,7 +12,7 @@ namespace Gameplay.Units
         private const float MinPathRecalculationPeriod = 0.5f;
 
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private CircleCollider2D _collider;
+        [SerializeField] private Transform _collision;
         
         private Vector2 _destination;
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
@@ -20,19 +20,21 @@ namespace Gameplay.Units
         private float _lastPathRecalculationTime;
         
         public bool HasPath => _path.Length > 0;
+        
+        public float LookAngle { get; private set; }
 
         [Inject] public NodeMap NodeMap { get; private set; }
 
         private void Awake()
         {
-            _collider.radius = Composition.Type.Movement.Size;
+            _collision.localScale = Vector3.one * Composition.Type.Movement.Size;
         }
 
         public void Move(Vector2 destination)
         {
             if (HasPath && Time.time < _lastPathRecalculationTime + MinPathRecalculationPeriod)
                 return;
-            NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size);
+            NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size / 2);
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
         }
@@ -61,7 +63,8 @@ namespace Gameplay.Units
                 _nodesPassed = nextNodeIndex + 1;
 
             Vector2 delta = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition) * Composition.Type.Movement.MaxSpeed;
-            _rigidbody.linearVelocity = delta;
+            LookAngle = delta.ToDegrees();
+            _rigidbody.linearVelocity = delta * Isometry.Scale;
         }
 
         private void OnDrawGizmos()

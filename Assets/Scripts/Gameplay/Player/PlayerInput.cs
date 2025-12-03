@@ -1,9 +1,9 @@
-﻿using Source.Extentions.Input;
-using Source.Extentions.Pause;
+﻿using Extentions.Input;
+using Extentions.Pause;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
-using InputBinding = Source.Extentions.Input.InputBinding;
+using InputBinding = Extentions.Input.InputBinding;
 
 namespace Gameplay.Player
 {

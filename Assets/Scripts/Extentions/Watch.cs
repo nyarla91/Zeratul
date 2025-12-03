@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public struct Watch<T>
     {

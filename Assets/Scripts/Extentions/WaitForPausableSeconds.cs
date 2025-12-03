@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Source.Extentions.Pause;
+using Extentions.Pause;
 using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public class PausableWaitForSeconds : CustomYieldInstruction
     {

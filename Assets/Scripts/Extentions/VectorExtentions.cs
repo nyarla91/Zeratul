@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public static class VectorExtentions
     {

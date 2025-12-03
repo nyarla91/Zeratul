@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public class LazyGetComponent<T> : Transformable where T : Component
     {

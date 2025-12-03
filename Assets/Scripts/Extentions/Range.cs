@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     [Serializable]
     public class Range

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public static class EventExtentions
     {

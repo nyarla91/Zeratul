@@ -1,4 +1,5 @@
-﻿using Gameplay.Data;
+﻿using System;
+using Gameplay.Data;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -8,6 +9,7 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitOrders))]
     [RequireComponent(typeof(UnitAttack))]
     [RequireComponent(typeof(UnitLife))]
+    [RequireComponent(typeof(UnitGraphics))]
     public class Unit : MonoBehaviour
     {
         [SerializeField] private UnitType _type;
@@ -19,11 +21,13 @@ namespace Gameplay.Units
         private UnitOrders _orders;
         private UnitAttack _attack;
         private UnitLife _life;
+        private UnitGraphics _graphics;
 
         public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
         public UnitOrders Orders => _orders ??= GetComponent<UnitOrders>();
         public UnitAttack Attack => _attack ??= GetComponent<UnitAttack>();
         public UnitLife Life => _life ??= GetComponent<UnitLife>();
+        public UnitGraphics Graphics => _graphics ??= GetComponent<UnitGraphics>();
     }
 }

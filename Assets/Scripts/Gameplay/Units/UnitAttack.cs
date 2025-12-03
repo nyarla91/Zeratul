@@ -1,7 +1,7 @@
 ﻿using System.Collections;
+using Extentions;
+using Extentions.Pause;
 using Gameplay.Data;
-using Source.Extentions;
-using Source.Extentions.Pause;
 using UnityEngine;
 using Zenject;
 

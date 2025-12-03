@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Threading.Tasks;
-using Source.Extentions.Pause;
+using Extentions.Pause;
 using UnityEngine;
 
-namespace Source.Extentions
+namespace Extentions
 {
     public class Timer : ITimerWrap
     {

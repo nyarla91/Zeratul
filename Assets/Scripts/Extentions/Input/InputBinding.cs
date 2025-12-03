@@ -1,8 +1,8 @@
 ﻿using System;
-using Source.Extentions.Pause;
+using Extentions.Pause;
 using UnityEngine.InputSystem;
 
-namespace Source.Extentions.Input
+namespace Extentions.Input
 {
     public class InputBinding : IDisposable, IBinding
     {
