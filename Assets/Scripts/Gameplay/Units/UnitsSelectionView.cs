@@ -1,4 +1,5 @@
-﻿using Gameplay.Player;
+﻿using System;
+using Gameplay.Player;
 using UnityEngine;
 using Zenject;
 
@@ -6,18 +7,20 @@ namespace Gameplay.Units
 {
     public class UnitsSelectionView : MonoBehaviour
     {
-        [SerializeField]
-        private Unit _model;
+        [SerializeField] private Unit _model;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Color _selectedColor;
         
-        [SerializeField]
-        private SpriteRenderer _spriteRenderer;
-        
-        [Inject]
-        private PlayerSelection _playerSelection;
-        
+        [Inject] private PlayerSelection _playerSelection;
+
+        private void Awake()
+        {
+            transform.localScale = Vector3.one * _model.Type.Movement.Size;
+        }
+
         private void Update()
         {
-            _spriteRenderer.color = _playerSelection.IsUnitSelected(_model) ? Color.green : Color.clear;
+            _spriteRenderer.color = _playerSelection.IsUnitSelected(_model) ? _selectedColor : Color.clear;
         }
     }
 }
