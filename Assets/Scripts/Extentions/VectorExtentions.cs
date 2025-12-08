@@ -195,12 +195,6 @@ namespace Extentions
             return false;
         }
 
-        public static Vector3 EvaluateLine(Vector3 a, Vector3 b, float t)
-        {
-            t = Mathf.Clamp(t, 0, 1);
-            return a + (b - a) * t;
-        }
-
         public static Quaternion ToLookRotation2D(this Vector2 direction)
         {
             return Quaternion.Euler(0, 0, direction.ToDegrees());

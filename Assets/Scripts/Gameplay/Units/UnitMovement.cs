@@ -10,14 +10,14 @@ namespace Gameplay.Units
 {
     public class UnitMovement : UnitComponent
     {
-        private const float ProximityDistance = 0.1f;
+        private const float ProximityDistance = 0.2f;
         private const float MinPathRecalculationPeriod = 0.5f;
 
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
         [SerializeField] [Range(0, 1)] private float _avoidanceStrength = 0.25f;
-        
+
         private Vector2 _destination;
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
         private int _nodesPassed;
@@ -25,9 +25,12 @@ namespace Gameplay.Units
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Movement.Size;
         public bool HasPath => _path.Length > 0;
+        public bool Displacable => ! HasPath;
+        public Vector2 Velocity => _rigidbody.linearVelocity;
         public float LookAngle { get; private set; }
 
         [Inject] public NodeMap NodeMap { get; private set; }
+
 
         private void Awake()
         {
@@ -73,9 +76,10 @@ namespace Gameplay.Units
             _rigidbody.linearVelocity = Vector2.zero;
             _path = Array.Empty<INodeWorld>();
         }
-        
+
         private void FixedUpdate()
         {
+            _rigidbody.mass = Displacable ? 0.001f : 1;
             if (!HasPath)
             {
                 _rigidbody.linearVelocity = Vector2.zero;
@@ -88,7 +92,7 @@ namespace Gameplay.Units
             }
             
             int nextNodeIndex = Mathf.Min(_nodesPassed, _path.Length - 1);
-            if (_path[nextNodeIndex].WorldPosition.OrtogonalDistance(transform.position) < ProximityDistance)
+            if (_path[nextNodeIndex].WorldPosition.OrtogonalDistance(transform.position) < UnitType.Movement.Size / 2 + ProximityDistance)
                 _nodesPassed = nextNodeIndex + 1;
 
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
@@ -100,17 +104,25 @@ namespace Gameplay.Units
 
         private Vector2 AvoidObstaclesForDirection(Vector2 direction)
         {
-            _avoidanceCollider.transform.localPosition = direction * 0.5f;
-            List<Collider2D> overlap = new();
-            Physics2D.OverlapCollider(_avoidanceCollider, overlap);
-            if (overlap.Count == 0)
+            Collider2D[] overlap = new Collider2D[3];
+            ContactFilter2D contactFilter = new()
+            {
+                useTriggers = false,
+                useLayerMask = true,
+                layerMask = LayerMask.GetMask("Unit")
+            };
+            int overlapTotal = _avoidanceCollider.Overlap(contactFilter, overlap);
+            if (overlapTotal == 0)
                 return direction;
-            Unit[] obstacles = overlap.Select(col => col.GetComponentInParent<Unit>()).ClearNull();
+            Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).ClearNull();
+            obstacles = obstacles.Where(unit => ! unit.Movement.Displacable).ToArray();
             if (obstacles.Length == 0)
                 return direction;
-            Unit closestObstacle = obstacles.MinElement(ob => Vector2.Distance(transform.position, ob.transform.position));
             float angle = direction.ToDegrees();
-            float oppositeAngle = closestObstacle.transform.DirectionTo2D(transform.position).ToDegrees();
+            Vector2[] oppositeDirections = obstacles
+                .Select(obs => obs.transform.DirectionTo2D(transform.position))
+                .ToArray();
+            float oppositeAngle = oppositeDirections.Average().ToDegrees();
             float newAngle = Mathf.LerpAngle(angle, oppositeAngle, _avoidanceStrength);
             return newAngle.DegreesToVector2().normalized;
         }
