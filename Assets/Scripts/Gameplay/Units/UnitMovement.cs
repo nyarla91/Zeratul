@@ -37,7 +37,7 @@ namespace Gameplay.Units
 
         public void Move(Vector2 destination)
         {
-            if (HasPath && Time.time < _lastPathRecalculationTime + _config.NodeProximityDistance)
+            if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
             NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size / 2);
             ReducePathToNecessary();

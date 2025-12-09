@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Data;
+using Gameplay.Data.Orders;
 using UnityEngine;
 using Zenject;
 
@@ -9,27 +12,30 @@ namespace Gameplay.Units
 {
     public class UnitAttack : UnitComponent
     {
-        private UnitWeapon[] _weapons;
+        [SerializeField] private OrderType _attackOrder;
+        
+        private UnitWeapon _weapon;
         private Coroutine _attackCoroutine;
+
+        private bool CanAttack => UnitType.AvailableOrders.Contains(_attackOrder);
         
         public bool IsAttacking => _attackCoroutine != null;
         
+        [Inject] private IsometricOverlap IsometricOverlap { get; set; }
         [Inject] private IPauseRead PauseRead { get; set; }
 
         private void Awake()
         {
-            _weapons = new UnitWeapon[UnitType.Weapons.Length];
-            for (int i = 0; i < _weapons.Length; i++)
-            {
-                Timer cooldown = new(this, UnitType.Weapons[i].Cooldown, PauseRead);
-                _weapons[i] = new UnitWeapon(UnitType.Weapons[i], cooldown);
-            }
+            Timer cooldown = new(this, UnitType.Weapon.Cooldown, PauseRead);
+            _weapon = new UnitWeapon(UnitType.Weapon, cooldown);
         }
 
         public void StartAttacking(Unit target)
         {
+            if ( ! CanAttack)
+                return;
+            StopAttacking();
             _attackCoroutine = StartCoroutine(Attacking(target));
-            Composition.Movement.Stop();
         }
 
         public void StopAttacking()
@@ -40,12 +46,11 @@ namespace Gameplay.Units
 
         private IEnumerator Attacking(Unit target)
         {
-            UnitWeapon currentWeapon = _weapons[0];
             while (true)
             {
                 yield return new WaitForFixedUpdate();
                 
-                if (Vector3.Distance(transform.position, target.transform.position) > currentWeapon.Type.MaxDistance)
+                if (Vector3.Distance(transform.position, target.transform.position) > _weapon.Type.MaxDistance)
                 {
                     Composition.Movement.Move(target.transform.position);
                     continue;
@@ -57,12 +62,34 @@ namespace Gameplay.Units
                 if (!Mathf.Approximately(Composition.Movement.LookAngle, targetAngle))
                     continue;
                 
-                if ( ! currentWeapon.Cooldown.IsIdle)
+                if ( ! _weapon.Cooldown.IsIdle)
                     continue;
                 
-                target.Life.TakeDamage(currentWeapon.Type.BaseDamage);
-                currentWeapon.Cooldown.Restart();
+                target.Life.TakeDamage(_weapon.Type.BaseDamage);
+                _weapon.Cooldown.Restart();
             }
+            
+        }
+
+        private void FixedUpdate()
+        {
+            TryAutoAttack();
+        }
+
+        private void TryAutoAttack()
+        {
+            if ( ! CanAttack || ! Composition.Orders.IsIdle || IsAttacking)
+                return;
+            if ( ! IsometricOverlap.TryGetUnits(transform.position, UnitType.SightRadius, out Unit[] units))
+                return;
+            
+            units = units.Where(unit => unit.Ownership.OwnedByPlayer != Composition.Ownership.OwnedByPlayer).ToArray();
+            if (units.Length == 0)
+                return;
+            
+            Unit closestTarget = units.MinElement(unit => Isometry.Distance(transform.position, unit.transform.position));
+            OrderTarget target = new(default, closestTarget);
+            Composition.Orders.IssueOrder(new Order(_attackOrder, Composition, target), false);
         }
     }
 

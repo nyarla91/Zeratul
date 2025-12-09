@@ -15,8 +15,8 @@ namespace Gameplay.Data.Validator
     {
         [SerializeField] private UnitValidator[] _unitValidators;
         
-        public bool IsValid(Unit unit) => _unitValidators.All(v => v.IsValid(unit));
+        public bool IsValid(Unit unit) => _unitValidators.Length ==  0 || _unitValidators.All(v => v.IsValid(unit));
         
-        public bool IsInvalid(Unit unit) => _unitValidators.Any(v => ! v.IsValid(unit));
+        public bool IsInvalid(Unit unit) => _unitValidators.Length > 0 && _unitValidators.Any(v => ! v.IsValid(unit));
     }
 }

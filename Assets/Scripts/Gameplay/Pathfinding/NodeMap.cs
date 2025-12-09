@@ -50,7 +50,7 @@ namespace Gameplay.Pathfinding
         
         private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, float agentRadius = 0)
         {
-            if (startNode == targetNode || ! targetNode.Passable)
+            if (startNode == targetNode || ! targetNode.Passable || targetNode.DistanceToClosestObstacle < agentRadius)
             {
                 path = Array.Empty<Node>();
                 return false;

@@ -628,6 +628,7 @@ GameObject:
   - component: {fileID: 582712008969607882}
   - component: {fileID: 4530902287902286238}
   - component: {fileID: 6172024410218680390}
+  - component: {fileID: 9170124245733996526}
   m_Layer: 6
   m_Name: Unit
   m_TagString: Untagged
@@ -760,6 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3342dcfe7dd4cc3bb4c175eb9cbf7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitAttack
+  _attackOrder: {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
 --- !u!114 &6172024410218680390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,6 +775,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitGraphics
   _spriteRenderer: {fileID: 1600494382157285698}
+--- !u!114 &9170124245733996526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932572241072970818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692c523e72034fb0b4f8e32176859e19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitVIsion
+  _sightCollider: {fileID: 0}
 --- !u!1 &3816697776354664460
 GameObject:
   m_ObjectHideFlags: 0

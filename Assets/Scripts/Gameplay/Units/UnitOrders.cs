@@ -15,6 +15,8 @@ namespace Gameplay.Units
     {
         private readonly List<Order> _pendingOrders = new();
         private Order _currentOrder;
+
+        public bool IsIdle => _currentOrder == null;
         
         [Inject] public NodeMap NodeMap { get; private set; }
 
@@ -47,7 +49,7 @@ namespace Gameplay.Units
 
         private void FixedUpdate()
         {
-            if (_currentOrder == null)
+            if (IsIdle)
             {
                 TryProceedToNextOrder();
             }

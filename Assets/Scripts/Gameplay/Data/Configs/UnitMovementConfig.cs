@@ -9,10 +9,12 @@ namespace Gameplay.Data.Configs
     {
         [SerializeField]  private float _nodeProximityDistance;
         [SerializeField]  private float _minPathRecalculationPeriod;
+        [SerializeField]  [Range(0, 1)] private float _avoidanceAdditionalRadius;
         [SerializeField]  [Range(0, 1)] private float _avoidanceStrength;
 
         public float NodeProximityDistance => _nodeProximityDistance;
         public float MinPathRecalculationPeriod => _minPathRecalculationPeriod;
+        public float AvoidanceAdditionalRadius => _avoidanceAdditionalRadius;
         public float AvoidanceStrength => _avoidanceStrength;
     }
 }

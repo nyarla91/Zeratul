@@ -1,6 +1,7 @@
 ﻿using Extentions;
 using Extentions.Pause;
 using Gameplay;
+using Gameplay.Data;
 using Gameplay.Pathfinding;
 using Gameplay.Player;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Architecture
         [SerializeField] private PlayerOrderTargetSelector _playerOrderTargetSelector;
         [SerializeField] private PlayerOrdersDispatcher _playerOrdersDispatcher;
         [SerializeField] private NodeMap _nodeMap;
+        [SerializeField] private IsometricOverlap _isometricOverlap;
         
         public override void InstallBindings()
         {
@@ -28,6 +30,7 @@ namespace Architecture
             BindFromInstance(_playerOrderTargetSelector);
             BindFromInstance(_playerOrdersDispatcher);
             BindFromInstance(_nodeMap);
+            BindFromInstance(_isometricOverlap);
         }
     }
 }

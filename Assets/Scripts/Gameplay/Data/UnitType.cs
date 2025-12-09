@@ -9,15 +9,17 @@ namespace Gameplay.Data
     [CreateAssetMenu(menuName = "Gameplay Data/Unit", order = 0)]
     public class UnitType : ScriptableObject
     {
+        [SerializeField] private int _sightRadius;
         [SerializeField] private UnitLifeData _life;
         [SerializeField] private UnitMovementData _movement;
-        [SerializeField] private UnitWeaponType[] _weapons;
+        [SerializeField] private UnitWeaponType _weapon;
         [SerializeField] private UnitGraphicsData _graphics;
         [SerializeField] private OrderType[] _availableOrders;
 
+        public int SightRadius => _sightRadius;
         public UnitLifeData Life => _life;
         public UnitMovementData Movement => _movement;
-        public UnitWeaponType[] Weapons => _weapons;
+        public UnitWeaponType Weapon => _weapon;
         public UnitGraphicsData Graphics => _graphics;
         public OrderType[] AvailableOrders => _availableOrders;
     }
@@ -52,10 +54,12 @@ namespace Gameplay.Data
         [SerializeField] private int _baseDamage;
         [SerializeField] private float _cooldown;
         [SerializeField] private float _maxDistance;
+        [SerializeField] private bool _autoAttack;
 
         public int BaseDamage => _baseDamage;
         public float Cooldown => _cooldown;
         public float MaxDistance => _maxDistance;
+        public bool AutoAttack => _autoAttack;
     }
 
     [Serializable]

@@ -7,5 +7,7 @@ namespace Gameplay
         public const float VerticalScale = 0.5f;
 
         public static Vector2 Scale => new(1, VerticalScale);
+
+        public static float Distance(Vector2 a, Vector2 b) => Vector2.Distance(Vector2.zero, (b - a) / Scale);
     }
 }

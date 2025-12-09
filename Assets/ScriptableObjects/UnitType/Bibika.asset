@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Bibika
   m_EditorClassIdentifier: GameplayData::GaameplayData.Units.UnitType
+  _sightRadius: 12
   _life:
     _maxHitPoints: 50
     _maxShieldPoints: 25
     _shieldsRecoveryDelay: 3
   _movement:
     _maxSpeed: 60
-    _size: 2
+    _size: 1.8
     _rotationSpeed: 540
-  _weapons:
-  - _baseDamage: 5
+  _weapon:
+    _baseDamage: 2
     _cooldown: 0.7
-    _maxDistance: 15
+    _maxDistance: 7
+    _autoAttack: 1
   _graphics:
     _spriteMap: {fileID: 11400000, guid: 62e0fce71958e9e4b80a434594636d7f, type: 2}
   _availableOrders:

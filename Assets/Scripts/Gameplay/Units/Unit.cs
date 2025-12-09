@@ -10,6 +10,7 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitAttack))]
     [RequireComponent(typeof(UnitLife))]
     [RequireComponent(typeof(UnitGraphics))]
+    [RequireComponent(typeof(UnitVIsion))]
     public class Unit : MonoBehaviour
     {
         [SerializeField] private UnitType _type;
@@ -22,6 +23,7 @@ namespace Gameplay.Units
         private UnitAttack _attack;
         private UnitLife _life;
         private UnitGraphics _graphics;
+        private UnitVIsion _vision;
 
         public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
@@ -29,5 +31,6 @@ namespace Gameplay.Units
         public UnitAttack Attack => _attack ??= GetComponent<UnitAttack>();
         public UnitLife Life => _life ??= GetComponent<UnitLife>();
         public UnitGraphics Graphics => _graphics ??= GetComponent<UnitGraphics>();
+        public UnitVIsion Vision => _vision ??= GetComponent<UnitVIsion>();
     }
 }
