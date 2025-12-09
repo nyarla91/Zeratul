@@ -15,23 +15,20 @@ namespace Gameplay.Units
     {
         private readonly List<Order> _pendingOrders = new();
         private Order _currentOrder;
-
-        private static readonly Func<KeyControl>[] Keys =
-        {
-            () => Keyboard.current.digit1Key,
-            () => Keyboard.current.digit2Key,
-            () => Keyboard.current.digit3Key,
-            () => Keyboard.current.digit4Key,
-            () => Keyboard.current.digit5Key,
-            () => Keyboard.current.digit6Key,
-            () => Keyboard.current.digit7Key,
-            () => Keyboard.current.digit8Key,
-            () => Keyboard.current.digit9Key,
-            () => Keyboard.current.digit0Key,
-        };
         
         [Inject] public NodeMap NodeMap { get; private set; }
 
+        public void IssueSmartOrder(OrderTarget target, bool queue)
+        {
+            foreach (OrderType orderType in UnitType.AvailableOrders)
+            {
+                if ( ! orderType.IsValidForSmartOrder(target))
+                    continue;
+                IssueOrder(new Order(orderType, Composition, target), queue);
+                break;
+            }
+        }
+        
         public void IssueOrder(Order order,  bool queue)
         {
             if ( ! UnitType.AvailableOrders.Contains(order.Type))
@@ -79,43 +76,6 @@ namespace Gameplay.Units
             _currentOrder?.Dispose();
             _currentOrder = order;
             _currentOrder.OnProceed();
-        }
-
-        private void Update()
-        {
-            for (int i = 0; i < Keys.Length && i < UnitType.AvailableOrders.Length; i++)
-            {
-                if ( ! Keys[i].Invoke().wasPressedThisFrame)
-                    continue;
-                
-                OrderType orderType = UnitType.AvailableOrders[i];
-                bool queue = Keyboard.current.leftShiftKey.isPressed;
-                OrderTarget target = new OrderTarget();
-                
-                if (orderType.TargetRequirement == TargetRequirement.None)
-                {
-                    IssueOrder(new Order(orderType, Composition, target), queue);
-                    return;
-                }
-                
-                target.Point = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                if (orderType.TargetRequirement == TargetRequirement.Point)
-                {
-                    IssueOrder(new Order(orderType, Composition, target), queue);
-                    return;
-                }
-                
-                target.Unit = Physics2D.OverlapPointAll(target.Point).Select(col => col?.GetComponent<Unit>())
-                    .ClearNull()?[0];
-                if (orderType.TargetRequirement == TargetRequirement.PointOrUnit)
-                {
-                    IssueOrder(new Order(orderType, Composition, target), queue);
-                    return;
-                }
-                if (target.Unit is null)
-                    return;
-                IssueOrder(new Order(orderType, Composition, target), queue);
-            }
         }
     }
 }

@@ -9,7 +9,9 @@ namespace Gameplay.Data.Orders
     public class AttackOrder : OrderType
     {
         public override TargetRequirement TargetRequirement => TargetRequirement.Unit;
-        
+
+        public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && ! target.Unit.Ownership.OwnedByPlayer;
+
         public override void OnProceed(Order order)
         {
             order.Actor.Attack.StartAttacking(order.Target.Unit);

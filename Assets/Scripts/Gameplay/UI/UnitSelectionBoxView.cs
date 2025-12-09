@@ -1,13 +1,14 @@
 ﻿using Extentions;
+using Gameplay.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.UnitManagement
+namespace Gameplay.UI
 {
     public class UnitSelectionBoxView : MonoBehaviour
     {
         [SerializeField]
-        private UnitSelectior _model;
+        private UnitSelectionArea _model;
         
         [SerializeField]
         private RectTransform _rectTransform;

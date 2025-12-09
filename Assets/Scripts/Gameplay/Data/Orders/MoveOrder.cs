@@ -9,7 +9,9 @@ namespace Gameplay.Data.Orders
     public class MoveOrder : OrderType
     {
         public override TargetRequirement TargetRequirement => TargetRequirement.Point;
-        
+
+        public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit == null;
+
         public override void OnProceed(Order order)
         {
             order.Actor.Movement.Move(order.Target.Point);

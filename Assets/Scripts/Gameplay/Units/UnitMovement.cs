@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Extentions;
+using Gameplay.Data.Configs;
 using Gameplay.Pathfinding;
 using UnityEngine;
 using Zenject;
@@ -10,13 +11,10 @@ namespace Gameplay.Units
 {
     public class UnitMovement : UnitComponent
     {
-        private const float ProximityDistance = 0.2f;
-        private const float MinPathRecalculationPeriod = 0.5f;
-
+        [SerializeField] private UnitMovementConfig _config;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
-        [SerializeField] [Range(0, 1)] private float _avoidanceStrength = 0.25f;
 
         private Vector2 _destination;
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
@@ -39,12 +37,20 @@ namespace Gameplay.Units
 
         public void Move(Vector2 destination)
         {
-            if (HasPath && Time.time < _lastPathRecalculationTime + MinPathRecalculationPeriod)
+            if (HasPath && Time.time < _lastPathRecalculationTime + _config.NodeProximityDistance)
                 return;
             NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size / 2);
             ReducePathToNecessary();
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
+        }
+
+        public void RotateTowards(Vector2 direction, float deltaTime) => RotateTowards(direction.ToDegrees(), deltaTime);
+        
+        public void RotateTowards(float angle, float deltaTime)
+        {
+            float maxDelta = UnitType.Movement.RotationSpeed * Time.fixedDeltaTime;
+            LookAngle = Mathf.MoveTowardsAngle(LookAngle, angle, maxDelta);
         }
 
         private void ReducePathToNecessary()
@@ -92,15 +98,13 @@ namespace Gameplay.Units
             }
             
             int nextNodeIndex = Mathf.Min(_nodesPassed, _path.Length - 1);
-            if (_path[nextNodeIndex].WorldPosition.OrtogonalDistance(transform.position) < UnitType.Movement.Size / 2 + ProximityDistance)
+            if (_path[nextNodeIndex].WorldPosition.OrtogonalDistance(transform.position) < UnitType.Movement.Size / 2 + _config.NodeProximityDistance)
                 _nodesPassed = nextNodeIndex + 1;
 
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
             direction = AvoidObstaclesForDirection(direction);
             float speed = UnitType.Movement.MaxSpeed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
-            float targetLookAngle = (direction / Isometry.Scale).ToDegrees();
-            float maxDelta = UnitType.Movement.RotationSpeed * Time.fixedDeltaTime;
-            LookAngle = Mathf.MoveTowardsAngle(LookAngle, targetLookAngle, maxDelta);
+            RotateTowards(direction / Isometry.Scale, Time.fixedDeltaTime);
             _rigidbody.linearVelocity = direction * speed;
         }
 
@@ -125,7 +129,7 @@ namespace Gameplay.Units
                 .Select(obs => obs.transform.DirectionTo2D(transform.position))
                 .ToArray();
             float oppositeAngle = oppositeDirections.Average().ToDegrees();
-            float newAngle = Mathf.LerpAngle(angle, oppositeAngle, _avoidanceStrength);
+            float newAngle = Mathf.LerpAngle(angle, oppositeAngle, _config.AvoidanceStrength);
             return newAngle.DegreesToVector2().normalized;
         }
 

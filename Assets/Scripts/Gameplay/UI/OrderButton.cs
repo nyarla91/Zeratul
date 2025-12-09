@@ -1,5 +1,5 @@
 ﻿using Gameplay.Data.Orders;
-using Gameplay.UnitManagement;
+using Gameplay.Player;
 using Gameplay.Units;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,8 +22,8 @@ namespace Gameplay.UI
         private InputAction _hotkey;
         
         [Inject] private PlayerInput PlayerInput { get; set; } 
-        [Inject] private UnitOrderTargetSelector TargetSelector { get; set; } 
-        [Inject] private UnitOrdersDispatcher Dispatcher { get; set; } 
+        [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; } 
+        [Inject] private PlayerOrdersDispatcher Dispatcher { get; set; } 
 
         private void Awake()
         {

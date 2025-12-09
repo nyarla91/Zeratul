@@ -1,7 +1,5 @@
-﻿using System;
-using Gameplay.Units;
+﻿using Gameplay.Units;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Gameplay.Data.Orders
 {
@@ -14,6 +12,8 @@ namespace Gameplay.Data.Orders
         public string HotkeyAlias => _hotkeyAlias;
 
         public abstract TargetRequirement TargetRequirement { get; }
+
+        public virtual bool IsValidForSmartOrder(OrderTarget target) => false;
         
         public abstract void OnProceed(Order order);
         

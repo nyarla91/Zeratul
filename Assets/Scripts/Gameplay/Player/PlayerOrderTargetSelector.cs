@@ -6,9 +6,9 @@ using Gameplay.Units;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.UnitManagement
+namespace Gameplay.Player
 {
-    public class UnitOrderTargetSelector : MonoBehaviour
+    public class PlayerOrderTargetSelector : MonoBehaviour
     {
         private TargetRequirement _currentRequirement;
         private OrderTarget _currentTarget;
@@ -44,9 +44,9 @@ namespace Gameplay.UnitManagement
             return _currentTarget;
         }
 
-        private void Update()
+        public OrderTarget GetTargetForRequirement(TargetRequirement requirement)
         {
-            _currentTarget = _currentRequirement switch
+            return requirement switch
             {
                 TargetRequirement.None => default,
                 TargetRequirement.Point => new OrderTarget(EstimatedPointTarget, null),
@@ -56,5 +56,9 @@ namespace Gameplay.UnitManagement
             };
         }
 
+        private void Update()
+        {
+            _currentTarget = GetTargetForRequirement(_currentRequirement);
+        }
     }
 }

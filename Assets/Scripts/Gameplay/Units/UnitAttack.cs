@@ -43,19 +43,25 @@ namespace Gameplay.Units
             UnitWeapon currentWeapon = _weapons[0];
             while (true)
             {
+                yield return new WaitForFixedUpdate();
+                
                 if (Vector3.Distance(transform.position, target.transform.position) > currentWeapon.Type.MaxDistance)
                 {
                     Composition.Movement.Move(target.transform.position);
-                    yield return new WaitForFixedUpdate();
                     continue;
                 }
                 Composition.Movement.Stop();
-                if (currentWeapon.Cooldown.IsIdle)
-                {
-                    target.Life.TakeDamage(currentWeapon.Type.BaseDamage);
-                    currentWeapon.Cooldown.Restart();
-                }
-                yield return new WaitForFixedUpdate();
+                
+                float targetAngle = (transform.position.DirectionTo(target.transform.position) / Isometry.Scale).ToDegrees();
+                Composition.Movement.RotateTowards(targetAngle, Time.fixedDeltaTime);
+                if (!Mathf.Approximately(Composition.Movement.LookAngle, targetAngle))
+                    continue;
+                
+                if ( ! currentWeapon.Cooldown.IsIdle)
+                    continue;
+                
+                target.Life.TakeDamage(currentWeapon.Type.BaseDamage);
+                currentWeapon.Cooldown.Restart();
             }
         }
     }

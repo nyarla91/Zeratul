@@ -720,10 +720,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49dbe4fbf3c3c6498514909129bba0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitMovement
+  _config: {fileID: 11400000, guid: 69cd25c90dcb183499016cbd461f4870, type: 2}
   _rigidbody: {fileID: 2212058817159712324}
   _collider: {fileID: 9103159375792626044}
   _avoidanceCollider: {fileID: 1249983972513825726}
-  _avoidanceStrength: 0.371
 --- !u!114 &4296649418421086999
 MonoBehaviour:
   m_ObjectHideFlags: 0

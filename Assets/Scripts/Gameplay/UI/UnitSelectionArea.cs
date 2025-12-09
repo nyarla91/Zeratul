@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 using Zenject;
 using PlayerInput = Gameplay.Player.PlayerInput;
 
-namespace Gameplay.UnitManagement
+namespace Gameplay.UI
 {
     
-    public class UnitSelectior : MonoBehaviour
+    public class UnitSelectionArea : MonoBehaviour
     {
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _beginDragEventIndex;
