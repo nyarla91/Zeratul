@@ -1,6 +1,7 @@
 ﻿using Gameplay.Data.Orders;
 using Gameplay.Player;
 using Gameplay.Units;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ namespace Gameplay.UI
     public class OrderButton : MonoBehaviour
     {
         [SerializeField] private Image _image;
+        [SerializeField] private TMP_Text _hotkeyPrompt;
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _beginDragEventIndex;
         [SerializeField] private int _endDragEventIndex;
@@ -93,6 +95,8 @@ namespace Gameplay.UI
 
             DisposeHotkey();
             _hotkey = PlayerInput.GetOrderHotkeyAction(orderType?.HotkeyAlias);
+            _hotkeyPrompt.text = _hotkey?.GetBindingDisplayString() ?? "";
+            
             if (_hotkey != null)
             {
                 _hotkey.started += StartTargeting;
