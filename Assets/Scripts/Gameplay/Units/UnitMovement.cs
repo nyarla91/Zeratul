@@ -98,7 +98,9 @@ namespace Gameplay.Units
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
             direction = AvoidObstaclesForDirection(direction);
             float speed = UnitType.Movement.MaxSpeed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
-            LookAngle = (direction / Isometry.Scale).ToDegrees();
+            float targetLookAngle = (direction / Isometry.Scale).ToDegrees();
+            float maxDelta = UnitType.Movement.RotationSpeed * Time.fixedDeltaTime;
+            LookAngle = Mathf.MoveTowardsAngle(LookAngle, targetLookAngle, maxDelta);
             _rigidbody.linearVelocity = direction * speed;
         }
 

@@ -39,9 +39,11 @@ namespace Gameplay.Data
     {
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _size;
+        [SerializeField] private float _rotationSpeed;
 
         public float MaxSpeed => _maxSpeed;
         public float Size => _size;
+        public float RotationSpeed => _rotationSpeed;
     }
 
     [Serializable]

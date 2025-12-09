@@ -8,7 +8,7 @@ namespace Gameplay.Data
     [CreateAssetMenu(menuName = "Gameplay Data/Graphics/Unit Sprite Map", order = 0)]
     public class UnitSpriteMap : ScriptableObject
     {
-        private const int Directions = 8;
+        private const int Directions = 24;
 
         private const float AngleStep = 360 / Directions;
         
