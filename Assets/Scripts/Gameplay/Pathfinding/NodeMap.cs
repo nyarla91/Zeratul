@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Extentions;
+using Gameplay.Data.Configs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,12 +10,8 @@ namespace Gameplay.Pathfinding
 {
     public class NodeMap : MonoBehaviour
     {
-        [SerializeField] private Vector2 _mapOrigin;
-        [SerializeField] private Vector2 _nodesWorldSpacing;
+        [SerializeField] private PathfindingConfig _config;
         [SerializeField] private Vector2Int _mapSize;
-        [Space]
-        [SerializeField] private int _ortogonalTravelCost;
-        [SerializeField] private int _diagonalTravelCost;
 
         private Node[,] _nodes;
 
@@ -28,7 +27,7 @@ namespace Gameplay.Pathfinding
             {
                 for (int x = 0; x < _nodes.GetLength(0); x++)
                 {
-                    Vector2 nodeWorldPosition = _mapOrigin + new Vector2(x, y) * _nodesWorldSpacing;
+                    Vector2 nodeWorldPosition = _config.MapOrigin + new Vector2(x, y) * _config.NodesWorldSpacing;
                     _nodes[x, y] = new Node(nodeWorldPosition, new Vector2Int(x, y));
                 }
             }
@@ -84,7 +83,7 @@ namespace Gameplay.Pathfinding
                         if (x < 0 || x >= _nodes.GetLength(0) || y < 0 || y >= _nodes.GetLength(1))
                             continue;
                         Node adjacentNode = _nodes[x, y];
-                        if ( ! adjacentNode.Passable || adjacentNode.DistanceToClosestObstacle <= agentRadius)
+                        if ( ! adjacentNode.Passable)
                             continue;
                         if (adjacentNode.LastQuery < _lastQuery)
                         {
@@ -101,7 +100,9 @@ namespace Gameplay.Pathfinding
                         bool diagonal = xOffset != 0 && yOffset != 0;
                         
                         int newG = currentNode.G;
-                        newG += diagonal ? _diagonalTravelCost : _ortogonalTravelCost;
+                        newG += diagonal ? _config.DiagonalTravelCost : _config.OrtogonalTravelCost;
+                        if (adjacentNode.DistanceToClosestObstacle <= agentRadius)
+                            newG += _config.TooCloseToObstaclePenalty;
 
                         if (newG > adjacentNode.G)
                             continue;
@@ -151,6 +152,17 @@ namespace Gameplay.Pathfinding
             {
                 if (currentNode == originNode || result.Contains(currentNode))
                     break;
+                Node nextNode = result.FirstOrDefault();
+                if (nextNode != null && currentNode.PreviousNode != null)
+                {
+                    Vector2Int deltaPrevious = currentNode.PreviousNode.MapCoordinates - currentNode.MapCoordinates;
+                    Vector2Int deltaNext = nextNode.MapCoordinates - currentNode.MapCoordinates;
+                    if (deltaNext.Abs().Equals(deltaPrevious.Abs()))
+                    {
+                        currentNode = currentNode.PreviousNode;
+                        continue;
+                    }
+                }
                 result.Insert(0, currentNode);
                 currentNode = currentNode.PreviousNode;
             }
@@ -165,14 +177,14 @@ namespace Gameplay.Pathfinding
             int diagonalSteps = Mathf.Min(difference.x, difference.y);
             int ortogonalSteps = Mathf.Max(difference.x, difference.y) - diagonalSteps;
             
-            return diagonalSteps * _diagonalTravelCost + ortogonalSteps * _ortogonalTravelCost;
+            return diagonalSteps * _config.DiagonalTravelCost + ortogonalSteps * _config.OrtogonalTravelCost;
             
         }
 
         private Node GetClosestNode(Vector2 worldPosition)
         {
-            Vector2 relativePosition = worldPosition - _mapOrigin;
-            Vector2 mapCoordinates = new Vector2(relativePosition.x / _nodesWorldSpacing.x,   relativePosition.y / _nodesWorldSpacing.y);
+            Vector2 relativePosition = worldPosition - _config.MapOrigin;
+            Vector2 mapCoordinates = new Vector2(relativePosition.x / _config.NodesWorldSpacing.x,   relativePosition.y / _config.NodesWorldSpacing.y);
             mapCoordinates.x = Mathf.Clamp(mapCoordinates.x, 0, _nodes.GetLength(0) - 1);
             mapCoordinates.y = Mathf.Clamp(mapCoordinates.y, 0, _nodes.GetLength(1) - 1);
             Vector2Int nodeCoordinates = new Vector2Int(Mathf.RoundToInt(mapCoordinates.x), Mathf.RoundToInt(mapCoordinates.y));

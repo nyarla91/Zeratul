@@ -1,4 +1,5 @@
-﻿using Extentions;
+﻿using System;
+using Extentions;
 using Extentions.Pause;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +16,8 @@ namespace Gameplay.Units
         public int MaxShieldPoints => UnitType.Life.MaxShieldPoints;
 
         private Timer _shieldRecoveryTimer;
+
+        public event Action OnHitPointsOver;
         
         [Inject] private IPauseRead PauseRead { get; set; }
 
@@ -40,6 +43,9 @@ namespace Gameplay.Units
             
             HitPoints -=  hitDamage;
             ShieldPoints -=  shieldDamage;
+            
+            if (HitPoints <= 0)
+                OnHitPointsOver?.Invoke();
             
             _shieldRecoveryTimer.Restart();
         }

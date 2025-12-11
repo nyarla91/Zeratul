@@ -11,7 +11,7 @@ namespace Gameplay.Data.Orders
         public override TargetRequirement TargetRequirement => TargetRequirement.Unit;
 
         public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && ! target.Unit.Ownership.OwnedByPlayer;
-
+        
         public override void OnProceed(Order order)
         {
             order.Actor.Attack.StartAttacking(order.Target.Unit);
@@ -24,6 +24,7 @@ namespace Gameplay.Data.Orders
             order.Actor.Attack.StopAttacking();
         }
 
-        public override bool IsCarriedOut(Order order) => order.Target.Unit.Life.HitPoints <= 0;
+        public override bool IsCarriedOut(Order order)
+            => order.Target.Unit.Life.HitPoints <= 0 || order.Target.Unit is null || order.Target.Unit == order.Actor;
     }
 }

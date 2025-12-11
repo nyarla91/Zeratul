@@ -17,7 +17,7 @@ namespace Extentions
 
         public static void Stop(this Coroutine coroutine, MonoBehaviour container)
         {
-            container.StopCoroutine(coroutine);
+            container?.StopCoroutine(coroutine);
         }
 
         public static void SetAlpha(this Image image, float alpha)

@@ -217,6 +217,13 @@ namespace Extentions
             float z = Mathf.Abs(vector.z);
             return new Vector2(x, y);
         }
+        
+        public static Vector2Int Abs(this Vector2Int vector)
+        {
+            int x = Mathf.Abs(vector.x);
+            int y = Mathf.Abs(vector.y);
+            return new Vector2Int(x, y);
+        }
 
         public static float OrtogonalDistance(this Vector2 vector, Vector2 target)
         {

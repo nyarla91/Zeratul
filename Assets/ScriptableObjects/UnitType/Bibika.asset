@@ -18,8 +18,8 @@ MonoBehaviour:
     _maxShieldPoints: 25
     _shieldsRecoveryDelay: 3
   _movement:
-    _maxSpeed: 60
-    _size: 1.8
+    _maxSpeed: 150
+    _size: 2.5
     _rotationSpeed: 540
   _weapon:
     _baseDamage: 2

@@ -40,6 +40,8 @@ namespace Gameplay.Units
 
         public void StopAttacking()
         {
+            if ( ! IsAttacking)
+                return;
             _attackCoroutine?.Stop(this);
             _attackCoroutine = null;
         }

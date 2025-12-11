@@ -32,5 +32,15 @@ namespace Gameplay.Units
         public UnitLife Life => _life ??= GetComponent<UnitLife>();
         public UnitGraphics Graphics => _graphics ??= GetComponent<UnitGraphics>();
         public UnitVIsion Vision => _vision ??= GetComponent<UnitVIsion>();
+
+        private void Awake()
+        {
+            Life.OnHitPointsOver += Die;
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
     }
 }

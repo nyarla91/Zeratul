@@ -40,7 +40,7 @@ namespace Gameplay.Units
             if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
             NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size / 2);
-            ReducePathToNecessary();
+            //ReducePathToNecessary();
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
         }
@@ -141,6 +141,8 @@ namespace Gameplay.Units
             {
                 Gizmos.color = Color.green;
                 Gizmos.DrawLine(_path[i].WorldPosition, _path[i - 1].WorldPosition);
+                Gizmos.color = Color.green;
+                Gizmos.DrawCube(_path[i].WorldPosition, 0.1f * Vector3.one);
             }
         }
     }

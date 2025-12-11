@@ -16,12 +16,14 @@ namespace Gameplay.Units
 
         private void Awake()
         {
-            PlayerOwnership.AddOwnedUnit(this);
+            if (OwnedByPlayer)
+                PlayerOwnership.AddOwnedUnit(this);
         }
 
         private void OnDestroy()
         {
-            PlayerOwnership.RemoveOwnedUnit(this);
+            if (OwnedByPlayer)
+                PlayerOwnership.RemoveOwnedUnit(this);
         }
 
     }

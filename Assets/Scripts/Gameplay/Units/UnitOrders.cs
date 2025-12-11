@@ -79,5 +79,11 @@ namespace Gameplay.Units
             _currentOrder = order;
             _currentOrder.OnProceed();
         }
+
+        private void OnDestroy()
+        {
+            _currentOrder =  null;
+            _pendingOrders.Clear();
+        }
     }
 }
