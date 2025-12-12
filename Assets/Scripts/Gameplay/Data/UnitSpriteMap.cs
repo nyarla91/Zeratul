@@ -13,6 +13,8 @@ namespace Gameplay.Data
         private const float AngleStep = 360 / Directions;
         
         [SerializeField] private Sprite[] _spritePerDirection;
+        
+        public Sprite GenericSprite => GetSpriteForAngle(225);
 
         public Sprite GetSpriteForAngle(float angle)
         {

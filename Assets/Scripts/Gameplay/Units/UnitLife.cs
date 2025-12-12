@@ -1,6 +1,7 @@
 ﻿using System;
 using Extentions;
 using Extentions.Pause;
+using Gameplay.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -21,11 +22,11 @@ namespace Gameplay.Units
         
         [Inject] private IPauseRead PauseRead { get; set; }
 
-        private void Awake()
+        public void Init(UnitType unitType)
         {
             HitPoints = MaxHitPoints;
             ShieldPoints = MaxShieldPoints;
-            _shieldRecoveryTimer = new Timer(this, UnitType.Life.ShieldsRecoveryDelay, PauseRead);
+            _shieldRecoveryTimer = new Timer(this, unitType.Life.ShieldsRecoveryDelay, PauseRead);
             _shieldRecoveryTimer.Expired += RecoverShields;
         }
 

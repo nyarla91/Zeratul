@@ -1,4 +1,5 @@
-﻿using Gameplay.Player;
+﻿using Gameplay.Data;
+using Gameplay.Player;
 using UnityEngine;
 using Zenject;
 
@@ -6,16 +7,14 @@ namespace Gameplay.Units
 {
     public class UnitOwnership : UnitComponent
     {
-        [SerializeField]
-        private bool _ownedByPlayer;
-
-        public bool OwnedByPlayer => _ownedByPlayer;
+        public bool OwnedByPlayer { get; private set; }
 
         [field: Inject]
         public PlayerOwnership PlayerOwnership { get; set; }
 
-        private void Awake()
+        public void Init(UnitType unitType, bool ownedByPlayer)
         {
+            OwnedByPlayer = ownedByPlayer;
             if (OwnedByPlayer)
                 PlayerOwnership.AddOwnedUnit(this);
         }

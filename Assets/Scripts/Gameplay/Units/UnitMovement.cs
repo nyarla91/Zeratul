@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Extentions;
+using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Pathfinding;
 using UnityEngine;
@@ -30,9 +31,9 @@ namespace Gameplay.Units
         [Inject] public NodeMap NodeMap { get; private set; }
 
 
-        private void Awake()
+        public void Init(UnitType unitType)
         {
-            _collider.transform.localScale = Vector3.one * UnitType.Movement.Size;
+            _collider.transform.localScale = Vector3.one * unitType.Movement.Size;
         }
 
         public void Move(Vector2 destination)

@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.Data;
+﻿using Gameplay.Data;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -13,10 +12,6 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitVIsion))]
     public class Unit : MonoBehaviour
     {
-        [SerializeField] private UnitType _type;
-
-        public UnitType Type => _type;
-
         private UnitOwnership _ownership;
         private UnitMovement _movement;
         private UnitOrders _orders;
@@ -33,11 +28,23 @@ namespace Gameplay.Units
         public UnitGraphics Graphics => _graphics ??= GetComponent<UnitGraphics>();
         public UnitVIsion Vision => _vision ??= GetComponent<UnitVIsion>();
 
-        private void Awake()
+        public UnitType Type { get; private set; }
+        
+        public void Init(UnitType type, bool ownedByPlayer)
         {
+            Type = type;
+            
+            Ownership.Init(type, ownedByPlayer);
+            Movement.Init(type);
+            Orders.Init(type);
+            Attack.Init(type);
+            Life.Init(type);
+            Graphics.Init(type);
+            Vision.Init(type);
+            
             Life.OnHitPointsOver += Die;
         }
-
+        
         private void Die()
         {
             Destroy(gameObject);

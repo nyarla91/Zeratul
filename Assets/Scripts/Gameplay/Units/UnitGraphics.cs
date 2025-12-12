@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Data;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -6,6 +7,11 @@ namespace Gameplay.Units
     public class UnitGraphics : UnitComponent
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+
+        public void Init(UnitType unitType)
+        {
+            
+        }
         
         private void Update()
         {

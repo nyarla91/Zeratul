@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Extentions;
+using Gameplay.Data;
 using Gameplay.Data.Orders;
 using Gameplay.Pathfinding;
 using UnityEngine;
@@ -20,6 +21,11 @@ namespace Gameplay.Units
         
         [Inject] public NodeMap NodeMap { get; private set; }
 
+        public void Init(UnitType unitType)
+        {
+            
+        }
+        
         public void IssueSmartOrder(OrderTarget target, bool queue)
         {
             foreach (OrderType orderType in UnitType.AvailableOrders)

@@ -13,7 +13,7 @@ namespace Gameplay.Units
         
         [Inject] private PlayerSelection _playerSelection;
 
-        private void Awake()
+        private void Start()
         {
             transform.localScale = Vector3.one * _model.Type.Movement.Size;
         }

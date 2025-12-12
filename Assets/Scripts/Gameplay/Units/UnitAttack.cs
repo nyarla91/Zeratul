@@ -24,10 +24,10 @@ namespace Gameplay.Units
         [Inject] private IsometricOverlap IsometricOverlap { get; set; }
         [Inject] private IPauseRead PauseRead { get; set; }
 
-        private void Awake()
+        public void Init(UnitType unitType)
         {
-            Timer cooldown = new(this, UnitType.Weapon.Cooldown, PauseRead);
-            _weapon = new UnitWeapon(UnitType.Weapon, cooldown);
+            Timer cooldown = new(this, unitType.Weapon.Cooldown, PauseRead);
+            _weapon = new UnitWeapon(unitType.Weapon, cooldown);
         }
 
         public void StartAttacking(Unit target)
