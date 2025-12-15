@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
+  m_Name: Dropship
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _sightRadius: 10
+  _life:
+    _maxHitPoints: 250
+    _maxShieldPoints: 150
+    _shieldsRecoveryDelay: 10
+  _movement:
+    _maxSpeed: 280
+    _size: 2
+    _rotationSpeed: 360
+    _isAir: 1
+  _weapon:
+    _baseDamage: 0
+    _cooldown: 0
+    _maxDistance: 0
+    _autoAttack: 0
+  _graphics:
+    _spriteMap: {fileID: 11400000, guid: b4cffdc249fd240478aa92f947b62465, type: 2}
+  _availableOrders:
+  - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  - {fileID: 11400000, guid: 43ebbc7f3d968754297a1b8a9670fc74, type: 2}

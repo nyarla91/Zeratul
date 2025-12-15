@@ -42,10 +42,12 @@ namespace Gameplay.Data
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _size;
         [SerializeField] private float _rotationSpeed;
+        [SerializeField] private bool _isAir;
 
         public float MaxSpeed => _maxSpeed;
         public float Size => _size;
         public float RotationSpeed => _rotationSpeed;
+        public bool IsAir => _isAir;
     }
 
     [Serializable]

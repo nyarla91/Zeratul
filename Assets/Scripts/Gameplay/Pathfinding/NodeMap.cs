@@ -34,24 +34,24 @@ namespace Gameplay.Pathfinding
             RecalculateAllObstacles();
         }
 
-        public bool IsPointPassable(Vector2 worldPoint)
+        public bool IsPointPassable(Vector2 worldPoint, bool isAgentAir)
         {
             Node node = GetClosestNode(worldPoint);
-            return node.Passable;
+            return node.IsPassable(isAgentAir);
         }
-
-        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, float agentRadius = 0)
+        
+        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, bool isAgentAir)
         {
             Node startNode = GetClosestNode(worldStart);
             Node targetNode = GetClosestNode(worldTarget);
-            return TryFindPath(startNode, targetNode, out path, agentRadius);
+            return TryFindPath(startNode, targetNode, out path, isAgentAir);
         }
         
-        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, float agentRadius = 0)
+        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, bool isAgentAir)
         {
-            if (startNode == targetNode || ! targetNode.Passable || targetNode.DistanceToClosestObstacle < agentRadius)
+            if (startNode == targetNode || ! targetNode.IsPassable(isAgentAir))
             {
-                path = Array.Empty<Node>();
+                path = Array.Empty<INodeWorld>();
                 return false;
             }
 
@@ -83,7 +83,7 @@ namespace Gameplay.Pathfinding
                         if (x < 0 || x >= _nodes.GetLength(0) || y < 0 || y >= _nodes.GetLength(1))
                             continue;
                         Node adjacentNode = _nodes[x, y];
-                        if ( ! adjacentNode.Passable)
+                        if ( ! adjacentNode.IsPassable(isAgentAir))
                             continue;
                         if (adjacentNode.LastQuery < _lastQuery)
                         {
@@ -101,8 +101,6 @@ namespace Gameplay.Pathfinding
                         
                         int newG = currentNode.G;
                         newG += diagonal ? _config.DiagonalTravelCost : _config.OrtogonalTravelCost;
-                        if (adjacentNode.DistanceToClosestObstacle <= agentRadius)
-                            newG += _config.TooCloseToObstaclePenalty;
 
                         if (newG > adjacentNode.G)
                             continue;
@@ -219,8 +217,6 @@ namespace Gameplay.Pathfinding
                     Node node = _nodes[x, y];
                     if (node == _closestToMouseNode)
                         Gizmos.color = Color.yellow;
-                    else if ( ! node.Passable)
-                        Gizmos.color = Color.black;
                     else
                         continue;
 

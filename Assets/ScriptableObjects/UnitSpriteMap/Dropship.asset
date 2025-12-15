@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
+  m_Name: Dropship
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitSpriteMap
+  _spritePerDirection:
+  - {fileID: -3692148696220271351, guid: c121c9720287a2947acf0bc430798092, type: 3}
+  - {fileID: -1197489222909458993, guid: b171b64d20aadf94d9c6b238191d5e4d, type: 3}
+  - {fileID: 7400867937968989146, guid: 24f190789ff8de3439ef82e9a5c63935, type: 3}
+  - {fileID: 7165776611644656950, guid: eaa554e59ccfebb4996d894029843cd4, type: 3}
+  - {fileID: 5913917460455835441, guid: c1329351ec1079647913dfa4ddfd9ab1, type: 3}
+  - {fileID: -159968578797902998, guid: 718a3cbd840f794499ea2c71770c68e5, type: 3}
+  - {fileID: -8019633709132893459, guid: 6ab0589c79fcd0b4b9c35d406f3accac, type: 3}
+  - {fileID: -2090713703705131286, guid: 229a3c3a80cb9d6439d50b9db60f8514, type: 3}
+  - {fileID: -1261098456072053776, guid: 843766c560dd2884bb1bafb0dc812276, type: 3}
+  - {fileID: 7262800502265711637, guid: 52341ff458692554799e61e6085ef342, type: 3}
+  - {fileID: 1278436428571896700, guid: 18f4b22ff5cb60243af2dc90ed4feb8b, type: 3}
+  - {fileID: 3982412513546409459, guid: acc7f607d0c0c2c4da511896cf9f15e9, type: 3}
+  - {fileID: 2591129128314413500, guid: bed5fb49cc0048648a3a87af3a61c0ab, type: 3}
+  - {fileID: 3365590027095817808, guid: c5ae44fa5720c614cbe7636c3e742ba8, type: 3}
+  - {fileID: 8862735595756708371, guid: 3a4292830c586da498b1a082ea2c1249, type: 3}
+  - {fileID: 6314886328120144251, guid: 551c6ca55e8ecc344b0b26cf6ae5d2e3, type: 3}
+  - {fileID: 2736903908218781793, guid: 5b0a02c4a5c3c004fb898a80ce5879d9, type: 3}
+  - {fileID: 2661614019450479351, guid: 0c6896cd3bc3d8c469bd0f5f20b89f0b, type: 3}
+  - {fileID: 339818388081602080, guid: 97d370b4f0988904a9bda378d1be8036, type: 3}
+  - {fileID: 7516699163711604982, guid: 0012981ad5847254e88d674c91594177, type: 3}
+  - {fileID: 1811138987423129842, guid: a5708268ebd62ff4db2bfeec0b986d48, type: 3}
+  - {fileID: 3128671559778224536, guid: e5b26b66ec9534d419ab6830a959229a, type: 3}
+  - {fileID: -3792193798872382772, guid: 5f25cab4bbb969941a63a53c2a573f5e, type: 3}
+  - {fileID: -8466564857559414888, guid: c695eda276b6c9b498a4b35e413859e9, type: 3}

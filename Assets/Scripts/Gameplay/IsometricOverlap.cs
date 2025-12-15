@@ -11,6 +11,7 @@ namespace Gameplay
     public class IsometricOverlap : MonoBehaviour
     {
         [SerializeField] private Collider2D _collider;
+        [SerializeField] private LayerMask _unitLayerMask;
 
         public bool TryGetUnits(Vector2 point, float radius, out Unit[] units)
         {
@@ -22,7 +23,7 @@ namespace Gameplay
             {
                 useTriggers = false,
                 useLayerMask = true,
-                layerMask = LayerMask.GetMask("Unit")
+                layerMask = _unitLayerMask
             };
 
             List<Collider2D> colliders = new();

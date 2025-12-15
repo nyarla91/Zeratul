@@ -34,13 +34,16 @@ namespace Gameplay.Units
         public void Init(UnitType unitType)
         {
             _collider.transform.localScale = Vector3.one * unitType.Movement.Size;
+            gameObject.layer = UnitType.Movement.IsAir ? _config.AirLayer : _config.GroundLayer;
+            _collider.gameObject.layer = gameObject.layer;
+            _avoidanceCollider.gameObject.layer = gameObject.layer;
         }
 
         public void Move(Vector2 destination)
         {
             if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
-            NodeMap.TryFindPath(transform.position, destination, out _path, Composition.Type.Movement.Size / 2);
+            NodeMap.TryFindPath(transform.position, destination, out _path, UnitType.Movement.IsAir);
             //ReducePathToNecessary();
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
