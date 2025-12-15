@@ -153,8 +153,8 @@ MonoBehaviour:
   _playerSelection: {fileID: 1164900124}
   _playerOwnership: {fileID: 1164900126}
   _playerInput: {fileID: 1164900127}
-  _playerOrderTargetSelector: {fileID: 344619150}
-  _playerOrdersDispatcher: {fileID: 1713752794}
+  _playerOrderTargetSelector: {fileID: 1164900128}
+  _playerOrdersDispatcher: {fileID: 1164900129}
   _nodeMap: {fileID: 819588473}
   _isometricOverlap: {fileID: 2127400927}
 --- !u!4 &189624905
@@ -492,50 +492,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
---- !u!1 &344619149
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 344619151}
-  - component: {fileID: 344619150}
-  m_Layer: 0
-  m_Name: UnitOrderTargetSelector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &344619150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344619149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54405527db594006a851177298dc4eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.UnitManagement.UnitOrderTargetSelector
---- !u!4 &344619151
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344619149}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.42453, y: 9.71659, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &375865283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -999,6 +955,9 @@ MonoBehaviour:
   _beginDragEventIndex: 0
   _endDragEventIndex: 1
   _clickEventIndex: 2
+  _unitsMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,6 +1572,8 @@ GameObject:
   - component: {fileID: 1164900124}
   - component: {fileID: 1164900126}
   - component: {fileID: 1164900127}
+  - component: {fileID: 1164900129}
+  - component: {fileID: 1164900128}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1671,6 +1632,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f0bcb7a4194775bbab6f9fe15bc614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Player.PlayerInput
+--- !u!114 &1164900128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164900123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54405527db594006a851177298dc4eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.UnitManagement.UnitOrderTargetSelector
+  _unitsMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1164900129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164900123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc543bf92aa4a0cb91ac94540a62b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.UnitManagement.UnitOrdersDispatcher
 --- !u!1001 &1181591241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2860,50 +2848,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
---- !u!1 &1713752793
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1713752795}
-  - component: {fileID: 1713752794}
-  m_Layer: 0
-  m_Name: UnitOrdersDispatcher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1713752794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1713752793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc543bf92aa4a0cb91ac94540a62b05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.UnitManagement.UnitOrdersDispatcher
---- !u!4 &1713752795
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1713752793}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.42453, y: 9.71659, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1730504868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3889,8 +3833,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1927245013}
   - {fileID: 2084491711}
-  - {fileID: 344619151}
-  - {fileID: 1713752795}
   - {fileID: 661561051}
   - {fileID: 189624905}
   - {fileID: 1164900125}

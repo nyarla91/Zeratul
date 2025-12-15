@@ -10,6 +10,8 @@ namespace Gameplay.Player
 {
     public class PlayerOrderTargetSelector : MonoBehaviour
     {
+        [SerializeField] private LayerMask _unitsMask;
+        
         private TargetRequirement _currentRequirement;
         private OrderTarget _currentTarget;
 
@@ -19,7 +21,7 @@ namespace Gameplay.Player
         {
             get
             {
-                Collider2D[] overlap = Physics2D.OverlapPointAll(EstimatedPointTarget); 
+                Collider2D[] overlap = Physics2D.OverlapPointAll(EstimatedPointTarget, _unitsMask); 
                 Unit[] units = overlap.Select(x => x.transform.GetComponentInParent<Unit>()).ClearNull();
                 return units.Length == 0 ? null : units[0];
             }

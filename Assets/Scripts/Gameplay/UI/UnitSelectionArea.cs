@@ -17,6 +17,7 @@ namespace Gameplay.UI
         [SerializeField] private int _beginDragEventIndex;
         [SerializeField] private int _endDragEventIndex;
         [SerializeField] private int _clickEventIndex;
+        [SerializeField] private LayerMask _unitsMask;
         
         public Vector2 SelectionStartPosition { get; private set; }
         public bool IsSelecting { get; private set; }
@@ -54,7 +55,7 @@ namespace Gameplay.UI
             Vector2 overlapBoxOrigin = Vector2.Lerp(worldPointA, worldPointB, 0.5f);
             Vector2 overlapBoxSize = (worldPointB - worldPointA).Abs();
             
-            Unit[] selectedUnits = GetUnitsFromColliders(Physics2D.OverlapBoxAll(overlapBoxOrigin, overlapBoxSize, 0));
+            Unit[] selectedUnits = GetUnitsFromColliders(Physics2D.OverlapBoxAll(overlapBoxOrigin, overlapBoxSize, 0, _unitsMask));
             if (selectedUnits.Length == 0)
                 return;
             
@@ -77,7 +78,7 @@ namespace Gameplay.UI
             Vector2 currentMousePosition = Mouse.current.position.ReadValue();
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(currentMousePosition);
             
-            Unit[] selectedUnits = GetUnitsFromColliders(Physics2D.OverlapPointAll(worldPoint));
+            Unit[] selectedUnits = GetUnitsFromColliders(Physics2D.OverlapPointAll(worldPoint, _unitsMask));
             if (selectedUnits.Length == 0)
                 return;
             

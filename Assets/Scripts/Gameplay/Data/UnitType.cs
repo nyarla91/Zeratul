@@ -68,7 +68,9 @@ namespace Gameplay.Data
     public struct UnitGraphicsData
     {
         [SerializeField] private UnitSpriteMap _spriteMap;
+        [SerializeField] private float _spriteHeight;
         
         public UnitSpriteMap SpriteMap => _spriteMap;
+        public float SpriteHeight => _spriteHeight;
     }
 }
