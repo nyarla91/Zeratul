@@ -155,9 +155,9 @@ namespace Gameplay.Pathfinding
                 Node nextNode = result.FirstOrDefault();
                 if (nextNode != null && currentNode.PreviousNode != null)
                 {
-                    Vector2Int deltaPrevious = currentNode.PreviousNode.MapCoordinates - currentNode.MapCoordinates;
-                    Vector2Int deltaNext = nextNode.MapCoordinates - currentNode.MapCoordinates;
-                    if (deltaNext.Abs().Equals(deltaPrevious.Abs()))
+                    Vector2 deltaPrevious = currentNode.PreviousNode.MapCoordinates - currentNode.MapCoordinates;
+                    Vector2 deltaNext = currentNode.MapCoordinates - nextNode.MapCoordinates;
+                    if (Vector2.Angle(deltaNext, deltaPrevious) < 5)
                     {
                         currentNode = currentNode.PreviousNode;
                         continue;
