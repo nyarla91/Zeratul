@@ -1,12 +1,11 @@
 ﻿using Extentions;
 using Extentions.Pause;
 using Gameplay;
-using Gameplay.Data;
 using Gameplay.Pathfinding;
 using Gameplay.Player;
 using UnityEngine;
 
-namespace Architecture
+namespace DI
 {
     public class GameplayInstaller : MonoInstaller
     {
