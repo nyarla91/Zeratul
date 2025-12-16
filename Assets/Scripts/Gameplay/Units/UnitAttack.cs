@@ -80,7 +80,7 @@ namespace Gameplay.Units
 
         private void TryAutoAttack()
         {
-            if ( ! CanAttack || ! Composition.Orders.IsIdle || IsAttacking)
+            if ( ! CanAttack || ! UnitType.Weapon.AutoAttack || ! Composition.Orders.IsIdle || IsAttacking)
                 return;
             if ( ! IsometricOverlap.TryGetUnits(transform.position, UnitType.SightRadius, out Unit[] units))
                 return;

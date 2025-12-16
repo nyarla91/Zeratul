@@ -1,13 +1,12 @@
-﻿using System;
-using Gameplay.Player;
+﻿using Gameplay.Player;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Units
+namespace Gameplay.Units.View
 {
     public class UnitsSelectionView : MonoBehaviour
     {
-        [SerializeField] private Unit _model;
+        [SerializeField] private Unit _unit;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Color _selectedColor;
         
@@ -15,12 +14,13 @@ namespace Gameplay.Units
 
         private void Start()
         {
-            transform.localScale = Vector3.one * _model.Type.Movement.Size;
+            _spriteRenderer.transform.localPosition = _unit.Type.Graphics.SpriteHeight * Vector2.up;
+            transform.localScale = _unit.Type.Movement.Size * Vector3.one;
         }
 
         private void Update()
         {
-            _spriteRenderer.color = _playerSelection.IsUnitSelected(_model) ? _selectedColor : Color.clear;
+            _spriteRenderer.color = _playerSelection.IsUnitSelected(_unit) ? _selectedColor : Color.clear;
         }
     }
 }

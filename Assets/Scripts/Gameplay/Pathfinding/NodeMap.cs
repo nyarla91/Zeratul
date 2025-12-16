@@ -149,7 +149,10 @@ namespace Gameplay.Pathfinding
             while (currentNode != null)
             {
                 if (currentNode == originNode || result.Contains(currentNode))
+                {
+                    result.Insert(0,  currentNode);
                     break;
+                }
                 Node nextNode = result.FirstOrDefault();
                 if (nextNode != null && currentNode.PreviousNode != null)
                 {
