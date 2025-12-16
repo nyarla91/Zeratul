@@ -23,7 +23,12 @@ namespace Gameplay.Player
             {
                 Collider2D[] overlap = Physics2D.OverlapPointAll(EstimatedPointTarget, _unitsMask); 
                 Unit[] units = overlap.Select(x => x.transform.GetComponentInParent<Unit>()).ClearNull();
-                return units.Length == 0 ? null : units[0];
+                if (units.Length == 0)
+                    return null;
+                Unit unit = units[0];
+                if ( ! unit.Visibility.IsVisibleToPlayer)
+                    return null;
+                return unit;
             }
         }
 

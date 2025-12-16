@@ -14,7 +14,11 @@ namespace Gameplay.Units
         public void Init(UnitType unitType, bool ownedByPlayer)
         {
             _sightArea.transform.localScale = unitType.SightRadius * 2 * Vector3.one;
-            VisionMap.AttachSightArea(_sightArea.transform, ownedByPlayer);
+            if (ownedByPlayer)
+                VisionMap.PlayerArea.AttachSightArea(_sightArea.transform);
+            else
+                VisionMap.EnemyArea.AttachSightArea(_sightArea.transform);
+            _sightArea.compositeOperation = Collider2D.CompositeOperation.Merge;
         }
 
         private void FixedUpdate()

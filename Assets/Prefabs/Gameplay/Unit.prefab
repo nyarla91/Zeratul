@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 6636044867027432944}
   - component: {fileID: 8328357319242455958}
   m_Layer: 0
-  m_Name: UnitShadow_0
+  m_Name: UnitShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,6 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.UnitShadowView
   _unit: {fileID: 1588366463054386623}
+  _spriteRenderer: {fileID: 6636044867027432944}
 --- !u!1 &2720667909310847958
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +892,7 @@ GameObject:
   - component: {fileID: 582712008969607882}
   - component: {fileID: 4530902287902286238}
   - component: {fileID: 4728294680213157340}
+  - component: {fileID: 5884167143842845143}
   m_Layer: 6
   m_Name: Unit
   m_TagString: Untagged
@@ -1038,6 +1040,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitSight
   _sightArea: {fileID: 2946777494775096283}
+--- !u!114 &5884167143842845143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932572241072970818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9036ee1adeacfb74f8f101341c3ec6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitVisibility
 --- !u!1 &3816697776354664460
 GameObject:
   m_ObjectHideFlags: 0

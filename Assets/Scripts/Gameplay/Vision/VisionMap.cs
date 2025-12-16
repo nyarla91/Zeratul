@@ -7,12 +7,7 @@ namespace Gameplay.Vision
         [SerializeField] private VisionArea _playerArea;
         [SerializeField] private VisionArea _enemyArea;
 
-        public void AttachSightArea(Transform sightArea, bool ownedByPlayer)
-        {
-            if (ownedByPlayer)
-                _playerArea.AttachSightArea(sightArea);
-            else
-                _enemyArea.AttachSightArea(sightArea);
-        } 
+        public VisionArea PlayerArea => _playerArea;
+        public VisionArea EnemyArea => _enemyArea;
     }
 }

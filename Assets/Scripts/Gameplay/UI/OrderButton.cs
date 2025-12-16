@@ -60,7 +60,6 @@ namespace Gameplay.UI
 
         private void IssueWithTarget()
         {
-            
             if (_orderType == null || _orderType.TargetRequirement == TargetRequirement.None)
                 return;
             OrderTarget target = TargetSelector.FinishTargeting();
