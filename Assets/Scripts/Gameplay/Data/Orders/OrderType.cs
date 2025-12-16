@@ -20,8 +20,15 @@ namespace Gameplay.Data.Orders
         public abstract void OnUpdate(Order order);
         
         public abstract void Dispose(Order order);
-        
-        public abstract bool IsCarriedOut(Order order);
+
+        public virtual bool IsCompleted(Order order) => false;
+
+        protected void Complete(Order order)
+        {
+            if (order.Actor.Orders.CurrentOrder.Type != this)
+                return;
+            order.Actor.Orders.CompleteCurrentOrder();
+        }
     }
 
     public enum TargetRequirement

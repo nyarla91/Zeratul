@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Gameplay.Data.Orders
 {
-    [Serializable]
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Move Order", order = 0)]
     public class MoveOrder : OrderType
     {
@@ -24,6 +23,6 @@ namespace Gameplay.Data.Orders
             order.Actor.Movement.Stop();
         }
 
-        public override bool IsCarriedOut(Order order) => ! order.Actor.Movement.HasPath;
+        public override bool IsCompleted(Order order) => ! order.Actor.Movement.HasPath;
     }
 }

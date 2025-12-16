@@ -15,9 +15,10 @@ namespace Gameplay.Units
     public class UnitOrders : UnitComponent
     {
         private readonly List<Order> _pendingOrders = new();
-        private Order _currentOrder;
 
-        public bool IsIdle => _currentOrder == null;
+        public Order CurrentOrder { get; private set; }
+        
+        public bool IsIdle => CurrentOrder == null;
         
         [Inject] public NodeMap NodeMap { get; private set; }
 
@@ -53,21 +54,25 @@ namespace Gameplay.Units
             }
         }
 
+        public void CompleteCurrentOrder()
+        {
+            if (TryProceedToNextOrder())
+                return;
+            CurrentOrder.Dispose();
+            CurrentOrder = null;
+        }
+
         private void FixedUpdate()
         {
             if (IsIdle)
             {
                 TryProceedToNextOrder();
             }
-            else if (_currentOrder.IsCarriedOut())
+            else if (CurrentOrder.IsCarriedOut())
             {
-                if (!TryProceedToNextOrder())
-                {
-                    _currentOrder.Dispose();
-                    _currentOrder = null;
-                }
+                CompleteCurrentOrder();
             }
-            _currentOrder?.OnUpdate();
+            CurrentOrder?.OnUpdate();
         }
 
         private bool TryProceedToNextOrder()
@@ -81,14 +86,14 @@ namespace Gameplay.Units
 
         private void ProceedToOrder(Order order)
         {
-            _currentOrder?.Dispose();
-            _currentOrder = order;
-            _currentOrder.OnProceed();
+            CurrentOrder?.Dispose();
+            CurrentOrder = order;
+            CurrentOrder.OnProceed();
         }
 
         private void OnDestroy()
         {
-            _currentOrder =  null;
+            CurrentOrder =  null;
             _pendingOrders.Clear();
         }
     }

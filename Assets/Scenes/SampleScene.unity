@@ -855,8 +855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c21e72c4704a0fb755e62d2e53e49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Vision.FogOfWar
-  _pixelScale: 2
-  _fogDimensions: {x: 100, y: 100}
+  _pixelScale: 1
+  _fogDimensions: {x: 200, y: 200}
   _spriteRenderer: {fileID: 388089113}
   _hiddenColor: {r: 0, g: 0, b: 0, a: 1}
   _scoutedColor: {r: 0, g: 0, b: 0, a: 0.6117647}

@@ -1,4 +1,5 @@
-﻿using Gameplay.Data;
+﻿using Extentions;
+using Gameplay.Data;
 using Gameplay.Vision;
 using UnityEngine;
 using Zenject;
@@ -28,7 +29,7 @@ namespace Gameplay.Units
 
         private void OnDestroy()
         {
-            Destroy(_sightArea.gameObject);
+            _sightArea?.gameObject.Destroy();
         }
     }
 }

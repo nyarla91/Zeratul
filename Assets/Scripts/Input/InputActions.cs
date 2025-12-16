@@ -733,6 +733,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6467dca-0be3-438d-bfea-19f4e48791bc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -766,6 +775,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""948fa526-5e30-4258-953c-8180a484977c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -858,6 +878,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Orders_Attack = m_Orders.FindAction("Attack", throwIfNotFound: true);
         m_Orders_Stop = m_Orders.FindAction("Stop", throwIfNotFound: true);
         m_Orders_Move = m_Orders.FindAction("Move", throwIfNotFound: true);
+        m_Orders_Ability1 = m_Orders.FindAction("Ability1", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -1267,6 +1288,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Orders_Attack;
     private readonly InputAction m_Orders_Stop;
     private readonly InputAction m_Orders_Move;
+    private readonly InputAction m_Orders_Ability1;
     /// <summary>
     /// Provides access to input actions defined in input action map "Orders".
     /// </summary>
@@ -1290,6 +1312,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Orders/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Orders_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Ability1".
+        /// </summary>
+        public InputAction @Ability1 => m_Wrapper.m_Orders_Ability1;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1325,6 +1351,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Ability1.started += instance.OnAbility1;
+            @Ability1.performed += instance.OnAbility1;
+            @Ability1.canceled += instance.OnAbility1;
         }
 
         /// <summary>
@@ -1345,6 +1374,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Ability1.started -= instance.OnAbility1;
+            @Ability1.performed -= instance.OnAbility1;
+            @Ability1.canceled -= instance.OnAbility1;
         }
 
         /// <summary>
@@ -1585,5 +1617,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbility1(InputAction.CallbackContext context);
     }
 }

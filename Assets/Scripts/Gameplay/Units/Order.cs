@@ -28,7 +28,7 @@ namespace Gameplay.Units
 
         public bool IsCarriedOut()
         {
-            return Type.IsCarriedOut(this);
+            return Type.IsCompleted(this);
         }
 
         public void Dispose()

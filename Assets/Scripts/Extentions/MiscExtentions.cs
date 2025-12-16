@@ -10,8 +10,10 @@ namespace Extentions
 {
     public static class MiscExtentions
     {
-        public static void SelfDestruct(this Object gameObject)
+        public static void Destroy(this Object gameObject)
         {
+            if (gameObject == null)
+                return;
             Object.Destroy(gameObject);
         }
 

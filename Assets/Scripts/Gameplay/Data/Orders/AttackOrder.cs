@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Gameplay.Data.Orders
 {
-    [Serializable]
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Attack Order", order = 0)]
     public class AttackOrder : OrderType
     {
@@ -24,7 +23,7 @@ namespace Gameplay.Data.Orders
             order.Actor.Attack.StopAttacking();
         }
 
-        public override bool IsCarriedOut(Order order)
+        public override bool IsCompleted(Order order)
             => order.Target.Unit.Life.HitPoints <= 0 || order.Target.Unit is null || order.Target.Unit == order.Actor;
     }
 }

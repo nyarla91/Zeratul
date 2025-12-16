@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Gameplay.Data.Orders
 {
-    [Serializable]
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Patrol Order", order = 0)]
     public class PatrolOrder : OrderType
     {
@@ -34,6 +33,6 @@ namespace Gameplay.Data.Orders
             order.Actor.Movement.Stop();
         }
 
-        public override bool IsCarriedOut(Order order) => false;
+        public override bool IsCompleted(Order order) => false;
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Gameplay.Data.Orders
 {
-    [Serializable]
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Stop Order", order = 0)]
     public class StopOrder : OrderType
     {
@@ -16,6 +15,6 @@ namespace Gameplay.Data.Orders
         
         public override void Dispose(Order order) { }
         
-        public override bool IsCarriedOut(Order order) => true;
+        public override bool IsCompleted(Order order) => true;
     }
 }
