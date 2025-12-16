@@ -42,6 +42,8 @@ namespace Gameplay.Units
         {
             if ( ! UnitType.AvailableOrders.Contains(order.Type))
                 return;
+            if ( ! order.CanBeIssued())
+                return;
             
             if (queue)
             {
@@ -68,7 +70,7 @@ namespace Gameplay.Units
             {
                 TryProceedToNextOrder();
             }
-            else if (CurrentOrder.IsCarriedOut())
+            else if (CurrentOrder.IsCompleted())
             {
                 CompleteCurrentOrder();
             }

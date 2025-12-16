@@ -12,18 +12,20 @@ namespace Gameplay.Data.Orders
         public string HotkeyAlias => _hotkeyAlias;
 
         public abstract TargetRequirement TargetRequirement { get; }
-
+        
         public virtual bool IsValidForSmartOrder(OrderTarget target) => false;
-        
+
         public abstract void OnProceed(Order order);
-        
+
         public abstract void OnUpdate(Order order);
-        
+
         public abstract void Dispose(Order order);
 
         public virtual bool IsCompleted(Order order) => false;
+        
+        public virtual bool CanBeIssued(Order order) => true;
 
-        protected void Complete(Order order)
+        public void Complete(Order order)
         {
             if (order.Actor.Orders.CurrentOrder.Type != this)
                 return;

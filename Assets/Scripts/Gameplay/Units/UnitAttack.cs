@@ -60,7 +60,7 @@ namespace Gameplay.Units
                 Composition.Movement.Stop();
                 
                 float targetAngle = (transform.position.DirectionTo(target.transform.position) / Isometry.Scale).ToDegrees();
-                Composition.Movement.RotateTowards(targetAngle, Time.fixedDeltaTime);
+                Composition.Movement.RotateTowards(targetAngle);
                 if (!Mathf.Approximately(Composition.Movement.LookAngle, targetAngle))
                     continue;
                 

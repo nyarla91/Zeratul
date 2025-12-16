@@ -1,4 +1,5 @@
-﻿using Gameplay.Data.Abilities;
+﻿using Extentions;
+using Gameplay.Data.Abilities;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -16,12 +17,30 @@ namespace Gameplay.Data.Orders
 
         public override void OnProceed(Order order)
         {
-            
+            Ability ability = GetAbilityForOrder(order);
+            if ( ! ability.IsReady)
+                Complete(order);
         }
 
         public override void OnUpdate(Order order)
         {
-            Ability ability = order.Actor.Abilities.GetAbility(AbilityType);
+            Ability ability = GetAbilityForOrder(order);
+            Vector2 destination = order.Target.Unit ? order.Target.Unit.transform.position : order.Target.Point;
+            
+            if (!IsTargetInRadius(order))
+            {
+                order.Actor.Movement.Move(destination);
+                return;
+            }
+            order.Actor.Movement.Stop();
+            
+            float angleToTarget = order.Actor.transform.DirectionTo2D(destination).ToDegrees();
+            if (Mathf.DeltaAngle(order.Actor.Movement.LookAngle, angleToTarget) > AbilityType.MaxAngleToTarget)
+            {
+                order.Actor.Movement.RotateTowards(angleToTarget);
+                return;
+            }
+            
             if (AbilityType.TryCast(ability, order.Target))
                 Complete(order);
         }
@@ -29,6 +48,17 @@ namespace Gameplay.Data.Orders
         public override void Dispose(Order order)
         {
             order.Actor.Movement.Stop();
+        }
+
+        public override bool CanBeIssued(Order order)
+        {
+            Ability ability = GetAbilityForOrder(order);
+            return AbilityType.CanBeCast(ability, order.Target);
+        }
+
+        private Ability GetAbilityForOrder(Order order)
+        {
+            return order.Actor.Abilities.GetAbility(AbilityType);
         }
 
         private bool IsTargetInRadius(Order order)

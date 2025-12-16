@@ -7,7 +7,7 @@ namespace Gameplay.Data.Validator
 {
     public abstract class UnitValidator : ScriptableObject
     {
-        public abstract bool IsValid(Unit unit);
+        public abstract bool IsValid(Unit actor, Unit target);
     }
     
     [Serializable]
@@ -15,8 +15,10 @@ namespace Gameplay.Data.Validator
     {
         [SerializeField] private UnitValidator[] _unitValidators;
         
-        public bool IsValid(Unit unit) => _unitValidators.Length ==  0 || _unitValidators.All(v => v.IsValid(unit));
+        public bool IsValid(Unit actor, Unit unit)
+            => _unitValidators.Length ==  0 || _unitValidators.All(v => v.IsValid(actor, unit));
         
-        public bool IsInvalid(Unit unit) => _unitValidators.Length > 0 && _unitValidators.Any(v => ! v.IsValid(unit));
+        public bool IsInvalid(Unit actor, Unit unit)
+            => _unitValidators.Length > 0 && _unitValidators.Any(v => ! v.IsValid(actor,unit));
     }
 }

@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
   m_Name: CoolAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
-  _targetRequirement: 0
-  _targetRadius: 5
-  _cooldown: 1
+  _cooldown: 2
+  _targetRequirement: 2
+  _targetRadius: 1
+  _casterValidators:
+    _unitValidators: []
+  _targetValidators:
+    _unitValidators:
+    - {fileID: 11400000, guid: e35c596869c65c840abce09b740dd570, type: 2}
+  _targetEffects:
+  - {fileID: 11400000, guid: 5a6db6bfa81845f41b7d8cf004b1bdf6, type: 2}

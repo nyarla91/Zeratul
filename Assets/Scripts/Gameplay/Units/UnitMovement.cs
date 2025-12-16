@@ -27,6 +27,7 @@ namespace Gameplay.Units
         public bool Displacable => ! HasPath;
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public float LookAngle { get; private set; }
+        public float TargetLookAngle { get; private set; }
 
         [Inject] public NodeMap NodeMap { get; private set; }
 
@@ -49,13 +50,9 @@ namespace Gameplay.Units
             _nodesPassed = 0;
         }
 
-        public void RotateTowards(Vector2 direction, float deltaTime) => RotateTowards(direction.ToDegrees(), deltaTime);
+        public void RotateTowards(Vector2 direction) => RotateTowards(direction.ToDegrees());
         
-        public void RotateTowards(float angle, float deltaTime)
-        {
-            float maxDelta = UnitType.Movement.RotationSpeed * Time.fixedDeltaTime;
-            LookAngle = Mathf.MoveTowardsAngle(LookAngle, angle, maxDelta);
-        }
+        public void RotateTowards(float angle) => TargetLookAngle = angle;
 
         private void ReducePathToNecessary()
         {
@@ -90,6 +87,10 @@ namespace Gameplay.Units
         private void FixedUpdate()
         {
             _rigidbody.mass = Displacable ? 0.001f : 1;
+            
+            float maxDelta = UnitType.Movement.RotationSpeed * Time.fixedDeltaTime;
+            LookAngle = Mathf.MoveTowardsAngle(LookAngle, TargetLookAngle, maxDelta);
+            
             if (!HasPath)
             {
                 _rigidbody.linearVelocity = Vector2.zero;
@@ -108,7 +109,7 @@ namespace Gameplay.Units
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
             direction = AvoidObstaclesForDirection(direction);
             float speed = UnitType.Movement.MaxSpeed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
-            RotateTowards(direction / Isometry.Scale, Time.fixedDeltaTime);
+            RotateTowards(direction / Isometry.Scale);
             _rigidbody.linearVelocity = direction * speed;
         }
 

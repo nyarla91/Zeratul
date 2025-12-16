@@ -16,25 +16,17 @@ namespace Gameplay.Units
             Target = target;
         }
 
-        public void OnProceed()
-        {
-            Type.OnProceed(this);
-        }
+        public void OnProceed() => Type.OnProceed(this);
 
-        public void OnUpdate()
-        {
-            Type.OnUpdate(this);
-        }
+        public void OnUpdate() => Type.OnUpdate(this);
 
-        public bool IsCarriedOut()
-        {
-            return Type.IsCompleted(this);
-        }
+        public void Dispose() => Type.Dispose(this);
 
-        public void Dispose()
-        {
-            Type.Dispose(this);
-        }
+        public bool IsCompleted() => Type.IsCompleted(this);
+
+        public bool CanBeIssued() => Type.CanBeIssued(this);
+        
+        public void Complete() => Type.Complete(this);
     }
 
     public struct OrderTarget
