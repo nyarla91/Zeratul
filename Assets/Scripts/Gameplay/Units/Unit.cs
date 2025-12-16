@@ -8,7 +8,7 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitOrders))]
     [RequireComponent(typeof(UnitAttack))]
     [RequireComponent(typeof(UnitLife))]
-    [RequireComponent(typeof(UnitVIsion))]
+    [RequireComponent(typeof(UnitSight))]
     public class Unit : MonoBehaviour
     {
         private UnitOwnership _ownership;
@@ -16,14 +16,14 @@ namespace Gameplay.Units
         private UnitOrders _orders;
         private UnitAttack _attack;
         private UnitLife _life;
-        private UnitVIsion _vision;
+        private UnitSight _sight;
 
         public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
         public UnitOrders Orders => _orders ??= GetComponent<UnitOrders>();
         public UnitAttack Attack => _attack ??= GetComponent<UnitAttack>();
         public UnitLife Life => _life ??= GetComponent<UnitLife>();
-        public UnitVIsion Vision => _vision ??= GetComponent<UnitVIsion>();
+        public UnitSight Sight => _sight ??= GetComponent<UnitSight>();
 
         public UnitType Type { get; private set; }
         
@@ -36,7 +36,7 @@ namespace Gameplay.Units
             Orders.Init(type);
             Attack.Init(type);
             Life.Init(type);
-            Vision.Init(type);
+            Sight.Init(type, ownedByPlayer);
             
             Life.OnHitPointsOver += Die;
         }

@@ -3,6 +3,7 @@ using Extentions.Pause;
 using Gameplay;
 using Gameplay.Pathfinding;
 using Gameplay.Player;
+using Gameplay.Vision;
 using UnityEngine;
 
 namespace DI
@@ -16,6 +17,7 @@ namespace DI
         [SerializeField] private PlayerOrdersDispatcher _playerOrdersDispatcher;
         [SerializeField] private NodeMap _nodeMap;
         [SerializeField] private IsometricOverlap _isometricOverlap;
+        [SerializeField] private VisionMap _visionMap;
         
         public override void InstallBindings()
         {
@@ -30,6 +32,7 @@ namespace DI
             BindFromInstance(_playerOrdersDispatcher);
             BindFromInstance(_nodeMap);
             BindFromInstance(_isometricOverlap);
+            BindFromInstance(_visionMap);
         }
     }
 }

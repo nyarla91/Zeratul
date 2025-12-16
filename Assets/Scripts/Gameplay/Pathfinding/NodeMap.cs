@@ -18,7 +18,9 @@ namespace Gameplay.Pathfinding
         private Node _closestToMouseNode;
 
         private int _lastQuery = -1;
-        
+
+        public Vector2Int MapSize => _mapSize;
+
         private void Awake()
         {
             _nodes = new Node[_mapSize.x, _mapSize.y];

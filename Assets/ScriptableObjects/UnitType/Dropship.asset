@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Dropship
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _sightRadius: 10
+  _sightRadius: 24
   _life:
     _maxHitPoints: 250
     _maxShieldPoints: 150
@@ -34,4 +34,3 @@ MonoBehaviour:
   _availableOrders:
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
   - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
-  - {fileID: 11400000, guid: 43ebbc7f3d968754297a1b8a9670fc74, type: 2}
