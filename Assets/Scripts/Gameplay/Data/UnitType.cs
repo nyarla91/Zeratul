@@ -69,10 +69,8 @@ namespace Gameplay.Data
     {
         [SerializeField] private UnitSpriteMap _spriteMap;
         [SerializeField] private float _spriteHeight;
-        [SerializeField] private float _shadowSize;
         
         public UnitSpriteMap SpriteMap => _spriteMap;
         public float SpriteHeight => _spriteHeight;
-        public float ShadowSize => _shadowSize;
     }
 }

@@ -6,16 +6,18 @@ namespace Gameplay.Units.View
     public class UnitShadowView : MonoBehaviour
     {
         [SerializeField] private Unit _unit;
+        [SerializeField] private SpriteRenderer _animationSpriteRenderer; 
         [SerializeField] private SpriteRenderer _spriteRenderer;
-
+        
         private void Start()
         {
-            transform.localScale = _unit.Type.Graphics.ShadowSize * Vector3.one;
+            if ( ! _unit.Type.Movement.IsAir)
+                Destroy(gameObject);
         }
 
         private void Update()
         {
-            _spriteRenderer.color = _unit.Visibility.IsVisibleToPlayer ? Color.white : Color.clear;
+            _spriteRenderer.sprite = _animationSpriteRenderer.sprite;
         }
     }
 }
