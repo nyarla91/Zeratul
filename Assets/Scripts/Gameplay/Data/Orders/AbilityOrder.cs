@@ -13,7 +13,7 @@ namespace Gameplay.Data.Orders
         public AbilityType AbilityType => _abilityType;
 
         public override TargetRequirement TargetRequirement => _abilityType.TargetRequirement;
-        
+
         public override void OnProceed(Order order)
         {
             
@@ -21,12 +21,25 @@ namespace Gameplay.Data.Orders
 
         public override void OnUpdate(Order order)
         {
-            Debug.Log($"{order.Actor.Type} using {AbilityType} ability targeting {order.Target.Point} {order.Target.Unit}");
+            Ability ability = order.Actor.Abilities.GetAbility(AbilityType);
+            if (AbilityType.TryCast(ability, order.Target))
+                Complete(order);
         }
 
         public override void Dispose(Order order)
         {
-            
+            order.Actor.Movement.Stop();
+        }
+
+        private bool IsTargetInRadius(Order order)
+        {
+            return TargetRequirement switch
+            {
+                TargetRequirement.None => true,
+                TargetRequirement.Unit => Isometry.Distance(order.Actor.transform.position,
+                    order.Target.Unit.transform.position) < AbilityType.TargetRadius,
+                _ => Isometry.Distance(order.Actor.transform.position, order.Target.Point) < AbilityType.TargetRadius
+            };
         }
     }
 }

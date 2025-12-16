@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CoolAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
   _targetRequirement: 0
-  _cooldown: 5
   _targetRadius: 5
+  _cooldown: 1

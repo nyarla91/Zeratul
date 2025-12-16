@@ -32,7 +32,7 @@ namespace Gameplay.Player
             }
         }
 
-        private OrderTarget EstimatedPointOrUnitTarget => new OrderTarget(EstimatedPointTarget, EstimatedUnitTarget);
+        private OrderTarget EstimatedPointOrUnitTarget => new(EstimatedPointTarget, EstimatedUnitTarget);
         
         public void StartTargeting(TargetRequirement requirement)
         {
