@@ -21,8 +21,11 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private UnitValidatorGroup _targetValidators;
         [Header("Effects")]
         [SerializeField] private EffectTargetingUnit[] _casterEffects;
+        [SerializeField] private EffectTargetingPoint[] _casterPointEffects;
         [SerializeField] private float _maxAngleToTarget = 360;
         [SerializeField] private EffectTargetingUnit[] _unitTargetEffects;
+        [SerializeField] private bool _applyPointEffectsToUnit = true;
+        [SerializeField] private EffectTargetingPoint[] _pointTargetEffect;
 
         public TargetRequirement TargetRequirement => _targetRequirement;
         public float TargetRadius => _targetRadius;
@@ -45,12 +48,25 @@ namespace Gameplay.Data.Abilities
             {
                 effect.Apply(ability.Caster, ability.Caster);
             }
-            
+            foreach (EffectTargetingPoint effect in _casterPointEffects)
+            {
+                effect.Apply(ability.Caster, ability.Caster.transform.position);
+            }
+
             if (target.Unit)
             {
                 foreach (EffectTargetingUnit effect in _unitTargetEffects)
                 {
                     effect.Apply(ability.Caster, target.Unit);
+                }
+            }
+
+            if (!target.Unit || _applyPointEffectsToUnit)
+            {
+                Vector2 point = target.Unit ? target.Unit.transform.position : target.Point;
+                foreach (EffectTargetingPoint effect in _pointTargetEffect)
+                {
+                    effect.Apply(ability.Caster, point);
                 }
             }
             

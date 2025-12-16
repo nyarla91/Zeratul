@@ -54,6 +54,11 @@ namespace Gameplay.Units
         
         public void RotateTowards(float angle) => TargetLookAngle = angle;
 
+        public void Teleport(Vector2 position)
+        {
+            _rigidbody.MovePosition(position);
+        }
+        
         private void ReducePathToNecessary()
         {
             if (_path.Length <= 2)

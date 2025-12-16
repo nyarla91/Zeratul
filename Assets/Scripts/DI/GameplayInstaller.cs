@@ -18,6 +18,7 @@ namespace DI
         [SerializeField] private NodeMap _nodeMap;
         [SerializeField] private IsometricOverlap _isometricOverlap;
         [SerializeField] private VisionMap _visionMap;
+        [SerializeField] private Object[] _manualInjectable;
         
         public override void InstallBindings()
         {
@@ -33,6 +34,11 @@ namespace DI
             BindFromInstance(_nodeMap);
             BindFromInstance(_isometricOverlap);
             BindFromInstance(_visionMap);
+
+            foreach (Object o in _manualInjectable)
+            {
+                Container.Inject(o);
+            }
         }
     }
 }
