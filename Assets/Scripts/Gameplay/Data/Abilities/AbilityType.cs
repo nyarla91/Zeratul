@@ -12,7 +12,7 @@ namespace Gameplay.Data.Abilities
     [CreateAssetMenu(menuName = "Gameplay Data/Ability", order = 0)]
     public class AbilityType : ScriptableObject
     {
-        [SerializeField] private float _cooldown;
+        [SerializeField] private int _cooldown;
         [Space]
         [SerializeField] private TargetRequirement _targetRequirement;
         [SerializeField] private float _targetRadius;
@@ -29,7 +29,7 @@ namespace Gameplay.Data.Abilities
 
         public TargetRequirement TargetRequirement => _targetRequirement;
         public float TargetRadius => _targetRadius;
-        public float Cooldown => _cooldown;
+        public int Cooldown => _cooldown;
         public float MaxAngleToTarget => _maxAngleToTarget;
 
         public bool CanBeCast(Ability ability, OrderTarget target)

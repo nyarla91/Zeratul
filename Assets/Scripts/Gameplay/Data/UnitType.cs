@@ -29,11 +29,11 @@ namespace Gameplay.Data
     {
         [SerializeField] private int _maxHitPoints;
         [SerializeField] private int _maxShieldPoints;
-        [SerializeField] private float _shieldsRecoveryDelay;
+        [SerializeField] private int _shieldsRecoveryDelay;
 
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;
-        public float ShieldsRecoveryDelay => _shieldsRecoveryDelay;
+        public int ShieldsRecoveryDelay => _shieldsRecoveryDelay;
     }
 
     [Serializable]
@@ -54,12 +54,12 @@ namespace Gameplay.Data
     public struct UnitWeaponType
     {
         [SerializeField] private int _baseDamage;
-        [SerializeField] private float _cooldown;
+        [SerializeField] private int _cooldown;
         [SerializeField] private float _maxDistance;
         [SerializeField] private bool _autoAttack;
 
         public int BaseDamage => _baseDamage;
-        public float Cooldown => _cooldown;
+        public int Cooldown => _cooldown;
         public float MaxDistance => _maxDistance;
         public bool AutoAttack => _autoAttack;
     }

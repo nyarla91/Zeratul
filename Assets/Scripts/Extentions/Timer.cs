@@ -10,27 +10,23 @@ namespace Extentions
     {
         private readonly MonoBehaviour _container;
         private readonly IPauseRead _pause;
-        private float _timeElapsed;
+        private int _framesElapsed;
         private bool _active;
         private Coroutine _tickingCoroutine;
-        private float _duration;
+        private int _duration;
 
-        private float DeltaFrame =>
-            (_pause == null || _pause.IsUnpaused) ? (FixedTime ? Time.fixedDeltaTime : Time.deltaTime) : 0;
-
-        public float Duration
+        public int Duration
         {
             get => _duration;
             set => _duration = Mathf.Max(value, 0);
         }
 
         public bool Loop { get; set; }
-        public bool FixedTime { get; set; } = true;
 
-        public float TimeElapsed => _timeElapsed;
-        public float TimeLeft => Duration - TimeElapsed;
+        public int FramesElapsed => _framesElapsed;
+        public int FramesLeft => Duration - FramesElapsed;
 
-        public bool IsExpired => TimeLeft <= 0;
+        public bool IsExpired => FramesLeft <= 0;
         public bool IsOn => _tickingCoroutine != null;
         public bool IsIdle => ! IsOn; 
         
@@ -40,14 +36,12 @@ namespace Extentions
         public event Action<float> Ticked;
         public event Action Expired;
 
-        public Timer(MonoBehaviour container, float duration = 0, IPauseRead pause = null, bool loop = false, bool fixedTime = true)
+        public Timer(MonoBehaviour container, int duration = 0, IPauseRead pause = null, bool loop = false)
         {
             _container = container;
             Duration = duration;
             Loop = loop;
             _pause = pause;
-            FixedTime = fixedTime;
-            Init();
         }
 
         public Timer Start()
@@ -72,7 +66,7 @@ namespace Extentions
         public void Reset()
         {
             Stop();
-            _timeElapsed = 0;
+            _framesElapsed = 0;
         }
 
         public void Stop()
@@ -95,22 +89,14 @@ namespace Extentions
             void Expire() => expired = true;
         }
 
-        private void Init()
-        {
-            
-        }
-
         private IEnumerator Ticking()
         {
             Started?.Invoke();
-            while (_timeElapsed < Duration)
+            while (_framesElapsed < Duration)
             {
-                if (FixedTime)
-                    yield return new WaitForFixedUpdate();
-                else
-                    yield return null;
-                _timeElapsed += DeltaFrame;
-                Ticked?.Invoke(TimeLeft);
+                yield return new WaitForFixedUpdate();
+                _framesElapsed++;
+                Ticked?.Invoke(FramesLeft);
             }
             
             Expired?.Invoke();
@@ -138,9 +124,9 @@ namespace Extentions
 
     public interface ITimerWrap
     {
-        public float Duration { get; }
-        public float TimeElapsed { get; }
-        public float TimeLeft { get; }
+        public int Duration { get; }
+        public int FramesElapsed { get; }
+        public int FramesLeft { get; }
         
         public bool IsExpired { get; }
         public bool IsOn { get; }
