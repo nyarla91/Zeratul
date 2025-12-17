@@ -16,7 +16,7 @@ MonoBehaviour:
   _life:
     _maxHitPoints: 250
     _maxShieldPoints: 150
-    _shieldsRecoveryDelay: 10
+    _shieldsRecoveryDelay: 150
   _movement:
     _maxSpeed: 160
     _size: 3
@@ -24,7 +24,7 @@ MonoBehaviour:
     _isAir: 1
   _weapon:
     _baseDamage: 0
-    _cooldown: 0
+    _cooldown: 25
     _maxDistance: 0
     _autoAttack: 0
   _graphics:

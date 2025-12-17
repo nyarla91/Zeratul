@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gameplay.Data.Validator
 {
     [CreateAssetMenu(menuName = "Gameplay Data/Unit Validator/Caster", order = 0)]
-    public class CasterValidator : UnitValidator
+    public class UnitCasterValidator : UnitValidator
     {
         [SerializeField] private bool _isCaster;
         
