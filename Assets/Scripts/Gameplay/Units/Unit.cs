@@ -11,6 +11,7 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitSight))]
     [RequireComponent(typeof(UnitVisibility))]
     [RequireComponent(typeof(UnitAbilities))]
+    [RequireComponent(typeof(UnitStatuses))]
     public class Unit : MonoBehaviour
     {
         private UnitOwnership _ownership;
@@ -21,6 +22,7 @@ namespace Gameplay.Units
         private UnitSight _sight;
         private UnitVisibility _visibility;
         private UnitAbilities _abilities;
+        private UnitStatuses _statuses;
 
         public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
@@ -30,6 +32,7 @@ namespace Gameplay.Units
         public UnitSight Sight => _sight ??= GetComponent<UnitSight>();
         public UnitVisibility Visibility => _visibility ??= GetComponent<UnitVisibility>();
         public UnitAbilities Abilities => _abilities ??= GetComponent<UnitAbilities>();
+        public UnitStatuses Statuses => _statuses ??= GetComponent<UnitStatuses>();
 
         public UnitType Type { get; private set; }
         
