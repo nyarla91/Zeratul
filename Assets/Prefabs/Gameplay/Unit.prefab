@@ -798,6 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723d99288c4d47e290e596cfbce1835e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.UnitShadowView
+  _config: {fileID: 11400000, guid: 41b125081c3be0a49ac380d96130d58e, type: 2}
   _unit: {fileID: 1588366463054386623}
   _animationSpriteRenderer: {fileID: 1600494382157285698}
   _spriteRenderer: {fileID: 6636044867027432944}
@@ -1361,6 +1362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4351f8e889644c218cd90fdc5bea04c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.UnitAnimationView
+  _config: {fileID: 11400000, guid: 41b125081c3be0a49ac380d96130d58e, type: 2}
   _unit: {fileID: 1588366463054386623}
   _spriteRenderer: {fileID: 1600494382157285698}
 --- !u!1 &6860139145215383467

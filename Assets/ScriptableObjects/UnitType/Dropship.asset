@@ -23,7 +23,7 @@ MonoBehaviour:
     _shieldsRecoveryDelay: 150
   _movement:
     _maxSpeed: 160
-    _size: 3
+    _size: 1.8
     _rotationSpeed: 200
     _isAir: 1
   _weapon:
