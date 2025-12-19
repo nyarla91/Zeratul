@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
-  m_Name: TickingDamage1
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingUnitEffectStatus
-  _unitEffects: []
-  _pointEffects: []
-  _pointCasterType: 0
-  _tickPeriod: 25
+  m_Script: {fileID: 11500000, guid: 27275804f13444b0af584e78b2f8a48b, type: 3}
+  m_Name: Detected
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.DetectedStatus

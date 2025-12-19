@@ -7,7 +7,7 @@ namespace Gameplay.Player
 {
     public class PlayerOwnership : MonoBehaviour
     {
-        private List<UnitOwnership> _ownedUnits = new();
+        private readonly List<UnitOwnership> _ownedUnits = new();
 
         public List<UnitOwnership> OwnedUnits => _ownedUnits.ToList();
 

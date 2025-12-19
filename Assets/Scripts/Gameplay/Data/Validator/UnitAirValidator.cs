@@ -1,4 +1,5 @@
 ﻿using Gameplay.Units;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Gameplay.Data.Validator

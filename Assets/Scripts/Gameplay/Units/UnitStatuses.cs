@@ -9,7 +9,7 @@ namespace Gameplay.Units
 {
     public class UnitStatuses : UnitComponent
     {
-        private Dictionary<StatusType, Status> _statuses = new();
+        private readonly Dictionary<StatusType, Status> _statuses = new();
 
         [Inject] private IPauseRead PauseRead { get; set; }
         

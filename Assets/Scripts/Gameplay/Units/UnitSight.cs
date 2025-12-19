@@ -14,7 +14,7 @@ namespace Gameplay.Units
         
         public void Init(UnitType unitType, bool ownedByPlayer)
         {
-            _sightArea.transform.localScale = unitType.SightRadius * 2 * Vector3.one;
+            _sightArea.transform.localScale = unitType.General.SightRadius * 2 * Vector3.one;
             if (ownedByPlayer)
                 VisionMap.PlayerArea.AttachSightArea(_sightArea.transform);
             else

@@ -9,19 +9,29 @@ namespace Gameplay.Data
     [CreateAssetMenu(menuName = "Gameplay Data/Unit", order = 0)]
     public class UnitType : ScriptableObject
     {
-        [SerializeField] private int _sightRadius;
+        [SerializeField] private UnitGeneralData _general;
         [SerializeField] private UnitLifeData _life;
         [SerializeField] private UnitMovementData _movement;
         [SerializeField] private UnitWeaponType _weapon;
         [SerializeField] private UnitGraphicsData _graphics;
         [SerializeField] private OrderType[] _availableOrders;
 
-        public int SightRadius => _sightRadius;
+        public UnitGeneralData General => _general;
         public UnitLifeData Life => _life;
         public UnitMovementData Movement => _movement;
         public UnitWeaponType Weapon => _weapon;
         public UnitGraphicsData Graphics => _graphics;
         public OrderType[] AvailableOrders => _availableOrders;
+    }
+
+    [Serializable]
+    public struct UnitGeneralData
+    {
+        [SerializeField] private int _sightRadius;
+        [SerializeField] private bool _isCloaked;
+        
+        public int SightRadius => _sightRadius;
+        public bool IsCloaked => _isCloaked;
     }
 
     [Serializable]

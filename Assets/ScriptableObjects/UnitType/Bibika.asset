@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Bibika
   m_EditorClassIdentifier: GameplayData::GaameplayData.Units.UnitType
-  _sightRadius: 18
+  _general:
+    _sightRadius: 16
+    _isCloaked: 1
   _life:
     _maxHitPoints: 50
     _maxShieldPoints: 25

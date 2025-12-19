@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Gameplay.Vision
 {
@@ -9,5 +10,11 @@ namespace Gameplay.Vision
 
         public VisionArea PlayerArea => _playerArea;
         public VisionArea EnemyArea => _enemyArea;
+
+        private void Awake()
+        {
+            PlayerArea.Init(true);
+            EnemyArea.Init(false);
+        }
     }
 }

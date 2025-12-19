@@ -52,6 +52,9 @@ namespace Gameplay.Units
             {
                 yield return new WaitForFixedUpdate();
                 
+                if ( ! target.Visibility.CanBeTargetedBy(Composition))
+                    continue;
+                    
                 if (Vector3.Distance(transform.position, target.transform.position) > _weapon.Type.MaxDistance)
                 {
                     Composition.Movement.Move(target.transform.position);
@@ -82,10 +85,10 @@ namespace Gameplay.Units
         {
             if ( ! CanAttack || ! UnitType.Weapon.AutoAttack || ! Composition.Orders.IsIdle || IsAttacking)
                 return;
-            if ( ! IsometricOverlap.TryGetUnits(transform.position, UnitType.SightRadius, out Unit[] units))
+            if ( ! IsometricOverlap.TryGetUnits(transform.position, UnitType.General.SightRadius, out Unit[] units))
                 return;
             
-            units = units.Where(unit => unit.Ownership.OwnedByPlayer != Composition.Ownership.OwnedByPlayer).ToArray();
+            units = units.Where(unit => unit.Ownership.IsHostile(Composition)).ToArray();
             if (units.Length == 0)
                 return;
             

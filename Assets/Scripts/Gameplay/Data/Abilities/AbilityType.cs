@@ -1,7 +1,4 @@
-﻿using System.Collections.Specialized;
-using Extentions;
-using Extentions.Pause;
-using Gameplay.Data.Effects;
+﻿using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Validator;
 using Gameplay.Units;
@@ -12,23 +9,33 @@ namespace Gameplay.Data.Abilities
     [CreateAssetMenu(menuName = "Gameplay Data/Ability", order = 0)]
     public class AbilityType : ScriptableObject
     {
+        [Tooltip("Cooldown between uses (in fixed frames)")]
         [SerializeField] private int _cooldown;
         [Space]
         [SerializeField] private TargetRequirement _targetRequirement;
-        [SerializeField] private float _targetRadius;
+        [Tooltip("Cast distance to target (irrelevant when Target Requirement is set to None)")]
+        [SerializeField] private float _maxDistance;
         [Header("Validators")]
+        [Tooltip("Caster must pass these validators to cast this ability")]
         [SerializeField] private UnitValidatorGroup _casterValidators;
+        [Tooltip("Target must pass these validators to be selected")]
         [SerializeField] private UnitValidatorGroup _targetValidators;
         [Header("Effects")]
+        [Tooltip("Effects applied to caster itself")]
         [SerializeField] private EffectTargetingUnit[] _casterEffects;
+        [Tooltip("Effects applied to caster's position")]
         [SerializeField] private EffectTargetingPoint[] _casterPointEffects;
+        [Tooltip("Max delta angle towards target to cast this ability")]
         [SerializeField] private float _maxAngleToTarget = 360;
+        [Tooltip("Effects applied to target unit")]
         [SerializeField] private EffectTargetingUnit[] _unitTargetEffects;
+        [Tooltip("If checked Point Target Effects will also apply to target unit")]
         [SerializeField] private bool _applyPointEffectsToUnit = true;
-        [SerializeField] private EffectTargetingPoint[] _pointTargetEffect;
+        [Tooltip("Effects applied to target point")]
+        [SerializeField] private EffectTargetingPoint[] _pointTargetEffects;
 
         public TargetRequirement TargetRequirement => _targetRequirement;
-        public float TargetRadius => _targetRadius;
+        public float MaxDistance => _maxDistance;
         public int Cooldown => _cooldown;
         public float MaxAngleToTarget => _maxAngleToTarget;
 
@@ -59,41 +66,32 @@ namespace Gameplay.Data.Abilities
                 {
                     effect.Apply(ability.Caster, target.Unit);
                 }
-            }
-
-            if (!target.Unit || _applyPointEffectsToUnit)
-            {
-                Vector2 point = target.Unit ? target.Unit.transform.position : target.Point;
-                foreach (EffectTargetingPoint effect in _pointTargetEffect)
+                if (_applyPointEffectsToUnit)
                 {
-                    effect.Apply(ability.Caster, point);
+                    foreach (EffectTargetingPoint effect in _pointTargetEffects)
+                    {
+                        effect.Apply(ability.Caster, target.Unit.transform.position);
+                    }
+                }
+            }
+            else
+            {
+                foreach (EffectTargetingPoint effect in _pointTargetEffects)
+                {
+                    effect.Apply(ability.Caster, target.Point);
                 }
             }
             
             ability.StartCooldown();
             return true;
         }
-    }
 
-    public class Ability
-    {
-        public AbilityType Type { get; }
-        public Unit Caster { get; }
-        public Timer CooldownTimer { get; }
-        
-        public bool IsReady => CooldownTimer.IsIdle;
-
-        public Ability(AbilityType type, Unit caster, IPauseRead pauseRead)
+        private void OnValidate()
         {
-            Type = type;
-            Caster = caster;
-            CooldownTimer = new Timer(caster, Type.Cooldown, pauseRead);
-        }
-
-        public void StartCooldown()
-        {
-            CooldownTimer.Duration = Type.Cooldown;
-            CooldownTimer.Restart();
+            if (TargetRequirement != TargetRequirement.None)
+                return;
+            _maxDistance = 0;
+            _maxAngleToTarget = 360;
         }
     }
 }

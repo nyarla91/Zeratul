@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using Gameplay.Units;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Gameplay.Data.Validator
 {
+    [CreateAssetMenu(menuName = "Gameplay Data/Unit Validator/Any", order = 0)]
     public class UnitAnyValidator : UnitValidator
     {
         [SerializeField] private UnitValidator[] _validators;

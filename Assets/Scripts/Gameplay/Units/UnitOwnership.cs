@@ -19,6 +19,10 @@ namespace Gameplay.Units
                 PlayerOwnership.AddOwnedUnit(this);
         }
 
+        public bool IsFriendly(Unit other) => OwnedByPlayer == other.Ownership.OwnedByPlayer;
+        
+        public bool IsHostile(Unit other) => ! IsFriendly(other);
+
         private void OnDestroy()
         {
             if (OwnedByPlayer)

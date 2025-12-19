@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Dropship
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _sightRadius: 24
+  _general:
+    _sightRadius: 16
+    _isCloaked: 0
   _life:
     _maxHitPoints: 250
     _maxShieldPoints: 150

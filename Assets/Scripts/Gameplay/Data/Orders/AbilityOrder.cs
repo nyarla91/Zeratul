@@ -67,8 +67,8 @@ namespace Gameplay.Data.Orders
             {
                 TargetRequirement.None => true,
                 TargetRequirement.Unit => Isometry.Distance(order.Actor.transform.position,
-                    order.Target.Unit.transform.position) < AbilityType.TargetRadius,
-                _ => Isometry.Distance(order.Actor.transform.position, order.Target.Point) < AbilityType.TargetRadius
+                    order.Target.Unit.transform.position) < AbilityType.MaxDistance,
+                _ => Isometry.Distance(order.Actor.transform.position, order.Target.Point) < AbilityType.MaxDistance
             };
         }
     }

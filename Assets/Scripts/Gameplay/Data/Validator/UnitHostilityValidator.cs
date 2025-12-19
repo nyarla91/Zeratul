@@ -8,11 +8,8 @@ namespace Gameplay.Data.Validator
     public class UnitHostilityValidator : UnitValidator
     {
         [SerializeField] private bool _mustBeHostile;
-        
-        public override bool IsValid(Unit actor, Unit target)
-        {
-            bool isHostile = actor.Ownership.OwnedByPlayer != target.Ownership.OwnedByPlayer;
-            return _mustBeHostile ?  isHostile : ! isHostile;
-        }
+
+        public override bool IsValid(Unit actor, Unit target) =>
+            _mustBeHostile ? target.Ownership.IsHostile(actor) : target.Ownership.IsFriendly(actor);
     }
 }

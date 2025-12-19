@@ -24,6 +24,7 @@ namespace Gameplay.Data.Orders
         }
 
         public override bool IsCompleted(Order order)
-            => order.Target.Unit.Life.HitPoints <= 0 || order.Target.Unit is null || order.Target.Unit == order.Actor;
+            => order.Target.Unit is null || order.Target.Unit == order.Actor ||
+               ! order.Target.Unit.Visibility.CanBeTargetedBy(order.Actor) || order.Target.Unit.Life.HitPoints <= 0;
     }
 }
