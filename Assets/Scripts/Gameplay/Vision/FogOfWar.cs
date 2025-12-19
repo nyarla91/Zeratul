@@ -5,20 +5,21 @@ namespace Gameplay.Vision
 {
     public class FogOfWar : MonoBehaviour
     {
+        [SerializeField] private VisionMap _visionMap;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private float _pixelScale;
         [SerializeField] private Vector2Int _fogDimensions;
-        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Color _hiddenColor;
         [SerializeField] private Color _scoutedColor;
         [SerializeField] private Color _revealedColor;
         [SerializeField] private LayerMask _revealMask;
-        [SerializeField] private float _recalculationPeriod;
 
         private Sprite _targetSprite;
-        private float _lastRecalculationTime;
 
-        private void Awake()
+        private void Start()
         {
+            _visionMap.RecalculationTimer.Expired += RecalculateFog;
+            
             transform.localScale = _pixelScale * Vector3.one;
             _targetSprite = _spriteRenderer.sprite;
             
@@ -36,11 +37,6 @@ namespace Gameplay.Vision
         {
             if (Keyboard.current.pKey.wasPressedThisFrame)
                 RecalculateFog();
-            
-            if (_lastRecalculationTime + _recalculationPeriod > Time.time)
-                return;
-            RecalculateFog();
-            _lastRecalculationTime = Time.time;
             
         }
 

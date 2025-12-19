@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Gameplay.Data.Configs
 {
-    [Serializable]
     [CreateAssetMenu(menuName = "Gameplay Data/Configs/Unit Movement Config", order = 0)]
     public class UnitMovementConfig : ScriptableObject
     {

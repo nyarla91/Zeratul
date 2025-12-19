@@ -16,7 +16,7 @@ namespace Gameplay.Units
 
         [Inject] private ContainerInstantiator Instantiator { get; set; }
         
-        private void Awake()
+        private void Start()
         {
             Unit unit = Instantiator.Instantiate<Unit>(_prefab, transform.position);
             unit.Init(_unitType, _ownedByPlayer);
