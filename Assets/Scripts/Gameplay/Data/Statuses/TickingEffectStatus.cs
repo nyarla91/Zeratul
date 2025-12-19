@@ -19,7 +19,7 @@ namespace Gameplay.Data.Statuses
 
         public override void OnUpdate(Status status)
         {
-            if (status.ExpirationTimer.FramesElapsed % _tickPeriod != 0)
+            if (status.CurrentFrame % _tickPeriod != 0)
                 return;
             
             foreach (EffectTargetingUnit effect in _unitEffects)

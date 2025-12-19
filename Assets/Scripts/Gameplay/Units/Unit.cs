@@ -47,6 +47,7 @@ namespace Gameplay.Units
             Life.Init(type);
             Sight.Init(type, ownedByPlayer);
             Abilities.Init(type);
+            Statuses.Init(type);
             
             Life.OnHitPointsOver += Die;
         }

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fae9637151dc4897a9c6cd7d1109c6ef, type: 3}
-  m_Name: Damage30
+  m_Name: Damage10
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.DealDamageEffect
-  _damage: 30
+  _damage: 10

@@ -15,6 +15,7 @@ MonoBehaviour:
   _general:
     _sightRadius: 16
     _isCloaked: 0
+    _innateStatuses: []
   _life:
     _maxHitPoints: 250
     _maxShieldPoints: 150

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
   m_Name: TickingDamage1
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingUnitEffectStatus
-  _unitEffects: []
+  _unitEffects:
+  - {fileID: 11400000, guid: 5a6db6bfa81845f41b7d8cf004b1bdf6, type: 2}
   _pointEffects: []
   _pointCasterType: 0
   _tickPeriod: 25

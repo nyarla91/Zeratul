@@ -1,5 +1,6 @@
 ﻿using System;
 using Gameplay.Data.Orders;
+using Gameplay.Data.Statuses;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -29,9 +30,11 @@ namespace Gameplay.Data
     {
         [SerializeField] private int _sightRadius;
         [SerializeField] private bool _isCloaked;
+        [SerializeField] private StatusType[] _innateStatuses;
         
         public int SightRadius => _sightRadius;
         public bool IsCloaked => _isCloaked;
+        public StatusType[] InnateStatuses => _innateStatuses;
     }
 
     [Serializable]

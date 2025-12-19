@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Extentions.Pause;
+using Gameplay.Data;
 using Gameplay.Data.Statuses;
 using UnityEngine;
 using Zenject;
@@ -12,15 +14,20 @@ namespace Gameplay.Units
         private readonly Dictionary<StatusType, Status> _statuses = new();
 
         [Inject] private IPauseRead PauseRead { get; set; }
-        
-        public void AddStatus(StatusType type, Unit instigator, int duration = 0)
+
+        public void Init(UnitType type)
+        {
+            foreach (StatusType status in type.General.InnateStatuses)
+            {
+                AddStatus(status, Composition);
+            }
+        }
+
+        public void AddStatus(StatusType type, Unit instigator, int duration = -1)
         {
             if (_statuses.TryGetValue(type, out Status currentStatus))
             {
-                if (duration < currentStatus.ExpirationTimer.FramesLeft)
-                    return;
-                currentStatus.ExpirationTimer.Duration = duration;
-                currentStatus.ExpirationTimer.Restart();
+                currentStatus.Restart(duration);
                 return;
             }
             Status status = new(type,  instigator, Composition, duration, PauseRead);
@@ -30,17 +37,18 @@ namespace Gameplay.Units
 
         public void RemoveStatus(StatusType type)
         {
-            if ( ! _statuses.ContainsKey(type))
+            if ( ! _statuses.TryGetValue(type, out Status status))
                 return;
-            _statuses[type].OnRemove();
+            status.OnRemove();
             _statuses.Remove(type);
         }
 
         private void FixedUpdate()
         {
-            foreach (Status status in _statuses.Values)
+            Status[] statuses = _statuses.Values.ToArray();
+            for (int i = statuses.Length - 1; i >= 0; i--)
             {
-                status.OnUpdate();
+                statuses[i].OnUpdate();
             }
         }
     }

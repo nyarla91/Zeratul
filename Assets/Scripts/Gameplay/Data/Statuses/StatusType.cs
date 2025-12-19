@@ -19,25 +19,40 @@ namespace Gameplay.Data.Statuses
         public StatusType Type { get; }
         public Unit Instigator { get; }
         public Unit Host { get; }
-        public Timer ExpirationTimer { get; }
+        public int AdditionFrame { get; private set; }
+        public int RemovalFrame { get; private set; }
+        public int CurrentFrame { get; private set; }
 
-        public Status(StatusType type, Unit instigator, Unit host, int duration = 0, IPauseRead pauseRead = null)
+        public int FramesLeft => RemovalFrame - CurrentFrame;
+
+        public Status(StatusType type, Unit instigator, Unit host, int duration = -1, IPauseRead pauseRead = null)
         {
             Type = type;
             Instigator = instigator;
             Host = host;
-            if (!(duration > 0))
-                return;
-            ExpirationTimer = new Timer(instigator, duration, pauseRead);
-            ExpirationTimer.Start();
-            ExpirationTimer.Expired += Remove;
+            AdditionFrame = 0;
+            RemovalFrame = duration;
         }
 
         public void OnAdd() => Type.OnAdd(this);
 
-        public void OnUpdate() => Type.OnUpdate(this);
+        public void OnUpdate()
+        {
+            Type.OnUpdate(this);
+            CurrentFrame++;
+            if (CurrentFrame == RemovalFrame)
+                Remove();
+        }
 
         public void OnRemove() => Type.OnRemove(this);
+
+        public void Restart(int newDuration)
+        {
+            if (RemovalFrame == -1  || FramesLeft > newDuration)
+                return;
+            AdditionFrame = CurrentFrame;
+            RemovalFrame = CurrentFrame + newDuration;
+        }
 
         private void Remove()
         {

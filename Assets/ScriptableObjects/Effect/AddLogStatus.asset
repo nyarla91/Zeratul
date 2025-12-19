@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AddLogStatus
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AddStatusEffect
   _statusType: {fileID: 11400000, guid: 41e779378938e594ab4b3e4d65c61742, type: 2}
-  _duration: 3
+  _duration: 50

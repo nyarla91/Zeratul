@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AddTickingdamage1
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AddStatusEffect
   _statusType: {fileID: 11400000, guid: e16188bc959c3934d97f095112ca4c88, type: 2}
-  _duration: 99
+  _duration: 100
