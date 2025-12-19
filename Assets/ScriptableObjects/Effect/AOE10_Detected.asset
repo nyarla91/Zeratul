@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c29638cefae4b53acadb2b9738ba9e5, type: 3}
+  m_Name: AOE10_Detected
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
+  _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+  _radius: 10
+  _applyValidators:
+    _unitValidators:
+    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    - {fileID: 11400000, guid: 7f2504c0303dc9d4988ac5e1f940d5b9, type: 2}
+  _effects:
+  - {fileID: 11400000, guid: 76d863803e40c904c9cb220b2dae4abd, type: 2}

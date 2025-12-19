@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
+  m_Name: Detector10
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
+  _unitEffects: []
+  _pointEffects:
+  - {fileID: 11400000, guid: a143ff797b323ba49b0d8b8c3da2e2fa, type: 2}
+  _pointCasterType: 1
+  _tickPeriod: 1

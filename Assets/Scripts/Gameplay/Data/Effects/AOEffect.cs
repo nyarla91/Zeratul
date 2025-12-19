@@ -10,6 +10,7 @@ namespace Gameplay.Data.Effects
     public class AOEffect : EffectTargetingPoint
     {
         [SerializeField] private SOInjectPresenter _gameplayerInjectPresenter;
+        [Space]
         [SerializeField] private float _radius;
         [SerializeField] private UnitValidatorGroup _applyValidators;
         [SerializeField] private EffectTargetingUnit[] _effects;
