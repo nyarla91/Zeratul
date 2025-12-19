@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Gameplay.Data
 {
-    [Serializable]
     [CreateAssetMenu(menuName = "Gameplay Data/Unit", order = 0)]
     public class UnitType : ScriptableObject
     {

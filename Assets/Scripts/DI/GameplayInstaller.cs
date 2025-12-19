@@ -1,6 +1,7 @@
 ﻿using Extentions;
 using Extentions.Pause;
 using Gameplay;
+using Gameplay.Data;
 using Gameplay.Pathfinding;
 using Gameplay.Player;
 using Gameplay.Vision;
@@ -18,7 +19,8 @@ namespace DI
         [SerializeField] private NodeMap _nodeMap;
         [SerializeField] private IsometricOverlap _isometricOverlap;
         [SerializeField] private VisionMap _visionMap;
-        [SerializeField] private Object[] _manualInjectable;
+        
+        [SerializeField] private SOInjectPresenter _injectPresenter;
         
         public override void InstallBindings()
         {
@@ -35,10 +37,7 @@ namespace DI
             BindFromInstance(_isometricOverlap);
             BindFromInstance(_visionMap);
 
-            foreach (Object o in _manualInjectable)
-            {
-                Container.Inject(o);
-            }
+            _injectPresenter.Init(Container);
         }
     }
 }

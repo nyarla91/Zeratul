@@ -15,8 +15,7 @@ MonoBehaviour:
   _general:
     _sightRadius: 16
     _isCloaked: 1
-    _innateStatuses:
-    - {fileID: 11400000, guid: e16188bc959c3934d97f095112ca4c88, type: 2}
+    _innateStatuses: []
   _life:
     _maxHitPoints: 50
     _maxShieldPoints: 25

@@ -276,9 +276,7 @@ MonoBehaviour:
   _nodeMap: {fileID: 819588473}
   _isometricOverlap: {fileID: 2127400927}
   _visionMap: {fileID: 1907651306}
-  _manualInjectable:
-  - {fileID: 11400000, guid: 4e2a44600466204498b069dee5d9d4eb, type: 2}
-  - {fileID: 11400000, guid: 4115abd6e5db735438ca3a9e6f5f8161, type: 2}
+  _injectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
 --- !u!4 &189624905
 Transform:
   m_ObjectHideFlags: 0

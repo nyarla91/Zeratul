@@ -9,6 +9,7 @@ namespace Gameplay.Data.Effects
     [CreateAssetMenu(menuName = "Gameplay Data/Effects/AOE", order = 0)]
     public class AOEffect : EffectTargetingPoint
     {
+        [SerializeField] private SOInjectPresenter _gameplayerInjectPresenter;
         [SerializeField] private float _radius;
         [SerializeField] private UnitValidatorGroup _applyValidators;
         [SerializeField] private EffectTargetingUnit[] _effects;
@@ -17,6 +18,7 @@ namespace Gameplay.Data.Effects
         
         public override void Apply(Unit caster, Vector2 target)
         {
+            _gameplayerInjectPresenter.Inject(this);
             if  ( ! IsometricOverlap.TryGetUnits(target, _radius, out Unit[] units))
                 return;
             units = units.Where(unit => _applyValidators.IsValid(caster, unit)).ToArray();
