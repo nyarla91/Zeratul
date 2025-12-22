@@ -15,6 +15,8 @@ namespace Gameplay.Units
         [SerializeField] private int _areaPoints;
         
         [Inject] private VisionMap VisionMap { get; set; }
+
+        private bool _calculatedOnce;
         
         public void Init(UnitType unitType, bool ownedByPlayer)
         {
@@ -30,7 +32,7 @@ namespace Gameplay.Units
         private void Recalculate()
         {
             _area.transform.position = transform.position;
-            if (UnitType.Movement.IsAir)
+            if (UnitType.Movement.IsAir && _calculatedOnce)
                 return;
 
             Vector2[] points =  new Vector2[_areaPoints];
@@ -42,12 +44,21 @@ namespace Gameplay.Units
                 direction.Normalize();
                 float maxDistance = UnitType.General.SightRadius;
                 maxDistance *= Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
-                RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, maxDistance, _config.VisionBlockerMask);
-                Vector2 point = raycast.collider ? (raycast.point - (Vector2) transform.position) : direction * maxDistance;
-                point += direction * _config.AbsoluteExtraSight;
+                Vector2 point;
+                if (UnitType.Movement.IsAir)
+                {
+                    point = direction * (maxDistance + _config.AbsoluteExtraSight);
+                }
+                else
+                {
+                    RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, maxDistance, _config.VisionBlockerMask);
+                    point = raycast.collider ? (raycast.point - (Vector2)transform.position) : direction * maxDistance;
+                    point += direction * _config.AbsoluteExtraSight;
+                }
                 points[i] =  point;
             }
             _area.points = points;
+            _calculatedOnce = true;
         }
 
         private void OnDestroy()
