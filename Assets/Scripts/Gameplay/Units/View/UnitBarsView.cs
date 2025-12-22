@@ -14,8 +14,8 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
-            float canvasWidth = _unit.Type.Movement.Size;
-            float canvasYOffset = _unit.Type.Graphics.SpriteHeight - _unit.Type.Movement.Size * Isometry.VerticalScale * 0.8f;
+            float canvasWidth = _unit.Type.Size;
+            float canvasYOffset = _unit.Type.SpriteMap.SpriteHeight - _unit.Type.Size * Isometry.VerticalScale * 0.8f;
             _canvas.sizeDelta = _canvas.sizeDelta.WithX(canvasWidth);
             _canvas.localPosition = new Vector3(0, canvasYOffset);
         }

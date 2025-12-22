@@ -12,7 +12,7 @@ namespace Gameplay.Units
     {
         public int EnergyPoints { get; private set; }
 
-        public int MaxEnergyPoints => UnitType.Abilities.MaxEnergyPoints; 
+        public int MaxEnergyPoints => UnitType.MaxEnergyPoints; 
         
         public bool HasEnergyPoints => MaxEnergyPoints > 0;
         public float EnergyPercent => HasEnergyPoints ? 1 : (float) EnergyPoints / MaxEnergyPoints;
@@ -25,7 +25,7 @@ namespace Gameplay.Units
         {
             EnergyPoints = MaxEnergyPoints;
             
-            AbilityOrder[] abilityOrders = unitType.Abilities.AvailableOrders.OfType<AbilityOrder>().ToArray();
+            AbilityOrder[] abilityOrders = unitType.AvailableOrders.OfType<AbilityOrder>().ToArray();
             if (abilityOrders.Length == 0)
                 return;
             foreach (AbilityOrder abilityOrder in abilityOrders)

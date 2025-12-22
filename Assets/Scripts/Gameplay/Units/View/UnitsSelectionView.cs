@@ -14,8 +14,8 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
-            _spriteRenderer.transform.localPosition = _unit.Type.Graphics.SpriteHeight * Vector2.up;
-            transform.localScale = _unit.Type.Movement.Size * Vector3.one;
+            _spriteRenderer.transform.localPosition = _unit.Type.SpriteMap.SpriteHeight * Vector2.up;
+            transform.localScale = _unit.Type.Size * Vector3.one;
         }
 
         private void Update()

@@ -30,7 +30,7 @@ namespace Gameplay.UI
                     _buttons[i].ApplyOrderType(null);
                     continue;
                 }
-                OrderType orderType = (i < unitType.Abilities.AvailableOrders.Length) ?  unitType.Abilities.AvailableOrders[i] : null;
+                OrderType orderType = (i < unitType.AvailableOrders.Length) ?  unitType.AvailableOrders[i] : null;
                 _buttons[i].ApplyOrderType(orderType);
             }
         }

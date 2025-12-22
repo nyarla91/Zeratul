@@ -32,7 +32,7 @@ namespace Gameplay.Units
         private void Recalculate()
         {
             _area.transform.position = transform.position;
-            if (UnitType.Movement.IsAir && _calculatedOnce)
+            if (UnitType.IsAir && _calculatedOnce)
                 return;
 
             Vector2[] points =  new Vector2[_areaPoints];
@@ -42,10 +42,10 @@ namespace Gameplay.Units
                 float angle = 360 / (float) _areaPoints * i;
                 Vector2 direction = angle.DegreesToVector2();
                 direction.Normalize();
-                float maxDistance = UnitType.General.SightRadius;
+                float maxDistance = UnitType.SightRadius;
                 maxDistance *= Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
                 Vector2 point;
-                if (UnitType.Movement.IsAir)
+                if (UnitType.IsAir)
                 {
                     point = direction * (maxDistance + _config.AbsoluteExtraSight);
                 }

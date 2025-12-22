@@ -9,9 +9,9 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
-            Vector2 offset = Vector2.up * _unit.Type.Graphics.SpriteHeight;
+            Vector2 offset = Vector2.up * _unit.Type.SpriteMap.SpriteHeight;
             transform.localPosition = offset;
-            transform.localScale = _unit.Type.Movement.Size * Vector3.one;
+            transform.localScale = _unit.Type.Size * Vector3.one;
         }
     }
 }

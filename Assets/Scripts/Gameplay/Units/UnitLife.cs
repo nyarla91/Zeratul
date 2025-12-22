@@ -13,8 +13,8 @@ namespace Gameplay.Units
         public int HitPoints { get; private set; }
         public int ShieldPoints { get; private set; }
 
-        public int MaxHitPoints => UnitType.Life.MaxHitPoints; 
-        public int MaxShieldPoints => UnitType.Life.MaxShieldPoints;
+        public int MaxHitPoints => UnitType.MaxHitPoints; 
+        public int MaxShieldPoints => UnitType.MaxShieldPoints;
         
         public float HitPercent => (float) HitPoints / MaxHitPoints;
         public bool HasShieldPoints => MaxShieldPoints > 0;
@@ -30,7 +30,7 @@ namespace Gameplay.Units
         {
             HitPoints = MaxHitPoints;
             ShieldPoints = MaxShieldPoints;
-            _shieldRecoveryTimer = new Timer(this, unitType.Life.ShieldsRecoveryDelay, PauseRead);
+            _shieldRecoveryTimer = new Timer(this, unitType.ShieldsRecoveryDelay, PauseRead);
             _shieldRecoveryTimer.Expired += RecoverShields;
         }
 
