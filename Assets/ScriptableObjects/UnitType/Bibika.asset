@@ -15,7 +15,7 @@ MonoBehaviour:
   _general:
     _sightRadius: 16
   _abilities:
-    _maxEnergyPoints: 0
+    _maxEnergyPoints: 100
     _isCloaked: 0
     _innateStatuses: []
     _availableOrders:

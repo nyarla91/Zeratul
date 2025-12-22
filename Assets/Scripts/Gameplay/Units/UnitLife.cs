@@ -15,6 +15,10 @@ namespace Gameplay.Units
 
         public int MaxHitPoints => UnitType.Life.MaxHitPoints; 
         public int MaxShieldPoints => UnitType.Life.MaxShieldPoints;
+        
+        public float HitPercent => (float) HitPoints / MaxHitPoints;
+        public bool HasShieldPoints => MaxShieldPoints > 0;
+        public float ShieldPercent => HasShieldPoints ? 1 : (float) ShieldPoints / MaxShieldPoints;
 
         private Timer _shieldRecoveryTimer;
 
