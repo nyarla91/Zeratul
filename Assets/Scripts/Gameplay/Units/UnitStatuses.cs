@@ -17,7 +17,7 @@ namespace Gameplay.Units
 
         public void Init(UnitType type)
         {
-            foreach (StatusType status in type.General.InnateStatuses)
+            foreach (StatusType status in type.Abilities.InnateStatuses)
             {
                 AddStatus(status, Composition);
             }

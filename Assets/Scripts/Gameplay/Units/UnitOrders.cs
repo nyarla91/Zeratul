@@ -29,7 +29,7 @@ namespace Gameplay.Units
         
         public void IssueSmartOrder(OrderTarget target, bool queue)
         {
-            foreach (OrderType orderType in UnitType.AvailableOrders)
+            foreach (OrderType orderType in UnitType.Abilities.AvailableOrders)
             {
                 if ( ! orderType.IsValidForSmartOrder(target))
                     continue;
@@ -40,7 +40,7 @@ namespace Gameplay.Units
         
         public void IssueOrder(Order order,  bool queue)
         {
-            if ( ! UnitType.AvailableOrders.Contains(order.Type))
+            if ( ! UnitType.Abilities.AvailableOrders.Contains(order.Type))
                 return;
             if ( ! order.CanBeIssued())
                 return;

@@ -10,30 +10,40 @@ namespace Gameplay.Data
     public class UnitType : ScriptableObject
     {
         [SerializeField] private UnitGeneralData _general;
+        [SerializeField] private UnitAbilitiesData _abilities;
         [SerializeField] private UnitLifeData _life;
         [SerializeField] private UnitMovementData _movement;
         [SerializeField] private UnitWeaponType _weapon;
         [SerializeField] private UnitGraphicsData _graphics;
-        [SerializeField] private OrderType[] _availableOrders;
 
         public UnitGeneralData General => _general;
+        public UnitAbilitiesData Abilities => _abilities;
         public UnitLifeData Life => _life;
         public UnitMovementData Movement => _movement;
         public UnitWeaponType Weapon => _weapon;
         public UnitGraphicsData Graphics => _graphics;
-        public OrderType[] AvailableOrders => _availableOrders;
     }
 
     [Serializable]
     public struct UnitGeneralData
     {
         [SerializeField] private int _sightRadius;
-        [SerializeField] private bool _isCloaked;
-        [SerializeField] private StatusType[] _innateStatuses;
         
         public int SightRadius => _sightRadius;
+    }
+
+    [Serializable]
+    public struct UnitAbilitiesData
+    {
+        [SerializeField] private int _maxEnergyPoints;
+        [SerializeField] private bool _isCloaked;
+        [SerializeField] private StatusType[] _innateStatuses;
+        [SerializeField] private OrderType[] _availableOrders;
+        
+        public int MaxEnergyPoints => _maxEnergyPoints;
         public bool IsCloaked => _isCloaked;
         public StatusType[] InnateStatuses => _innateStatuses;
+        public OrderType[] AvailableOrders => _availableOrders;
     }
 
     [Serializable]

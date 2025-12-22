@@ -4,6 +4,7 @@ using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Orders;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Units
@@ -16,7 +17,7 @@ namespace Gameplay.Units
         
         public void Init(UnitType unitType)
         {
-            AbilityOrder[] abilityOrders = unitType.AvailableOrders.OfType<AbilityOrder>().ToArray();
+            AbilityOrder[] abilityOrders = unitType.Abilities.AvailableOrders.OfType<AbilityOrder>().ToArray();
             if (abilityOrders.Length == 0)
                 return;
             foreach (AbilityOrder abilityOrder in abilityOrders)

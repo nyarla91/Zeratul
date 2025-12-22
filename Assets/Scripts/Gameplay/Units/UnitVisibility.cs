@@ -19,7 +19,7 @@ namespace Gameplay.Units
         
         public bool IsDetected => _detectionSources.Count > 0;
         
-        public bool IsCloaked => UnitType.General.IsCloaked && ! IsDetected;
+        public bool IsCloaked => UnitType.Abilities.IsCloaked && ! IsDetected;
         
         public bool CanBeTargetedBy(Unit targeter) => Composition.Ownership.IsFriendly(targeter) || IsVisibleToHostile;
         

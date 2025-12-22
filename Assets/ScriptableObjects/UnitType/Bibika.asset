@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameplayData::GaameplayData.Units.UnitType
   _general:
     _sightRadius: 16
-    _isCloaked: 1
+  _abilities:
+    _maxEnergyPoints: 0
+    _isCloaked: 0
     _innateStatuses: []
+    _availableOrders:
+    - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+    - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+    - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
   _life:
     _maxHitPoints: 50
     _maxShieldPoints: 25
@@ -33,8 +39,3 @@ MonoBehaviour:
   _graphics:
     _spriteMap: {fileID: 11400000, guid: 62e0fce71958e9e4b80a434594636d7f, type: 2}
     _spriteHeight: 0
-  _availableOrders:
-  - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
-  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
-  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
-  - {fileID: 11400000, guid: 43ebbc7f3d968754297a1b8a9670fc74, type: 2}
