@@ -16,3 +16,4 @@ MonoBehaviour:
   _visionBlockerMask:
     serializedVersion: 2
     m_Bits: 16384
+  _absoluteExtraSight: 1.6
