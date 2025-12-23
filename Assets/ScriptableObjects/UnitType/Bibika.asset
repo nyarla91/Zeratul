@@ -26,7 +26,7 @@ MonoBehaviour:
   _isCloaked: 0
   _weaponType: {fileID: 0}
   _innateStatuses:
-  - {fileID: 11400000, guid: ea01647ee3e24184d81fa55f76413eb5, type: 2}
+  - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
   _availableOrders:
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}

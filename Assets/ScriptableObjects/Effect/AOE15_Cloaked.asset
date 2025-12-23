@@ -15,7 +15,6 @@ MonoBehaviour:
   _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
   _radius: 15
   _applyValidators:
-    _unitValidators:
-    - {fileID: 0}
+    _unitValidators: []
   _effects:
   - {fileID: 11400000, guid: 69ca662f083e03745ad8eb84c6b92f5e, type: 2}

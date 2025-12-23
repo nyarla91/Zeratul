@@ -23,7 +23,6 @@ namespace Gameplay.Data
         [SerializeField] private bool _isAir;
         [SerializeField] private int _sightRadius;
         [HorizontalLine(2, EColor.White)]
-        [SerializeField] private bool _isCloaked;
         [Expandable] [SerializeField] private UnitWeaponType _weaponType;
         [SerializeField] private StatusType[] _innateStatuses;
         [SerializeField] private OrderType[] _availableOrders;
@@ -40,7 +39,6 @@ namespace Gameplay.Data
         public float RotationSpeed => _rotationSpeed;
         public bool IsAir => _isAir;
         public int SightRadius => _sightRadius;
-        public bool IsCloaked => _isCloaked;
         public UnitWeaponType WeaponType => _weaponType;
         public StatusType[] InnateStatuses => _innateStatuses;
         public OrderType[] AvailableOrders => _availableOrders;

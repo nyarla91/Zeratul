@@ -14,9 +14,9 @@ namespace Gameplay.Units
         [Inject] private VisionMap VisionMap { get; set; }
 
         /// <summary>
-        /// Returns true if unit is cloaked by any source or by UnitType.IsCloaked
+        /// Returns true if unit is cloaked by any source
         /// </summary>
-        public bool IsCloaked => UnitType.IsCloaked || _cloakSources.Count > 0;
+        public bool IsCloaked => _cloakSources.Count > 0;
         
         /// <summary>
         /// Returns true if unit is detected by any source
