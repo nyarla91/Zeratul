@@ -21,6 +21,7 @@ namespace Gameplay.Units
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
         private int _nodesPassed;
         private float _lastPathRecalculationTime;
+        private Modifier _speedModifier;
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
         public bool HasPath => _path.Length > 0;
@@ -28,6 +29,8 @@ namespace Gameplay.Units
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public float LookAngle { get; private set; }
         public float TargetLookAngle { get; private set; }
+        public Modifier SpeedModifier => _speedModifier;
+        public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
 
         [Inject] public NodeMap NodeMap { get; private set; }
 
@@ -38,6 +41,7 @@ namespace Gameplay.Units
             gameObject.layer = UnitType.IsAir ? _config.AirLayer : _config.GroundLayer;
             _collider.gameObject.layer = gameObject.layer;
             _avoidanceCollider.gameObject.layer = gameObject.layer;
+            _speedModifier = new Modifier();
         }
 
         public void Move(Vector2 destination)
@@ -113,7 +117,7 @@ namespace Gameplay.Units
 
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
             direction = AvoidObstaclesForDirection(direction);
-            float speed = UnitType.MaxSpeed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
+            float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             RotateTowards(direction / Isometry.Scale);
             _rigidbody.linearVelocity = direction * speed;
         }

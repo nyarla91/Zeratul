@@ -16,11 +16,16 @@ namespace Gameplay.Units
         
         [Inject] private VisionMap VisionMap { get; set; }
 
-        private bool _calculatedOnce;
+        private Modifier _radiusModifier;
+
+        public Modifier RadiusModifier => _radiusModifier;
+        public float Radius => UnitType.SightRadius * RadiusModifier.Value;
         
         public void Init(UnitType unitType, bool ownedByPlayer)
         {
             VisionMap.RecalculationTimer.Expired += Recalculate;
+
+            _radiusModifier = new Modifier();
             
             if (ownedByPlayer)
                 VisionMap.PlayerArea.AttachSightArea(_area.transform);
@@ -32,8 +37,6 @@ namespace Gameplay.Units
         private void Recalculate()
         {
             _area.transform.position = transform.position;
-            if (UnitType.IsAir && _calculatedOnce)
-                return;
 
             Vector2[] points =  new Vector2[_areaPoints];
             
@@ -42,7 +45,7 @@ namespace Gameplay.Units
                 float angle = 360 / (float) _areaPoints * i;
                 Vector2 direction = angle.DegreesToVector2();
                 direction.Normalize();
-                float maxDistance = UnitType.SightRadius;
+                float maxDistance = Radius;
                 maxDistance *= Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
                 Vector2 point;
                 if (UnitType.IsAir)
@@ -58,7 +61,6 @@ namespace Gameplay.Units
                 points[i] =  point;
             }
             _area.points = points;
-            _calculatedOnce = true;
         }
 
         private void OnDestroy()
