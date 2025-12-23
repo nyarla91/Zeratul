@@ -2,6 +2,7 @@
 
 namespace Gameplay.Data
 {
+    [CreateAssetMenu(menuName = "Gameplay Data/Unit Weapon", order = 0)]
     public class UnitWeaponType : ScriptableObject
     {
         [SerializeField] private int _baseDamage;

@@ -37,3 +37,4 @@ MonoBehaviour:
   - {fileID: 3128671559778224536, guid: e5b26b66ec9534d419ab6830a959229a, type: 3}
   - {fileID: -3792193798872382772, guid: 5f25cab4bbb969941a63a53c2a573f5e, type: 3}
   - {fileID: -8466564857559414888, guid: c695eda276b6c9b498a4b35e413859e9, type: 3}
+  _spriteHeight: 6

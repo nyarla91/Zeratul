@@ -12,31 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Dropship
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _general:
-    _sightRadius: 16
-  _abilities:
-    _maxEnergyPoints: 0
-    _isCloaked: 0
-    _innateStatuses: []
-    _availableOrders:
-    - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
-    - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
-    - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
-    - {fileID: 11400000, guid: 7bf85c6ca28f8e749a84126e93731e22, type: 2}
-  _life:
-    _maxHitPoints: 250
-    _maxShieldPoints: 150
-    _shieldsRecoveryDelay: 150
-  _movement:
-    _maxSpeed: 160
-    _size: 1.8
-    _rotationSpeed: 200
-    _isAir: 1
-  _weapon:
-    _baseDamage: 0
-    _cooldown: 25
-    _maxDistance: 0
-    _autoAttack: 0
-  _graphics:
-    _spriteMap: {fileID: 11400000, guid: b4cffdc249fd240478aa92f947b62465, type: 2}
-    _spriteHeight: 4
+  _maxHitPoints: 100
+  _maxShieldPoints: 50
+  _shieldsRecoveryDelay: 250
+  _maxEnergyPoints: 0
+  _energyRestorePeriod: 50
+  _energyPerSecond: 1.0000004
+  _maxSpeed: 250
+  _size: 3
+  _rotationSpeed: 360
+  _isAir: 1
+  _sightRadius: 20
+  _isCloaked: 0
+  _weaponType: {fileID: 0}
+  _innateStatuses: []
+  _availableOrders:
+  - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  - {fileID: 11400000, guid: 7bf85c6ca28f8e749a84126e93731e22, type: 2}
+  _spriteMap: {fileID: 11400000, guid: b4cffdc249fd240478aa92f947b62465, type: 2}

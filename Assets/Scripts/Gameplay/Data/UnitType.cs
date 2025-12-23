@@ -1,7 +1,5 @@
-﻿using System;
-using Gameplay.Data.Orders;
+﻿using Gameplay.Data.Orders;
 using Gameplay.Data.Statuses;
-using Gameplay.Units;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -26,11 +24,11 @@ namespace Gameplay.Data
         [SerializeField] private int _sightRadius;
         [HorizontalLine(2, EColor.White)]
         [SerializeField] private bool _isCloaked;
-        [SerializeField] private UnitWeaponType _weaponType;
+        [Expandable] [SerializeField] private UnitWeaponType _weaponType;
         [SerializeField] private StatusType[] _innateStatuses;
         [SerializeField] private OrderType[] _availableOrders;
         [HorizontalLine(2, EColor.White)]
-        [SerializeField] private UnitSpriteMap _spriteMap;
+        [Expandable] [SerializeField] private UnitSpriteMap _spriteMap;
 
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;

@@ -93,7 +93,7 @@ namespace Gameplay.UI
             _image.sprite = orderType?.Icon;
 
             DisposeHotkey();
-            _hotkey = PlayerInput.GetOrderHotkeyAction(orderType?.HotkeyAlias);
+            _hotkey = orderType ? PlayerInput.GetOrderHotkeyAction(orderType.HotkeyAlias) : null;
             _hotkeyPrompt.text = _hotkey?.GetBindingDisplayString() ?? "";
             
             if (_hotkey != null)

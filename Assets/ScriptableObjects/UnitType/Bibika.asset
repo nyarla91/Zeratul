@@ -12,30 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Bibika
   m_EditorClassIdentifier: GameplayData::GaameplayData.Units.UnitType
-  _general:
-    _sightRadius: 16
-  _abilities:
-    _maxEnergyPoints: 100
-    _isCloaked: 0
-    _innateStatuses: []
-    _availableOrders:
-    - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
-    - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
-    - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
-  _life:
-    _maxHitPoints: 50
-    _maxShieldPoints: 25
-    _shieldsRecoveryDelay: 150
-  _movement:
-    _maxSpeed: 150
-    _size: 2.5
-    _rotationSpeed: 540
-    _isAir: 0
-  _weapon:
-    _baseDamage: 2
-    _cooldown: 25
-    _maxDistance: 7
-    _autoAttack: 0
-  _graphics:
-    _spriteMap: {fileID: 11400000, guid: 62e0fce71958e9e4b80a434594636d7f, type: 2}
-    _spriteHeight: 0
+  _maxHitPoints: 75
+  _maxShieldPoints: 0
+  _shieldsRecoveryDelay: 0
+  _maxEnergyPoints: 0
+  _energyRestorePeriod: 1
+  _energyPerSecond: 50.00002
+  _maxSpeed: 150
+  _size: 1.8
+  _rotationSpeed: 720
+  _isAir: 0
+  _sightRadius: 14
+  _isCloaked: 0
+  _weaponType: {fileID: 0}
+  _innateStatuses:
+  - {fileID: 11400000, guid: ea01647ee3e24184d81fa55f76413eb5, type: 2}
+  _availableOrders:
+  - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  _spriteMap: {fileID: 11400000, guid: 62e0fce71958e9e4b80a434594636d7f, type: 2}
