@@ -15,6 +15,24 @@ namespace Gameplay.Data.Orders
 
         public override TargetRequirement TargetRequirement => _abilityType.TargetRequirement;
 
+        public override string DisplayType => "Order — Ability";
+
+        public override string DisplayDescription
+        {
+            get
+            {
+                string result = "";
+                result += "<color=grey>";
+                if (AbilityType.Cooldown > 0)
+                    result += $"Cooldown: {Time.fixedDeltaTime * AbilityType.Cooldown} sec.\n";
+                if (AbilityType.MaxDistance > 0)
+                    result += $"Distance: {AbilityType.MaxDistance}m\n";
+                result += "</color>";
+                result += RawDisplayDescription;
+                return result;
+            }
+        }
+
         public override void OnProceed(Order order)
         {
             Ability ability = GetAbilityForOrder(order);

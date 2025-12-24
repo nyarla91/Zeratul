@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36859613116f4cf1a504e9d25f51eda3, type: 3}
   m_Name: AddSpeedModifier50_for125
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AddStatusEffect
-  _statusType: {fileID: 11400000, guid: 753561a6fc5554b48bbca53dbb47af03, type: 2}
+  _statusType: {fileID: 11400000, guid: 1b9ea7e4c90bd6a4788e804a03d21b51, type: 2}
   _duration: 125

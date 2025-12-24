@@ -308,6 +308,8 @@ MonoBehaviour:
   _beginDragEventIndex: 0
   _endDragEventIndex: 1
   _clickEventIndex: 2
+  _pointerEnterEventIndex: 3
+  _pointerExitEventIndex: 4
 --- !u!114 &3678024432579965045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +332,14 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls: []

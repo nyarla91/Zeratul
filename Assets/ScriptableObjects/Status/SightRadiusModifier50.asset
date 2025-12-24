@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.SightRadiusModifierStatus
   _priority: 0
   _operation: 0
-  _fraction: 0
+  _fraction: 0.5

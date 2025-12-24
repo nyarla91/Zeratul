@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb197da1a2c41bdb6bc16f9d4b70411, type: 3}
   m_Name: SpeedModifier50
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.SpeedModifierStatus
-  _modifier: 0
+  _priority: 0
+  _operation: 0
+  _fraction: 0.5
