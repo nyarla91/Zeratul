@@ -24,6 +24,7 @@ MonoBehaviour:
   _casterPointEffects: []
   _maxAngleToTarget: 0
   _unitTargetEffects:
-  - {fileID: 11400000, guid: 5a6db6bfa81845f41b7d8cf004b1bdf6, type: 2}
-  _applyPointEffectsToUnit: 0
-  _pointTargetEffects: []
+  - {fileID: 11400000, guid: 69ca662f083e03745ad8eb84c6b92f5e, type: 2}
+  _applyPointEffectsToUnit: 1
+  _pointTargetEffects:
+  - {fileID: 11400000, guid: a143ff797b323ba49b0d8b8c3da2e2fa, type: 2}

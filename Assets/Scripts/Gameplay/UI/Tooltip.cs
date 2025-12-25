@@ -1,12 +1,10 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Gameplay.UI
 {
-    [ExecuteInEditMode]
     public class Tooltip : MonoBehaviour
     {
         [SerializeField] private RectTransform _rect;
@@ -17,8 +15,14 @@ namespace Gameplay.UI
         [SerializeField] private TMP_Text _description;
         [SerializeField] private RectTransform _descriptionRect;
         [SerializeField] private float _baseHeight;
+        [SerializeField] private Vector2 _preferredPivot;
 
         private bool IsShown => _canvasGroup.alpha > 0;
+        private Vector2 MousePosition => Mouse.current.position.ReadValue();
+        private bool CanFitRight => MousePosition.x + _rect.rect.width <= Screen.width;
+        private bool CanFitLeft => MousePosition.x - _rect.rect.width > 0;
+        private bool CanFitUpwards => MousePosition.y + _rect.rect.height <= Screen.height;
+        private bool CanFitDownwards => MousePosition.y - _rect.rect.height > 0;
 
         private void Start()
         {
@@ -44,7 +48,13 @@ namespace Gameplay.UI
             float height = _descriptionRect.rect.height + _baseHeight;
             _rect.sizeDelta = new Vector2(_rect.sizeDelta.x, height);
             
-            _rect.anchoredPosition = Mouse.current.position.ReadValue();
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            
+            float xPivot = CanFitRight ? (CanFitLeft ? _preferredPivot.x : 0) : 1;
+            float yPivot = CanFitUpwards ? (CanFitDownwards ? _preferredPivot.y : 0) : 1;
+            _rect.pivot = new Vector2(xPivot, yPivot);
+            
+            _rect.anchoredPosition = mousePosition;
         }
     }
 

@@ -8,6 +8,8 @@ namespace Gameplay.Data
     [CreateAssetMenu(menuName = "Gameplay Data/Unit", order = 0)]
     public class UnitType : ScriptableObject
     {
+        [SerializeField] private string _displayName;
+        [Space]
         [SerializeField] private int _maxHitPoints;
         [Space]
         [SerializeField] private int _maxShieldPoints;
@@ -29,6 +31,7 @@ namespace Gameplay.Data
         [HorizontalLine(2, EColor.White)]
         [Expandable] [SerializeField] private UnitSpriteMap _spriteMap;
 
+        public string DisplayName => _displayName;
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;
         public int ShieldsRecoveryDelay => _shieldsRecoveryDelay;

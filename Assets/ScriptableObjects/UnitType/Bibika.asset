@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Bibika
   m_EditorClassIdentifier: GameplayData::GaameplayData.Units.UnitType
+  _displayName: Bibika
   _maxHitPoints: 75
   _maxShieldPoints: 0
   _shieldsRecoveryDelay: 0
@@ -23,12 +24,23 @@ MonoBehaviour:
   _rotationSpeed: 720
   _isAir: 0
   _sightRadius: 14
-  _isCloaked: 0
   _weaponType: {fileID: 0}
   _innateStatuses:
   - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
   _availableOrders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
   - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: 62e0fce71958e9e4b80a434594636d7f, type: 2}

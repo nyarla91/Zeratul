@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff5a4e3e8c44fe1bf1cf6498bd20a06, type: 3}
   m_Name: Clloaked
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.CloakedStatus
+  _display: 1
+  _displayIcon: {fileID: 21300000, guid: d3c1160ea7e0228468e5a1a72da51d57, type: 3}
+  _displayName: Cloaked
+  _rawDisplayDescription: This unit caannot be targeted by enemy attacks or abilities
+    unless it is detected.

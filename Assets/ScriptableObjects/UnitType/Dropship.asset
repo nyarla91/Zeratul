@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: Dropship
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _displayName: Dropship
   _maxHitPoints: 100
   _maxShieldPoints: 50
   _shieldsRecoveryDelay: 250
@@ -27,8 +28,19 @@ MonoBehaviour:
   _innateStatuses:
   - {fileID: 11400000, guid: ea01647ee3e24184d81fa55f76413eb5, type: 2}
   _availableOrders:
+  - {fileID: 11400000, guid: 7bf85c6ca28f8e749a84126e93731e22, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
   - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
-  - {fileID: 11400000, guid: 7bf85c6ca28f8e749a84126e93731e22, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: b4cffdc249fd240478aa92f947b62465, type: 2}

@@ -76,7 +76,14 @@ namespace Extentions
             return ts.ToArray();
         }
 
-        public static RectTransform RectTrnasform(this MonoBehaviour monoBehaviour) =>
-            monoBehaviour.GetComponent<RectTransform>();
+        public static void Fill(this RectMask2D rectMask2D, bool vertical, bool toBottomLeft, float fillPercent)
+        {
+            RectTransform rectTransform = rectMask2D.rectTransform;
+            float fullPadding = vertical ? rectTransform.rect.height : rectTransform.rect.width;
+            float padding = Mathf.Lerp(fullPadding, 0, fillPercent);
+            rectMask2D.padding = vertical
+                ? (toBottomLeft ? new Vector4(0, padding, 0, 0) : new Vector4(0, 0, 0, padding))
+                : (toBottomLeft ? new Vector4(padding, 0, 0, 0) : new Vector4(0, 0, padding, 0));
+        }
     }
 }
