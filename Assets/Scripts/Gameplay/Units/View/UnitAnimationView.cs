@@ -12,8 +12,8 @@ namespace Gameplay.Units.View
         
         private void Start()
         {
-            _spriteRenderer.transform.localPosition = _unit.Type.Graphics.SpriteHeight * Vector2.up;
-            _spriteRenderer.sortingOrder = _unit.Type.Movement.IsAir
+            _spriteRenderer.transform.localPosition = _unit.Type.SpriteMap.SpriteHeight * Vector2.up;
+            _spriteRenderer.sortingOrder = _unit.Type.IsAir
                 ? (_config.UnitBaseOrder + _config.AirUnitOrderBonus)
                 : _config.UnitBaseOrder;
         }
@@ -25,7 +25,7 @@ namespace Gameplay.Units.View
                 _spriteRenderer.sprite = null;
                 return;
             }
-            _spriteRenderer.sprite = _unit.Type.Graphics.SpriteMap.GetSpriteForAngle(_unit.Movement.LookAngle);
+            _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSpriteForAngle(_unit.Movement.LookAngle);
         }
 
         private void LateUpdate()

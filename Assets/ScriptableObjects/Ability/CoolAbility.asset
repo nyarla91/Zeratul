@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
   m_Name: CoolAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
-  _cooldown: 150
-  _targetRequirement: 1
+  _cooldown: 75
+  _targetRequirement: 2
   _maxDistance: 15
   _casterValidators:
     _unitValidators: []
   _targetValidators:
     _unitValidators: []
-  _casterEffects: []
+  _casterEffects:
+  - {fileID: 11400000, guid: f30cc584a3483d241962d0fdb0e61a61, type: 2}
   _casterPointEffects: []
-  _maxAngleToTarget: 30
-  _unitTargetEffects: []
-  _applyPointEffectsToUnit: 0
+  _maxAngleToTarget: 0
+  _unitTargetEffects:
+  - {fileID: 11400000, guid: 69ca662f083e03745ad8eb84c6b92f5e, type: 2}
+  _applyPointEffectsToUnit: 1
   _pointTargetEffects:
-  - {fileID: 11400000, guid: 4115abd6e5db735438ca3a9e6f5f8161, type: 2}
+  - {fileID: 11400000, guid: a143ff797b323ba49b0d8b8c3da2e2fa, type: 2}

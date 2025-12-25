@@ -13,7 +13,7 @@ namespace Gameplay.Units.View
         
         private void Start()
         {
-            if ( ! _unit.Type.Movement.IsAir)
+            if ( ! _unit.Type.IsAir)
                 Destroy(gameObject);
             _spriteRenderer.sortingOrder = _config.ShadowOrder;
         }

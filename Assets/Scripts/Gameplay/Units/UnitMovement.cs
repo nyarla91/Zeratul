@@ -21,30 +21,34 @@ namespace Gameplay.Units
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
         private int _nodesPassed;
         private float _lastPathRecalculationTime;
+        private Modifier _speedModifier;
 
-        private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Movement.Size;
+        private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
         public bool HasPath => _path.Length > 0;
         public bool Displacable => ! HasPath;
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public float LookAngle { get; private set; }
         public float TargetLookAngle { get; private set; }
+        public Modifier SpeedModifier => _speedModifier;
+        public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
 
         [Inject] public NodeMap NodeMap { get; private set; }
 
 
         public void Init(UnitType unitType)
         {
-            _collider.transform.localScale = Vector3.one * unitType.Movement.Size;
-            gameObject.layer = UnitType.Movement.IsAir ? _config.AirLayer : _config.GroundLayer;
+            _collider.transform.localScale = Vector3.one * unitType.Size;
+            gameObject.layer = UnitType.IsAir ? _config.AirLayer : _config.GroundLayer;
             _collider.gameObject.layer = gameObject.layer;
             _avoidanceCollider.gameObject.layer = gameObject.layer;
+            _speedModifier = new Modifier();
         }
 
         public void Move(Vector2 destination)
         {
             if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
-            NodeMap.TryFindPath(transform.position, destination, out _path, UnitType.Movement.IsAir);
+            NodeMap.TryFindPath(transform.position, destination, out _path, UnitType.IsAir);
             //ReducePathToNecessary();
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
@@ -93,7 +97,7 @@ namespace Gameplay.Units
         {
             _rigidbody.mass = Displacable ? 0.001f : 1;
             
-            float maxDelta = UnitType.Movement.RotationSpeed * Time.fixedDeltaTime;
+            float maxDelta = UnitType.RotationSpeed * Time.fixedDeltaTime;
             LookAngle = Mathf.MoveTowardsAngle(LookAngle, TargetLookAngle, maxDelta);
             
             if (!HasPath)
@@ -108,12 +112,12 @@ namespace Gameplay.Units
             }
             
             int nextNodeIndex = Mathf.Min(_nodesPassed, _path.Length - 1);
-            if (_path[nextNodeIndex].WorldPosition.OrtogonalDistance(transform.position) < UnitType.Movement.Size / 2 + _config.NodeProximityDistance)
+            if (_path[nextNodeIndex].WorldPosition.OrtogonalDistance(transform.position) < UnitType.Size / 2 + _config.NodeProximityDistance)
                 _nodesPassed = nextNodeIndex + 1;
 
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
             direction = AvoidObstaclesForDirection(direction);
-            float speed = UnitType.Movement.MaxSpeed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
+            float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             RotateTowards(direction / Isometry.Scale);
             _rigidbody.linearVelocity = direction * speed;
         }

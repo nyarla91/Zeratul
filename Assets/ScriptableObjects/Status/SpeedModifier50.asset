@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb197da1a2c41bdb6bc16f9d4b70411, type: 3}
+  m_Name: SpeedModifier50
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.SpeedModifierStatus
+  _display: 1
+  _displayIcon: {fileID: -3230126372701174877, guid: 6e4aa8dd9fa513245b4c26f3c6a3ba6d, type: 3}
+  _displayName: Haste
+  _rawDisplayDescription: Movement speed is increased by 50%
+  _priority: 0
+  _operation: 0
+  _fraction: 0.5

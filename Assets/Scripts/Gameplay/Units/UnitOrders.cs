@@ -31,7 +31,7 @@ namespace Gameplay.Units
         {
             foreach (OrderType orderType in UnitType.AvailableOrders)
             {
-                if ( ! orderType.IsValidForSmartOrder(target))
+                if ( ! orderType || ! orderType.IsValidForSmartOrder(target))
                     continue;
                 IssueOrder(new Order(orderType, Composition, target), queue);
                 break;

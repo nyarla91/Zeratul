@@ -17,7 +17,7 @@ namespace Gameplay.Units
         private UnitWeapon _weapon;
         private Coroutine _attackCoroutine;
 
-        private bool CanAttack => UnitType.AvailableOrders.Contains(_attackOrder);
+        private bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_attackOrder);
         
         public bool IsAttacking => _attackCoroutine != null;
         
@@ -26,13 +26,15 @@ namespace Gameplay.Units
 
         public void Init(UnitType unitType)
         {
-            Timer cooldown = new(this, unitType.Weapon.Cooldown, PauseRead);
-            _weapon = new UnitWeapon(unitType.Weapon, cooldown);
+            if ( ! IsAbleToAttack)
+                return;
+            Timer cooldown = new(this, unitType.WeaponType.Cooldown, PauseRead);
+            _weapon = new UnitWeapon(unitType.WeaponType, cooldown);
         }
 
         public void StartAttacking(Unit target)
         {
-            if ( ! CanAttack)
+            if ( ! IsAbleToAttack)
                 return;
             StopAttacking();
             _attackCoroutine = StartCoroutine(Attacking(target));
@@ -83,9 +85,9 @@ namespace Gameplay.Units
 
         private void TryAutoAttack()
         {
-            if ( ! CanAttack || ! UnitType.Weapon.AutoAttack || ! Composition.Orders.IsIdle || IsAttacking)
+            if ( ! IsAbleToAttack || ! UnitType.WeaponType.AutoAttack || ! Composition.Orders.IsIdle || IsAttacking)
                 return;
-            if ( ! IsometricOverlap.TryGetUnits(transform.position, UnitType.General.SightRadius, out Unit[] units))
+            if ( ! IsometricOverlap.TryGetUnits(transform.position, UnitType.SightRadius, out Unit[] units))
                 return;
             
             units = units.Where(unit => unit.Ownership.IsHostile(Composition)).ToArray();

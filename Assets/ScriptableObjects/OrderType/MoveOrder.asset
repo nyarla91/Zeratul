@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d3574dbf944200894ff2bc98697123, type: 3}
   m_Name: MoveOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.MoveOrderType
+  _displayName: Move
+  _rawDisplayDescription: Move to target position
   _icon: {fileID: 21300000, guid: c8d29873c2eabf4449adc8f14c0abb6f, type: 3}
   _hotkeyAlias: Move

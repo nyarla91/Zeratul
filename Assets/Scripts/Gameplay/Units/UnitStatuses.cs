@@ -4,6 +4,7 @@ using System.Linq;
 using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Statuses;
+using Gameplay.UI;
 using UnityEngine;
 using Zenject;
 
@@ -13,11 +14,13 @@ namespace Gameplay.Units
     {
         private readonly Dictionary<StatusType, Status> _statuses = new();
 
+        public IStatusInfo[] StatusesInfo => _statuses.Values.ToArray<IStatusInfo>();
+
         [Inject] private IPauseRead PauseRead { get; set; }
 
         public void Init(UnitType type)
         {
-            foreach (StatusType status in type.General.InnateStatuses)
+            foreach (StatusType status in type.InnateStatuses)
             {
                 AddStatus(status, Composition);
             }

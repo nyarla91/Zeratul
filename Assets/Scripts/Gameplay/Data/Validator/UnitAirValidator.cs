@@ -9,6 +9,6 @@ namespace Gameplay.Data.Validator
     {
         [SerializeField] private bool _mustBeAir;
         
-        public override bool IsValid(Unit actor, Unit target) => _mustBeAir == target.Type.Movement.IsAir;
+        public override bool IsValid(Unit actor, Unit target) => _mustBeAir == target.Type.IsAir;
     }
 }

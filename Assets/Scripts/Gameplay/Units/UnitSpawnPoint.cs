@@ -25,7 +25,7 @@ namespace Gameplay.Units
 
         public void OnValidate()
         {
-            _spriteRenderer.sprite = _unitType?.Graphics.SpriteMap.GenericSprite;
+            _spriteRenderer.sprite = _unitType?.SpriteMap.GenericSprite;
             _spriteRenderer.color = _ownedByPlayer ? Color.green : Color.red;
         }
     }

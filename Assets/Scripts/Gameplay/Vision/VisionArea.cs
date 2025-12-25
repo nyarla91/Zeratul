@@ -28,7 +28,7 @@ namespace Gameplay.Vision
         
         public bool IsUnitVisible(Unit unit)
             => unit.Ownership.OwnedByPlayer == IsOwnedByPlayer 
-                || (_visibleUnits.Contains(unit) && ! unit.Visibility.IsCloaked);
+                || (_visibleUnits.Contains(unit) && unit.Visibility.IsRevealed);
 
         private void OnTriggerEnter2D(Collider2D other)
         {

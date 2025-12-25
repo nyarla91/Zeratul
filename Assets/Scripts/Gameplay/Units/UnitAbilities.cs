@@ -10,12 +10,21 @@ namespace Gameplay.Units
 {
     public class UnitAbilities : UnitComponent
     {
+        public int EnergyPoints { get; private set; }
+
+        public int MaxEnergyPoints => UnitType.MaxEnergyPoints; 
+        
+        public bool HasEnergyPoints => MaxEnergyPoints > 0;
+        public float EnergyPercent => HasEnergyPoints ? 1 : (float) EnergyPoints / MaxEnergyPoints;
+        
         private readonly Dictionary<AbilityType, Ability> _abilities = new();
         
         [Inject] private IPauseRead PauseRead { get; set; }
         
         public void Init(UnitType unitType)
         {
+            EnergyPoints = MaxEnergyPoints;
+            
             AbilityOrder[] abilityOrders = unitType.AvailableOrders.OfType<AbilityOrder>().ToArray();
             if (abilityOrders.Length == 0)
                 return;

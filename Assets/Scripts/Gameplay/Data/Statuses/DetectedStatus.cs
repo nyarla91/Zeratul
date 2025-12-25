@@ -7,7 +7,7 @@ namespace Gameplay.Data.Statuses
     {
         public override void OnAdd(Status status)
         {
-            status.Host.Visibility.DetectFromSource(status);
+            status.Host.Visibility.Detect(status);
         }
 
         public override void OnUpdate(Status status)
@@ -17,7 +17,7 @@ namespace Gameplay.Data.Statuses
 
         public override void OnRemove(Status status)
         {
-            status.Host.Visibility.UndetectFromSource(status);
+            status.Host.Visibility.StopDetecting(status);
         }
     }
 }
