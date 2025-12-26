@@ -22,12 +22,15 @@ namespace Gameplay.Data.Orders
             get
             {
                 string result = "";
-                result += "<color=grey>";
+                result += "<stat>";
                 if (AbilityType.Cooldown > 0)
-                    result += $"Cooldown: {Time.fixedDeltaTime * AbilityType.Cooldown} sec.\n";
+                {
+                    string cooldonwnSec = Mathf.Round(Time.fixedDeltaTime * AbilityType.Cooldown).ToString("F1");
+                    result += $"Cooldown: {cooldonwnSec} sec.\n";
+                }
                 if (AbilityType.MaxDistance > 0)
                     result += $"Distance: {AbilityType.MaxDistance}m\n";
-                result += "</color>";
+                result += "</stat>";
                 result += RawDisplayDescription;
                 return result;
             }

@@ -15,5 +15,7 @@ MonoBehaviour:
   _display: 1
   _displayIcon: {fileID: 21300000, guid: c15528925864f3a418236035ec323dc3, type: 3}
   _displayName: Detected
-  _rawDisplayDescription: This unit is detected, it can be targetet by enemy attacks
+  _rawDisplayDescription: 'This unit is detected, it can be targetet by enemy attacks
     and abilities even if cloaked.
+
+    <keyw>Doomed, detected and caught</color></keyw>'
