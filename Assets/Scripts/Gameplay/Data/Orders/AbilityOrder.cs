@@ -23,6 +23,10 @@ namespace Gameplay.Data.Orders
             {
                 string result = "";
                 result += "<stat>";
+                if (AbilityType.EnergyCost > 0)
+                {
+                    result += $"{AbilityType.EnergyCost} energy\n";
+                }
                 if (AbilityType.Cooldown > 0)
                 {
                     string cooldonwnSec = Mathf.Round(Time.fixedDeltaTime * AbilityType.Cooldown).ToString("F1");

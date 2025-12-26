@@ -15,10 +15,11 @@ MonoBehaviour:
   _displayName: Dropship
   _maxHitPoints: 100
   _maxShieldPoints: 50
-  _shieldsRecoveryDelay: 250
-  _maxEnergyPoints: 0
-  _energyRestorePeriod: 50
-  _energyPerSecond: 1.0000004
+  _shieldRestoreDelay: 50
+  _shieldPointsPerSecond: 10
+  _maxEnergyPoints: 100
+  _energyRestoreDelay: 25
+  _energyPointsPerSecond: 5
   _maxSpeed: 250
   _size: 3
   _rotationSpeed: 360

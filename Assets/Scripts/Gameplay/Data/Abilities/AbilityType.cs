@@ -11,6 +11,7 @@ namespace Gameplay.Data.Abilities
     {
         [Tooltip("Cooldown between uses (in fixed frames)")]
         [SerializeField] private int _cooldown;
+        [SerializeField] private int _energyCost;
         [Space]
         [SerializeField] private TargetRequirement _targetRequirement;
         [Tooltip("Cast distance to target (irrelevant when Target Requirement is set to None)")]
@@ -36,13 +37,15 @@ namespace Gameplay.Data.Abilities
 
         public TargetRequirement TargetRequirement => _targetRequirement;
         public float MaxDistance => _maxDistance;
+        public int EnergyCost => _energyCost;
         public int Cooldown => _cooldown;
         public float MaxAngleToTarget => _maxAngleToTarget;
 
         public bool CanBeCast(Ability ability, OrderTarget target)
         {
             return _casterValidators.IsValid(ability.Caster, ability.Caster)
-                   && ( ! target.Unit || _targetValidators.IsValid(ability.Caster, target.Unit))
+                   && (!target.Unit || _targetValidators.IsValid(ability.Caster, target.Unit))
+                   && ability.Caster.Abilities.EnergyPoints >= EnergyCost
                    && ability.IsReady;
         }
         
@@ -83,6 +86,7 @@ namespace Gameplay.Data.Abilities
             }
             
             ability.StartCooldown();
+            ability.Caster.Abilities.SpendEnergy(EnergyCost);
             return true;
         }
 

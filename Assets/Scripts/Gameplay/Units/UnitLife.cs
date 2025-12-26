@@ -3,13 +3,15 @@ using Extentions;
 using Extentions.Pause;
 using Gameplay.Data;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Gameplay.Units
 {
     public class UnitLife : UnitComponent
     {
+        private Timer _shieldRestorationTimer;
+        private float _shieldRestorationRemain;
+        
         public int HitPoints { get; private set; }
         public int ShieldPoints { get; private set; }
 
@@ -18,9 +20,7 @@ namespace Gameplay.Units
         
         public float HitPercent => (float) HitPoints / MaxHitPoints;
         public bool HasShieldPoints => MaxShieldPoints > 0;
-        public float ShieldPercent => HasShieldPoints ? 1 : (float) ShieldPoints / MaxShieldPoints;
-
-        private Timer _shieldRecoveryTimer;
+        public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 1;
 
         public event Action OnHitPointsOver;
         
@@ -30,13 +30,8 @@ namespace Gameplay.Units
         {
             HitPoints = MaxHitPoints;
             ShieldPoints = MaxShieldPoints;
-            _shieldRecoveryTimer = new Timer(this, unitType.ShieldsRecoveryDelay, PauseRead);
-            _shieldRecoveryTimer.Expired += RecoverShields;
-        }
-
-        private void RecoverShields()
-        {
-            ShieldPoints = MaxShieldPoints;
+            if (unitType.ShieldRestoreDelay > 0)
+                _shieldRestorationTimer = new Timer(this, unitType.ShieldRestoreDelay, PauseRead);
         }
 
         public void TakeDamage(int damage)
@@ -52,14 +47,17 @@ namespace Gameplay.Units
             if (HitPoints <= 0)
                 OnHitPointsOver?.Invoke();
             
-            _shieldRecoveryTimer.Restart();
+            _shieldRestorationTimer?.Restart();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (Keyboard.current.eKey.wasPressedThisFrame)
+            if (_shieldRestorationTimer == null || _shieldRestorationTimer.IsIdle)
             {
-                TakeDamage(5);
+                _shieldRestorationRemain += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
+                _shieldRestorationRemain = Mathf.Min(_shieldRestorationRemain, MaxShieldPoints - ShieldPoints);
+                ShieldPoints += (int) _shieldRestorationRemain;
+                _shieldRestorationRemain %= 1;
             }
         }
     }

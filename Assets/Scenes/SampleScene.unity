@@ -1229,7 +1229,7 @@ MonoBehaviour:
     _min: 3
     _max: 18
   _zoomSpeed: 50
-  _dragSpeed: 1.5
+  _dragSpeed: 2
   _edgeTolerance: 5
   _edgeMoveSpeed: 0
 --- !u!1001 &524318591
