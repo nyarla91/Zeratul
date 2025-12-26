@@ -505,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8dacffc8836421eb61ebc75623c06fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.UI.Tooltip
+  _config: {fileID: 11400000, guid: 9afe6d270a174a64cbd602e90b367f05, type: 2}
   _rect: {fileID: 177523650}
   _canvasGroup: {fileID: 177523654}
   _icon: {fileID: 1856278563}
@@ -2959,7 +2960,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1001 &1001646013
 PrefabInstance:

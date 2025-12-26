@@ -59,7 +59,6 @@ namespace Gameplay.UI
 
         private void Update()
         {
-            Debug.Log($"{_showTooltip} :::{_currentStatus}");
             if (_showTooltip && _currentStatus != null)
                 Tooltip.Show(_currentStatus.TooltipInfo);
         }

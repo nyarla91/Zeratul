@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Gameplay.Data.Configs;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ namespace Gameplay.UI
 {
     public class Tooltip : MonoBehaviour
     {
+        [SerializeField] private TextFormattingConfig _config;
         [SerializeField] private RectTransform _rect;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Image _icon;
@@ -35,7 +37,7 @@ namespace Gameplay.UI
             _icon.sprite = info.Icon;
             _label.text = info.Label;
             _sublabel.text = info.Sublabel;
-            _description.text = info.Description;
+            _description.text = _config.Format(info.Description);
         }
 
         public void Hide()

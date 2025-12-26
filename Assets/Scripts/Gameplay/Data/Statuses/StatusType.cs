@@ -49,7 +49,7 @@ namespace Gameplay.Data.Statuses
                 if (FramesLeft < 3)
                     return result;
                 int secondsLeft = Mathf.CeilToInt(Time.fixedDeltaTime * FramesLeft);
-                result += $"<color=grey>\n{secondsLeft} sec. left</color>";
+                result += $"<stat>\n{secondsLeft} sec. left</stat>";
                 return result;
             }
         }
