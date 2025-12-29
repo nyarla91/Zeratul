@@ -15,15 +15,16 @@ MonoBehaviour:
   _displayName: Bibika
   _maxHitPoints: 75
   _maxShieldPoints: 0
-  _shieldsRecoveryDelay: 0
+  _shieldRestoreDelay: 0
+  _shieldPointsPerSecond: 0
   _maxEnergyPoints: 0
-  _energyRestorePeriod: 1
-  _energyPerSecond: 50.00002
+  _energyRestoreDelay: 0
+  _energyPointsPerSecond: 0
   _maxSpeed: 150
   _size: 1.8
   _rotationSpeed: 720
   _isAir: 0
-  _sightRadius: 14
+  _sightRadius: 20
   _weaponType: {fileID: 0}
   _innateStatuses:
   - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}

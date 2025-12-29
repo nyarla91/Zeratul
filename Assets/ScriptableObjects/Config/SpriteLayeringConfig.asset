@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782143b900694cee8cb78ef16750b83b, type: 3}
   m_Name: SpriteLayeringConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.SpriteLayeringConfig
+  _spriteOverlatMask:
+    serializedVersion: 2
+    m_Bits: 16
   _unitBaseOrder: 100
   _airUnitOrderBonus: 100
   _shadowOrder: 150
+  _overlayDeltaOrderMultiplier: 5
   _verticalZScale: 0.1

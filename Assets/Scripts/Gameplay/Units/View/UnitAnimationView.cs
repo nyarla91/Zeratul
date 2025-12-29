@@ -1,5 +1,9 @@
-﻿using Extentions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Extentions;
 using Gameplay.Data.Configs;
+using Gameplay.Enviroment;
 using UnityEngine;
 
 namespace Gameplay.Units.View
@@ -7,13 +11,16 @@ namespace Gameplay.Units.View
     public class UnitAnimationView : MonoBehaviour
     {
         [SerializeField] private SpriteLayeringConfig _config;
-        [SerializeField] private Unit _unit;
+        [SerializeField] private PolygonCollider2D _collider;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Unit _unit;
+
+        private int _defaultSortingOrder;
         
         private void Start()
         {
             _spriteRenderer.transform.localPosition = _unit.Type.SpriteMap.SpriteHeight * Vector2.up;
-            _spriteRenderer.sortingOrder = _unit.Type.IsAir
+            _defaultSortingOrder = _unit.Type.IsAir
                 ? (_config.UnitBaseOrder + _config.AirUnitOrderBonus)
                 : _config.UnitBaseOrder;
         }
@@ -26,6 +33,17 @@ namespace Gameplay.Units.View
                 return;
             }
             _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSpriteForAngle(_unit.Movement.LookAngle);
+            _spriteRenderer.sortingOrder = CalculateSortingOrder();
+        }
+
+        private int CalculateSortingOrder()
+        {
+            List<Collider2D> overlap = new();
+            _collider.Overlap(overlap);
+            SpriteOverlapArea[] areas = overlap.Select(c => c.GetComponent<SpriteOverlapArea>()).ClearNull();
+            if (areas.Length == 0)
+                return _defaultSortingOrder;
+            return areas.Max(a => a.SortingOrder) - 1;
         }
 
         private void LateUpdate()

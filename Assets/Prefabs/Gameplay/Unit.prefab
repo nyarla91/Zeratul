@@ -1078,8 +1078,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.UnitAnimationView
   _config: {fileID: 11400000, guid: a38f394a58a26e54cbef03f0caf8710d, type: 2}
-  _unit: {fileID: 1588366463054386623}
+  _collider: {fileID: 9103159375792626044}
   _spriteRenderer: {fileID: 1600494382157285698}
+  _unit: {fileID: 1588366463054386623}
 --- !u!1 &6860139145215383467
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ namespace Gameplay.Units
         
         private void Start()
         {
-            Unit unit = Instantiator.Instantiate<Unit>(_prefab, transform.position);
+            Unit unit = Instantiator.Instantiate<Unit>(_prefab, transform.position, transform.parent);
             unit.Init(_unitType, _ownedByPlayer);
             Destroy(gameObject);
         }
