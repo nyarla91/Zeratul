@@ -57,6 +57,10 @@ namespace Gameplay.Units
                     point = raycast.collider ? (raycast.point - (Vector2)transform.position) : direction * maxDistance;
                     point += direction * _config.AbsoluteExtraSight;
                 }
+                float minDistance = _config.MinSight + UnitType.Size / 2;
+                minDistance = Isometry.DistanceTowards(minDistance, direction.y);
+                if (point.magnitude < minDistance)
+                    point = direction * minDistance;
                 points[i] =  point;
             }
             _area.points = points;
