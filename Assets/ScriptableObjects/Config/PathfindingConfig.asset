@@ -17,3 +17,11 @@ MonoBehaviour:
   _ortogonalTravelCost: 2
   _diagonalTravelCost: 3
   _tooCloseToObstaclePenalty: 20
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _commonLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _maxObstacleDistance: 4
+  _distanceCastStep: 0.2

@@ -1,14 +1,11 @@
-﻿using UnityEngine;
+﻿using Gameplay.Data.Configs;
+using UnityEngine;
 
 namespace Gameplay.Pathfinding
 {
     public class Node : INodeWorld
     {
-        private const string GroundLayer = "GroundObstacle";
-        private const string CommonLayer = "CommonObstacle";
-        private const float MaxObstacleDistance = 4;
-        private const float DistanceCastStep = 0.2f;
-        
+        private PathfindingConfig Config { get; }
         public Vector2 WorldPosition { get; }
         public Vector2Int MapCoordinates { get; }
         
@@ -25,16 +22,17 @@ namespace Gameplay.Pathfinding
         public bool IsPassableByAir => CommonObstacleDistance > 0;
         public bool IsPassableByGround => GroundObstacleDistance > 0;
         
-        public Node(Vector2 worldPosition, Vector2Int mapCoordinates)
+        public Node(PathfindingConfig config, Vector2 worldPosition, Vector2Int mapCoordinates)
         {
+            Config = config;
             WorldPosition = worldPosition;
             MapCoordinates = mapCoordinates;
         }
 
         public void RecalculateObstacles()
         {
-            CommonObstacleDistance = ObstacleDistance(MaxObstacleDistance, LayerMask.GetMask(CommonLayer));
-            GroundObstacleDistance = ObstacleDistance(CommonObstacleDistance, LayerMask.GetMask(GroundLayer));
+            CommonObstacleDistance = ObstacleDistance(Config.MaxObstacleDistance, Config.CommonLayerMask);
+            GroundObstacleDistance = ObstacleDistance(CommonObstacleDistance, Config.GroundLayerMask);
             Debug.Log($"{CommonObstacleDistance} {GroundObstacleDistance}");
         }
         
@@ -47,7 +45,7 @@ namespace Gameplay.Pathfinding
             if (Physics2D.OverlapPoint(WorldPosition, mask))
                 return 0;
 
-            for (float i = maxRadius; i > 0; i -= DistanceCastStep)
+            for (float i = maxRadius; i > 0; i -= Config.DistanceCastStep)
             {
                 if (Physics2D.OverlapCircle(WorldPosition, i, mask))
                     continue;

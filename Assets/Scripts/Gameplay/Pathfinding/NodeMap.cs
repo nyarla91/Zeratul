@@ -30,7 +30,7 @@ namespace Gameplay.Pathfinding
                 for (int x = 0; x < _nodes.GetLength(0); x++)
                 {
                     Vector2 nodeWorldPosition = _config.MapOrigin + new Vector2(x, y) * _config.NodesWorldSpacing;
-                    _nodes[x, y] = new Node(nodeWorldPosition, new Vector2Int(x, y));
+                    _nodes[x, y] = new Node(_config, nodeWorldPosition, new Vector2Int(x, y));
                 }
             }
             RecalculateAllObstacles();
