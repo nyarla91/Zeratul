@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gameplay.Pathfinding
 {
@@ -7,6 +6,8 @@ namespace Gameplay.Pathfinding
     {
         private const string GroundLayer = "GroundObstacle";
         private const string CommonLayer = "CommonObstacle";
+        private const float MaxObstacleDistance = 4;
+        private const float DistanceCastStep = 0.2f;
         
         public Vector2 WorldPosition { get; }
         public Vector2Int MapCoordinates { get; }
@@ -18,8 +19,11 @@ namespace Gameplay.Pathfinding
         public int G { get; set; }
         public int F => G + H;
         
-        public bool IsPassableByGround { get; private set; }
-        public bool IsPassableByAir { get; private set; }
+        public float GroundObstacleDistance { get; private set; }
+        public float CommonObstacleDistance { get; private set; }
+
+        public bool IsPassableByAir => CommonObstacleDistance > 0;
+        public bool IsPassableByGround => GroundObstacleDistance > 0;
         
         public Node(Vector2 worldPosition, Vector2Int mapCoordinates)
         {
@@ -29,15 +33,27 @@ namespace Gameplay.Pathfinding
 
         public void RecalculateObstacles()
         {
-            Collider2D[] overlap = Physics2D.OverlapPointAll(WorldPosition);
-            
-            IsPassableByAir = ! IsAnyObstacle(overlap, CommonLayer);
-            IsPassableByGround = IsPassableByAir && ! IsAnyObstacle(overlap, GroundLayer);
+            CommonObstacleDistance = ObstacleDistance(MaxObstacleDistance, LayerMask.GetMask(CommonLayer));
+            GroundObstacleDistance = ObstacleDistance(CommonObstacleDistance, LayerMask.GetMask(GroundLayer));
+            Debug.Log($"{CommonObstacleDistance} {GroundObstacleDistance}");
         }
-
+        
+        public float ObstacleDistanceFor(bool isAgentAir) => isAgentAir ? CommonObstacleDistance : GroundObstacleDistance;
+        
         public bool IsPassable(bool isAgentAir) => isAgentAir ? IsPassableByAir : IsPassableByGround;
+        
+        private float ObstacleDistance(float maxRadius, LayerMask mask)
+        {
+            if (Physics2D.OverlapPoint(WorldPosition, mask))
+                return 0;
 
-        private static bool IsAnyObstacle(Collider2D[] colliders, string layer) =>
-            colliders.Any(col => col.gameObject.layer == LayerMask.NameToLayer(layer));
+            for (float i = maxRadius; i > 0; i -= DistanceCastStep)
+            {
+                if (Physics2D.OverlapCircle(WorldPosition, i, mask))
+                    continue;
+                return i;
+            }
+            return 0;
+        }
     }
 }

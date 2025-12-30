@@ -48,7 +48,7 @@ namespace Gameplay.Units
         {
             if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
-            NodeMap.TryFindPath(transform.position, destination, out _path, UnitType.IsAir);
+            NodeMap.TryFindPath(transform.position, destination, out _path, UnitType.IsAir, UnitType.Size);
             //ReducePathToNecessary();
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;

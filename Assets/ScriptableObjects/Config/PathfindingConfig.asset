@@ -16,4 +16,4 @@ MonoBehaviour:
   _nodesWorldSpacing: {x: 2, y: 1}
   _ortogonalTravelCost: 2
   _diagonalTravelCost: 3
-  _tooCloseToObstaclePenalty: 2
+  _tooCloseToObstaclePenalty: 20

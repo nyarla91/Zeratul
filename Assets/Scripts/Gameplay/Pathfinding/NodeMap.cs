@@ -42,14 +42,14 @@ namespace Gameplay.Pathfinding
             return node.IsPassable(isAgentAir);
         }
         
-        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, bool isAgentAir)
+        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, bool isAgentAir, float agentSize)
         {
             Node startNode = GetClosestNode(worldStart);
             Node targetNode = GetClosestNode(worldTarget);
-            return TryFindPath(startNode, targetNode, out path, isAgentAir);
+            return TryFindPath(startNode, targetNode, out path, isAgentAir, agentSize);
         }
         
-        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, bool isAgentAir)
+        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, bool isAgentAir, float agentSize)
         {
             if (startNode == targetNode || ! targetNode.IsPassable(isAgentAir))
             {
@@ -103,6 +103,8 @@ namespace Gameplay.Pathfinding
                         
                         int newG = currentNode.G;
                         newG += diagonal ? _config.DiagonalTravelCost : _config.OrtogonalTravelCost;
+                        if (adjacentNode.ObstacleDistanceFor(isAgentAir) < agentSize / 2)
+                            newG += _config.TooCloseToObstaclePenalty;
 
                         if (newG > adjacentNode.G)
                             continue;
