@@ -23,9 +23,10 @@ namespace Gameplay.UI
         [SerializeField] private int _pointerEnterEventIndex;
         [SerializeField] private int _pointerExitEventIndex;
 
-        private OrderType _orderType;
         private InputAction _hotkey;
         private bool _showTooltip;
+        
+        public OrderType OrderType { get; private set; }
         
         [Inject] private PlayerInput PlayerInput { get; set; } 
         [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; } 
@@ -43,7 +44,7 @@ namespace Gameplay.UI
 
         public void ApplyOrderType(OrderType orderType)
         {
-            if (_orderType == orderType)
+            if (OrderType == orderType)
                 return;
             
             _image.color = orderType == null ? Color.clear : Color.white;
@@ -60,7 +61,7 @@ namespace Gameplay.UI
                 _hotkey.performed += IssueWithoutTarget;
             }
             
-            _orderType = orderType;
+            OrderType = orderType;
         }
 
         private void StartTargeting(BaseEventData _)
@@ -73,9 +74,9 @@ namespace Gameplay.UI
 
         private void StartTargeting()
         {
-            if (_orderType == null || _orderType.TargetRequirement == TargetRequirement.None)
+            if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
-            TargetSelector.StartTargeting(_orderType.TargetRequirement);
+            TargetSelector.StartTargeting(OrderType.TargetRequirement);
         }
 
         private void IssueWithTarget(BaseEventData _)
@@ -89,12 +90,12 @@ namespace Gameplay.UI
 
         private void IssueWithTarget()
         {
-            if (_orderType == null || _orderType.TargetRequirement == TargetRequirement.None)
+            if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
             OrderTarget target = TargetSelector.FinishTargeting();
-            if (_orderType.TargetRequirement == TargetRequirement.Unit && target.Unit == null)
+            if (OrderType.TargetRequirement == TargetRequirement.Unit && target.Unit == null)
                 return;
-            Dispatcher.IssueOrderToSelection(_orderType, target);
+            Dispatcher.IssueOrderToSelection(OrderType, target);
         }
 
         private void IssueWithoutTarget(BaseEventData _)
@@ -119,15 +120,15 @@ namespace Gameplay.UI
         private void IssueWithoutTarget()
         {
             
-            if (_orderType == null || _orderType.TargetRequirement != TargetRequirement.None)
+            if (OrderType == null || OrderType.TargetRequirement != TargetRequirement.None)
                 return;
-            Dispatcher.IssueOrderToSelection(_orderType, default);
+            Dispatcher.IssueOrderToSelection(OrderType, default);
         }
 
         private void Update()
         {
-            if (_showTooltip && _orderType)
-                Tooltip.Show(_orderType.TooltipInfo);
+            if (_showTooltip && OrderType)
+                Tooltip.Show(OrderType.TooltipInfo);
         }
 
         private void DisposeHotkey()

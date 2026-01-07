@@ -1,6 +1,7 @@
 ﻿using Extentions;
 using Gameplay.Data.Abilities;
 using Gameplay.Units;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Gameplay.Data.Orders
@@ -9,7 +10,7 @@ namespace Gameplay.Data.Orders
     public class AbilityOrder : OrderType
     {
         [Space]
-        [SerializeField] private AbilityType _abilityType;
+        [Expandable] [SerializeField] private AbilityType _abilityType;
 
         public AbilityType AbilityType => _abilityType;
 

@@ -2,6 +2,7 @@
 using Gameplay.Data.Orders;
 using Gameplay.Data.Validator;
 using Gameplay.Units;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Gameplay.Data.Abilities
@@ -12,16 +13,15 @@ namespace Gameplay.Data.Abilities
         [Tooltip("Cooldown between uses (in fixed frames)")]
         [SerializeField] private int _cooldown;
         [SerializeField] private int _energyCost;
-        [Space]
+        [HorizontalLine(2, EColor.White)]
         [SerializeField] private TargetRequirement _targetRequirement;
         [Tooltip("Cast distance to target (irrelevant when Target Requirement is set to None)")]
         [SerializeField] private float _maxDistance;
-        [Header("Validators")]
+        [HorizontalLine(2, EColor.White)]
         [Tooltip("Caster must pass these validators to cast this ability")]
         [SerializeField] private UnitValidatorGroup _casterValidators;
         [Tooltip("Target must pass these validators to be selected")]
         [SerializeField] private UnitValidatorGroup _targetValidators;
-        [Header("Effects")]
         [Tooltip("Effects applied to caster itself")]
         [SerializeField] private EffectTargetingUnit[] _casterEffects;
         [Tooltip("Effects applied to caster's position")]

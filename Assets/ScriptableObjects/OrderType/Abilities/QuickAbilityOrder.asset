@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6193605fb4804944920274e761bdee1e, type: 3}
+  m_Name: QuickAbilityOrder
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.AbilityOrder
+  _displayName: Quick!
+  _rawDisplayDescription: Increase omve speed by 50 for 12 seconds
+  _icon: {fileID: 0}
+  _hotkeyAlias: Ability1
+  _abilityType: {fileID: 11400000, guid: 38ae5f8c9e14e0844ac288104a2af55a, type: 2}

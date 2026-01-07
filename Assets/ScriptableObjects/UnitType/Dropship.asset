@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dropship
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Dropship
+  _focusPriority: 2
   _maxHitPoints: 100
   _maxShieldPoints: 50
   _shieldRestoreDelay: 50
