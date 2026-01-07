@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86dc8b28e704a38bc20d7e753fe1ad6, type: 3}
   m_Name: IsAir
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitAirValidator
+  _invalidMessage: Target must be air
   _mustBeAir: 1

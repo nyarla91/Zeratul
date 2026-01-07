@@ -12,11 +12,11 @@ namespace Gameplay.Player
     {
         [SerializeField] private LayerMask _unitsMask;
         
-        private TargetRequirement _currentRequirement;
-        private OrderTarget _currentTarget;
-
         private Vector2 EstimatedPointTarget => Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
+        public OrderType CurrentOrder { get; private set; }
+        public OrderTarget CurrentTarget { get; private set; }
+        
         private Unit EstimatedUnitTarget
         {
             get
@@ -34,21 +34,18 @@ namespace Gameplay.Player
 
         private OrderTarget EstimatedPointOrUnitTarget => new(EstimatedPointTarget, EstimatedUnitTarget);
         
-        public void StartTargeting(TargetRequirement requirement)
+        public void StartTargeting(OrderType order)
         {
-            if (requirement == TargetRequirement.None)
+            if (order.TargetRequirement == TargetRequirement.None)
                 throw new ArgumentException($"Target is not required");
-            
-            _currentRequirement = requirement;
+
+            CurrentOrder = order;
         }
 
         public OrderTarget FinishTargeting()
         {
-            if (_currentRequirement == TargetRequirement.None)
-                return default;
-            
-            _currentRequirement = TargetRequirement.None;
-            return _currentTarget;
+            CurrentOrder = null;
+            return CurrentTarget;
         }
 
         public OrderTarget GetTargetForRequirement(TargetRequirement requirement)
@@ -65,7 +62,7 @@ namespace Gameplay.Player
 
         private void Update()
         {
-            _currentTarget = GetTargetForRequirement(_currentRequirement);
+            CurrentTarget = GetTargetForRequirement(CurrentOrder?.TargetRequirement ?? TargetRequirement.None);
         }
     }
 }

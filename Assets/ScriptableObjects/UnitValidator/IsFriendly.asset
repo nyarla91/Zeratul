@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b143b934b74941a30606c160a0bcd3, type: 3}
   m_Name: IsFriendly
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitOwnershipValidator
-  _ownedByPlayer: 1
+  _invalidMessage: Target must be friendly
+  _mustBeHostile: 0

@@ -36,6 +36,7 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private EffectTargetingPoint[] _pointTargetEffects;
 
         public TargetRequirement TargetRequirement => _targetRequirement;
+        public UnitValidatorGroup TargetValidators => _targetValidators;
         public float MaxDistance => _maxDistance;
         public int EnergyCost => _energyCost;
         public int Cooldown => _cooldown;

@@ -76,7 +76,7 @@ namespace Gameplay.UI
         {
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
-            TargetSelector.StartTargeting(OrderType.TargetRequirement);
+            TargetSelector.StartTargeting(OrderType);
         }
 
         private void IssueWithTarget(BaseEventData _)

@@ -14,16 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
   _cooldown: 250
   _energyCost: 0
-  _targetRequirement: 0
-  _maxDistance: 0
+  _targetRequirement: 2
+  _maxDistance: 15
   _casterValidators:
     _unitValidators: []
   _targetValidators:
-    _unitValidators: []
+    _unitValidators:
+    - {fileID: 11400000, guid: e35c596869c65c840abce09b740dd570, type: 2}
   _casterEffects:
   - {fileID: 11400000, guid: f30cc584a3483d241962d0fdb0e61a61, type: 2}
   _casterPointEffects: []
-  _maxAngleToTarget: 360
+  _maxAngleToTarget: 0
   _unitTargetEffects: []
   _applyPointEffectsToUnit: 1
   _pointTargetEffects: []
