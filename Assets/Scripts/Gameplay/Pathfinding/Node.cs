@@ -33,7 +33,6 @@ namespace Gameplay.Pathfinding
         {
             CommonObstacleDistance = ObstacleDistance(Config.MaxObstacleDistance, Config.CommonLayerMask);
             GroundObstacleDistance = ObstacleDistance(CommonObstacleDistance, Config.GroundLayerMask);
-            Debug.Log($"{CommonObstacleDistance} {GroundObstacleDistance}");
         }
         
         public float ObstacleDistanceFor(bool isAgentAir) => isAgentAir ? CommonObstacleDistance : GroundObstacleDistance;

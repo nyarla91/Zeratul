@@ -10,7 +10,7 @@ namespace Gameplay.Player
         [Inject] private PlayerSelection PlayerSelection { get; set; }
         [Inject] private PlayerInput PlayerInput { get; set; }
 
-        private bool QueueOrder => PlayerInput.QueueOrderBinding.IsHeld;
+        private bool QueueOrder => PlayerInput.QueueOrder.IsHeld;
         
         public void IssueSmartOrderToSelection(OrderTarget target)
         {

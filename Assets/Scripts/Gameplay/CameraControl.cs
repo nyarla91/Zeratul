@@ -19,7 +19,7 @@ namespace Gameplay
 
         private void Update()
         {
-            if (PlayerInput.DragCameraBinding.IsHeld)
+            if (PlayerInput.DragCamera.IsHeld)
                 DragCamera( - Mouse.current.delta.ReadValue());
             if (_edgeMoveSpeed > 0)
                 EdgeMoveCamera();

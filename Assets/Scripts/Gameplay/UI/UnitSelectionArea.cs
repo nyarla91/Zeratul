@@ -59,7 +59,7 @@ namespace Gameplay.UI
             if (selectedUnits.Length == 0)
                 return;
             
-            if (PlayerInput.SelectMultipleBinding.IsHeld)
+            if (PlayerInput.SelectMultiple.IsHeld)
                 PlayerSelection.AddUnitsToSelection(selectedUnits);
             else
                 PlayerSelection.SelectUnits(selectedUnits);
@@ -82,7 +82,7 @@ namespace Gameplay.UI
             if (selectedUnits.Length == 0)
                 return;
             
-            if (PlayerInput.SelectMultipleBinding.IsHeld)
+            if (PlayerInput.SelectMultiple.IsHeld)
                 PlayerSelection.ToggleUnitSelection(selectedUnits[0]);
             else
                 PlayerSelection.SelectUnits(selectedUnits);

@@ -9,6 +9,7 @@ namespace Gameplay.Data
     public class UnitType : ScriptableObject
     {
         [SerializeField] private string _displayName;
+        [SerializeField] private int _focusPriority;
         [Space]
         [SerializeField] private int _maxHitPoints;
         [Space]
@@ -33,6 +34,7 @@ namespace Gameplay.Data
         [Expandable] [SerializeField] private UnitSpriteMap _spriteMap;
 
         public string DisplayName => _displayName;
+        public int FocusPriority => _focusPriority;
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;
         public int ShieldRestoreDelay => _shieldRestoreDelay;

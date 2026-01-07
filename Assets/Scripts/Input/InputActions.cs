@@ -127,6 +127,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FocusNextUnitType"",
+                    ""type"": ""Button"",
+                    ""id"": ""6da61117-a205-4880-9b6a-e23ebd514009"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -182,6 +191,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QueueOrder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71dd6ec4-aae1-4b29-bc6c-f736ea6aaae9"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FocusNextUnitType"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -861,6 +881,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_General_QueueOrder = m_General.FindAction("QueueOrder", throwIfNotFound: true);
         m_General_DragCamera = m_General.FindAction("DragCamera", throwIfNotFound: true);
         m_General_ZoomDelta = m_General.FindAction("ZoomDelta", throwIfNotFound: true);
+        m_General_FocusNextUnitType = m_General.FindAction("FocusNextUnitType", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -965,6 +986,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_QueueOrder;
     private readonly InputAction m_General_DragCamera;
     private readonly InputAction m_General_ZoomDelta;
+    private readonly InputAction m_General_FocusNextUnitType;
     /// <summary>
     /// Provides access to input actions defined in input action map "General".
     /// </summary>
@@ -992,6 +1014,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "General/ZoomDelta".
         /// </summary>
         public InputAction @ZoomDelta => m_Wrapper.m_General_ZoomDelta;
+        /// <summary>
+        /// Provides access to the underlying input action "General/FocusNextUnitType".
+        /// </summary>
+        public InputAction @FocusNextUnitType => m_Wrapper.m_General_FocusNextUnitType;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1030,6 +1056,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ZoomDelta.started += instance.OnZoomDelta;
             @ZoomDelta.performed += instance.OnZoomDelta;
             @ZoomDelta.canceled += instance.OnZoomDelta;
+            @FocusNextUnitType.started += instance.OnFocusNextUnitType;
+            @FocusNextUnitType.performed += instance.OnFocusNextUnitType;
+            @FocusNextUnitType.canceled += instance.OnFocusNextUnitType;
         }
 
         /// <summary>
@@ -1053,6 +1082,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ZoomDelta.started -= instance.OnZoomDelta;
             @ZoomDelta.performed -= instance.OnZoomDelta;
             @ZoomDelta.canceled -= instance.OnZoomDelta;
+            @FocusNextUnitType.started -= instance.OnFocusNextUnitType;
+            @FocusNextUnitType.performed -= instance.OnFocusNextUnitType;
+            @FocusNextUnitType.canceled -= instance.OnFocusNextUnitType;
         }
 
         /// <summary>
@@ -1510,6 +1542,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnZoomDelta(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FocusNextUnitType" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFocusNextUnitType(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

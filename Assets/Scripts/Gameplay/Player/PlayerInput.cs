@@ -11,13 +11,17 @@ namespace Gameplay.Player
     {
         private InputActions _actions;
 
-        private InputBinding _selectMultipleBinding;
-        private InputBinding _queueOrderBinding;
-        private InputBinding _dragCameraBinding;
+        private InputBinding _selectMultiple;
+        private InputBinding _queueOrder;
+        private InputBinding _dragCamera;
+        private InputBinding _focusNextUnitType;
+
+        private InputActions Actions => _actions ??= new InputActions();
         
-        public IBinding SelectMultipleBinding => _selectMultipleBinding;
-        public IBinding QueueOrderBinding => _queueOrderBinding;
-        public IBinding DragCameraBinding => _dragCameraBinding;
+        public IBinding SelectMultiple => _selectMultiple ??= new InputBinding(Actions.General.SelectMultiple, PauseRead);
+        public IBinding QueueOrder => _queueOrder ??= new InputBinding(Actions.General.QueueOrder, PauseRead);
+        public IBinding DragCamera => _dragCamera ??= new InputBinding(Actions.General.DragCamera, PauseRead);
+        public IBinding FocusNextUnitType => _focusNextUnitType ??= new InputBinding(Actions.General.FocusNextUnitType, PauseRead);
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 
@@ -25,20 +29,17 @@ namespace Gameplay.Player
 
         private void Awake()
         {
-            _actions =  new InputActions();
-            _actions.Enable();
-            _selectMultipleBinding = new InputBinding(_actions.General.SelectMultiple, PauseRead);
-            _queueOrderBinding = new InputBinding(_actions.General.QueueOrder, PauseRead);
-            _dragCameraBinding = new InputBinding(_actions.General.DragCamera, PauseRead);
+            Actions.Enable();
         }
 
         private void OnDestroy()
         {
-            _selectMultipleBinding.Dispose();
-            _queueOrderBinding.Dispose();
-            _dragCameraBinding.Dispose();
+            _selectMultiple.Dispose();
+            _queueOrder.Dispose();
+            _dragCamera.Dispose();
+            _focusNextUnitType.Dispose();
         }
 
-        public InputAction GetOrderHotkeyAction(string alias) => _actions.FindAction(alias);
+        public InputAction GetOrderHotkeyAction(string alias) => Actions.FindAction(alias);
     }
 }

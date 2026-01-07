@@ -18,9 +18,9 @@ namespace Gameplay.UI
             PlayerSelection.SelectionUpdated += UpdateButtons;
         }
 
-        private void UpdateButtons(Unit[] selection)
+        private void UpdateButtons()
         {
-            UnitType unitType = selection.Length == 0 ? null : selection[0]?.Type;
+            UnitType unitType = PlayerSelection.FocusedUnitType;
             bool clear = unitType == null;
             
             for (int i = 0; i < _buttons.Length; i++)
