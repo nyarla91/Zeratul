@@ -85,5 +85,14 @@ namespace Extentions
                 ? (toBottomLeft ? new Vector4(0, padding, 0, 0) : new Vector4(0, 0, 0, padding))
                 : (toBottomLeft ? new Vector4(padding, 0, 0, 0) : new Vector4(0, 0, padding, 0));
         }
+
+        public static Gradient ToGradient(this Color color)
+        {
+            Gradient result = new();
+            GradientColorKey colorKeys = new GradientColorKey(color, 0);
+            GradientAlphaKey alphaKeys = new GradientAlphaKey(color.a, 0);
+            result.SetKeys( new[]{colorKeys}, new[]{alphaKeys});
+            return result;
+        }
     }
 }

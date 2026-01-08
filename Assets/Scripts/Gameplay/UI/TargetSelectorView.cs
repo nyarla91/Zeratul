@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Extentions;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
 using Gameplay.Units;
+using Gameplay.Visual;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Zenject;
 
@@ -17,13 +21,24 @@ namespace Gameplay.UI
         [SerializeField] private Image _orderIcon;
         [SerializeField] private TMP_Text _orderName;
         [SerializeField] private TMP_Text _validationMessage;
+        [Space]
+        [SerializeField] private float _ellipseThickness;
+        [SerializeField] private Color _ellipseColor;
 
         private float _targetingTime;
+        private RangeEllipse _rangeEllipse;
 
         private OrderType CurrentOrder => _selector.CurrentOrder; 
+        private AbilityOrder CurrentAbilityOrder => CurrentOrder as AbilityOrder; 
         
         [Inject] private PlayerSelection Selection { get; set; }
-        
+        [Inject] private RangeEllipseFactory RangeEllipseFactory { get; set; }
+
+        private void Awake()
+        {
+            _rangeEllipse = RangeEllipseFactory.Get();
+        }
+
         private void Update()
         {
             _targetingTime = CurrentOrder ? (_targetingTime + Time.deltaTime) : 0;
@@ -31,15 +46,21 @@ namespace Gameplay.UI
             if (_targetingTime < _showDelay)
             {
                 _canvasGroup.alpha = 0;
+                _rangeEllipse.Hide();
                 return;
             }
+            
+            Unit[] actors = Selection.SelectedUnits.Where(u => u.Type.AvailableOrders.Contains(CurrentOrder)).ToArray();
+            
             _canvasGroup.alpha = 1;
             _orderName.text = CurrentOrder.DisplayName;
             _orderIcon.sprite = CurrentOrder.Icon;
-            _validationMessage.text = GetValidationMessageText();
+            _validationMessage.text = GetValidationMessageText(actors);
+            
+            UpdateRangeEllipse(actors);
         }
 
-        private string GetValidationMessageText()
+        private string GetValidationMessageText(Unit[] actors)
         {
             if (CurrentOrder.TargetRequirement == TargetRequirement.None)
                 return null;
@@ -50,19 +71,32 @@ namespace Gameplay.UI
             if ( ! _selector.CurrentTarget.Unit)
                 return null;
             
-            AbilityOrder abilityOrder = CurrentOrder as AbilityOrder;
-            if ( ! abilityOrder)
+            if ( ! CurrentAbilityOrder)
                 return null;
 
-            Unit[] actors = Selection.SelectedUnits.Where(u => u.Type.AvailableOrders.Contains(abilityOrder)).ToArray();
 
             string invalidMessage = "";
             foreach (Unit actor in actors)
             {
-                if (abilityOrder.AbilityType.TargetValidators.IsValid(actor, _selector.CurrentTarget.Unit, out invalidMessage))
+                if (CurrentAbilityOrder.AbilityType.TargetValidators.IsValid(actor, _selector.CurrentTarget.Unit, out invalidMessage))
                     return null;
             }
             return invalidMessage;
+        }
+
+        private void UpdateRangeEllipse(Unit[] actors)
+        {
+            if (!CurrentAbilityOrder)
+            {
+                _rangeEllipse.Hide();
+                return;
+            }
+            _rangeEllipse.Show();
+            float radius = CurrentAbilityOrder.AbilityType.MaxDistance;
+            _rangeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Unit closestUnit = actors.MinElement(a => Isometry.Distance(a.transform.position, mousePosition));
+            _rangeEllipse.Move(closestUnit.transform.position);
         }
     }
 }

@@ -29,7 +29,6 @@ namespace Gameplay.Player
 
         private void Awake()
         {
-            Debug.Log(Input);
             Input.FocusNextUnitType.Performed += FocusNextUnitType;
         }
 

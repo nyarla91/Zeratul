@@ -6,6 +6,7 @@ using Gameplay.Pathfinding;
 using Gameplay.Player;
 using Gameplay.UI;
 using Gameplay.Vision;
+using Gameplay.Visual;
 using UnityEngine;
 
 namespace DI
@@ -21,6 +22,7 @@ namespace DI
         [SerializeField] private IsometricOverlap _isometricOverlap;
         [SerializeField] private VisionMap _visionMap;
         [SerializeField] private Tooltip _tooltip;
+        [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
         
         [SerializeField] private SOInjectPresenter _injectPresenter;
         
@@ -39,6 +41,7 @@ namespace DI
             BindFromInstance(_isometricOverlap);
             BindFromInstance(_visionMap);
             BindFromInstance(_tooltip);
+            BindFromInstance(_rangeEllipseFactory);
 
             _injectPresenter.Init(Container);
         }
