@@ -11,8 +11,10 @@ namespace Gameplay.Data.Orders
     {
         [Space]
         [Expandable] [SerializeField] private AbilityType _abilityType;
+        [Expandable] [SerializeField] private float _aoeEllipseRadius;
 
         public AbilityType AbilityType => _abilityType;
+        public float AoeEllipseRadius => _aoeEllipseRadius;
 
         public override TargetRequirement TargetRequirement => _abilityType.TargetRequirement;
 

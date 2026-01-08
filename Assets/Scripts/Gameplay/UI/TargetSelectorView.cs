@@ -27,6 +27,7 @@ namespace Gameplay.UI
 
         private float _targetingTime;
         private RangeEllipse _rangeEllipse;
+        private RangeEllipse _aoeEllipse;
 
         private OrderType CurrentOrder => _selector.CurrentOrder; 
         private AbilityOrder CurrentAbilityOrder => CurrentOrder as AbilityOrder; 
@@ -37,6 +38,7 @@ namespace Gameplay.UI
         private void Awake()
         {
             _rangeEllipse = RangeEllipseFactory.Get();
+            _aoeEllipse = RangeEllipseFactory.Get();
         }
 
         private void Update()
@@ -47,6 +49,7 @@ namespace Gameplay.UI
             {
                 _canvasGroup.alpha = 0;
                 _rangeEllipse.Hide();
+                _aoeEllipse.Hide();
                 return;
             }
             
@@ -57,7 +60,7 @@ namespace Gameplay.UI
             _orderIcon.sprite = CurrentOrder.Icon;
             _validationMessage.text = GetValidationMessageText(actors);
             
-            UpdateRangeEllipse(actors);
+            UpdateEllipses(actors);
         }
 
         private string GetValidationMessageText(Unit[] actors)
@@ -84,19 +87,32 @@ namespace Gameplay.UI
             return invalidMessage;
         }
 
-        private void UpdateRangeEllipse(Unit[] actors)
+        private void UpdateEllipses(Unit[] actors)
         {
             if (!CurrentAbilityOrder)
             {
                 _rangeEllipse.Hide();
+                _aoeEllipse.Hide();
                 return;
             }
             _rangeEllipse.Show();
+            
             float radius = CurrentAbilityOrder.AbilityType.MaxDistance;
             _rangeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Unit closestUnit = actors.MinElement(a => Isometry.Distance(a.transform.position, mousePosition));
             _rangeEllipse.Move(closestUnit.transform.position);
+
+            radius = CurrentAbilityOrder.AoeEllipseRadius;
+            if (radius == 0 || (CurrentAbilityOrder.TargetRequirement == TargetRequirement.Unit && ! _selector.CurrentTarget.Unit))
+            {
+                _aoeEllipse.Hide();
+                return;
+            }
+            _aoeEllipse.Show();
+            _aoeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
+            Vector3 position = _selector.CurrentTarget.Unit ? _selector.CurrentTarget.Unit.transform.position : _selector.CurrentTarget.Point;
+            _aoeEllipse.Move(position);
         }
     }
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _hotkeyAlias: Ability1
   _abilityType: {fileID: 11400000, guid: 38ae5f8c9e14e0844ac288104a2af55a, type: 2}
+  _aoeEllipseRadius: 3

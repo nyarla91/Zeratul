@@ -12,6 +12,7 @@ namespace Gameplay.Visual
 
         public void Set(float radius, float thickness, Color color)
         {
+            Debug.Log(radius);
             Vector3[] points = new Vector3[_vertices];
             for (int i = 0; i < _vertices; i++)
             {
