@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SightRadiusModifier50
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.SightRadiusModifierStatus
   _display: 1
-  _displayIcon: {fileID: 5870607133997777081, guid: a0467cd69d2ccd5419ecee3370d7cd7b, type: 3}
+  _displayIcon: {fileID: 21300000, guid: 0cd899f554ec350489a46251ed77333e, type: 3}
   _displayName: Omnisight
   _rawDisplayDescription: Sight radius increased by 50%
   _priority: 0

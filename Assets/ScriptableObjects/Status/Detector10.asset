@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
   m_Name: Detector10
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
+  _display: 0
+  _displayIcon: {fileID: 21300000, guid: e386bd21493374c46821ba14059f76c2, type: 3}
+  _displayName: 
+  _rawDisplayDescription: 
   _unitEffects: []
   _pointEffects:
   - {fileID: 11400000, guid: a143ff797b323ba49b0d8b8c3da2e2fa, type: 2}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Log
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.LogStatus
   _display: 1
-  _displayIcon: {fileID: 21300000, guid: c978056cfd4180742985d5c3a842a65c, type: 3}
+  _displayIcon: {fileID: 21300000, guid: 72182200ac4918d4e92d413023d87aa7, type: 3}
   _displayName: Log
   _rawDisplayDescription: This is a log status purely for debugging

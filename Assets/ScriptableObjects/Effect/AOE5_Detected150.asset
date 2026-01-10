@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AOE5_Detected150
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
   _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _radius: 10
+  _radius: 5
   _applyValidators:
     _unitValidators:
     - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}

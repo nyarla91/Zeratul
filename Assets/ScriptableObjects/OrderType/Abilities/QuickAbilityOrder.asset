@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.AbilityOrder
   _displayName: Quick!
   _rawDisplayDescription: Increase omve speed by 50 for 12 seconds
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: ff76cf83313f4be42af5d55d7d244abc, type: 3}
   _hotkeyAlias: Ability1
   _abilityType: {fileID: 11400000, guid: 38ae5f8c9e14e0844ac288104a2af55a, type: 2}
-  _aoeEllipseRadius: 3
+  _aoeEllipseRadius: 5

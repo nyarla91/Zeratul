@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedModifier50
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.SpeedModifierStatus
   _display: 1
-  _displayIcon: {fileID: -3230126372701174877, guid: 6e4aa8dd9fa513245b4c26f3c6a3ba6d, type: 3}
+  _displayIcon: {fileID: 21300000, guid: 317197fa2cddd06418e1ead53b11284a, type: 3}
   _displayName: Haste
   _rawDisplayDescription: Movement speed is increased by 50%
   _priority: 0

@@ -1,8 +1,5 @@
-﻿using System;
-using Extentions;
-using Gameplay.Data.Orders;
+﻿using Extentions;
 using Gameplay.Data.Statuses;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

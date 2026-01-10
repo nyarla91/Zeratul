@@ -16,7 +16,7 @@ MonoBehaviour:
   _rawDisplayDescription: Do something incredible to target unit or point or caster
     itself I have no idea truly. For real, this ability can literally do anything,
     it's like wild magic you shouldn't mess with.
-  _icon: {fileID: 21300000, guid: 951ff39140a061f4b918ee6ba4061840, type: 3}
+  _icon: {fileID: 21300000, guid: c257552c9c710fd40a6ce07b801d4800, type: 3}
   _hotkeyAlias: Ability1
   _abilityType: {fileID: 11400000, guid: 5ade65d8720c01c4f914f328056ab3da, type: 2}
-  _aoeEllipseRadius: 3
+  _aoeEllipseRadius: 5
