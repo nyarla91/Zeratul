@@ -5,6 +5,7 @@ using Gameplay.Data;
 using Gameplay.Pathfinding;
 using Gameplay.Player;
 using Gameplay.UI;
+using Gameplay.Units;
 using Gameplay.Vision;
 using Gameplay.Visual;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace DI
     public class GameplayInstaller : MonoInstaller
     {
         [SerializeField] private PlayerSelection _playerSelection;
-        [SerializeField] private PlayerOwnership _playerOwnership;
+        [SerializeField] private UnitPool _unitPool;
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private PlayerOrderTargetSelector _playerOrderTargetSelector;
         [SerializeField] private PlayerOrdersDispatcher _playerOrdersDispatcher;
@@ -33,7 +34,7 @@ namespace DI
             Container.Bind<IPauseSet>().FromInstance(pause).AsSingle();
             
             BindFromInstance(_playerSelection);
-            BindFromInstance(_playerOwnership);
+            BindFromInstance(_unitPool);
             BindFromInstance(_playerInput);
             BindFromInstance(_playerOrderTargetSelector);
             BindFromInstance(_playerOrdersDispatcher);

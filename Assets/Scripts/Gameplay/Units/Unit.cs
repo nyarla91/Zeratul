@@ -1,5 +1,6 @@
 ﻿using Gameplay.Data;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Units
 {
@@ -36,6 +37,8 @@ namespace Gameplay.Units
 
         public UnitType Type { get; private set; }
         
+        [Inject] private UnitPool UnitPool { get; set; }
+        
         public void Init(UnitType type, bool ownedByPlayer)
         {
             Type = type;
@@ -49,11 +52,13 @@ namespace Gameplay.Units
             Abilities.Init(type);
             Statuses.Init(type);
             
+            UnitPool.AddUnit(this);
             Life.OnHitPointsOver += Die;
         }
         
         private void Die()
         {
+            UnitPool.RemoveUnit(this);
             Destroy(gameObject);
         }
     }

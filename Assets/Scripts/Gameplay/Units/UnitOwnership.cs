@@ -1,33 +1,37 @@
-﻿using Gameplay.Data;
-using Gameplay.Player;
-using UnityEngine;
-using Zenject;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Gameplay.Data;
 
 namespace Gameplay.Units
 {
     public class UnitOwnership : UnitComponent
     {
-        public bool OwnedByPlayer { get; private set; }
+        private Dictionary<object, bool> _owners = new();
 
-        [field: Inject]
-        public PlayerOwnership PlayerOwnership { get; set; }
+        public bool OwnedByPlayer => _owners.Values.Last();
 
+        public event Action<bool> OwnerUpdated;
+        
         public void Init(UnitType unitType, bool ownedByPlayer)
         {
-            OwnedByPlayer = ownedByPlayer;
-            if (OwnedByPlayer)
-                PlayerOwnership.AddOwnedUnit(this);
+            _owners.Add(this, ownedByPlayer);
+        }
+
+        public void AddOwner(object owner, bool ownedByPlayer)
+        {
+            _owners.TryAdd(owner, ownedByPlayer);
+            OwnerUpdated?.Invoke(OwnedByPlayer);
+        }
+
+        public void RemoveOwner(object owner)
+        {
+            _owners.Remove(owner);
+            OwnerUpdated?.Invoke(OwnedByPlayer);
         }
 
         public bool IsFriendly(Unit other) => OwnedByPlayer == other.Ownership.OwnedByPlayer;
         
         public bool IsHostile(Unit other) => ! IsFriendly(other);
-
-        private void OnDestroy()
-        {
-            if (OwnedByPlayer)
-                PlayerOwnership.RemoveOwnedUnit(this);
-        }
-
     }
 }

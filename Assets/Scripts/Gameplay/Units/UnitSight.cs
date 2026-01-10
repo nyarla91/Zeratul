@@ -26,11 +26,18 @@ namespace Gameplay.Units
 
             _radiusModifier = new Modifier();
             
+            AttachSightArea(ownedByPlayer);
+            Composition.Ownership.OwnerUpdated += AttachSightArea;
+            
+            _area.compositeOperation = Collider2D.CompositeOperation.Merge;
+        }
+
+        private void AttachSightArea(bool ownedByPlayer)
+        {
             if (ownedByPlayer)
                 VisionMap.PlayerArea.AttachSightArea(_area.transform);
             else
                 VisionMap.EnemyArea.AttachSightArea(_area.transform);
-            _area.compositeOperation = Collider2D.CompositeOperation.Merge;
         }
 
         private void Recalculate()

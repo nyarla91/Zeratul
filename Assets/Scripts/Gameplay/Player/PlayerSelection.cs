@@ -23,7 +23,7 @@ namespace Gameplay.Player
         public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
         
         [Inject] private PlayerInput Input { get; set; }
-        [Inject] private PlayerOwnership Ownership { get; set; }
+        [Inject] private UnitPool UnitPool { get; set; }
 
         public event Action SelectionUpdated;
 

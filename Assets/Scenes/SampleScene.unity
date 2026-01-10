@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Architecture::Architecture.GameplayInstaller
   _playerSelection: {fileID: 1164900124}
-  _playerOwnership: {fileID: 1164900126}
+  _unitPool: {fileID: 906850154}
   _playerInput: {fileID: 1164900127}
   _playerOrderTargetSelector: {fileID: 1164900128}
   _playerOrdersDispatcher: {fileID: 1164900129}
@@ -1471,7 +1471,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 832.19, y: -66}
-  m_SizeDelta: {x: 312.85, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297041596
 MonoBehaviour:
@@ -3983,6 +3983,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+--- !u!1 &906850153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 906850155}
+  - component: {fileID: 906850154}
+  m_Layer: 0
+  m_Name: UnitPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &906850154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906850153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db59fd65c7c45f1b6a48180c0b8e3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitPool
+--- !u!4 &906850155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906850153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1056.1376, y: 610.2162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &909828952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4214,7 +4258,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1152.425, y: -66}
-  m_SizeDelta: {x: 183.62, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927343562
 MonoBehaviour:
@@ -4990,7 +5034,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1164900125}
   - component: {fileID: 1164900124}
-  - component: {fileID: 1164900126}
   - component: {fileID: 1164900127}
   - component: {fileID: 1164900129}
   - component: {fileID: 1164900128}
@@ -5028,18 +5071,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1164900126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164900123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff7bcda33664ce989ff1736d9e53050, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.PlayerOwnership
 --- !u!114 &1164900127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9013,6 +9044,7 @@ SceneRoots:
   - {fileID: 2084491711}
   - {fileID: 661561051}
   - {fileID: 189624905}
+  - {fileID: 906850155}
   - {fileID: 1164900125}
   - {fileID: 819588472}
   - {fileID: 2127400929}
