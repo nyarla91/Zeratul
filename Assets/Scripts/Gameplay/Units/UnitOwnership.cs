@@ -7,9 +7,10 @@ namespace Gameplay.Units
 {
     public class UnitOwnership : UnitComponent
     {
-        private Dictionary<object, bool> _owners = new();
+        private readonly Dictionary<object, bool> _owners = new();
 
         public bool OwnedByPlayer => _owners.Values.Last();
+        public bool OwnedByEnemy => ! OwnedByPlayer;
 
         public event Action<bool> OwnerUpdated;
         

@@ -31,34 +31,46 @@ namespace Gameplay.Player
         {
             Input.FocusNextUnitType.Performed += FocusNextUnitType;
         }
-
-        public void SelectUnits(Unit[] units)
+        
+        public void AddUnitsToSelection(params Unit[] units)
         {
-            _selectedUnits = units.ToList();
+            foreach (Unit unit in units)
+            {
+                if (_selectedUnits.Contains(unit) || unit.Ownership.OwnedByEnemy)
+                    continue;
+                _selectedUnits.Add(unit);
+                unit.Ownership.OwnerUpdated += ValidateSelectedUnits;
+            }
             ValidateSelectedUnits();
         }
 
-        public void ToggleUnitSelection(Unit  unit)
-        {
-            if (IsUnitSelected(unit))
-                RemoveUnitsFromSelection(new[] { unit });
-            else
-                AddUnitsToSelection(new[] { unit });
-        }
-
-        public void AddUnitsToSelection(Unit[] units)
-        {
-            _selectedUnits.AddRange(units);
-            ValidateSelectedUnits();
-        }
-
-        public void RemoveUnitsFromSelection(Unit[] units)
+        public void RemoveUnitsFromSelection(params Unit[] units)
         {
             foreach (Unit unit in units)
             {
                 _selectedUnits.Remove(unit);
+                unit.Ownership.OwnerUpdated -= ValidateSelectedUnits;
             }
             ValidateSelectedUnits();
+        }
+
+        private void ClearSelection()
+        {
+            RemoveUnitsFromSelection(_selectedUnits.ToArray());
+        }
+
+        public void SelectUnits(Unit[] units)
+        {
+            ClearSelection();
+            AddUnitsToSelection(units);
+        }
+
+        public void ToggleUnitSelection(Unit  unit)
+        {
+            if (_selectedUnits.Contains(unit))
+                RemoveUnitsFromSelection(unit);
+            else
+                AddUnitsToSelection(unit);
         }
 
         private void FocusNextUnitType()
@@ -68,12 +80,25 @@ namespace Gameplay.Player
             SelectionUpdated?.Invoke();
         }
 
+        private void ValidateSelectedUnits(bool _) => ValidateSelectedUnits();
+
         private void ValidateSelectedUnits()
         {
-            _selectedUnits = _selectedUnits.Where(unit => unit.Ownership.OwnedByPlayer).ToList();
-            _selectedUnits = _selectedUnits.ClearCopies().ToList();
-            _selectedUnits = _selectedUnits.ClearNull().ToList();
-            
+            for (int i = _selectedUnits.Count - 1; i >= 0; i--)
+            {
+                Unit selectedUnit = _selectedUnits[i];
+
+                if (!selectedUnit)
+                {
+                    _selectedUnits.RemoveAt(i);
+                    continue;
+                }
+                if (selectedUnit.Ownership.OwnedByPlayer)
+                    continue;
+                
+                RemoveUnitsFromSelection(selectedUnit);
+            }
+
             _selectedUnitTypes.Clear();
             foreach (Unit selectedUnit in _selectedUnits)
             {
