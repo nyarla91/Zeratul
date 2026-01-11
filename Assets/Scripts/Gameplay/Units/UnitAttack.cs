@@ -22,13 +22,13 @@ namespace Gameplay.Units
         public bool IsAttacking => _attackCoroutine != null;
         
         [Inject] private IsometricOverlap IsometricOverlap { get; set; }
-        [Inject] private IPauseRead PauseRead { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         public void Init(UnitType unitType)
         {
             if ( ! IsAbleToAttack)
                 return;
-            Timer cooldown = new(this, unitType.WeaponType.Cooldown, PauseRead);
+            Timer cooldown = new(this, unitType.WeaponType.Cooldown, TacticalPause);
             _weapon = new UnitWeapon(unitType.WeaponType, cooldown);
         }
 

@@ -13,7 +13,7 @@ namespace Extentions
             fieldToClear = null;
         }
 
-        public static IEnumerator WaitForFixedFrames(int frames, IPauseRead pause = null, Action<int, int> frameAction = null)
+        public static IEnumerator WaitForFixedFrames(int frames, IPauseGet pause = null, Action<int, int> frameAction = null)
         {
             for (int frame = 0; frame < frames; frame++)
             {

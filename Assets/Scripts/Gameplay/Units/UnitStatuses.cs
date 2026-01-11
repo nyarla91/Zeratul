@@ -16,7 +16,7 @@ namespace Gameplay.Units
 
         public IStatusInfo[] StatusesInfo => _statuses.Values.ToArray<IStatusInfo>();
 
-        [Inject] private IPauseRead PauseRead { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         public void Init(UnitType type)
         {
@@ -33,7 +33,7 @@ namespace Gameplay.Units
                 currentStatus.Restart(duration);
                 return;
             }
-            Status status = new(type,  instigator, Composition, duration, PauseRead);
+            Status status = new(type,  instigator, Composition, duration, TacticalPause);
             _statuses.Add(type, status);
             status.OnAdd();
         }

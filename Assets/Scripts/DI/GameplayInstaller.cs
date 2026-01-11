@@ -29,9 +29,8 @@ namespace DI
         
         public override void InstallBindings()
         {
-            Pause pause = new();
-            Container.Bind<IPauseRead>().FromInstance(pause).AsSingle();
-            Container.Bind<IPauseSet>().FromInstance(pause).AsSingle();
+            Container.Bind<GamePause>().AsSingle();
+            Container.Bind<TacticalPause>().AsSingle();
             
             BindFromInstance(_playerSelection);
             BindFromInstance(_unitPool);

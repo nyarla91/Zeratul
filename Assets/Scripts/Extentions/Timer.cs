@@ -9,7 +9,7 @@ namespace Extentions
     public class Timer : ITimerWrap
     {
         private readonly MonoBehaviour _container;
-        private readonly IPauseRead _pause;
+        private readonly IPauseGet _pause;
         private int _framesElapsed;
         private bool _active;
         private Coroutine _tickingCoroutine;
@@ -36,7 +36,7 @@ namespace Extentions
         public event Action<float> Ticked;
         public event Action Expired;
 
-        public Timer(MonoBehaviour container, int duration = 0, IPauseRead pause = null, bool loop = false)
+        public Timer(MonoBehaviour container, int duration = 0, IPauseGet pause = null, bool loop = false)
         {
             _container = container;
             Duration = duration;
@@ -95,6 +95,8 @@ namespace Extentions
             while (_framesElapsed < Duration)
             {
                 yield return new WaitForFixedUpdate();
+                if (_pause.IsPaused)
+                    continue;
                 _framesElapsed++;
                 Ticked?.Invoke(FramesLeft);
             }

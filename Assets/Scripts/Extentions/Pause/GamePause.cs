@@ -1,0 +1,30 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace Extentions.Pause
+{
+    public class GamePause : IPauseGet
+    {
+        private List<object> _sources = new();
+
+        public virtual bool IsPaused
+        {
+            get
+            {
+                ValidatePauseSources();
+                return _sources.Count > 0;
+            }
+        }
+
+        public virtual bool IsUnpaused => ! IsPaused;
+        
+        public void Pause(object source) => _sources.Add(source);
+        public void Unpause(object source) => _sources.TryRemove(source);
+
+        private void ValidatePauseSources()
+        {
+            _sources = _sources.Where(source => source != null).ToList();
+        }
+    }
+}

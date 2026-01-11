@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Extentions;
 using Gameplay.Data;
 using Gameplay.Data.Orders;
 using Gameplay.Pathfinding;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using Zenject;
 
 namespace Gameplay.Units
@@ -20,7 +15,8 @@ namespace Gameplay.Units
         
         public bool IsIdle => CurrentOrder == null;
         
-        [Inject] public NodeMap NodeMap { get; private set; }
+        [Inject] private NodeMap NodeMap { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         public void Init(UnitType unitType)
         {
@@ -44,53 +40,37 @@ namespace Gameplay.Units
                 return;
             if ( ! order.CanBeIssued())
                 return;
-            
-            if (queue)
+
+            if (!queue)
             {
-                _pendingOrders.Add(order);
-            }
-            else
-            {
-                ProceedToOrder(order);
+                CompleteCurrentOrder();
                 _pendingOrders.Clear();
             }
+            _pendingOrders.Add(order);
         }
 
         public void CompleteCurrentOrder()
         {
-            if (TryProceedToNextOrder())
-                return;
-            CurrentOrder.Dispose();
+            CurrentOrder?.Dispose();
             CurrentOrder = null;
         }
 
         private void FixedUpdate()
         {
-            if (IsIdle)
-            {
-                TryProceedToNextOrder();
-            }
-            else if (CurrentOrder.IsCompleted())
+            if (TacticalPause.IsPaused)
+                return;
+            
+            if (CurrentOrder != null && CurrentOrder.IsCompleted())
             {
                 CompleteCurrentOrder();
             }
+            if (CurrentOrder == null && _pendingOrders.Count > 0)
+            {
+                CurrentOrder = _pendingOrders[0];
+                _pendingOrders.RemoveAt(0);
+                CurrentOrder.OnProceed();
+            }
             CurrentOrder?.OnUpdate();
-        }
-
-        private bool TryProceedToNextOrder()
-        {
-            if (_pendingOrders.Count == 0)
-                return false;
-            ProceedToOrder(_pendingOrders[0]);
-            _pendingOrders.RemoveAt(0);
-            return true;
-        }
-
-        private void ProceedToOrder(Order order)
-        {
-            CurrentOrder?.Dispose();
-            CurrentOrder = order;
-            CurrentOrder.OnProceed();
         }
 
         private void OnDestroy()

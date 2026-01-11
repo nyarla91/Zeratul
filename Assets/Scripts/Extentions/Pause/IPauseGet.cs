@@ -1,6 +1,6 @@
 ﻿namespace Extentions.Pause
 {
-    public interface IPauseRead
+    public interface IPauseGet
     {
         bool IsPaused { get; }
         bool IsUnpaused { get; }

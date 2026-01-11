@@ -19,11 +19,11 @@ namespace Gameplay.Vision
         public VisionArea EnemyArea => _enemyArea;
         public ITimerWrap RecalculationTimer => _recalculationTimer;
         
-        [Inject] private IPauseRead PauseRead { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         private void Awake()
         {
-            _recalculationTimer = new Timer(this, _config.RecalculationPeriod, PauseRead, true);
+            _recalculationTimer = new Timer(this, _config.RecalculationPeriod, TacticalPause, true);
             _recalculationTimer.Start();
             
             PlayerArea.Init(true);

@@ -18,14 +18,14 @@ namespace Gameplay.Player
 
         private InputActions Actions => _actions ??= new InputActions();
         
-        public IBinding SelectMultiple => _selectMultiple ??= new InputBinding(Actions.General.SelectMultiple, PauseRead);
-        public IBinding QueueOrder => _queueOrder ??= new InputBinding(Actions.General.QueueOrder, PauseRead);
-        public IBinding DragCamera => _dragCamera ??= new InputBinding(Actions.General.DragCamera, PauseRead);
-        public IBinding FocusNextUnitType => _focusNextUnitType ??= new InputBinding(Actions.General.FocusNextUnitType, PauseRead);
+        public IBinding SelectMultiple => _selectMultiple ??= new InputBinding(Actions.General.SelectMultiple, GamePause);
+        public IBinding QueueOrder => _queueOrder ??= new InputBinding(Actions.General.QueueOrder, GamePause);
+        public IBinding DragCamera => _dragCamera ??= new InputBinding(Actions.General.DragCamera, GamePause);
+        public IBinding FocusNextUnitType => _focusNextUnitType ??= new InputBinding(Actions.General.FocusNextUnitType, GamePause);
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 
-        [Inject] public IPauseRead PauseRead { get; set; }
+        [Inject] public GamePause GamePause { get; set; }
 
         private void Awake()
         {
