@@ -163,17 +163,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5d05fb73-74a2-4c73-9530-ab9bd15829b5"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DragCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""783729f0-c7b8-4da7-a067-dace62d19088"",
                     ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",

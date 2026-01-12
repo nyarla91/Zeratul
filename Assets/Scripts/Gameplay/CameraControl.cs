@@ -1,4 +1,5 @@
 ﻿using Extentions;
+using Extentions.Pause;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -16,9 +17,12 @@ namespace Gameplay
         [SerializeField] private float _edgeMoveSpeed;
         
         [Inject] private PlayerInput PlayerInput { get; set; }
+        [Inject] private GamePause GamePause { get; set; }
 
         private void Update()
         {
+            if (GamePause.IsPaused)
+                return;
             if (PlayerInput.DragCamera.IsHeld)
                 DragCamera( - Mouse.current.delta.ReadValue());
             if (_edgeMoveSpeed > 0)
