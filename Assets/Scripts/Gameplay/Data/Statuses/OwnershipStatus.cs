@@ -10,7 +10,7 @@ namespace Gameplay.Data.Statuses
         public override void OnAdd(Status status)
         {
             bool ownedByPlayer = status.Instigator.Ownership.OwnedByPlayer == _isFriendly;
-            status.Host.Ownership.AddOwner(this, ownedByPlayer);
+            status.Host.Ownership.AddOwner(status, ownedByPlayer);
         }
 
         public override void OnUpdate(Status status)
@@ -20,7 +20,7 @@ namespace Gameplay.Data.Statuses
 
         public override void OnRemove(Status status)
         {
-            status.Host.Ownership.RemoveOwner(this);
+            status.Host.Ownership.RemoveOwner(status);
         }
     }
 }
