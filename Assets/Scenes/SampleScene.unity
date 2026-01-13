@@ -1546,7 +1546,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 832.19, y: -66}
-  m_SizeDelta: {x: 312.85, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297041596
 MonoBehaviour:
@@ -1948,6 +1948,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
   m_PrefabInstance: {fileID: 33000765}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &418630284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418630286}
+  - component: {fileID: 418630285}
+  m_Layer: 0
+  m_Name: TacticalPauseControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &418630285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418630284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a0b6b5a53724e1e880f978a667aa26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.TacticalPauseControl
+--- !u!4 &418630286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418630284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 502.0382, y: 346.27856, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508624877
 GameObject:
   m_ObjectHideFlags: 0
@@ -4484,7 +4528,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1152.425, y: -66}
-  m_SizeDelta: {x: 183.62, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927343562
 MonoBehaviour:
@@ -7824,7 +7868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9194,7 +9238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.UI.TargetSelectorView
   _selector: {fileID: 1164900128}
   _canvasGroup: {fileID: 2099182974}
-  _showDelay: 0.5
+  _showDelay: 0.2
+  _enableTacticalPause: 1
   _orderIcon: {fileID: 1454684848}
   _orderName: {fileID: 927343563}
   _validationMessage: {fileID: 855361459}
@@ -9539,3 +9584,4 @@ SceneRoots:
   - {fileID: 1192803413}
   - {fileID: 550176833}
   - {fileID: 782747764}
+  - {fileID: 418630286}

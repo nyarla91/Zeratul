@@ -136,6 +136,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TacticalPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1cb795a6-f0e8-4a8f-b5f2-c4d2789bcb00"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -191,6 +200,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""FocusNextUnitType"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50c46d4f-cc85-4647-a219-a7ccb85aef28"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TacticalPause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -891,6 +911,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_General_DragCamera = m_General.FindAction("DragCamera", throwIfNotFound: true);
         m_General_ZoomDelta = m_General.FindAction("ZoomDelta", throwIfNotFound: true);
         m_General_FocusNextUnitType = m_General.FindAction("FocusNextUnitType", throwIfNotFound: true);
+        m_General_TacticalPause = m_General.FindAction("TacticalPause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -997,6 +1018,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_DragCamera;
     private readonly InputAction m_General_ZoomDelta;
     private readonly InputAction m_General_FocusNextUnitType;
+    private readonly InputAction m_General_TacticalPause;
     /// <summary>
     /// Provides access to input actions defined in input action map "General".
     /// </summary>
@@ -1028,6 +1050,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "General/FocusNextUnitType".
         /// </summary>
         public InputAction @FocusNextUnitType => m_Wrapper.m_General_FocusNextUnitType;
+        /// <summary>
+        /// Provides access to the underlying input action "General/TacticalPause".
+        /// </summary>
+        public InputAction @TacticalPause => m_Wrapper.m_General_TacticalPause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1069,6 +1095,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @FocusNextUnitType.started += instance.OnFocusNextUnitType;
             @FocusNextUnitType.performed += instance.OnFocusNextUnitType;
             @FocusNextUnitType.canceled += instance.OnFocusNextUnitType;
+            @TacticalPause.started += instance.OnTacticalPause;
+            @TacticalPause.performed += instance.OnTacticalPause;
+            @TacticalPause.canceled += instance.OnTacticalPause;
         }
 
         /// <summary>
@@ -1095,6 +1124,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @FocusNextUnitType.started -= instance.OnFocusNextUnitType;
             @FocusNextUnitType.performed -= instance.OnFocusNextUnitType;
             @FocusNextUnitType.canceled -= instance.OnFocusNextUnitType;
+            @TacticalPause.started -= instance.OnTacticalPause;
+            @TacticalPause.performed -= instance.OnTacticalPause;
+            @TacticalPause.canceled -= instance.OnTacticalPause;
         }
 
         /// <summary>
@@ -1570,6 +1602,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFocusNextUnitType(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TacticalPause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTacticalPause(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

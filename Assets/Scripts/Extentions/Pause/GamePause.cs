@@ -7,7 +7,7 @@ namespace Extentions.Pause
     public class GamePause : IPauseGet
     {
         private List<object> _sources = new();
-
+        
         public virtual bool IsPaused
         {
             get
@@ -19,9 +19,17 @@ namespace Extentions.Pause
 
         public virtual bool IsUnpaused => ! IsPaused;
         
-        public void Pause(object source) => _sources.Add(source);
+        public void Pause(object source)
+        {
+            if (IsPausedFrom(source))
+                return;
+            _sources.Add(source);
+        }
+
         public void Unpause(object source) => _sources.TryRemove(source);
 
+        public bool IsPausedFrom(object source) => _sources.Contains(source);
+        
         private void ValidatePauseSources()
         {
             _sources = _sources.Where(source => source != null).ToList();

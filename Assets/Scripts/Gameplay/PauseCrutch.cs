@@ -12,20 +12,12 @@ namespace Gameplay
 
         private void Update()
         {
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
-            {
-                if (GamePause.IsPaused)
-                    GamePause.Unpause(this);
-                else
-                    GamePause.Pause(this);
-            }
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                if (TacticalPause.IsPaused)
-                    TacticalPause.Unpause(this);
-                else
-                    TacticalPause.Pause(this);
-            }
+            if (!Keyboard.current.escapeKey.wasPressedThisFrame)
+                return;
+            if (GamePause.IsPaused)
+                GamePause.Unpause(this);
+            else
+                GamePause.Pause(this);
         }
     }
 }

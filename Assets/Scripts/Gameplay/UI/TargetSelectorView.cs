@@ -18,6 +18,7 @@ namespace Gameplay.UI
         [SerializeField] private PlayerOrderTargetSelector _selector;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _showDelay;
+        [SerializeField] private bool _enableTacticalPause;
         [SerializeField] private Image _orderIcon;
         [SerializeField] private TMP_Text _orderName;
         [SerializeField] private TMP_Text _validationMessage;
@@ -34,6 +35,7 @@ namespace Gameplay.UI
         
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private RangeEllipseFactory RangeEllipseFactory { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         private void Awake()
         {
@@ -50,8 +52,11 @@ namespace Gameplay.UI
                 _canvasGroup.alpha = 0;
                 _rangeEllipse.Hide();
                 _aoeEllipse.Hide();
+                TacticalPause.Unpause(this);
                 return;
             }
+            if (_enableTacticalPause)
+                TacticalPause.Pause(this);
             
             Unit[] actors = Selection.SelectedUnits.Where(u => u.Type.AvailableOrders.Contains(CurrentOrder)).ToArray();
             
