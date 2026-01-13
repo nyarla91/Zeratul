@@ -1,4 +1,5 @@
 ﻿using System;
+using Extentions.Pause;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
 using Gameplay.Units;
@@ -32,6 +33,7 @@ namespace Gameplay.UI
         [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; } 
         [Inject] private PlayerOrdersDispatcher Dispatcher { get; set; } 
         [Inject] private Tooltip Tooltip { get; set; } 
+        [Inject] private GamePause GamePause { get; set; }
 
         private void Awake()
         {
@@ -74,6 +76,8 @@ namespace Gameplay.UI
 
         private void StartTargeting()
         {
+            if (GamePause.IsPaused)
+                return;
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
             TargetSelector.StartTargeting(OrderType);
@@ -81,7 +85,6 @@ namespace Gameplay.UI
 
         private void IssueWithTarget(BaseEventData _)
         {
-            
             if (Mouse.current.leftButton.wasReleasedThisFrame)
                 IssueWithTarget();
         }
@@ -90,7 +93,11 @@ namespace Gameplay.UI
 
         private void IssueWithTarget()
         {
+            if (GamePause.IsPaused)
+                return;
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
+                return;
+            if ( ! TargetSelector.IsTargeting)
                 return;
             OrderTarget target = TargetSelector.FinishTargeting();
             if (OrderType.TargetRequirement == TargetRequirement.Unit && target.Unit == null)
@@ -106,6 +113,15 @@ namespace Gameplay.UI
 
         private void IssueWithoutTarget(InputAction.CallbackContext _) => IssueWithoutTarget();
 
+        private void IssueWithoutTarget()
+        {
+            if (GamePause.IsPaused)
+                return;
+            if (OrderType == null || OrderType.TargetRequirement != TargetRequirement.None)
+                return;
+            Dispatcher.IssueOrderToSelection(OrderType, default);
+        }
+
         private void StartShowingTooltip(BaseEventData _)
         {
             _showTooltip = true;
@@ -117,16 +133,12 @@ namespace Gameplay.UI
             Tooltip.Hide();
         }
 
-        private void IssueWithoutTarget()
-        {
-            
-            if (OrderType == null || OrderType.TargetRequirement != TargetRequirement.None)
-                return;
-            Dispatcher.IssueOrderToSelection(OrderType, default);
-        }
-
         private void Update()
         {
+            if (GamePause.IsPaused)
+            {
+                HideToolip(null);
+            }
             if (_showTooltip && OrderType)
                 Tooltip.Show(OrderType.TooltipInfo);
         }

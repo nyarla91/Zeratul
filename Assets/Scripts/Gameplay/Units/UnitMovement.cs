@@ -32,8 +32,8 @@ namespace Gameplay.Units
         public Modifier SpeedModifier => _speedModifier;
         public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
 
-        [Inject] public NodeMap NodeMap { get; private set; }
-
+        [Inject] private NodeMap NodeMap { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         public void Init(UnitType unitType)
         {
@@ -95,6 +95,9 @@ namespace Gameplay.Units
 
         private void FixedUpdate()
         {
+            if (TacticalPause.IsPaused)
+                return;
+            
             _rigidbody.mass = Displacable ? 0.001f : 1;
             
             float maxDelta = UnitType.RotationSpeed * Time.fixedDeltaTime;

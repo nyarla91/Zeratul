@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Extentions;
+using Extentions.Pause;
 using Gameplay.Player;
 using Gameplay.Units;
 using UnityEngine;
@@ -23,8 +25,8 @@ namespace Gameplay.UI
         public bool IsSelecting { get; private set; }
         
         [Inject] private PlayerSelection PlayerSelection { get; set; }
-        
         [Inject] private PlayerInput PlayerInput { get; set; }
+        [Inject] private GamePause GamePause { get; set; }
         
         private void Awake()
         {
@@ -35,7 +37,7 @@ namespace Gameplay.UI
 
         private void StartBoxSelection(BaseEventData _)
         {
-            if (IsSelecting || ! Mouse.current.leftButton.isPressed)
+            if (GamePause.IsPaused || IsSelecting || ! Mouse.current.leftButton.isPressed)
                 return;
             SelectionStartPosition = Mouse.current.position.ReadValue();
             IsSelecting = true;
@@ -72,7 +74,7 @@ namespace Gameplay.UI
 
         private void SelectSingleUnit(BaseEventData arg)
         {
-            if (! Mouse.current.leftButton.wasReleasedThisFrame)
+            if (GamePause.IsPaused || ! Mouse.current.leftButton.wasReleasedThisFrame)
                 return;
             
             Vector2 currentMousePosition = Mouse.current.position.ReadValue();
@@ -87,6 +89,11 @@ namespace Gameplay.UI
             else
                 PlayerSelection.SelectUnits(selectedUnits);
         }
-        
+
+        private void Update()
+        {
+            if (GamePause.IsPaused)
+                IsSelecting = false;
+        }
     }
 }

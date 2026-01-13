@@ -1,6 +1,5 @@
 ﻿using System;
 using Extentions;
-using Extentions.Pause;
 using Gameplay.Data;
 using UnityEngine;
 using Zenject;
@@ -24,14 +23,14 @@ namespace Gameplay.Units
 
         public event Action OnHitPointsOver;
         
-        [Inject] private IPauseRead PauseRead { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         public void Init(UnitType unitType)
         {
             HitPoints = MaxHitPoints;
             ShieldPoints = MaxShieldPoints;
             if (unitType.ShieldRestoreDelay > 0)
-                _shieldRestorationTimer = new Timer(this, unitType.ShieldRestoreDelay, PauseRead);
+                _shieldRestorationTimer = new Timer(this, unitType.ShieldRestoreDelay, TacticalPause);
         }
 
         public void TakeDamage(int damage)
@@ -52,13 +51,12 @@ namespace Gameplay.Units
 
         private void FixedUpdate()
         {
-            if (_shieldRestorationTimer == null || _shieldRestorationTimer.IsIdle)
-            {
-                _shieldRestorationRemain += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
-                _shieldRestorationRemain = Mathf.Min(_shieldRestorationRemain, MaxShieldPoints - ShieldPoints);
-                ShieldPoints += (int) _shieldRestorationRemain;
-                _shieldRestorationRemain %= 1;
-            }
+            if (_shieldRestorationTimer == null || _shieldRestorationTimer.IsOn || TacticalPause.IsPaused)
+                return;
+            _shieldRestorationRemain += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
+            _shieldRestorationRemain = Mathf.Min(_shieldRestorationRemain, MaxShieldPoints - ShieldPoints);
+            ShieldPoints += (int) _shieldRestorationRemain;
+            _shieldRestorationRemain %= 1;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Gameplay.Data.Orders;
+﻿using Extentions.Pause;
+using Gameplay.Data.Orders;
 using Gameplay.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,6 +15,7 @@ namespace Gameplay.UI
         
         [Inject] private PlayerOrdersDispatcher OrdersDispatcher { get; set; }
         [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; }
+        [Inject] private GamePause GamePause { get; set; }
         
         private void Awake()
         {
@@ -22,7 +24,7 @@ namespace Gameplay.UI
 
         private void IssueSmartOrder(BaseEventData _)
         {
-            if ( ! Mouse.current.rightButton.wasPressedThisFrame)
+            if (GamePause.IsPaused || ! Mouse.current.rightButton.wasPressedThisFrame)
                 return;
             const TargetRequirement requirement = TargetRequirement.PointOrUnit;
             OrdersDispatcher.IssueSmartOrderToSelection(TargetSelector.GetTargetForRequirement(requirement));

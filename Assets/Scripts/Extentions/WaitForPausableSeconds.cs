@@ -8,10 +8,10 @@ namespace Extentions
     {
         public override bool keepWaiting => ! _expired;
 
-        private IPauseRead _pause;
+        private IPauseGet _pause;
         private bool _expired;
         
-        public PausableWaitForSeconds(MonoBehaviour container, IPauseRead pause, float seconds)
+        public PausableWaitForSeconds(MonoBehaviour container, IPauseGet pause, float seconds)
         {
             _pause = pause;
             container.StartCoroutine(Await(seconds));

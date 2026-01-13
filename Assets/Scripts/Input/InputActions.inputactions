@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TacticalPause",
+                    "type": "Button",
+                    "id": "1cb795a6-f0e8-4a8f-b5f2-c4d2789bcb00",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -68,17 +77,6 @@
                     "name": "",
                     "id": "894c98d6-be7e-4ab9-877e-8926aab734cd",
                     "path": "<Mouse>/middleButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DragCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5d05fb73-74a2-4c73-9530-ab9bd15829b5",
-                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -116,6 +114,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "FocusNextUnitType",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50c46d4f-cc85-4647-a219-a7ccb85aef28",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TacticalPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

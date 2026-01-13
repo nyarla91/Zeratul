@@ -10,7 +10,7 @@ namespace Extentions.Input
         
         private readonly InputAction _action;
 
-        private readonly IPauseRead _pause;
+        private readonly IPauseGet _pause;
         
         public bool IsHeld { get; private set; }
 
@@ -18,7 +18,7 @@ namespace Extentions.Input
         public event Action Released;
         public event Action Performed;
 
-        public InputBinding(InputAction action, IPauseRead pause, bool holdOnPerform = false)
+        public InputBinding(InputAction action, IPauseGet pause, bool holdOnPerform = false)
         {
             _pause = pause;
             _action = action;

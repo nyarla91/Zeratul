@@ -4,7 +4,7 @@ namespace Extentions.Pause
 {
     public interface IPauseSet
     {
-        void PauseFromSource(MonoBehaviour source);
-        void UnpauseFromSource(MonoBehaviour source);
+        void Pause(MonoBehaviour source);
+        void Unpause(MonoBehaviour source);
     }
 }
