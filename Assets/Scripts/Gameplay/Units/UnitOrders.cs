@@ -12,7 +12,9 @@ namespace Gameplay.Units
         private readonly List<Order> _pendingOrders = new();
 
         public Order CurrentOrder { get; private set; }
-        
+
+        public Order[] PendingOrders => _pendingOrders.ToArray();
+
         public bool IsIdle => CurrentOrder == null;
         
         [Inject] private NodeMap NodeMap { get; set; }
