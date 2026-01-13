@@ -12,11 +12,11 @@ namespace Gameplay.Units
         
         public bool IsReady => CooldownTimer.IsIdle;
 
-        public Ability(AbilityType type, Unit caster, IPauseGet pauseGet)
+        public Ability(AbilityType type, Unit caster, IPauseReadonly pauseReadonly)
         {
             Type = type;
             Caster = caster;
-            CooldownTimer = new Timer(caster, Type.Cooldown, pauseGet);
+            CooldownTimer = new Timer(caster, Type.Cooldown, pauseReadonly);
         }
 
         public void StartCooldown()

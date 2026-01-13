@@ -25,7 +25,7 @@ namespace Extentions
             return Mathf.Sin(time).Remap(-1, 1, min, max);
         }
 
-        public static float Average(float[] numbers)
+        public static float Average(params float[] numbers)
         {
             if (numbers.Length == 0)
                 return 0;
@@ -38,12 +38,7 @@ namespace Extentions
             }
             return total / numbers.Length;
         }
-
-        public static void SetMax(ref float a, float b) => a = Mathf.Max(a, b);
-        public static void SetMax(ref int a, int b) => a = Mathf.Max(a, b);
-        public static void SetMin(ref float a, float b) => a = Mathf.Min(a, b);
-        public static void SetMin(ref int a, int b) => a = Mathf.Min(a, b);
-
+        
         public static bool IsEven(this int value) => value % 2 == 0;
         
         public static float ClampAngle(this float angle, float min, float max)
@@ -65,13 +60,7 @@ namespace Extentions
             return Mathf.Abs(angle - min) < Mathf.Abs(angle - max) ? min : max;
         }
 
-        public static float EvaluateLine(float a, float b, float t)
-        {
-            t = Mathf.Clamp(t, 0, 1);
-            return a + (b - a) * t;
-        }
-
-        public static bool ApproximatelyEqual(this float a, float b, float tolerance)
+        public static bool Approximately(this float a, float b, float tolerance)
         {
             tolerance = Mathf.Max(tolerance, 0);
             return Mathf.Abs(a - b) < tolerance;

@@ -17,7 +17,7 @@ namespace Gameplay.Vision
         
         public VisionArea PlayerArea => _playerArea;
         public VisionArea EnemyArea => _enemyArea;
-        public ITimerWrap RecalculationTimer => _recalculationTimer;
+        public ITimerReadonly RecalculationTimer => _recalculationTimer;
         
         [Inject] private TacticalPause TacticalPause { get; set; }
 

@@ -181,9 +181,6 @@ namespace Extentions
             Mathf.RoundToInt(floatVector.y),
             Mathf.RoundToInt(floatVector.z));
 
-        public static Vector2 SetMagnitude(this Vector2 vector, float magnitude) => vector.normalized * magnitude;
-        public static Vector3 SetMagnitude(this Vector3 vector, float magnitude) => vector.normalized * magnitude;
-
         public static bool PointRaycast(this Plane plane, Ray ray, out Vector3 point)
         {
             if (plane.Raycast(ray, out float distance))
@@ -225,13 +222,13 @@ namespace Extentions
             return new Vector2Int(x, y);
         }
 
-        public static float OrtogonalDistance(this Vector2 vector, Vector2 target)
+        public static float OrthogonalDistance(this Vector2 vector, Vector2 target)
         {
             Vector2 difference = (target - vector).Abs();
             return difference.x + difference.y;
         }
 
-        public static float OrtogonalDistance(this Vector3 vector, Vector3 target)
+        public static float OrthogonalDistance(this Vector3 vector, Vector3 target)
         {
             Vector3 difference = (target - vector).Abs();
             return difference.x + difference.y + difference.z;

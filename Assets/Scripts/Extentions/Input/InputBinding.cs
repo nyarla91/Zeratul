@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 
 namespace Extentions.Input
 {
-    public class InputBinding : IDisposable, IBinding
+    public class InputBinding : IDisposable, IInputBindingReadonly
     {
         private bool _holdOnPerform;
         
         private readonly InputAction _action;
 
-        private readonly IPauseGet _pause;
+        private readonly IPauseReadonly _pause;
         
         public bool IsHeld { get; private set; }
 
@@ -18,7 +18,7 @@ namespace Extentions.Input
         public event Action Released;
         public event Action Performed;
 
-        public InputBinding(InputAction action, IPauseGet pause, bool holdOnPerform = false)
+        public InputBinding(InputAction action, IPauseReadonly pause, bool holdOnPerform = false)
         {
             _pause = pause;
             _action = action;

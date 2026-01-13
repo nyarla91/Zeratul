@@ -28,7 +28,7 @@ namespace Gameplay.UI
                 return;
             }
             AbilityType abilityType = abilityOrder.AbilityType;
-            Ability[] unitAbilities = Selection.SelectedUnits.Select(u => u.Abilities.GetAbility(abilityType)).ClearNull();
+            Ability[] unitAbilities = Selection.SelectedUnits.Select(u => u.Abilities.GetAbility(abilityType)).NoNull();
             if (unitAbilities.Length == 0 || unitAbilities.Any(a => a.IsReady))
             {
                 SetFill(0);

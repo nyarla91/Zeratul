@@ -37,7 +37,7 @@ namespace Gameplay.Data.Statuses
         public int AdditionFrame { get; private set; }
         public int RemovalFrame { get; private set; }
         public int CurrentFrame { get; private set; }
-        public IPauseGet Pause { get; }
+        public IPauseReadonly Pause { get; }
 
         public int FramesLeft => RemovalFrame - CurrentFrame;
         public int Duration =>  RemovalFrame - AdditionFrame;
@@ -57,7 +57,7 @@ namespace Gameplay.Data.Statuses
 
         public TooltipInfo TooltipInfo => Type.GetTooltipInfoForStatus(this);
         
-        public Status(StatusType type, Unit instigator, Unit host, int duration = -1, IPauseGet pause = null)
+        public Status(StatusType type, Unit instigator, Unit host, int duration = -1, IPauseReadonly pause = null)
         {
             Type = type;
             Instigator = instigator;

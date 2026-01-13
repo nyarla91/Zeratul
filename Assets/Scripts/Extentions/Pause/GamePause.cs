@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Extentions.Pause
 {
-    public class GamePause : IPauseGet
+    public class GamePause : IPauseReadonly
     {
         private List<object> _sources = new();
         
@@ -26,7 +26,7 @@ namespace Extentions.Pause
             _sources.Add(source);
         }
 
-        public void Unpause(object source) => _sources.TryRemove(source);
+        public void Unpause(object source) => _sources.Remove(source);
 
         public bool IsPausedFrom(object source) => _sources.Contains(source);
         

@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace Extentions
 {
-    public class Timer : ITimerWrap
+    public class Timer : ITimerReadonly
     {
         private readonly MonoBehaviour _container;
-        private readonly IPauseGet _pause;
+        private readonly IPauseReadonly _pause;
         private int _framesElapsed;
         private bool _active;
         private Coroutine _tickingCoroutine;
@@ -36,7 +36,7 @@ namespace Extentions
         public event Action<float> Ticked;
         public event Action Expired;
 
-        public Timer(MonoBehaviour container, int duration = 0, IPauseGet pause = null, bool loop = false)
+        public Timer(MonoBehaviour container, int duration = 0, IPauseReadonly pause = null, bool loop = false)
         {
             _container = container;
             Duration = duration;
@@ -124,7 +124,7 @@ namespace Extentions
         }
     }
 
-    public interface ITimerWrap
+    public interface ITimerReadonly
     {
         public int Duration { get; }
         public int FramesElapsed { get; }

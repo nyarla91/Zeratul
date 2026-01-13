@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Extentions.Factory
 {
-    public class PoolFactory : Transformable
+    public class PoolFactory : MonoBehaviour
     {
         [SerializeField] private GameObject _prefab;
         [SerializeField] private List<TaggedObject> _pool = new List<TaggedObject>();
@@ -15,7 +15,7 @@ namespace Extentions.Factory
         public void DisableObject(PoolObject objectToRemove)
         {
             objectToRemove.gameObject.SetActive(false);
-            objectToRemove.Transform.SetParent(Transform);
+            objectToRemove.transform.SetParent(transform);
         }
 
         public GameObject GetNewObject(Vector3 position, Transform parent = null, string tag = "_")
@@ -38,8 +38,8 @@ namespace Extentions.Factory
                     continue;
                 newObject = (T) _pool[i].PoolObject;
                 newObject.gameObject.SetActive(true);
-                newObject.Transform.position = position;
-                newObject.Transform.SetParent(parent);
+                newObject.transform.position = position;
+                newObject.transform.SetParent(parent);
                 newObject.OnPoolEnable();
                 return newObject;
             }
@@ -51,8 +51,8 @@ namespace Extentions.Factory
         private T InstantiatePrefab<T>(Vector3 position, GameObject prefab, Transform parent, string tag) where T : PoolObject
         {
             T newObject = ContainerInstantiator.Instantiate<T>(prefab, position, parent);
-            newObject.Transform.position = position;
-            newObject.Transform.parent = parent;
+            newObject.transform.position = position;
+            newObject.transform.parent = parent;
             newObject.PoolInit(this);
             newObject.gameObject.SetActive(true);
             _pool.Add(new TaggedObject(tag, newObject));

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Extentions
 {
     [Serializable]
-    public class OrtographicMatrix<T>
+    public class OrthographicMatrix<T>
     {
         [SerializeField] private T _top;
         [SerializeField] private T _bottom;
@@ -16,7 +16,7 @@ namespace Extentions
         public T Left => _left;
         public T Right => _right;
 
-        public OrtographicMatrix(T top, T bottom, T left, T right)
+        public OrthographicMatrix(T top, T bottom, T left, T right)
         {
             _top = top;
             _bottom = bottom;

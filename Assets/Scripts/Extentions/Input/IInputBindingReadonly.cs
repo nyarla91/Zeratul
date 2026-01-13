@@ -2,7 +2,7 @@
 
 namespace Extentions.Input
 {
-    public interface IBinding
+    public interface IInputBindingReadonly
     {
         bool IsHeld { get; }
         event Action Pressed;

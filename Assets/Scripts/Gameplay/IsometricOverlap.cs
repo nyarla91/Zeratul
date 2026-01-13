@@ -34,7 +34,7 @@ namespace Gameplay
                 return false;
             }
             
-            units = colliders.Select(col => col.GetComponentInParent<Unit>()).ClearNull();
+            units = colliders.Select(col => col.GetComponentInParent<Unit>()).NoNull();
             return units.Length != 0;
         }
 

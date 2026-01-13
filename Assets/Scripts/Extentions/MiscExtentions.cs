@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -10,30 +9,6 @@ namespace Extentions
 {
     public static class MiscExtentions
     {
-        public static void Destroy(this Object gameObject)
-        {
-            if (gameObject == null)
-                return;
-            Object.Destroy(gameObject);
-        }
-
-        public static void Stop(this Coroutine coroutine, MonoBehaviour container)
-        {
-            container?.StopCoroutine(coroutine);
-        }
-
-        public static void SetAlpha(this Image image, float alpha)
-        {
-            Color originColor = image.color;
-            image.color = new Color(originColor.r, originColor.g, originColor.b, alpha);
-        }
-
-        public static bool NullOrAssign<T>(this T obj, out T target)
-        {
-            target = obj;
-            return target != null;
-        }
-
         public static Vector3 DirectionTo(this Transform transform, Vector3 target) => (target - transform.position).normalized;
         public static Vector3 DirectionTo(this Transform transform, Transform target) => transform.DirectionTo(target.position);
         public static Vector2 DirectionTo2D(this Transform transform, Vector2 target) => (target - (Vector2) transform.position).normalized;
@@ -57,24 +32,6 @@ namespace Extentions
 
         public static Vector3 AverageNormal(this Collision collision) =>
             collision.contacts.Length > 0 ? collision.contacts.Select(point => point.normal).Average() : Vector3.zero;
-
-        public static void ValidateIndex<T>(this IEnumerable<T> source, int index, string exceptionMessage)
-        {
-            if (index < 0 || index >= source.Count())
-                throw new ArgumentOutOfRangeException(exceptionMessage);
-        }
-
-        public static T[] GetComponentsInTopChildren<T>(this Transform transform)
-        {
-            List<T> ts = new List<T>();
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                Transform child = transform.GetChild(i);
-                if (child.TryGetComponent(out T window))
-                    ts.AddRange(child.GetComponents<T>());
-            }
-            return ts.ToArray();
-        }
 
         public static void Fill(this RectMask2D rectMask2D, bool vertical, bool toBottomLeft, float fillPercent)
         {

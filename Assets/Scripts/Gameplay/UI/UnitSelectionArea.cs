@@ -69,8 +69,8 @@ namespace Gameplay.UI
         }
 
         private static Unit[] GetUnitsFromColliders(Collider2D[] colliders) =>
-            colliders.Select(unit => unit.GetComponentInParent<Unit>()).ClearNull()
-                .Where(unit => unit.Ownership.OwnedByPlayer).ClearNull();
+            colliders.Select(unit => unit.GetComponentInParent<Unit>()).NoNull()
+                .Where(unit => unit.Ownership.OwnedByPlayer).NoNull();
 
         private void SelectSingleUnit(BaseEventData arg)
         {

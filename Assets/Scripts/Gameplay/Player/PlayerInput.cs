@@ -19,11 +19,11 @@ namespace Gameplay.Player
 
         private InputActions Actions => _actions ??= new InputActions();
         
-        public IBinding SelectMultiple => _selectMultiple ??= new InputBinding(Actions.General.SelectMultiple, GamePause);
-        public IBinding QueueOrder => _queueOrder ??= new InputBinding(Actions.General.QueueOrder, GamePause);
-        public IBinding DragCamera => _dragCamera ??= new InputBinding(Actions.General.DragCamera, GamePause);
-        public IBinding FocusNextUnitType => _focusNextUnitType ??= new InputBinding(Actions.General.FocusNextUnitType, GamePause);
-        public IBinding TacticalPause => _tacticalPause ??= new InputBinding(Actions.General.TacticalPause, GamePause);
+        public IInputBindingReadonly SelectMultiple => _selectMultiple ??= new InputBinding(Actions.General.SelectMultiple, GamePause);
+        public IInputBindingReadonly QueueOrder => _queueOrder ??= new InputBinding(Actions.General.QueueOrder, GamePause);
+        public IInputBindingReadonly DragCamera => _dragCamera ??= new InputBinding(Actions.General.DragCamera, GamePause);
+        public IInputBindingReadonly FocusNextUnitType => _focusNextUnitType ??= new InputBinding(Actions.General.FocusNextUnitType, GamePause);
+        public IInputBindingReadonly TacticalPause => _tacticalPause ??= new InputBinding(Actions.General.TacticalPause, GamePause);
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 

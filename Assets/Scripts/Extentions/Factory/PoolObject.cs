@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Extentions.Factory
 {
-    public class PoolObject : Transformable
+    public class PoolObject : MonoBehaviour
     {
         private PoolFactory _factory;
 
@@ -11,6 +12,8 @@ namespace Extentions.Factory
 
         public virtual void PoolInit(PoolFactory factory)
         {
+            if (_factory)
+                return;
             _factory = factory;
         }
 

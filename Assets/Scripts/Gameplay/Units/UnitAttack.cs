@@ -44,7 +44,7 @@ namespace Gameplay.Units
         {
             if ( ! IsAttacking)
                 return;
-            _attackCoroutine?.Stop(this);
+            StopCoroutine(_attackCoroutine);
             _attackCoroutine = null;
         }
 

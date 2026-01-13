@@ -40,7 +40,7 @@ namespace Gameplay.Units.View
         {
             List<Collider2D> overlap = new();
             _collider.Overlap(overlap);
-            SpriteOverlapArea[] areas = overlap.Select(c => c.GetComponent<SpriteOverlapArea>()).ClearNull();
+            SpriteOverlapArea[] areas = overlap.Select(c => c.GetComponent<SpriteOverlapArea>()).NoNull();
             if (areas.Length == 0)
                 return _defaultSortingOrder;
             return areas.Max(a => a.SortingOrder) - 1;

@@ -76,7 +76,7 @@ namespace Gameplay.Units
         private void OnDestroy()
         {
             VisionMap.RecalculationTimer.Expired -= Recalculate;
-            _area?.gameObject.Destroy();
+            Destroy(_area?.gameObject);
         }
     }
 }

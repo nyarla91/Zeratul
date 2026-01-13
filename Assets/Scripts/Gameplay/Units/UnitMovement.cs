@@ -115,7 +115,7 @@ namespace Gameplay.Units
             }
             
             int nextNodeIndex = Mathf.Min(_nodesPassed, _path.Length - 1);
-            if (_path[nextNodeIndex].WorldPosition.OrtogonalDistance(transform.position) < UnitType.Size / 2 + _config.NodeProximityDistance)
+            if (_path[nextNodeIndex].WorldPosition.OrthogonalDistance(transform.position) < UnitType.Size / 2 + _config.NodeProximityDistance)
                 _nodesPassed = nextNodeIndex + 1;
 
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
@@ -137,7 +137,7 @@ namespace Gameplay.Units
             int overlapTotal = _avoidanceCollider.Overlap(contactFilter, overlap);
             if (overlapTotal == 0)
                 return direction;
-            Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).ClearNull();
+            Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).NoNull();
             obstacles = obstacles.Where(unit => ! unit.Movement.Displacable).ToArray();
             if (obstacles.Length == 0)
                 return direction;
