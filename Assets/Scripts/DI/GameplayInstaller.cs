@@ -1,5 +1,4 @@
-﻿using Extentions;
-using Extentions.Pause;
+﻿using Extentions.Pause;
 using Gameplay;
 using Gameplay.Data;
 using Gameplay.Pathfinding;
@@ -9,6 +8,7 @@ using Gameplay.Units;
 using Gameplay.Vision;
 using Gameplay.Visual;
 using UnityEngine;
+using Zenject;
 
 namespace DI
 {
@@ -32,16 +32,16 @@ namespace DI
             Container.Bind<GamePause>().AsSingle();
             Container.Bind<TacticalPause>().AsSingle();
             
-            BindFromInstance(_playerSelection);
-            BindFromInstance(_unitPool);
-            BindFromInstance(_playerInput);
-            BindFromInstance(_playerOrderTargetSelector);
-            BindFromInstance(_playerOrdersDispatcher);
-            BindFromInstance(_nodeMap);
-            BindFromInstance(_isometricOverlap);
-            BindFromInstance(_visionMap);
-            BindFromInstance(_tooltip);
-            BindFromInstance(_rangeEllipseFactory);
+            Container.BindInstance(_playerSelection).AsSingle();
+            Container.BindInstance(_unitPool).AsSingle();
+            Container.BindInstance(_playerInput).AsSingle();
+            Container.BindInstance(_playerOrderTargetSelector).AsSingle();
+            Container.BindInstance(_playerOrdersDispatcher).AsSingle();
+            Container.BindInstance(_nodeMap).AsSingle();
+            Container.BindInstance(_isometricOverlap).AsSingle();
+            Container.BindInstance(_visionMap).AsSingle();
+            Container.BindInstance(_tooltip).AsSingle();
+            Container.BindInstance(_rangeEllipseFactory).AsSingle();
 
             _injectPresenter.Init(Container);
         }

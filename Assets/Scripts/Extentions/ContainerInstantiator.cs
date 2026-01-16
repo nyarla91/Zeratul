@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 using Component = UnityEngine.Component;
 
 namespace Extentions
