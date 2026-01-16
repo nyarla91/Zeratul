@@ -1,4 +1,5 @@
-﻿using Gameplay.Data.Orders;
+﻿using System.Collections.Generic;
+using Gameplay.Data.Orders;
 using Gameplay.Data.Statuses;
 using NaughtyAttributes;
 using UnityEngine;
@@ -29,7 +30,7 @@ namespace Gameplay.Data
         [HorizontalLine(2, EColor.White)]
         [Expandable] [SerializeField] private UnitWeaponType _weaponType;
         [SerializeField] private StatusType[] _innateStatuses;
-        [SerializeField] private OrderType[] _availableOrders;
+        [SerializeField] private List<OrderType> _availableOrders;
         [HorizontalLine(2, EColor.White)]
         [Expandable] [SerializeField] private UnitSpriteMap _spriteMap;
 
@@ -49,7 +50,7 @@ namespace Gameplay.Data
         public int SightRadius => _sightRadius;
         public UnitWeaponType WeaponType => _weaponType;
         public StatusType[] InnateStatuses => _innateStatuses;
-        public OrderType[] AvailableOrders => _availableOrders;
+        public OrderType[] AvailableOrders => _availableOrders.ToArray();
         public UnitSpriteMap SpriteMap => _spriteMap;
 
         private void OnValidate()
@@ -65,6 +66,16 @@ namespace Gameplay.Data
             _size = Mathf.Max(_size, 0.05f);
             _rotationSpeed = Mathf.Max(_rotationSpeed, 0);
             _sightRadius = Mathf.Max(_sightRadius, 0);
+
+            const int availableOrdersCount = 15;
+            while (_availableOrders.Count < availableOrdersCount)
+            {
+                _availableOrders.Add(null);
+            }
+            while (_availableOrders.Count > availableOrdersCount)
+            {
+                _availableOrders.RemoveAt(_availableOrders.Count - 1);
+            }
         }
     }
 }

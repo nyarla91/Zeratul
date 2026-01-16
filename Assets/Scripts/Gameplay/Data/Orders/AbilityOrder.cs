@@ -1,4 +1,7 @@
-﻿using Extentions;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using Extentions;
 using Gameplay.Data.Abilities;
 using Gameplay.Units;
 using NaughtyAttributes;
@@ -43,39 +46,46 @@ namespace Gameplay.Data.Orders
             }
         }
 
-        public override void OnProceed(Order order)
+        public override async UniTask CarryOut(Order order, CancellationToken ct)
         {
-            Ability ability = GetAbilityForOrder(order);
-            if ( ! ability.IsReady)
-                Complete(order);
-        }
-
-        public override void OnUpdate(Order order)
-        {
-            Ability ability = GetAbilityForOrder(order);
-            Vector2 destination = order.Target.Unit ? order.Target.Unit.transform.position : order.Target.Point;
-            
-            if (!IsTargetInRadius(order))
+            try
             {
-                order.Actor.Movement.Move(destination);
-                return;
-            }
-            order.Actor.Movement.Stop();
-            
-            float angleToTarget = order.Actor.transform.DirectionTo2D(destination).ToDegrees();
-            if (Mathf.DeltaAngle(order.Actor.Movement.LookAngle, angleToTarget) > AbilityType.MaxAngleToTarget)
-            {
-                order.Actor.Movement.RotateTowards(angleToTarget);
-                return;
-            }
-            
-            if (AbilityType.TryCast(ability, order.Target))
-                Complete(order);
-        }
+                Ability ability = GetAbilityForOrder(order);
+                if ( ! ability.CanBeCast(order.Target))
+                    return;
 
-        public override void Dispose(Order order)
-        {
-            order.Actor.Movement.Stop();
+                while (true)
+                {
+                    await UniTask.WaitForFixedUpdate();
+                    
+                    Vector2 destination = order.Target.Unit ? order.Target.Unit.transform.position : order.Target.Point;
+            
+                    if ( ! IsTargetInRadius(order))
+                    {
+                        order.Actor.Movement.Move(destination);
+                        continue;
+                    }
+                    order.Actor.Movement.Stop();
+                    
+                    float angleToTarget = order.Actor.transform.DirectionTo2D(destination).ToDegrees();
+                    if (Mathf.DeltaAngle(order.Actor.Movement.LookAngle, angleToTarget) > AbilityType.MaxAngleToTarget)
+                    {
+                        order.Actor.Movement.RotateTowards(angleToTarget);
+                        continue;
+                    }
+            
+                    if (AbilityType.TryCast(ability, order.Target))
+                        return;
+                }
+            }
+            catch (OperationCanceledException e)
+            {
+
+            }
+            finally
+            {
+                order.Actor.Movement.Stop();
+            }
         }
 
         public override bool CanBeIssued(Order order)

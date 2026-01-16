@@ -1,4 +1,6 @@
-﻿using Gameplay.Data.Orders;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
+using Gameplay.Data.Orders;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -16,13 +18,7 @@ namespace Gameplay.Units
             Target = target;
         }
 
-        public void OnProceed() => Type.OnProceed(this);
-
-        public void OnUpdate() => Type.OnUpdate(this);
-
-        public void Dispose() => Type.Dispose(this);
-
-        public bool IsCompleted() => Type.IsCompleted(this);
+        public UniTask CarryOut(CancellationToken ct) => Type.CarryOut(this, ct);
 
         public bool CanBeIssued() => Type.CanBeIssued(this);
         

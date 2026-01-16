@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -7,32 +9,34 @@ namespace Gameplay.Data.Orders
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Patrol Order", order = 0)]
     public class PatrolOrder : OrderType
     {
-        private Vector2 _originalPoint;
-        private bool _isMovingBack;
         
         public override TargetRequirement TargetRequirement => TargetRequirement.Point;
         
-        public override void OnProceed(Order order)
+        public override async UniTask CarryOut(Order order, CancellationToken ct)
         {
-            _originalPoint = order.Actor.transform.position;
-            order.Actor.Movement.Move(order.Target.Point);
-        }
+            try
+            {
+                Vector2 originalPoint = order.Actor.transform.position;
+                bool moveBackwards = false;
 
-        public override void OnUpdate(Order order)
-        {
-            if (order.Actor.Movement.HasPath)
-                return;
-            
-            Vector2 nextPoint = _isMovingBack ? order.Target.Point : _originalPoint;
-            order.Actor.Movement.Move(nextPoint);
-            _isMovingBack = !_isMovingBack;
-        }
+                while (true)
+                {
+                    Vector2 nextPoint = moveBackwards ? order.Target.Point : originalPoint;
+                    order.Actor.Movement.Move(nextPoint);
 
-        public override void Dispose(Order order)
-        {
-            order.Actor.Movement.Stop();
+                    await UniTask.WaitUntil(() => ! order.Actor.Movement.HasPath, PlayerLoopTiming.FixedUpdate, ct);
+                    moveBackwards = !moveBackwards;
+                }
+                
+            }
+            catch (OperationCanceledException e)
+            {
+                
+            }
+            finally
+            {
+                order.Actor.Movement.Stop();
+            }
         }
-
-        public override bool IsCompleted(Order order) => false;
     }
 }

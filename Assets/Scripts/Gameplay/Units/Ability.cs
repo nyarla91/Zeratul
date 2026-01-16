@@ -24,5 +24,7 @@ namespace Gameplay.Units
             CooldownTimer.Duration = Type.Cooldown;
             CooldownTimer.Restart();
         }
+
+        public bool CanBeCast(OrderTarget target) => Type.CanBeCast(this, target);
     }
 }

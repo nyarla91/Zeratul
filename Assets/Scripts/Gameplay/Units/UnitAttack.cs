@@ -17,7 +17,7 @@ namespace Gameplay.Units
         private UnitWeapon _weapon;
         private Coroutine _attackCoroutine;
 
-        private bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_attackOrder);
+        public bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_attackOrder);
         
         public bool IsAttacking => _attackCoroutine != null;
         

@@ -764,6 +764,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Patrol"",
+                    ""type"": ""Button"",
+                    ""id"": ""31ef35ad-d8a0-4442-9f31-efc0182d105a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Ability1"",
                     ""type"": ""Button"",
                     ""id"": ""c6467dca-0be3-438d-bfea-19f4e48791bc"",
@@ -835,6 +844,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ability2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c996e339-313b-4919-b5c2-eeb3bfa1cac3"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Patrol"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -929,6 +949,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Orders_Attack = m_Orders.FindAction("Attack", throwIfNotFound: true);
         m_Orders_Stop = m_Orders.FindAction("Stop", throwIfNotFound: true);
         m_Orders_Move = m_Orders.FindAction("Move", throwIfNotFound: true);
+        m_Orders_Patrol = m_Orders.FindAction("Patrol", throwIfNotFound: true);
         m_Orders_Ability1 = m_Orders.FindAction("Ability1", throwIfNotFound: true);
         m_Orders_Ability2 = m_Orders.FindAction("Ability2", throwIfNotFound: true);
     }
@@ -1362,6 +1383,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Orders_Attack;
     private readonly InputAction m_Orders_Stop;
     private readonly InputAction m_Orders_Move;
+    private readonly InputAction m_Orders_Patrol;
     private readonly InputAction m_Orders_Ability1;
     private readonly InputAction m_Orders_Ability2;
     /// <summary>
@@ -1387,6 +1409,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Orders/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Orders_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Patrol".
+        /// </summary>
+        public InputAction @Patrol => m_Wrapper.m_Orders_Patrol;
         /// <summary>
         /// Provides access to the underlying input action "Orders/Ability1".
         /// </summary>
@@ -1430,6 +1456,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Patrol.started += instance.OnPatrol;
+            @Patrol.performed += instance.OnPatrol;
+            @Patrol.canceled += instance.OnPatrol;
             @Ability1.started += instance.OnAbility1;
             @Ability1.performed += instance.OnAbility1;
             @Ability1.canceled += instance.OnAbility1;
@@ -1456,6 +1485,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Patrol.started -= instance.OnPatrol;
+            @Patrol.performed -= instance.OnPatrol;
+            @Patrol.canceled -= instance.OnPatrol;
             @Ability1.started -= instance.OnAbility1;
             @Ability1.performed -= instance.OnAbility1;
             @Ability1.canceled -= instance.OnAbility1;
@@ -1716,6 +1748,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Patrol" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPatrol(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Ability1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

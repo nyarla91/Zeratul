@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -11,19 +13,27 @@ namespace Gameplay.Data.Orders
 
         public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && ! target.Unit.Ownership.OwnedByPlayer;
         
-        public override void OnProceed(Order order)
+        public override async UniTask CarryOut(Order order, CancellationToken ct)
         {
-            order.Actor.Attack.StartAttacking(order.Target.Unit);
+            try
+            {
+                order.Actor.Attack.StartAttacking(order.Target.Unit);
+                await UniTask.WaitUntil(() => IsCompleted(order), PlayerLoopTiming.FixedUpdate, ct);
+            }
+            catch (OperationCanceledException e)
+            {
+                
+            }
+            finally
+            {
+                order.Actor.Attack.StopAttacking();
+            }
         }
 
-        public override void OnUpdate(Order order) { }
+        public override bool CanBeIssued(Order order) =>
+            order.Actor.Attack.IsAbleToAttack && order.Target.Unit != order.Actor;
 
-        public override void Dispose(Order order)
-        {
-            order.Actor.Attack.StopAttacking();
-        }
-
-        public override bool IsCompleted(Order order)
+        public bool IsCompleted(Order order)
             => order.Target.Unit is null || order.Target.Unit == order.Actor ||
                ! order.Target.Unit.Visibility.CanBeTargetedBy(order.Actor) || order.Target.Unit.Life.HitPoints <= 0;
     }

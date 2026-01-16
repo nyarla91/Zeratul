@@ -678,6 +678,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Patrol",
+                    "type": "Button",
+                    "id": "31ef35ad-d8a0-4442-9f31-efc0182d105a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Ability1",
                     "type": "Button",
                     "id": "c6467dca-0be3-438d-bfea-19f4e48791bc",
@@ -749,6 +758,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c996e339-313b-4919-b5c2-eeb3bfa1cac3",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Patrol",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

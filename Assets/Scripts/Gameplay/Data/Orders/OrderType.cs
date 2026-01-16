@@ -1,4 +1,6 @@
-﻿using Gameplay.UI;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
+using Gameplay.UI;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -26,13 +28,7 @@ namespace Gameplay.Data.Orders
         
         public virtual bool IsValidForSmartOrder(OrderTarget target) => false;
 
-        public abstract void OnProceed(Order order);
-
-        public abstract void OnUpdate(Order order);
-
-        public abstract void Dispose(Order order);
-
-        public virtual bool IsCompleted(Order order) => false;
+        public abstract UniTask CarryOut(Order order, CancellationToken ct);
         
         public virtual bool CanBeIssued(Order order) => true;
 

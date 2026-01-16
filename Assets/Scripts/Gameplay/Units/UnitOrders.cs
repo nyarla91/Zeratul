@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Gameplay.Data;
 using Gameplay.Data.Orders;
 using Gameplay.Pathfinding;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Units
@@ -11,6 +15,9 @@ namespace Gameplay.Units
     {
         private readonly List<Order> _pendingOrders = new();
 
+        private CancellationTokenSource _currentOrderCts;
+        private UniTask _currentOrderTask;
+        
         public Order CurrentOrder { get; private set; }
 
         public Order[] PendingOrders => _pendingOrders.ToArray();
@@ -53,7 +60,7 @@ namespace Gameplay.Units
 
         public void CompleteCurrentOrder()
         {
-            CurrentOrder?.Dispose();
+            _currentOrderCts?.Cancel();
             CurrentOrder = null;
         }
 
@@ -62,17 +69,20 @@ namespace Gameplay.Units
             if (TacticalPause.IsPaused)
                 return;
             
-            if (CurrentOrder != null && CurrentOrder.IsCompleted())
+            if (CurrentOrder != null && _currentOrderTask.GetAwaiter().IsCompleted)
             {
                 CompleteCurrentOrder();
             }
-            if (CurrentOrder == null && _pendingOrders.Count > 0)
-            {
-                CurrentOrder = _pendingOrders[0];
-                _pendingOrders.RemoveAt(0);
-                CurrentOrder.OnProceed();
-            }
-            CurrentOrder?.OnUpdate();
+
+            if ( ! _currentOrderTask.GetAwaiter().IsCompleted)
+                return;
+            if (CurrentOrder != null || _pendingOrders.Count <= 0)
+                return;
+            CurrentOrder = _pendingOrders[0];
+            _pendingOrders.RemoveAt(0);
+                
+            _currentOrderCts = new CancellationTokenSource();
+            _currentOrderTask = CurrentOrder.CarryOut(_currentOrderCts.Token);
         }
 
         private void OnDestroy()
