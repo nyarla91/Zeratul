@@ -69,7 +69,7 @@ namespace Gameplay.Units
             if (TacticalPause.IsPaused)
                 return;
             
-            if (CurrentOrder != null && _currentOrderTask.GetAwaiter().IsCompleted)
+            if (CurrentOrder != null && (CurrentOrder.MustBeCanceled() || _currentOrderTask.GetAwaiter().IsCompleted))
             {
                 CompleteCurrentOrder();
             }

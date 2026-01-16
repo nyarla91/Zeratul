@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.Units;
 using UnityEngine;
@@ -21,6 +20,7 @@ namespace Gameplay.Data.Orders
 
         protected override void Dispose(Order order)
         {
+            order.Actor.Movement.Stop();
             order.Actor.Attack.StopAttacking();
         }
 

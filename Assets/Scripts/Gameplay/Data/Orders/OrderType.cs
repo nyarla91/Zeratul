@@ -31,6 +31,17 @@ namespace Gameplay.Data.Orders
         
         public virtual bool CanBeIssued(Order order) => true;
 
+        public virtual bool MustBeCanceled(Order order)
+        {
+            if ( ! order.CanBeIssued())
+                return true;
+            if (order.Type.TargetRequirement == TargetRequirement.Unit && ! order.Target.Unit)
+                return true;
+            if (order.Target.Unit && ! order.Target.Unit.Visibility.CanBeTargetedBy(order.Actor))
+                return true;
+            return false;
+        }
+
         public async UniTask CarryOut(Order order, CancellationToken ct)
         {
             try
