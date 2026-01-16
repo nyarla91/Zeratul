@@ -21,8 +21,6 @@ namespace Gameplay.Units
         public UniTask CarryOut(CancellationToken ct) => Type.CarryOut(this, ct);
 
         public bool CanBeIssued() => Type.CanBeIssued(this);
-        
-        public void Complete() => Type.Complete(this);
     }
 
     public struct OrderTarget

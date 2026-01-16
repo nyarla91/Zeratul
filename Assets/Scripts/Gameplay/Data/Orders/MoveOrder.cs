@@ -12,22 +12,16 @@ namespace Gameplay.Data.Orders
         public override TargetRequirement TargetRequirement => TargetRequirement.Point;
 
         public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit == null;
-        
-        public override async UniTask CarryOut(Order order, CancellationToken ct)
-        {
-            try
-            {
-                order.Actor.Movement.Move(order.Target.Point);
-                await UniTask.WaitUntil(() => ! order.Actor.Movement.HasPath, PlayerLoopTiming.FixedUpdate, ct);
-            }
-            catch (OperationCanceledException e)
-            {
 
-            }
-            finally
-            {
-                order.Actor.Movement.Stop();
-            }
+        protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
+        {
+            order.Actor.Movement.Move(order.Target.Point);
+            await UniTask.WaitUntil(() => ! order.Actor.Movement.HasPath, PlayerLoopTiming.FixedUpdate, ct);
+        }
+
+        protected override void Dispose(Order order)
+        {
+            order.Actor.Movement.Stop();
         }
     }
 }

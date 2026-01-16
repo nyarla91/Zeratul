@@ -12,22 +12,16 @@ namespace Gameplay.Data.Orders
         public override TargetRequirement TargetRequirement => TargetRequirement.Unit;
 
         public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && ! target.Unit.Ownership.OwnedByPlayer;
-        
-        public override async UniTask CarryOut(Order order, CancellationToken ct)
+
+        protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
-            try
-            {
-                order.Actor.Attack.StartAttacking(order.Target.Unit);
-                await UniTask.WaitUntil(() => IsCompleted(order), PlayerLoopTiming.FixedUpdate, ct);
-            }
-            catch (OperationCanceledException e)
-            {
-                
-            }
-            finally
-            {
-                order.Actor.Attack.StopAttacking();
-            }
+            order.Actor.Attack.StartAttacking(order.Target.Unit);
+            await UniTask.WaitUntil(() => IsCompleted(order), PlayerLoopTiming.FixedUpdate, ct);
+        }
+
+        protected override void Dispose(Order order)
+        {
+            order.Actor.Attack.StopAttacking();
         }
 
         public override bool CanBeIssued(Order order) =>

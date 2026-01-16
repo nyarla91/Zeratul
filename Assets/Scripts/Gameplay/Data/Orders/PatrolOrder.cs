@@ -11,32 +11,25 @@ namespace Gameplay.Data.Orders
     {
         
         public override TargetRequirement TargetRequirement => TargetRequirement.Point;
-        
-        public override async UniTask CarryOut(Order order, CancellationToken ct)
+
+        protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
-            try
-            {
-                Vector2 originalPoint = order.Actor.transform.position;
-                bool moveBackwards = false;
+            Vector2 originalPoint = order.Actor.transform.position;
+            bool moveBackwards = false;
 
-                while (true)
-                {
-                    Vector2 nextPoint = moveBackwards ? order.Target.Point : originalPoint;
-                    order.Actor.Movement.Move(nextPoint);
+            while (true)
+            {
+                Vector2 nextPoint = moveBackwards ? order.Target.Point : originalPoint;
+                order.Actor.Movement.Move(nextPoint);
 
-                    await UniTask.WaitUntil(() => ! order.Actor.Movement.HasPath, PlayerLoopTiming.FixedUpdate, ct);
-                    moveBackwards = !moveBackwards;
-                }
-                
+                await UniTask.WaitUntil(() => ! order.Actor.Movement.HasPath, PlayerLoopTiming.FixedUpdate, ct);
+                moveBackwards = !moveBackwards;
             }
-            catch (OperationCanceledException e)
-            {
-                
-            }
-            finally
-            {
-                order.Actor.Movement.Stop();
-            }
+        }
+
+        protected override void Dispose(Order order)
+        {
+            order.Actor.Movement.Stop();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.UI;
 using Gameplay.Units;
@@ -27,17 +28,28 @@ namespace Gameplay.Data.Orders
         public abstract TargetRequirement TargetRequirement { get; }
         
         public virtual bool IsValidForSmartOrder(OrderTarget target) => false;
-
-        public abstract UniTask CarryOut(Order order, CancellationToken ct);
         
         public virtual bool CanBeIssued(Order order) => true;
 
-        public void Complete(Order order)
+        public async UniTask CarryOut(Order order, CancellationToken ct)
         {
-            if (order.Actor.Orders.CurrentOrder.Type != this)
-                return;
-            order.Actor.Orders.CompleteCurrentOrder();
+            try
+            {
+                await CarryOutBody(order, ct);
+            }
+            catch (OperationCanceledException e)
+            {
+
+            }
+            finally
+            {
+                Dispose(order);
+            }
         }
+
+        protected abstract UniTask CarryOutBody(Order order, CancellationToken ct);
+        
+        protected abstract void Dispose(Order order);
     }
 
     public enum TargetRequirement

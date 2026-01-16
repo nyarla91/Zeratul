@@ -10,7 +10,9 @@ namespace Gameplay.Data.Orders
     public class StopOrder : OrderType
     {
         public override TargetRequirement TargetRequirement => TargetRequirement.None;
+
+        protected override UniTask CarryOutBody(Order order, CancellationToken ct) => UniTask.CompletedTask;
         
-        public override UniTask CarryOut(Order order, CancellationToken ct) => UniTask.CompletedTask;
+        protected override void Dispose(Order order) { }
     }
 }
