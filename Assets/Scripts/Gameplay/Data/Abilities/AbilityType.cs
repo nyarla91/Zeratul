@@ -30,8 +30,6 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private float _maxAngleToTarget = 360;
         [Tooltip("Effects applied to target unit")]
         [SerializeField] private EffectTargetingUnit[] _unitTargetEffects;
-        [Tooltip("If checked Point Target Effects will also apply to target unit")]
-        [SerializeField] private bool _applyPointEffectsToUnit = true;
         [Tooltip("Effects applied to target point")]
         [SerializeField] private EffectTargetingPoint[] _pointTargetEffects;
 
@@ -69,13 +67,6 @@ namespace Gameplay.Data.Abilities
                 foreach (EffectTargetingUnit effect in _unitTargetEffects)
                 {
                     effect.Apply(ability.Caster, target.Unit);
-                }
-                if (_applyPointEffectsToUnit)
-                {
-                    foreach (EffectTargetingPoint effect in _pointTargetEffects)
-                    {
-                        effect.Apply(ability.Caster, target.Unit.transform.position);
-                    }
                 }
             }
             else

@@ -101,7 +101,6 @@ namespace Gameplay.UI
                 return;
             }
             _rangeEllipse.Show();
-            
             float radius = CurrentAbilityOrder.AbilityType.MaxDistance;
             _rangeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
