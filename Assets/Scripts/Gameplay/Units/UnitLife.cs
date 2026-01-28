@@ -46,6 +46,7 @@ namespace Gameplay.Units
             if (HitPoints <= 0)
                 OnHitPointsOver?.Invoke();
             
+            
             _shieldRestorationTimer?.Restart();
         }
 

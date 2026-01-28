@@ -29,5 +29,7 @@ namespace Gameplay.Vision
             PlayerArea.Init(true);
             EnemyArea.Init(false);
         }
+        
+        public VisionArea GetAreaForOwner(bool ownedByPlayer) => ownedByPlayer ? PlayerArea : EnemyArea;
     }
 }

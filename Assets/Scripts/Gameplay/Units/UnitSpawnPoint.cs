@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Extentions;
 using Gameplay.Data;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Gameplay.Units
         private void Start()
         {
             Unit unit = Instantiator.Instantiate<Unit>(_prefab, transform.position, transform.parent);
+            unit.gameObject.name = gameObject.name;
             unit.Init(_unitType, _ownedByPlayer);
             Destroy(gameObject);
         }
@@ -27,6 +29,11 @@ namespace Gameplay.Units
         {
             _spriteRenderer.sprite = _unitType?.SpriteMap.GenericSprite;
             _spriteRenderer.color = _ownedByPlayer ? Color.green : Color.red;
+            
+            StringBuilder name =  new();
+            name.Append($"{(_ownedByPlayer ? "Player" : "Enemy")} - ");
+            name.Append(_unitType?.DisplayName ?? "No unit");
+            gameObject.name = name.ToString();
         }
     }
 }

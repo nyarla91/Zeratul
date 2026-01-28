@@ -923,6 +923,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitAttack
   _attackOrder: {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+  _autoAttackValidators:
+    _unitValidators:
+    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
 --- !u!114 &4728294680213157340
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
   m_Name: BibikaWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
-  _baseDamage: 5
+  _baseDamage: 50
   _cooldown: 25
   _maxDistance: 10
-  _autoAttack: 1
+  _autoAttack: 0

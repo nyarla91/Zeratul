@@ -48,7 +48,7 @@ namespace Gameplay.Data.Orders
             {
                 await CarryOutBody(order, ct);
             }
-            catch (OperationCanceledException e)
+            catch (OperationCanceledException)
             {
 
             }
