@@ -11,7 +11,8 @@ namespace Gameplay.Vision
         private bool _isInitialized;
         
         public bool IsOwnedByPlayer { get; private set; }
-        
+        public Unit[] VisibleUnits => _visibleUnits.ToArray();
+
         public void Init(bool isOwnedByPlayer)
         {
             if (_isInitialized)

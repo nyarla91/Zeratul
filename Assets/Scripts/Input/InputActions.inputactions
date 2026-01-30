@@ -669,6 +669,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "HoldPosition",
+                    "type": "Button",
+                    "id": "c8a5278c-b52d-467d-a12a-1213f6f4b9b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Move",
                     "type": "Button",
                     "id": "e317f09a-ad2f-4cd5-b863-4817102a4b61",
@@ -769,6 +778,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Patrol",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90599663-d4e3-4a53-9a84-ac04f3536474",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HoldPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

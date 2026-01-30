@@ -5,6 +5,7 @@ using Extentions;
 using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Orders;
+using Gameplay.Data.Validator;
 using UnityEngine;
 using Zenject;
 
@@ -13,15 +14,24 @@ namespace Gameplay.Units
     public class UnitAttack : UnitComponent
     {
         [SerializeField] private OrderType _attackOrder;
+        [SerializeField] private UnitValidatorGroup _autoAttackValidators;
         
         private UnitWeapon _weapon;
-        private Coroutine _attackCoroutine;
 
         public bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_attackOrder);
         
-        public bool IsAttacking => _attackCoroutine != null;
+        public Unit CurrentTarget { get; private set; }
+        public bool IsAttacking => CurrentTarget != null;
+
+        public Unit ClosestTarget
+        {
+            get
+            {
+                Unit[] units = Composition.Sight.VisibleUnits(_autoAttackValidators);
+                return units?.MinElement(unit => Isometry.Distance(transform.position, unit.transform.position));
+            }
+        }
         
-        [Inject] private IsometricOverlap IsometricOverlap { get; set; }
         [Inject] private TacticalPause TacticalPause { get; set; }
 
         public void Init(UnitType unitType)
@@ -34,69 +44,65 @@ namespace Gameplay.Units
 
         public void StartAttacking(Unit target)
         {
-            if ( ! IsAbleToAttack)
+            if ( ! IsAbleToAttack || ! CanAttackUnit(target))
                 return;
             StopAttacking();
-            _attackCoroutine = StartCoroutine(Attacking(target));
+            CurrentTarget = target;
         }
 
         public void StopAttacking()
         {
             if ( ! IsAttacking)
                 return;
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
+            CurrentTarget = null;
         }
 
-        private IEnumerator Attacking(Unit target)
+        public bool CanAttackUnit(Unit target)
+            => target && target != Composition && target.Visibility.CanBeTargetedBy(Composition) && target.Life.IsAlive;
+
+        private void TryAutoAttack()
         {
-            while (true)
-            {
-                yield return new WaitForFixedUpdate();
-                
-                if ( ! target.Visibility.CanBeTargetedBy(Composition))
-                    continue;
-                    
-                if (Vector3.Distance(transform.position, target.transform.position) > _weapon.Type.MaxDistance)
-                {
-                    Composition.Movement.Move(target.transform.position);
-                    continue;
-                }
-                Composition.Movement.Stop();
-                
-                float targetAngle = (transform.position.DirectionTo(target.transform.position) / Isometry.Scale).ToDegrees();
-                Composition.Movement.RotateTowards(targetAngle);
-                if (!Mathf.Approximately(Composition.Movement.LookAngle, targetAngle))
-                    continue;
-                
-                if ( ! _weapon.Cooldown.IsIdle)
-                    continue;
-                
-                target.Life.TakeDamage(_weapon.Type.BaseDamage);
-                _weapon.Cooldown.Restart();
-            }
-            
+            if ( ! IsAbleToAttack || ! UnitType.WeaponType.AutoAttack || IsAttacking || ! Composition.Orders.IsIdle) return;
+
+            Unit closestTarget = ClosestTarget;
+            if ( ! closestTarget) return;
+            OrderTarget target = new(default, closestTarget);
+            Composition.Orders.IssueOrder(new Order(_attackOrder, Composition, target), false);
         }
 
         private void FixedUpdate()
         {
+            if (TacticalPause.IsPaused)
+                return;
+            
             TryAutoAttack();
-        }
+            
+            if ( ! IsAttacking)
+                return;
 
-        private void TryAutoAttack()
-        {
-            if ( ! IsAbleToAttack || ! UnitType.WeaponType.AutoAttack || ! Composition.Orders.IsIdle || IsAttacking)
+            if ( ! CanAttackUnit(CurrentTarget))
+            {
+                StopAttacking();
                 return;
-            if ( ! IsometricOverlap.TryGetUnits(transform.position, UnitType.SightRadius, out Unit[] units))
+            }
+                    
+            if (Vector3.Distance(transform.position, CurrentTarget.transform.position) > _weapon.Type.MaxDistance)
+            {
+                Composition.Movement.Move(CurrentTarget.transform.position);
                 return;
-            
-            units = units.Where(unit => unit.Ownership.IsHostile(Composition)).ToArray();
-            if (units.Length == 0)
+            }
+            Composition.Movement.Stop();
+                
+            float targetAngle = (transform.position.DirectionTo(CurrentTarget.transform.position) / Isometry.Scale).ToDegrees();
+            Composition.Movement.RotateTowards(targetAngle);
+            if ( ! Mathf.Approximately(Composition.Movement.LookAngle, targetAngle))
                 return;
-            
-            Unit closestTarget = units.MinElement(unit => Isometry.Distance(transform.position, unit.transform.position));
-            OrderTarget target = new(default, closestTarget);
-            Composition.Orders.IssueOrder(new Order(_attackOrder, Composition, target), false);
+                
+            if ( ! _weapon.Cooldown.IsIdle)
+                return;
+                
+            CurrentTarget.Life.TakeDamage(_weapon.Type.BaseDamage);
+            _weapon.Cooldown.Restart();
         }
     }
 

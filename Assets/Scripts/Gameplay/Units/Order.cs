@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.Data.Orders;
 using UnityEngine;
@@ -27,12 +28,23 @@ namespace Gameplay.Units
 
     public struct OrderTarget
     {
-        public Vector2 Point { get; set; }
-        public Unit Unit { get; set; }
+        private Vector2 _point;
+        public Vector2 Point
+        {
+            readonly get
+            {
+                /*if (_point == default)
+                    throw new InvalidOperationException("Do not access OrderTarget.Point if it's default");*/
+                return _point;
+            }
+            set => _point = value;
+        }
+
+        public Unit Unit { get; }
         
         public OrderTarget(Vector2 point, Unit unit)
         {
-            Point = point;
+            _point = point;
             Unit = unit;
         }
     }

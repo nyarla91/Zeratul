@@ -27,9 +27,7 @@ MonoBehaviour:
   _isAir: 0
   _sightRadius: 20
   _weaponType: {fileID: 11400000, guid: 22313f63664b9314aafb0e56a539df72, type: 2}
-  _innateStatuses:
-  - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
-  - {fileID: 11400000, guid: ea01647ee3e24184d81fa55f76413eb5, type: 2}
+  _innateStatuses: []
   _availableOrders:
   - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
   - {fileID: 0}
@@ -38,8 +36,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}
   - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
-  - {fileID: 11400000, guid: ab3beecd140c4f34ab4ef84d615c00b6, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -1,6 +1,8 @@
-﻿using Extentions;
+﻿using System.Linq;
+using Extentions;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
+using Gameplay.Data.Validator;
 using Gameplay.Vision;
 using UnityEngine;
 using Zenject;
@@ -32,12 +34,17 @@ namespace Gameplay.Units
             _area.compositeOperation = Collider2D.CompositeOperation.Merge;
         }
 
+        public Unit[] VisibleUnits(UnitValidatorGroup validatorGroup = default)
+        {
+            Unit[] result = VisionMap.GetAreaForOwner(Composition.Ownership.OwnedByPlayer).VisibleUnits;
+            result = result.Where(u => Isometry.Distance(transform.position, u.transform.position) < Radius).ToArray();
+            
+            return result.Where(u => validatorGroup.IsValid(Composition, u)).ToArray();
+        }
+
         private void AttachSightArea(bool ownedByPlayer)
         {
-            if (ownedByPlayer)
-                VisionMap.PlayerArea.AttachSightArea(_area.transform);
-            else
-                VisionMap.EnemyArea.AttachSightArea(_area.transform);
+            VisionMap.GetAreaForOwner(ownedByPlayer).AttachSightArea(_area.transform);
         }
 
         private void Recalculate()
@@ -76,7 +83,8 @@ namespace Gameplay.Units
         private void OnDestroy()
         {
             VisionMap.RecalculationTimer.Expired -= Recalculate;
-            Destroy(_area?.gameObject);
+            if (_area)
+                Destroy(_area.gameObject);
         }
     }
 }

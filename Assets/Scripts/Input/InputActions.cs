@@ -755,6 +755,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""HoldPosition"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8a5278c-b52d-467d-a12a-1213f6f4b9b0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""Button"",
                     ""id"": ""e317f09a-ad2f-4cd5-b863-4817102a4b61"",
@@ -857,6 +866,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Patrol"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90599663-d4e3-4a53-9a84-ac04f3536474"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HoldPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -948,6 +968,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Orders = asset.FindActionMap("Orders", throwIfNotFound: true);
         m_Orders_Attack = m_Orders.FindAction("Attack", throwIfNotFound: true);
         m_Orders_Stop = m_Orders.FindAction("Stop", throwIfNotFound: true);
+        m_Orders_HoldPosition = m_Orders.FindAction("HoldPosition", throwIfNotFound: true);
         m_Orders_Move = m_Orders.FindAction("Move", throwIfNotFound: true);
         m_Orders_Patrol = m_Orders.FindAction("Patrol", throwIfNotFound: true);
         m_Orders_Ability1 = m_Orders.FindAction("Ability1", throwIfNotFound: true);
@@ -1382,6 +1403,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IOrdersActions> m_OrdersActionsCallbackInterfaces = new List<IOrdersActions>();
     private readonly InputAction m_Orders_Attack;
     private readonly InputAction m_Orders_Stop;
+    private readonly InputAction m_Orders_HoldPosition;
     private readonly InputAction m_Orders_Move;
     private readonly InputAction m_Orders_Patrol;
     private readonly InputAction m_Orders_Ability1;
@@ -1405,6 +1427,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Orders/Stop".
         /// </summary>
         public InputAction @Stop => m_Wrapper.m_Orders_Stop;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/HoldPosition".
+        /// </summary>
+        public InputAction @HoldPosition => m_Wrapper.m_Orders_HoldPosition;
         /// <summary>
         /// Provides access to the underlying input action "Orders/Move".
         /// </summary>
@@ -1453,6 +1479,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Stop.started += instance.OnStop;
             @Stop.performed += instance.OnStop;
             @Stop.canceled += instance.OnStop;
+            @HoldPosition.started += instance.OnHoldPosition;
+            @HoldPosition.performed += instance.OnHoldPosition;
+            @HoldPosition.canceled += instance.OnHoldPosition;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -1482,6 +1511,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Stop.started -= instance.OnStop;
             @Stop.performed -= instance.OnStop;
             @Stop.canceled -= instance.OnStop;
+            @HoldPosition.started -= instance.OnHoldPosition;
+            @HoldPosition.performed -= instance.OnHoldPosition;
+            @HoldPosition.canceled -= instance.OnHoldPosition;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
@@ -1741,6 +1773,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnStop(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HoldPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHoldPosition(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

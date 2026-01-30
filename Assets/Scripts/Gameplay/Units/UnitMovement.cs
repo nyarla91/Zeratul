@@ -50,6 +50,11 @@ namespace Gameplay.Units
                 return;
             NodeMap.TryFindPath(transform.position, destination, out _path, UnitType.IsAir, UnitType.Size);
             //ReducePathToNecessary();
+            if (_path.Length == 0 || HasReachedPoint(_path.Last().WorldPosition))
+            {
+                Stop();
+                return; 
+            }
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
         }
@@ -103,7 +108,7 @@ namespace Gameplay.Units
             float maxDelta = UnitType.RotationSpeed * Time.fixedDeltaTime;
             LookAngle = Mathf.MoveTowardsAngle(LookAngle, TargetLookAngle, maxDelta);
             
-            if (!HasPath)
+            if ( ! HasPath)
             {
                 _rigidbody.linearVelocity = Vector2.zero;
                 return;
@@ -115,7 +120,7 @@ namespace Gameplay.Units
             }
             
             int nextNodeIndex = Mathf.Min(_nodesPassed, _path.Length - 1);
-            if (_path[nextNodeIndex].WorldPosition.OrthogonalDistance(transform.position) < UnitType.Size / 2 + _config.NodeProximityDistance)
+            if (HasReachedPoint(_path[nextNodeIndex].WorldPosition))
                 _nodesPassed = nextNodeIndex + 1;
 
             Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
@@ -123,6 +128,11 @@ namespace Gameplay.Units
             float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             RotateTowards(direction / Isometry.Scale);
             _rigidbody.linearVelocity = direction * speed;
+        }
+
+        public bool HasReachedPoint(Vector2 point)
+        {
+            return point.OrthogonalDistance(transform.position) < UnitType.Size / 2 + _config.NodeProximityDistance;
         }
 
         private Vector2 AvoidObstaclesForDirection(Vector2 direction)

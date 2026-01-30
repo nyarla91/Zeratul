@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6679539492248759336}
   - component: {fileID: 2138144213156622876}
   m_Layer: 0
-  m_Name: UnitSpawnPoint
+  m_Name: Enemy - No unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

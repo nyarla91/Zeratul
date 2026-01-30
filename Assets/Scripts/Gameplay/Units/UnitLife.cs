@@ -21,6 +21,9 @@ namespace Gameplay.Units
         public bool HasShieldPoints => MaxShieldPoints > 0;
         public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 1;
 
+        public bool IsAlive => HitPoints > 0;
+        public bool IsDead => ! IsAlive;
+        
         public event Action OnHitPointsOver;
         
         [Inject] private TacticalPause TacticalPause { get; set; }
@@ -35,7 +38,7 @@ namespace Gameplay.Units
 
         public void TakeDamage(int damage)
         {
-            if (damage <= 0)
+            if (IsDead || damage <= 0)
                 return;
             int shieldDamage = Mathf.Min(damage, ShieldPoints);
             int hitDamage = Mathf.Min(damage - shieldDamage, HitPoints);
@@ -45,6 +48,7 @@ namespace Gameplay.Units
             
             if (HitPoints <= 0)
                 OnHitPointsOver?.Invoke();
+            
             
             _shieldRestorationTimer?.Restart();
         }
