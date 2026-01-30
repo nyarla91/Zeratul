@@ -46,6 +46,7 @@ namespace Gameplay.Player
             if (CurrentOrder)
                 return;
             CurrentOrder = order;
+            UpdateCurrentTarget();
         }
 
         public OrderTarget FinishTargeting()
@@ -72,6 +73,11 @@ namespace Gameplay.Player
             {
                 FinishTargeting();
             }
+            UpdateCurrentTarget();
+        }
+
+        private void UpdateCurrentTarget()
+        {
             CurrentTarget = GetTargetForRequirement(CurrentOrder?.TargetRequirement ?? TargetRequirement.None);
         }
     }
