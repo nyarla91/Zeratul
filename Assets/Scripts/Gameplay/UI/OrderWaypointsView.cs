@@ -40,7 +40,7 @@ namespace Gameplay.UI
                 {
                     Vector3 worldTo = order.Type.TargetRequirement == TargetRequirement.None
                         ? previousPoint
-                        : order.Target.Unit?.transform.position ?? order.Target.Point;
+                        : (order.Target.Unit ? order.Target.Unit.transform.position : order.Target.Point);
                     GetIdleWaypoint().Draw(order.Type.Icon, previousPoint, worldTo);
                     previousPoint = worldTo;
                 }

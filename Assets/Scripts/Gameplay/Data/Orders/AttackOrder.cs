@@ -18,7 +18,7 @@ namespace Gameplay.Data.Orders
             if (order.Target.Unit)
             {
                 actorAttack.StartAttacking(order.Target.Unit);
-                await UniTask.WaitUntil(() => IsAttackTargetCompleted(order), PlayerLoopTiming.FixedUpdate, ct);
+                await UniTask.WaitUntil(() => ! order.Actor.Attack.IsAttacking, PlayerLoopTiming.FixedUpdate, ct);
                 return;
             }
 
@@ -45,10 +45,6 @@ namespace Gameplay.Data.Orders
         }
 
         public override bool CanBeIssued(Order order) =>
-            order.Actor.Attack.IsAbleToAttack && order.Target.Unit != order.Actor;
-
-        private bool IsAttackTargetCompleted(Order order)
-            => order.Target.Unit is null || order.Target.Unit == order.Actor ||
-                !order.Target.Unit.Visibility.CanBeTargetedBy(order.Actor) || order.Target.Unit.Life.HitPoints <= 0;
+            order.Actor.Attack.IsAbleToAttack && ( ! order.Target.Unit || order.Actor.Attack.CanAttackUnit(order.Target.Unit));
     }
 }
