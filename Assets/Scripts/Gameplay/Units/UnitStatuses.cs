@@ -22,7 +22,7 @@ namespace Gameplay.Units
         {
             foreach (StatusType status in type.InnateStatuses)
             {
-                AddStatus(status, Composition);
+                AddStatus(status, Unit);
             }
         }
 
@@ -33,7 +33,7 @@ namespace Gameplay.Units
                 currentStatus.Restart(duration);
                 return;
             }
-            Status status = new(type,  instigator, Composition, duration, TacticalPause);
+            Status status = new(type,  instigator, Unit, duration, TacticalPause);
             _statuses.Add(type, status);
             status.OnAdd();
         }

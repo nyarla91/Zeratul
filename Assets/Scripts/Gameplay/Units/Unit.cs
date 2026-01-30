@@ -1,4 +1,5 @@
-﻿using Gameplay.Data;
+﻿using System;
+using Gameplay.Data;
 using UnityEngine;
 using Zenject;
 
@@ -34,6 +35,8 @@ namespace Gameplay.Units
         public UnitVisibility Visibility => _visibility ??= GetComponent<UnitVisibility>();
         public UnitAbilities Abilities => _abilities ??= GetComponent<UnitAbilities>();
         public UnitStatuses Statuses => _statuses ??= GetComponent<UnitStatuses>();
+
+        public Vector2 Position => transform.position;
 
         public UnitType Type { get; private set; }
         

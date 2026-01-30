@@ -56,7 +56,7 @@ namespace Gameplay.Data.Orders
             {
                 await UniTask.WaitForFixedUpdate();
                 
-                Vector2 destination = order.Target.Unit ? order.Target.Unit.transform.position : order.Target.Point;
+                Vector2 destination = order.Target.Unit ? order.Target.Unit.Position : order.Target.Point;
         
                 if ( ! IsTargetInRadius(order))
                 {
@@ -65,7 +65,7 @@ namespace Gameplay.Data.Orders
                 }
                 order.Actor.Movement.Stop();
                 
-                float angleToTarget = order.Actor.transform.DirectionTo2D(destination).ToDegrees();
+                float angleToTarget = order.Actor.Position.DirectionTo(destination).ToDegrees();
                 if (Mathf.DeltaAngle(order.Actor.Movement.LookAngle, angleToTarget) > AbilityType.MaxAngleToTarget)
                 {
                     order.Actor.Movement.RotateTowards(angleToTarget);
@@ -98,9 +98,9 @@ namespace Gameplay.Data.Orders
             return TargetRequirement switch
             {
                 TargetRequirement.None => true,
-                TargetRequirement.Unit => Isometry.Distance(order.Actor.transform.position,
-                    order.Target.Unit.transform.position) < AbilityType.MaxDistance,
-                _ => Isometry.Distance(order.Actor.transform.position, order.Target.Point) < AbilityType.MaxDistance
+                TargetRequirement.Unit => Isometry.Distance(order.Actor.Position,
+                    order.Target.Unit.Position) < AbilityType.MaxDistance,
+                _ => Isometry.Distance(order.Actor.Position, order.Target.Point) < AbilityType.MaxDistance
             };
         }
     }

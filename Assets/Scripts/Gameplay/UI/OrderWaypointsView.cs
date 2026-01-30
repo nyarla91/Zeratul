@@ -34,13 +34,13 @@ namespace Gameplay.UI
                 if (unit.Orders.CurrentOrder != null)
                     orders.Add(unit.Orders.CurrentOrder);
                 orders.AddRange(unit.Orders.PendingOrders);
-                Vector3 previousPoint = unit.transform.position;
+                Vector3 previousPoint = unit.Position;
                 
                 foreach (Order order in orders)
                 {
                     Vector3 worldTo = order.Type.TargetRequirement == TargetRequirement.None
                         ? previousPoint
-                        : (order.Target.Unit ? order.Target.Unit.transform.position : order.Target.Point);
+                        : (order.Target.Unit ? order.Target.Unit.Position : order.Target.Point);
                     GetIdleWaypoint().Draw(order.Type.Icon, previousPoint, worldTo);
                     previousPoint = worldTo;
                 }

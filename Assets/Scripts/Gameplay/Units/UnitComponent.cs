@@ -5,10 +5,10 @@ namespace Gameplay.Units
 {
     public class UnitComponent : MonoBehaviour
     {
-        private Unit _composition;
+        private Unit _unit;
         
-        protected Unit Composition => _composition ??= GetComponent<Unit>();
+        protected Unit Unit => _unit ??= GetComponent<Unit>();
         
-        public UnitType UnitType => Composition.Type;
+        public UnitType UnitType => Unit.Type;
     }
 }

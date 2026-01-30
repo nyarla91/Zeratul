@@ -29,17 +29,17 @@ namespace Gameplay.Units
             _radiusModifier = new Modifier();
             
             AttachSightArea(ownedByPlayer);
-            Composition.Ownership.OwnerUpdated += AttachSightArea;
+            Unit.Ownership.OwnerUpdated += AttachSightArea;
             
             _area.compositeOperation = Collider2D.CompositeOperation.Merge;
         }
 
         public Unit[] VisibleUnits(UnitValidatorGroup validatorGroup = default)
         {
-            Unit[] result = VisionMap.GetAreaForOwner(Composition.Ownership.OwnedByPlayer).VisibleUnits;
-            result = result.Where(u => Isometry.Distance(transform.position, u.transform.position) < Radius).ToArray();
+            Unit[] result = VisionMap.GetAreaForOwner(Unit.Ownership.OwnedByPlayer).VisibleUnits;
+            result = result.Where(u => Isometry.Distance(Unit.Position, u.Position) < Radius).ToArray();
             
-            return result.Where(u => validatorGroup.IsValid(Composition, u)).ToArray();
+            return result.Where(u => validatorGroup.IsValid(Unit, u)).ToArray();
         }
 
         private void AttachSightArea(bool ownedByPlayer)
@@ -49,7 +49,7 @@ namespace Gameplay.Units
 
         private void Recalculate()
         {
-            _area.transform.position = transform.position;
+            _area.transform.position = Unit.Position;
 
             Vector2[] points =  new Vector2[_areaPoints];
             
@@ -67,8 +67,8 @@ namespace Gameplay.Units
                 }
                 else
                 {
-                    RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, maxDistance, _config.VisionBlockerMask);
-                    point = raycast.collider ? (raycast.point - (Vector2)transform.position) : direction * maxDistance;
+                    RaycastHit2D raycast = Physics2D.Raycast(Unit.Position, direction, maxDistance, _config.VisionBlockerMask);
+                    point = raycast.collider ? (raycast.point - Unit.Position) : direction * maxDistance;
                     point += direction * _config.AbsoluteExtraSight;
                 }
                 float minDistance = _config.MinSight + UnitType.Size / 2;

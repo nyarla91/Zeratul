@@ -48,7 +48,7 @@ namespace Gameplay.Units
         {
             if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
-            NodeMap.TryFindPath(transform.position, destination, out _path, UnitType.IsAir, UnitType.Size);
+            NodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.IsAir, UnitType.Size);
             //ReducePathToNecessary();
             if (_path.Length == 0 || HasReachedPoint(_path.Last().WorldPosition))
             {
@@ -123,7 +123,7 @@ namespace Gameplay.Units
             if (HasReachedPoint(_path[nextNodeIndex].WorldPosition))
                 _nodesPassed = nextNodeIndex + 1;
 
-            Vector2 direction = transform.DirectionTo2D(_path[nextNodeIndex].WorldPosition);
+            Vector2 direction = Unit.Position.DirectionTo(_path[nextNodeIndex].WorldPosition);
             direction = AvoidObstaclesForDirection(direction);
             float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             RotateTowards(direction / Isometry.Scale);
@@ -132,7 +132,7 @@ namespace Gameplay.Units
 
         public bool HasReachedPoint(Vector2 point)
         {
-            return point.OrthogonalDistance(transform.position) < UnitType.Size / 2 + _config.NodeProximityDistance;
+            return point.OrthogonalDistance(Unit.Position) < UnitType.Size / 2 + _config.NodeProximityDistance;
         }
 
         private Vector2 AvoidObstaclesForDirection(Vector2 direction)
@@ -153,7 +153,7 @@ namespace Gameplay.Units
                 return direction;
             float angle = direction.ToDegrees();
             Vector2[] oppositeDirections = obstacles
-                .Select(obs => obs.transform.DirectionTo2D(transform.position))
+                .Select(obs => obs.Position.DirectionTo(Unit.Position))
                 .ToArray();
             float oppositeAngle = oppositeDirections.Average().ToDegrees();
             float newAngle = Mathf.LerpAngle(angle, oppositeAngle, _config.AvoidanceStrength);

@@ -59,7 +59,7 @@ namespace Gameplay.Data.Abilities
             }
             foreach (EffectTargetingPoint effect in _casterPointEffects)
             {
-                effect.Apply(ability.Caster, ability.Caster.transform.position);
+                effect.Apply(ability.Caster, ability.Caster.Position);
             }
 
             if (target.Unit)

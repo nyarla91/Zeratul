@@ -28,7 +28,7 @@ namespace Gameplay.Data.Orders
 
             while (order.Target.Unit)
             {
-                Vector2 rawDelta = order.Target.Unit.transform.position - order.Actor.transform.position;
+                Vector2 rawDelta = order.Target.Unit.Position - order.Actor.Position;
                 Vector2 deIsoDelta = rawDelta / Isometry.Scale;
                 float redundantDistance = order.Target.Unit.Type.Size / 2 + order.Actor.Type.Size / 2;
                 float distance = deIsoDelta.magnitude - redundantDistance;
@@ -36,7 +36,7 @@ namespace Gameplay.Data.Orders
                 if (distance < _followMinDistance)
                     order.Actor.Movement.Stop();
                 else
-                    order.Actor.Movement.Move(order.Target.Unit.transform.position);
+                    order.Actor.Movement.Move(order.Target.Unit.Position);
                 
                 for (int i = 0; i < _framesBetweenFollowRecalculation; i++)
                 {

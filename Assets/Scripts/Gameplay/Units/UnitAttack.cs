@@ -27,8 +27,8 @@ namespace Gameplay.Units
         {
             get
             {
-                Unit[] units = Composition.Sight.VisibleUnits(_autoAttackValidators);
-                return units?.MinElement(unit => Isometry.Distance(transform.position, unit.transform.position));
+                Unit[] units = Unit.Sight.VisibleUnits(_autoAttackValidators);
+                return units?.MinElement(unit => Isometry.Distance(Unit.Position, unit.Position));
             }
         }
         
@@ -58,16 +58,16 @@ namespace Gameplay.Units
         }
 
         public bool CanAttackUnit(Unit target)
-            => target && target != Composition && target.Visibility.CanBeTargetedBy(Composition) && target.Life.IsAlive;
+            => target && target != Unit && target.Visibility.CanBeTargetedBy(Unit) && target.Life.IsAlive;
 
         private void TryAutoAttack()
         {
-            if ( ! IsAbleToAttack || ! UnitType.WeaponType.AutoAttack || IsAttacking || ! Composition.Orders.IsIdle) return;
+            if ( ! IsAbleToAttack || ! UnitType.WeaponType.AutoAttack || IsAttacking || ! Unit.Orders.IsIdle) return;
 
             Unit closestTarget = ClosestTarget;
             if ( ! closestTarget) return;
             OrderTarget target = new(default, closestTarget);
-            Composition.Orders.IssueOrder(new Order(_attackOrder, Composition, target), false);
+            Unit.Orders.IssueOrder(new Order(_attackOrder, Unit, target), false);
         }
 
         private void FixedUpdate()
@@ -86,16 +86,16 @@ namespace Gameplay.Units
                 return;
             }
                     
-            if (Vector3.Distance(transform.position, CurrentTarget.transform.position) > _weapon.Type.MaxDistance)
+            if (Vector3.Distance(Unit.Position, CurrentTarget.Position) > _weapon.Type.MaxDistance)
             {
-                Composition.Movement.Move(CurrentTarget.transform.position);
+                Unit.Movement.Move(CurrentTarget.Position);
                 return;
             }
-            Composition.Movement.Stop();
+            Unit.Movement.Stop();
                 
-            float targetAngle = (transform.position.DirectionTo(CurrentTarget.transform.position) / Isometry.Scale).ToDegrees();
-            Composition.Movement.RotateTowards(targetAngle);
-            if ( ! Mathf.Approximately(Composition.Movement.LookAngle, targetAngle))
+            float targetAngle = (Unit.Position.DirectionTo(CurrentTarget.Position) / Isometry.Scale).ToDegrees();
+            Unit.Movement.RotateTowards(targetAngle);
+            if ( ! Mathf.Approximately(Unit.Movement.LookAngle, targetAngle))
                 return;
                 
             if ( ! _weapon.Cooldown.IsIdle)

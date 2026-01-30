@@ -38,7 +38,7 @@ namespace Gameplay.Units
             {
                 if ( ! orderType || ! orderType.IsValidForSmartOrder(target))
                     continue;
-                IssueOrder(new Order(orderType, Composition, target), queue);
+                IssueOrder(new Order(orderType, Unit, target), queue);
                 break;
             }
         }

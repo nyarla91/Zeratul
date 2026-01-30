@@ -36,22 +36,22 @@ namespace Gameplay.Units
         /// <summary>
         /// Returns true if unit is revealed and is in sight of any player's unit or owned by player
         /// </summary>
-        public bool IsVisibleToPlayer => VisionMap.PlayerArea.IsUnitVisible(Composition);
+        public bool IsVisibleToPlayer => VisionMap.PlayerArea.IsUnitVisible(Unit);
 
         /// <summary>
         /// Returns true if unit is revealed and is in sight of any enemy unit or owned by enemy
         /// </summary>
-        public bool IsVisibleToEnemy => VisionMap.EnemyArea.IsUnitVisible(Composition);
+        public bool IsVisibleToEnemy => VisionMap.EnemyArea.IsUnitVisible(Unit);
 
         /// <summary>
         /// Returns true if unit is revealed and is in sight of any unit owned by hostile
         /// </summary>
-        public bool IsVisibleToHostile  => Composition.Ownership.OwnedByPlayer ? IsVisibleToEnemy :  IsVisibleToPlayer;
+        public bool IsVisibleToHostile  => Unit.Ownership.OwnedByPlayer ? IsVisibleToEnemy :  IsVisibleToPlayer;
         
         /// <summary>
         /// Returns true if unit is visible to targetingUnit's owner
         /// </summary>
-        public bool CanBeTargetedBy(Unit targetingUnit) => Composition.Ownership.IsFriendly(targetingUnit) || IsVisibleToHostile;
+        public bool CanBeTargetedBy(Unit targetingUnit) => Unit.Ownership.IsFriendly(targetingUnit) || IsVisibleToHostile;
         
         public void Detect(object source) => _detectionSources.Add(source);
         

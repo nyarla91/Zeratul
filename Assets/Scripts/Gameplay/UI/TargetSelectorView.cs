@@ -104,8 +104,8 @@ namespace Gameplay.UI
             float radius = CurrentAbilityOrder.AbilityType.MaxDistance;
             _rangeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            Unit closestUnit = actors.MinElement(a => Isometry.Distance(a.transform.position, mousePosition));
-            _rangeEllipse.Move(closestUnit.transform.position);
+            Unit closestUnit = actors.MinElement(a => Isometry.Distance(a.Position, mousePosition));
+            _rangeEllipse.Move(closestUnit.Position);
 
             radius = CurrentAbilityOrder.AoeEllipseRadius;
             if (radius == 0 || (CurrentAbilityOrder.TargetRequirement == TargetRequirement.Unit && ! _selector.CurrentTarget.Unit))
@@ -115,7 +115,7 @@ namespace Gameplay.UI
             }
             _aoeEllipse.Show();
             _aoeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
-            Vector3 position = _selector.CurrentTarget.Unit ? _selector.CurrentTarget.Unit.transform.position : _selector.CurrentTarget.Point;
+            Vector3 position = _selector.CurrentTarget.Unit ? _selector.CurrentTarget.Unit.Position : _selector.CurrentTarget.Point;
             _aoeEllipse.Move(position);
         }
     }

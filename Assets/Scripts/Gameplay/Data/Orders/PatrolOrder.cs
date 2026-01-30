@@ -14,7 +14,7 @@ namespace Gameplay.Data.Orders
 
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
-            Vector2 originalPoint = order.Actor.transform.position;
+            Vector2 originalPoint = order.Actor.Position;
             bool moveBackwards = false;
 
             while (true)

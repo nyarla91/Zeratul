@@ -198,7 +198,12 @@ namespace Extentions
         }
         
         public static Vector3 DirectionTo(this Vector3 vector, Vector3 target) => (target - vector).normalized;
+        
         public static Vector3 DirectionTo(this Vector3 vector, Transform target) => vector.DirectionTo(target.position);
+        
+        public static Vector2 DirectionTo(this Vector2 vector, Vector2 target) => (target - vector).normalized;
+        
+        public static Vector2 DirectionTo(this Vector2 vector, Transform target) => vector.DirectionTo(target.position);
 
         public static Vector2 Abs(this Vector2 vector)
         {

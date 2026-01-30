@@ -39,7 +39,7 @@ namespace Gameplay.Units
                 return;
             foreach (AbilityOrder abilityOrder in abilityOrders)
             {
-                _abilities.Add(abilityOrder.AbilityType, new Ability(abilityOrder.AbilityType, Composition, TacticalPause));
+                _abilities.Add(abilityOrder.AbilityType, new Ability(abilityOrder.AbilityType, Unit, TacticalPause));
             }
         }
 
