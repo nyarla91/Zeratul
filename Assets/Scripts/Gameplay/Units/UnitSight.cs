@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Extentions;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
@@ -84,7 +83,8 @@ namespace Gameplay.Units
         private void OnDestroy()
         {
             VisionMap.RecalculationTimer.Expired -= Recalculate;
-            Destroy(_area?.gameObject);
+            if (_area)
+                Destroy(_area.gameObject);
         }
     }
 }
