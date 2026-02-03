@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Statuses;
+using Gameplay.Pathfinding;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -52,6 +53,8 @@ namespace Gameplay.Data
         public StatusType[] InnateStatuses => _innateStatuses;
         public OrderType[] AvailableOrders => _availableOrders.ToArray();
         public UnitSpriteMap SpriteMap => _spriteMap;
+
+        public PathfindingAgent PathfindingAgent => new(IsAir, Size / 2);
 
         private void OnValidate()
         {

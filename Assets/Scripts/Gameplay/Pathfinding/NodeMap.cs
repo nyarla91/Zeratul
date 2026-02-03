@@ -42,16 +42,16 @@ namespace Gameplay.Pathfinding
             return node.IsPassable(isAgentAir);
         }
         
-        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, bool isAgentAir, float agentSize)
+        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, PathfindingAgent agent)
         {
             Node startNode = GetClosestNode(worldStart);
             Node targetNode = GetClosestNode(worldTarget);
-            return TryFindPath(startNode, targetNode, out path, isAgentAir, agentSize);
+            return TryFindPath(startNode, targetNode, out path, agent);
         }
         
-        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, bool isAgentAir, float agentSize)
+        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, PathfindingAgent agent)
         {
-            if (startNode == targetNode || ! targetNode.IsPassable(isAgentAir))
+            if (startNode == targetNode || ! targetNode.IsPassable(agent.IsAir))
             {
                 path = Array.Empty<INodeWorld>();
                 return false;
@@ -85,7 +85,7 @@ namespace Gameplay.Pathfinding
                         if (x < 0 || x >= _nodes.GetLength(0) || y < 0 || y >= _nodes.GetLength(1))
                             continue;
                         Node adjacentNode = _nodes[x, y];
-                        if ( ! adjacentNode.IsPassable(isAgentAir))
+                        if ( ! adjacentNode.IsPassable(agent.IsAir))
                             continue;
                         if (adjacentNode.LastQuery < _lastQuery)
                         {
@@ -103,7 +103,7 @@ namespace Gameplay.Pathfinding
                         
                         int newG = currentNode.G;
                         newG += diagonal ? _config.DiagonalTravelCost : _config.OrtogonalTravelCost;
-                        if (adjacentNode.ObstacleDistanceFor(isAgentAir) < agentSize / 2)
+                        if (adjacentNode.ObstacleDistanceFor(agent.IsAir) < agent.Radius)
                             newG += _config.TooCloseToObstaclePenalty;
 
                         if (newG > adjacentNode.G)

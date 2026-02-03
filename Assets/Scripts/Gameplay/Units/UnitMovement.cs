@@ -25,10 +25,11 @@ namespace Gameplay.Units
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
         public bool HasPath => _path.Length > 0;
-        public bool Displacable => ! HasPath;
+        public bool Displaceable => ! HasPath && ! IsHoldingPosition;
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public float LookAngle { get; private set; }
         public float TargetLookAngle { get; private set; }
+        public bool IsHoldingPosition { get; private set; }
         public Modifier SpeedModifier => _speedModifier;
         public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
 
@@ -48,7 +49,7 @@ namespace Gameplay.Units
         {
             if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
-            NodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.IsAir, UnitType.Size);
+            NodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
             //ReducePathToNecessary();
             if (_path.Length == 0 || HasReachedPoint(_path.Last().WorldPosition))
             {
@@ -67,6 +68,10 @@ namespace Gameplay.Units
         {
             _rigidbody.MovePosition(position);
         }
+
+        public void HoldPosition() => IsHoldingPosition = true;
+        
+        public void StopHoldingPosition() => IsHoldingPosition = false;
         
         private void ReducePathToNecessary()
         {
@@ -102,8 +107,9 @@ namespace Gameplay.Units
         {
             if (TacticalPause.IsPaused)
                 return;
-            
-            _rigidbody.mass = Displacable ? 0.001f : 1;
+
+            _rigidbody.constraints = IsHoldingPosition ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.FreezeRotation;
+            _rigidbody.mass = Displaceable ? 0.001f : 1;
             
             float maxDelta = UnitType.RotationSpeed * Time.fixedDeltaTime;
             LookAngle = Mathf.MoveTowardsAngle(LookAngle, TargetLookAngle, maxDelta);
@@ -138,17 +144,20 @@ namespace Gameplay.Units
         private Vector2 AvoidObstaclesForDirection(Vector2 direction)
         {
             Collider2D[] overlap = new Collider2D[3];
+            
             ContactFilter2D contactFilter = new()
             {
                 useTriggers = false,
                 useLayerMask = true,
-                layerMask = LayerMask.GetMask("Unit")
+                layerMask = UnitType.IsAir ? _config.AirLayerMask : _config.GroundLayerMask
             };
+            
             int overlapTotal = _avoidanceCollider.Overlap(contactFilter, overlap);
             if (overlapTotal == 0)
                 return direction;
+            
             Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).NoNull();
-            obstacles = obstacles.Where(unit => ! unit.Movement.Displacable).ToArray();
+            obstacles = obstacles.Where(unit => ! unit.Movement.Displaceable).ToArray();
             if (obstacles.Length == 0)
                 return direction;
             float angle = direction.ToDegrees();

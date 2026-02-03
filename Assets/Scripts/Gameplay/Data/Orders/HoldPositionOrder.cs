@@ -12,9 +12,13 @@ namespace Gameplay.Data.Orders
         
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
+            order.Actor.Movement.HoldPosition();
             await UniTask.Never(ct);
         }
 
-        protected override void Dispose(Order order) { }
+        protected override void Dispose(Order order)
+        {
+            order.Actor.Movement.StopHoldingPosition();
+        }
     }
 }
