@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -7,11 +8,11 @@ namespace Gameplay.Vision
 {
     public class VisionArea : MonoBehaviour
     {
-        private readonly List<Unit> _visibleUnits = new();
+        private readonly HashSet<Unit> _visibleUnits = new();
         private bool _isInitialized;
         
         public bool IsOwnedByPlayer { get; private set; }
-        public Unit[] VisibleUnits => _visibleUnits.ToArray();
+        public HashSet<Unit> VisibleUnits => _visibleUnits.ToHashSet();
 
         public void Init(bool isOwnedByPlayer)
         {

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Extentions;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
@@ -34,12 +35,12 @@ namespace Gameplay.Units
             _area.compositeOperation = Collider2D.CompositeOperation.Merge;
         }
 
-        public Unit[] VisibleUnits(UnitValidatorGroup validatorGroup = default)
+        public HashSet<Unit> VisibleUnits(UnitValidatorGroup validatorGroup = default)
         {
-            Unit[] result = VisionMap.GetAreaForOwner(Unit.Ownership.OwnedByPlayer).VisibleUnits;
-            result = result.Where(u => Isometry.Distance(Unit.Position, u.Position) < Radius).ToArray();
+            HashSet<Unit> result = VisionMap.GetAreaForOwner(Unit.Ownership.OwnedByPlayer).VisibleUnits;
+            result = result.Where(u => Isometry.Distance(Unit.Position, u.Position) < Radius).ToHashSet();
             
-            return result.Where(u => validatorGroup.IsValid(Unit, u)).ToArray();
+            return result.Where(u => validatorGroup.IsValid(Unit, u)).ToHashSet();
         }
 
         private void AttachSightArea(bool ownedByPlayer)

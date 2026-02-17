@@ -6,7 +6,7 @@ namespace Gameplay.Units
 {
     public class UnitPool : MonoBehaviour
     {
-        private readonly List<Unit> _units = new();
+        private readonly HashSet<Unit> _units = new();
 
         public List<Unit> Units => _units.ToList();
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using Extentions.Pause;
@@ -27,7 +28,7 @@ namespace Gameplay.Units
         {
             get
             {
-                Unit[] units = Unit.Sight.VisibleUnits(_autoAttackValidators);
+                HashSet<Unit> units = Unit.Sight.VisibleUnits(_autoAttackValidators);
                 return units?.MinElement(unit => Isometry.Distance(Unit.Position, unit.Position));
             }
         }

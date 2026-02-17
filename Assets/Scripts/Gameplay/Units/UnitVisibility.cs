@@ -7,9 +7,9 @@ namespace Gameplay.Units
 {
     public class UnitVisibility : UnitComponent
     {
-        private readonly List<object> _detectionSources = new();
+        private readonly HashSet<object> _detectionSources = new();
         
-        private readonly List<object> _cloakSources = new();
+        private readonly HashSet<object> _cloakSources = new();
         
         [Inject] private VisionMap VisionMap { get; set; }
 
