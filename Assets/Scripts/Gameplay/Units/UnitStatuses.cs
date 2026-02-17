@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Statuses;
-using Gameplay.UI;
-using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Units
@@ -16,6 +13,9 @@ namespace Gameplay.Units
 
         public IStatusInfo[] StatusesInfo => _statuses.Values.ToArray<IStatusInfo>();
 
+        public event Action<Status> StatusAdded;
+        public event Action<Status> StatusRemoved;
+        
         [Inject] private TacticalPause TacticalPause { get; set; }
 
         public void Init(UnitType type)
@@ -36,6 +36,7 @@ namespace Gameplay.Units
             Status status = new(type,  instigator, Unit, duration, TacticalPause);
             _statuses.Add(type, status);
             status.OnAdd();
+            StatusAdded?.Invoke(status);
         }
 
         public void RemoveStatus(StatusType type)
@@ -44,6 +45,7 @@ namespace Gameplay.Units
                 return;
             status.OnRemove();
             _statuses.Remove(type);
+            StatusRemoved?.Invoke(status);
         }
 
         private void FixedUpdate()

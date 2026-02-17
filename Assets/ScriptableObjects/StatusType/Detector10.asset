@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
   m_Name: Detector10
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
-  _display: 0
+  _display: 1
   _displayIcon: {fileID: 21300000, guid: e386bd21493374c46821ba14059f76c2, type: 3}
-  _displayName: 
-  _rawDisplayDescription: 
+  _displayName: Detector
+  _rawDisplayDescription: Can detect cloaked units in radius of 10
+  _rendererPrefabs:
+  - {fileID: -51321536493056396, guid: ed3ad4453f0bce142b0fb713ca1a0ab4, type: 3}
   _casterType: 0
   _unitEffects:
   - {fileID: 11400000, guid: 58d52fd01efc992459d28c5acadab0b2, type: 2}

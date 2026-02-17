@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.UnitMovementConfig
   _nodeProximityDistance: 0.2
   _minPathRecalculationPeriod: 0.5
-  _avoidanceAdditionalRadius: 0
+  _avoidanceAdditionalRadius: 1
   _avoidanceStrength: 0.651
   _groundLayer: 6
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   _airLayer: 7
+  _airLayerMask:
+    serializedVersion: 2
+    m_Bits: 128

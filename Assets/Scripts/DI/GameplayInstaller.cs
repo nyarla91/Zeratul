@@ -5,6 +5,7 @@ using Gameplay.Pathfinding;
 using Gameplay.Player;
 using Gameplay.UI;
 using Gameplay.Units;
+using Gameplay.Units.View;
 using Gameplay.Vision;
 using Gameplay.Visual;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace DI
         [SerializeField] private VisionMap _visionMap;
         [SerializeField] private Tooltip _tooltip;
         [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
+        [SerializeField] private StatusRendererFactoryFactory _statusRendererFf;
         
         [SerializeField] private SOInjectPresenter _injectPresenter;
         
@@ -42,6 +44,7 @@ namespace DI
             Container.BindInstance(_visionMap).AsSingle();
             Container.BindInstance(_tooltip).AsSingle();
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
+            Container.BindInstance(_statusRendererFf).AsSingle();
 
             _injectPresenter.Init(Container);
         }

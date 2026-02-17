@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.SpriteLayeringConfig
   _spriteOverlatMask:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 0
   _unitBaseOrder: 100
   _airUnitOrderBonus: 100
   _shadowOrder: 150
   _overlayDeltaOrderMultiplier: 5
   _verticalZScale: 0.1
+  _statusOrder: 1000

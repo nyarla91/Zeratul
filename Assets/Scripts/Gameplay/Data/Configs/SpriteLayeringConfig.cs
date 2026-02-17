@@ -11,11 +11,13 @@ namespace Gameplay.Data.Configs
         [SerializeField] private int _shadowOrder;
         [SerializeField] private int _overlayDeltaOrderMultiplier;
         [SerializeField] private float _verticalZScale;
+        [SerializeField] private int _statusOrder;
 
         public int UnitBaseOrder => _unitBaseOrder;
         public int AirUnitOrderBonus => _airUnitOrderBonus;
         public int ShadowOrder => _shadowOrder;
         public int OverlayDeltaOrderMultiplier => _overlayDeltaOrderMultiplier;
         public float VerticalZScale => _verticalZScale;
+        public int StatusOrder => _statusOrder;
     }
 }

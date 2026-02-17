@@ -19,12 +19,10 @@ MonoBehaviour:
   _casterValidators:
     _unitValidators: []
   _targetValidators:
-    _unitValidators:
-    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    _unitValidators: []
   _casterEffects: []
   _casterPointEffects: []
   _maxAngleToTarget: 0
   _unitTargetEffects:
-  - {fileID: 11400000, guid: c1baac24590bea94ca8ecfb1d12c0bd1, type: 2}
-  _applyPointEffectsToUnit: 0
+  - {fileID: 11400000, guid: e690042b16bb2044ba4c0b0ddc3faf8a, type: 2}
   _pointTargetEffects: []

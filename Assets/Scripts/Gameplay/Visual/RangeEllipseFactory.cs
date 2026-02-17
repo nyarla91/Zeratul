@@ -24,17 +24,5 @@ namespace Gameplay.Visual
             _pool.Add(newObject);
             return newObject;
         }
-
-        private void Update()
-        {
-            if (Keyboard.current.hKey.wasPressedThisFrame)
-            {
-                RangeEllipse rangeEllipse = Get();
-                Debug.Log(rangeEllipse);
-                rangeEllipse.Show();
-                rangeEllipse.Set(5, 0.5f, Color.yellow);
-                rangeEllipse.Move(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
-            }
-        }
     }
 }

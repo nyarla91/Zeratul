@@ -1,6 +1,4 @@
-﻿using Extentions.Pause;
-using Gameplay.Units;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gameplay.Data.Statuses
 {
