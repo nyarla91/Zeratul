@@ -13,7 +13,7 @@ namespace Gameplay.Units
 {
     public class UnitOrders : UnitComponent
     {
-        private readonly List<Order> _pendingOrders = new();
+        private readonly Queue<Order> _pendingOrders = new();
 
         private CancellationTokenSource _currentOrderCts;
         private UniTask _currentOrderTask;
@@ -55,7 +55,7 @@ namespace Gameplay.Units
                 CompleteCurrentOrder();
                 _pendingOrders.Clear();
             }
-            _pendingOrders.Add(order);
+            _pendingOrders.Enqueue(order);
         }
 
         public void CompleteCurrentOrder()
@@ -78,8 +78,7 @@ namespace Gameplay.Units
                 return;
             if (CurrentOrder != null || _pendingOrders.Count <= 0)
                 return;
-            CurrentOrder = _pendingOrders[0];
-            _pendingOrders.RemoveAt(0);
+            CurrentOrder = _pendingOrders.Dequeue();
                 
             _currentOrderCts = new CancellationTokenSource();
             _currentOrderTask = CurrentOrder.CarryOut(_currentOrderCts.Token);
