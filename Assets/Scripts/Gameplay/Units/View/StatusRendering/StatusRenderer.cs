@@ -16,12 +16,12 @@ namespace Gameplay.Units.View.StatusRendering
             Factory = factory;
         }
 
-        public virtual void OnShow(IStatusInfo status)
+        public virtual void OnAdd(IStatusInfo status)
         {
             Status = status;
         }
 
-        public virtual void OnHide()
+        public virtual void OnRemove()
         {
             Status = null;
         }

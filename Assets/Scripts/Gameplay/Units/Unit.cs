@@ -39,6 +39,8 @@ namespace Gameplay.Units
         public Vector2 Position => transform.position;
 
         public UnitType Type { get; private set; }
+
+        public event Action Killed; 
         
         [Inject] private UnitPool UnitPool { get; set; }
         
@@ -56,11 +58,12 @@ namespace Gameplay.Units
             Statuses.Init(type);
             
             UnitPool.AddUnit(this);
-            Life.OnHitPointsOver += Die;
+            Life.OnHitPointsOver += Kill;
         }
         
-        private void Die()
+        public void Kill()
         {
+            Killed?.Invoke();
             UnitPool.RemoveUnit(this);
             Destroy(gameObject);
         }

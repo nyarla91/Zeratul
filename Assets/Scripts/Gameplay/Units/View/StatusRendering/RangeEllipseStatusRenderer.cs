@@ -17,9 +17,9 @@ namespace Gameplay.Units.View.StatusRendering
 
         private RangeEllipse _rangeEllipse;
         
-        public override void OnShow(IStatusInfo status)
+        public override void OnAdd(IStatusInfo status)
         {
-            base.OnShow(status);
+            base.OnAdd(status);
             _rangeEllipse = RangeEllipseFactory.Get();
             Color color = status.Host.Ownership.OwnedByPlayer ? _playerColor : _enemyColor;
             _rangeEllipse.Set(_radius, _thickness, color);
@@ -28,12 +28,19 @@ namespace Gameplay.Units.View.StatusRendering
 
         private void Update()
         {
-            _rangeEllipse?.Move(transform.position);
+            if (_rangeEllipse == null)
+                return;
+            
+            _rangeEllipse.Move(transform.position);
+            if (Status.Host.Visibility.IsVisibleToPlayer)
+                _rangeEllipse.Show();
+            else
+                _rangeEllipse.Hide();
         }
 
-        public override void OnHide()
+        public override void OnRemove()
         {
-            base.OnHide();
+            base.OnRemove();
             _rangeEllipse?.Release();
         }
     }

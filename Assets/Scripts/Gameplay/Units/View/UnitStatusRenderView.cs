@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Data.Statuses;
 using Gameplay.Units.View.StatusRendering;
 using UnityEngine;
@@ -17,11 +18,12 @@ namespace Gameplay.Units.View
 
         private void Awake()
         {
-            _unit.Statuses.StatusAdded += ShowRenderer;
-            _unit.Statuses.StatusRemoved += HideRenderer;
+            _unit.Statuses.StatusAdded += AddRenderer;
+            _unit.Statuses.StatusRemoved += RemoveRenderer;
+            _unit.Killed += HideAllRenderers;
         }
-
-        private void ShowRenderer(Status status)
+        
+        private void AddRenderer(Status status)
         {
             StatusRendererFactory[] factories = StatusRendererFf.GetFactoriesForStatus(status.Type);
             StatusRenderer[] renderers =  new StatusRenderer[factories.Length];
@@ -35,14 +37,24 @@ namespace Gameplay.Units.View
             _renderers.Add(status.Type, renderers);
         }
 
-        private void HideRenderer(Status status)
+        private void RemoveRenderer(Status status) => RemoveRenderer(status.Type);
+        
+        private void RemoveRenderer(StatusType status)
         {
-            if ( ! _renderers.TryGetValue(status.Type, out StatusRenderer[] renderers))
+            if ( ! _renderers.TryGetValue(status, out StatusRenderer[] renderers))
                 return;
 
             foreach (StatusRenderer renderer in renderers) renderer.Release();
             
-            _renderers.Remove(status.Type);
+            _renderers.Remove(status);
+        }
+
+        private void HideAllRenderers()
+        {
+            foreach (StatusType status in _renderers.Keys.ToList())
+            {
+                RemoveRenderer(status);
+            }
         }
     }
 }

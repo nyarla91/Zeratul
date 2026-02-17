@@ -35,14 +35,14 @@ namespace Gameplay.Units.View
                 _pool.Remove(result);
             }
             
-            result.OnShow(status);
+            result.OnAdd(status);
             result.gameObject.SetActive(true);
             return result;
         }
 
         public void ReleaseStatusRenderer(StatusRenderer statusRenderer)
         {
-            statusRenderer.OnHide();
+            statusRenderer.OnRemove();
             statusRenderer.transform.SetParent(null);
             statusRenderer.gameObject.SetActive(false);
             _pool.Add(statusRenderer);
