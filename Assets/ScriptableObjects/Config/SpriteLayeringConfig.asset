@@ -15,9 +15,9 @@ MonoBehaviour:
   _spriteOverlatMask:
     serializedVersion: 2
     m_Bits: 0
-  _unitBaseOrder: 100
-  _airUnitOrderBonus: 100
-  _shadowOrder: 150
+  _unitBaseOrder: 0
+  _airUnitOrderBonus: 10
+  _shadowOrder: 0
   _overlayDeltaOrderMultiplier: 5
-  _verticalZScale: 0.1
+  _verticalZScale: 0
   _statusOrder: 1000
