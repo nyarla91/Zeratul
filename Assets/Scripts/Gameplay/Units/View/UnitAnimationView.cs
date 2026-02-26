@@ -31,7 +31,10 @@ namespace Gameplay.Units.View
                 _spriteRenderer.sprite = null;
                 return;
             }
-            _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSpriteForAngle(_unit.Movement.LookAngle);
+
+            float timeStamp = Time.time;
+            string action = _unit.Movement.Velocity.magnitude > 0.01f ? "move" : "idle";
+            _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSprite(action, timeStamp, _unit.Movement.LookAngle);
             _spriteRenderer.sortingOrder = CalculateSortingOrder();
         }
 
