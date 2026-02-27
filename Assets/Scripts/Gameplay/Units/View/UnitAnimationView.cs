@@ -4,6 +4,7 @@ using Extentions;
 using Gameplay.Data.Configs;
 using Gameplay.Enviroment;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Units.View
 {
@@ -17,6 +18,8 @@ namespace Gameplay.Units.View
         private int _defaultSortingOrder;
         private string _currentAction;
         private float _currentActionTime;
+        
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         private void Start()
         {
@@ -28,6 +31,9 @@ namespace Gameplay.Units.View
 
         private void Update()
         {
+            if (TacticalPause.IsPaused)
+                return;
+            
             string newAction = GetCurrentUnitAction();
             if (newAction.Equals(_currentAction))
             {
@@ -53,7 +59,10 @@ namespace Gameplay.Units.View
         {
             if (_unit.Stagger.IsStaggered)
                 return _unit.Stagger.Action;
-            return _unit.Movement.HasPath ? "move" : "idle";
+            if (_unit.Stagger.RecoveryFramesLeft < -1)
+                return _unit.Movement.HasPath ? "move" : "idle";
+            _currentActionTime = 0;
+            return _unit.Stagger.Action;
         }
 
         private int CalculateSortingOrder()
