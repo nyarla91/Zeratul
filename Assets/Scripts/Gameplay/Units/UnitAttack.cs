@@ -16,13 +16,13 @@ namespace Gameplay.Units
     {
         [SerializeField] private OrderType _attackOrder;
         [SerializeField] private UnitValidatorGroup _autoAttackValidators;
-        
-        private UnitWeapon _weapon;
 
-        public bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_attackOrder);
+        public bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_attackOrder) || Unit.Stagger.IsStaggered;
         
         public Unit CurrentTarget { get; private set; }
         public bool IsAttacking => CurrentTarget != null;
+
+        private UnitWeaponType Weapon => UnitType.WeaponType;
 
         public Unit ClosestTarget
         {
@@ -39,8 +39,6 @@ namespace Gameplay.Units
         {
             if ( ! IsAbleToAttack)
                 return;
-            Timer cooldown = new(this, unitType.WeaponType.Cooldown, TacticalPause);
-            _weapon = new UnitWeapon(unitType.WeaponType, cooldown);
         }
 
         public void StartAttacking(Unit target)
@@ -73,7 +71,7 @@ namespace Gameplay.Units
 
         private void FixedUpdate()
         {
-            if (TacticalPause.IsPaused)
+            if (TacticalPause.IsPaused || ! IsAbleToAttack)
                 return;
             
             TryAutoAttack();
@@ -87,7 +85,7 @@ namespace Gameplay.Units
                 return;
             }
                     
-            if (Vector3.Distance(Unit.Position, CurrentTarget.Position) > _weapon.Type.MaxDistance)
+            if (Vector3.Distance(Unit.Position, CurrentTarget.Position) > Weapon.MaxDistance)
             {
                 Unit.Movement.Move(CurrentTarget.Position);
                 return;
@@ -99,23 +97,14 @@ namespace Gameplay.Units
             if ( ! Mathf.Approximately(Unit.Movement.LookAngle, targetAngle))
                 return;
                 
-            if ( ! _weapon.Cooldown.IsIdle)
-                return;
-                
-            CurrentTarget.Life.TakeDamage(_weapon.Type.BaseDamage);
-            _weapon.Cooldown.Restart();
+            AttackUnit(CurrentTarget);
         }
-    }
 
-    public class UnitWeapon
-    {
-        public UnitWeaponType Type { get; }
-        public Timer Cooldown { get; }
-
-        public UnitWeapon(UnitWeaponType type, Timer cooldown)
+        private async void AttackUnit(Unit target)
         {
-            Type = type;
-            Cooldown = cooldown;
+            if ( ! await Unit.Stagger.TryBegin(Weapon.WinduoTime, Weapon.RecoveryTime, "attack"))
+                return;
+            target.Life.TakeDamage(Weapon.BaseDamage);
         }
     }
 }

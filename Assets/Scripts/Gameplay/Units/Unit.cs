@@ -14,6 +14,7 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitVisibility))]
     [RequireComponent(typeof(UnitAbilities))]
     [RequireComponent(typeof(UnitStatuses))]
+    [RequireComponent(typeof(UnitStagger))]
     public class Unit : MonoBehaviour
     {
         private UnitOwnership _ownership;
@@ -25,6 +26,7 @@ namespace Gameplay.Units
         private UnitVisibility _visibility;
         private UnitAbilities _abilities;
         private UnitStatuses _statuses;
+        private UnitStagger _stagger;
 
         public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
@@ -35,6 +37,7 @@ namespace Gameplay.Units
         public UnitVisibility Visibility => _visibility ??= GetComponent<UnitVisibility>();
         public UnitAbilities Abilities => _abilities ??= GetComponent<UnitAbilities>();
         public UnitStatuses Statuses => _statuses ??= GetComponent<UnitStatuses>();
+        public UnitStagger Stagger => _stagger ??= GetComponent<UnitStagger>();
 
         public Vector2 Position => transform.position;
 

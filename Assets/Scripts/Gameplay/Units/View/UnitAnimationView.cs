@@ -15,7 +15,9 @@ namespace Gameplay.Units.View
         [SerializeField] private Unit _unit;
 
         private int _defaultSortingOrder;
-        
+        private string _currentAction;
+        private float _currentActionTime;
+
         private void Start()
         {
             _spriteRenderer.transform.localPosition = _unit.Type.SpriteMap.SpriteHeight * Vector2.up;
@@ -26,16 +28,32 @@ namespace Gameplay.Units.View
 
         private void Update()
         {
+            string newAction = GetCurrentUnitAction();
+            if (newAction.Equals(_currentAction))
+            {
+                _currentActionTime += Time.deltaTime;
+            }
+            else
+            {
+                _currentActionTime = 0;
+                _currentAction = newAction;
+            }
+            
             if (!_unit.Visibility.IsVisibleToPlayer)
             {
                 _spriteRenderer.sprite = null;
                 return;
             }
 
-            float timeStamp = Time.time;
-            string action = _unit.Movement.Velocity.magnitude > 0.01f ? "move" : "idle";
-            _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSprite(action, timeStamp, _unit.Movement.LookAngle);
+            _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSprite(_currentAction, _currentActionTime, _unit.Movement.LookAngle);
             _spriteRenderer.sortingOrder = CalculateSortingOrder();
+        }
+
+        private string GetCurrentUnitAction()
+        {
+            if (_unit.Stagger.IsStaggered)
+                return _unit.Stagger.Action;
+            return _unit.Movement.HasPath ? "move" : "idle";
         }
 
         private int CalculateSortingOrder()

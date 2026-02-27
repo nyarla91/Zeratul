@@ -111,6 +111,9 @@ namespace Gameplay.Units
             _rigidbody.constraints = IsHoldingPosition ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.FreezeRotation;
             _rigidbody.mass = Displaceable ? 0.001f : 1;
             
+            if (Unit.Stagger.IsStaggered)
+                return;
+            
             float maxDelta = UnitType.RotationSpeed * Time.fixedDeltaTime;
             LookAngle = Mathf.MoveTowardsAngle(LookAngle, TargetLookAngle, maxDelta);
             
