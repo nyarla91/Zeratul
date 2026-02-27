@@ -66,13 +66,13 @@ namespace Gameplay.Data.Orders
                 order.Actor.Movement.Stop();
                 
                 float angleToTarget = order.Actor.Position.DirectionTo(destination).ToDegrees();
-                if (Mathf.DeltaAngle(order.Actor.Movement.LookAngle, angleToTarget) > AbilityType.MaxAngleToTarget)
+                if (ability.Type.MustLookAtTarget && ! order.Actor.Movement.LookAngle.Equals(angleToTarget))
                 {
                     order.Actor.Movement.RotateTowards(angleToTarget);
                     continue;
                 }
         
-                if (AbilityType.TryCast(ability, order.Target))
+                if (await order.Actor.Abilities.TryCast(ability, order.Target))
                     return;
             }
         }

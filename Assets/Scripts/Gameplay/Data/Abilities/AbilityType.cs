@@ -11,6 +11,8 @@ namespace Gameplay.Data.Abilities
     public class AbilityType : ScriptableObject
     {
         [Tooltip("Cooldown between uses (in fixed frames)")]
+        [SerializeField] private int _windupTime;
+        [SerializeField] private int _recoveryTime;
         [SerializeField] private int _cooldown;
         [SerializeField] private int _energyCost;
         [HorizontalLine(2, EColor.White)]
@@ -24,21 +26,26 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private UnitValidatorGroup _targetValidators;
         [Tooltip("Effects applied to caster itself")]
         [SerializeField] private EffectTargetingUnit[] _casterEffects;
-        [Tooltip("Effects applied to caster's position")]
-        [SerializeField] private EffectTargetingPoint[] _casterPointEffects;
         [Tooltip("Max delta angle towards target to cast this ability")]
-        [SerializeField] private float _maxAngleToTarget = 360;
+        [SerializeField] private bool _mustLookAtTarget;
         [Tooltip("Effects applied to target unit")]
         [SerializeField] private EffectTargetingUnit[] _unitTargetEffects;
         [Tooltip("Effects applied to target point")]
         [SerializeField] private EffectTargetingPoint[] _pointTargetEffects;
+        [SerializeField] private string _animationAction;
 
         public TargetRequirement TargetRequirement => _targetRequirement;
         public UnitValidatorGroup TargetValidators => _targetValidators;
         public float MaxDistance => _maxDistance;
         public int EnergyCost => _energyCost;
+        public int WindupTime => _windupTime;
+        public int RecoveryTime => _recoveryTime;
         public int Cooldown => _cooldown;
-        public float MaxAngleToTarget => _maxAngleToTarget;
+        public bool MustLookAtTarget => _mustLookAtTarget;
+        public EffectTargetingUnit[] CasterEffects => _casterEffects;
+        public EffectTargetingUnit[] UnitTargetEffects => _unitTargetEffects;
+        public EffectTargetingPoint[] PointTargetEffects => _pointTargetEffects;
+        public string AnimationAction => _animationAction;
 
         public bool CanBeCast(Ability ability, OrderTarget target)
         {
@@ -47,47 +54,12 @@ namespace Gameplay.Data.Abilities
                    && ability.Caster.Abilities.EnergyPoints >= EnergyCost
                    && ability.IsReady;
         }
-        
-        public bool TryCast(Ability ability, OrderTarget target)
-        {
-            if ( ! ability.IsReady)
-                return false;
-
-            foreach (EffectTargetingUnit effect in _casterEffects)
-            {
-                effect.Apply(ability.Caster, ability.Caster);
-            }
-            foreach (EffectTargetingPoint effect in _casterPointEffects)
-            {
-                effect.Apply(ability.Caster, ability.Caster.Position);
-            }
-
-            if (target.Unit)
-            {
-                foreach (EffectTargetingUnit effect in _unitTargetEffects)
-                {
-                    effect.Apply(ability.Caster, target.Unit);
-                }
-            }
-            else
-            {
-                foreach (EffectTargetingPoint effect in _pointTargetEffects)
-                {
-                    effect.Apply(ability.Caster, target.Point);
-                }
-            }
-            
-            ability.StartCooldown();
-            ability.Caster.Abilities.SpendEnergy(EnergyCost);
-            return true;
-        }
 
         private void OnValidate()
         {
             if (TargetRequirement != TargetRequirement.None)
                 return;
             _maxDistance = 0;
-            _maxAngleToTarget = 360;
         }
     }
 }

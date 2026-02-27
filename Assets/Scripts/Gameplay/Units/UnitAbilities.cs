@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Abilities;
+using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
 using UnityEngine;
 using Zenject;
@@ -41,6 +43,41 @@ namespace Gameplay.Units
             {
                 _abilities.Add(abilityOrder.AbilityType, new Ability(abilityOrder.AbilityType, Unit, TacticalPause));
             }
+        }
+        
+        public async UniTask<bool> TryCast(Ability ability, OrderTarget target)
+        {
+            if ( ! ability.CanBeCast(target))
+                return false;
+            
+            AbilityType abilityType = ability.Type;
+            
+            if ( ! await Unit.Stagger.TryBegin(abilityType.WindupTime, abilityType.RecoveryTime, abilityType.AnimationAction))
+                return false;
+
+            foreach (EffectTargetingUnit effect in abilityType.CasterEffects)
+            {
+                effect.Apply(ability.Caster, ability.Caster);
+            }
+
+            if (target.Unit)
+            {
+                foreach (EffectTargetingUnit effect in abilityType.UnitTargetEffects)
+                {
+                    effect.Apply(ability.Caster, target.Unit);
+                }
+            }
+            else
+            {
+                foreach (EffectTargetingPoint effect in abilityType.PointTargetEffects)
+                {
+                    effect.Apply(ability.Caster, target.Point);
+                }
+            }
+            
+            ability.StartCooldown();
+            ability.Caster.Abilities.SpendEnergy(abilityType.EnergyCost);
+            return true;
         }
 
         public void SpendEnergy(int energy)

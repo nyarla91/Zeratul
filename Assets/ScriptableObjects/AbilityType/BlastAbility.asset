@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
-  m_Name: QuickAbility
+  m_Name: BlastAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
+  _windupTime: 35
+  _recoveryTime: 10
   _cooldown: 250
   _energyCost: 0
   _targetRequirement: 1
@@ -21,9 +23,8 @@ MonoBehaviour:
   _targetValidators:
     _unitValidators: []
   _casterEffects: []
-  _casterPointEffects: []
-  _maxAngleToTarget: 0
+  _mustLookAtTarget: 1
   _unitTargetEffects: []
-  _applyPointEffectsToUnit: 1
   _pointTargetEffects:
-  - {fileID: 11400000, guid: 757e5c5c3c32a2c4d8331dc66056af68, type: 2}
+  - {fileID: 11400000, guid: 4e2a44600466204498b069dee5d9d4eb, type: 2}
+  _animationAction: ability

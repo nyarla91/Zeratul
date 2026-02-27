@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c29638cefae4b53acadb2b9738ba9e5, type: 3}
-  m_Name: AOE10_Damage30
+  m_Name: AOE3_Damage30
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
   _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _radius: 10
+  _radius: 3
   _applyValidators:
-    _unitValidators:
-    - {fileID: 11400000, guid: 7f2504c0303dc9d4988ac5e1f940d5b9, type: 2}
-    - {fileID: 11400000, guid: e35c596869c65c840abce09b740dd570, type: 2}
+    _unitValidators: []
   _effects:
   - {fileID: 11400000, guid: 5a6db6bfa81845f41b7d8cf004b1bdf6, type: 2}

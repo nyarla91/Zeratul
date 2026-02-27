@@ -1398,7 +1398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Solda
+      value: Player - Snake
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -3517,7 +3517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Solda
+      value: Player - Snake
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -5509,11 +5509,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.6
+      value: 33.4
       objectReference: {fileID: 0}
     - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.8
+      value: 15.22
       objectReference: {fileID: 0}
     - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5557,7 +5557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Solda
+      value: Player - Snake
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -5756,12 +5756,12 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.007936537, y: 0.7697904, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
-  m_SortOrder: 1
+  m_SortOrder: 0
   m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
@@ -15420,7 +15420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Solda
+      value: Player - Snake
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -16122,7 +16122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Solda
+      value: Player - Snake
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -24041,8 +24041,8 @@ MonoBehaviour:
   _orderIcon: {fileID: 1454684848}
   _orderName: {fileID: 927343563}
   _validationMessage: {fileID: 855361459}
-  _ellipseThickness: 0.5
-  _ellipseColor: {r: 1, g: 1, b: 1, a: 0.43137255}
+  _ellipseThickness: 0.2
+  _ellipseColor: {r: 1, g: 1, b: 1, a: 0.29803923}
 --- !u!1 &2122919958
 GameObject:
   m_ObjectHideFlags: 0
