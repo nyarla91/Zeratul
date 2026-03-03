@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25322e97e5df4209b7359e979fc8e3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.StatusRendering.RangeEllipseStatusRenderer
+  _alwaysVisible: 1
   _radius: 15
   _thickness: 0.3
   _playerColor: {r: 0.5330188, g: 0.93052596, b: 1, a: 0.050980393}
-  _enemyColor: {r: 0.39215684, g: 0.5107052, b: 1, a: 0.101960786}
+  _enemyColor: {r: 0.39215684, g: 1, b: 0.5702101, a: 0.019607844}
 --- !u!212 &6245815454469927237
 SpriteRenderer:
   m_ObjectHideFlags: 0

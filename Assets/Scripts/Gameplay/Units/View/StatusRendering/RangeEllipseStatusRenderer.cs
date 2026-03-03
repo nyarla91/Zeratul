@@ -32,7 +32,7 @@ namespace Gameplay.Units.View.StatusRendering
                 return;
             
             _rangeEllipse.Move(transform.position);
-            if (Status.Host.Visibility.IsVisibleToPlayer)
+            if (AlwaysVisible || Status.Host.Visibility.IsVisibleToPlayer)
                 _rangeEllipse.Show();
             else
                 _rangeEllipse.Hide();

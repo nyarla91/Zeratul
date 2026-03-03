@@ -6,8 +6,11 @@ namespace Gameplay.Units.View.StatusRendering
 {
     public class StatusRenderer : MonoBehaviour
     {
+        [SerializeField] private bool _alwaysVisible;
+        
         private StatusRendererFactory Factory { get; set; }
         public IStatusInfo Status { get; private set; }
+        public bool AlwaysVisible => _alwaysVisible;
 
         public void Init(StatusRendererFactory factory)
         {
