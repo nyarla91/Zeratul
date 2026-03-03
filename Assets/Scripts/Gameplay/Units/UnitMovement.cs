@@ -25,7 +25,7 @@ namespace Gameplay.Units
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
         public bool HasPath => _path.Length > 0;
-        public bool Displaceable => ! HasPath && ! IsHoldingPosition;
+        public bool Displaceable => ! HasPath && ! IsHoldingPosition && ! UnitType.IsImmobile;
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public float LookAngle { get; private set; }
         public float TargetLookAngle { get; private set; }
@@ -47,7 +47,7 @@ namespace Gameplay.Units
 
         public void Move(Vector2 destination)
         {
-            if (HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
+            if (UnitType.IsImmobile || HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
             NodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
             //ReducePathToNecessary();
@@ -108,7 +108,10 @@ namespace Gameplay.Units
             if (TacticalPause.IsPaused)
                 return;
 
-            _rigidbody.constraints = IsHoldingPosition ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.FreezeRotation;
+            _rigidbody.constraints = (IsHoldingPosition || UnitType.IsImmobile)
+                ? RigidbodyConstraints2D.FreezeAll
+                : RigidbodyConstraints2D.FreezeRotation;
+            
             _rigidbody.mass = Displaceable ? 0.001f : 1;
             
             if (Unit.Stagger.IsStaggered)

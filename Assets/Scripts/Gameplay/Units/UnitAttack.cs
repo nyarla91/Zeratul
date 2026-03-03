@@ -57,7 +57,17 @@ namespace Gameplay.Units
         }
 
         public bool CanAttackUnit(Unit target)
-            => target && target != Unit && target.Visibility.CanBeTargetedBy(Unit) && target.Life.IsAlive;
+        {
+            if (target == Unit)
+                return false;
+            if (target.Life.IsDead)
+                return false;
+            if (UnitType.IsImmobile && ! IsUnitInRange(target))
+                return false;
+            if ( ! target.Visibility.CanBeTargetedBy(Unit))
+                return false;
+            return true;
+        }
 
         private void TryAutoAttack()
         {
@@ -85,7 +95,7 @@ namespace Gameplay.Units
                 return;
             }
                     
-            if (Vector3.Distance(Unit.Position, CurrentTarget.Position) > Weapon.MaxDistance)
+            if ( ! IsUnitInRange(CurrentTarget))
             {
                 Unit.Movement.Move(CurrentTarget.Position);
                 return;
@@ -98,6 +108,11 @@ namespace Gameplay.Units
                 return;
                 
             AttackUnit(CurrentTarget);
+        }
+
+        private bool IsUnitInRange(Unit other)
+        {
+            return Isometry.Distance(Unit.Position, other.Position) < Weapon.MaxDistance;
         }
 
         private async void AttackUnit(Unit target)

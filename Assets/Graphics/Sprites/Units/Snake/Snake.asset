@@ -796,6 +796,23 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 46dab4e6184dd484f8ab701e750d0afd, type: 3}
       - {fileID: 21300000, guid: 836f7d836f27f5f40b6cfaecf37cf2ec, type: 3}
       - {fileID: 21300000, guid: acde335b343e72e4fba827e61d33aa4d, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: a9efa111ecb563544b96cec07d48ac35, type: 3}
+      - {fileID: 21300000, guid: 89b1f3034d9ffe6448f332d6663cb7e6, type: 3}
+      - {fileID: 21300000, guid: af41f6fae62d6fa458821d7089b4ea77, type: 3}
+      - {fileID: 21300000, guid: 92c35fa0f933e094fb82a5de968e2002, type: 3}
+      - {fileID: 21300000, guid: d95d0d345ae6d984d9d8e7da88fb7ed6, type: 3}
+      - {fileID: 21300000, guid: 5b929dcc555bfd944aa5d38c575662e9, type: 3}
+      - {fileID: 21300000, guid: 6c0296a1a39f2e94681f591e35f80af6, type: 3}
+      - {fileID: 21300000, guid: ea61283bd8c5b3b448eb66ee04addbd4, type: 3}
+      - {fileID: 21300000, guid: 067c1247034d4bd439ce45ad50a95cb1, type: 3}
+      - {fileID: 21300000, guid: eb52fa77f5fa56947a05e57f83a439da, type: 3}
+      - {fileID: 21300000, guid: d4bbf3e9a6267b84ba4fa353355aa214, type: 3}
+      - {fileID: 21300000, guid: ee13575990a9a264d99cc124c4f3561f, type: 3}
+      - {fileID: 21300000, guid: 24efe48dcb319a843bd3879c9ad2e811, type: 3}
+      - {fileID: 21300000, guid: 8798af8769405874fac05fb3ac7cd7a1, type: 3}
+      - {fileID: 21300000, guid: 9a0ffab27d8b8a342ae68495ce170c5c, type: 3}
+      - {fileID: 21300000, guid: 87204941371c5554c92348293546f452, type: 3}
   - <Name>k__BackingField: snake-move
     <Action>k__BackingField: move
     <FrameRate>k__BackingField: 10
@@ -903,6 +920,23 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 894722f87e87b2c48bca1eb1a901878b, type: 3}
       - {fileID: 21300000, guid: 8584832722a6a5748b7f9734a2bd76e0, type: 3}
       - {fileID: 21300000, guid: d7b2f4c6facde5e4ebf5852b41cff132, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 99615457397b1fe48a8d336427120574, type: 3}
+      - {fileID: 21300000, guid: ce45e64f0c4595241b63f3d80a394647, type: 3}
+      - {fileID: 21300000, guid: 8ee6f0c93778dbc44ba35aba71b04998, type: 3}
+      - {fileID: 21300000, guid: ad9235c8ca72dd24d993fbfe89849610, type: 3}
+      - {fileID: 21300000, guid: 69027f2bc4a1ac64091b60240d02b876, type: 3}
+      - {fileID: 21300000, guid: b75aa9a96bfdaf345860f0db92a915d6, type: 3}
+      - {fileID: 21300000, guid: 458a3766c99b7194fb6f5db8195ee0eb, type: 3}
+      - {fileID: 21300000, guid: 246219a5abedc0a4091593de5d275e67, type: 3}
+      - {fileID: 21300000, guid: d3c730c59cab20c4a80ea793801f2a24, type: 3}
+      - {fileID: 21300000, guid: 831e671e29928f041a6c7c037442a04c, type: 3}
+      - {fileID: 21300000, guid: 6047ddd7a80c7fc48b3a6fb3651a075c, type: 3}
+      - {fileID: 21300000, guid: 3955fb6d760fdef4eb588fcdfd01bad2, type: 3}
+      - {fileID: 21300000, guid: 79485a5456950914a9cc2f78bf07dc8d, type: 3}
+      - {fileID: 21300000, guid: 5f51b4e570ce8c04e951e62c1d53a419, type: 3}
+      - {fileID: 21300000, guid: a1cce0335ccbcd1459871d617764bf09, type: 3}
+      - {fileID: 21300000, guid: e5ce9a922a3ecdb4081e1aa2fc1a0c1f, type: 3}
   - <Name>k__BackingField: snake-attack
     <Action>k__BackingField: attack
     <FrameRate>k__BackingField: 15
@@ -1044,6 +1078,23 @@ MonoBehaviour:
       - {fileID: 21300000, guid: d277f2a771dde10418ca34d4a0173cc6, type: 3}
       - {fileID: 21300000, guid: 748ee038db0b7d7458da9d369b0294aa, type: 3}
       - {fileID: 21300000, guid: b2679c8971028dc4b95b8cec0851b143, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 5b8f1777d69c85949b283b94f4a66297, type: 3}
+      - {fileID: 21300000, guid: 81d9bfb5944efc24585598479270856c, type: 3}
+      - {fileID: 21300000, guid: 427b0ee0e68b2b340b08b1a83c23e47d, type: 3}
+      - {fileID: 21300000, guid: 3d322d872a9be524d8a2fd88acc27bf1, type: 3}
+      - {fileID: 21300000, guid: c274ecfa7e6631149bd55463bb31fd44, type: 3}
+      - {fileID: 21300000, guid: 7805f3450315e2b45a58dc451fe8a02d, type: 3}
+      - {fileID: 21300000, guid: f29654293826c3841a68a7d769c1143e, type: 3}
+      - {fileID: 21300000, guid: c8248712b9c9a4844ba6c7fa236eb0a6, type: 3}
+      - {fileID: 21300000, guid: 25ead1bb198c60e43ad6c99b3c1cb740, type: 3}
+      - {fileID: 21300000, guid: 6369165aebb0f5646abd74f5a7daa0fe, type: 3}
+      - {fileID: 21300000, guid: fe833bd818320244c985e6ecfb866df2, type: 3}
+      - {fileID: 21300000, guid: 57d10599911fa5d4ebeaa86fc90555f6, type: 3}
+      - {fileID: 21300000, guid: b6524f508cdca1a4f8558728ca9d3f29, type: 3}
+      - {fileID: 21300000, guid: 237c8f86f9ab91d4a9ece5b9e812b27c, type: 3}
+      - {fileID: 21300000, guid: 823f194b6284f884c8b791052f1f7c6f, type: 3}
+      - {fileID: 21300000, guid: 9d707a580a9928b4189c44e59aeefef8, type: 3}
   - <Name>k__BackingField: snake-cast
     <Action>k__BackingField: ability
     <FrameRate>k__BackingField: 12
@@ -1253,4 +1304,21 @@ MonoBehaviour:
       - {fileID: 21300000, guid: d479b53fb0f2fc74f967216268c3072d, type: 3}
       - {fileID: 21300000, guid: 96943f1763e785242b69098173e2ab8e, type: 3}
       - {fileID: 21300000, guid: 3b776d75e9832e34e88a8bb73728e9d1, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: a3dbddfb238196b4694c78562db23599, type: 3}
+      - {fileID: 21300000, guid: 36042565fe0773d41873742e0296708f, type: 3}
+      - {fileID: 21300000, guid: 3eb7b619cccd05f41847fcad9d5c7873, type: 3}
+      - {fileID: 21300000, guid: 7ad90148c873e7c418252126795fe340, type: 3}
+      - {fileID: 21300000, guid: a2f10008b96cff746a557d38b1428230, type: 3}
+      - {fileID: 21300000, guid: 72c5294954c613041aa8e1c47d289ac3, type: 3}
+      - {fileID: 21300000, guid: e22813ae28b6aa14fac6a3b0583e5c17, type: 3}
+      - {fileID: 21300000, guid: 4299f8d9a90c0304d8d44cdc8260f0ea, type: 3}
+      - {fileID: 21300000, guid: 54dc00bfd4b43cf4ca48aac27ca6ce32, type: 3}
+      - {fileID: 21300000, guid: 5e0bcfb49e9d4c74c887ca082e3dd678, type: 3}
+      - {fileID: 21300000, guid: 00d7f5185bd899e4083caaf43f4c13e5, type: 3}
+      - {fileID: 21300000, guid: 3ea37642a9b3ee242b9bcf4cf599631d, type: 3}
+      - {fileID: 21300000, guid: c7171b1da87806947a38f59d766d5980, type: 3}
+      - {fileID: 21300000, guid: 0de6f7e738ad5a74c9c7ce38245f4997, type: 3}
+      - {fileID: 21300000, guid: 7447da761469a82459a79f26d270c80a, type: 3}
+      - {fileID: 21300000, guid: 9879996317612874184f1619d5af10c3, type: 3}
   _spriteHeight: 0

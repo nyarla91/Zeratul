@@ -77,7 +77,7 @@ namespace Gameplay.Data
 
             foreach (KeyValuePair<string, List<UnitRawFrame>> rawAnimation in rawAnimations)
             {
-                int framesCount = rawAnimation.Value.Max(a => a.Frame);
+                int framesCount = rawAnimation.Value.Max(a => a.Frame) + 1;
 
                 UnitAnimationFrame[] animationFrames = new UnitAnimationFrame[framesCount];
                 
@@ -140,7 +140,7 @@ namespace Gameplay.Data
             Frames = frames;
         }
 
-        public Sprite GetSprite(int frame, int direction) => Frames[frame].Directions[direction];
+        public Sprite GetSprite(int frame, int direction) => Frames[frame].GetDirection(direction);
 
         public void UpdateFrames(UnitAnimationFrame[] frames)
         {
@@ -155,9 +155,11 @@ namespace Gameplay.Data
         
         public UnitAnimationFrame(Sprite[] direction)
         {
-            if (direction.Length != UnitSpriteMap.Directions)
-                throw new ArgumentException($"Incorrect number of Directions. Must be {UnitSpriteMap.Directions}");
+            if (direction.Length != UnitSpriteMap.Directions && direction.Length != 1)
+                throw new ArgumentException($"Incorrect number of Directions. Must be {UnitSpriteMap.Directions} or 1");
             Directions = direction;
         }
+
+        public Sprite GetDirection(int direction) => Directions.Length == 1 ? Directions[0] : Directions[direction];
     }
 }

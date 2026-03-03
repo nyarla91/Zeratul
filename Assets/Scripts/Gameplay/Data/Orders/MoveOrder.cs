@@ -52,7 +52,7 @@ namespace Gameplay.Data.Orders
 
         public override bool CanBeIssued(Order order)
         {
-            return order.Target.Unit != order.Actor;
+            return ! order.Actor.Type.IsImmobile && order.Target.Unit != order.Actor;
         }
     }
 }

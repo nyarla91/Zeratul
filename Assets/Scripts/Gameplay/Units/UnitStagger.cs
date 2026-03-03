@@ -7,7 +7,7 @@ namespace Gameplay.Units
     {
         public int RecoveryFramesLeft { get; private set; }
         public bool IsStaggered { get; private set; }
-        public string Action { get; private set; }
+        public string Action { get; private set; } = "idle";
         
         [Inject] private TacticalPause TacticalPause { get; set; }
         

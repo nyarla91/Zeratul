@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
+  m_Name: AttackTurret
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitSpriteMap
+  _sprites:
+  - {fileID: 21300000, guid: b9b2f076b4577b2429ae87012e2e1078, type: 3}
+  - {fileID: 21300000, guid: 70d0667ad9865574b836e2d8aceb3562, type: 3}
+  - {fileID: 21300000, guid: da9bf8a7dae095c4ba436e91ffa8e1cc, type: 3}
+  - {fileID: 21300000, guid: a62ed8d8a4759b549873e3ae24763aba, type: 3}
+  - {fileID: 21300000, guid: eab30c80694ff1e4c8edacb88402396d, type: 3}
+  - {fileID: 21300000, guid: ceddbe9a3f7d0204eb5bcda6d556ca35, type: 3}
+  - {fileID: 21300000, guid: 574b1b89fd9f4604cb9259185b465930, type: 3}
+  - {fileID: 21300000, guid: 9e2079ab28b9cda4fb01998957abbedf, type: 3}
+  - {fileID: 21300000, guid: 5c44623e03111fd46a3eea3556af23e6, type: 3}
+  - {fileID: 21300000, guid: a785031c7e595fe45b6b7d71f7732663, type: 3}
+  - {fileID: 21300000, guid: 8835227cee297e84fad93bdcb1352a8e, type: 3}
+  - {fileID: 21300000, guid: afd1c87e409d714458ded9f72ba57b2f, type: 3}
+  - {fileID: 21300000, guid: ec287e04590a6ac4cb3e57693d462294, type: 3}
+  - {fileID: 21300000, guid: 54cb372a2384cd14c94f85f3e09b7e16, type: 3}
+  - {fileID: 21300000, guid: cda1bf64b24f1bc49b6d94cb73f0a6be, type: 3}
+  - {fileID: 21300000, guid: 55787dbfd73df45478061726f6796411, type: 3}
+  - {fileID: 21300000, guid: b2a752c1d09ccde419fd33499c9458f7, type: 3}
+  - {fileID: 21300000, guid: c3c79431004dd16488e3534a76d76e5a, type: 3}
+  - {fileID: 21300000, guid: 56c7f2be00cc1eb4d9980e5dc29053b7, type: 3}
+  - {fileID: 21300000, guid: 68e2c3d0afe6d3f49979c27fe3247850, type: 3}
+  - {fileID: 21300000, guid: 6dc46ebac50c17e47ba9c2dd324f908c, type: 3}
+  - {fileID: 21300000, guid: 8f7db10c88b3d314c99e44c1bc0c4875, type: 3}
+  - {fileID: 21300000, guid: b208b2b7259a0864abb89566ac26fe6f, type: 3}
+  - {fileID: 21300000, guid: 7ea0ba5f3cdb77140824eaf67c67a31e, type: 3}
+  - {fileID: 21300000, guid: 48af313faa56f81429166777455e1a70, type: 3}
+  - {fileID: 21300000, guid: ac26afba0a16baa438bb52fce7fde955, type: 3}
+  - {fileID: 21300000, guid: 173ff852fbac535448b7c01332126dc4, type: 3}
+  - {fileID: 21300000, guid: 0820a8035d755fa48985a4855aaa8aaa, type: 3}
+  - {fileID: 21300000, guid: 75b41024a9b3e7f4da43dcc456bd3636, type: 3}
+  - {fileID: 21300000, guid: 64eb47839b6da394a896b091624cfe2d, type: 3}
+  - {fileID: 21300000, guid: cd69ed12ce7dd1b468f496e3d433cd24, type: 3}
+  - {fileID: 21300000, guid: 1c22967a27d149b49940c137880ed9f7, type: 3}
+  _animations:
+  - <Name>k__BackingField: at-attack
+    <Action>k__BackingField: attack
+    <FrameRate>k__BackingField: 5
+    <Loop>k__BackingField: 1
+    <Frames>k__BackingField:
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: b9b2f076b4577b2429ae87012e2e1078, type: 3}
+      - {fileID: 21300000, guid: 70d0667ad9865574b836e2d8aceb3562, type: 3}
+      - {fileID: 21300000, guid: da9bf8a7dae095c4ba436e91ffa8e1cc, type: 3}
+      - {fileID: 21300000, guid: a62ed8d8a4759b549873e3ae24763aba, type: 3}
+      - {fileID: 21300000, guid: eab30c80694ff1e4c8edacb88402396d, type: 3}
+      - {fileID: 21300000, guid: ceddbe9a3f7d0204eb5bcda6d556ca35, type: 3}
+      - {fileID: 21300000, guid: 574b1b89fd9f4604cb9259185b465930, type: 3}
+      - {fileID: 21300000, guid: 9e2079ab28b9cda4fb01998957abbedf, type: 3}
+      - {fileID: 21300000, guid: 5c44623e03111fd46a3eea3556af23e6, type: 3}
+      - {fileID: 21300000, guid: a785031c7e595fe45b6b7d71f7732663, type: 3}
+      - {fileID: 21300000, guid: 8835227cee297e84fad93bdcb1352a8e, type: 3}
+      - {fileID: 21300000, guid: afd1c87e409d714458ded9f72ba57b2f, type: 3}
+      - {fileID: 21300000, guid: ec287e04590a6ac4cb3e57693d462294, type: 3}
+      - {fileID: 21300000, guid: 54cb372a2384cd14c94f85f3e09b7e16, type: 3}
+      - {fileID: 21300000, guid: cda1bf64b24f1bc49b6d94cb73f0a6be, type: 3}
+      - {fileID: 21300000, guid: 55787dbfd73df45478061726f6796411, type: 3}
+  - <Name>k__BackingField: at-idle
+    <Action>k__BackingField: idle
+    <FrameRate>k__BackingField: 5
+    <Loop>k__BackingField: 1
+    <Frames>k__BackingField:
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: b2a752c1d09ccde419fd33499c9458f7, type: 3}
+      - {fileID: 21300000, guid: c3c79431004dd16488e3534a76d76e5a, type: 3}
+      - {fileID: 21300000, guid: 56c7f2be00cc1eb4d9980e5dc29053b7, type: 3}
+      - {fileID: 21300000, guid: 68e2c3d0afe6d3f49979c27fe3247850, type: 3}
+      - {fileID: 21300000, guid: 6dc46ebac50c17e47ba9c2dd324f908c, type: 3}
+      - {fileID: 21300000, guid: 8f7db10c88b3d314c99e44c1bc0c4875, type: 3}
+      - {fileID: 21300000, guid: b208b2b7259a0864abb89566ac26fe6f, type: 3}
+      - {fileID: 21300000, guid: 7ea0ba5f3cdb77140824eaf67c67a31e, type: 3}
+      - {fileID: 21300000, guid: 48af313faa56f81429166777455e1a70, type: 3}
+      - {fileID: 21300000, guid: ac26afba0a16baa438bb52fce7fde955, type: 3}
+      - {fileID: 21300000, guid: 173ff852fbac535448b7c01332126dc4, type: 3}
+      - {fileID: 21300000, guid: 0820a8035d755fa48985a4855aaa8aaa, type: 3}
+      - {fileID: 21300000, guid: 75b41024a9b3e7f4da43dcc456bd3636, type: 3}
+      - {fileID: 21300000, guid: 64eb47839b6da394a896b091624cfe2d, type: 3}
+      - {fileID: 21300000, guid: cd69ed12ce7dd1b468f496e3d433cd24, type: 3}
+      - {fileID: 21300000, guid: 1c22967a27d149b49940c137880ed9f7, type: 3}
+  _spriteHeight: 0

@@ -23,6 +23,7 @@ namespace Gameplay.Data
         [SerializeField] private int _energyRestoreDelay;
         [SerializeField] private float _energyPointsPerSecond;
         [HorizontalLine(2, EColor.White)]
+        [SerializeField] private bool _isImmobile;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _size;
         [SerializeField] private float _rotationSpeed;
@@ -44,6 +45,7 @@ namespace Gameplay.Data
         public int MaxEnergyPoints => _maxEnergyPoints;
         public int EnergyRestoreDelay => _energyRestoreDelay;
         public float EnergyPointsPerSecond => _energyPointsPerSecond;
+        public bool IsImmobile => _isImmobile;
         public float MaxSpeed => _maxSpeed;
         public float Size => _size;
         public float RotationSpeed => _rotationSpeed;
@@ -69,6 +71,9 @@ namespace Gameplay.Data
             _size = Mathf.Max(_size, 0.05f);
             _rotationSpeed = Mathf.Max(_rotationSpeed, 0);
             _sightRadius = Mathf.Max(_sightRadius, 0);
+
+            if (IsImmobile)
+                _maxSpeed = 0;
 
             const int availableOrdersCount = 15;
             while (_availableOrders.Count < availableOrdersCount)
