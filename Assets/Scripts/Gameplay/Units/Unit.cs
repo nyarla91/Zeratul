@@ -1,5 +1,6 @@
 ﻿using System;
 using Gameplay.Data;
+using Gameplay.Data.Configs;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +9,6 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitOwnership))]
     [RequireComponent(typeof(UnitMovement))]
     [RequireComponent(typeof(UnitOrders))]
-    [RequireComponent(typeof(UnitAttack))]
     [RequireComponent(typeof(UnitLife))]
     [RequireComponent(typeof(UnitSight))]
     [RequireComponent(typeof(UnitVisibility))]
@@ -16,10 +16,11 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitStagger))]
     public class Unit : MonoBehaviour
     {
+        [SerializeField] private UnitAttackConfig _unitAttackConfig;
+        
         private UnitOwnership _ownership;
         private UnitMovement _movement;
         private UnitOrders _orders;
-        private UnitAttack _attack;
         private UnitLife _life;
         private UnitSight _sight;
         private UnitVisibility _visibility;
@@ -27,10 +28,10 @@ namespace Gameplay.Units
         private UnitStagger _stagger;
 
         public UnitAbilities Abilities { get; private set; }
+        public UnitAttack Attack { get; private set; }
         public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
         public UnitOrders Orders => _orders ??= GetComponent<UnitOrders>();
-        public UnitAttack Attack => _attack ??= GetComponent<UnitAttack>();
         public UnitLife Life => _life ??= GetComponent<UnitLife>();
         public UnitSight Sight => _sight ??= GetComponent<UnitSight>();
         public UnitVisibility Visibility => _visibility ??= GetComponent<UnitVisibility>();
@@ -51,8 +52,8 @@ namespace Gameplay.Units
             Type = type;
 
             Abilities = new UnitAbilities(this, TacticalPause);
+            Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig);
             
-            Attack.Init(type);
             Ownership.Init(type, ownedByPlayer);
             Movement.Init(type);
             Orders.Init(type);

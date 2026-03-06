@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Data;
-using Gameplay.Data.Orders;
-using Gameplay.Data.Validator;
+using Gameplay.Data.Configs;
+using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitAttack : UnitComponentMono
+    public class UnitAttack : UnitComponent
     {
-        [SerializeField] private OrderType _attackOrder;
-        [SerializeField] private UnitValidatorGroup _autoAttackValidators;
+        private readonly UnitAttackConfig _config;
+        private IPauseReadonly _tacticalPause;
 
-        public bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_attackOrder) || Unit.Stagger.IsStaggered;
+        public bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_config.DefaultAttackOrder) || Unit.Stagger.IsStaggered;
         
         public Unit CurrentTarget { get; private set; }
         public bool IsAttacking => CurrentTarget != null;
@@ -28,17 +25,29 @@ namespace Gameplay.Units
         {
             get
             {
-                HashSet<Unit> units = Unit.Sight.VisibleUnits(_autoAttackValidators);
+                HashSet<Unit> units = Unit.Sight.VisibleUnits(_config.AutoAttackValidators);
                 return units?.MinElement(unit => Isometry.Distance(Unit.Position, unit.Position));
             }
         }
-        
-        [Inject] private TacticalPause TacticalPause { get; set; }
 
-        public void Init(UnitType unitType)
+        public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig config) : base(unit)
         {
-            if ( ! IsAbleToAttack)
+            _config = config;
+            _tacticalPause = tacticalPause;
+
+            if ( ! UnitType.WeaponType)
                 return;
+            
+            Observable.EveryFixedUpdate()
+                .Where(_ => _tacticalPause.IsUnpaused)
+                .Where(_ => IsAttacking)
+                .Subscribe(_ => UpdateAttack());
+            
+            if (UnitType.WeaponType.AutoAttack)
+                Observable.EveryFixedUpdate()
+                    .Where(_ => _tacticalPause.IsUnpaused)
+                    .Where(_ => ! IsAttacking)
+                    .Subscribe(_ => TryAutoAttack());
         }
 
         public void StartAttacking(Unit target)
@@ -69,26 +78,8 @@ namespace Gameplay.Units
             return true;
         }
 
-        private void TryAutoAttack()
+        private void UpdateAttack()
         {
-            if ( ! IsAbleToAttack || ! UnitType.WeaponType.AutoAttack || IsAttacking || ! Unit.Orders.IsIdle) return;
-
-            Unit closestTarget = ClosestTarget;
-            if ( ! closestTarget) return;
-            OrderTarget target = new(default, closestTarget);
-            Unit.Orders.IssueOrder(new Order(_attackOrder, Unit, target), false);
-        }
-
-        private void FixedUpdate()
-        {
-            if (TacticalPause.IsPaused || ! IsAbleToAttack)
-                return;
-            
-            TryAutoAttack();
-            
-            if ( ! IsAttacking)
-                return;
-
             if ( ! CanAttackUnit(CurrentTarget))
             {
                 StopAttacking();
@@ -107,7 +98,18 @@ namespace Gameplay.Units
             if ( ! Mathf.Approximately(Unit.Movement.LookAngle, targetAngle))
                 return;
                 
-            AttackUnit(CurrentTarget);
+            StrikeUnit(CurrentTarget);
+        }
+
+        private void TryAutoAttack()
+        {
+            if ( ! IsAbleToAttack || IsAttacking || ! Unit.Orders.IsIdle)
+                return;
+
+            Unit closestTarget = ClosestTarget;
+            if ( ! closestTarget) return;
+            OrderTarget target = new(default, closestTarget);
+            Unit.Orders.IssueOrder(new Order(_config.DefaultAttackOrder, Unit, target), false);
         }
 
         private bool IsUnitInRange(Unit other)
@@ -115,7 +117,7 @@ namespace Gameplay.Units
             return Isometry.Distance(Unit.Position, other.Position) < Weapon.MaxDistance;
         }
 
-        private async void AttackUnit(Unit target)
+        private async void StrikeUnit(Unit target)
         {
             if ( ! await Unit.Stagger.TryBegin(Weapon.WinduoTime, Weapon.RecoveryTime, "attack"))
                 return;

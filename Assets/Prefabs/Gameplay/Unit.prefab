@@ -829,10 +829,8 @@ GameObject:
   - component: {fileID: 8859186920833209595}
   - component: {fileID: 4296649418421086999}
   - component: {fileID: 582712008969607882}
-  - component: {fileID: 4530902287902286238}
   - component: {fileID: 4728294680213157340}
   - component: {fileID: 5884167143842845143}
-  - component: {fileID: 1967214274280576573}
   - component: {fileID: 8980135918650897494}
   - component: {fileID: 7252915519919287923}
   m_Layer: 6
@@ -904,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb12d4597a7469cae486d4079dad2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.Unit
+  _unitAttackConfig: {fileID: 11400000, guid: a4950cb1e2219764cb7582386e0d3981, type: 2}
 --- !u!114 &2112355908016722340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,22 +955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20928470cd2444bb9e0f46a0496177f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitLife
---- !u!114 &4530902287902286238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2932572241072970818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3342dcfe7dd4cc3bb4c175eb9cbf7d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitAttack
-  _attackOrder: {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
-  _autoAttackValidators:
-    _unitValidators:
-    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
 --- !u!114 &4728294680213157340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,18 +982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b574a3f56949ad8329a3664bea2f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitVisibility
---- !u!114 &1967214274280576573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2932572241072970818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a77688b99bb402fbd8c8c6d743c70c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitAbilities
 --- !u!114 &8980135918650897494
 MonoBehaviour:
   m_ObjectHideFlags: 0
