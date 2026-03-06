@@ -1,29 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Statuses;
+using UniRx;
 using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitStatuses : UnitComponentMono
+    public class UnitStatuses : UnitComponent
     {
+        private readonly IPauseReadonly _tacticalPause;
         private readonly Dictionary<StatusType, Status> _statuses = new();
-
+        
         public IStatusInfo[] StatusesInfo => _statuses.Values.ToArray<IStatusInfo>();
 
         public event Action<Status> StatusAdded;
         public event Action<Status> StatusRemoved;
         
-        [Inject] private TacticalPause TacticalPause { get; set; }
-
-        public void Init(UnitType type)
+        public UnitStatuses(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
-            foreach (StatusType status in type.InnateStatuses)
+            _tacticalPause = tacticalPause;
+            foreach (StatusType status in UnitType.InnateStatuses)
             {
                 AddStatus(status, Unit);
             }
+            
+            Observable.EveryFixedUpdate()
+                .Where(_ => tacticalPause.IsUnpaused)
+                .Subscribe(_ => UpdateStatuses());
         }
 
         public void AddStatus(StatusType type, Unit instigator, int duration = -1)
@@ -33,7 +39,7 @@ namespace Gameplay.Units
                 currentStatus.Restart(duration);
                 return;
             }
-            Status status = new(type,  instigator, Unit, duration, TacticalPause);
+            Status status = new(type,  instigator, Unit, duration, _tacticalPause);
             _statuses.Add(type, status);
             status.OnAdd();
             StatusAdded?.Invoke(status);
@@ -48,7 +54,7 @@ namespace Gameplay.Units
             StatusRemoved?.Invoke(status);
         }
 
-        private void FixedUpdate()
+        private void UpdateStatuses()
         {
             Status[] statuses = _statuses.Values.ToArray();
             for (int i = statuses.Length - 1; i >= 0; i--)

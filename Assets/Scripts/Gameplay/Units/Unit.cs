@@ -6,10 +6,8 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    [RequireComponent(typeof(UnitOwnership))]
     [RequireComponent(typeof(UnitMovement))]
     [RequireComponent(typeof(UnitOrders))]
-    [RequireComponent(typeof(UnitLife))]
     [RequireComponent(typeof(UnitSight))]
     [RequireComponent(typeof(UnitVisibility))]
     [RequireComponent(typeof(UnitStatuses))]
@@ -18,25 +16,21 @@ namespace Gameplay.Units
     {
         [SerializeField] private UnitAttackConfig _unitAttackConfig;
         
-        private UnitOwnership _ownership;
         private UnitMovement _movement;
         private UnitOrders _orders;
-        private UnitLife _life;
         private UnitSight _sight;
         private UnitVisibility _visibility;
-        private UnitStatuses _statuses;
-        private UnitStagger _stagger;
 
         public UnitAbilities Abilities { get; private set; }
         public UnitAttack Attack { get; private set; }
-        public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
+        public UnitLife Life { get; private set; }
+        public UnitOwnership Ownership { get; private set; }
+        public UnitStatuses Statuses { get; private set; }
+        public UnitStagger Stagger { get; private set; }
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
         public UnitOrders Orders => _orders ??= GetComponent<UnitOrders>();
-        public UnitLife Life => _life ??= GetComponent<UnitLife>();
         public UnitSight Sight => _sight ??= GetComponent<UnitSight>();
         public UnitVisibility Visibility => _visibility ??= GetComponent<UnitVisibility>();
-        public UnitStatuses Statuses => _statuses ??= GetComponent<UnitStatuses>();
-        public UnitStagger Stagger => _stagger ??= GetComponent<UnitStagger>();
 
         public Vector2 Position => transform.position;
 
@@ -53,13 +47,14 @@ namespace Gameplay.Units
 
             Abilities = new UnitAbilities(this, TacticalPause);
             Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig);
+            Life = new UnitLife(this, TacticalPause);
+            Ownership = new UnitOwnership(this, ownedByPlayer);
+            Stagger = new UnitStagger(this, TacticalPause);
+            Statuses = new UnitStatuses(this, TacticalPause);
             
-            Ownership.Init(type, ownedByPlayer);
             Movement.Init(type);
             Orders.Init(type);
-            Life.Init(type);
             Sight.Init(type, ownedByPlayer);
-            Statuses.Init(type);
             
             UnitPool.AddUnit(this);
             Life.HitPointsOver += Kill;

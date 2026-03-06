@@ -1,18 +1,20 @@
 ﻿using System;
 using Extentions;
-using Gameplay.Data;
+using Extentions.Pause;
+using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitLife : UnitComponentMono
+    public class UnitLife : UnitComponent
     {
-        private Timer _shieldRestorationTimer;
-        private float _shieldRestorationRemain;
+        private readonly Timer _shieldRestorationTimer;
         
-        public int HitPoints { get; private set; }
-        public int ShieldPoints { get; private set; }
+        private float _hitPoints;
+        private float _shieldPoints;
+
+        public int HitPoints => Mathf.FloorToInt(_hitPoints);
+        public int ShieldPoints => Mathf.FloorToInt(_shieldPoints);
 
         public int MaxHitPoints => UnitType.MaxHitPoints; 
         public int MaxShieldPoints => UnitType.MaxShieldPoints;
@@ -21,22 +23,25 @@ namespace Gameplay.Units
         public bool HasShieldPoints => MaxShieldPoints > 0;
         public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 1;
 
-        public bool IsAlive => HitPoints > 0;
+        public bool IsAlive => HitPoints >= 1;
         public bool IsDead => ! IsAlive;
         
         public event Action HitPointsOver;
         public event Action<int> DamageTaken;
         public event Action<int> HitPointsLost;
         public event Action<int> ShieldPointsLost;
-        
-        [Inject] private TacticalPause TacticalPause { get; set; }
 
-        public void Init(UnitType unitType)
+        public UnitLife(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
-            HitPoints = MaxHitPoints;
-            ShieldPoints = MaxShieldPoints;
-            if (unitType.ShieldRestoreDelay > 0)
-                _shieldRestorationTimer = new Timer(unitType.ShieldRestoreDelay, TacticalPause);
+            _hitPoints = MaxHitPoints;
+            _shieldPoints = MaxShieldPoints;
+            
+            if (UnitType.ShieldRestoreDelay > 0)
+                _shieldRestorationTimer = new Timer(UnitType.ShieldRestoreDelay, tacticalPause);
+            
+            Observable.EveryFixedUpdate()
+                .Where(_ => tacticalPause.IsUnpaused)
+                .Subscribe(_ => RestoreShieldPoints());
         }
 
         public void TakeDamage(int damage)
@@ -47,27 +52,25 @@ namespace Gameplay.Units
             int shieldDamage = Mathf.Min(damage, ShieldPoints);
             int hitDamage = Mathf.Min(damage - shieldDamage, HitPoints);
             
-            HitPoints -=  hitDamage;
-            ShieldPoints -=  shieldDamage;
+            _hitPoints -=  hitDamage;
+            _shieldPoints -=  shieldDamage;
             
             DamageTaken?.Invoke(damage);
             HitPointsLost?.Invoke(hitDamage);
             ShieldPointsLost?.Invoke(shieldDamage);
             
-            if (HitPoints <= 0)
+            if (HitPoints < 1)
                 HitPointsOver?.Invoke();
             
             _shieldRestorationTimer?.Restart();
         }
 
-        private void FixedUpdate()
+        private void RestoreShieldPoints()
         {
-            if (_shieldRestorationTimer == null || _shieldRestorationTimer.IsOn || TacticalPause.IsPaused)
+            if (_shieldRestorationTimer?.IsOn ?? false)
                 return;
-            _shieldRestorationRemain += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
-            _shieldRestorationRemain = Mathf.Min(_shieldRestorationRemain, MaxShieldPoints - ShieldPoints);
-            ShieldPoints += (int) _shieldRestorationRemain;
-            _shieldRestorationRemain %= 1;
+            _shieldPoints += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
+            _shieldPoints = Mathf.Min(_shieldPoints, MaxShieldPoints);
         }
     }
 }
