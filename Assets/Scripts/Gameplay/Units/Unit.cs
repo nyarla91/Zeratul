@@ -61,7 +61,7 @@ namespace Gameplay.Units
             Statuses.Init(type);
             
             UnitPool.AddUnit(this);
-            Life.OnHitPointsOver += Kill;
+            Life.HitPointsOver += Kill;
         }
         
         public void Kill()

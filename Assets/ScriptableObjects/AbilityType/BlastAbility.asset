@@ -15,7 +15,7 @@ MonoBehaviour:
   _windupTime: 35
   _recoveryTime: 10
   _cooldown: 250
-  _energyCost: 0
+  _energyCost: 50
   _targetRequirement: 1
   _maxDistance: 10
   _casterValidators:

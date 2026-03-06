@@ -24,7 +24,10 @@ namespace Gameplay.Units
         public bool IsAlive => HitPoints > 0;
         public bool IsDead => ! IsAlive;
         
-        public event Action OnHitPointsOver;
+        public event Action HitPointsOver;
+        public event Action<int> DamageTaken;
+        public event Action<int> HitPointsLost;
+        public event Action<int> ShieldPointsLost;
         
         [Inject] private TacticalPause TacticalPause { get; set; }
 
@@ -40,15 +43,19 @@ namespace Gameplay.Units
         {
             if (IsDead || damage <= 0)
                 return;
+            
             int shieldDamage = Mathf.Min(damage, ShieldPoints);
             int hitDamage = Mathf.Min(damage - shieldDamage, HitPoints);
             
             HitPoints -=  hitDamage;
             ShieldPoints -=  shieldDamage;
             
-            if (HitPoints <= 0)
-                OnHitPointsOver?.Invoke();
+            DamageTaken?.Invoke(damage);
+            HitPointsLost?.Invoke(hitDamage);
+            ShieldPointsLost?.Invoke(shieldDamage);
             
+            if (HitPoints <= 0)
+                HitPointsOver?.Invoke();
             
             _shieldRestorationTimer?.Restart();
         }

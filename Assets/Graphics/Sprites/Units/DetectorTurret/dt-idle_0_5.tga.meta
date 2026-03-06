@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 88695f82b0a3cd4409e026b21e3e0e12
+guid: ac32cf0f15beab744b82d065fe82f018
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -116,10 +116,10 @@ TextureImporter:
       name: dt-idle_0_5_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 3
         y: 4
-        width: 114
-        height: 156
+        width: 115
+        height: 142
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
