@@ -50,7 +50,7 @@ namespace Gameplay.Data.Abilities
         public bool CanBeCast(Ability ability, OrderTarget target)
         {
             return _casterValidators.IsValid(ability.Caster, ability.Caster)
-                   && (!target.Unit || _targetValidators.IsValid(ability.Caster, target.Unit))
+                   && ( ! target.Unit || _targetValidators.IsValid(ability.Caster, target.Unit))
                    && ability.Caster.Abilities.EnergyPoints >= EnergyCost
                    && ability.IsReady;
         }

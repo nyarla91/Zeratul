@@ -12,7 +12,6 @@ namespace Gameplay.Units
     [RequireComponent(typeof(UnitLife))]
     [RequireComponent(typeof(UnitSight))]
     [RequireComponent(typeof(UnitVisibility))]
-    [RequireComponent(typeof(UnitAbilities))]
     [RequireComponent(typeof(UnitStatuses))]
     [RequireComponent(typeof(UnitStagger))]
     public class Unit : MonoBehaviour
@@ -24,10 +23,10 @@ namespace Gameplay.Units
         private UnitLife _life;
         private UnitSight _sight;
         private UnitVisibility _visibility;
-        private UnitAbilities _abilities;
         private UnitStatuses _statuses;
         private UnitStagger _stagger;
 
+        public UnitAbilities Abilities { get; private set; }
         public UnitOwnership Ownership => _ownership ??= GetComponent<UnitOwnership>();
         public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
         public UnitOrders Orders => _orders ??= GetComponent<UnitOrders>();
@@ -35,7 +34,6 @@ namespace Gameplay.Units
         public UnitLife Life => _life ??= GetComponent<UnitLife>();
         public UnitSight Sight => _sight ??= GetComponent<UnitSight>();
         public UnitVisibility Visibility => _visibility ??= GetComponent<UnitVisibility>();
-        public UnitAbilities Abilities => _abilities ??= GetComponent<UnitAbilities>();
         public UnitStatuses Statuses => _statuses ??= GetComponent<UnitStatuses>();
         public UnitStagger Stagger => _stagger ??= GetComponent<UnitStagger>();
 
@@ -45,19 +43,21 @@ namespace Gameplay.Units
 
         public event Action Killed; 
         
+        [Inject] private TacticalPause TacticalPause { get; set; }
         [Inject] private UnitPool UnitPool { get; set; }
         
         public void Init(UnitType type, bool ownedByPlayer)
         {
             Type = type;
+
+            Abilities = new UnitAbilities(this, TacticalPause);
             
+            Attack.Init(type);
             Ownership.Init(type, ownedByPlayer);
             Movement.Init(type);
             Orders.Init(type);
-            Attack.Init(type);
             Life.Init(type);
             Sight.Init(type, ownedByPlayer);
-            Abilities.Init(type);
             Statuses.Init(type);
             
             UnitPool.AddUnit(this);

@@ -12,7 +12,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitAttack : UnitComponent
+    public class UnitAttack : UnitComponentMono
     {
         [SerializeField] private OrderType _attackOrder;
         [SerializeField] private UnitValidatorGroup _autoAttackValidators;

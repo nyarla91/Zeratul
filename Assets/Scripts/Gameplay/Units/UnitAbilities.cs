@@ -8,6 +8,8 @@ using Gameplay.Data;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
@@ -16,9 +18,9 @@ namespace Gameplay.Units
     public class UnitAbilities : UnitComponent
     {
         private Timer _energyRestorationTimer;
-        private float _energyRestorationRemain;
-        
-        public int EnergyPoints { get; private set; }
+
+        private float _energyPoints;
+        public int EnergyPoints => Mathf.FloorToInt(_energyPoints);
 
         public int MaxEnergyPoints => UnitType.MaxEnergyPoints; 
         
@@ -26,19 +28,27 @@ namespace Gameplay.Units
         public float EnergyPercent => HasEnergyPoints ? (float) EnergyPoints / MaxEnergyPoints : 1;
         
         private readonly Dictionary<AbilityType, Ability> _abilities = new();
-        
-        [Inject] private TacticalPause TacticalPause { get; set; }
-        
-        public void Init(UnitType unitType)
+
+        private IPauseReadonly TacticalPause { get; set; }
+
+        public UnitAbilities(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
-            EnergyPoints = MaxEnergyPoints;
+            TacticalPause = tacticalPause;
             
-            if (unitType.EnergyRestoreDelay > 0)
-                _energyRestorationTimer = new Timer(this, unitType.EnergyRestoreDelay, TacticalPause);
+            Observable.EveryFixedUpdate()
+                .Where(_ => TacticalPause.IsUnpaused)
+                .Subscribe(_ => RestoreEnergyPoints());
             
-            AbilityOrder[] abilityOrders = unitType.AvailableOrders.OfType<AbilityOrder>().ToArray();
+            _energyPoints = MaxEnergyPoints;
+            
+            if (UnitType.EnergyRestoreDelay > 0)
+                _energyRestorationTimer = new Timer(UnitType.EnergyRestoreDelay, TacticalPause);
+            
+            AbilityOrder[] abilityOrders = UnitType.AvailableOrders.OfType<AbilityOrder>().ToArray();
+            
             if (abilityOrders.Length == 0)
                 return;
+            
             foreach (AbilityOrder abilityOrder in abilityOrders)
             {
                 _abilities.Add(abilityOrder.AbilityType, new Ability(abilityOrder.AbilityType, Unit, TacticalPause));
@@ -53,6 +63,9 @@ namespace Gameplay.Units
             AbilityType abilityType = ability.Type;
             
             if ( ! await Unit.Stagger.TryBegin(abilityType.WindupTime, abilityType.RecoveryTime, abilityType.AnimationAction))
+                return false;
+
+            if ( ! TrySpendEnergy(abilityType.EnergyCost))
                 return false;
 
             foreach (EffectTargetingUnit effect in abilityType.CasterEffects)
@@ -76,29 +89,28 @@ namespace Gameplay.Units
             }
             
             ability.StartCooldown();
-            ability.Caster.Abilities.SpendEnergy(abilityType.EnergyCost);
             return true;
         }
 
-        public void SpendEnergy(int energy)
+        private bool TrySpendEnergy(int energy)
         {
             if (energy <= 0)
-                return;
+                return true;
             if (energy > EnergyPoints)
-                throw new ArgumentOutOfRangeException();
-            EnergyPoints -= energy;
+                return false;
+            _energyPoints -= energy;
+            _energyRestorationTimer.Restart();
+            return true;
         }
         
         public Ability GetAbility(AbilityType abilityType) =>  _abilities[abilityType];
 
-        private void FixedUpdate()
+        private void RestoreEnergyPoints()
         {
-            if (_energyRestorationTimer == null || _energyRestorationTimer.IsOn || TacticalPause.IsPaused)
+            if (_energyRestorationTimer?.IsOn ?? false)
                 return;
-            _energyRestorationRemain += Time.fixedDeltaTime * UnitType.EnergyPointsPerSecond;
-            _energyRestorationRemain = Mathf.Min(_energyRestorationRemain, MaxEnergyPoints - EnergyPoints);
-            EnergyPoints += (int) _energyRestorationRemain;
-            _energyRestorationRemain %= 1;
+            _energyPoints += Time.fixedDeltaTime * UnitType.EnergyPointsPerSecond;
+            _energyPoints = Mathf.Min(_energyPoints, MaxEnergyPoints);
         }
     }
 }

@@ -11,7 +11,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitOrders : UnitComponent
+    public class UnitOrders : UnitComponentMono
     {
         private readonly Queue<Order> _pendingOrders = new();
 

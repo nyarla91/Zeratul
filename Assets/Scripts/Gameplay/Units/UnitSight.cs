@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitSight : UnitComponent
+    public class UnitSight : UnitComponentMono
     {
         [SerializeField] private VisionConfig _config;
         [SerializeField] private PolygonCollider2D _area;

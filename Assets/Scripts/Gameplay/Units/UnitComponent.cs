@@ -1,14 +1,16 @@
 ﻿using Gameplay.Data;
-using UnityEngine;
 
 namespace Gameplay.Units
 {
-    public class UnitComponent : MonoBehaviour
+    public class UnitComponent
     {
-        private Unit _unit;
-        
-        protected Unit Unit => _unit ??= GetComponent<Unit>();
+        protected Unit Unit { get; private set; }
         
         public UnitType UnitType => Unit.Type;
+        
+        public UnitComponent(Unit unit)
+        {
+            Unit = unit;
+        }
     }
 }

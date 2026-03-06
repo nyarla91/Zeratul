@@ -5,7 +5,7 @@ using Gameplay.Data;
 
 namespace Gameplay.Units
 {
-    public class UnitOwnership : UnitComponent
+    public class UnitOwnership : UnitComponentMono
     {
         private readonly Dictionary<object, bool> _owners = new();
 

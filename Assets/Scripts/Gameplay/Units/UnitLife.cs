@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitLife : UnitComponent
+    public class UnitLife : UnitComponentMono
     {
         private Timer _shieldRestorationTimer;
         private float _shieldRestorationRemain;
@@ -36,7 +36,7 @@ namespace Gameplay.Units
             HitPoints = MaxHitPoints;
             ShieldPoints = MaxShieldPoints;
             if (unitType.ShieldRestoreDelay > 0)
-                _shieldRestorationTimer = new Timer(this, unitType.ShieldRestoreDelay, TacticalPause);
+                _shieldRestorationTimer = new Timer(unitType.ShieldRestoreDelay, TacticalPause);
         }
 
         public void TakeDamage(int damage)

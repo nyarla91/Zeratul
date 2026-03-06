@@ -23,7 +23,7 @@ namespace Gameplay.Vision
 
         private void Awake()
         {
-            _recalculationTimer = new Timer(this, _config.RecalculationPeriod, TacticalPause, true);
+            _recalculationTimer = new Timer(_config.RecalculationPeriod, TacticalPause, true);
             _recalculationTimer.Start();
             
             PlayerArea.Init(true);

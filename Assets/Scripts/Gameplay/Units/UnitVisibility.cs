@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitVisibility : UnitComponent
+    public class UnitVisibility : UnitComponentMono
     {
         private readonly HashSet<object> _detectionSources = new();
         

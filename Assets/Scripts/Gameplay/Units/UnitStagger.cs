@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitStagger : UnitComponent
+    public class UnitStagger : UnitComponentMono
     {
         public int RecoveryFramesLeft { get; private set; }
         public bool IsStaggered { get; private set; }

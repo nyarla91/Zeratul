@@ -16,7 +16,7 @@ namespace Gameplay.Units
         {
             Type = type;
             Caster = caster;
-            CooldownTimer = new Timer(caster, Type.Cooldown, pauseReadonly);
+            CooldownTimer = new Timer(Type.Cooldown, pauseReadonly);
         }
 
         public void StartCooldown()

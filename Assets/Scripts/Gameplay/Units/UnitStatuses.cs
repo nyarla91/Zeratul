@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitStatuses : UnitComponent
+    public class UnitStatuses : UnitComponentMono
     {
         private readonly Dictionary<StatusType, Status> _statuses = new();
 

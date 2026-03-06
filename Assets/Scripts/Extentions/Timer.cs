@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Extentions.Pause;
+using UniRx;
 using UnityEngine;
 
 namespace Extentions
 {
     public class Timer : ITimerReadonly
     {
-        private readonly MonoBehaviour _container;
-        private readonly IPauseReadonly _pause;
-        private int _framesElapsed;
-        private bool _active;
-        private Coroutine _tickingCoroutine;
         private int _duration;
 
         public int Duration
@@ -23,83 +20,33 @@ namespace Extentions
 
         public bool Loop { get; set; }
 
-        public int FramesElapsed => _framesElapsed;
+        public int FramesElapsed { get; private set; }
         public int FramesLeft => Duration - FramesElapsed;
 
         public bool IsExpired => FramesLeft <= 0;
-        public bool IsOn => _tickingCoroutine != null;
+        public bool IsOn { get; private set; }
         public bool IsIdle => ! IsOn; 
-        
-        public WaitForExpire Yield => new WaitForExpire(this);
 
         public event Action Started;
-        public event Action<float> Ticked;
         public event Action Expired;
 
-        public Timer(MonoBehaviour container, int duration = 0, IPauseReadonly pause = null, bool loop = false)
+        public Timer(int duration, IPauseReadonly pause = null, bool loop = false)
         {
-            _container = container;
             Duration = duration;
             Loop = loop;
-            _pause = pause;
-        }
-
-        public Timer Start()
-        {
-            if (Duration == 0)
-            {
-                Debug.LogWarning("Timer length is 0");
-                return this;
-            }
-            if (_tickingCoroutine != null)
-                _container.StopCoroutine(_tickingCoroutine);
-            _tickingCoroutine = _container.StartCoroutine(Ticking());
-            return this;
-        }
-
-        public void Restart()
-        {
-            Reset();
-            Start();
-        }
-
-        public void Reset()
-        {
-            Stop();
-            _framesElapsed = 0;
-        }
-
-        public void Stop()
-        {
-            if (_tickingCoroutine == null)
-                return;
             
-            _container.StopCoroutine(_tickingCoroutine);
-            _tickingCoroutine = null;
+            Observable.EveryFixedUpdate()
+                .Where(_ => IsOn)
+                .Where(_ => pause == null || pause.IsUnpaused)
+                .Subscribe(_ => Tick());
         }
 
-        public async Task GetTask()
+        private void Tick()
         {
-            bool expired = false;
-            Expired += Expire;
-            while (!expired)
-                await Task.Delay(20);
-            Expired -= Expire;
-
-            void Expire() => expired = true;
-        }
-
-        private IEnumerator Ticking()
-        {
-            Started?.Invoke();
-            while (_framesElapsed < Duration)
-            {
-                yield return new WaitForFixedUpdate();
-                if (_pause.IsPaused)
-                    continue;
-                _framesElapsed++;
-                Ticked?.Invoke(FramesLeft);
-            }
+            FramesElapsed++;
+            
+            if (FramesElapsed < Duration)
+                return;
             
             Expired?.Invoke();
             
@@ -109,35 +56,62 @@ namespace Extentions
                 Stop();
         }
 
-        public class WaitForExpire : CustomYieldInstruction
+        public Timer Start()
         {
-            public override bool keepWaiting => ! _expired;
-
-            private bool _expired;
-            
-            public WaitForExpire(Timer timer)
+            if (Duration == 0)
             {
-                timer.Expired += Expire;
+                Debug.LogWarning("Timer length is 0");
+                return this;
             }
+            IsOn = true;
+            Started?.Invoke();
+            return this;
+        }
 
-            private void Expire() => _expired = true;
+        public Timer Stop()
+        {
+            IsOn = false;
+            return this;
+        }
+
+        public Timer Reset()
+        {
+            Stop();
+            FramesElapsed = 0;
+            return this;
+        }
+
+        public Timer Restart()
+        {
+            Reset();
+            Start();
+            return this;
+        }
+
+        public async UniTask GetExpirationTask()
+        {
+            bool expired = false;
+            Expired += Expire;
+            await UniTask.WaitUntil(() => expired, PlayerLoopTiming.FixedUpdate);
+            Expired -= Expire;
+
+            void Expire() => expired = true;
         }
     }
 
     public interface ITimerReadonly
     {
-        public int Duration { get; }
-        public int FramesElapsed { get; }
-        public int FramesLeft { get; }
+        int Duration { get; }
+        int FramesElapsed { get; }
+        int FramesLeft { get; }
         
-        public bool IsExpired { get; }
-        public bool IsOn { get; }
-        public bool IsIdle { get; }
+        bool IsExpired { get; }
+        bool IsOn { get; }
+        bool IsIdle { get; }
 
-        public Timer.WaitForExpire Yield { get; }
-
-        public event Action Started;
-        public event Action<float> Ticked;
-        public event Action Expired;
+        event Action Started;
+        event Action Expired;
+        
+        UniTask GetExpirationTask();
     }
 }

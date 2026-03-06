@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitMovement : UnitComponent
+    public class UnitMovement : UnitComponentMono
     {
         [SerializeField] private UnitMovementConfig _config;
         [SerializeField] private Rigidbody2D _rigidbody;
