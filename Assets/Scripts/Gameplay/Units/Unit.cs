@@ -18,8 +18,6 @@ namespace Gameplay.Units
         [SerializeField] private Collider2D _avoidanceCollider;
         [SerializeField] private PolygonCollider2D _visionArea;
         
-        private UnitOrders _orders;
-
         public UnitAbilities Abilities { get; private set; }
         public UnitAttack Attack { get; private set; }
         public UnitLife Life { get; private set; }
@@ -29,7 +27,7 @@ namespace Gameplay.Units
         public UnitMovement Movement { get; private set; }
         public UnitVisibility Visibility { get; private set; }
         public UnitSight Sight { get; private set; }
-        public UnitOrders Orders => _orders ??= GetComponent<UnitOrders>();
+        public UnitOrders Orders { get; private set; }
 
         public Vector2 Position => transform.position;
 
@@ -51,17 +49,15 @@ namespace Gameplay.Units
             Life = new UnitLife(this, TacticalPause);
             Ownership = new UnitOwnership(this, ownedByPlayer);
             Stagger = new UnitStagger(this, TacticalPause);
-            Statuses = new UnitStatuses(this, TacticalPause);
             Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _collider, _avoidanceCollider);
             Visibility = new UnitVisibility(this, VisionMap);
             Sight = new UnitSight(this, _visionConfig, _visionArea, VisionMap, ownedByPlayer);
-            
-            Orders.Init(type);
+            Orders = new UnitOrders(this, TacticalPause);
+            Statuses = new UnitStatuses(this, TacticalPause);
             
             UnitPool.AddUnit(this);
             Life.HitPointsOver += Kill;
 
-            Debug.Log("Ferwer");
         }
         
         public void Kill()

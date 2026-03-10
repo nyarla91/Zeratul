@@ -825,7 +825,6 @@ GameObject:
   - component: {fileID: 5439672414855075461}
   - component: {fileID: 2212058817159712324}
   - component: {fileID: 1588366463054386623}
-  - component: {fileID: 4296649418421086999}
   m_Layer: 6
   m_Name: Unit
   m_TagString: Untagged
@@ -902,18 +901,6 @@ MonoBehaviour:
   _collider: {fileID: 9103159375792626044}
   _avoidanceCollider: {fileID: 1249983972513825726}
   _visionArea: {fileID: 2946777494775096283}
---- !u!114 &4296649418421086999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2932572241072970818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8374768bb30f42af9475e5ed94fe025c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitOrders
 --- !u!1 &6475753974446673389
 GameObject:
   m_ObjectHideFlags: 0

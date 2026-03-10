@@ -16,7 +16,6 @@ namespace Gameplay.Units
         private readonly VisionConfig _config;
         private readonly VisionMap _visionMap;
         private readonly PolygonCollider2D _area;
-        private readonly int _areaPoints;
 
         public Modifier RadiusModifier { get; } = new Modifier();
         public float Radius => UnitType.SightRadius * RadiusModifier.Value;
@@ -57,12 +56,13 @@ namespace Gameplay.Units
         private void Recalculate()
         {
             _area.transform.position = Unit.Position;
+            int areaPoints = _config.UnitVisionPoints;
 
-            Vector2[] points =  new Vector2[_areaPoints];
+            Vector2[] points =  new Vector2[areaPoints];
             
-            for (int i = 0; i < _areaPoints; i++)
+            for (int i = 0; i < areaPoints; i++)
             {
-                float angle = 360 / (float) _areaPoints * i;
+                float angle = 360 / (float) areaPoints * i;
                 Vector2 direction = angle.DegreesToVector2();
                 direction.Normalize();
                 float maxDistance = Radius;
@@ -84,6 +84,7 @@ namespace Gameplay.Units
                     point = direction * minDistance;
                 points[i] =  point;
             }
+
             _area.points = points;
         }
 

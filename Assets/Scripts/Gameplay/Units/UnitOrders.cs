@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Gameplay.Data;
+using Extentions.Pause;
 using Gameplay.Data.Orders;
-using Gameplay.Pathfinding;
-using UnityEngine;
-using Zenject;
+using UniRx;
 
 namespace Gameplay.Units
 {
-    public class UnitOrders : UnitComponentMono
+    public class UnitOrders : UnitComponent
     {
         private readonly Queue<Order> _pendingOrders = new();
 
@@ -24,14 +22,24 @@ namespace Gameplay.Units
 
         public bool IsIdle => CurrentOrder == null;
         
-        [Inject] private NodeMap NodeMap { get; set; }
-        [Inject] private TacticalPause TacticalPause { get; set; }
-
-        public void Init(UnitType unitType)
+        public UnitOrders(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
+            IObservable<long> unpausedFixedUpdate = Observable.EveryFixedUpdate().Where(_ => tacticalPause.IsUnpaused);
+
+            unpausedFixedUpdate
+                .Where(_ => CurrentOrder != null)
+                .Where(_ => CurrentOrder.MustBeCanceled() || _currentOrderTask.GetAwaiter().IsCompleted)
+                .Subscribe(_ => CompleteCurrentOrder());
             
+            unpausedFixedUpdate
+                .Where(_ => _currentOrderTask.GetAwaiter().IsCompleted)
+                .Where(_ => CurrentOrder == null)
+                .Where(_ => _pendingOrders.Count > 0)
+                .Subscribe(_ => TryCarryOutNextOrder());
+
+            Unit.Killed += ClearAllOrders;
         }
-        
+
         public void IssueSmartOrder(OrderTarget target, bool queue)
         {
             foreach (OrderType orderType in UnitType.AvailableOrders)
@@ -64,27 +72,17 @@ namespace Gameplay.Units
             CurrentOrder = null;
         }
 
-        private void FixedUpdate()
+        private bool TryCarryOutNextOrder()
         {
-            if (TacticalPause.IsPaused)
-                return;
-            
-            if (CurrentOrder != null && (CurrentOrder.MustBeCanceled() || _currentOrderTask.GetAwaiter().IsCompleted))
-            {
-                CompleteCurrentOrder();
-            }
-
-            if ( ! _currentOrderTask.GetAwaiter().IsCompleted)
-                return;
-            if (CurrentOrder != null || _pendingOrders.Count <= 0)
-                return;
+            if (CurrentOrder != null)
+                return false;
             CurrentOrder = _pendingOrders.Dequeue();
-                
             _currentOrderCts = new CancellationTokenSource();
             _currentOrderTask = CurrentOrder.CarryOut(_currentOrderCts.Token);
+            return true;
         }
 
-        private void OnDestroy()
+        private void ClearAllOrders()
         {
             CurrentOrder =  null;
             _pendingOrders.Clear();

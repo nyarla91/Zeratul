@@ -39,13 +39,6 @@ namespace Gameplay.Vision
             _targetSprite.texture.Apply();
         }
 
-        private void Update()
-        {
-            if (Keyboard.current.pKey.wasPressedThisFrame)
-                RecalculateFog();
-            
-        }
-
         private void RecalculateFog()
         {
             for (int y = 0; y < _fogDimensions.y; y++)
