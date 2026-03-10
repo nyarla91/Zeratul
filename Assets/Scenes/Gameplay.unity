@@ -1809,6 +1809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c21e72c4704a0fb755e62d2e53e49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Vision.FogOfWar
+  _config: {fileID: 11400000, guid: 3419c58748f8fc24fa1f59e94c65c703, type: 2}
   _visionMap: {fileID: 1907651306}
   _spriteRenderer: {fileID: 388089113}
   _pixelScale: 1

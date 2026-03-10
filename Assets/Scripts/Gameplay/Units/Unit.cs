@@ -1,25 +1,24 @@
 ﻿using System;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
+using Gameplay.Pathfinding;
+using Gameplay.Vision;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Units
 {
-    [RequireComponent(typeof(UnitMovement))]
-    [RequireComponent(typeof(UnitOrders))]
-    [RequireComponent(typeof(UnitSight))]
-    [RequireComponent(typeof(UnitVisibility))]
-    [RequireComponent(typeof(UnitStatuses))]
-    [RequireComponent(typeof(UnitStagger))]
     public class Unit : MonoBehaviour
     {
         [SerializeField] private UnitAttackConfig _unitAttackConfig;
+        [SerializeField] private UnitMovementConfig _unitMovementConfig;
+        [SerializeField] private VisionConfig _visionConfig;
+        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Collider2D _collider;
+        [SerializeField] private Collider2D _avoidanceCollider;
+        [SerializeField] private PolygonCollider2D _visionArea;
         
-        private UnitMovement _movement;
         private UnitOrders _orders;
-        private UnitSight _sight;
-        private UnitVisibility _visibility;
 
         public UnitAbilities Abilities { get; private set; }
         public UnitAttack Attack { get; private set; }
@@ -27,10 +26,10 @@ namespace Gameplay.Units
         public UnitOwnership Ownership { get; private set; }
         public UnitStatuses Statuses { get; private set; }
         public UnitStagger Stagger { get; private set; }
-        public UnitMovement Movement => _movement ??= GetComponent<UnitMovement>();
+        public UnitMovement Movement { get; private set; }
+        public UnitVisibility Visibility { get; private set; }
+        public UnitSight Sight { get; private set; }
         public UnitOrders Orders => _orders ??= GetComponent<UnitOrders>();
-        public UnitSight Sight => _sight ??= GetComponent<UnitSight>();
-        public UnitVisibility Visibility => _visibility ??= GetComponent<UnitVisibility>();
 
         public Vector2 Position => transform.position;
 
@@ -39,7 +38,9 @@ namespace Gameplay.Units
         public event Action Killed; 
         
         [Inject] private TacticalPause TacticalPause { get; set; }
+        [Inject] private NodeMap NodeMap { get; set; }
         [Inject] private UnitPool UnitPool { get; set; }
+        [Inject] private VisionMap VisionMap { get; set; }
         
         public void Init(UnitType type, bool ownedByPlayer)
         {
@@ -51,13 +52,16 @@ namespace Gameplay.Units
             Ownership = new UnitOwnership(this, ownedByPlayer);
             Stagger = new UnitStagger(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
+            Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _collider, _avoidanceCollider);
+            Visibility = new UnitVisibility(this, VisionMap);
+            Sight = new UnitSight(this, _visionConfig, _visionArea, VisionMap, ownedByPlayer);
             
-            Movement.Init(type);
             Orders.Init(type);
-            Sight.Init(type, ownedByPlayer);
             
             UnitPool.AddUnit(this);
             Life.HitPointsOver += Kill;
+
+            Debug.Log("Ferwer");
         }
         
         public void Kill()

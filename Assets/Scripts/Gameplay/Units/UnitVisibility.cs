@@ -5,13 +5,18 @@ using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitVisibility : UnitComponentMono
+    public class UnitVisibility : UnitComponent
     {
+        private readonly VisionMap _visionMap;
+        
         private readonly HashSet<object> _detectionSources = new();
         
         private readonly HashSet<object> _cloakSources = new();
-        
-        [Inject] private VisionMap VisionMap { get; set; }
+
+        public UnitVisibility(Unit unit, VisionMap visionMap) : base(unit)
+        {
+            _visionMap = visionMap;
+        }
 
         /// <summary>
         /// Returns true if unit is cloaked by any source
@@ -36,12 +41,12 @@ namespace Gameplay.Units
         /// <summary>
         /// Returns true if unit is revealed and is in sight of any player's unit or owned by player
         /// </summary>
-        public bool IsVisibleToPlayer => VisionMap.PlayerArea.IsUnitVisible(Unit);
+        public bool IsVisibleToPlayer => _visionMap.PlayerArea.IsUnitVisible(Unit);
 
         /// <summary>
         /// Returns true if unit is revealed and is in sight of any enemy unit or owned by enemy
         /// </summary>
-        public bool IsVisibleToEnemy => VisionMap.EnemyArea.IsUnitVisible(Unit);
+        public bool IsVisibleToEnemy => _visionMap.EnemyArea.IsUnitVisible(Unit);
 
         /// <summary>
         /// Returns true if unit is revealed and is in sight of any unit owned by hostile

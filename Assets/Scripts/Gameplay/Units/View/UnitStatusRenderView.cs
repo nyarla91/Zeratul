@@ -16,7 +16,7 @@ namespace Gameplay.Units.View
         
         [Inject] private StatusRendererFactoryFactory StatusRendererFf { get; set; }
 
-        private void Awake()
+        private void Start()
         {
             _unit.Statuses.StatusAdded += AddRenderer;
             _unit.Statuses.StatusRemoved += RemoveRenderer;

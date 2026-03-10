@@ -5,23 +5,25 @@ using Extentions;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Pathfinding;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Units
 {
-    public class UnitMovement : UnitComponentMono
+    public class UnitMovement : UnitComponent
     {
-        [SerializeField] private UnitMovementConfig _config;
-        [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private Collider2D _collider;
-        [SerializeField] private Collider2D _avoidanceCollider;
+        private readonly NodeMap _nodeMap;
+        private readonly TacticalPause _tacticalPause;
+        private readonly UnitMovementConfig _config;
+        private readonly Rigidbody2D _rigidbody;
+        private readonly Collider2D _avoidanceCollider;
 
+        private readonly Modifier _speedModifier = new Modifier();
         private Vector2 _destination;
         private INodeWorld[] _path = Array.Empty<INodeWorld>();
         private int _nodesPassed;
         private float _lastPathRecalculationTime;
-        private Modifier _speedModifier;
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
         public bool HasPath => _path.Length > 0;
@@ -33,23 +35,33 @@ namespace Gameplay.Units
         public Modifier SpeedModifier => _speedModifier;
         public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
 
-        [Inject] private NodeMap NodeMap { get; set; }
-        [Inject] private TacticalPause TacticalPause { get; set; }
-
-        public void Init(UnitType unitType)
+        public UnitMovement(Unit unit, TacticalPause tacticalPause, NodeMap nodeMap, UnitMovementConfig config,
+            Rigidbody2D rigidbody, Collider2D collider, Collider2D avoidanceCollider) : base(unit)
         {
-            _collider.transform.localScale = Vector3.one * unitType.Size;
-            gameObject.layer = UnitType.IsAir ? _config.AirLayer : _config.GroundLayer;
-            _collider.gameObject.layer = gameObject.layer;
-            _avoidanceCollider.gameObject.layer = gameObject.layer;
-            _speedModifier = new Modifier();
+            _tacticalPause = tacticalPause;
+            _nodeMap = nodeMap;
+            _config = config;
+            _rigidbody = rigidbody;
+            _avoidanceCollider = avoidanceCollider;
+            
+            collider.transform.localScale = Vector3.one * UnitType.Size;
+            Unit.gameObject.layer = UnitType.IsAir ? _config.AirLayer : _config.GroundLayer;
+            collider.gameObject.layer = Unit.gameObject.layer;
+            _avoidanceCollider.gameObject.layer = Unit.gameObject.layer;
+
+            IObservable<long> observable = Observable.EveryFixedUpdate()
+                .Where(_ => tacticalPause.IsUnpaused);
+            
+            observable.Subscribe(_ => UpdatePhysics());
+            observable.Subscribe(_ => UpdateRotation());
+            observable.Subscribe(_ => MoveAlongPath());
         }
 
         public void Move(Vector2 destination)
         {
             if (UnitType.IsImmobile || HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
-            NodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
+            _nodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
             //ReducePathToNecessary();
             if (_path.Length == 0 || HasReachedPoint(_path.Last().WorldPosition))
             {
@@ -61,7 +73,7 @@ namespace Gameplay.Units
         }
 
         public void RotateTowards(Vector2 direction) => RotateTowards(direction.ToDegrees());
-        
+
         public void RotateTowards(float angle) => TargetLookAngle = angle;
 
         public void Teleport(Vector2 position)
@@ -70,9 +82,15 @@ namespace Gameplay.Units
         }
 
         public void HoldPosition() => IsHoldingPosition = true;
-        
+
         public void StopHoldingPosition() => IsHoldingPosition = false;
-        
+
+        public void Stop()
+        {
+            _rigidbody.linearVelocity = Vector2.zero;
+            _path = Array.Empty<INodeWorld>();
+        }
+
         private void ReducePathToNecessary()
         {
             if (_path.Length <= 2)
@@ -97,30 +115,26 @@ namespace Gameplay.Units
             _path = necessaryPath.ToArray();
         }
 
-        public void Stop()
+        private void UpdatePhysics()
         {
-            _rigidbody.linearVelocity = Vector2.zero;
-            _path = Array.Empty<INodeWorld>();
-        }
-
-        private void FixedUpdate()
-        {
-            if (TacticalPause.IsPaused)
-                return;
-
             _rigidbody.constraints = (IsHoldingPosition || UnitType.IsImmobile)
                 ? RigidbodyConstraints2D.FreezeAll
                 : RigidbodyConstraints2D.FreezeRotation;
-            
+
             _rigidbody.mass = Displaceable ? 0.001f : 1;
-            
+        }
+
+        private void UpdateRotation()
+        {
             if (Unit.Stagger.IsStaggered)
                 return;
-            
             float maxDelta = UnitType.RotationSpeed * Time.fixedDeltaTime;
             LookAngle = Mathf.MoveTowardsAngle(LookAngle, TargetLookAngle, maxDelta);
-            
-            if ( ! HasPath)
+        }
+
+        private void MoveAlongPath()
+        {
+            if ( ! HasPath || Unit.Stagger.IsStaggered)
             {
                 _rigidbody.linearVelocity = Vector2.zero;
                 return;
@@ -173,19 +187,6 @@ namespace Gameplay.Units
             float oppositeAngle = oppositeDirections.Average().ToDegrees();
             float newAngle = Mathf.LerpAngle(angle, oppositeAngle, _config.AvoidanceStrength);
             return newAngle.DegreesToVector2().normalized;
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_path.Length <= 1)
-                return;
-            for (int i = _path.Length - 1; i >= 1; i--)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(_path[i].WorldPosition, _path[i - 1].WorldPosition);
-                Gizmos.color = Color.green;
-                Gizmos.DrawCube(_path[i].WorldPosition, 0.1f * Vector3.one);
-            }
         }
     }
 }

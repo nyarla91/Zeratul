@@ -12,20 +12,14 @@ namespace Gameplay.Vision
         [SerializeField] private VisionConfig _config;
         [SerializeField] private VisionArea _playerArea;
         [SerializeField] private VisionArea _enemyArea;
-
-        private Timer _recalculationTimer;
         
         public VisionArea PlayerArea => _playerArea;
         public VisionArea EnemyArea => _enemyArea;
-        public ITimerReadonly RecalculationTimer => _recalculationTimer;
         
         [Inject] private TacticalPause TacticalPause { get; set; }
 
         private void Awake()
         {
-            _recalculationTimer = new Timer(_config.RecalculationPeriod, TacticalPause, true);
-            _recalculationTimer.Start();
-            
             PlayerArea.Init(true);
             EnemyArea.Init(false);
         }

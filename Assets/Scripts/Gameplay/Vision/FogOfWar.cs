@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using Gameplay.Data.Configs;
+using UniRx;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Gameplay.Vision
 {
     public class FogOfWar : MonoBehaviour
     {
+        [SerializeField] private VisionConfig _config;
         [SerializeField] private VisionMap _visionMap;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private float _pixelScale;
@@ -18,7 +22,9 @@ namespace Gameplay.Vision
 
         private void Start()
         {
-            _visionMap.RecalculationTimer.Expired += RecalculateFog;
+            Observable.EveryFixedUpdate()
+                .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
+                .Subscribe(_ => RecalculateFog());
             
             transform.localScale = _pixelScale * Vector3.one;
             _targetSprite = _spriteRenderer.sprite;

@@ -1,43 +1,49 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Extentions;
-using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Validator;
 using Gameplay.Vision;
+using UniRx;
 using UnityEngine;
-using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Gameplay.Units
 {
-    public class UnitSight : UnitComponentMono
+    public class UnitSight : UnitComponent
     {
-        [SerializeField] private VisionConfig _config;
-        [SerializeField] private PolygonCollider2D _area;
-        [SerializeField] private int _areaPoints;
-        
-        [Inject] private VisionMap VisionMap { get; set; }
+        private readonly VisionConfig _config;
+        private readonly VisionMap _visionMap;
+        private readonly PolygonCollider2D _area;
+        private readonly int _areaPoints;
 
-        private Modifier _radiusModifier;
-
-        public Modifier RadiusModifier => _radiusModifier;
+        public Modifier RadiusModifier { get; } = new Modifier();
         public float Radius => UnitType.SightRadius * RadiusModifier.Value;
-        
-        public void Init(UnitType unitType, bool ownedByPlayer)
-        {
-            VisionMap.RecalculationTimer.Expired += Recalculate;
 
-            _radiusModifier = new Modifier();
+        public UnitSight(Unit unit, VisionConfig config, PolygonCollider2D area, VisionMap visionMap, bool ownedByPlayer) : base(unit)
+        {
+            _config = config;
+            _area = area;
+            _visionMap = visionMap;
+
+            Observable.EveryFixedUpdate()
+                .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
+                .Subscribe(_ => Recalculate());
             
             AttachSightArea(ownedByPlayer);
-            Unit.Ownership.OwnerUpdated += AttachSightArea;
+            
+            Unit.Ownership.ObserveEveryValueChanged(o => o.OwnedByPlayer)
+                .Subscribe(a => AttachSightArea(Unit.Ownership.OwnedByPlayer));
             
             _area.compositeOperation = Collider2D.CompositeOperation.Merge;
+
+            Unit.Killed += DestroyArea;
         }
 
         public HashSet<Unit> VisibleUnits(UnitValidatorGroup validatorGroup = default)
         {
-            HashSet<Unit> result = VisionMap.GetAreaForOwner(Unit.Ownership.OwnedByPlayer).VisibleUnits;
+            HashSet<Unit> result = _visionMap.GetAreaForOwner(Unit.Ownership.OwnedByPlayer).VisibleUnits;
             result = result.Where(u => Isometry.Distance(Unit.Position, u.Position) < Radius).ToHashSet();
             
             return result.Where(u => validatorGroup.IsValid(Unit, u)).ToHashSet();
@@ -45,7 +51,7 @@ namespace Gameplay.Units
 
         private void AttachSightArea(bool ownedByPlayer)
         {
-            VisionMap.GetAreaForOwner(ownedByPlayer).AttachSightArea(_area.transform);
+            _visionMap.GetAreaForOwner(ownedByPlayer).AttachSightArea(_area.transform);
         }
 
         private void Recalculate()
@@ -81,11 +87,10 @@ namespace Gameplay.Units
             _area.points = points;
         }
 
-        private void OnDestroy()
+        private void DestroyArea()
         {
-            VisionMap.RecalculationTimer.Expired -= Recalculate;
             if (_area)
-                Destroy(_area.gameObject);
+                Object.Destroy(_area.gameObject);
         }
     }
 }
