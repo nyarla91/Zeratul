@@ -1,5 +1,6 @@
 ﻿using Extentions;
 using Gameplay.UI;
+using UniRx;
 using UnityEngine;
 
 namespace Gameplay.Units.View
@@ -21,29 +22,21 @@ namespace Gameplay.Units.View
             _canvasRectTransform = _canvas.GetComponent<RectTransform>();
             _canvasRectTransform.sizeDelta = _canvasRectTransform.sizeDelta.WithX(canvasWidth);
             _canvasRectTransform.localPosition = new Vector3(0, canvasYOffset);
-        }
-
-        private void Update()
-        {
-            if ( ! _unit.Visibility.IsVisibleToPlayer)
-            {
-                _canvas.enabled = false;
-                return;
-            }
-            _canvas.enabled = true;
             
-            _hitPointsBar.UpdateBar(_unit.Life.HitPercent);
+            _hitPointsBar.SubscribeToPercent(_unit.ObserveEveryValueChanged(u => u.Life.HitPercent));
             
             if (_unit.Life.HasShieldPoints)
-                _shieldPointsBar.UpdateBar(_unit.Life.ShieldPercent);
+                _shieldPointsBar.SubscribeToPercent(_unit.ObserveEveryValueChanged(u => u.Life.ShieldPercent));
             else
                 _shieldPointsBar.Hide();
             
             if (_unit.Abilities.HasEnergyPoints)
-                _energyPointsBar.UpdateBar(_unit.Abilities.EnergyPercent);
+                _energyPointsBar.SubscribeToPercent(_unit.ObserveEveryValueChanged(u => u.Abilities.EnergyPercent));
             else
                 _energyPointsBar.Hide();
-        }
             
+            _unit.ObserveEveryValueChanged(u => u.Visibility.IsVisibleToPlayer)
+                .Subscribe(v => _canvas.enabled = v);
+        }
     }
 }

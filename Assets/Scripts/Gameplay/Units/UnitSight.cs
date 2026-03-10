@@ -55,6 +55,8 @@ namespace Gameplay.Units
 
         private void Recalculate()
         {
+            if ( ! _area)
+                return;
             _area.transform.position = Unit.Position;
             int areaPoints = _config.UnitVisionPoints;
 

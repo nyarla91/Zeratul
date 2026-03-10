@@ -1,5 +1,8 @@
-﻿using Gameplay.Player;
+﻿using System;
+using Gameplay.Player;
+using UniRx;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Zenject;
 
 namespace Gameplay.Units.View
@@ -16,11 +19,16 @@ namespace Gameplay.Units.View
         {
             _spriteRenderer.transform.localPosition = _unit.Type.SpriteMap.SpriteHeight * Vector2.up;
             transform.localScale = _unit.Type.Size * Vector3.one;
+
+            _unit.ObserveEveryValueChanged(u => _playerSelection.IsUnitSelected(u))
+                .Subscribe(ToggleVisibility);
+            
+            ToggleVisibility(false);
         }
 
-        private void Update()
+        private void ToggleVisibility(bool visible)
         {
-            _spriteRenderer.color = _playerSelection.IsUnitSelected(_unit) ? _selectedColor : Color.clear;
+            _spriteRenderer.color = visible ? _selectedColor : Color.clear;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Gameplay.Data.Configs;
+using UniRx;
 using UnityEngine;
 
 namespace Gameplay.Units.View
@@ -15,10 +16,14 @@ namespace Gameplay.Units.View
         {
             if ( ! _unit.Type.IsAir)
                 Destroy(gameObject);
+            
             _spriteRenderer.sortingOrder = _config.ShadowOrder;
+
+            _spriteRenderer.ObserveEveryValueChanged(sr => sr.sprite)
+                .Subscribe(UpdateSprite);
         }
 
-        private void Update()
+        private void UpdateSprite(Sprite sprite)
         {
             _spriteRenderer.sprite = _animationSpriteRenderer.sprite;
         }

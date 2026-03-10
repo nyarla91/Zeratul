@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UniRx;
+using UniRx.Triggers;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Gameplay.UI
@@ -9,6 +12,11 @@ namespace Gameplay.UI
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private RectMask2D _mask;
         [SerializeField] private bool _hideOnMax;
+
+        public void SubscribeToPercent(IObservable<float> percentObservable)
+        {
+            percentObservable.Subscribe(UpdateBar);
+        }
         
         public void UpdateBar(float percent)
         {
