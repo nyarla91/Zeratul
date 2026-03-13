@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnakeWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
   _baseDamage: 12
-  _winduoTime: 10
+  _windupTime: 0
   _recoveryTime: 20
   _maxDistance: 7
   _autoAttack: 0

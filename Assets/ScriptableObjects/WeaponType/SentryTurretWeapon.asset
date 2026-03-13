@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SentryTurretWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
   _baseDamage: 25
-  _winduoTime: 0
+  _windupTime: 25
   _recoveryTime: 50
   _maxDistance: 12
   _autoAttack: 1

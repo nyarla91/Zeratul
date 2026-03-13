@@ -119,7 +119,7 @@ namespace Gameplay.Units
 
         private async void StrikeUnit(Unit target)
         {
-            if ( ! await Unit.Stagger.TryBegin(Weapon.WinduoTime, Weapon.RecoveryTime, "attack"))
+            if ( ! await Unit.Stagger.TryBegin(Weapon.WindupTime, Weapon.RecoveryTime, "attack"))
                 return;
             target.Life.TakeDamage(Weapon.BaseDamage);
         }
