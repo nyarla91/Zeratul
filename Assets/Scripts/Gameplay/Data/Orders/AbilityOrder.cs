@@ -66,9 +66,9 @@ namespace Gameplay.Data.Orders
                 order.Actor.Movement.Stop();
                 
                 float angleToTarget = order.Actor.Position.DirectionTo(destination).ToDegrees();
-                if (ability.Type.MustLookAtTarget && ! order.Actor.Movement.LookAngle.Equals(angleToTarget))
+                if (ability.Type.MustLookAtTarget && ! order.Actor.Direction.LookAngle.Equals(angleToTarget))
                 {
-                    order.Actor.Movement.RotateTowards(angleToTarget);
+                    order.Actor.Direction.RotateTowards(angleToTarget);
                     continue;
                 }
         

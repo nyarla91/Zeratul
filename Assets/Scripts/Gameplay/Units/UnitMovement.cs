@@ -29,8 +29,6 @@ namespace Gameplay.Units
         public bool HasPath => _path.Length > 0;
         public bool Displaceable => ! HasPath && ! IsHoldingPosition && ! UnitType.IsImmobile;
         public Vector2 Velocity => _rigidbody.linearVelocity;
-        public float LookAngle { get; private set; }
-        public float TargetLookAngle { get; private set; }
         public bool IsHoldingPosition { get; private set; }
         public Modifier SpeedModifier => _speedModifier;
         public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
@@ -52,9 +50,8 @@ namespace Gameplay.Units
             IObservable<long> observable = Observable.EveryFixedUpdate()
                 .Where(_ => tacticalPause.IsUnpaused);
             
-            observable.Subscribe(_ => UpdatePhysics());
-            observable.Subscribe(_ => UpdateRotation());
             observable.Subscribe(_ => MoveAlongPath());
+            observable.Subscribe(_ => UpdatePhysics());
         }
 
         public void Move(Vector2 destination)
@@ -71,10 +68,6 @@ namespace Gameplay.Units
             _lastPathRecalculationTime = Time.time;
             _nodesPassed = 0;
         }
-
-        public void RotateTowards(Vector2 direction) => RotateTowards(direction.ToDegrees());
-
-        public void RotateTowards(float angle) => TargetLookAngle = angle;
 
         public void Teleport(Vector2 position)
         {
@@ -124,14 +117,6 @@ namespace Gameplay.Units
             _rigidbody.mass = Displaceable ? 0.001f : 1;
         }
 
-        private void UpdateRotation()
-        {
-            if (Unit.Stagger.IsStaggered)
-                return;
-            float maxDelta = UnitType.RotationSpeed * Time.fixedDeltaTime;
-            LookAngle = Mathf.MoveTowardsAngle(LookAngle, TargetLookAngle, maxDelta);
-        }
-
         private void MoveAlongPath()
         {
             if ( ! HasPath || Unit.Stagger.IsStaggered)
@@ -152,7 +137,7 @@ namespace Gameplay.Units
             Vector2 direction = Unit.Position.DirectionTo(_path[nextNodeIndex].WorldPosition);
             direction = AvoidObstaclesForDirection(direction);
             float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
-            RotateTowards(direction / Isometry.Scale);
+            Unit.Direction.RotateTowards(direction / Isometry.Scale);
             _rigidbody.linearVelocity = direction * speed;
         }
 

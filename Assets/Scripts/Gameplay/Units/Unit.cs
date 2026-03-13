@@ -19,6 +19,7 @@ namespace Gameplay.Units
         [SerializeField] private Collider2D _avoidanceCollider;
         [SerializeField] private PolygonCollider2D _visionArea;
         
+        public UnitDirection Direction { get; private set; }
         public UnitAbilities Abilities { get; private set; }
         public UnitLife Life { get; private set; }
         public UnitOwnership Ownership { get; private set; }
@@ -47,6 +48,7 @@ namespace Gameplay.Units
         {
             Type = type;
 
+            Direction = new UnitDirection(this, TacticalPause);
             Abilities = new UnitAbilities(this, TacticalPause);
             Life = new UnitLife(this, TacticalPause);
             Ownership = new UnitOwnership(this, ownedByPlayer);

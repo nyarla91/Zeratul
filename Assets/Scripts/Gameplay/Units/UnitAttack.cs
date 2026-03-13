@@ -94,8 +94,8 @@ namespace Gameplay.Units
             Unit.Movement.Stop();
                 
             float targetAngle = (Unit.Position.DirectionTo(CurrentTarget.Position) / Isometry.Scale).ToDegrees();
-            Unit.Movement.RotateTowards(targetAngle);
-            if ( ! Mathf.Approximately(Unit.Movement.LookAngle, targetAngle))
+            Unit.Direction.RotateTowards(targetAngle);
+            if ( ! Mathf.Approximately(Unit.Direction.LookAngle, targetAngle))
                 return;
                 
             StrikeUnit(CurrentTarget);
