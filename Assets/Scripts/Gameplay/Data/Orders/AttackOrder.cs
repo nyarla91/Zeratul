@@ -14,6 +14,9 @@ namespace Gameplay.Data.Orders
 
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
+            if ( ! order.Actor.CanAttack)
+                return;
+            
             UnitAttack actorAttack = order.Actor.Attack;
             if (order.Target.Unit)
             {
@@ -40,11 +43,12 @@ namespace Gameplay.Data.Orders
 
         protected override void Dispose(Order order)
         {
-            order.Actor.Movement.Stop();
-            order.Actor.Attack.StopAttacking();
+            order.Actor.Movement?.Stop();
+            order.Actor.Attack?.StopAttacking();
         }
 
         public override bool CanBeIssued(Order order) =>
-            order.Actor.Attack.IsAbleToAttack && ( ! order.Target.Unit || order.Actor.Attack.CanAttackUnit(order.Target.Unit));
+            order.Actor.CanAttack && order.Actor.Attack.IsAbleToAttack &&
+            (!order.Target.Unit || order.Actor.Attack.CanAttackUnit(order.Target.Unit));
     }
 }

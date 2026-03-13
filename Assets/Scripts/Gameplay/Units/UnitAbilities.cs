@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Extentions;
 using Extentions.Pause;
-using Gameplay.Data;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
 using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Units
 {

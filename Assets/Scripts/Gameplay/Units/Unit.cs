@@ -3,6 +3,7 @@ using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Pathfinding;
 using Gameplay.Vision;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
@@ -19,15 +20,17 @@ namespace Gameplay.Units
         [SerializeField] private PolygonCollider2D _visionArea;
         
         public UnitAbilities Abilities { get; private set; }
-        public UnitAttack Attack { get; private set; }
         public UnitLife Life { get; private set; }
         public UnitOwnership Ownership { get; private set; }
         public UnitStatuses Statuses { get; private set; }
         public UnitStagger Stagger { get; private set; }
-        public UnitMovement Movement { get; private set; }
         public UnitVisibility Visibility { get; private set; }
         public UnitSight Sight { get; private set; }
         public UnitOrders Orders { get; private set; }
+        public UnitMovement Movement { get; private set; }
+        public UnitAttack Attack { get; private set; }
+
+        public bool CanAttack { get; private set; }
 
         public Vector2 Position => transform.position;
 
@@ -45,7 +48,6 @@ namespace Gameplay.Units
             Type = type;
 
             Abilities = new UnitAbilities(this, TacticalPause);
-            Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig);
             Life = new UnitLife(this, TacticalPause);
             Ownership = new UnitOwnership(this, ownedByPlayer);
             Stagger = new UnitStagger(this, TacticalPause);
@@ -54,6 +56,10 @@ namespace Gameplay.Units
             Sight = new UnitSight(this, _visionConfig, _visionArea, VisionMap, ownedByPlayer);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
+            
+            if (type.WeaponType != null)
+                Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig);
+            CanAttack = Attack != null;
             
             UnitPool.AddUnit(this);
             Life.HitPointsOver += Kill;
