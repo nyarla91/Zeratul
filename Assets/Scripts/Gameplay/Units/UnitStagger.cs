@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using Extentions.Pause;
 using UniRx;
 using Zenject;
@@ -13,6 +14,8 @@ namespace Gameplay.Units
         public bool IsStaggered { get; private set; }
 
         public string Action { get; private set; } = "idle";
+
+        public event Action Began;
         
         public UnitStagger(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
@@ -31,6 +34,7 @@ namespace Gameplay.Units
             }
             IsStaggered = true;
             Action = action;
+            Began?.Invoke();
 
             for (int i = 0; i < windupTime; i++)
             {

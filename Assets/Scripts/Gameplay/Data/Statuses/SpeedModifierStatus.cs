@@ -9,7 +9,7 @@ namespace Gameplay.Data.Statuses
     {
         protected override Modifier GetTargetModifier(Status status)
         {
-            return status.Host.Movement.SpeedModifier;
+            return status.Host.Movement?.SpeedModifier;
         }
     }
 }

@@ -17,6 +17,11 @@ namespace Gameplay.Data.Orders
         public override bool IsValidForSmartOrder(OrderTarget target)
             => target.Unit == null || target.Unit.Ownership.OwnedByPlayer;
 
+        public override bool CanBeIssued(Order order)
+        {
+            return order.Actor.CanMove && order.Target.Unit != order.Actor;
+        }
+
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
             if ( ! order.Target.Unit)
@@ -48,11 +53,6 @@ namespace Gameplay.Data.Orders
         protected override void Dispose(Order order)
         {
             order.Actor.Movement.Stop();
-        }
-
-        public override bool CanBeIssued(Order order)
-        {
-            return ! order.Actor.Type.IsImmobile && order.Target.Unit != order.Actor;
         }
     }
 }

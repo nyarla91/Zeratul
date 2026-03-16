@@ -52,7 +52,19 @@ namespace Gameplay.Data.Abilities
             return _casterValidators.IsValid(ability.Caster, ability.Caster)
                    && ( ! target.Unit || _targetValidators.IsValid(ability.Caster, target.Unit))
                    && ability.Caster.Abilities.EnergyPoints >= EnergyCost
+                   && (ability.Caster.CanMove || IsTargetInRadius(ability.Caster, target))
                    && ability.IsReady;
+        }
+        
+        public bool IsTargetInRadius(Unit caster, OrderTarget target)
+        {
+            return TargetRequirement switch
+            {
+                TargetRequirement.None => true,
+                TargetRequirement.Unit => Isometry.Distance(caster.Position,
+                    target.Unit.Position) < MaxDistance,
+                _ => Isometry.Distance(caster.Position, target.Point) < MaxDistance
+            };
         }
 
         private void OnValidate()

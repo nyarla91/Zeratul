@@ -24,7 +24,10 @@ namespace Gameplay.Data.Orders
                 await UniTask.WaitUntil(() => ! order.Actor.Attack.IsAttacking, PlayerLoopTiming.FixedUpdate, ct);
                 return;
             }
-
+            
+            if ( ! order.Actor.CanMove)
+                return;
+            
             UnitMovement actorMovement = order.Actor.Movement;
             do
             {
@@ -47,8 +50,11 @@ namespace Gameplay.Data.Orders
             order.Actor.Attack?.StopAttacking();
         }
 
-        public override bool CanBeIssued(Order order) =>
-            order.Actor.CanAttack && order.Actor.Attack.IsAbleToAttack &&
-            (!order.Target.Unit || order.Actor.Attack.CanAttackUnit(order.Target.Unit));
+        public override bool CanBeIssued(Order order)
+        {
+            return order.Actor.CanAttack
+                   && (order.Target.Unit || order.Actor.CanMove)
+                   && (!order.Target.Unit || order.Actor.Attack.CanAttackUnit(order.Target.Unit));
+        }
     }
 }

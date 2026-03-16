@@ -25,7 +25,8 @@ namespace Gameplay.Data.Statuses
         
         public override void OnAdd(Status status)
         {
-            GetTargetModifier(status).AddEntry(new ModifierEntry(status, Processor, _priority));
+            Modifier targetModifier = GetTargetModifier(status);
+            targetModifier?.AddEntry(new ModifierEntry(status, Processor, _priority));
         }
 
         public override void OnUpdate(Status status)
@@ -35,7 +36,8 @@ namespace Gameplay.Data.Statuses
 
         public override void OnRemove(Status status)
         {
-            GetTargetModifier(status).RemoveEntry(status);
+            Modifier targetModifier = GetTargetModifier(status);
+            targetModifier?.RemoveEntry(status);
         }
         
         protected abstract Modifier GetTargetModifier(Status status);

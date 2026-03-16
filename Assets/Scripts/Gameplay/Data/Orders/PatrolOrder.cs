@@ -12,6 +12,8 @@ namespace Gameplay.Data.Orders
         
         public override TargetRequirement TargetRequirement => TargetRequirement.Point;
 
+        public override bool CanBeIssued(Order order) => order.Actor.CanMove;
+
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
             Vector2 originalPoint = order.Actor.Position;

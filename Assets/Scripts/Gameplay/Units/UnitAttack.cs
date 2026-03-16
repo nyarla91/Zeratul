@@ -12,9 +12,6 @@ namespace Gameplay.Units
     public class UnitAttack : UnitComponent
     {
         private readonly UnitAttackConfig _config;
-        private IPauseReadonly _tacticalPause;
-
-        public bool IsAbleToAttack => UnitType.WeaponType && UnitType.AvailableOrders.Contains(_config.DefaultAttackOrder) || Unit.Stagger.IsStaggered;
         
         public Unit CurrentTarget { get; private set; }
         public bool IsAttacking => CurrentTarget != null;
@@ -33,26 +30,25 @@ namespace Gameplay.Units
         public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig config) : base(unit)
         {
             _config = config;
-            _tacticalPause = tacticalPause;
 
             if ( ! UnitType.WeaponType)
                 return;
             
             Observable.EveryFixedUpdate()
-                .Where(_ => _tacticalPause.IsUnpaused)
+                .Where(_ => tacticalPause.IsUnpaused)
                 .Where(_ => IsAttacking)
                 .Subscribe(_ => UpdateAttack());
             
             if (UnitType.WeaponType.AutoAttack)
                 Observable.EveryFixedUpdate()
-                    .Where(_ => _tacticalPause.IsUnpaused)
+                    .Where(_ => tacticalPause.IsUnpaused)
                     .Where(_ => ! IsAttacking)
                     .Subscribe(_ => TryAutoAttack());
         }
 
         public void StartAttacking(Unit target)
         {
-            if ( ! IsAbleToAttack || ! CanAttackUnit(target))
+            if ( ! CanAttackUnit(target))
                 return;
             StopAttacking();
             CurrentTarget = target;
@@ -85,13 +81,16 @@ namespace Gameplay.Units
                 StopAttacking();
                 return;
             }
-                    
+            
             if ( ! IsUnitInRange(CurrentTarget))
             {
-                Unit.Movement.Move(CurrentTarget.Position);
+                if (Unit.CanMove)
+                    Unit.Movement.Move(CurrentTarget.Position);
+                else
+                    StopAttacking();
                 return;
             }
-            Unit.Movement.Stop();
+            Unit.Movement?.Stop();
                 
             float targetAngle = (Unit.Position.DirectionTo(CurrentTarget.Position) / Isometry.Scale).ToDegrees();
             Unit.Direction.RotateTowards(targetAngle);
@@ -103,9 +102,9 @@ namespace Gameplay.Units
 
         private void TryAutoAttack()
         {
-            if ( ! IsAbleToAttack || IsAttacking || ! Unit.Orders.IsIdle)
+            if (IsAttacking || ! Unit.Orders.IsIdle)
                 return;
-
+            
             Unit closestTarget = ClosestTarget;
             if ( ! closestTarget) return;
             OrderTarget target = new(default, closestTarget);

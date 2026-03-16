@@ -23,6 +23,8 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
+            _unit.Stagger.Began += DiscardCurrentActionTime;
+            
             _spriteRenderer.transform.localPosition = _unit.Type.SpriteMap.SpriteHeight * Vector2.up;
             _defaultSortingOrder = _unit.Type.IsAir
                 ? (_config.UnitBaseOrder + _config.AirUnitOrderBonus)
@@ -41,9 +43,10 @@ namespace Gameplay.Units.View
             }
             else
             {
-                _currentActionTime = 0;
+                DiscardCurrentActionTime();
                 _currentAction = newAction;
             }
+            
             
             if (!_unit.Visibility.IsVisibleToPlayer)
             {
@@ -60,9 +63,13 @@ namespace Gameplay.Units.View
             if (_unit.Stagger.IsStaggered)
                 return _unit.Stagger.Action;
             if (_unit.Stagger.RecoveryFramesLeft < -1)
-                return _unit.Movement.HasPath ? "move" : "idle";
-            _currentActionTime = 0;
+                return (_unit.CanMove && _unit.Movement.HasPath) ? "move" : "idle";
             return _unit.Stagger.Action;
+        }
+
+        private void DiscardCurrentActionTime()
+        {
+            _currentActionTime = 0;
         }
 
         private int CalculateSortingOrder()

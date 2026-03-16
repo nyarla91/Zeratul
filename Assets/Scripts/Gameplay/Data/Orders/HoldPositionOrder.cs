@@ -20,5 +20,7 @@ namespace Gameplay.Data.Orders
         {
             order.Actor.Movement.StopHoldingPosition();
         }
+
+        public override bool CanBeIssued(Order order) => order.Actor.CanMove;
     }
 }

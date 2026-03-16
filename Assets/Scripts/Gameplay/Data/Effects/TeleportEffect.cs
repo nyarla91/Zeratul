@@ -8,7 +8,7 @@ namespace Gameplay.Data.Effects
     {
         public override void Apply(Unit caster, Vector2 target)
         {
-            caster.Movement.Teleport(target);
+            caster.Movement?.Teleport(target);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Pathfinding;
 using Gameplay.Vision;
 using JetBrains.Annotations;
+using NaughtyAttributes;
 using UnityEngine;
 using Zenject;
 
@@ -28,10 +30,11 @@ namespace Gameplay.Units
         public UnitVisibility Visibility { get; private set; }
         public UnitSight Sight { get; private set; }
         public UnitOrders Orders { get; private set; }
-        public UnitMovement Movement { get; private set; }
         public UnitAttack Attack { get; private set; }
+        public UnitMovement Movement { get; private set; }
 
-        public bool CanAttack { get; private set; }
+        [ShowNativeProperty] public bool CanAttack { get; private set; }
+        [ShowNativeProperty] public bool CanMove { get; private set; }
 
         public Vector2 Position => transform.position;
 
@@ -46,6 +49,9 @@ namespace Gameplay.Units
         
         public void Init(UnitType type, bool ownedByPlayer)
         {
+            if (Type != null)
+                return;
+            
             Type = type;
 
             Direction = new UnitDirection(this, TacticalPause);
@@ -53,15 +59,18 @@ namespace Gameplay.Units
             Life = new UnitLife(this, TacticalPause);
             Ownership = new UnitOwnership(this, ownedByPlayer);
             Stagger = new UnitStagger(this, TacticalPause);
-            Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _collider, _avoidanceCollider);
             Visibility = new UnitVisibility(this, VisionMap);
             Sight = new UnitSight(this, _visionConfig, _visionArea, VisionMap, ownedByPlayer);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
             
-            if (type.WeaponType != null)
+            CanAttack = type.WeaponType != null && type.AvailableOrders.Contains(_unitAttackConfig.DefaultAttackOrder);
+            if (CanAttack)
                 Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig);
-            CanAttack = Attack != null;
+            
+            CanMove = ! type.IsImmobile;
+            if (CanMove)
+                Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _collider, _avoidanceCollider);
             
             UnitPool.AddUnit(this);
             Life.HitPointsOver += Kill;

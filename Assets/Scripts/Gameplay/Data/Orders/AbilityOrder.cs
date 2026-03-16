@@ -46,6 +46,12 @@ namespace Gameplay.Data.Orders
             }
         }
 
+        public override bool CanBeIssued(Order order)
+        {
+            Ability ability = GetAbilityForOrder(order);
+            return AbilityType.CanBeCast(ability, order.Target);
+        }
+
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
             Ability ability = GetAbilityForOrder(order);
@@ -58,7 +64,7 @@ namespace Gameplay.Data.Orders
                 
                 Vector2 destination = order.Target.Unit ? order.Target.Unit.Position : order.Target.Point;
         
-                if ( ! IsTargetInRadius(order))
+                if ( ! AbilityType.IsTargetInRadius(order.Actor, order.Target))
                 {
                     order.Actor.Movement.Move(destination);
                     continue;
@@ -82,26 +88,9 @@ namespace Gameplay.Data.Orders
             order.Actor.Movement.Stop();
         }
 
-        public override bool CanBeIssued(Order order)
-        {
-            Ability ability = GetAbilityForOrder(order);
-            return AbilityType.CanBeCast(ability, order.Target);
-        }
-
         private Ability GetAbilityForOrder(Order order)
         {
             return order.Actor.Abilities.GetAbility(AbilityType);
-        }
-
-        private bool IsTargetInRadius(Order order)
-        {
-            return TargetRequirement switch
-            {
-                TargetRequirement.None => true,
-                TargetRequirement.Unit => Isometry.Distance(order.Actor.Position,
-                    order.Target.Unit.Position) < AbilityType.MaxDistance,
-                _ => Isometry.Distance(order.Actor.Position, order.Target.Point) < AbilityType.MaxDistance
-            };
         }
     }
 }
