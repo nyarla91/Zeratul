@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
+using Gameplay.Data.Configs;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace Gameplay.Data.Orders
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Attack Order", order = 0)]
     public class AttackOrder : OrderType
     {
+        [Space]
+        [SerializeField] private OrderErrorConfig _errors;
+        
         public override TargetRequirement TargetRequirement => TargetRequirement.PointOrUnit;
 
         public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && ! target.Unit.Ownership.OwnedByPlayer;
@@ -50,11 +54,30 @@ namespace Gameplay.Data.Orders
             order.Actor.Attack?.StopAttacking();
         }
 
-        public override bool CanBeIssued(Order order)
+        public override bool IsActorValid(Unit actor, out string errorMessage)
         {
-            return order.Actor.CanAttack
-                   && (order.Target.Unit || order.Actor.CanMove)
-                   && (!order.Target.Unit || order.Actor.Attack.CanAttackUnit(order.Target.Unit));
+            if ( ! actor.CanAttack)
+            {
+                errorMessage = _errors.CannotAttack;
+                return false;
+            }
+            errorMessage = null;
+            return true;
+        }
+
+        public override bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
+        {
+            errorMessage = _errors.TargetInvalid;
+            if ( ! target.Unit && ! actor.CanMove)
+            {
+                errorMessage = _errors.CannotMove;
+                return false;
+            }
+            if (target.Unit && ! actor.Attack.CanAttackUnit(target.Unit, out errorMessage))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

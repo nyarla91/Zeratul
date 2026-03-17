@@ -1,5 +1,6 @@
 ﻿using System;
 using Extentions.Pause;
+using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
 using Gameplay.Units;
@@ -15,6 +16,7 @@ namespace Gameplay.UI
 {
     public class OrderButton : MonoBehaviour
     {
+        [SerializeField] private OrderErrorConfig _errors;
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _hotkeyPrompt;
         [SerializeField] private EventTrigger _eventTrigger;
@@ -34,6 +36,7 @@ namespace Gameplay.UI
         [Inject] private PlayerOrdersDispatcher Dispatcher { get; set; } 
         [Inject] private Tooltip Tooltip { get; set; } 
         [Inject] private GamePause GamePause { get; set; }
+        [Inject] private OrderErrorMessage OrderErrorMessage { get; set; }
 
         private void Awake()
         {
@@ -80,6 +83,11 @@ namespace Gameplay.UI
                 return;
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
+            if ( ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
+            {
+                OrderErrorMessage.Show(errorMessage);
+                return;
+            }
             TargetSelector.StartTargeting(OrderType);
         }
 
@@ -100,6 +108,11 @@ namespace Gameplay.UI
             if ( ! TargetSelector.IsTargeting)
                 return;
             OrderTarget target = TargetSelector.FinishTargeting();
+            if ( ! Dispatcher.CanIssueWithTarget(OrderType, target, out string errorMessage))
+            {
+                OrderErrorMessage.Show(errorMessage);
+                return;
+            }
             if (OrderType.TargetRequirement == TargetRequirement.Unit && target.Unit == null)
                 return;
             Dispatcher.IssueOrderToSelection(OrderType, target);
@@ -119,6 +132,11 @@ namespace Gameplay.UI
                 return;
             if (OrderType == null || OrderType.TargetRequirement != TargetRequirement.None)
                 return;
+            if ( ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
+            {
+                OrderErrorMessage.Show(errorMessage);
+                return;
+            }
             Dispatcher.IssueOrderToSelection(OrderType, default);
         }
 

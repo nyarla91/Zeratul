@@ -26,6 +26,7 @@ namespace DI
         [SerializeField] private Tooltip _tooltip;
         [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
         [SerializeField] private StatusRendererFactoryFactory _statusRendererFf;
+        [SerializeField] private OrderErrorMessage _orderErrorMessage;
         
         [SerializeField] private SOInjectPresenter _injectPresenter;
         
@@ -45,6 +46,7 @@ namespace DI
             Container.BindInstance(_tooltip).AsSingle();
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
             Container.BindInstance(_statusRendererFf).AsSingle();
+            Container.BindInstance(_orderErrorMessage).AsSingle();
 
             _injectPresenter.Init(Container);
         }

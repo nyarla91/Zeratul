@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Gameplay.Data.Configs;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -9,17 +10,31 @@ namespace Gameplay.Data.Orders
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Move Order", order = 0)]
     public class MoveOrder : OrderType
     {
+        [Space]
         [SerializeField] private float _followMinDistance;
         [SerializeField] private int _framesBetweenFollowRecalculation;
-        
+        [SerializeField] private OrderErrorConfig _errors;
+
         public override TargetRequirement TargetRequirement => TargetRequirement.PointOrUnit;
 
         public override bool IsValidForSmartOrder(OrderTarget target)
             => target.Unit == null || target.Unit.Ownership.OwnedByPlayer;
-
-        public override bool CanBeIssued(Order order)
+        
+        public override bool IsActorValid(Unit actor, out string errorMessage)
         {
-            return order.Actor.CanMove && order.Target.Unit != order.Actor;
+            if ( ! actor.CanMove)
+            {
+                errorMessage = _errors.CannotMove;
+                return false;
+            }
+            errorMessage = null;
+            return true;
+        }
+
+        public override bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
+        {
+            errorMessage = null;
+            return target.Unit != actor;
         }
 
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)

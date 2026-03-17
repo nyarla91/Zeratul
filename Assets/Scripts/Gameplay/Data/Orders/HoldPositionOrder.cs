@@ -9,7 +9,13 @@ namespace Gameplay.Data.Orders
     public class HoldPositionOrder : OrderType
     {
         public override TargetRequirement TargetRequirement => TargetRequirement.None;
-        
+
+        public override bool IsActorValid(Unit actor, out string errorMessage)
+        {
+            errorMessage = null;
+            return actor.CanMove;
+        }
+
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
             order.Actor.Movement.HoldPosition();
@@ -20,7 +26,5 @@ namespace Gameplay.Data.Orders
         {
             order.Actor.Movement.StopHoldingPosition();
         }
-
-        public override bool CanBeIssued(Order order) => order.Actor.CanMove;
     }
 }

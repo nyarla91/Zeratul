@@ -15,6 +15,7 @@ namespace Gameplay.Units
     {
         [SerializeField] private UnitAttackConfig _unitAttackConfig;
         [SerializeField] private UnitMovementConfig _unitMovementConfig;
+        [SerializeField] private OrderErrorConfig _orderErrorConfig;
         [SerializeField] private VisionConfig _visionConfig;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
@@ -66,7 +67,7 @@ namespace Gameplay.Units
             
             CanAttack = type.WeaponType != null && type.AvailableOrders.Contains(_unitAttackConfig.DefaultAttackOrder);
             if (CanAttack)
-                Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig);
+                Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig, _orderErrorConfig);
             
             CanMove = ! type.IsImmobile;
             if (CanMove)

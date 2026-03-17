@@ -12,7 +12,8 @@ namespace Gameplay.Units
     public class UnitAttack : UnitComponent
     {
         private readonly UnitAttackConfig _config;
-        
+        private readonly OrderErrorConfig _errors;
+
         public Unit CurrentTarget { get; private set; }
         public bool IsAttacking => CurrentTarget != null;
 
@@ -27,9 +28,10 @@ namespace Gameplay.Units
             }
         }
 
-        public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig config) : base(unit)
+        public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig config, OrderErrorConfig errors) : base(unit)
         {
             _config = config;
+            _errors = errors;
 
             if ( ! UnitType.WeaponType)
                 return;
@@ -61,16 +63,29 @@ namespace Gameplay.Units
             CurrentTarget = null;
         }
 
-        public bool CanAttackUnit(Unit target)
+        public bool CanAttackUnit(Unit target) => CanAttackUnit(target, out _);
+        
+        public bool CanAttackUnit(Unit target, out string errorMessage)
         {
+            errorMessage = _errors.TargetInvalid;
             if (target == Unit)
+            {
+                errorMessage = _errors.CantTargetSelf;
                 return false;
+            }
+            
             if (target.Life.IsDead)
                 return false;
-            if (UnitType.IsImmobile && ! IsUnitInRange(target))
+            
+            if (UnitType.IsImmobile && !IsUnitInRange(target))
+            {
+                errorMessage = _errors.OutOfRange;
                 return false;
+            }
+            
             if ( ! target.Visibility.CanBeTargetedBy(Unit))
                 return false;
+            
             return true;
         }
 

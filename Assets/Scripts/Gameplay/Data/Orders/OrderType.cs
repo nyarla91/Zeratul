@@ -28,8 +28,21 @@ namespace Gameplay.Data.Orders
         public abstract TargetRequirement TargetRequirement { get; }
         
         public virtual bool IsValidForSmartOrder(OrderTarget target) => false;
-        
-        public virtual bool CanBeIssued(Order order) => true;
+
+        public bool CanBeIssued(Order order) =>
+            IsTargetValid(order.Actor, order.Target, out _) && IsActorValid(order.Actor, out _);
+
+        public virtual bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
+        }
+
+        public virtual bool IsActorValid(Unit actor, out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
+        }
 
         public virtual bool MustBeCanceled(Order order)
         {

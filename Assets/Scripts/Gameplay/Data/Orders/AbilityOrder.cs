@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using Extentions;
 using Gameplay.Data.Abilities;
+using Gameplay.Data.Configs;
 using Gameplay.Units;
 using NaughtyAttributes;
 using UnityEngine;
@@ -15,6 +15,7 @@ namespace Gameplay.Data.Orders
         [Space]
         [Expandable] [SerializeField] private AbilityType _abilityType;
         [Expandable] [SerializeField] private float _aoeEllipseRadius;
+        [SerializeField] private OrderErrorConfig _errors;
 
         public AbilityType AbilityType => _abilityType;
         public float AoeEllipseRadius => _aoeEllipseRadius;
@@ -46,10 +47,39 @@ namespace Gameplay.Data.Orders
             }
         }
 
-        public override bool CanBeIssued(Order order)
+        public override bool IsActorValid(Unit actor, out string errorMessage)
         {
-            Ability ability = GetAbilityForOrder(order);
-            return AbilityType.CanBeCast(ability, order.Target);
+            if ( ! actor.Abilities.GetAbility(AbilityType).IsReady)
+            {
+                errorMessage = _errors.NotReadyAbility;
+                return false;
+            }
+            if (actor.Abilities.EnergyPoints < AbilityType.EnergyCost)
+            {
+                errorMessage = _errors.NotEnoughEnergy;
+                return false;
+            }
+            if (AbilityType.CasterValidators.IsInvalid(actor, actor, out errorMessage))
+            {
+                return false;
+            }
+            errorMessage = null;
+            return true;
+        }
+
+        public override bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
+        {
+            if (target.Unit && AbilityType.TargetValidators.IsInvalid(actor, target.Unit, out errorMessage))
+            {
+                return false;
+            }
+            if ( ! actor.CanMove && ! AbilityType.IsTargetInRadius(actor, target))
+            {
+                errorMessage = _errors.OutOfRange;
+                return false;
+            }
+            errorMessage = null;
+            return true;
         }
 
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
@@ -66,10 +96,10 @@ namespace Gameplay.Data.Orders
         
                 if ( ! AbilityType.IsTargetInRadius(order.Actor, order.Target))
                 {
-                    order.Actor.Movement.Move(destination);
+                    order.Actor.Movement?.Move(destination);
                     continue;
                 }
-                order.Actor.Movement.Stop();
+                order.Actor.Movement?.Stop();
                 
                 float angleToTarget = order.Actor.Position.DirectionTo(destination).ToDegrees();
                 if (ability.Type.MustLookAtTarget && ! order.Actor.Direction.LookAngle.Equals(angleToTarget))

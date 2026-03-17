@@ -2,6 +2,7 @@
 using System.Linq;
 using Extentions;
 using Extentions.Pause;
+using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Units;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Gameplay.Player
     public class PlayerOrderTargetSelector : MonoBehaviour
     {
         [SerializeField] private LayerMask _unitsMask;
-        
+
         private Vector2 EstimatedPointTarget => Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         public OrderType CurrentOrder { get; private set; }
@@ -37,6 +38,7 @@ namespace Gameplay.Player
 
         private OrderTarget EstimatedPointOrUnitTarget => new(EstimatedPointTarget, EstimatedUnitTarget);
         
+        [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private GamePause GamePause { get; set; }
         
         public void StartTargeting(OrderType order)

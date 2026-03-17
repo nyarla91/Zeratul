@@ -9,10 +9,7 @@ namespace Gameplay.Data.Orders
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Patrol Order", order = 0)]
     public class PatrolOrder : OrderType
     {
-        
         public override TargetRequirement TargetRequirement => TargetRequirement.Point;
-
-        public override bool CanBeIssued(Order order) => order.Actor.CanMove;
 
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {

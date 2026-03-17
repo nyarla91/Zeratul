@@ -35,6 +35,7 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private string _animationAction;
 
         public TargetRequirement TargetRequirement => _targetRequirement;
+        public UnitValidatorGroup CasterValidators => _casterValidators;
         public UnitValidatorGroup TargetValidators => _targetValidators;
         public float MaxDistance => _maxDistance;
         public int EnergyCost => _energyCost;
@@ -51,8 +52,8 @@ namespace Gameplay.Data.Abilities
         {
             return _casterValidators.IsValid(ability.Caster, ability.Caster)
                    && ( ! target.Unit || _targetValidators.IsValid(ability.Caster, target.Unit))
-                   && ability.Caster.Abilities.EnergyPoints >= EnergyCost
                    && (ability.Caster.CanMove || IsTargetInRadius(ability.Caster, target))
+                   && ability.Caster.Abilities.EnergyPoints >= EnergyCost
                    && ability.IsReady;
         }
         
@@ -61,8 +62,7 @@ namespace Gameplay.Data.Abilities
             return TargetRequirement switch
             {
                 TargetRequirement.None => true,
-                TargetRequirement.Unit => Isometry.Distance(caster.Position,
-                    target.Unit.Position) < MaxDistance,
+                TargetRequirement.Unit => Isometry.Distance(caster.Position, target.Unit.Position) < MaxDistance,
                 _ => Isometry.Distance(caster.Position, target.Point) < MaxDistance
             };
         }

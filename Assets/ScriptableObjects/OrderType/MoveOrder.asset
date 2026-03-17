@@ -18,3 +18,4 @@ MonoBehaviour:
   _hotkeyAlias: Move
   _followMinDistance: 0.7
   _framesBetweenFollowRecalculation: 10
+  _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}

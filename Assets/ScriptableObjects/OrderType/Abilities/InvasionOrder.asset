@@ -18,3 +18,4 @@ MonoBehaviour:
   _hotkeyAlias: Ability1
   _abilityType: {fileID: 11400000, guid: ecc620c3ad6959f4dbf350f78d520812, type: 2}
   _aoeEllipseRadius: 0
+  _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}

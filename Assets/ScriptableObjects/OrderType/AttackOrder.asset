@@ -17,3 +17,4 @@ MonoBehaviour:
     attacking any enemy on the path.
   _icon: {fileID: 21300000, guid: 9dc9a55ae44c7544ba14d215397b61f1, type: 3}
   _hotkeyAlias: Attack
+  _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}
