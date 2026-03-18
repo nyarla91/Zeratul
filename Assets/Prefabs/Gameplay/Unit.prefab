@@ -616,9 +616,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5118053676839152040}
+  - component: {fileID: 3144175060623862221}
   - component: {fileID: 2946777494775096283}
   m_Layer: 11
-  m_Name: SightArea
+  m_Name: VisionSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,6 +640,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5439672414855075461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3144175060623862221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511852199184073353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b27a4b2f9654dc388f858d9a1b91d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Vision.VisionSource
+  _config: {fileID: 11400000, guid: 3419c58748f8fc24fa1f59e94c65c703, type: 2}
+  _collider: {fileID: 2946777494775096283}
 --- !u!60 &2946777494775096283
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -901,7 +916,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 2212058817159712324}
   _collider: {fileID: 9103159375792626044}
   _avoidanceCollider: {fileID: 1249983972513825726}
-  _visionArea: {fileID: 2946777494775096283}
+  _visionSource: {fileID: 3144175060623862221}
 --- !u!1 &6475753974446673389
 GameObject:
   m_ObjectHideFlags: 0

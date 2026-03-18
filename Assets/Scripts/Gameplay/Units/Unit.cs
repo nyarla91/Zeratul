@@ -20,7 +20,7 @@ namespace Gameplay.Units
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
-        [SerializeField] private PolygonCollider2D _visionArea;
+        [SerializeField] private VisionSource _visionSource;
         
         public UnitDirection Direction { get; private set; }
         public UnitAbilities Abilities { get; private set; }
@@ -36,6 +36,7 @@ namespace Gameplay.Units
 
         [ShowNativeProperty] public bool CanAttack { get; private set; }
         [ShowNativeProperty] public bool CanMove { get; private set; }
+        [ShowNativeProperty] public bool VisibleToPlayer => Visibility?.IsVisibleToPlayer ?? false;
 
         public Vector2 Position => transform.position;
 
@@ -61,7 +62,7 @@ namespace Gameplay.Units
             Ownership = new UnitOwnership(this, ownedByPlayer);
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
-            Sight = new UnitSight(this, _visionConfig, _visionArea, VisionMap, ownedByPlayer);
+            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, ownedByPlayer);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
             

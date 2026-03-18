@@ -1,18 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Gameplay.Units;
+using Gameplay.Data.Configs;
+using UniRx;
 using UnityEngine;
+using Unit = Gameplay.Units.Unit;
 
 namespace Gameplay.Vision
 {
     public class VisionArea : MonoBehaviour
     {
+        [SerializeField] private VisionConfig _config;
+        [SerializeField] private CompositeCollider2D _compositeCollider;
+        
+        private readonly HashSet<VisionSource> _sources = new();
         private readonly HashSet<Unit> _visibleUnits = new();
         private bool _isInitialized;
         
         public bool IsOwnedByPlayer { get; private set; }
         public HashSet<Unit> VisibleUnits => _visibleUnits.ToHashSet();
+
+        private void Awake()
+        {
+            Observable.EveryFixedUpdate()
+                .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
+                .Subscribe(_ => Recalculate());
+        }
+
+        private void Recalculate()
+        {
+            foreach (VisionSource source in _sources)
+            {
+                source.Recalculate();
+            }
+            _compositeCollider.GenerateGeometry();
+        }
 
         public void Init(bool isOwnedByPlayer)
         {
@@ -22,10 +44,19 @@ namespace Gameplay.Vision
             IsOwnedByPlayer = isOwnedByPlayer;
         }
         
-        public void AttachSightArea(Transform sightArea)
+        public void AttachSource(VisionSource source)
         {
-            sightArea.SetParent(transform);
-            sightArea.gameObject.layer = gameObject.layer;
+            if ( ! _sources.Add(source))
+                return;
+            source.transform.SetParent(transform);
+            source.gameObject.layer = gameObject.layer;
+        }
+
+        public void DetachSource(VisionSource source)
+        {
+            if ( ! _sources.Remove(source))
+                return;
+            source.transform.SetParent(null);
         }
         
         public bool IsUnitVisible(Unit unit)
@@ -35,7 +66,7 @@ namespace Gameplay.Vision
         private void OnTriggerEnter2D(Collider2D other)
         {
             Unit unit = other.GetComponentInParent<Unit>();
-            if (unit ==  null || _visibleUnits.Contains(unit))
+            if (unit ==  null)
                 return;
             _visibleUnits.Add(unit);
         }

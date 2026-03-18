@@ -119,9 +119,12 @@ namespace Gameplay.Units
         {
             if (IsAttacking || ! Unit.Orders.IsIdle)
                 return;
+            if (_config.AutoAttackOnlyForEnemy && Unit.Ownership.OwnedByPlayer)
+                return;
             
             Unit closestTarget = ClosestTarget;
-            if ( ! closestTarget) return;
+            if ( ! closestTarget || ! CanAttackUnit(closestTarget))
+                return;
             OrderTarget target = new(default, closestTarget);
             Unit.Orders.IssueOrder(new Order(_config.DefaultAttackOrder, Unit, target), false);
         }

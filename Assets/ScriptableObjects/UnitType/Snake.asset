@@ -28,8 +28,7 @@ MonoBehaviour:
   _isAir: 0
   _sightRadius: 18
   _weaponType: {fileID: 11400000, guid: b59061b5499a770419101715f9338234, type: 2}
-  _innateStatuses:
-  - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
+  _innateStatuses: []
   _availableOrders:
   - {fileID: 11400000, guid: df29f6f11f2ddf840966aeb2744eb539, type: 2}
   - {fileID: 0}

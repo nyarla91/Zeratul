@@ -8,9 +8,11 @@ namespace Gameplay.Data.Configs
     public class UnitAttackConfig : ScriptableObject
     {
         [SerializeField] private OrderType _defaultAttackOrder;
+        [SerializeField] private bool _autoAttackOnlyForEnemy;
         [SerializeField] private UnitValidatorGroup _autoAttackValidators;
 
         public OrderType DefaultAttackOrder => _defaultAttackOrder;
+        public bool AutoAttackOnlyForEnemy => _autoAttackOnlyForEnemy;
         public UnitValidatorGroup AutoAttackValidators => _autoAttackValidators;
     }
 }
