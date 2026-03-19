@@ -2,18 +2,19 @@
 using System.Linq;
 using Extentions;
 using Extentions.Pause;
-using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Units;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
+using Unit = Gameplay.Units.Unit;
 
 namespace Gameplay.Player
 {
-    public class PlayerOrderTargetSelector : MonoBehaviour
+    public class PlayerOrderTargetSelector
     {
-        [SerializeField] private LayerMask _unitsMask;
+        private readonly LayerMask _unitsMask;
 
         private Vector2 EstimatedPointTarget => Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
@@ -38,8 +39,15 @@ namespace Gameplay.Player
 
         private OrderTarget EstimatedPointOrUnitTarget => new(EstimatedPointTarget, EstimatedUnitTarget);
         
-        [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private GamePause GamePause { get; set; }
+        
+        public PlayerOrderTargetSelector(LayerMask unitsMask)
+        {
+            _unitsMask = unitsMask;
+            
+            Observable.EveryFixedUpdate()
+                .Subscribe(_ => UpdateCurrentTarget());
+        }
         
         public void StartTargeting(OrderType order)
         {
@@ -69,17 +77,12 @@ namespace Gameplay.Player
             };
         }
 
-        private void Update()
+        private void UpdateCurrentTarget()
         {
             if (GamePause.IsPaused)
             {
                 FinishTargeting();
             }
-            UpdateCurrentTarget();
-        }
-
-        private void UpdateCurrentTarget()
-        {
             CurrentTarget = GetTargetForRequirement(CurrentOrder?.TargetRequirement ?? TargetRequirement.None);
         }
     }

@@ -1305,6 +1305,7 @@ GameObject:
   - component: {fileID: 189624906}
   - component: {fileID: 189624907}
   - component: {fileID: 189624904}
+  - component: {fileID: 189624908}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1324,11 +1325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631b9d37e34d445abee2120c5ef31c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Architecture::Architecture.GameplayInstaller
-  _playerSelection: {fileID: 1164900124}
   _unitPool: {fileID: 906850154}
-  _playerInput: {fileID: 1164900127}
-  _playerOrderTargetSelector: {fileID: 1164900128}
-  _playerOrdersDispatcher: {fileID: 1164900129}
   _nodeMap: {fileID: 819588473}
   _isometricOverlap: {fileID: 2127400927}
   _visionMap: {fileID: 1907651306}
@@ -1350,7 +1347,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1164900125}
   - {fileID: 782747764}
   - {fileID: 819588472}
   - {fileID: 906850155}
@@ -1376,6 +1372,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 189624907}
   - {fileID: 189624904}
+  - {fileID: 189624908}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1405,6 +1402,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e775e3e933140b8b34ce60ed5258531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Extentions::Extentions.ContainerInstantiator
+--- !u!114 &189624908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189624903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187cc3f74d8a4803a8001841def8c672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Architecture::DI.PlayerInstaller
+  _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}
+  _unitsMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1001 &192217889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10650,93 +10663,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157040167}
   m_CullTransparentMesh: 1
---- !u!1 &1164900123
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1164900125}
-  - component: {fileID: 1164900124}
-  - component: {fileID: 1164900127}
-  - component: {fileID: 1164900129}
-  - component: {fileID: 1164900128}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1164900124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164900123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7fa0eda3bd4aa5a006394771f28bab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.PlayerSelection
---- !u!4 &1164900125
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164900123}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13861, y: 0.21782, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 189624905}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1164900127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164900123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f0bcb7a4194775bbab6f9fe15bc614, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.Player.PlayerInput
---- !u!114 &1164900128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164900123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54405527db594006a851177298dc4eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.UnitManagement.UnitOrderTargetSelector
-  _unitsMask:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!114 &1164900129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164900123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc543bf92aa4a0cb91ac94540a62b05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.UnitManagement.UnitOrdersDispatcher
-  _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}
 --- !u!1 &1184607831
 GameObject:
   m_ObjectHideFlags: 0
@@ -28870,7 +28796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4e2c7569d4441988a690b022594977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.UI.TargetSelectorView
-  _selector: {fileID: 1164900128}
   _canvasGroup: {fileID: 2099182974}
   _showDelay: 0.2
   _enableTacticalPause: 1

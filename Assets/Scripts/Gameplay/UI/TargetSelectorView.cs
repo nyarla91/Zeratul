@@ -15,7 +15,6 @@ namespace Gameplay.UI
 {
     public class TargetSelectorView : MonoBehaviour
     {
-        [SerializeField] private PlayerOrderTargetSelector _selector;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _showDelay;
         [SerializeField] private bool _enableTacticalPause;
@@ -30,10 +29,11 @@ namespace Gameplay.UI
         private RangeEllipse _rangeEllipse;
         private RangeEllipse _aoeEllipse;
 
-        private OrderType CurrentOrder => _selector.CurrentOrder; 
+        private OrderType CurrentOrder => Selector.CurrentOrder; 
         private AbilityOrder CurrentAbilityOrder => CurrentOrder as AbilityOrder; 
         
         [Inject] private PlayerSelection Selection { get; set; }
+        [Inject] public PlayerOrderTargetSelector Selector { get; }
         [Inject] private RangeEllipseFactory RangeEllipseFactory { get; set; }
         [Inject] private TacticalPause TacticalPause { get; set; }
 
@@ -74,9 +74,9 @@ namespace Gameplay.UI
                 return null;
             if (CurrentOrder.TargetRequirement == TargetRequirement.Point)
                 return null;
-            if (CurrentOrder.TargetRequirement == TargetRequirement.Unit && ! _selector.CurrentTarget.Unit)
+            if (CurrentOrder.TargetRequirement == TargetRequirement.Unit && ! Selector.CurrentTarget.Unit)
                 return "Must target a unit";
-            if ( ! _selector.CurrentTarget.Unit)
+            if ( ! Selector.CurrentTarget.Unit)
                 return null;
             
             if ( ! CurrentAbilityOrder)
@@ -86,7 +86,7 @@ namespace Gameplay.UI
             string invalidMessage = "";
             foreach (Unit actor in actors)
             {
-                if (CurrentAbilityOrder.AbilityType.TargetValidators.IsValid(actor, _selector.CurrentTarget.Unit, out invalidMessage))
+                if (CurrentAbilityOrder.AbilityType.TargetValidators.IsValid(actor, Selector.CurrentTarget.Unit, out invalidMessage))
                     return null;
             }
             return invalidMessage;
@@ -108,14 +108,14 @@ namespace Gameplay.UI
             _rangeEllipse.Move(closestUnit.Position);
 
             radius = CurrentAbilityOrder.AoeEllipseRadius;
-            if (radius == 0 || (CurrentAbilityOrder.TargetRequirement == TargetRequirement.Unit && ! _selector.CurrentTarget.Unit))
+            if (radius == 0 || (CurrentAbilityOrder.TargetRequirement == TargetRequirement.Unit && ! Selector.CurrentTarget.Unit))
             {
                 _aoeEllipse.Hide();
                 return;
             }
             _aoeEllipse.Show();
             _aoeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
-            Vector3 position = _selector.CurrentTarget.Unit ? _selector.CurrentTarget.Unit.Position : _selector.CurrentTarget.Point;
+            Vector3 position = Selector.CurrentTarget.Unit ? Selector.CurrentTarget.Unit.Position : Selector.CurrentTarget.Point;
             _aoeEllipse.Move(position);
         }
     }

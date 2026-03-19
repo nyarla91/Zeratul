@@ -1,23 +1,27 @@
 ﻿using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Units;
-using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Player
 {
-    public class PlayerOrdersDispatcher : MonoBehaviour
+    public class PlayerOrdersDispatcher
     {
-        [SerializeField] private OrderErrorConfig _errors;
-        
-        [Inject] private PlayerSelection PlayerSelection { get; set; }
-        [Inject] private PlayerInput PlayerInput { get; set; }
+        private readonly PlayerSelection _playerSelection;
+        private readonly PlayerInput _playerInput;
+        private readonly OrderErrorConfig _errors;
 
-        private bool QueueOrder => PlayerInput.QueueOrder.IsHeld;
-        
+        private bool QueueOrder => _playerInput.QueueOrder.IsHeld;
+
+        public PlayerOrdersDispatcher(PlayerSelection playerSelection, PlayerInput playerInput, OrderErrorConfig errors)
+        {
+            _playerSelection = playerSelection;
+            _playerInput = playerInput;
+            _errors = errors;
+        }
+
         public void IssueSmartOrderToSelection(OrderTarget target)
         {
-            foreach (Unit unit in PlayerSelection.SelectedUnits)
+            foreach (Unit unit in _playerSelection.SelectedUnits)
             {
                 unit.Orders.IssueSmartOrder(target, QueueOrder);
             }   
@@ -25,7 +29,7 @@ namespace Gameplay.Player
         
         public void IssueOrderToSelection(OrderType type, OrderTarget target)
         {
-            foreach (Unit unit in PlayerSelection.SelectedUnits)
+            foreach (Unit unit in _playerSelection.SelectedUnits)
             {
                 unit.Orders.IssueOrder(new Order(type, unit, target), QueueOrder);
             }
@@ -34,7 +38,7 @@ namespace Gameplay.Player
         public bool CanIssueWithoutTarget(OrderType orderType, out string errorMessage)
         {
             errorMessage = _errors.Generic;
-            foreach (Unit selectedUnit in PlayerSelection.SelectedUnits)
+            foreach (Unit selectedUnit in _playerSelection.SelectedUnits)
             {
                 if (orderType.IsActorValid(selectedUnit, out errorMessage))
                     return true;
@@ -46,7 +50,7 @@ namespace Gameplay.Player
         {
             if (!CanIssueWithoutTarget(orderType, out errorMessage))
                 return false;
-            foreach (Unit selectedUnit in PlayerSelection.SelectedUnits)
+            foreach (Unit selectedUnit in _playerSelection.SelectedUnits)
             {
                 if (orderType.IsTargetValid(selectedUnit, target, out errorMessage))
                     return true;

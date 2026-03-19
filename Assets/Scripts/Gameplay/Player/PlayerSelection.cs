@@ -5,13 +5,11 @@ using Extentions;
 using Gameplay.Data;
 using Gameplay.Units;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Player
 {
-    public class PlayerSelection : MonoBehaviour
+    public class PlayerSelection
     {
-
         private List<Unit> _selectedUnits = new();
         private List<UnitType> _selectedUnitTypes = new();
         private int _focusedUnitTypeIndex;
@@ -22,14 +20,11 @@ namespace Gameplay.Player
 
         public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
         
-        [Inject] private PlayerInput Input { get; set; }
-        [Inject] private UnitPool UnitPool { get; set; }
-
         public event Action SelectionUpdated;
-
-        private void Awake()
+        
+        public PlayerSelection(PlayerInput input)
         {
-            Input.FocusNextUnitType.Performed += FocusNextUnitType;
+            input.FocusNextUnitType.Performed += FocusNextUnitType;
         }
         
         public void AddUnitsToSelection(params Unit[] units)
