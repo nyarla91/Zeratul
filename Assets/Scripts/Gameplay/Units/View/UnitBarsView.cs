@@ -1,7 +1,9 @@
-﻿using Extentions;
+﻿using System;
+using Extentions;
 using Gameplay.UI;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Gameplay.Units.View
 {
@@ -12,6 +14,8 @@ namespace Gameplay.Units.View
         [SerializeField] private FillBarView _hitPointsBar;
         [SerializeField] private FillBarView _shieldPointsBar;
         [SerializeField] private FillBarView _energyPointsBar;
+        [SerializeField] private Image _hitPointsFill;
+        [SerializeField] private Gradient _hitPointsGradient;
 
         private RectTransform _canvasRectTransform;
         
@@ -22,8 +26,10 @@ namespace Gameplay.Units.View
             _canvasRectTransform = _canvas.GetComponent<RectTransform>();
             _canvasRectTransform.sizeDelta = _canvasRectTransform.sizeDelta.WithX(canvasWidth);
             _canvasRectTransform.localPosition = new Vector3(0, canvasYOffset);
-            
-            _hitPointsBar.SubscribeToPercent(_unit.ObserveEveryValueChanged(u => u.Life.HitPercent));
+
+            IObservable<float> observableHitPoints = _unit.ObserveEveryValueChanged(u => u.Life.HitPercent);
+            _hitPointsBar.SubscribeToPercent(observableHitPoints);
+            observableHitPoints.Subscribe(UpdateHitPointsColor);
             
             if (_unit.Life.HasShieldPoints)
                 _shieldPointsBar.SubscribeToPercent(_unit.ObserveEveryValueChanged(u => u.Life.ShieldPercent));
@@ -37,6 +43,11 @@ namespace Gameplay.Units.View
             
             _unit.ObserveEveryValueChanged(u => u.Visibility.IsVisibleToPlayer)
                 .Subscribe(v => _canvas.enabled = v);
+        }
+
+        private void UpdateHitPointsColor(float percent)
+        {
+            _hitPointsFill.color = _hitPointsGradient.Evaluate(percent);
         }
     }
 }

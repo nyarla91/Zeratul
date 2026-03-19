@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Dropship
   _focusPriority: 2
+  _tags:
+  - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
+  - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
+  _controlWorth: 0
   _maxHitPoints: 100
   _maxShieldPoints: 50
   _shieldRestoreDelay: 50
@@ -21,6 +25,7 @@ MonoBehaviour:
   _maxEnergyPoints: 100
   _energyRestoreDelay: 25
   _energyPointsPerSecond: 5
+  _isImmobile: 0
   _maxSpeed: 250
   _size: 3
   _rotationSpeed: 360

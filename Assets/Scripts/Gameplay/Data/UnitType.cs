@@ -12,6 +12,8 @@ namespace Gameplay.Data
     {
         [SerializeField] private string _displayName;
         [SerializeField] private int _focusPriority;
+        [Space]
+        [SerializeField] private UnitTag[] _tags;
         [SerializeField] private int _controlWorth;
         [Space]
         [SerializeField] private int _maxHitPoints;
@@ -39,6 +41,7 @@ namespace Gameplay.Data
 
         public string DisplayName => _displayName;
         public int FocusPriority => _focusPriority;
+        public UnitTag[] Tags => _tags;
         public int ControlWorth => _controlWorth;
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;

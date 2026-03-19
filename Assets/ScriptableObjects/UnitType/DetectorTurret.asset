@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Sensor Tower
   _focusPriority: 0
+  _tags:
+  - {fileID: 11400000, guid: 0c5fba1152f49f74eb96bd58c2fdf3fc, type: 2}
+  - {fileID: 11400000, guid: 234e928326d81a543838fb99c72016c1, type: 2}
+  - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
+  _controlWorth: 2
   _maxHitPoints: 150
   _maxShieldPoints: 150
   _shieldRestoreDelay: 100

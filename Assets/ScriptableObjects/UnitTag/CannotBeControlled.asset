@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 221d8ba466cf4df1b4674eb192057ed7, type: 3}
-  m_Name: PlayerControlConfig
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.PlayerControlConfig
-  _startingReserve: 3
-  _slots: 5
+  m_Script: {fileID: 11500000, guid: a6f78a01f9544ae097a8b1113dacb629, type: 3}
+  m_Name: CannotBeControlled
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitTag
