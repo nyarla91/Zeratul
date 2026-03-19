@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerControlConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.PlayerControlConfig
   _startingReserve: 3
-  _slots: 0
+  _slots: 2

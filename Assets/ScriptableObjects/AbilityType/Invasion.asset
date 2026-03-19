@@ -22,10 +22,13 @@ MonoBehaviour:
     _unitValidators: []
   _targetValidators:
     _unitValidators:
+    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    - {fileID: 11400000, guid: 1b46ab317f7c72f449679b9ec9b45c94, type: 2}
     - {fileID: 11400000, guid: 34840aa4d4189ae41a58fe7a2442cba9, type: 2}
   _casterEffects: []
   _mustLookAtTarget: 0
   _unitTargetEffects:
+  - {fileID: 11400000, guid: 8f2754233458ed34583cfb246333a9a4, type: 2}
   - {fileID: 11400000, guid: fe62053f85348ba45950a2d802f635b2, type: 2}
   - {fileID: 11400000, guid: c1baac24590bea94ca8ecfb1d12c0bd1, type: 2}
   _pointTargetEffects: []
