@@ -14,9 +14,10 @@ namespace Gameplay.Player
         
         public int Reserve { get; private set; }
         public int Slots { get; private set; }
-
+        
         public int OccupiedSlots => _controlledUnits.Sum(u => u.Type.ControlWorth);
         public int AvailableSlots => Slots - OccupiedSlots;
+        public int ExtraReserve => Mathf.Max(Reserve - AvailableSlots, 0);
         
         public PlayerControlResources(PlayerControlConfig config)
         {
