@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Snake
   _focusPriority: 0
+  _controlWorth: 1
   _maxHitPoints: 50
   _maxShieldPoints: 50
   _shieldRestoreDelay: 100
@@ -30,7 +31,7 @@ MonoBehaviour:
   _weaponType: {fileID: 11400000, guid: b59061b5499a770419101715f9338234, type: 2}
   _innateStatuses: []
   _availableOrders:
-  - {fileID: 11400000, guid: df29f6f11f2ddf840966aeb2744eb539, type: 2}
+  - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

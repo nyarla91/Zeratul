@@ -1415,6 +1415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Architecture::DI.PlayerInstaller
   _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}
+  _controlConfig: {fileID: 11400000, guid: f26ebf4c1e105b74e8f13051d23c5857, type: 2}
   _unitsMask:
     serializedVersion: 2
     m_Bits: 1024

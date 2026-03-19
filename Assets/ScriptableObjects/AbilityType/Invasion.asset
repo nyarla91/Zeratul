@@ -12,17 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
   m_Name: Invasion
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
-  _cooldown: 50
-  _energyCost: 0
+  _windupTime: 35
+  _recoveryTime: 10
+  _cooldown: 150
+  _energyCost: 25
   _targetRequirement: 2
   _maxDistance: 12
   _casterValidators:
     _unitValidators: []
   _targetValidators:
-    _unitValidators: []
+    _unitValidators:
+    - {fileID: 11400000, guid: 34840aa4d4189ae41a58fe7a2442cba9, type: 2}
   _casterEffects: []
-  _casterPointEffects: []
-  _maxAngleToTarget: 0
+  _mustLookAtTarget: 0
   _unitTargetEffects:
-  - {fileID: 11400000, guid: e690042b16bb2044ba4c0b0ddc3faf8a, type: 2}
+  - {fileID: 11400000, guid: fe62053f85348ba45950a2d802f635b2, type: 2}
+  - {fileID: 11400000, guid: c1baac24590bea94ca8ecfb1d12c0bd1, type: 2}
   _pointTargetEffects: []
+  _animationAction: ability

@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
-  m_Name: SnakeWeapon
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
-  _baseDamage: 12
-  _windupTime: 2
-  _recoveryTime: 25
-  _maxDistance: 7
-  _autoAttack: 0
+  m_Script: {fileID: 11500000, guid: 221d8ba466cf4df1b4674eb192057ed7, type: 3}
+  m_Name: PlayerControlConfig
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.PlayerControlConfig
+  _startingReserve: 3
+  _slots: 0

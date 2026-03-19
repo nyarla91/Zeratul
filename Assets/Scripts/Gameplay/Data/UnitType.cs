@@ -12,6 +12,7 @@ namespace Gameplay.Data
     {
         [SerializeField] private string _displayName;
         [SerializeField] private int _focusPriority;
+        [SerializeField] private int _controlWorth;
         [Space]
         [SerializeField] private int _maxHitPoints;
         [Space]
@@ -38,6 +39,7 @@ namespace Gameplay.Data
 
         public string DisplayName => _displayName;
         public int FocusPriority => _focusPriority;
+        public int ControlWorth => _controlWorth;
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;
         public int ShieldRestoreDelay => _shieldRestoreDelay;
@@ -60,6 +62,7 @@ namespace Gameplay.Data
 
         private void OnValidate()
         {
+            _controlWorth = Mathf.Max(_controlWorth, 0);
             _maxHitPoints = Mathf.Max(_maxHitPoints, 1);
             _maxShieldPoints = Mathf.Max(_maxShieldPoints, 0);
             _shieldRestoreDelay = Mathf.Max(_shieldRestoreDelay, 0);
