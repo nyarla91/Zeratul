@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d489ca64651b462cabde1144b395a910, type: 3}
+  m_Name: EnglishTable
+  m_EditorClassIdentifier: Loalization::Localization.LanguageTable
+  _entries:
+  - _key: choose-target-prompt
+    _line: Choose target for
+  - _key: order
+    _line: Order
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
+  - _key: 
+    _line: 
