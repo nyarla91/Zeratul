@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13bf076fab154f23b72d8f54cae0d20c, type: 3}
   m_Name: StopOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.StopOrder
-  _displayName: Stop
-  _rawDisplayDescription: Cancel all current orders
+  _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
+  _displayName: order-stop-name
+  _rawDisplayDescription: order-stop-description
   _icon: {fileID: 21300000, guid: 28d3bbbcf5275df49b7575da14a0d132, type: 3}
   _hotkeyAlias: Stop

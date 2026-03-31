@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f78a01f9544ae097a8b1113dacb629, type: 3}
-  m_Name: CannotBeControlled
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitTag
+  m_Script: {fileID: 11500000, guid: dbc526cefe2b44f58ef88935bf2545fd, type: 3}
+  m_Name: ProjectInjectPresenter
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.SOInjectPresenter

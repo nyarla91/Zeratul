@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effaeb26ab694bc3b9ee9142c5a1f134, type: 3}
   m_Name: PatrolOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.PatrolOrder
+  _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _displayName: Patrol
   _rawDisplayDescription: patrol between two points
   _icon: {fileID: 21300000, guid: 07e662bcc2bb8d64194d6f55aa1409f9, type: 3}

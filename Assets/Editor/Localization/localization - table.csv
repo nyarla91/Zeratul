@@ -1,21 +1,26 @@
 Key,English,Русский
 choose-target-prompt,Choose target for,Выберите цель для
 order,Order,Приказ
-order-abiltiy,Order - Ability,Приказ - Способность
-order-attack-description,Attack target unit or move to target point automatically attacking any enemy on the path.,"Атаковать выбранного юнита или двигаться к выбранной точке, атакуя всех вражеских юнитов на своём пути"
+order-ability,Order - Ability,Приказ - Способность
+order-attack-description,Attack target unit or move to target point automatically attacking any enemy on the path.,"Атаковать выбранного юнита или двигаться к выбранной точке, атакуя всех вражеских юнитов на своём пути."
 order-attack-name,Attack,Атаковать
-order-hold-position-description,Order unit to stand still indefinitely.,Приказать юниту оставаться на месте
+order-hold-position-description,Order unit to stand still indefinitely.,Приказать юниту оставаться на месте.
 order-hold-position-name,Hold position,Удерживать позицию
-order-move-description,Move to target point or follow target unit.,Двигаться к выбранной точке или следовать за выбанным юнитом
+order-move-description,Move to target point or follow target unit.,Двигаться к выбранной точке или следовать за выбанным юнитом.
 order-move-name,Move,Двигаться
-order-stop-description,Cancel all current orders.,Отменить все текущие приказы
+order-stop-description,Cancel all current orders.,Отменить все текущие приказы.
 order-stop-name,Stop,Остановиться
 ordererror-ability-not-ready,Ability not ready,Способность не готова
 ordererror-cannot-attack,This unit cannot move,Невозможно атаковать
 ordererror-cannot-move,This unit cannot move,Невозможно двигаться
 ordererror-cannot-target-self,Canoot target self,Нельзя выбирать целью себя
-ordererror-generic,Cannot do this,Это невозможно
+ordererror-generic,Cannot do this,Действие невозможно
 ordererror-not-enough-energy,Not enought energy,Недостаточно энергии
 ordererror-out-of-range,Target is out of range,Цель вне досягаемости
 ordererror-target-invalid,Target invalid,Неверная цель
 unit-snake-name,Snake,Змеюка
+ability-stat-energy,Cost: # energy,Стоимость: # энергии
+ability-stat-cooldown,Cooldown: # sec.,Восстановление: # сек.
+ability-stat-range,Range: #,Дальность: #
+ability-invasion-description,Take control of target <kw>Sentient</kw> enemy unit. You must have enough <kw>control slots</kw> available and enough <kw>control points<kw/>.,"Получите контроль надо выбранным <kw>Разумным</kw> вражеским юнитомю У вас должно быть достаточно свободных <kw>ячеек контроля</kw>, а также <kw>очков контроля</kw>."
+ability-invasion-name,Invasion,Вторжение

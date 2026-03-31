@@ -3,26 +3,32 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.UI;
 using Gameplay.Units;
+using Localization;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Data.Orders
 {
     public abstract class OrderType : ScriptableObject
     {
+        [SerializeField] private Localizer _localizer;
+        
         [SerializeField] private string _displayName;
         [SerializeField] [TextArea(4, 10)] private string _rawDisplayDescription;
         [SerializeField] private Sprite _icon;
         [SerializeField] private string _hotkeyAlias;
 
-        public string DisplayName => _displayName;
-        public string RawDisplayDescription => _rawDisplayDescription;
+        protected Localizer Localizer => _localizer;
+        
+        public string DisplayName => Localizer.Translate(_displayName);
+        public string RawDisplayDescription => Localizer.Translate(_rawDisplayDescription);
         public Sprite Icon => _icon;
         public string HotkeyAlias => _hotkeyAlias;
 
         public virtual string DisplayDescription => RawDisplayDescription;
         
-        public virtual string DisplayType => "Order";
-        
+        public virtual string DisplayType => Localizer.Translate("order");
+
         public TooltipInfo TooltipInfo => new TooltipInfo(_icon, DisplayName, DisplayType, DisplayDescription);
         
         public abstract TargetRequirement TargetRequirement { get; }

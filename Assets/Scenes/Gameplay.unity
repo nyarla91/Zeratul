@@ -1378,6 +1378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 189624905}
   - component: {fileID: 189624906}
+  - component: {fileID: 189624909}
   - component: {fileID: 189624907}
   - component: {fileID: 189624904}
   - component: {fileID: 189624908}
@@ -1408,7 +1409,6 @@ MonoBehaviour:
   _rangeEllipseFactory: {fileID: 550176832}
   _statusRendererFf: {fileID: 426539500}
   _orderErrorMessage: {fileID: 1544542344}
-  _injectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
 --- !u!4 &189624905
 Transform:
   m_ObjectHideFlags: 0
@@ -1445,6 +1445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Zenject::Zenject.SceneContext
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 189624909}
   - {fileID: 189624907}
   - {fileID: 189624904}
   - {fileID: 189624908}
@@ -1494,6 +1495,19 @@ MonoBehaviour:
   _unitsMask:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &189624909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189624903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848bf30a57064323877422e419a7646d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Architecture::DI.SOInjectPresenterInstaller
+  _injectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
 --- !u!1001 &192217889
 PrefabInstance:
   m_ObjectHideFlags: 0

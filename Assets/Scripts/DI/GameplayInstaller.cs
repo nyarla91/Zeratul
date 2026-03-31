@@ -24,8 +24,6 @@ namespace DI
         [SerializeField] private StatusRendererFactoryFactory _statusRendererFf;
         [SerializeField] private OrderErrorMessage _orderErrorMessage;
         
-        [SerializeField] private SOInjectPresenter _injectPresenter;
-        
         public override void InstallBindings()
         {
             Container.Bind<GamePause>().AsSingle();
@@ -39,8 +37,6 @@ namespace DI
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
             Container.BindInstance(_statusRendererFf).AsSingle();
             Container.BindInstance(_orderErrorMessage).AsSingle();
-
-            _injectPresenter.Init(Container);
         }
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6193605fb4804944920274e761bdee1e, type: 3}
   m_Name: CoolAbilityOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.AbilityOrder
+  _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _displayName: Really cool ability
   _rawDisplayDescription: Do something incredible to target unit or point or caster
     itself I have no idea truly. For real, this ability can literally do anything,

@@ -22,7 +22,7 @@ namespace Gameplay.Data.Orders
 
         public override TargetRequirement TargetRequirement => _abilityType.TargetRequirement;
 
-        public override string DisplayType => "Order — Ability";
+        public override string DisplayType => Localizer.Translate("order-ability");
 
         public override string DisplayDescription
         {
@@ -32,15 +32,18 @@ namespace Gameplay.Data.Orders
                 result += "<stat>";
                 if (AbilityType.EnergyCost > 0)
                 {
-                    result += $"{AbilityType.EnergyCost} energy\n";
+                    result += Localizer.Translate("ability-stat-energy").Replace("#", AbilityType.EnergyCost.ToString()) + "\n";
                 }
                 if (AbilityType.Cooldown > 0)
                 {
                     string cooldonwnSec = Mathf.Round(Time.fixedDeltaTime * AbilityType.Cooldown).ToString("F1");
-                    result += $"Cooldown: {cooldonwnSec} sec.\n";
+                    result += Localizer.Translate("ability-stat-cooldown").Replace("#", cooldonwnSec) + "\n";
                 }
+
                 if (AbilityType.MaxDistance > 0)
-                    result += $"Distance: {AbilityType.MaxDistance}m\n";
+                {
+                    result += Localizer.Translate("ability-stat-range").Replace("#", AbilityType.MaxDistance.ToString()) + "\n";
+                }
                 result += "</stat>";
                 result += RawDisplayDescription;
                 return result;

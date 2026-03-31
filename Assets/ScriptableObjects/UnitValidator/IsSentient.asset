@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e1c2afd069a418b97468e32df657660, type: 3}
-  m_Name: CanBeControlled
+  m_Name: IsSentient
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitTagValidator
-  _invalidMessage: Cannot control this target
-  _tag: {fileID: 11400000, guid: 0c5fba1152f49f74eb96bd58c2fdf3fc, type: 2}
-  _required: 0
+  _invalidMessage: Target must be Sentient
+  _tag: {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
+  _required: 1
