@@ -13,37 +13,41 @@ namespace Gameplay.Units.View
 
         private Dictionary<StatusType, StatusRenderer[]> _renderers = new();
         
-        [Inject] private StatusRendererFactoryFactory StatusRendererFf { get; set; }
+        [Inject] private StatusRendererFactory StatusRendererFactory { get; set; }
 
         private void Start()
         {
-            _unit.Statuses.StatusAdded += AddRenderer;
-            _unit.Statuses.StatusRemoved += RemoveRenderer;
+            _unit.Statuses.StatusAdded += AddRenderers;
+            _unit.Statuses.StatusRemoved += RemoveRenderers;
             _unit.Killed += HideAllRenderers;
+
+            foreach (IStatusInfo status in _unit.Statuses.StatusesInfo)
+            {
+                AddRenderers(status);
+            }
         }
         
-        private void AddRenderer(Status status)
+        private void AddRenderers(IStatusInfo status)
         {
-            StatusRendererFactory[] factories = StatusRendererFf.GetFactoriesForStatus(status.Type);
-            StatusRenderer[] renderers =  new StatusRenderer[factories.Length];
-            for (int i = 0; i < factories.Length; i++)
+            StatusRenderer[] renderers =  status.Type.RendererPrefabs.Select(r => StatusRendererFactory.Get(r.gameObject)).ToArray();
+            foreach (StatusRenderer statusRenderer in renderers)
             {
-                StatusRenderer newRenderer = factories[i].GetStatusRenderer(status);
-                newRenderer.transform.SetParent(transform);
-                newRenderer.transform.localPosition = Vector3.zero;
-                renderers[i] = newRenderer;
+                statusRenderer.transform.SetParent(transform);
+                statusRenderer.transform.localPosition = Vector3.zero;
+                statusRenderer.OnAdd(status);
             }
             _renderers.Add(status.Type, renderers);
         }
 
-        private void RemoveRenderer(Status status) => RemoveRenderer(status.Type);
+        private void RemoveRenderers(IStatusInfo status) => RemoveRenderers(status.Type);
         
-        private void RemoveRenderer(StatusType status)
+        private void RemoveRenderers(StatusType status)
         {
             if ( ! _renderers.TryGetValue(status, out StatusRenderer[] renderers))
                 return;
 
-            foreach (StatusRenderer renderer in renderers) renderer.Release();
+            foreach (StatusRenderer renderer in renderers)
+                renderer.Release();
             
             _renderers.Remove(status);
         }
@@ -52,7 +56,7 @@ namespace Gameplay.Units.View
         {
             foreach (StatusType status in _renderers.Keys.ToList())
             {
-                RemoveRenderer(status);
+                RemoveRenderers(status);
             }
         }
     }

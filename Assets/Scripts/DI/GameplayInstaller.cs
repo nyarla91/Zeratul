@@ -21,7 +21,6 @@ namespace DI
         [SerializeField] private VisionMap _visionMap;
         [SerializeField] private Tooltip _tooltip;
         [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
-        [SerializeField] private StatusRendererFactoryFactory _statusRendererFf;
         [SerializeField] private OrderErrorMessage _orderErrorMessage;
         
         public override void InstallBindings()
@@ -35,8 +34,11 @@ namespace DI
             Container.BindInstance(_visionMap).AsSingle();
             Container.BindInstance(_tooltip).AsSingle();
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
-            Container.BindInstance(_statusRendererFf).AsSingle();
             Container.BindInstance(_orderErrorMessage).AsSingle();
+            
+            StatusRendererFactory statusRendererFactory = new();
+            Container.Inject(statusRendererFactory);
+            Container.BindInstance(statusRendererFactory).AsSingle();
         }
     }
 }

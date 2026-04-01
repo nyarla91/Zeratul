@@ -162,7 +162,7 @@ namespace Gameplay.Units
                 return direction;
             
             Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).NoNull();
-            obstacles = obstacles.Where(unit => ! unit.Movement.Displaceable).ToArray();
+            obstacles = obstacles.Where(unit => unit.Movement == null || ! unit.Movement.Displaceable).ToArray();
             if (obstacles.Length == 0)
                 return direction;
             float angle = direction.ToDegrees();

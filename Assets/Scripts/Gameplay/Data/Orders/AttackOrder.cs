@@ -68,6 +68,8 @@ namespace Gameplay.Data.Orders
         public override bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
         {
             errorMessage = _errors.TargetInvalid;
+            if ( ! actor.CanAttack)
+                return false;
             if ( ! target.Unit && ! actor.CanMove)
             {
                 errorMessage = _errors.CannotMove;

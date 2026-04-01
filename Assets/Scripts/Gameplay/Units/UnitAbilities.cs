@@ -99,7 +99,7 @@ namespace Gameplay.Units
             return true;
         }
         
-        public Ability GetAbility(AbilityType abilityType) =>  _abilities[abilityType];
+        public Ability GetAbility(AbilityType abilityType) => _abilities.GetValueOrDefault(abilityType);
 
         private void RestoreEnergyPoints()
         {

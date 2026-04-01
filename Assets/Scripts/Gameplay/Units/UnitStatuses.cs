@@ -16,8 +16,8 @@ namespace Gameplay.Units
         
         public IStatusInfo[] StatusesInfo => _statuses.Values.ToArray<IStatusInfo>();
 
-        public event Action<Status> StatusAdded;
-        public event Action<Status> StatusRemoved;
+        public event Action<IStatusInfo> StatusAdded;
+        public event Action<IStatusInfo> StatusRemoved;
         
         public UnitStatuses(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {

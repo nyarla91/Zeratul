@@ -5,38 +5,37 @@ using Extentions;
 using Gameplay.Data.Statuses;
 using Gameplay.Units.View.StatusRendering;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Units.View
 {
     public class StatusRendererFactory
     {
-        private ContainerInstantiator _containerInstantiator;
-        private StatusRenderer _prefab;
+        private readonly Dictionary<GameObject, List<StatusRenderer>> _pool = new();
         
-        private readonly HashSet<StatusRenderer> _pool =  new();
+        [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
 
-        public StatusRendererFactory(ContainerInstantiator containerInstantiator, StatusRenderer prefab)
+        public StatusRenderer Get(GameObject prefab)
         {
-            _containerInstantiator = containerInstantiator;
-            _prefab = prefab;
+            if ( ! _pool.TryGetValue(prefab, out List<StatusRenderer> pool))
+            {
+                return Instantiate(prefab);
+            }
+            StatusRenderer result = pool.FirstOrDefault(sr => ! sr.gameObject.activeSelf) ?? Instantiate(prefab);
+            result.gameObject.SetActive(true);
+            return result;
         }
 
-        public StatusRenderer GetStatusRenderer(Status status)
+        private StatusRenderer Instantiate(GameObject prefab)
         {
-            StatusRenderer result = _pool.FirstOrDefault();
-            
-            if ( ! result)
+            if ( ! _pool.TryGetValue(prefab, out List<StatusRenderer> pool))
             {
-                result = _containerInstantiator.Instantiate<StatusRenderer>(_prefab.gameObject, Vector3.zero);
-                result.Init(this);
+                pool = new List<StatusRenderer>();
+                _pool.Add(prefab, pool);
             }
-            else
-            {
-                _pool.Remove(result);
-            }
-            
-            result.OnAdd(status);
-            result.gameObject.SetActive(true);
+            StatusRenderer result = ContainerInstantiator.Instantiate<StatusRenderer>(prefab.gameObject, Vector3.zero);
+            result.Init(this);
+            pool.Add(result);
             return result;
         }
 
@@ -45,7 +44,6 @@ namespace Gameplay.Units.View
             statusRenderer.OnRemove();
             statusRenderer.transform.SetParent(null);
             statusRenderer.gameObject.SetActive(false);
-            _pool.Add(statusRenderer);
         }
     }
 }

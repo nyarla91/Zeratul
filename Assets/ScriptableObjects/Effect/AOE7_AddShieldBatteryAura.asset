@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c29638cefae4b53acadb2b9738ba9e5, type: 3}
-  m_Name: AOE10_AddShieldBatteryAura
+  m_Name: AOE7_AddShieldBatteryAura
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
-  _gameplayerInjectPresenter: {fileID: 0}
-  _radius: 10
+  _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+  _radius: 7
   _applyValidators:
     _unitValidators:
     - {fileID: 11400000, guid: c542f6f91a5b0f241acf95efb2fa0138, type: 2}
