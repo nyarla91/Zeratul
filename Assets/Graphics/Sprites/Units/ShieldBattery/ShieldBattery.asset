@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
+  m_Name: ShieldBattery
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitSpriteMap
+  _sprites:
+  - {fileID: 21300000, guid: 8f6ff83d217f8e84f9027f6fbc9e6b14, type: 3}
+  - {fileID: 21300000, guid: 242c22d8769ec1343979deb178f62aa0, type: 3}
+  - {fileID: 21300000, guid: fea568d56fc40254289597fc3b281723, type: 3}
+  - {fileID: 21300000, guid: 883a078554f8cc140b07eaf70ec07bd0, type: 3}
+  - {fileID: 21300000, guid: bd0cd903275f25b479271a48ebb88075, type: 3}
+  - {fileID: 21300000, guid: 447a194c1e2de554fb985fd0ad620729, type: 3}
+  - {fileID: 21300000, guid: 9bda785e0badf064fa02d27b08e4daff, type: 3}
+  - {fileID: 21300000, guid: 752c01e76ca2209429dd9e4b89a44414, type: 3}
+  - {fileID: 21300000, guid: c82d06b456458414ca59cee20a34689f, type: 3}
+  - {fileID: 21300000, guid: 9994eb7144657e143940f8e2ecae4e15, type: 3}
+  - {fileID: 21300000, guid: 9fd3447d78fbf4e4698540e9b9921071, type: 3}
+  - {fileID: 21300000, guid: ff1f1d2dcf2ae8042b70e5cb82030c0e, type: 3}
+  - {fileID: 21300000, guid: 74b76d20085233d4aaf84a45c00126ae, type: 3}
+  - {fileID: 21300000, guid: ccbd09eb8e378c14888af70dfc1b3ac4, type: 3}
+  - {fileID: 21300000, guid: 6819ee65be931454ea5fdcba8d22f3f8, type: 3}
+  _animations:
+  - <Name>k__BackingField: shield-battery-idle
+    <Action>k__BackingField: idle
+    <FrameRate>k__BackingField: 5
+    <Loop>k__BackingField: 1
+    <Frames>k__BackingField:
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 8f6ff83d217f8e84f9027f6fbc9e6b14, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 242c22d8769ec1343979deb178f62aa0, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: fea568d56fc40254289597fc3b281723, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 883a078554f8cc140b07eaf70ec07bd0, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: bd0cd903275f25b479271a48ebb88075, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 447a194c1e2de554fb985fd0ad620729, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 9bda785e0badf064fa02d27b08e4daff, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 752c01e76ca2209429dd9e4b89a44414, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: c82d06b456458414ca59cee20a34689f, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 9994eb7144657e143940f8e2ecae4e15, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 9fd3447d78fbf4e4698540e9b9921071, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: ff1f1d2dcf2ae8042b70e5cb82030c0e, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 74b76d20085233d4aaf84a45c00126ae, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: ccbd09eb8e378c14888af70dfc1b3ac4, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 6819ee65be931454ea5fdcba8d22f3f8, type: 3}
+  _spriteHeight: 0

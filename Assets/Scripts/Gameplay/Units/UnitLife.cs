@@ -65,6 +65,20 @@ namespace Gameplay.Units
             _shieldRestorationTimer?.Restart();
         }
 
+        public void RestoreHitPoints(int value)
+        {
+            if (value <= 0)
+                return;
+            _hitPoints = Mathf.Min(_hitPoints + value, MaxHitPoints);
+        }
+
+        public void RestoreShieldPoints(int value)
+        {
+            if (value <= 0)
+                return;
+            _shieldPoints = Mathf.Min(_shieldPoints + value, MaxShieldPoints);
+        }
+
         private void RestoreShieldPoints()
         {
             if (_shieldRestorationTimer?.IsOn ?? false)

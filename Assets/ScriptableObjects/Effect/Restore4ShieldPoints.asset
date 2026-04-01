@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f78a01f9544ae097a8b1113dacb629, type: 3}
-  m_Name: Sentient
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitTag
+  m_Script: {fileID: 11500000, guid: 206ed78e8d9941e9a427cab8f310cbe0, type: 3}
+  m_Name: Restore4ShieldPoints
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.RestoreShieldPointsEffect
+  _value: 4

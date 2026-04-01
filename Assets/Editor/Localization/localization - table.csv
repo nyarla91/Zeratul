@@ -1,4 +1,9 @@
 Key,English,Русский
+ability-invasion-description,Take control of target <kw>Sentient</kw> enemy unit. You must have enough <kw>control slots</kw> available and enough <kw>control points<kw/>.,"Получите контроль надо выбранным <kw>Разумным</kw> вражеским юнитомю У вас должно быть достаточно свободных <kw>ячеек контроля</kw>, а также <kw>очков контроля</kw>."
+ability-invasion-name,Invasion,Вторжение
+ability-stat-cooldown,Cooldown: # sec.,Восстановление: # сек.
+ability-stat-energy,Cost: # energy,Стоимость: # энергии
+ability-stat-range,Range: #,Дальность: #
 choose-target-prompt,Choose target for,Выберите цель для
 order,Order,Приказ
 order-ability,Order - Ability,Приказ - Способность
@@ -19,8 +24,6 @@ ordererror-not-enough-energy,Not enought energy,Недостаточно эне�
 ordererror-out-of-range,Target is out of range,Цель вне досягаемости
 ordererror-target-invalid,Target invalid,Неверная цель
 unit-snake-name,Snake,Змеюка
-ability-stat-energy,Cost: # energy,Стоимость: # энергии
-ability-stat-cooldown,Cooldown: # sec.,Восстановление: # сек.
-ability-stat-range,Range: #,Дальность: #
-ability-invasion-description,Take control of target <kw>Sentient</kw> enemy unit. You must have enough <kw>control slots</kw> available and enough <kw>control points<kw/>.,"Получите контроль надо выбранным <kw>Разумным</kw> вражеским юнитомю У вас должно быть достаточно свободных <kw>ячеек контроля</kw>, а также <kw>очков контроля</kw>."
-ability-invasion-name,Invasion,Вторжение
+unittag-mechanical,Mechanical,Механический
+unittag-organic,Organic,Органический
+unittag-sentient,Sentient,Разумный

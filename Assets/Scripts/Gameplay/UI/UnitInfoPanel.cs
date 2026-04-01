@@ -1,4 +1,7 @@
-﻿using Gameplay.Player;
+﻿using System.Linq;
+using Extentions;
+using Gameplay.Data;
+using Gameplay.Player;
 using Gameplay.Units;
 using TMPro;
 using UnityEngine;
@@ -13,6 +16,7 @@ namespace Gameplay.UI
         [SerializeField] private TMP_Text _hitPoints;
         [SerializeField] private TMP_Text _shieldPoints;
         [SerializeField] private TMP_Text _energyPoints;
+        [SerializeField] private TMP_Text _tags;
 
         public Unit CurrentUnit { get; private set; }
 
@@ -32,6 +36,9 @@ namespace Gameplay.UI
             UpdateStat(_hitPoints, true, CurrentUnit.Life.HitPoints, CurrentUnit.Life.MaxHitPoints);
             UpdateStat(_shieldPoints, CurrentUnit.Life.HasShieldPoints, CurrentUnit.Life.ShieldPoints, CurrentUnit.Life.MaxShieldPoints);
             UpdateStat(_energyPoints, CurrentUnit.Abilities.HasEnergyPoints, CurrentUnit.Abilities.EnergyPoints, CurrentUnit.Abilities.MaxEnergyPoints);
+            
+            UnitTag[] unitTags = CurrentUnit.Type.Tags.Where(t => t.Display).ToArray();
+            _tags.text = unitTags.Select(t => t.DisplayName).Enumerate();
         }
 
         private void UpdateStat(TMP_Text stat, bool show, int current, int max)

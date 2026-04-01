@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c29638cefae4b53acadb2b9738ba9e5, type: 3}
+  m_Name: AOE10_AddShieldBatteryAura
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
+  _gameplayerInjectPresenter: {fileID: 0}
+  _radius: 10
+  _applyValidators:
+    _unitValidators:
+    - {fileID: 11400000, guid: c542f6f91a5b0f241acf95efb2fa0138, type: 2}
+    - {fileID: 11400000, guid: 006b21522d1b4294e9f6cccab1e4e3e3, type: 2}
+  _effects:
+  - {fileID: 11400000, guid: a522ab068d13c1e469e177b139cc702e, type: 2}

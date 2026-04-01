@@ -48,18 +48,6 @@ namespace Extentions
             return choosed;
         }
 
-        public static string CollectionToString<T>(T[] collection)
-        {
-            string result = "";
-            for (int i = 0; i < collection.Length; i++)
-            {
-                result += collection[i].ToString();
-                if (i < collection.Length - 1)
-                    result += ",\n";
-            }
-            return result;
-        }
-
         public static T[] Copy<T>(this T[] originCollection)
         {
             T[] finalCollection = new T[originCollection.Length];
@@ -146,6 +134,20 @@ namespace Extentions
                 minValue = value;
                 result = element;
             }
+            return result;
+        }
+
+        public static string Enumerate<T>(this IEnumerable<T> list, string separator = ", ", string endWith = "")
+        {
+            T[] array = list.ToArray();
+            string result = "";
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i > 0)
+                    result += separator;
+                result += array[i].ToString();
+            }
+            result += endWith;
             return result;
         }
     }

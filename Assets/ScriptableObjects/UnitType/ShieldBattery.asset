@@ -10,29 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
-  m_Name: Dropship
+  m_Name: ShieldBattery
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _displayName: Dropship
-  _focusPriority: 2
+  _displayName: Shield Battery
+  _focusPriority: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
+  - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
   _controlWorth: 0
-  _maxHitPoints: 100
-  _maxShieldPoints: 50
-  _shieldRestoreDelay: 50
-  _shieldPointsPerSecond: 10
-  _maxEnergyPoints: 100
-  _energyRestoreDelay: 25
-  _energyPointsPerSecond: 5
-  _isImmobile: 0
-  _maxSpeed: 250
-  _size: 3
+  _maxHitPoints: 150
+  _maxShieldPoints: 150
+  _shieldRestoreDelay: 100
+  _shieldPointsPerSecond: 5
+  _maxEnergyPoints: 0
+  _energyRestoreDelay: 0
+  _energyPointsPerSecond: 0
+  _isImmobile: 1
+  _maxSpeed: 0
+  _size: 2
   _rotationSpeed: 360
-  _isAir: 1
+  _isAir: 0
   _sightRadius: 20
   _weaponType: {fileID: 0}
   _innateStatuses:
-  - {fileID: 11400000, guid: ea01647ee3e24184d81fa55f76413eb5, type: 2}
+  - {fileID: 11400000, guid: 10a20d113c9ba6040b2ea115c43bbe57, type: 2}
   _availableOrders:
   - {fileID: 0}
   - {fileID: 0}
@@ -41,12 +42,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
-  - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}
-  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _spriteMap: {fileID: 11400000, guid: b4cffdc249fd240478aa92f947b62465, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteMap: {fileID: 11400000, guid: 053df19baa687164eb9465eb01f36fe4, type: 2}

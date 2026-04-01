@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f78a01f9544ae097a8b1113dacb629, type: 3}
-  m_Name: Mechanical
+  m_Name: Robotic
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitTag
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _display: 1
-  _displayName: unittag-mechanical
+  _displayName: unittag-robotic

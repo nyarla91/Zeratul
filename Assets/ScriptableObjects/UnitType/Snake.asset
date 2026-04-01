@@ -16,7 +16,6 @@ MonoBehaviour:
   _focusPriority: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
-  - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
   _controlWorth: 1
   _maxHitPoints: 50
   _maxShieldPoints: 50
