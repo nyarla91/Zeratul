@@ -13,7 +13,7 @@ namespace Gameplay.Units.View
 
         private Dictionary<StatusType, StatusRenderer[]> _renderers = new();
         
-        [Inject] private StatusRendererFactory StatusRendererFactory { get; set; }
+        [Inject] private PoolFactory<StatusRenderer> StatusRendererFactory { get; set; }
 
         private void Start()
         {
@@ -34,7 +34,7 @@ namespace Gameplay.Units.View
             {
                 statusRenderer.transform.SetParent(transform);
                 statusRenderer.transform.localPosition = Vector3.zero;
-                statusRenderer.OnAdd(status);
+                statusRenderer.Status = status;
             }
             _renderers.Add(status.Type, renderers);
         }
@@ -47,7 +47,7 @@ namespace Gameplay.Units.View
                 return;
 
             foreach (StatusRenderer renderer in renderers)
-                renderer.Release();
+                renderer.Despawn();
             
             _renderers.Remove(status);
         }

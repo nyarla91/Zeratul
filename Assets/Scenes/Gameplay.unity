@@ -1382,6 +1382,7 @@ GameObject:
   - component: {fileID: 189624907}
   - component: {fileID: 189624904}
   - component: {fileID: 189624908}
+  - component: {fileID: 189624910}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1448,6 +1449,7 @@ MonoBehaviour:
   - {fileID: 189624907}
   - {fileID: 189624904}
   - {fileID: 189624908}
+  - {fileID: 189624910}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1507,6 +1509,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Architecture::DI.SOInjectPresenterInstaller
   _injectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+--- !u!114 &189624910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189624903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8947e9eb969547119e4baac3236ab0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Architecture::DI.GameplayFactoryInstaller
 --- !u!1001 &192217889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2338,7 +2352,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 832.19, y: -66}
-  m_SizeDelta: {x: 312.85, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297041596
 MonoBehaviour:
@@ -7431,7 +7445,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1152.425, y: -66}
-  m_SizeDelta: {x: 183.62, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927343562
 MonoBehaviour:

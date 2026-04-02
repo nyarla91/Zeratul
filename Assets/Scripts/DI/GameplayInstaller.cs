@@ -36,9 +36,6 @@ namespace DI
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
             Container.BindInstance(_orderErrorMessage).AsSingle();
             
-            StatusRendererFactory statusRendererFactory = new();
-            Container.Inject(statusRendererFactory);
-            Container.BindInstance(statusRendererFactory).AsSingle();
         }
     }
 }

@@ -5,39 +5,32 @@ using UnityEngine;
 
 namespace Gameplay.Units.View.StatusRendering
 {
-    public abstract class StatusRenderer : MonoBehaviour
+    public abstract class StatusRenderer : PoolElement<StatusRenderer>
     {
         [SerializeField] private bool _alwaysVisible;
         
-        private StatusRendererFactory Factory { get; set; }
-        public IStatusInfo Status { get; private set; }
+        public IStatusInfo Status { get; set; }
 
         protected bool IsVisible => _alwaysVisible || (Status?.Host.VisibleToPlayer ?? false);
-        
-        public void Init(StatusRendererFactory factory)
-        {
-            if (Factory != null)
-                throw new Exception("StatusRenderer is already initialized");
-            Factory = factory;
 
+        public override void Init(PoolFactory<StatusRenderer> factory)
+        {
+            base.Init(factory);
             this.ObserveEveryValueChanged(s => s.IsVisible)
                 .Subscribe(UpdateVisibility);
             UpdateVisibility(IsVisible);
         }
 
-        public virtual void OnAdd(IStatusInfo status)
+        public override void OnSpawn()
         {
-            Status = status;
             UpdateVisibility(IsVisible);
         }
 
-        public virtual void OnRemove()
+        protected override void OnDespawn()
         {
             Status = null;
         }
-
-        public void Release() => Factory.ReleaseStatusRenderer(this);
-
+        
         protected abstract void UpdateVisibility(bool isVisible);
     }
 }
