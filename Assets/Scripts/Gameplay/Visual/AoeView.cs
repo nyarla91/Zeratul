@@ -21,8 +21,15 @@ namespace Gameplay.Visual
             _spriteRenderer.sprite = sprite;
             _spriteRenderer.color = color;
             Radius = radius;
+            _rotationSpeed = rotationSpeed;
         }
         
+        public void Show() => _spriteRenderer.enabled = true;
+
+        public void Hide() => _spriteRenderer.enabled = false;
+        
+        public void Move(Vector2 position) => transform.position = position;
+
         private void Awake()
         {
             Radius = _startingRadius;

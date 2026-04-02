@@ -798,6 +798,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability3"",
+                    ""type"": ""Button"",
+                    ""id"": ""72446ba3-e148-43d8-96d0-c5f25ac5d2e6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability4"",
+                    ""type"": ""Button"",
+                    ""id"": ""09b3b8fa-ab3c-480f-ad88-08acb1fec7c4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability5"",
+                    ""type"": ""Button"",
+                    ""id"": ""d10557de-eb3d-44d5-afa7-a1410f5f70c4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -875,6 +902,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HoldPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f494b46-87a6-471a-8795-daec2e43dfca"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1750fd5-8c38-420e-9fe5-7e3face36170"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4ce8440-2d39-41ba-9da0-63c18a538c3f"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -973,6 +1033,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Orders_Patrol = m_Orders.FindAction("Patrol", throwIfNotFound: true);
         m_Orders_Ability1 = m_Orders.FindAction("Ability1", throwIfNotFound: true);
         m_Orders_Ability2 = m_Orders.FindAction("Ability2", throwIfNotFound: true);
+        m_Orders_Ability3 = m_Orders.FindAction("Ability3", throwIfNotFound: true);
+        m_Orders_Ability4 = m_Orders.FindAction("Ability4", throwIfNotFound: true);
+        m_Orders_Ability5 = m_Orders.FindAction("Ability5", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -1408,6 +1471,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Orders_Patrol;
     private readonly InputAction m_Orders_Ability1;
     private readonly InputAction m_Orders_Ability2;
+    private readonly InputAction m_Orders_Ability3;
+    private readonly InputAction m_Orders_Ability4;
+    private readonly InputAction m_Orders_Ability5;
     /// <summary>
     /// Provides access to input actions defined in input action map "Orders".
     /// </summary>
@@ -1447,6 +1513,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Orders/Ability2".
         /// </summary>
         public InputAction @Ability2 => m_Wrapper.m_Orders_Ability2;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Ability3".
+        /// </summary>
+        public InputAction @Ability3 => m_Wrapper.m_Orders_Ability3;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Ability4".
+        /// </summary>
+        public InputAction @Ability4 => m_Wrapper.m_Orders_Ability4;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Ability5".
+        /// </summary>
+        public InputAction @Ability5 => m_Wrapper.m_Orders_Ability5;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1494,6 +1572,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Ability2.started += instance.OnAbility2;
             @Ability2.performed += instance.OnAbility2;
             @Ability2.canceled += instance.OnAbility2;
+            @Ability3.started += instance.OnAbility3;
+            @Ability3.performed += instance.OnAbility3;
+            @Ability3.canceled += instance.OnAbility3;
+            @Ability4.started += instance.OnAbility4;
+            @Ability4.performed += instance.OnAbility4;
+            @Ability4.canceled += instance.OnAbility4;
+            @Ability5.started += instance.OnAbility5;
+            @Ability5.performed += instance.OnAbility5;
+            @Ability5.canceled += instance.OnAbility5;
         }
 
         /// <summary>
@@ -1526,6 +1613,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Ability2.started -= instance.OnAbility2;
             @Ability2.performed -= instance.OnAbility2;
             @Ability2.canceled -= instance.OnAbility2;
+            @Ability3.started -= instance.OnAbility3;
+            @Ability3.performed -= instance.OnAbility3;
+            @Ability3.canceled -= instance.OnAbility3;
+            @Ability4.started -= instance.OnAbility4;
+            @Ability4.performed -= instance.OnAbility4;
+            @Ability4.canceled -= instance.OnAbility4;
+            @Ability5.started -= instance.OnAbility5;
+            @Ability5.performed -= instance.OnAbility5;
+            @Ability5.canceled -= instance.OnAbility5;
         }
 
         /// <summary>
@@ -1808,5 +1904,26 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAbility2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbility3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbility4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability5" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbility5(InputAction.CallbackContext context);
     }
 }

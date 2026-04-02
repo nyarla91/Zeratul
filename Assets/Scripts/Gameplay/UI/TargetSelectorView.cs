@@ -22,12 +22,17 @@ namespace Gameplay.UI
         [SerializeField] private TMP_Text _orderName;
         [SerializeField] private TMP_Text _validationMessage;
         [Space]
-        [SerializeField] private float _ellipseThickness;
-        [SerializeField] private Color _ellipseColor;
+        [SerializeField] private AoeView _rangeAoe;
+        [SerializeField] private AoeView _targetAoe;
+        [SerializeField] private Sprite _rangeMinSprite;
+        [SerializeField] private AoeSprite[] _rangeSprites;
+        [SerializeField] private Color _rangeColor;
+        [SerializeField] private float _rangeRotationSpeed;
+        [SerializeField] private Sprite _targetSprite;
+        [SerializeField] private Color _targetColor;
+        [SerializeField] private float _targetRotationSpeed;
 
         private float _targetingTime;
-        private RangeEllipse _rangeEllipse;
-        private RangeEllipse _aoeEllipse;
 
         private OrderType CurrentOrder => Selector.CurrentOrder; 
         private AbilityOrder CurrentAbilityOrder => CurrentOrder as AbilityOrder; 
@@ -39,8 +44,8 @@ namespace Gameplay.UI
 
         private void Awake()
         {
-            _rangeEllipse = RangeEllipseFactory.Get();
-            _aoeEllipse = RangeEllipseFactory.Get();
+            _rangeAoe.transform.SetParent(null);
+            _targetAoe.transform.SetParent(null);
         }
 
         private void Update()
@@ -50,8 +55,8 @@ namespace Gameplay.UI
             if (_targetingTime < _showDelay)
             {
                 _canvasGroup.alpha = 0;
-                _rangeEllipse.Hide();
-                _aoeEllipse.Hide();
+                _rangeAoe.Hide();
+                _targetAoe.Hide();
                 TacticalPause.Unpause(this);
                 return;
             }
@@ -94,29 +99,56 @@ namespace Gameplay.UI
 
         private void UpdateEllipses(Unit[] actors)
         {
-            if (!CurrentAbilityOrder)
+            if ( ! CurrentAbilityOrder)
             {
-                _rangeEllipse.Hide();
-                _aoeEllipse.Hide();
+                _rangeAoe.Hide();
+                _targetAoe.Hide();
                 return;
             }
-            _rangeEllipse.Show();
+            _rangeAoe.Show();
             float radius = CurrentAbilityOrder.AbilityType.MaxDistance;
-            _rangeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
+            _rangeAoe.Set(GetAoeSpriteForRadius(radius), _rangeColor, radius, _rangeRotationSpeed);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Unit closestUnit = actors.MinElement(a => Isometry.Distance(a.Position, mousePosition));
-            _rangeEllipse.Move(closestUnit.Position);
+            _rangeAoe.Move(closestUnit.Position);
 
             radius = CurrentAbilityOrder.AoeEllipseRadius;
             if (radius == 0 || (CurrentAbilityOrder.TargetRequirement == TargetRequirement.Unit && ! Selector.CurrentTarget.Unit))
             {
-                _aoeEllipse.Hide();
+                _targetAoe.Hide();
                 return;
             }
-            _aoeEllipse.Show();
-            _aoeEllipse.Set(radius, _ellipseThickness, _ellipseColor);
+            _targetAoe.Show();
+            _targetAoe.Set(_targetSprite, _targetColor, radius, _targetRotationSpeed);
             Vector3 position = Selector.CurrentTarget.Unit ? Selector.CurrentTarget.Unit.Position : Selector.CurrentTarget.Point;
-            _aoeEllipse.Move(position);
+            _targetAoe.Move(position);
+        }
+
+        private Sprite GetAoeSpriteForRadius(float radius)
+        {
+            Sprite result = _rangeMinSprite;
+            foreach (AoeSprite aoeSprite in _rangeSprites)
+            {
+                if (radius < aoeSprite.MinRadius)
+                    break;
+                result = aoeSprite.Sprite;
+            }
+            return result;
+        }
+
+        private void OnValidate()
+        {
+            _rangeSprites = _rangeSprites.OrderBy(s => s.MinRadius).ToArray();
+        }
+
+        [Serializable]
+        private struct AoeSprite
+        {
+            [SerializeField] private Sprite _sprite;
+            [SerializeField] private float _minRadius;
+            
+            public Sprite Sprite => _sprite;
+            public float MinRadius => _minRadius;
         }
     }
 }

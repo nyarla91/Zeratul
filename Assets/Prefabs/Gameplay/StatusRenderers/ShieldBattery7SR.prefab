@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2445494940654201378, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Name
-      value: ShieldBatterySR
+      value: ShieldBattery7SR
       objectReference: {fileID: 0}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Sprite
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 31d97401f5397b14db7dd68b7d105538, type: 3}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Color.a
-      value: 0.050980393
+      value: 0.03137255
       objectReference: {fileID: 0}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Color.b
