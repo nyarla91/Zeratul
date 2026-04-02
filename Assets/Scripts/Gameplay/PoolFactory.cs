@@ -1,0 +1,46 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Extentions;
+using UnityEngine;
+using Zenject;
+
+namespace Gameplay
+{
+    public class PoolFactory<TElement> : MonoBehaviour where TElement : PoolElement<TElement>
+    {
+        private readonly Dictionary<GameObject, List<TElement>> _pool = new();
+        
+        [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
+
+        public TElement Get(GameObject prefab)
+        {
+            if ( ! _pool.TryGetValue(prefab, out List<TElement> pool))
+            {
+                return Instantiate(prefab);
+            }
+            TElement result = pool.FirstOrDefault(sr => ! sr.gameObject.activeSelf) ?? Instantiate(prefab);
+            result.gameObject.SetActive(true);
+            result.OnSpawn();
+            return result;
+        }
+
+        private TElement Instantiate(GameObject prefab)
+        {
+            if ( ! _pool.TryGetValue(prefab, out List<TElement> pool))
+            {
+                pool = new List<TElement>();
+                _pool.Add(prefab, pool);
+            }
+            TElement result = ContainerInstantiator.Instantiate<TElement>(prefab.gameObject, Vector3.zero);
+            result.Init(this);
+            pool.Add(result);
+            return result;
+        }
+
+        public void Despawn(PoolElement<TElement> statusRenderer)
+        {
+            statusRenderer.transform.SetParent(null);
+            statusRenderer.gameObject.SetActive(false);
+        }
+    }
+}
