@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fe2bc0bc44b45488466e32c56bc6b2a, type: 3}
-  m_Name: HPMoreThan60
+  m_Name: HPMoreThan25
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitHitPointsValidator
   _invalidMessage: Target must have 60 hit points or more
   _propertyComparator: 4

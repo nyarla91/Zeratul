@@ -14,7 +14,7 @@ namespace Gameplay.Data.Orders
     {
         [Space]
         [Expandable] [SerializeField] private AbilityType _abilityType;
-        [Expandable] [SerializeField] private float _aoeEllipseRadius;
+        [SerializeField] private float _aoeEllipseRadius;
         [SerializeField] private OrderErrorConfig _errors;
 
         public AbilityType AbilityType => _abilityType;
@@ -93,7 +93,7 @@ namespace Gameplay.Data.Orders
 
             while (true)
             {
-                await UniTask.WaitForFixedUpdate();
+                await UniTask.WaitForFixedUpdate(ct);
                 
                 Vector2 destination = order.Target.Unit ? order.Target.Unit.Position : order.Target.Point;
         

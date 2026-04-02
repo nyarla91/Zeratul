@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using Extentions.Pause;
 using Gameplay.Data.Orders;
 using UniRx;
+using UnityEngine;
 
 namespace Gameplay.Units
 {
@@ -58,7 +59,7 @@ namespace Gameplay.Units
             if ( ! order.CanBeIssued())
                 return;
 
-            if (!queue)
+            if ( ! queue)
             {
                 CompleteCurrentOrder();
                 _pendingOrders.Clear();
@@ -68,6 +69,7 @@ namespace Gameplay.Units
 
         public void CompleteCurrentOrder()
         {
+            Debug.Log(_currentOrderCts);
             _currentOrderCts?.Cancel();
             CurrentOrder = null;
         }
