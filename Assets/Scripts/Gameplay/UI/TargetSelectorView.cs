@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Extentions;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
@@ -22,30 +21,25 @@ namespace Gameplay.UI
         [SerializeField] private TMP_Text _orderName;
         [SerializeField] private TMP_Text _validationMessage;
         [Space]
-        [SerializeField] private AoeView _rangeAoe;
-        [SerializeField] private AoeView _targetAoe;
-        [SerializeField] private Sprite _rangeMinSprite;
-        [SerializeField] private AoeSprite[] _rangeSprites;
-        [SerializeField] private Color _rangeColor;
-        [SerializeField] private float _rangeRotationSpeed;
-        [SerializeField] private Sprite _targetSprite;
-        [SerializeField] private Color _targetColor;
-        [SerializeField] private float _targetRotationSpeed;
+        [SerializeField] private AoeVariant _rangeVariant;
+        [SerializeField] private AoeVariant _targetVariant;
 
         private float _targetingTime;
+        private AoeView _rangeAoe;
+        private AoeView _targetAoe;
 
         private OrderType CurrentOrder => Selector.CurrentOrder; 
         private AbilityOrder CurrentAbilityOrder => CurrentOrder as AbilityOrder; 
         
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] public PlayerOrderTargetSelector Selector { get; }
-        [Inject] private RangeEllipseFactory RangeEllipseFactory { get; set; }
+        [Inject] private PoolFactory<AoeView> AoeFactory { get; set; }
         [Inject] private TacticalPause TacticalPause { get; set; }
 
         private void Awake()
         {
-            _rangeAoe.transform.SetParent(null);
-            _targetAoe.transform.SetParent(null);
+            _rangeAoe = AoeFactory.Get();
+            _targetAoe = AoeFactory.Get();
         }
 
         private void Update()
@@ -107,7 +101,7 @@ namespace Gameplay.UI
             }
             _rangeAoe.Show();
             float radius = CurrentAbilityOrder.AbilityType.MaxDistance;
-            _rangeAoe.Set(GetAoeSpriteForRadius(radius), _rangeColor, radius, _rangeRotationSpeed);
+            _rangeAoe.Set(_rangeVariant.WithRadius(radius));
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Unit closestUnit = actors.MinElement(a => Isometry.Distance(a.Position, mousePosition));
             _rangeAoe.Move(closestUnit.Position);
@@ -119,36 +113,9 @@ namespace Gameplay.UI
                 return;
             }
             _targetAoe.Show();
-            _targetAoe.Set(_targetSprite, _targetColor, radius, _targetRotationSpeed);
+            _targetAoe.Set(_targetVariant.WithRadius(radius));
             Vector3 position = Selector.CurrentTarget.Unit ? Selector.CurrentTarget.Unit.Position : Selector.CurrentTarget.Point;
             _targetAoe.Move(position);
-        }
-
-        private Sprite GetAoeSpriteForRadius(float radius)
-        {
-            Sprite result = _rangeMinSprite;
-            foreach (AoeSprite aoeSprite in _rangeSprites)
-            {
-                if (radius < aoeSprite.MinRadius)
-                    break;
-                result = aoeSprite.Sprite;
-            }
-            return result;
-        }
-
-        private void OnValidate()
-        {
-            _rangeSprites = _rangeSprites.OrderBy(s => s.MinRadius).ToArray();
-        }
-
-        [Serializable]
-        private struct AoeSprite
-        {
-            [SerializeField] private Sprite _sprite;
-            [SerializeField] private float _minRadius;
-            
-            public Sprite Sprite => _sprite;
-            public float MinRadius => _minRadius;
         }
     }
 }

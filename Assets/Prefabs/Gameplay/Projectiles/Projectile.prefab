@@ -48,10 +48,12 @@ MonoBehaviour:
   _speed: 1
   _contactDistance: 0.1
   _useAoe: 1
-  _aoeSprite: {fileID: 21300000, guid: 44a47e995565fe445a9a8472368ce0e1, type: 3}
-  _aoeColor: {r: 1, g: 0, b: 0, a: 0.2509804}
-  _aoeRadius: 3
-  _aoeRotationSpeed: 0
+  _aoeVariant:
+    _sprite: {fileID: 21300000, guid: 44a47e995565fe445a9a8472368ce0e1, type: 3}
+    _steps: []
+    _color: {r: 1, g: 0, b: 0, a: 0.14901961}
+    _radius: 3
+    _rotationSpeed: 0
 --- !u!1 &5752413276863027914
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 5752413276863027914}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.328, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []

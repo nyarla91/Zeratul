@@ -17,10 +17,7 @@ namespace Gameplay
         [SerializeField] private float _speed;
         [SerializeField] private float _contactDistance;
         [SerializeField] private bool _useAoe;
-        [SerializeField] private Sprite _aoeSprite;
-        [SerializeField] private Color _aoeColor;
-        [SerializeField] private float _aoeRadius;
-        [SerializeField] private float _aoeRotationSpeed;
+        [SerializeField] private AoeVariant _aoeVariant;
         
         [Inject] private TacticalPause TacticalPause { get; set; }
         [Inject] private PoolFactory<AoeView> AoeFactory { get; set; }
@@ -73,7 +70,7 @@ namespace Gameplay
             AoeView aoe = _useAoe ? AoeFactory.Get() : null;
             if (aoe)
             {
-                aoe.Set(_aoeSprite, _aoeColor, _aoeRadius, _aoeRotationSpeed);
+                aoe.Set(_aoeVariant);
             }
             
             Vector2 destination = unit ? target.Unit.Position : target.Point;
@@ -100,15 +97,6 @@ namespace Gameplay
         private bool IsUnitFollowable(Unit unit, Vector2 previousPosition)
         {
             return unit != null && unit.Life.IsAlive && Isometry.Distance(unit.Position, previousPosition) <= MaxUnitSpeedToFollow;
-        }
-
-        private void OnValidate()
-        {
-            if (_useAoe)
-                return;
-            _aoeSprite = null;
-            _aoeColor = Color.clear;
-            _aoeRadius = 0;
         }
 
         private struct TravelResult

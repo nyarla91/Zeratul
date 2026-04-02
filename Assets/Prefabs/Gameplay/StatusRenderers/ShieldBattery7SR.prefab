@@ -36,6 +36,26 @@ PrefabInstance:
       propertyPath: _startingRadius
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._radius
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 31d97401f5397b14db7dd68b7d105538, type: 3}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.a
+      value: 0.03137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
     - target: {fileID: 9068363557109631805, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

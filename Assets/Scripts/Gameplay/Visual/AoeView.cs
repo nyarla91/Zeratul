@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 
 namespace Gameplay.Visual
@@ -6,8 +7,9 @@ namespace Gameplay.Visual
     public class AoeView : PoolElement<AoeView>
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private float _rotationSpeed;
-        [SerializeField] private float _startingRadius;
+        [SerializeField] private AoeVariant _startingVariant;
+        
+        private float _rotationSpeed;
 
         public float Radius
         {
@@ -15,12 +17,12 @@ namespace Gameplay.Visual
             set => _spriteRenderer.transform.localScale = Vector3.one * value;
         }
 
-        public void Set(Sprite sprite, Color color, float radius, float rotationSpeed)
+        public void Set(AoeVariant variant)
         {
-            _spriteRenderer.sprite = sprite;
-            _spriteRenderer.color = color;
-            Radius = radius;
-            _rotationSpeed = rotationSpeed;
+            _spriteRenderer.sprite = variant.Sprite;
+            _spriteRenderer.color = variant.Color;
+            Radius = variant.Radius;
+            _rotationSpeed = variant.RotationSpeed;
         }
         
         public override void OnSpawn() => Show();
@@ -35,7 +37,7 @@ namespace Gameplay.Visual
 
         private void Awake()
         {
-            Radius = _startingRadius;
+            Set(_startingVariant);
             transform.localScale = new Vector3(1, 0.5f, 1);
             Observable.EveryUpdate()
                 .Subscribe(_ => UpdateRotation());
@@ -45,6 +47,61 @@ namespace Gameplay.Visual
         {
             float z = Time.time * _rotationSpeed % 360f;
             _spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, z);
+        }
+    }
+
+    [Serializable]
+    public struct AoeVariant
+    {
+        [SerializeField] private Sprite _sprite;
+        [SerializeField] private AoeSpriteStep[] _steps;
+        [SerializeField] private Color _color;
+        [SerializeField] private float _radius;
+        [SerializeField] private float _rotationSpeed;
+
+        public Sprite Sprite
+        {
+            get
+            {
+                Sprite result = _sprite;
+                foreach (AoeSpriteStep step in _steps)
+                {
+                    if (_radius < step.MinRadius)
+                        break;
+                    result = step.Sprite;
+                }
+                return result;
+            }
+        }
+        
+        public Color Color => _color;
+        public float Radius => _radius;
+        public float RotationSpeed => _rotationSpeed;
+
+        public AoeVariant(float radius, Sprite sprite, AoeSpriteStep[] steps, Color color, float rotationSpeed)
+        {
+            _sprite = sprite;
+            _steps = steps;
+            _color = color;
+            _radius = radius;
+            _rotationSpeed = rotationSpeed;
+        }
+
+        public AoeVariant WithRadius(float radius)
+        {
+            AoeVariant result = this;
+            result._radius = radius;
+            return result;
+        }
+
+        [Serializable]
+        public struct AoeSpriteStep
+        {
+            [SerializeField] private Sprite _sprite;
+            [SerializeField] private float _minRadius;
+            
+            public Sprite Sprite => _sprite;
+            public float MinRadius => _minRadius;
         }
     }
 }
