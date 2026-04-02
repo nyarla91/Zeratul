@@ -35,7 +35,7 @@ MonoBehaviour:
   _availableOrders:
   - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
   - {fileID: 11400000, guid: df29f6f11f2ddf840966aeb2744eb539, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 2b9a798ec3a9b0641bad856f193dee9d, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}

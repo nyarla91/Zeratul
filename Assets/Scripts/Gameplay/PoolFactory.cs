@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using UnityEngine;
@@ -8,12 +9,26 @@ namespace Gameplay
 {
     public class PoolFactory<TElement> : MonoBehaviour where TElement : PoolElement<TElement>
     {
+        private readonly GameObject _defaultPrefab;
         private readonly Dictionary<GameObject, List<TElement>> _pool = new();
         
         [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
 
-        public TElement Get(GameObject prefab)
+        public PoolFactory(GameObject defaultPrefab)
         {
+            _defaultPrefab = defaultPrefab;
+        }
+        
+        public TElement Get(GameObject prefab = null)
+        {
+            if ( ! prefab)
+            {
+                if (_defaultPrefab)
+                    prefab = _defaultPrefab;
+                else
+                    throw new ArgumentNullException($"{this} does not have default prefab");
+            }
+            
             if ( ! _pool.TryGetValue(prefab, out List<TElement> pool))
             {
                 return Instantiate(prefab);

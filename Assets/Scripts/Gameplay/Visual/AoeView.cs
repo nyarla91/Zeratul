@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.Visual
 {
-    public class AoeView : MonoBehaviour
+    public class AoeView : PoolElement<AoeView>
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private float _rotationSpeed;
@@ -23,11 +23,15 @@ namespace Gameplay.Visual
             _rotationSpeed = rotationSpeed;
         }
         
+        public override void OnSpawn() => Show();
+        
         public void Show() => _spriteRenderer.enabled = true;
 
         public void Hide() => _spriteRenderer.enabled = false;
         
         public void Move(Vector2 position) => transform.position = position;
+        
+        protected override void OnDespawn() => Hide();
 
         private void Awake()
         {
