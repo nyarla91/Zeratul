@@ -11,7 +11,15 @@ namespace Gameplay.Units.View.StatusRendering
         
         public IStatusInfo Status { get; set; }
 
-        protected bool IsVisible => _alwaysVisible || (Status?.Host.IsVisibleToPlayer ?? false);
+        protected bool IsVisible
+        {
+            get
+            {
+                if (Status?.IsLocked ?? false)
+                    return false;
+                return _alwaysVisible || (Status?.Host.IsVisibleToPlayer ?? false);
+            }
+        }
 
         public override void Init(PoolFactory<StatusRenderer> factory)
         {

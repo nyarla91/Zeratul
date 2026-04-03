@@ -20,6 +20,8 @@ namespace Gameplay.Data.Statuses
         {
             if (status.CurrentFrame % _tickPeriod != 0)
                 return;
+            if (status.IsLocked)
+                return;
             
             Unit caster = _casterType == CasterType.Host ? status.Host : status.Instigator;
             foreach (EffectTargetingUnit effect in _unitEffects)

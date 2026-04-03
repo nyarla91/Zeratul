@@ -17,6 +17,9 @@ namespace Gameplay.Player
         public UnitType FocusedUnitType => _selectedUnitTypes.Count > 0 ? _selectedUnitTypes[_focusedUnitTypeIndex] : null;
         
         public Unit[] SelectedUnits => _selectedUnits.ToArray();
+        public Unit[] SelectedPlayerUnits => _selectedUnits.Where(u => u.Ownership.OwnedByPlayer).ToArray();
+        
+        public bool IsEnemySelected => _selectedUnits.Count == 1 && _selectedUnits[0].Ownership.OwnedByEnemy;
 
         public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
         
@@ -31,7 +34,7 @@ namespace Gameplay.Player
         {
             foreach (Unit unit in units)
             {
-                if (_selectedUnits.Contains(unit) || unit.Ownership.OwnedByEnemy)
+                if (_selectedUnits.Contains(unit))
                     continue;
                 _selectedUnits.Add(unit);
                 unit.Ownership.OwnerUpdated += ValidateSelectedUnits;
@@ -71,7 +74,6 @@ namespace Gameplay.Player
         private void FocusNextUnitType()
         {
             _focusedUnitTypeIndex = (_focusedUnitTypeIndex + 1).RepeatIndex(_selectedUnitTypes.Count);
-            Debug.Log(_focusedUnitTypeIndex);
             SelectionUpdated?.Invoke();
         }
 
@@ -83,12 +85,12 @@ namespace Gameplay.Player
             {
                 Unit selectedUnit = _selectedUnits[i];
 
-                if (!selectedUnit)
+                if ( ! selectedUnit)
                 {
                     _selectedUnits.RemoveAt(i);
                     continue;
                 }
-                if (selectedUnit.Ownership.OwnedByPlayer)
+                if (selectedUnit.Ownership.OwnedByPlayer || _selectedUnits.Count == 1)
                     continue;
                 
                 RemoveUnitsFromSelection(selectedUnit);

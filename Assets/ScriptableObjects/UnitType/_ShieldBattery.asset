@@ -20,7 +20,7 @@ MonoBehaviour:
   _controlWorth: 0
   _maxHitPoints: 150
   _maxShieldPoints: 150
-  _shieldRestoreDelay: 100
+  _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 5
   _maxEnergyPoints: 0
   _energyRestoreDelay: 0

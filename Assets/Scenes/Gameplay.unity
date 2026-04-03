@@ -4580,7 +4580,7 @@ MonoBehaviour:
   _zoomSpeed: 50
   _dragSpeed: 2
   _edgeTolerance: 5
-  _edgeMoveSpeed: 0
+  _edgeMoveSpeed: 6
 --- !u!1001 &537543866
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ namespace Gameplay.UI
         [Inject] private PlayerInput PlayerInput { get; set; } 
         [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; } 
         [Inject] private PlayerOrdersDispatcher Dispatcher { get; set; } 
+        [Inject] private PlayerSelection Selection { get; set; } 
         [Inject] private Tooltip Tooltip { get; set; } 
         [Inject] private GamePause GamePause { get; set; }
         [Inject] private OrderErrorMessage OrderErrorMessage { get; set; }
@@ -81,6 +82,8 @@ namespace Gameplay.UI
         {
             if (GamePause.IsPaused)
                 return;
+            if (Selection.IsEnemySelected)
+                return;
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
             if ( ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
@@ -102,6 +105,8 @@ namespace Gameplay.UI
         private void IssueWithTarget()
         {
             if (GamePause.IsPaused)
+                return;
+            if (Selection.IsEnemySelected)
                 return;
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
@@ -129,6 +134,8 @@ namespace Gameplay.UI
         private void IssueWithoutTarget()
         {
             if (GamePause.IsPaused)
+                return;
+            if (Selection.IsEnemySelected)
                 return;
             if (OrderType == null || OrderType.TargetRequirement != TargetRequirement.None)
                 return;

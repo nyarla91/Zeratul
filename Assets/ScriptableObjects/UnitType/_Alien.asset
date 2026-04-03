@@ -19,11 +19,11 @@ MonoBehaviour:
   _controlWorth: 100
   _maxHitPoints: 100
   _maxShieldPoints: 50
-  _shieldRestoreDelay: 100
+  _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 5
-  _maxEnergyPoints: 0
-  _energyRestoreDelay: 0
-  _energyPointsPerSecond: 0
+  _maxEnergyPoints: 100
+  _energyRestoreDelay: 100
+  _energyPointsPerSecond: 3
   _isImmobile: 0
   _maxSpeed: 90
   _size: 1.4
@@ -35,7 +35,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
   _availableOrders:
   - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 56ccb81e15e21bf4c89b3b8b6af0a627, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

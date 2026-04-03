@@ -52,6 +52,11 @@ namespace Gameplay.Data.Orders
 
         public override bool IsActorValid(Unit actor, out string errorMessage)
         {
+            if ( ! AbilityType.IgnoreLock && actor.Abilities.IsLocked)
+            {
+                errorMessage = _errors.Locked;
+                return false;
+            }
             if ( ! actor.Abilities.GetAbility(AbilityType).IsReady)
             {
                 errorMessage = _errors.NotReadyAbility;

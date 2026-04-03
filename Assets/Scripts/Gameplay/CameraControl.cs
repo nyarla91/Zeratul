@@ -32,6 +32,9 @@ namespace Gameplay
 
         private void EdgeMoveCamera()
         {
+#if UNITY_EDITOR
+            return;
+#endif
             Cursor.lockState = CursorLockMode.Confined;
             Vector2 direction = Vector2.zero;
             Vector2 mousePosition = Mouse.current.position.ReadValue();

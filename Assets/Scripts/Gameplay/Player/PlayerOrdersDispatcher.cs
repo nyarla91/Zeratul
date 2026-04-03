@@ -21,7 +21,7 @@ namespace Gameplay.Player
 
         public void IssueSmartOrderToSelection(OrderTarget target)
         {
-            foreach (Unit unit in _playerSelection.SelectedUnits)
+            foreach (Unit unit in _playerSelection.SelectedPlayerUnits)
             {
                 unit.Orders.IssueSmartOrder(target, QueueOrder);
             }   
@@ -29,7 +29,7 @@ namespace Gameplay.Player
         
         public void IssueOrderToSelection(OrderType type, OrderTarget target)
         {
-            foreach (Unit unit in _playerSelection.SelectedUnits)
+            foreach (Unit unit in _playerSelection.SelectedPlayerUnits)
             {
                 unit.Orders.IssueOrder(new Order(type, unit, target), QueueOrder);
             }
@@ -38,7 +38,7 @@ namespace Gameplay.Player
         public bool CanIssueWithoutTarget(OrderType orderType, out string errorMessage)
         {
             errorMessage = _errors.Generic;
-            foreach (Unit selectedUnit in _playerSelection.SelectedUnits)
+            foreach (Unit selectedUnit in _playerSelection.SelectedPlayerUnits)
             {
                 if (orderType.IsActorValid(selectedUnit, out errorMessage))
                     return true;
@@ -50,7 +50,7 @@ namespace Gameplay.Player
         {
             if (!CanIssueWithoutTarget(orderType, out errorMessage))
                 return false;
-            foreach (Unit selectedUnit in _playerSelection.SelectedUnits)
+            foreach (Unit selectedUnit in _playerSelection.SelectedPlayerUnits)
             {
                 if (orderType.IsTargetValid(selectedUnit, target, out errorMessage))
                     return true;

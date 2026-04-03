@@ -9,6 +9,7 @@ namespace Gameplay.Data.Statuses
 {
     public abstract class StatusType : ScriptableObject
     {
+        [SerializeField] private bool _useLock;
         [SerializeField] private bool _display;
         [SerializeField] private Sprite _displayIcon;
         [SerializeField] private string _displayName;
@@ -31,6 +32,8 @@ namespace Gameplay.Data.Statuses
         public abstract void OnUpdate(Status status);
         
         public abstract void OnRemove(Status status);
+
+        public bool IsLocked(Status status) => _useLock && status.Host.Abilities.IsLocked;
     }
 
     public class Status : IStatusInfo
@@ -43,6 +46,8 @@ namespace Gameplay.Data.Statuses
         public int CurrentFrame { get; private set; }
         public IPauseReadonly Pause { get; }
 
+        public bool IsLocked => Type.IsLocked(this);
+        
         public int FramesLeft => RemovalFrame - CurrentFrame;
         public int Duration =>  RemovalFrame - AdditionFrame;
         
@@ -70,7 +75,7 @@ namespace Gameplay.Data.Statuses
             RemovalFrame = duration;
             Pause = pause;
         }
-
+        
         public void OnAdd() => Type.OnAdd(this);
 
         public void OnUpdate()
@@ -107,6 +112,7 @@ namespace Gameplay.Data.Statuses
         public int AdditionFrame { get; }
         public int RemovalFrame { get; }
         public int CurrentFrame { get; }
+        public bool IsLocked { get; }
         public int FramesLeft { get; }
         public int Duration { get; }
         public string DisplayDescription { get; }

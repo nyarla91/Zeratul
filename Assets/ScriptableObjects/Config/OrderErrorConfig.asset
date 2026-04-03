@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1029c8967bb4f198051993943af67f5, type: 3}
   m_Name: OrderErrorConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.OrderErrorConfig
-  _generic: Cannot do this
-  _cannotMove: This unit cannot move
-  _cannotAttack: This unit cannot move
-  _targetInvalid: Target invalid
-  _cantTargetSelf: Canoot target self
-  _notEnoughEnergy: Not enought energy
-  _notReadyAbility: Ability not ready
-  _outOfRange: Target is out of range
+  _generic: ordererror-generic
+  _cannotMove: ordererror-cannot-move
+  _cannotAttack: ordererror-cannot-attack
+  _targetInvalid: ordererror-target-invalid
+  _cantTargetSelf: ordererror-cannot-target-self
+  _notEnoughEnergy: ordererror-not-enough-energy
+  _notReadyAbility: ordererror-ability-not-ready
+  _outOfRange: ordererror-out-of-range
+  _locked: ordererror-locked

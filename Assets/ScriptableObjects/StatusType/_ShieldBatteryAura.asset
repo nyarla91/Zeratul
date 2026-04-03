@@ -20,5 +20,5 @@ MonoBehaviour:
   - {fileID: 1872224104527679214, guid: e4254961fe4664a4a9469e1ce973e94b, type: 3}
   _casterType: 0
   _unitEffects:
-  - {fileID: 11400000, guid: 6130171b2beb70d4cbffe8e9db3d3e0a, type: 2}
-  _tickPeriod: 2
+  - {fileID: 11400000, guid: d1f6394cd8a18c74aa32943aeb12440b, type: 2}
+  _tickPeriod: 5

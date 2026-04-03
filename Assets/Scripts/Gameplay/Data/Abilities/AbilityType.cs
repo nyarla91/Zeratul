@@ -15,6 +15,7 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private int _recoveryTime;
         [SerializeField] private int _cooldown;
         [SerializeField] private int _energyCost;
+        [SerializeField] private bool _ignoreLock;
         [HorizontalLine(2, EColor.White)]
         [SerializeField] private TargetRequirement _targetRequirement;
         [Tooltip("Cast distance to target (irrelevant when Target Requirement is set to None)")]
@@ -39,6 +40,7 @@ namespace Gameplay.Data.Abilities
         public UnitValidatorGroup TargetValidators => _targetValidators;
         public float MaxDistance => _maxDistance;
         public int EnergyCost => _energyCost;
+        public bool IgnoreLock => _ignoreLock;
         public int WindupTime => _windupTime;
         public int RecoveryTime => _recoveryTime;
         public int Cooldown => _cooldown;
@@ -54,6 +56,7 @@ namespace Gameplay.Data.Abilities
                    && ( ! target.Unit || _targetValidators.IsValid(ability.Caster, target.Unit))
                    && (ability.Caster.CanMove || IsTargetInRadius(ability.Caster, target))
                    && ability.Caster.Abilities.EnergyPoints >= EnergyCost
+                   && (IgnoreLock || ability.Caster.Abilities.IsUnlocked) 
                    && ability.IsReady;
         }
         

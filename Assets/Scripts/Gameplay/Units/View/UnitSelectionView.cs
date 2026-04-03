@@ -12,6 +12,7 @@ namespace Gameplay.Units.View
         [SerializeField] private SpriteRenderer _overlaySpriteRenderer;
         [SerializeField] private Material _defaultMaterial;
         [SerializeField] private Material _selectedMaterial;
+        [SerializeField] private Material _selectedEnemyMaterial;
         [SerializeField] private Material _highlightedMaterial;
 
         [Inject] private PlayerSelection Selection { get; set; }
@@ -26,8 +27,15 @@ namespace Gameplay.Units.View
         private void UpdateMaterial()
         {
             _overlaySpriteRenderer.sprite = _mainSpriteRenderer.sprite;
-            _overlaySpriteRenderer.material = MouseTargeting.Unit == _unit
-                ? _highlightedMaterial : (Selection.IsUnitSelected(_unit) ?  _selectedMaterial : _defaultMaterial);
+            if (MouseTargeting.Unit == _unit)
+                _overlaySpriteRenderer.material = _highlightedMaterial;
+            else
+            {
+                if (Selection.IsUnitSelected(_unit))
+                    _overlaySpriteRenderer.material = _unit.Ownership.OwnedByEnemy ? _selectedEnemyMaterial : _selectedMaterial;
+                else
+                    _overlaySpriteRenderer.material = _defaultMaterial;
+            }
         }
     }
 }

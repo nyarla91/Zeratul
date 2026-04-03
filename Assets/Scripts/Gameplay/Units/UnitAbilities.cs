@@ -13,7 +13,8 @@ namespace Gameplay.Units
 {
     public class UnitAbilities : UnitComponent
     {
-        private Timer _energyRestorationTimer;
+        private readonly HashSet<object> _lockSources = new();
+        private readonly Timer _energyRestorationTimer;
 
         private float _energyPoints;
         public int EnergyPoints => Mathf.FloorToInt(_energyPoints);
@@ -24,6 +25,9 @@ namespace Gameplay.Units
         public float EnergyPercent => HasEnergyPoints ? (float) EnergyPoints / MaxEnergyPoints : 1;
         
         private readonly Dictionary<AbilityType, Ability> _abilities = new();
+        
+        public bool IsLocked => _lockSources.Count > 0;
+        public bool IsUnlocked => ! IsLocked;
 
         private IPauseReadonly TacticalPause { get; set; }
 
@@ -87,6 +91,10 @@ namespace Gameplay.Units
             ability.StartCooldown();
             return true;
         }
+        
+        public void Lock(object source) => _lockSources.Add(source);
+        
+        public void Unlock(object source) => _lockSources.Remove(source);
 
         private bool TrySpendEnergy(int energy)
         {

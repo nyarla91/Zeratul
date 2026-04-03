@@ -13,6 +13,7 @@ namespace Gameplay.Data.Configs
         [SerializeField] private string _notEnoughEnergy;
         [SerializeField] private string _notReadyAbility;
         [SerializeField] private string _outOfRange;
+        [SerializeField] private string _locked;
 
         public string Generic => _generic;
         public string CannotMove => _cannotMove;
@@ -22,5 +23,6 @@ namespace Gameplay.Data.Configs
         public string NotEnoughEnergy => _notEnoughEnergy;
         public string NotReadyAbility => _notReadyAbility;
         public string OutOfRange => _outOfRange;
+        public string Locked => _locked;
     }
 }
