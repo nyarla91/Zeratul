@@ -6,12 +6,13 @@ namespace Gameplay.Units.View
     public class UnitInteractionCollision : MonoBehaviour
     {
         [SerializeField] private Unit _unit;
+        [SerializeField] private BoxCollider2D _collider;
 
         private void Start()
         {
-            Vector2 offset = Vector2.up * _unit.Type.SpriteMap.SpriteHeight;
-            transform.localPosition = offset;
-            transform.localScale = _unit.Type.Size * Vector3.one;
+            transform.localPosition = Vector3.up * _unit.Type.SpriteMap.SpriteHeight;
+            _collider.size = _unit.Type.InteractionColliderSize;
+            _collider.offset = _unit.Type.InteractionColliderOffset;
         }
     }
 }

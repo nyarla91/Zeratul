@@ -24,8 +24,9 @@ namespace Gameplay.UI
         public Vector2 SelectionStartPosition { get; private set; }
         public bool IsSelecting { get; private set; }
         
-        [Inject] private PlayerSelection PlayerSelection { get; set; }
-        [Inject] private PlayerInput PlayerInput { get; set; }
+        [Inject] private PlayerSelection Selection { get; set; }
+        [Inject] private PlayerInput Input { get; set; }
+        [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
         [Inject] private GamePause GamePause { get; set; }
         
         private void Awake()
@@ -61,10 +62,10 @@ namespace Gameplay.UI
             if (selectedUnits.Length == 0)
                 return;
             
-            if (PlayerInput.SelectMultiple.IsHeld)
-                PlayerSelection.AddUnitsToSelection(selectedUnits);
+            if (Input.SelectMultiple.IsHeld)
+                Selection.AddUnitsToSelection(selectedUnits);
             else
-                PlayerSelection.SelectUnits(selectedUnits);
+                Selection.SelectUnits(selectedUnits);
             
         }
 
@@ -76,18 +77,13 @@ namespace Gameplay.UI
         {
             if (GamePause.IsPaused || ! Mouse.current.leftButton.wasReleasedThisFrame)
                 return;
-            
-            Vector2 currentMousePosition = Mouse.current.position.ReadValue();
-            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(currentMousePosition);
-            
-            Unit[] selectedUnits = GetUnitsFromColliders(Physics2D.OverlapPointAll(worldPoint, _unitsMask));
-            if (selectedUnits.Length == 0)
+            if (MouseTargeting.Unit == null)
                 return;
             
-            if (PlayerInput.SelectMultiple.IsHeld)
-                PlayerSelection.ToggleUnitSelection(selectedUnits[0]);
+            if (Input.SelectMultiple.IsHeld)
+                Selection.ToggleUnitSelection(MouseTargeting.Unit);
             else
-                PlayerSelection.SelectUnits(selectedUnits);
+                Selection.SelectUnits(MouseTargeting.Unit);
         }
 
         private void Update()

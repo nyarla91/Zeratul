@@ -21,7 +21,7 @@ namespace Gameplay.Units
         
         public float HitPercent => (float) HitPoints / MaxHitPoints;
         public bool HasShieldPoints => MaxShieldPoints > 0;
-        public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 1;
+        public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 0;
 
         public bool IsAlive => HitPoints >= 1;
         public bool IsDead => ! IsAlive;

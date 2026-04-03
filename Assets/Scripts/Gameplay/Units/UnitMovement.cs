@@ -34,17 +34,13 @@ namespace Gameplay.Units
         public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
 
         public UnitMovement(Unit unit, TacticalPause tacticalPause, NodeMap nodeMap, UnitMovementConfig config,
-            Rigidbody2D rigidbody, Collider2D collider, Collider2D avoidanceCollider) : base(unit)
+            Rigidbody2D rigidbody, Collider2D avoidanceCollider) : base(unit)
         {
             _tacticalPause = tacticalPause;
             _nodeMap = nodeMap;
             _config = config;
             _rigidbody = rigidbody;
             _avoidanceCollider = avoidanceCollider;
-            
-            collider.transform.localScale = Vector3.one * UnitType.Size;
-            Unit.gameObject.layer = UnitType.IsAir ? _config.AirLayer : _config.GroundLayer;
-            collider.gameObject.layer = Unit.gameObject.layer;
             _avoidanceCollider.gameObject.layer = Unit.gameObject.layer;
 
             IObservable<long> observable = Observable.EveryFixedUpdate()

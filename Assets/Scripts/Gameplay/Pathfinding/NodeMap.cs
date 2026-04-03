@@ -17,7 +17,7 @@ namespace Gameplay.Pathfinding
 
         private Node _closestToMouseNode;
 
-        private int _lastQuery = -1;
+        private int _lastQuery;
 
         public Vector2Int MapSize => _mapSize;
 

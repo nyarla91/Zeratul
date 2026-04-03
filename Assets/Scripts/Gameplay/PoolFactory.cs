@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Gameplay
 {
-    public class PoolFactory<TElement> : MonoBehaviour where TElement : PoolElement<TElement>
+    public class PoolFactory<TElement> where TElement : PoolElement<TElement>
     {
         private readonly GameObject _defaultPrefab;
         private readonly Dictionary<GameObject, List<TElement>> _pool = new();

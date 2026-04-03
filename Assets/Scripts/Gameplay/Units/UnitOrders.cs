@@ -69,7 +69,6 @@ namespace Gameplay.Units
 
         public void CompleteCurrentOrder()
         {
-            Debug.Log(_currentOrderCts);
             _currentOrderCts?.Cancel();
             CurrentOrder = null;
         }

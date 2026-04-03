@@ -54,7 +54,7 @@ namespace Gameplay.Player
             RemoveUnitsFromSelection(_selectedUnits.ToArray());
         }
 
-        public void SelectUnits(Unit[] units)
+        public void SelectUnits(params Unit[] units)
         {
             ClearSelection();
             AddUnitsToSelection(units);

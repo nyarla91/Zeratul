@@ -38,6 +38,8 @@ namespace Gameplay.Data
         [SerializeField] private List<OrderType> _availableOrders;
         [HorizontalLine(2, EColor.White)]
         [Expandable] [SerializeField] private UnitSpriteMap _spriteMap;
+        [SerializeField] private Vector2 _interactionColliderSize;
+        [SerializeField] private Vector2 _interactionColliderOffset;
 
         public string DisplayName => _displayName;
         public int FocusPriority => _focusPriority;
@@ -60,6 +62,8 @@ namespace Gameplay.Data
         public StatusType[] InnateStatuses => _innateStatuses;
         public OrderType[] AvailableOrders => _availableOrders.ToArray();
         public UnitSpriteMap SpriteMap => _spriteMap;
+        public Vector2 InteractionColliderSize => _interactionColliderSize;
+        public Vector2 InteractionColliderOffset => _interactionColliderOffset;
 
         public PathfindingAgent PathfindingAgent => new(IsAir, Size / 2);
 

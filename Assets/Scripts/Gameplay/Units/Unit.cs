@@ -4,7 +4,6 @@ using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Pathfinding;
 using Gameplay.Vision;
-using JetBrains.Annotations;
 using NaughtyAttributes;
 using UnityEngine;
 using Zenject;
@@ -20,6 +19,7 @@ namespace Gameplay.Units
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
+        [SerializeField] private BoxCollider2D _interactionCollider;
         [SerializeField] private VisionSource _visionSource;
         
         public UnitDirection Direction { get; private set; }
@@ -36,9 +36,10 @@ namespace Gameplay.Units
 
         [ShowNativeProperty] public bool CanAttack { get; private set; }
         [ShowNativeProperty] public bool CanMove { get; private set; }
-        [ShowNativeProperty] public bool VisibleToPlayer => Visibility?.IsVisibleToPlayer ?? false;
+        [ShowNativeProperty] public bool IsVisibleToPlayer => Visibility?.IsVisibleToPlayer ?? false;
 
         public Vector2 Position => transform.position;
+        public Vector2 InteractionPosition => _interactionCollider.transform.position + (Vector3) _interactionCollider.offset;
 
         public UnitType Type { get; private set; }
 
@@ -72,11 +73,14 @@ namespace Gameplay.Units
             
             CanMove = ! type.IsImmobile;
             if (CanMove)
-                Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _collider, _avoidanceCollider);
+                Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _avoidanceCollider);
+            
+            _collider.transform.localScale = Vector3.one * Type.Size;
+            _collider.gameObject.layer = gameObject.layer;
+            gameObject.layer = Type.IsAir ? _unitMovementConfig.AirLayer : _unitMovementConfig.GroundLayer;
             
             UnitPool.AddUnit(this);
             Life.HitPointsOver += Kill;
-
         }
         
         public void Kill()
