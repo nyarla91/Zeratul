@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 206ed78e8d9941e9a427cab8f310cbe0, type: 3}
-  m_Name: _Restore4ShieldPoints
+  m_Name: _Restore2ShieldPoints
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.RestoreShieldPointsEffect
-  _value: 4
+  _value: 2

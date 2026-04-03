@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4323077882016136914, guid: 03d3896b0b316d64d985dfd7994cad9e, type: 3}
       propertyPath: _aoeVariant._radius
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4673356508630585329, guid: 03d3896b0b316d64d985dfd7994cad9e, type: 3}
       propertyPath: m_LocalScale.x

@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
   - _OUTLINEMODE_SOLID
   - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
   - _OUTLINESHAPE_CONTOUR
@@ -40,7 +41,7 @@ Material:
     - _AlphaThreshold: 0
     - _Angle: 569.91
     - _ConnectedAlpha: 0
-    - _OutlineEnabled: 0
+    - _OutlineEnabled: 1
     - _OutlineMode: 0
     - _OutlinePosition: 0
     - _OutlineShape: 0
@@ -52,6 +53,6 @@ Material:
     - _GradientOutline1: {r: 1, g: 1, b: 1, a: 1}
     - _GradientOutline2: {r: 1, g: 1, b: 1, a: 1}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.18798399, g: 1, b: 0, a: 1}
+    - _SolidOutline: {r: 1, g: 1, b: 1, a: 0.050980393}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

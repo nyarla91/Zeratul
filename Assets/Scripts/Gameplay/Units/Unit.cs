@@ -74,6 +74,8 @@ namespace Gameplay.Units
             CanMove = ! type.IsImmobile;
             if (CanMove)
                 Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _avoidanceCollider);
+            else
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             
             _collider.transform.localScale = Vector3.one * Type.Size;
             _collider.gameObject.layer = gameObject.layer;

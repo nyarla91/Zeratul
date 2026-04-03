@@ -13,43 +13,61 @@ MonoBehaviour:
   m_Name: EnglishTable
   m_EditorClassIdentifier: Loalization::Localization.LanguageTable
   _entries:
+  - _key: ability-invasion-description
+    _line: Take control of target <kw>Sentient</kw> enemy unit. You must have enough
+      <kw>control slots</kw> available and enough <kw>control points</kw>.
+  - _key: ability-invasion-name
+    _line: Invasion
+  - _key: ability-stat-cooldown
+    _line: 'Cooldown: # sec.'
+  - _key: ability-stat-energy
+    _line: 'Cost: # energy'
+  - _key: ability-stat-range
+    _line: 'Range: #'
   - _key: choose-target-prompt
     _line: Choose target for
   - _key: order
     _line: Order
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
-  - _key: 
-    _line: 
+  - _key: order-ability
+    _line: Order - Ability
+  - _key: order-attack-description
+    _line: Attack target unit or move to target point automatically attacking any
+      enemy on the path.
+  - _key: order-attack-name
+    _line: Attack
+  - _key: order-hold-position-description
+    _line: Order unit to stand still indefinitely.
+  - _key: order-hold-position-name
+    _line: Hold position
+  - _key: order-move-description
+    _line: Move to target point or follow target unit.
+  - _key: order-move-name
+    _line: Move
+  - _key: order-stop-description
+    _line: Cancel all current orders.
+  - _key: order-stop-name
+    _line: Stop
+  - _key: ordererror-ability-not-ready
+    _line: Ability not ready
+  - _key: ordererror-cannot-attack
+    _line: This unit cannot move
+  - _key: ordererror-cannot-move
+    _line: This unit cannot move
+  - _key: ordererror-cannot-target-self
+    _line: Canoot target self
+  - _key: ordererror-generic
+    _line: Cannot do this
+  - _key: ordererror-not-enough-energy
+    _line: Not enought energy
+  - _key: ordererror-out-of-range
+    _line: Target is out of range
+  - _key: ordererror-target-invalid
+    _line: Target invalid
+  - _key: unit-snake-name
+    _line: Snake
+  - _key: unittag-mechanical
+    _line: Mechanical
+  - _key: unittag-organic
+    _line: Organic
+  - _key: unittag-sentient
+    _line: Sentient
