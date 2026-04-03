@@ -15,7 +15,7 @@ MonoBehaviour:
   _windupTime: 35
   _recoveryTime: 10
   _cooldown: 150
-  _energyCost: 25
+  _energyCost: 0
   _targetRequirement: 2
   _maxDistance: 12
   _casterValidators:
@@ -27,7 +27,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1b46ab317f7c72f449679b9ec9b45c94, type: 2}
     - {fileID: 11400000, guid: 34840aa4d4189ae41a58fe7a2442cba9, type: 2}
   _casterEffects: []
-  _mustLookAtTarget: 0
+  _mustLookAtTarget: 1
   _unitTargetEffects:
   - {fileID: 11400000, guid: 8f2754233458ed34583cfb246333a9a4, type: 2}
   - {fileID: 11400000, guid: fe62053f85348ba45950a2d802f635b2, type: 2}

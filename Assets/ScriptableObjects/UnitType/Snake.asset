@@ -29,7 +29,7 @@ MonoBehaviour:
   _size: 1.2
   _rotationSpeed: 720
   _isAir: 0
-  _sightRadius: 18
+  _sightRadius: 12
   _weaponType: {fileID: 11400000, guid: b59061b5499a770419101715f9338234, type: 2}
   _innateStatuses: []
   _availableOrders:

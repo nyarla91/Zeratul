@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
+  m_Name: _Alien
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _displayName: Alien
+  _focusPriority: 10
+  _tags:
+  - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
+  _controlWorth: 100
+  _maxHitPoints: 100
+  _maxShieldPoints: 50
+  _shieldRestoreDelay: 100
+  _shieldPointsPerSecond: 5
+  _maxEnergyPoints: 0
+  _energyRestoreDelay: 0
+  _energyPointsPerSecond: 0
+  _isImmobile: 0
+  _maxSpeed: 90
+  _size: 1.4
+  _rotationSpeed: 720
+  _isAir: 0
+  _sightRadius: 12
+  _weaponType: {fileID: 11400000, guid: 4a0193a5eb22770419840eff264f1a8d, type: 2}
+  _innateStatuses:
+  - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
+  _availableOrders:
+  - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}
+  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteMap: {fileID: 11400000, guid: 21c92a6a426fb994db6074e194c7b7dc, type: 2}
+  _interactionColliderSize: {x: 1.3, y: 2}
+  _interactionColliderOffset: {x: 0, y: 0.6}

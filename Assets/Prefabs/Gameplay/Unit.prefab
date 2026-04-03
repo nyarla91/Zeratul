@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 1600494382157285698}
   - component: {fileID: 7853164914835431106}
   - component: {fileID: 1255745261723427409}
+  - component: {fileID: 4141729251931112795}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -862,6 +863,22 @@ MonoBehaviour:
   _defaultMaterial: {fileID: 2100000, guid: ef598bce2d9f26d4d876e23c1bfe9341, type: 2}
   _selectedMaterial: {fileID: 2100000, guid: 5eebf97e1b29d7342910801620660b90, type: 2}
   _highlightedMaterial: {fileID: 2100000, guid: 8414ac87dfe71134a863d702e13d1e37, type: 2}
+--- !u!114 &4141729251931112795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475753974446673389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03ff8051c2145b8a898e15829d51638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.UnitSpriteColorView
+  _unit: {fileID: 1588366463054386623}
+  _spriteRenderer: {fileID: 1600494382157285698}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _cloakedColor: {r: 0.3820755, g: 0.9572713, b: 1, a: 0.45490196}
 --- !u!1 &6860139145215383467
 GameObject:
   m_ObjectHideFlags: 0

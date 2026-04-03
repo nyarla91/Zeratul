@@ -29,7 +29,7 @@ MonoBehaviour:
   _size: 3
   _rotationSpeed: 360
   _isAir: 1
-  _sightRadius: 20
+  _sightRadius: 12
   _weaponType: {fileID: 0}
   _innateStatuses:
   - {fileID: 11400000, guid: ea01647ee3e24184d81fa55f76413eb5, type: 2}
@@ -50,3 +50,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: b4cffdc249fd240478aa92f947b62465, type: 2}
+  _interactionColliderSize: {x: 0, y: 0}
+  _interactionColliderOffset: {x: 0, y: 0}

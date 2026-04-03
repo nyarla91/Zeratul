@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Localizer
   m_EditorClassIdentifier: Assembly-CSharp::Localization.LocalizationConfig
   _tables:
-  - {fileID: 11400000, guid: 41c1fd7a596f81b4d857b28cc9acb03b, type: 2}
   - {fileID: 11400000, guid: fd5ae244cff66174ba1dd402d7491337, type: 2}
+  - {fileID: 11400000, guid: 41c1fd7a596f81b4d857b28cc9acb03b, type: 2}
