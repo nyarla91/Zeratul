@@ -3,7 +3,7 @@ using System.Linq;
 using Gameplay.Units;
 using UnityEngine;
 
-namespace Gameplay.AI
+namespace Gameplay.Data.AiEvaluators
 {
     public abstract class AiUnitTargetEvaluator : ScriptableObject
     {

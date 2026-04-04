@@ -54,6 +54,8 @@ namespace Gameplay.Units
             StatusRemoved?.Invoke(status);
         }
 
+        public bool HasStatus(StatusType type) => _statuses.ContainsKey(type);
+
         private void UpdateStatuses()
         {
             Status[] statuses = _statuses.Values.ToArray();

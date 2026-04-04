@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bfe865738d4c51be2208716f3b716a, type: 3}
+  m_Name: ExpertAI
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitAiMap
+  _aiOrders:
+  - _order: {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+    _agentValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: fe40c85167807844b91e40cf12a4e935, type: 2}
+    _targetValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: d7c2d1d521b79144e8eef1f9638b1cf2, type: 2}
+      - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    _evaluators:
+      _baseWorth: 100
+      _evaluators: []
+  - _order: {fileID: 11400000, guid: b101c89fd63a172448d3f16f00f062fe, type: 2}
+    _agentValidator:
+      _unitValidators: []
+    _targetValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: 1ac10117ad6eec04a8040955a3048024, type: 2}
+      - {fileID: 11400000, guid: 901a2d9bfedb4874793f3cf742934752, type: 2}
+      - {fileID: 11400000, guid: 006b21522d1b4294e9f6cccab1e4e3e3, type: 2}
+    _evaluators:
+      _baseWorth: 150
+      _evaluators:
+      - {fileID: 11400000, guid: de44a7b1848955c4cbea5280f1f4049e, type: 2}

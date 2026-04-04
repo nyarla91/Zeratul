@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67266e783a7b4df89120c5229620998e, type: 3}
   m_Name: UnitMovementConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.UnitMovementConfig
-  _nodeProximityDistance: 0.2
+  _nodeProximityDistance: 0.1
   _minPathRecalculationPeriod: 0.5
   _avoidanceAdditionalRadius: 1
   _avoidanceStrength: 0.651

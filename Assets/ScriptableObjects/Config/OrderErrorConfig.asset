@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1029c8967bb4f198051993943af67f5, type: 3}
   m_Name: OrderErrorConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.OrderErrorConfig
+  _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _generic: ordererror-generic
   _cannotMove: ordererror-cannot-move
   _cannotAttack: ordererror-cannot-attack

@@ -89,10 +89,11 @@ namespace Gameplay.Player
                     _selectedUnits.RemoveAt(i);
                     continue;
                 }
-                if (selectedUnit.Ownership.OwnedByPlayer || _selectedUnits.Count == 1)
-                    continue;
-                
-                RemoveUnitsFromSelection(selectedUnit);
+                if (selectedUnit == null
+                    || selectedUnit.Life.IsDead 
+                    || ! selectedUnit.Visibility.IsVisibleToPlayer
+                    || (selectedUnit.Ownership.OwnedByEnemy && _selectedUnits.Count > 1))
+                    RemoveUnitsFromSelection(selectedUnit);
             }
 
             _selectedUnitTypes.Clear();

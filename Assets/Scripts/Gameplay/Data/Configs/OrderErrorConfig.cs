@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Localization;
+using UnityEngine;
 
 namespace Gameplay.Data.Configs
 {
     [CreateAssetMenu(menuName = "Gameplay Data/Configs/Order Error Config")]
     public class OrderErrorConfig : ScriptableObject
     {
+        [SerializeField] private Localizer _localizer;
         [SerializeField] private string _generic;
         [SerializeField] private string _cannotMove;
         [SerializeField] private string _cannotAttack;
@@ -15,14 +17,14 @@ namespace Gameplay.Data.Configs
         [SerializeField] private string _outOfRange;
         [SerializeField] private string _locked;
 
-        public string Generic => _generic;
-        public string CannotMove => _cannotMove;
-        public string CannotAttack => _cannotAttack;
-        public string TargetInvalid => _targetInvalid;
-        public string CantTargetSelf => _cantTargetSelf;
-        public string NotEnoughEnergy => _notEnoughEnergy;
-        public string NotReadyAbility => _notReadyAbility;
-        public string OutOfRange => _outOfRange;
-        public string Locked => _locked;
+        public string Generic => _localizer.Translate(_generic);
+        public string CannotMove => _localizer.Translate(_cannotMove);
+        public string CannotAttack => _localizer.Translate(_cannotAttack);
+        public string TargetInvalid => _localizer.Translate(_targetInvalid);
+        public string CantTargetSelf => _localizer.Translate(_cantTargetSelf);
+        public string NotEnoughEnergy => _localizer.Translate(_notEnoughEnergy);
+        public string NotReadyAbility => _localizer.Translate(_notReadyAbility);
+        public string OutOfRange => _localizer.Translate(_outOfRange);
+        public string Locked => _localizer.Translate(_locked);
     }
 }

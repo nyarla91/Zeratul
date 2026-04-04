@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Gameplay.AI;
+using Gameplay.Data.AiEvaluators;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Validator;
 using Gameplay.Units;
@@ -16,7 +16,7 @@ namespace Gameplay.Data.Units
         public Order GetBestOrder(Unit agent, HashSet<Unit> surroundings)
         {
             Order result = null;
-            float bestWorth = float.MinValue;
+            float bestWorth = 0;
             foreach (AiOrder aiOrder in _aiOrders)
             {
                 Order newOrder = aiOrder.GetOrder(agent, surroundings, out float worth);

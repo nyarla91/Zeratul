@@ -25,7 +25,7 @@ MonoBehaviour:
   _energyRestoreDelay: 100
   _energyPointsPerSecond: 3
   _isImmobile: 0
-  _maxSpeed: 90
+  _maxSpeed: 80
   _size: 1.4
   _rotationSpeed: 720
   _isAir: 0
