@@ -1,9 +1,9 @@
 ﻿using Localization;
 using UnityEngine;
 
-namespace Gameplay.Data
+namespace Gameplay.Data.Units
 {
-    [CreateAssetMenu(menuName = "Gameplay Data/Unit Tag", order = 0)]
+    [CreateAssetMenu(menuName = "Gameplay Data/Unit/Unit Tag", order = 0)]
     public class UnitTag : ScriptableObject
     {
         [SerializeField] private Localizer _localizer;

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Extentions;
 using Extentions.Pause;
-using Gameplay.Data;
 using Gameplay.Data.Configs;
+using Gameplay.Data.Units;
 using UniRx;
 using UnityEngine;
 
@@ -138,7 +137,7 @@ namespace Gameplay.Units
         {
             if ( ! await Unit.Stagger.TryBegin(Weapon.WindupTime, Weapon.RecoveryTime, "attack"))
                 return;
-            target.Life.TakeDamage(Weapon.BaseDamage);
+            target.Life.TakeDamage(Weapon.BaseDamage, Unit);
         }
     }
 }

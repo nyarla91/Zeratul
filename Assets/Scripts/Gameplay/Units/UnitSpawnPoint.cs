@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using Extentions;
-using Gameplay.Data;
+using Gameplay.Data.Units;
 using UnityEngine;
 using Zenject;
 

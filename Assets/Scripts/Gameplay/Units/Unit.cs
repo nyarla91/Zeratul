@@ -2,6 +2,7 @@
 using System.Linq;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
+using Gameplay.Data.Units;
 using Gameplay.Pathfinding;
 using Gameplay.Vision;
 using NaughtyAttributes;
@@ -16,6 +17,7 @@ namespace Gameplay.Units
         [SerializeField] private UnitMovementConfig _unitMovementConfig;
         [SerializeField] private OrderErrorConfig _orderErrorConfig;
         [SerializeField] private VisionConfig _visionConfig;
+        [SerializeField] private UnitAiConfig _aiConfig;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
@@ -33,6 +35,7 @@ namespace Gameplay.Units
         public UnitOrders Orders { get; private set; }
         public UnitAttack Attack { get; private set; }
         public UnitMovement Movement { get; private set; }
+        public UnitAI AI { get; private set; }
 
         [ShowNativeProperty] public bool CanAttack { get; private set; }
         [ShowNativeProperty] public bool CanMove { get; private set; }
@@ -66,6 +69,7 @@ namespace Gameplay.Units
             Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, ownedByPlayer);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
+            AI = new UnitAI(this, _aiConfig);
             
             CanAttack = type.WeaponType != null && type.AvailableOrders.Contains(_unitAttackConfig.DefaultAttackOrder);
             if (CanAttack)

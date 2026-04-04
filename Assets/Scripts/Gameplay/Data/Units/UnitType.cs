@@ -5,9 +5,9 @@ using Gameplay.Pathfinding;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Gameplay.Data
+namespace Gameplay.Data.Units
 {
-    [CreateAssetMenu(menuName = "Gameplay Data/Unit", order = 0)]
+    [CreateAssetMenu(menuName = "Gameplay Data/Unit/Unit Type", order = 0)]
     public class UnitType : ScriptableObject
     {
         [SerializeField] private string _displayName;
@@ -38,8 +38,11 @@ namespace Gameplay.Data
         [SerializeField] private List<OrderType> _availableOrders;
         [HorizontalLine(2, EColor.White)]
         [Expandable] [SerializeField] private UnitSpriteMap _spriteMap;
+        [Space]
         [SerializeField] private Vector2 _interactionColliderSize;
         [SerializeField] private Vector2 _interactionColliderOffset;
+        [HorizontalLine(2, EColor.White)]
+        [SerializeField] private UnitAiMap _aiMap;
 
         public string DisplayName => _displayName;
         public int FocusPriority => _focusPriority;
@@ -64,6 +67,7 @@ namespace Gameplay.Data
         public UnitSpriteMap SpriteMap => _spriteMap;
         public Vector2 InteractionColliderSize => _interactionColliderSize;
         public Vector2 InteractionColliderOffset => _interactionColliderOffset;
+        public UnitAiMap AIMap => _aiMap;
 
         public PathfindingAgent PathfindingAgent => new(IsAir, Size / 2);
 

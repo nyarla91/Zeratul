@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BibikaWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
   _baseDamage: 50
-  _cooldown: 25
+  _windupTime: 0
+  _recoveryTime: 0
   _maxDistance: 10
   _autoAttack: 0

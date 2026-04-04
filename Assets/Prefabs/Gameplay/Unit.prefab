@@ -841,6 +841,7 @@ MonoBehaviour:
   _unitMovementConfig: {fileID: 11400000, guid: 69cd25c90dcb183499016cbd461f4870, type: 2}
   _orderErrorConfig: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}
   _visionConfig: {fileID: 11400000, guid: 3419c58748f8fc24fa1f59e94c65c703, type: 2}
+  _aiConfig: {fileID: 11400000, guid: 6a79a9cc86841f6448d06551111052c2, type: 2}
   _rigidbody: {fileID: 2212058817159712324}
   _collider: {fileID: 9103159375792626044}
   _avoidanceCollider: {fileID: 1249983972513825726}

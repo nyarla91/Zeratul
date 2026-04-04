@@ -1,7 +1,6 @@
-﻿using Gameplay.Data;
-using Gameplay.Data.Orders;
+﻿using Gameplay.Data.Orders;
+using Gameplay.Data.Units;
 using Gameplay.Player;
-using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 

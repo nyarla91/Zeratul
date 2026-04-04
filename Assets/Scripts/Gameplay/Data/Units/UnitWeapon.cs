@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Data
+namespace Gameplay.Data.Units
 {
-    [CreateAssetMenu(menuName = "Gameplay Data/Unit Weapon", order = 0)]
+    [CreateAssetMenu(menuName = "Gameplay Data/Unit/Unit Weapon", order = 0)]
     public class UnitWeaponType : ScriptableObject
     {
         [SerializeField] private int _baseDamage;

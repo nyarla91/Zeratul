@@ -51,3 +51,4 @@ MonoBehaviour:
   _spriteMap: {fileID: 11400000, guid: 0fa986235a246684fb853a806f774039, type: 2}
   _interactionColliderSize: {x: 1, y: 2}
   _interactionColliderOffset: {x: 0, y: 0.75}
+  _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}

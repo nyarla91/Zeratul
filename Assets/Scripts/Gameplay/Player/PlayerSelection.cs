@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Extentions;
-using Gameplay.Data;
+using Gameplay.Data.Units;
 using Gameplay.Units;
-using UnityEngine;
 
 namespace Gameplay.Player
 {

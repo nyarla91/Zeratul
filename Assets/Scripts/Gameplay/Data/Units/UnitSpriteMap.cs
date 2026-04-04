@@ -5,10 +5,10 @@ using Extentions;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Gameplay.Data
+namespace Gameplay.Data.Units
 {
     [Serializable]
-    [CreateAssetMenu(menuName = "Gameplay Data/Graphics/Unit Sprite Map", order = 0)]
+    [CreateAssetMenu(menuName = "Gameplay Data/Unit/Unit Sprite Map", order = 0)]
     public class UnitSpriteMap : ScriptableObject
     {
         public const int Directions = 16;

@@ -14,7 +14,9 @@ namespace Gameplay.Units
         private float _shieldPoints;
 
         public int HitPoints => Mathf.FloorToInt(_hitPoints);
+        public int MissingHitPoints => MaxHitPoints - HitPoints;
         public int ShieldPoints => Mathf.FloorToInt(_shieldPoints);
+        public int MissingShieldPoints => MaxShieldPoints - ShieldPoints;
 
         public int MaxHitPoints => UnitType.MaxHitPoints; 
         public int MaxShieldPoints => UnitType.MaxShieldPoints;
@@ -25,6 +27,9 @@ namespace Gameplay.Units
 
         public bool IsAlive => HitPoints >= 1;
         public bool IsDead => ! IsAlive;
+        
+        public Unit LastDamageDealer { get; private set; }
+        public float LastDamageTime { get; private set; } = -1000;
         
         public event Action HitPointsOver;
         public event Action<int> DamageTaken;
@@ -44,7 +49,7 @@ namespace Gameplay.Units
                 .Subscribe(_ => RestoreShieldPoints());
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(int damage, Unit damageDealer)
         {
             if (IsDead || damage <= 0)
                 return;
@@ -54,7 +59,9 @@ namespace Gameplay.Units
             
             _hitPoints -=  hitDamage;
             _shieldPoints -=  shieldDamage;
-            
+
+            LastDamageDealer = damageDealer;
+            LastDamageTime = Time.fixedTime;
             DamageTaken?.Invoke(damage);
             HitPointsLost?.Invoke(hitDamage);
             ShieldPointsLost?.Invoke(shieldDamage);

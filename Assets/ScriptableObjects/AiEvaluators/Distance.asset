@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
-  m_Name: FodderWeapon
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
-  _baseDamage: 5
-  _windupTime: 10
-  _recoveryTime: 10
-  _maxDistance: 6
-  _autoAttack: 0
+  m_Script: {fileID: 11500000, guid: 889a47a56b72480e9fe13463814e0cea, type: 3}
+  m_Name: Distance
+  m_EditorClassIdentifier: Gameplay::Gameplay.AI.AiUnitDistanceEvaluator
+  _maxWorth: 100
+  _minDistance: 0
+  _maxDistance: 12
+  _isFurtherBetter: 0

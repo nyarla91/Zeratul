@@ -83,7 +83,10 @@ namespace Gameplay.Vision
         public HashSet<Unit> VisibleUnits(Unit host = null, UnitValidatorGroup validatorGroup = default)
         {
             HashSet<Unit> result = VisionMap.GetAreaForOwner(OwnedByPlayer).VisibleUnits;
-            result = result.Where(u => Isometry.Distance(transform.position, u.Position) < Radius).ToHashSet();
+            result = result
+                .Where(u => Isometry.Distance(transform.position, u.Position) < Radius)
+                .Where(u => _ownedByPlayer ? u.Visibility.IsVisibleToPlayer : u.Visibility.IsVisibleToEnemy)
+                .ToHashSet();
             
             return result.Where(u => validatorGroup.IsValid(host, u)).ToHashSet();
         }

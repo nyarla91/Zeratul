@@ -21,6 +21,9 @@ namespace Gameplay.Data.Validator
         
         public bool IsInvalid(Unit actor, Unit unit, out string invalidMessage)
         {
+            invalidMessage = null;
+            if (_unitValidators == null || _unitValidators.Length == 0)
+                return false;
             foreach (UnitValidator validator in _unitValidators)
             {
                 if (validator.IsValid(actor, unit))
@@ -28,7 +31,6 @@ namespace Gameplay.Data.Validator
                 invalidMessage = validator.InvalidMessage;
                 return true;
             }
-            invalidMessage = null;
             return false;
         }
         

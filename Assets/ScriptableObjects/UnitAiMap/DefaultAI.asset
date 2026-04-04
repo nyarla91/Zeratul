@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bfe865738d4c51be2208716f3b716a, type: 3}
+  m_Name: DefaultAI
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitAiMap
+  _aiOrders:
+  - _order: {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+    _agentValidator:
+      _unitValidators: []
+    _targetValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    _evaluators:
+      _baseWorth: 100
+      _evaluators:
+      - {fileID: 11400000, guid: de44a7b1848955c4cbea5280f1f4049e, type: 2}
+      - {fileID: 11400000, guid: dfda53f9a1715374eae10069064dfe38, type: 2}

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Extentions;
-using Gameplay.Data;
+using Gameplay.Data.Units;
 using Gameplay.Player;
 using Gameplay.Units;
 using TMPro;
