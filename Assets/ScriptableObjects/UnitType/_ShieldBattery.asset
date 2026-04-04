@@ -17,7 +17,7 @@ MonoBehaviour:
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
-  _controlWorth: 0
+  _controlWorth: 3
   _maxHitPoints: 150
   _maxShieldPoints: 150
   _shieldRestoreDelay: 250
@@ -40,8 +40,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
-  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -42,18 +42,27 @@ namespace Gameplay.Pathfinding
             return node.IsPassable(isAgentAir);
         }
         
-        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out INodeWorld[] path, PathfindingAgent agent)
+        public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out List<Vector2> path, PathfindingAgent agent)
         {
+            if (CanPassBetween(worldStart, worldTarget, agent))
+            {
+                path = new List<Vector2> { worldTarget };
+                return true;
+            }
             Node startNode = GetClosestNode(worldStart);
             Node targetNode = GetClosestNode(worldTarget);
-            return TryFindPath(startNode, targetNode, out path, agent);
+            if ( ! TryFindPath(startNode, targetNode, out path, agent))
+                return false;
+            path = SimplifyPath(path, worldStart, worldTarget, agent);
+            Debug.Log(path.Count);
+            return true;
         }
-        
-        private bool TryFindPath(Node startNode, Node targetNode, out INodeWorld[] path, PathfindingAgent agent)
+
+        private bool TryFindPath(Node startNode, Node targetNode, out List<Vector2> path, PathfindingAgent agent)
         {
             if (startNode == targetNode || ! targetNode.IsPassable(agent.IsAir))
             {
-                path = Array.Empty<INodeWorld>();
+                path = new List<Vector2>();
                 return false;
             }
 
@@ -70,7 +79,7 @@ namespace Gameplay.Pathfinding
                 Node currentNode = GetBestPendingNode(pendingNodes, out int currentNodeIndex);
                 if (currentNode.Equals(targetNode))
                 {
-                    path = GetPathFromFinalNode(currentNode, startNode);
+                    path = GetPathFromFinalNode(currentNode, startNode).Select(n => n.WorldPosition).ToList();
                     return true;
                 }
                 
@@ -116,7 +125,7 @@ namespace Gameplay.Pathfinding
                 currentNode.WasProcessedThisQuery = true;
             }
             Debug.LogError($"No path was found from {startNode.WorldPosition} to {targetNode.WorldPosition}");
-            path = Array.Empty<Node>();
+            path = new List<Vector2>();
             return false;
         }
 
@@ -189,12 +198,40 @@ namespace Gameplay.Pathfinding
         private Node GetClosestNode(Vector2 worldPosition)
         {
             Vector2 relativePosition = worldPosition - _config.MapOrigin;
-            Vector2 mapCoordinates = new Vector2(relativePosition.x / _config.NodesWorldSpacing.x,   relativePosition.y / _config.NodesWorldSpacing.y);
+            Vector2 mapCoordinates = new(relativePosition.x / _config.NodesWorldSpacing.x,   relativePosition.y / _config.NodesWorldSpacing.y);
             mapCoordinates.x = Mathf.Clamp(mapCoordinates.x, 0, _nodes.GetLength(0) - 1);
             mapCoordinates.y = Mathf.Clamp(mapCoordinates.y, 0, _nodes.GetLength(1) - 1);
             Vector2Int nodeCoordinates = new Vector2Int(Mathf.RoundToInt(mapCoordinates.x), Mathf.RoundToInt(mapCoordinates.y));
             return _nodes[nodeCoordinates.x, nodeCoordinates.y];
         }
+
+        private List<Vector2> SimplifyPath(List<Vector2> path, Vector2 worldStart, Vector2 worldTarget, PathfindingAgent agent)
+        {
+            List<Vector2> result = new();
+            
+            for (int i = 1; i < path.Count; i++)
+            {
+                Vector2 previousPoint = result.Count == 0 ? worldStart : result.Last();
+                Vector2 questionedPoint = path[i - 1];
+                Vector2 checkingPoint = path[i];
+                if ( ! CanPassBetween(previousPoint, checkingPoint, agent))
+                    result.Add(questionedPoint);
+            }
+            result.Add(worldTarget);
+            Debug.Log(result.Count);
+            return result;
+        }
+
+        private bool CanPassBetween(Vector2 worldStart, Vector2 worldTarget, PathfindingAgent agent)
+        {
+            LayerMask layerMask = agent.IsAir ? _config.CommonLayerMask : _config.GroundLayerMask;
+            
+            Vector2 direction = worldTarget - worldStart;
+            float distance = direction.magnitude;
+
+            RaycastHit2D hit = Physics2D.BoxCast(worldStart, agent.BoundingBoxSize, 0, direction, distance, layerMask);
+            return hit.collider == null;
+        } 
 
         private void RecalculateAllObstacles()
         {

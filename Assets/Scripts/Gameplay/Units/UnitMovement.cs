@@ -21,12 +21,11 @@ namespace Gameplay.Units
 
         private readonly Modifier _speedModifier = new Modifier();
         private Vector2 _destination;
-        private INodeWorld[] _path = Array.Empty<INodeWorld>();
-        private int _nodesPassed;
+        private List<Vector2> _path = new();
         private float _lastPathRecalculationTime;
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
-        public bool HasPath => _path.Length > 0;
+        public bool HasPath => _path.Count > 0;
         public bool Displaceable => ! HasPath && ! IsHoldingPosition && ! UnitType.IsImmobile;
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public bool IsHoldingPosition { get; private set; }
@@ -55,14 +54,14 @@ namespace Gameplay.Units
             if (UnitType.IsImmobile || HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
             _nodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
-            //ReducePathToNecessary();
-            if (_path.Length == 0 || HasReachedPoint(_path.Last().WorldPosition))
+            Debug.Log(_path.Count);
+            if (_path.Count == 0 || HasReachedPoint(_path.Last()))
             {
                 Stop();
                 return; 
             }
+            Debug.Log(_path.Count);
             _lastPathRecalculationTime = Time.time;
-            _nodesPassed = 0;
         }
 
         public void Teleport(Vector2 position)
@@ -77,31 +76,7 @@ namespace Gameplay.Units
         public void Stop()
         {
             _rigidbody.linearVelocity = Vector2.zero;
-            _path = Array.Empty<INodeWorld>();
-        }
-
-        private void ReducePathToNecessary()
-        {
-            if (_path.Length <= 2)
-                return;
-            List<INodeWorld> necessaryPath = new(){_path[0]};
-            ContactFilter2D contactFilter =  ContactFilter2D.noFilter;
-            contactFilter.layerMask = LayerMask.GetMask("GroundObstacle");
-            contactFilter.useLayerMask = true;
-            for (int i = 1; i < _path.Length - 1; i++)
-            {
-                Vector2 lastNecessaryPoint = necessaryPath.Last().WorldPosition;
-                float distance = Vector3.Distance(lastNecessaryPoint, _path[i].WorldPosition);
-                Vector2 direction = (_path[i].WorldPosition - lastNecessaryPoint).normalized;
-                RaycastHit2D[] hits = new RaycastHit2D[10];
-                int hitsTotal = Physics2D.BoxCast(lastNecessaryPoint, BoundingBoxSize, 0, direction, contactFilter, hits, distance);
-                if (hitsTotal > 0)
-                {
-                    necessaryPath.Add(_path[i - 1]);
-                }
-            }
-            necessaryPath.Add(_path[^1]);
-            _path = necessaryPath.ToArray();
+            _path = new List<Vector2>();
         }
 
         private void UpdatePhysics()
@@ -120,17 +95,20 @@ namespace Gameplay.Units
                 _rigidbody.linearVelocity = Vector2.zero;
                 return;
             }
-            if (_nodesPassed == _path.Length)
+            
+            Debug.Log(_path.Count);
+            if (HasReachedPoint(_path.First()))
+                _path.RemoveAt(0);
+            
+            Debug.Log(_path.Count);
+            if (_path.Count == 0)
             {
                 Stop();
                 return;
             }
-            
-            int nextNodeIndex = Mathf.Min(_nodesPassed, _path.Length - 1);
-            if (HasReachedPoint(_path[nextNodeIndex].WorldPosition))
-                _nodesPassed = nextNodeIndex + 1;
+            Debug.Log(_path.Count);
 
-            Vector2 direction = Unit.Position.DirectionTo(_path[nextNodeIndex].WorldPosition);
+            Vector2 direction = Unit.Position.DirectionTo(_path.First());
             direction = AvoidObstaclesForDirection(direction);
             float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             Unit.Direction.RotateTowards(direction / Isometry.Scale);
