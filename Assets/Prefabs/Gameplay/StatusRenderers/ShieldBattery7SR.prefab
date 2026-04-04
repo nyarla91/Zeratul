@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _enemyDisplayBehaviour
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2445494940654201378, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Name
       value: ShieldBattery7SR
@@ -43,10 +47,10 @@ PrefabInstance:
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 31d97401f5397b14db7dd68b7d105538, type: 3}
+      objectReference: {fileID: 21300000, guid: 7e910652a6cefa44c93f7d76bf793cd3, type: 3}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.a
-      value: 0.03137255
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.b
@@ -55,6 +59,10 @@ PrefabInstance:
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.g
       value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._rotationSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9068363557109631805, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_LocalPosition.x

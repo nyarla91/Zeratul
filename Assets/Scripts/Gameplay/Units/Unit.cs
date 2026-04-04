@@ -4,6 +4,7 @@ using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Units;
 using Gameplay.Pathfinding;
+using Gameplay.Player;
 using Gameplay.Vision;
 using NaughtyAttributes;
 using UnityEngine;
@@ -43,6 +44,8 @@ namespace Gameplay.Units
 
         public Vector2 Position => transform.position;
         public Vector2 InteractionPosition => _interactionCollider.transform.position + (Vector3) _interactionCollider.offset;
+        public bool IsHighlighted => MouseTargeting.Unit == this;
+        public bool IsSelected => Selection.IsUnitSelected(this);
 
         public UnitType Type { get; private set; }
 
@@ -52,6 +55,8 @@ namespace Gameplay.Units
         [Inject] private NodeMap NodeMap { get; set; }
         [Inject] private UnitPool UnitPool { get; set; }
         [Inject] private VisionMap VisionMap { get; set; }
+        [Inject] private PlayerSelection Selection { get; set; }
+        [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
         
         public void Init(UnitType type, bool ownedByPlayer)
         {

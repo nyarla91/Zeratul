@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e1286e540747ea8570e713fe75b8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.StatusRendering.StatusSprite
-  _alwaysVisible: 0
+  _playerDisplayBehaviour: 0
+  _enemyDisplayBehaviour: 0
+  _visibleInFogOfWar: 0
+  _ignoreLocked: 0
   _config: {fileID: 11400000, guid: a38f394a58a26e54cbef03f0caf8710d, type: 2}
   _spriteRenderer: {fileID: 1653221710375583603}

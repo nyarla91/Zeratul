@@ -16,7 +16,9 @@ namespace Gameplay.UI
 
         private readonly List<OrderWaypoint> _waypoints = new();
 
-        private Unit[] UnitsToDisplay => TacticalPause.IsPaused ? UnitPool.PlayerUnits.ToArray() : Selection.SelectedUnits;
+        private HashSet<Unit> UnitsToDisplay => TacticalPause.IsPaused
+            ? UnitPool.PlayerUnits.ToHashSet().Union(Selection.SelectedUnits).ToHashSet()
+            : Selection.SelectedUnits.ToHashSet();
         
         [Inject] private UnitPool UnitPool { get; set; }
         [Inject] private PlayerSelection Selection { get; set; }

@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: _alwaysVisible
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _visibleInFogOfWar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _playerDisplayBehaviour
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2445494940654201378, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Name
       value: Detector9SR
@@ -51,10 +59,10 @@ PrefabInstance:
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4d8c10cc5a8740b4e81ce713f6e7531e, type: 3}
+      objectReference: {fileID: 21300000, guid: 984bd5af3e336c74190396a31b02e09c, type: 3}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.a
-      value: 0.03137255
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.b

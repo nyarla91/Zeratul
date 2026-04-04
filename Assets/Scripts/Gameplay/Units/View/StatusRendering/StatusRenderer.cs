@@ -7,7 +7,10 @@ namespace Gameplay.Units.View.StatusRendering
 {
     public abstract class StatusRenderer : PoolElement<StatusRenderer>
     {
-        [SerializeField] private bool _alwaysVisible;
+        [SerializeField] private DisplayBehaviour _playerDisplayBehaviour;
+        [SerializeField] private DisplayBehaviour _enemyDisplayBehaviour;
+        [SerializeField] private bool _visibleInFogOfWar;
+        [SerializeField] private bool _ignoreLocked;
         
         public IStatusInfo Status { get; set; }
 
@@ -15,9 +18,29 @@ namespace Gameplay.Units.View.StatusRendering
         {
             get
             {
-                if (Status?.IsLocked ?? false)
+                if (Status == null)
                     return false;
-                return _alwaysVisible || (Status?.Host.IsVisibleToPlayer ?? false);
+                
+                Unit host = Status.Host;
+                
+                if ( ! _visibleInFogOfWar && ! host.Visibility.IsVisibleToPlayer)
+                    return false;
+                
+                if ( ! _ignoreLocked && Status.IsLocked)
+                    return false;
+                
+                DisplayBehaviour displayBehaviour = host.Ownership.OwnedByPlayer
+                    ? _playerDisplayBehaviour
+                    : _enemyDisplayBehaviour;
+
+                return displayBehaviour switch
+                {
+                    DisplayBehaviour.Always => true,
+                    DisplayBehaviour.WhenHighlighted => host.IsHighlighted,
+                    DisplayBehaviour.WhenSelected => host.IsSelected,
+                    DisplayBehaviour.WhenHighlightedOrSelected => host.IsHighlighted || host.IsSelected,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
             }
         }
 
@@ -40,5 +63,13 @@ namespace Gameplay.Units.View.StatusRendering
         }
         
         protected abstract void UpdateVisibility(bool isVisible);
+
+        private enum DisplayBehaviour
+        {
+            Always,
+            WhenHighlighted,
+            WhenSelected,
+            WhenHighlightedOrSelected
+        }
     }
 }
