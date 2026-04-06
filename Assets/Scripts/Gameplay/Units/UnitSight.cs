@@ -26,6 +26,9 @@ namespace Gameplay.Units
             Unit.Ownership.ObserveEveryValueChanged(o => o.OwnedByPlayer)
                 .Subscribe(o => _visionSource.OwnedByPlayer = o);
             
+            Observable.EveryFixedUpdate()
+                .Subscribe(_ => _visionSource.IsSimulated = Unit.Simulation.IsSimulated);
+            
             this.ObserveEveryValueChanged(v => v.Radius)
                 .Subscribe(r => _visionSource.Radius = r);
 

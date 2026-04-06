@@ -18,7 +18,7 @@ namespace Gameplay.Vision
         private bool _isAir;
         private Transform _anchor;
         private bool _ownedByPlayer;
-
+        
         public float Radius { get; set; }
         
         public bool OwnedByPlayer
@@ -32,7 +32,13 @@ namespace Gameplay.Vision
                 AttachToArea(_ownedByPlayer);
             }
         }
-        
+
+        public bool IsSimulated
+        {
+            get => _collider.enabled;
+            set => _collider.enabled = value;
+        }
+
         [Inject] private VisionMap VisionMap { get; set; }
 
         public void Set(Transform anchor, bool isAir, float radius, bool ownedByPlayer)
@@ -47,6 +53,9 @@ namespace Gameplay.Vision
         
         public void Recalculate()
         {
+            if ( ! IsSimulated)
+                return;
+            
             _collider.transform.position = _anchor.transform.position;
             int areaPoints = _config.UnitVisionPoints;
 

@@ -27,9 +27,14 @@ namespace Gameplay.Units
         {
             if (Unit.Ownership.OwnedByPlayer)
                 return;
+
+            if (Unit.Simulation.IsSimulated)
+            {
+                MoveToSpawnPoint();
+                return;
+            }
             
             HashSet<Unit> surroundings = GetThreats();
-            Debug.Log($"{Unit} {surroundings.Count}");
             if (surroundings.Count == 0)
             {
                 MoveToSpawnPoint();

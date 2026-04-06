@@ -22,6 +22,7 @@ namespace Gameplay.Units
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
+        [SerializeField] private Collider2D _simulationCollider;
         [SerializeField] private BoxCollider2D _interactionCollider;
         [SerializeField] private VisionSource _visionSource;
         
@@ -37,6 +38,7 @@ namespace Gameplay.Units
         public UnitAttack Attack { get; private set; }
         public UnitMovement Movement { get; private set; }
         public UnitAI AI { get; private set; }
+        public UnitSimulation Simulation { get; private set; }
 
         [ShowNativeProperty] public bool CanAttack { get; private set; }
         [ShowNativeProperty] public bool CanMove { get; private set; }
@@ -75,6 +77,7 @@ namespace Gameplay.Units
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
             AI = new UnitAI(this, _aiConfig);
+            Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
             
             CanAttack = type.WeaponType != null && type.AvailableOrders.Contains(_unitAttackConfig.DefaultAttackOrder);
             if (CanAttack)

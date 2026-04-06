@@ -8,16 +8,14 @@ namespace Gameplay.Units
     {
         private readonly HashSet<Unit> _units = new();
 
-        public List<Unit> Units => _units.ToList();
+        public HashSet<Unit> Units => _units.ToHashSet();
         
-        public List<Unit> PlayerUnits => _units.Where(u => u.Ownership.OwnedByPlayer).ToList();
+        public HashSet<Unit> PlayerUnits => _units.Where(u => u.Ownership.OwnedByPlayer).ToHashSet();
         
-        public List<Unit> EnemyUnits => _units.Where(u => ! u.Ownership.OwnedByPlayer).ToList();
+        public HashSet<Unit> EnemyUnits => _units.Where(u => ! u.Ownership.OwnedByPlayer).ToHashSet();
         
         public void AddUnit(Unit unit)
         {
-            if (_units.Contains(unit))
-                return;
             _units.Add(unit);
         }
 

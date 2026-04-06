@@ -10,6 +10,7 @@ namespace Gameplay.Data.Statuses
         [SerializeField] private CasterType _casterType = CasterType.Instigator;
         [SerializeField] private EffectTargetingUnit[] _unitEffects;
         [SerializeField] private int _tickPeriod;
+        [SerializeField] private bool _requireSimulation;
         
         public override void OnAdd(Status status)
         {
@@ -19,6 +20,8 @@ namespace Gameplay.Data.Statuses
         public override void OnUpdate(Status status)
         {
             if (status.CurrentFrame % _tickPeriod != 0)
+                return;
+            if (_requireSimulation && ! status.Host.Simulation.IsSimulated)
                 return;
             if (status.IsLocked)
                 return;

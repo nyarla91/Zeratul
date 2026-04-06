@@ -10,11 +10,15 @@ namespace Gameplay.Data.Configs
         [SerializeField] private LayerMask _visionBlockerMask;
         [SerializeField] private float _absoluteExtraSight;
         [SerializeField] private float _minSight;
+        [SerializeField] private float _simulationRadius;
+        [SerializeField] private LayerMask _simulationMask;
 
         public int UnitVisionPoints => _unitVisionPoints;
         public float RecalculationPeriod => _recalculationPeriod;
         public LayerMask VisionBlockerMask => _visionBlockerMask;
         public float AbsoluteExtraSight => _absoluteExtraSight;
         public float MinSight => _minSight;
+        public float SimulationRadius => _simulationRadius;
+        public LayerMask SimulationMask => _simulationMask;
     }
 }
