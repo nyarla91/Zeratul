@@ -24,3 +24,14 @@ MonoBehaviour:
       _evaluators:
       - {fileID: 11400000, guid: de44a7b1848955c4cbea5280f1f4049e, type: 2}
       - {fileID: 11400000, guid: dfda53f9a1715374eae10069064dfe38, type: 2}
+  - _order: {fileID: 11400000, guid: 2b9a798ec3a9b0641bad856f193dee9d, type: 2}
+    _agentValidator:
+      _unitValidators: []
+    _targetValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    _evaluators:
+      _baseWorth: 110
+      _evaluators:
+      - {fileID: 11400000, guid: de44a7b1848955c4cbea5280f1f4049e, type: 2}
+      - {fileID: 11400000, guid: dfda53f9a1715374eae10069064dfe38, type: 2}

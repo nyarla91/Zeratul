@@ -18,7 +18,7 @@ MonoBehaviour:
   _energyCost: 50
   _ignoreLock: 0
   _targetRequirement: 2
-  _maxDistance: 5
+  _maxDistance: 7
   _casterValidators:
     _unitValidators: []
   _targetValidators:

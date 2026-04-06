@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Pathfinding
+namespace Gameplay.Map
 {
     public struct PathfindingAgent
     {

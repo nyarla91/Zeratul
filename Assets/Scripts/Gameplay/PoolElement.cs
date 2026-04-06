@@ -7,6 +7,8 @@ namespace Gameplay
     {
         private PoolFactory<TElement> Factory { get; set; }
         
+        protected bool IsSpawned => gameObject.activeSelf;
+        
         public virtual void Init(PoolFactory<TElement> factory)
         {
             if (Factory != null)

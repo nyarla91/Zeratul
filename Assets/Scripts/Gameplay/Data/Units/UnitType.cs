@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Statuses;
-using Gameplay.Pathfinding;
+using Gameplay.Map;
 using NaughtyAttributes;
 using UnityEngine;
 

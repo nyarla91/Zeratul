@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: _IsFurtherThan3
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitDistanceValidator
   _invalidMessage: 
-  _minDistance: 0
-  _maxDistance: 0
+  _minDistance: 3
+  _maxDistance: 9999

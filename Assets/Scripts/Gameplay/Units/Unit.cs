@@ -3,7 +3,7 @@ using System.Linq;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Units;
-using Gameplay.Pathfinding;
+using Gameplay.Map;
 using Gameplay.Player;
 using Gameplay.Vision;
 using NaughtyAttributes;

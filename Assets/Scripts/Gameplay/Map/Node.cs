@@ -1,7 +1,7 @@
 ﻿using Gameplay.Data.Configs;
 using UnityEngine;
 
-namespace Gameplay.Pathfinding
+namespace Gameplay.Map
 {
     public class Node : INodeWorld
     {

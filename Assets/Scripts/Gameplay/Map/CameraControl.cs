@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 using Zenject;
 using PlayerInput = Gameplay.Player.PlayerInput;
 
-namespace Gameplay
+namespace Gameplay.Map
 {
     public class CameraControl : MonoBehaviour
     { 
+        [SerializeField] private BoxCollider2D _mapBounds;
         [SerializeField] private Camera _camera;
         [SerializeField] private Range _zoomRange;
         [SerializeField] private float _zoomSpeed;
@@ -28,6 +29,7 @@ namespace Gameplay
             if (_edgeMoveSpeed > 0)
                 EdgeMoveCamera();
             ZoomCamera(PlayerInput.ZoomDelta * Time.deltaTime);
+            BoundCamera();
         }
 
         private void EdgeMoveCamera()
@@ -47,6 +49,13 @@ namespace Gameplay
             else if (mousePosition.y <= _edgeTolerance)
                 direction.y = -1;
             transform.position +=  _edgeMoveSpeed * _camera.orthographicSize * Time.deltaTime * (Vector3) direction;
+        }
+
+        private void BoundCamera()
+        {
+            float x = Mathf.Clamp(transform.position.x, _mapBounds.bounds.min.x, _mapBounds.bounds.max.x);
+            float y = Mathf.Clamp(transform.position.y, _mapBounds.bounds.min.y, _mapBounds.bounds.max.y);
+            transform.position = new Vector3(x, y, transform.position.z);
         }
 
         private void DragCamera(Vector2 screenDelta)

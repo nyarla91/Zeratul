@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Extentions;
 using Gameplay.Data.Configs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.Pathfinding
+namespace Gameplay.Map
 {
     public class NodeMap : MonoBehaviour
     {
@@ -54,7 +52,6 @@ namespace Gameplay.Pathfinding
             if ( ! TryFindPath(startNode, targetNode, out path, agent))
                 return false;
             path = SimplifyPath(path, worldStart, worldTarget, agent);
-            Debug.Log(path.Count);
             return true;
         }
 
@@ -218,7 +215,6 @@ namespace Gameplay.Pathfinding
                     result.Add(questionedPoint);
             }
             result.Add(worldTarget);
-            Debug.Log(result.Count);
             return result;
         }
 

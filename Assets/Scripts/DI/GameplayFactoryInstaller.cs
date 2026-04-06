@@ -1,4 +1,5 @@
 ﻿using Gameplay;
+using Gameplay.Entities;
 using Gameplay.Units.View.StatusRendering;
 using Gameplay.Visual;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace DI
         {
             BindFactory<StatusRenderer>();
             BindFactory<Projectile>();
+            BindFactory<Entity>();
             BindFactory<AoeView>(_aoePrefab);
         }
 

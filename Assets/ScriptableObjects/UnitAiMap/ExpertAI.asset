@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: ExpertAI
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitAiMap
   _aiOrders:
+  - _order: {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+    _agentValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: fe40c85167807844b91e40cf12a4e935, type: 2}
+    _targetValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: 37d949990e55b4b4b813b03a4e5c103f, type: 2}
+    _evaluators:
+      _baseWorth: 50
+      _evaluators: []
   - _order: {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
     _agentValidator:
       _unitValidators:
@@ -21,6 +31,7 @@ MonoBehaviour:
       _unitValidators:
       - {fileID: 11400000, guid: d7c2d1d521b79144e8eef1f9638b1cf2, type: 2}
       - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+      - {fileID: 11400000, guid: 61e5bd4627b85e64c9d8f7151a3dcbb6, type: 2}
     _evaluators:
       _baseWorth: 100
       _evaluators: []

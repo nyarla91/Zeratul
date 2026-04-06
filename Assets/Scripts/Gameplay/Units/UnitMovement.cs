@@ -4,7 +4,7 @@ using System.Linq;
 using Extentions;
 using Gameplay.Data;
 using Gameplay.Data.Configs;
-using Gameplay.Pathfinding;
+using Gameplay.Map;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -54,13 +54,11 @@ namespace Gameplay.Units
             if (UnitType.IsImmobile || HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
             _nodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
-            Debug.Log(_path.Count);
             if (_path.Count == 0 || HasReachedPoint(_path.Last()))
             {
                 Stop();
                 return; 
             }
-            Debug.Log(_path.Count);
             _lastPathRecalculationTime = Time.time;
         }
 
@@ -96,17 +94,14 @@ namespace Gameplay.Units
                 return;
             }
             
-            Debug.Log(_path.Count);
             if (HasReachedPoint(_path.First()))
                 _path.RemoveAt(0);
             
-            Debug.Log(_path.Count);
             if (_path.Count == 0)
             {
                 Stop();
                 return;
             }
-            Debug.Log(_path.Count);
 
             Vector2 direction = Unit.Position.DirectionTo(_path.First());
             direction = AvoidObstaclesForDirection(direction);

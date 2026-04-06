@@ -1,7 +1,7 @@
 ﻿using Extentions.Pause;
 using Gameplay;
 using Gameplay.Data;
-using Gameplay.Pathfinding;
+using Gameplay.Map;
 using Gameplay.Player;
 using Gameplay.UI;
 using Gameplay.Units;
