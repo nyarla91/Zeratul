@@ -16,6 +16,7 @@ namespace Gameplay.Units
     {
         [SerializeField] private UnitAttackConfig _unitAttackConfig;
         [SerializeField] private UnitMovementConfig _unitMovementConfig;
+        [SerializeField] private PathfindingConfig _pathfindingConfig;
         [SerializeField] private OrderErrorConfig _orderErrorConfig;
         [SerializeField] private VisionConfig _visionConfig;
         [SerializeField] private UnitAiConfig _aiConfig;
@@ -23,6 +24,7 @@ namespace Gameplay.Units
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
         [SerializeField] private Collider2D _simulationCollider;
+        [SerializeField] private Collider2D _obstacleCollider;
         [SerializeField] private BoxCollider2D _interactionCollider;
         [SerializeField] private VisionSource _visionSource;
         
@@ -48,6 +50,7 @@ namespace Gameplay.Units
         public Vector2 InteractionPosition => _interactionCollider.transform.position + (Vector3) _interactionCollider.offset;
         public bool IsHighlighted => MouseTargeting.Unit == this;
         public bool IsSelected => Selection.IsUnitSelected(this);
+        public Bounds Bounds => new Bounds(Position, Isometry.Scale * Type.Size + _pathfindingConfig.MaxObstacleDistance * Vector2.one);
 
         public UnitType Type { get; private set; }
 
@@ -83,11 +86,15 @@ namespace Gameplay.Units
             if (CanAttack)
                 Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig, _orderErrorConfig);
             
+            _obstacleCollider.enabled = type.IsImmobile;
             CanMove = ! type.IsImmobile;
             if (CanMove)
                 Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _avoidanceCollider);
             else
+            {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                NodeMap.QueueObstacleRecalculation(Bounds);
+            }
             
             _collider.transform.localScale = Vector3.one * Type.Size;
             _collider.gameObject.layer = gameObject.layer;
@@ -103,6 +110,10 @@ namespace Gameplay.Units
             Killed?.Invoke();
             UnitPool.RemoveUnit(this);
             Destroy(gameObject);
+            if (CanMove)
+                return;
+            _obstacleCollider.enabled = false;
+            NodeMap.QueueObstacleRecalculation(Bounds);
         }
     }
 }

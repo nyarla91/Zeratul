@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using Gameplay.Data.Configs;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,10 +33,9 @@ namespace Gameplay.Map
         }
 
         private Node[,] _nodes;
-
         private Node _closestToMouseNode;
-
         private int _lastQuery;
+        private Queue<Bounds> _obstacleRecalculationQueue = new();
 
         public Vector2Int MapSize => _mapSize;
 
@@ -51,8 +52,14 @@ namespace Gameplay.Map
                 }
             }
             RecalculateAllObstacles();
+
+            Observable.EveryFixedUpdate()
+                .Where(_ => _obstacleRecalculationQueue.Count > 0)
+                .Subscribe(_ => RecalculateAllObstacles(_obstacleRecalculationQueue.Dequeue()));
         }
-        
+
+        public void QueueObstacleRecalculation(Bounds bounds) => _obstacleRecalculationQueue.Enqueue(bounds);
+
         public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out List<Vector2> path, PathfindingAgent agent)
         {
             if (CanPassBetween(worldStart, worldTarget, agent))
@@ -269,13 +276,23 @@ namespace Gameplay.Map
 
             RaycastHit2D hit = Physics2D.BoxCast(worldStart, agent.BoundingBoxSize, 0, direction, distance, layerMask);
             return hit.collider == null;
-        } 
+        }
 
-        private void RecalculateAllObstacles()
+        private async void RecalculateAllObstacles() =>
+            RecalculateAllObstacles(Vector2Int.zero, _mapSize - new Vector2Int(1, 1));
+
+        private async void RecalculateAllObstacles(Bounds bounds)
         {
-            for (int y = 0; y < _nodes.GetLength(1); y++)
+            Vector2Int min = GetClosestNode(bounds.min).MapCoordinates;
+            Vector2Int max = GetClosestNode(bounds.max).MapCoordinates;
+            RecalculateAllObstacles(min, max);
+        }
+
+        private async void RecalculateAllObstacles(Vector2Int min,  Vector2Int max)
+        {
+            for (int y = min.y; y <= max.y; y++)
             {
-                for (int x = 0; x < _nodes.GetLength(0); x++)
+                for (int x = min.x; x <= max.x; x++)
                 {
                     _nodes[x, y].RecalculateObstacles();
                 }

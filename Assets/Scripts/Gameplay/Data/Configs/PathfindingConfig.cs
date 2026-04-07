@@ -7,6 +7,7 @@ namespace Gameplay.Data.Configs
     {
         [SerializeField] private Vector2 _mapOrigin;
         [SerializeField] private Vector2 _nodesWorldSpacing;
+        [SerializeField] private float _obstacleRecalculationPeriod;
         [Space]
         [SerializeField] private float _bypassDistance;
         [SerializeField] private int _ortogonalTravelCost;

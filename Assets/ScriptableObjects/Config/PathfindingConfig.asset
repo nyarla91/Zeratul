@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.PathfindingConfig
   _mapOrigin: {x: 0, y: 0}
   _nodesWorldSpacing: {x: 0.5, y: 0.25}
+  _obstacleRecalculationPeriod: 0
+  _bypassDistance: 3
   _ortogonalTravelCost: 2
   _diagonalTravelCost: 3
   _tooCloseToObstaclePenalty: 20
