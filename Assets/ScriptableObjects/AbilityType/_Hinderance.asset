@@ -15,7 +15,7 @@ MonoBehaviour:
   _windupTime: 35
   _recoveryTime: 10
   _cooldown: 300
-  _energyCost: 50
+  _energyCost: 7
   _ignoreLock: 0
   _targetRequirement: 2
   _maxDistance: 12

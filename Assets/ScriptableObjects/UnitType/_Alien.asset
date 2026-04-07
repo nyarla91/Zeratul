@@ -22,8 +22,9 @@ MonoBehaviour:
   _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 5
   _maxEnergyPoints: 100
-  _energyRestoreDelay: 100
-  _energyPointsPerSecond: 3
+  _energyRestoreDelay: 0
+  _energyPointsPerSecond: 0
+  _noCollision: 0
   _isImmobile: 0
   _maxSpeed: 80
   _size: 1.4

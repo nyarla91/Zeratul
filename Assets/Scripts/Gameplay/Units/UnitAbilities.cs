@@ -103,7 +103,7 @@ namespace Gameplay.Units
             if (energy > EnergyPoints)
                 return false;
             _energyPoints -= energy;
-            _energyRestorationTimer.Restart();
+            _energyRestorationTimer?.Restart();
             return true;
         }
         

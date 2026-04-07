@@ -64,6 +64,7 @@ namespace Gameplay.Units
 
         public void Teleport(Vector2 position)
         {
+            Unit.transform.position = position;
             _rigidbody.MovePosition(position);
         }
 
