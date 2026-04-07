@@ -79,7 +79,7 @@ namespace Gameplay.Units
             Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, ownedByPlayer);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
-            AI = new UnitAI(this, _aiConfig);
+            AI = new UnitAI(this, TacticalPause, _aiConfig);
             Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
             
             CanAttack = type.WeaponType != null && type.AvailableOrders.Contains(_unitAttackConfig.DefaultAttackOrder);

@@ -157,16 +157,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: High-Tech UI_2
+      name: Button1
       rect:
         serializedVersion: 2
-        x: 41
+        x: 40
         y: 848
         width: 150
         height: 53
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 52, y: 18, z: 52, w: 18}
       customData: 
       outline: []
       physicsShape: []
@@ -179,7 +179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: High-Tech UI_3
+      name: Button2
       rect:
         serializedVersion: 2
         x: 229
@@ -188,7 +188,7 @@ TextureImporter:
         height: 53
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 52, y: 18, z: 52, w: 18}
       customData: 
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: High-Tech UI_4
+      name: Button3
       rect:
         serializedVersion: 2
         x: 406
@@ -210,7 +210,7 @@ TextureImporter:
         height: 53
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 52, y: 18, z: 52, w: 18}
       customData: 
       outline: []
       physicsShape: []
@@ -942,6 +942,9 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
+      Button1: 1137632322
+      Button2: -477240440
+      Button3: 1807434099
       High-Tech UI_0: 4583035236823368791
       High-Tech UI_10: 829804649
       High-Tech UI_11: 702919172
@@ -953,14 +956,11 @@ TextureImporter:
       High-Tech UI_17: -2040182997
       High-Tech UI_18: -657737749
       High-Tech UI_19: -107351062
-      High-Tech UI_2: 1137632322
       High-Tech UI_20: -1729364007
       High-Tech UI_21: 1809874376
       High-Tech UI_22: -68340866
       High-Tech UI_23: -538534229
-      High-Tech UI_3: -477240440
       High-Tech UI_36: 1052099680
-      High-Tech UI_4: 1807434099
       High-Tech UI_6: -1523140466
       High-Tech UI_7: -1118409023
       High-Tech UI_8: -2080038118

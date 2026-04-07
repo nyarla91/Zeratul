@@ -15,13 +15,15 @@ namespace Gameplay.Player
         private InputBinding _queueOrder;
         private InputBinding _dragCamera;
         private InputBinding _focusNextUnitType;
-        private InputBinding _tacticalPause;
+        private InputBinding _toggleTacticalPause;
+        private InputBinding _togglePause;
         
         public IInputBindingReadonly SelectMultiple => _selectMultiple ??= new InputBinding(_actions.General.SelectMultiple, GamePause);
         public IInputBindingReadonly QueueOrder => _queueOrder ??= new InputBinding(_actions.General.QueueOrder, GamePause);
         public IInputBindingReadonly DragCamera => _dragCamera ??= new InputBinding(_actions.General.DragCamera, GamePause);
         public IInputBindingReadonly FocusNextUnitType => _focusNextUnitType ??= new InputBinding(_actions.General.FocusNextUnitType, GamePause);
-        public IInputBindingReadonly TacticalPause => _tacticalPause ??= new InputBinding(_actions.General.TacticalPause, GamePause);
+        public IInputBindingReadonly TacticalPause => _toggleTacticalPause ??= new InputBinding(_actions.General.ToggleTacticalPause, GamePause);
+        public IInputBindingReadonly TogglePause => _toggleTacticalPause ??= new InputBinding(_actions.General.TogglePause, GamePause);
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 
@@ -41,6 +43,8 @@ namespace Gameplay.Player
             _queueOrder?.Dispose();
             _dragCamera?.Dispose();
             _focusNextUnitType?.Dispose();
+            _toggleTacticalPause?.Dispose();
+            _togglePause?.Dispose();
         }
     }
 }

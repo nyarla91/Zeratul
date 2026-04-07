@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Extentions;
+using Extentions.Pause;
 using Gameplay.Data.Configs;
 using UniRx;
 using UnityEngine;
@@ -10,16 +11,19 @@ namespace Gameplay.Units
 {
     public class UnitAI : UnitComponent
     {
+        private readonly IPauseReadonly _tacticalPause;
         private readonly UnitAiConfig _config;
         private readonly Vector2 _spawnPoint;
         
-        public UnitAI(Unit unit, UnitAiConfig config) : base(unit)
+        public UnitAI(Unit unit, IPauseReadonly tacticalPause, UnitAiConfig config) : base(unit)
         {
+            _tacticalPause = tacticalPause;
             _config = config;
             _spawnPoint = unit.Position;
             
             Observable.EveryFixedUpdate()
                 .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
+                .Where(_ => _tacticalPause.IsUnpaused)
                 .Subscribe(_ => IssueOrder());
         }
 

@@ -138,9 +138,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TacticalPause"",
+                    ""name"": ""ToggleTacticalPause"",
                     ""type"": ""Button"",
                     ""id"": ""1cb795a6-f0e8-4a8f-b5f2-c4d2789bcb00"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TogglePause"",
+                    ""type"": ""Button"",
+                    ""id"": ""69869d8d-ca38-41de-a868-59025c2de00a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -210,7 +219,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TacticalPause"",
+                    ""action"": ""ToggleTacticalPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00c7d19c-8c8d-41ec-818c-1cb647b71691"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TogglePause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1011,7 +1031,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_General_DragCamera = m_General.FindAction("DragCamera", throwIfNotFound: true);
         m_General_ZoomDelta = m_General.FindAction("ZoomDelta", throwIfNotFound: true);
         m_General_FocusNextUnitType = m_General.FindAction("FocusNextUnitType", throwIfNotFound: true);
-        m_General_TacticalPause = m_General.FindAction("TacticalPause", throwIfNotFound: true);
+        m_General_ToggleTacticalPause = m_General.FindAction("ToggleTacticalPause", throwIfNotFound: true);
+        m_General_TogglePause = m_General.FindAction("TogglePause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1123,7 +1144,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_DragCamera;
     private readonly InputAction m_General_ZoomDelta;
     private readonly InputAction m_General_FocusNextUnitType;
-    private readonly InputAction m_General_TacticalPause;
+    private readonly InputAction m_General_ToggleTacticalPause;
+    private readonly InputAction m_General_TogglePause;
     /// <summary>
     /// Provides access to input actions defined in input action map "General".
     /// </summary>
@@ -1156,9 +1178,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @FocusNextUnitType => m_Wrapper.m_General_FocusNextUnitType;
         /// <summary>
-        /// Provides access to the underlying input action "General/TacticalPause".
+        /// Provides access to the underlying input action "General/ToggleTacticalPause".
         /// </summary>
-        public InputAction @TacticalPause => m_Wrapper.m_General_TacticalPause;
+        public InputAction @ToggleTacticalPause => m_Wrapper.m_General_ToggleTacticalPause;
+        /// <summary>
+        /// Provides access to the underlying input action "General/TogglePause".
+        /// </summary>
+        public InputAction @TogglePause => m_Wrapper.m_General_TogglePause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1200,9 +1226,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @FocusNextUnitType.started += instance.OnFocusNextUnitType;
             @FocusNextUnitType.performed += instance.OnFocusNextUnitType;
             @FocusNextUnitType.canceled += instance.OnFocusNextUnitType;
-            @TacticalPause.started += instance.OnTacticalPause;
-            @TacticalPause.performed += instance.OnTacticalPause;
-            @TacticalPause.canceled += instance.OnTacticalPause;
+            @ToggleTacticalPause.started += instance.OnToggleTacticalPause;
+            @ToggleTacticalPause.performed += instance.OnToggleTacticalPause;
+            @ToggleTacticalPause.canceled += instance.OnToggleTacticalPause;
+            @TogglePause.started += instance.OnTogglePause;
+            @TogglePause.performed += instance.OnTogglePause;
+            @TogglePause.canceled += instance.OnTogglePause;
         }
 
         /// <summary>
@@ -1229,9 +1258,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @FocusNextUnitType.started -= instance.OnFocusNextUnitType;
             @FocusNextUnitType.performed -= instance.OnFocusNextUnitType;
             @FocusNextUnitType.canceled -= instance.OnFocusNextUnitType;
-            @TacticalPause.started -= instance.OnTacticalPause;
-            @TacticalPause.performed -= instance.OnTacticalPause;
-            @TacticalPause.canceled -= instance.OnTacticalPause;
+            @ToggleTacticalPause.started -= instance.OnToggleTacticalPause;
+            @ToggleTacticalPause.performed -= instance.OnToggleTacticalPause;
+            @ToggleTacticalPause.canceled -= instance.OnToggleTacticalPause;
+            @TogglePause.started -= instance.OnTogglePause;
+            @TogglePause.performed -= instance.OnTogglePause;
+            @TogglePause.canceled -= instance.OnTogglePause;
         }
 
         /// <summary>
@@ -1763,12 +1795,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFocusNextUnitType(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "TacticalPause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "ToggleTacticalPause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTacticalPause(InputAction.CallbackContext context);
+        void OnToggleTacticalPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TogglePause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTogglePause(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

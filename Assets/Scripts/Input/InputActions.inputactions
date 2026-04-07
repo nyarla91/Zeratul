@@ -52,9 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TacticalPause",
+                    "name": "ToggleTacticalPause",
                     "type": "Button",
                     "id": "1cb795a6-f0e8-4a8f-b5f2-c4d2789bcb00",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TogglePause",
+                    "type": "Button",
+                    "id": "69869d8d-ca38-41de-a868-59025c2de00a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -124,7 +133,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TacticalPause",
+                    "action": "ToggleTacticalPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00c7d19c-8c8d-41ec-818c-1cb647b71691",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TogglePause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
