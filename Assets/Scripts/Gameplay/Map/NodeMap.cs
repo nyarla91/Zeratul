@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Extentions;
 using Gameplay.Data.Configs;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +12,23 @@ namespace Gameplay.Map
     {
         [SerializeField] private PathfindingConfig _config;
         [SerializeField] private Vector2Int _mapSize;
+
+        private Vector2[] _bypassDirections;
+
+        public Vector2[] BypassDirections
+        {
+            get
+            {
+                if ( _bypassDirections != null)
+                    return _bypassDirections;
+                float[] angles = { 0, 45, 90, 135, 180, 225, 270, 315 };
+                _bypassDirections = angles
+                    .Select(a => a.DegreesToVector2())
+                    .Select(d => d * Isometry.Scale)
+                    .ToArray();
+                return _bypassDirections;
+            }
+        }
 
         private Node[,] _nodes;
 
@@ -33,12 +52,6 @@ namespace Gameplay.Map
             }
             RecalculateAllObstacles();
         }
-
-        public bool IsPointPassable(Vector2 worldPoint, bool isAgentAir)
-        {
-            Node node = GetClosestNode(worldPoint);
-            return node.IsPassable(isAgentAir);
-        }
         
         public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out List<Vector2> path, PathfindingAgent agent)
         {
@@ -49,8 +62,18 @@ namespace Gameplay.Map
             }
             Node startNode = GetClosestNode(worldStart);
             Node targetNode = GetClosestNode(worldTarget);
+
             if ( ! TryFindPath(startNode, targetNode, out path, agent))
-                return false;
+            {
+                if ( ! TryFindBypassPath(startNode, worldTarget, out path, agent))
+                    return false;
+                Vector2 pathLast = path.Last();
+                Vector2 direction = pathLast.DirectionTo(worldTarget);
+                Ray ray = new Ray(pathLast, direction);
+                LayerMask mask = agent.IsAir ? _config.CommonLayerMask : _config.GroundLayerMask;
+                worldTarget = Physics2D.CircleCast(pathLast, 0.1f, direction, _config.BypassDistance, mask).point;
+            }
+            
             path = SimplifyPath(path, worldStart, worldTarget, agent);
             return true;
         }
@@ -179,6 +202,25 @@ namespace Gameplay.Map
             }
 
             return result.ToArray();
+        }
+
+        private bool TryFindBypassPath(Node startNode, Vector2 worldTarget, out List<Vector2> path, PathfindingAgent agent)
+        {
+            int shortestPathNodes = int.MaxValue;
+            path = null;
+            
+            foreach (Vector2 bypassDirection in BypassDirections)
+            {
+                Vector2 worldBypassTarget = worldTarget + bypassDirection * _config.BypassDistance;
+                Node targetNBypassNode = GetClosestNode(worldBypassTarget);
+                if ( ! TryFindPath(startNode, targetNBypassNode, out List<Vector2> bypassPath, agent))
+                    continue;
+                if (bypassPath.Count > shortestPathNodes)
+                    continue;
+                shortestPathNodes = bypassPath.Count;
+                path = bypassPath;
+            }
+            return path != null;
         }
 
         private int GetNodeH(Node node, Vector2Int target)

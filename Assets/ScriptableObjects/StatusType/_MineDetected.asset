@@ -16,13 +16,12 @@ MonoBehaviour:
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 993b8b434602380458f89fd95222c13d, type: 3}
   _displayName: 'Mine: Detection'
-  _rawDisplayDescription: Detect any cloaked hostile unit that passes through this
-    mine
+  _rawDisplayDescription: Detect any cloaked hostile unit that passes by this mine
   _rendererPrefabs:
   - {fileID: 485935788325951280, guid: 6d1440aa6d9b86948ac33cf5459fdb6b, type: 3}
   - {fileID: 1872224104527679214, guid: e7497fd3cb0ce4b40ac9ae3a87f30fbb, type: 3}
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _triggerRadius: 1.75
+  _triggerRadius: 1.6
   _cooldown: 0
   _triggerValidator:
     _unitValidators:

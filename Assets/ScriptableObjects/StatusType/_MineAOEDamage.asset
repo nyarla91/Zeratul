@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 1872224104527679214, guid: e7497fd3cb0ce4b40ac9ae3a87f30fbb, type: 3}
   - {fileID: 1872224104527679214, guid: 7abd75ddcdf66594d8b31c3c2a797e55, type: 3}
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _triggerRadius: 1.75
+  _triggerRadius: 1.6
   _cooldown: 0
   _triggerValidator:
     _unitValidators:
