@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
+  m_Name: _SensorMine
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _displayName: Sensor Mine
+  _focusPriority: 0
+  _tags:
+  - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
+  - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
+  _controlWorth: 1
+  _maxHitPoints: 5
+  _maxShieldPoints: 0
+  _shieldRestoreDelay: 0
+  _shieldPointsPerSecond: 0
+  _maxEnergyPoints: 0
+  _energyRestoreDelay: 0
+  _energyPointsPerSecond: 0
+  _isImmobile: 1
+  _maxSpeed: 0
+  _size: 0.7
+  _rotationSpeed: 0
+  _isAir: 0
+  _sightRadius: 4
+  _weaponType: {fileID: 0}
+  _innateStatuses:
+  - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
+  - {fileID: 11400000, guid: 6862998ad9650344cb24b41c538ee96a, type: 2}
+  _availableOrders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteMap: {fileID: 11400000, guid: 6ecb537c2cda2884bb70917209a9cb09, type: 2}
+  _interactionColliderSize: {x: 1, y: 0.7}
+  _interactionColliderOffset: {x: 0, y: 0.1}
+  _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}

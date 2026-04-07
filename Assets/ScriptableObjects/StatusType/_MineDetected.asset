@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85200319680843f6b31dec5cae1dafcd, type: 3}
+  m_Name: _MineDetected
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.MineStatus
+  _useLock: 1
+  _display: 1
+  _displayIcon: {fileID: 21300000, guid: 993b8b434602380458f89fd95222c13d, type: 3}
+  _displayName: 'Mine: Detection'
+  _rawDisplayDescription: Detect any hostile unit that passes through this mine
+  _rendererPrefabs: []
+  _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+  _triggerRadius: 1
+  _cooldown: 0
+  _triggerValidator:
+    _unitValidators:
+    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+  _triggerEffects:
+  - {fileID: 11400000, guid: ffec104d9f8458a42bfb371a86e89eb6, type: 2}
+  _mineTriggerEffects: []
