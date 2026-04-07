@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;
@@ -20,7 +21,7 @@ namespace Gameplay.Data.Validator
         {
             _gameplayPresenter.Inject(this);
             
-            if ( ! Overlap.TryGetUnits(target.Position, _radius, out Unit[] units))
+            if ( ! Overlap.TryGetUnits(target.Position, _radius, out HashSet<Unit> units))
                 return _minValid <= 0 && _maxValid >= 0;
 
             int validUnits = units

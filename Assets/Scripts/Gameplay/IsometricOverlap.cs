@@ -1,50 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using Gameplay.Units;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Gameplay
 {
     public class IsometricOverlap : MonoBehaviour
     {
-        [SerializeField] private Collider2D _collider;
         [SerializeField] private LayerMask _unitLayerMask;
-
-        public bool TryGetUnits(Vector2 point, float radius, out Unit[] units)
+        
+        public bool TryGetUnits(Vector2 point, float radius, out HashSet<Unit> units)
         {
-            transform.position = point;
-            transform.localScale = radius * 2 * Vector3.one;
-            Physics2D.SyncTransforms();
-
             ContactFilter2D contactFilter = new()
             {
-                useTriggers = false,
+                useTriggers = true,
                 useLayerMask = true,
                 layerMask = _unitLayerMask
             };
 
             List<Collider2D> colliders = new();
-            _collider.Overlap(contactFilter, colliders);
-            if (colliders.Count == 0)
-            {
-                units = Array.Empty<Unit>();
-                return false;
-            }
+            Physics2D.OverlapCircle(point, radius, contactFilter, colliders);
             
-            units = colliders.Select(col => col.GetComponentInParent<Unit>()).NoNull();
-            return units.Length != 0;
+            units = colliders.Select(col => col.GetComponentInParent<Unit>()).NoNull().ToHashSet();
+            units = units.Where(u => IsUnitInRadius(point, radius, u)).ToHashSet();
+            
+            return units.Count != 0;
         }
 
-        private void Update()
+        private bool IsUnitInRadius(Vector2 point, float radius, Unit unit)
         {
-            if ( ! Keyboard.current.pKey.wasPressedThisFrame)
-                return;
-            Vector2 point = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            TryGetUnits(point, 5,  out Unit[] units);
-            Debug.Log(units.Length);
+            return Isometry.Distance(point, unit.Position) < (radius + unit.Type.Size / 2);
         }
     }
 }

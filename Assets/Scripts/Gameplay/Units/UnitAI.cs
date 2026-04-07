@@ -28,7 +28,7 @@ namespace Gameplay.Units
             if (Unit.Ownership.OwnedByPlayer)
                 return;
 
-            if (Unit.Simulation.IsSimulated)
+            if ( ! Unit.Simulation.IsSimulated)
             {
                 MoveToSpawnPoint();
                 return;

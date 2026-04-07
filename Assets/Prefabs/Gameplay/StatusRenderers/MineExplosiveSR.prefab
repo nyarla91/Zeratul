@@ -9,36 +9,52 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _alwaysVisible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _visibleInFogOfWar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _enemyDisplayBehaviour
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _playerDisplayBehaviour
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2445494940654201378, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Name
-      value: ShieldBattery7SR
+      value: MineExplosiveSR
       objectReference: {fileID: 0}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 31d97401f5397b14db7dd68b7d105538, type: 3}
+      objectReference: {fileID: 21300000, guid: 4d8c10cc5a8740b4e81ce713f6e7531e, type: 3}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Color.a
       value: 0.03137255
       objectReference: {fileID: 0}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.35566998
       objectReference: {fileID: 0}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Color.g
-      value: 0.8818593
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _rotationSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingRadius
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._radius
@@ -47,27 +63,31 @@ PrefabInstance:
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7e910652a6cefa44c93f7d76bf793cd3, type: 3}
+      objectReference: {fileID: 21300000, guid: 44a47e995565fe445a9a8472368ce0e1, type: 3}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.a
-      value: 0.101960786
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.g
-      value: 0.88235295
+      value: 0.028783925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._rotationSpeed
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._radiusSource._object
       value: 
-      objectReference: {fileID: 11400000, guid: d1f6394cd8a18c74aa32943aeb12440b, type: 2}
+      objectReference: {fileID: 11400000, guid: cbd716f4effa0ad42ad17abcf8bca968, type: 2}
     - target: {fileID: 9068363557109631805, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

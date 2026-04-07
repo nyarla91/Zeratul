@@ -26,6 +26,7 @@ namespace Gameplay.Data.Units
         [SerializeField] private int _energyRestoreDelay;
         [SerializeField] private float _energyPointsPerSecond;
         [HorizontalLine(2, EColor.White)]
+        [SerializeField] private bool _noCollision;
         [SerializeField] private bool _isImmobile;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _size;
@@ -55,6 +56,7 @@ namespace Gameplay.Data.Units
         public int MaxEnergyPoints => _maxEnergyPoints;
         public int EnergyRestoreDelay => _energyRestoreDelay;
         public float EnergyPointsPerSecond => _energyPointsPerSecond;
+        public bool NoCollision => _noCollision;
         public bool IsImmobile => _isImmobile;
         public float MaxSpeed => _maxSpeed;
         public float Size => _size;

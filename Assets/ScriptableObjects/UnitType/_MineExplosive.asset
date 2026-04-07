@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
-  m_Name: _SensorMine
+  m_Name: _MineExplosive
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Sensor Mine
   _focusPriority: 0
@@ -25,6 +25,7 @@ MonoBehaviour:
   _maxEnergyPoints: 0
   _energyRestoreDelay: 0
   _energyPointsPerSecond: 0
+  _noCollision: 1
   _isImmobile: 1
   _maxSpeed: 0
   _size: 0.7
@@ -34,7 +35,7 @@ MonoBehaviour:
   _weaponType: {fileID: 0}
   _innateStatuses:
   - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
-  - {fileID: 11400000, guid: 6862998ad9650344cb24b41c538ee96a, type: 2}
+  - {fileID: 11400000, guid: 1117a48b665a08b46a812ccb13e7c543, type: 2}
   _availableOrders:
   - {fileID: 0}
   - {fileID: 0}
@@ -51,7 +52,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _spriteMap: {fileID: 11400000, guid: 6ecb537c2cda2884bb70917209a9cb09, type: 2}
+  _spriteMap: {fileID: 11400000, guid: b607568a17a68ab46b287fa70ff32286, type: 2}
   _interactionColliderSize: {x: 1, y: 0.7}
   _interactionColliderOffset: {x: 0, y: 0.1}
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}

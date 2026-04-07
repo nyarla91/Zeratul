@@ -1,4 +1,6 @@
 ﻿using System;
+using Gameplay.Data;
+using Gameplay.Data.Effects;
 using UniRx;
 using UnityEngine;
 
@@ -56,6 +58,7 @@ namespace Gameplay.Visual
         [SerializeField] private Sprite _sprite;
         [SerializeField] private AoeSpriteStep[] _steps;
         [SerializeField] private Color _color;
+        [SerializeField] private ReferenceIRadiusSource _radiusSource;
         [SerializeField] private float _radius;
         [SerializeField] private float _rotationSpeed;
 
@@ -75,11 +78,12 @@ namespace Gameplay.Visual
         }
         
         public Color Color => _color;
-        public float Radius => _radius;
+        public float Radius => _radiusSource?.I?.Radius ?? _radius;
         public float RotationSpeed => _rotationSpeed;
 
-        public AoeVariant(float radius, Sprite sprite, AoeSpriteStep[] steps, Color color, float rotationSpeed)
+        public AoeVariant(ReferenceIRadiusSource radiusSource, float radius, Sprite sprite, AoeSpriteStep[] steps, Color color, float rotationSpeed)
         {
+            _radiusSource = radiusSource;
             _sprite = sprite;
             _steps = steps;
             _color = color;
@@ -90,6 +94,7 @@ namespace Gameplay.Visual
         public AoeVariant WithRadius(float radius)
         {
             AoeVariant result = this;
+            result._radiusSource = null;
             result._radius = radius;
             return result;
         }

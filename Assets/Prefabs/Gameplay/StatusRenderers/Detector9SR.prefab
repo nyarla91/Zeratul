@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._radius
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._sprite
@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: _startingVariant._rotationSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._radiusSource._object
+      value: 
+      objectReference: {fileID: 11400000, guid: 757e5c5c3c32a2c4d8331dc66056af68, type: 2}
     - target: {fileID: 9068363557109631805, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

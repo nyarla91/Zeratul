@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85200319680843f6b31dec5cae1dafcd, type: 3}
-  m_Name: _MineDetected
+  m_Name: _MineAOEDamage
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.MineStatus
   _useLock: 1
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 993b8b434602380458f89fd95222c13d, type: 3}
-  _displayName: 'Mine: Detection'
-  _rawDisplayDescription: Detect any cloaked hostile unit that passes through this
-    mine
+  _displayName: 'Mine: Explosive'
+  _rawDisplayDescription: Explode and deal damage to all units around whenever hostile
+    unit passes by.
   _rendererPrefabs:
   - {fileID: 485935788325951280, guid: 6d1440aa6d9b86948ac33cf5459fdb6b, type: 3}
   - {fileID: 1872224104527679214, guid: e7497fd3cb0ce4b40ac9ae3a87f30fbb, type: 3}
+  - {fileID: 1872224104527679214, guid: 7abd75ddcdf66594d8b31c3c2a797e55, type: 3}
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
   _triggerRadius: 1.75
   _cooldown: 0
   _triggerValidator:
     _unitValidators:
     - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
-    - {fileID: 11400000, guid: d7c2d1d521b79144e8eef1f9638b1cf2, type: 2}
-  _triggerEffects:
-  - {fileID: 11400000, guid: ffec104d9f8458a42bfb371a86e89eb6, type: 2}
-  _mineTriggerEffects: []
+  _triggerEffects: []
+  _mineTriggerEffects:
+  - {fileID: 11400000, guid: cbd716f4effa0ad42ad17abcf8bca968, type: 2}

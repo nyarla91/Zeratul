@@ -91,6 +91,7 @@ namespace Gameplay.Units
             
             _collider.transform.localScale = Vector3.one * Type.Size;
             _collider.gameObject.layer = gameObject.layer;
+            _collider.isTrigger = Type.NoCollision;
             gameObject.layer = Type.IsAir ? _unitMovementConfig.AirLayer : _unitMovementConfig.GroundLayer;
             
             UnitPool.AddUnit(this);

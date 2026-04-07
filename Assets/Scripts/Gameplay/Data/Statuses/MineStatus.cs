@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Validator;
 using Gameplay.Units;
@@ -8,7 +9,7 @@ using Zenject;
 namespace Gameplay.Data.Statuses
 {
     [CreateAssetMenu(menuName = "Gameplay Data/Statuses/Mine", order = 0)]
-    public class MineStatus : StatusType
+    public class MineStatus : StatusType, IRadiusSource
     {
         [SerializeField] private SOInjectPresenter _gameplayPresenter;
         [SerializeField] private float _triggerRadius;
@@ -17,8 +18,10 @@ namespace Gameplay.Data.Statuses
         [SerializeField] private EffectTargetingUnit[] _triggerEffects;
         [SerializeField] private EffectTargetingUnit[] _mineTriggerEffects;
         
-        [Inject] private IsometricOverlap Overlap { get; } 
-        
+        [Inject] private IsometricOverlap Overlap { get; }
+
+        public float Radius => _triggerRadius;
+
         public override void OnAdd(Status status)
         {
             _gameplayPresenter.Inject(this);
@@ -33,14 +36,14 @@ namespace Gameplay.Data.Statuses
             if (status.IsLocked)
                 return;
 
-            Overlap.TryGetUnits(status.Host.Position, _triggerRadius, out Unit[] triggeringUnits);
+            Overlap.TryGetUnits(status.Host.Position, _triggerRadius, out HashSet<Unit> triggeringUnits);
             Unit triggeringUnit = triggeringUnits.FirstOrDefault(u => _triggerValidator.IsValid(status.Host, u));
             if ( ! triggeringUnit)
                 return;
             
             foreach (EffectTargetingUnit effect in _triggerEffects)
             {
-                effect.Apply(status.Host, triggeringUnits[0]);
+                effect.Apply(status.Host, triggeringUnits.First());
             }
 
             foreach (EffectTargetingUnit effect in _mineTriggerEffects)

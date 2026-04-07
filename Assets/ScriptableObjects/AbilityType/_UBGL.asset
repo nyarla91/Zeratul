@@ -28,5 +28,5 @@ MonoBehaviour:
   _unitTargetEffects:
   - {fileID: 11400000, guid: 3dfa6bf92a380e14d97519920d20fa5b, type: 2}
   _pointTargetEffects:
-  - {fileID: 11400000, guid: 3dfa6bf92a380e14d97519920d20fa5b, type: 2}
+  - {fileID: 11400000, guid: 4e2a44600466204498b069dee5d9d4eb, type: 2}
   _animationAction: attack

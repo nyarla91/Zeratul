@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Data.Configs;
+using NaughtyAttributes;
 using UniRx;
 using UnityEngine;
 using Unit = Gameplay.Units.Unit;

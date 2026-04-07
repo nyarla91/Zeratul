@@ -1,8 +1,10 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Extentions;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Configs;
+using Gameplay.Data.Effects;
 using Gameplay.Units;
 using NaughtyAttributes;
 using UnityEngine;
@@ -14,11 +16,12 @@ namespace Gameplay.Data.Orders
     {
         [Space]
         [Expandable] [SerializeField] private AbilityType _abilityType;
-        [SerializeField] private float _aoeEllipseRadius;
+        [SerializeField] private ReferenceIRadiusSource _aoeEllipseRadius;
         [SerializeField] private OrderErrorConfig _errors;
 
         public AbilityType AbilityType => _abilityType;
-        public float AoeEllipseRadius => _aoeEllipseRadius;
+
+        public float AoeEllipseRadius => _aoeEllipseRadius.I?.Radius ?? 0;
 
         public override TargetRequirement TargetRequirement => _abilityType.TargetRequirement;
 
