@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace Gameplay
+namespace Gameplay.UI.Menu
 {
     public class PauseMenu : MonoBehaviour
     {
