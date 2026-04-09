@@ -6,6 +6,7 @@ using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Map;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
@@ -42,11 +43,14 @@ namespace Gameplay.Units
             _avoidanceCollider = avoidanceCollider;
             _avoidanceCollider.gameObject.layer = Unit.gameObject.layer;
 
-            IObservable<long> observable = Observable.EveryFixedUpdate()
+            IObservable<UniRx.Unit> observable = Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused);
             
-            observable.Subscribe(_ => MoveAlongPath());
-            observable.Subscribe(_ => UpdatePhysics());
+            IDisposable moveSubscription = observable.Subscribe(_ => MoveAlongPath());
+            IDisposable physicsSubscription = observable.Subscribe(_ => UpdatePhysics());
+            
+            Unit.Killed += moveSubscription.Dispose;
+            Unit.Killed += physicsSubscription.Dispose;
         }
 
         public void Move(Vector2 destination)

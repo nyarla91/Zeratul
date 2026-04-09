@@ -96,7 +96,7 @@ namespace Gameplay
 
         private bool IsUnitFollowable(Unit unit, Vector2 previousPosition)
         {
-            return unit != null && unit.Life.IsAlive && Isometry.Distance(unit.Position, previousPosition) <= MaxUnitSpeedToFollow;
+            return unit != null && unit.IsAlive && Isometry.Distance(unit.Position, previousPosition) <= MaxUnitSpeedToFollow;
         }
 
         private struct TravelResult

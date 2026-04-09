@@ -1,6 +1,7 @@
 ﻿using Gameplay.Player;
 using TMPro;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -19,7 +20,7 @@ namespace Gameplay.UI
 
         private void Awake()
         {
-            Observable.EveryUpdate()
+            this.UpdateAsObservable()
                 .Subscribe(_ => UpdateSlots());
         }
 

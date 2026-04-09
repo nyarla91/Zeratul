@@ -1,5 +1,6 @@
 ﻿using Gameplay.Player;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
@@ -19,7 +20,7 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
-            Observable.EveryUpdate()
+            this.UpdateAsObservable()
                 .Subscribe(_ => UpdateMaterial());
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +18,7 @@ namespace UI
         private void Awake()
         {
             if (_closeOnEscape)
-                Observable.EveryUpdate()
+                this.UpdateAsObservable()
                     .Where(_ => IsOpened)
                     .Where(_ => Keyboard.current.escapeKey.wasPressedThisFrame)
                     .Delay(TimeSpan.FromSeconds(0.1f))

@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Extentions.Pause;
 using UniRx;
+using UniRx.Triggers;
 using Zenject;
 
 namespace Gameplay.Units
@@ -21,7 +22,7 @@ namespace Gameplay.Units
         {
             _tacticalPause = tacticalPause;
 
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateRecovery());
         }

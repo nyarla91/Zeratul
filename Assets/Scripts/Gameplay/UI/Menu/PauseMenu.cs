@@ -2,6 +2,7 @@
 using Extentions.Pause;
 using UI;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -16,7 +17,7 @@ namespace Gameplay.UI.Menu
         
         private void Awake()
         {
-            Observable.EveryUpdate()
+            this.UpdateAsObservable()
                 .Where(_ => ! _window.IsOpened)
                 .Where(_ => Keyboard.current.escapeKey.wasPressedThisFrame)
                 .Delay(TimeSpan.FromSeconds(0.1f))

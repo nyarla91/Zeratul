@@ -2,6 +2,7 @@
 using Gameplay.Data;
 using Gameplay.Data.Effects;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Visual
@@ -41,7 +42,7 @@ namespace Gameplay.Visual
         {
             Set(_startingVariant);
             transform.localScale = new Vector3(1, 0.5f, 1);
-            Observable.EveryUpdate()
+            this.UpdateAsObservable()
                 .Subscribe(_ => UpdateRotation());
         }
 

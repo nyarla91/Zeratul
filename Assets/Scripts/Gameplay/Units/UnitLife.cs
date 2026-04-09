@@ -2,6 +2,7 @@
 using Extentions;
 using Extentions.Pause;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -24,14 +25,10 @@ namespace Gameplay.Units
         public float HitPercent => (float) HitPoints / MaxHitPoints;
         public bool HasShieldPoints => MaxShieldPoints > 0;
         public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 0;
-
-        public bool IsAlive => HitPoints >= 1;
-        public bool IsDead => ! IsAlive;
         
         public Unit LastDamageDealer { get; private set; }
         public float LastDamageTime { get; private set; } = -1000;
         
-        public event Action HitPointsOver;
         public event Action<int> DamageTaken;
         public event Action<int> HitPointsLost;
         public event Action<int> ShieldPointsLost;
@@ -44,14 +41,14 @@ namespace Gameplay.Units
             if (UnitType.ShieldRestoreDelay > 0)
                 _shieldRestorationTimer = new Timer(UnitType.ShieldRestoreDelay, tacticalPause);
             
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => RestoreShieldPoints());
         }
 
         public void TakeDamage(int damage, Unit damageDealer)
         {
-            if (IsDead || damage <= 0)
+            if (Unit.IsDead || damage <= 0)
                 return;
             
             int shieldDamage = Mathf.Min(damage, ShieldPoints);
@@ -67,7 +64,7 @@ namespace Gameplay.Units
             ShieldPointsLost?.Invoke(shieldDamage);
             
             if (HitPoints < 1)
-                HitPointsOver?.Invoke();
+                Unit.Kill();
             
             _shieldRestorationTimer?.Restart();
         }

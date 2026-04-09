@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Validator;
 using Gameplay.Vision;
 using UniRx;
+using UniRx.Triggers;
 
 namespace Gameplay.Units
 {
@@ -26,7 +28,7 @@ namespace Gameplay.Units
             Unit.Ownership.ObserveEveryValueChanged(o => o.OwnedByPlayer)
                 .Subscribe(o => _visionSource.OwnedByPlayer = o);
             
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Subscribe(_ => _visionSource.IsSimulated = Unit.Simulation.IsSimulated);
             
             this.ObserveEveryValueChanged(v => v.Radius)

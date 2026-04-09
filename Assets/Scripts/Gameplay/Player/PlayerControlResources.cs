@@ -50,7 +50,7 @@ namespace Gameplay.Player
 
         private void ValidateControlledUnits()
         {
-            _controlledUnits = _controlledUnits.Where(u => u.Ownership.OwnedByPlayer && u.Life.IsAlive).ToHashSet();
+            _controlledUnits = _controlledUnits.Where(u => u.Ownership.OwnedByPlayer && u.IsAlive).ToHashSet();
         }
 
         public bool CanFitUnit(Unit unit) => AvailableSlots >= unit.Type.ControlWorth;

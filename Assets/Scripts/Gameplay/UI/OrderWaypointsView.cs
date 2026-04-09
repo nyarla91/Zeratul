@@ -32,6 +32,8 @@ namespace Gameplay.UI
 
             foreach (Unit unit in UnitsToDisplay)
             {
+                if ( ! unit)
+                    continue;
                 List<Order> orders = new();
                 if (unit.Orders.CurrentOrder != null)
                     orders.Add(unit.Orders.CurrentOrder);

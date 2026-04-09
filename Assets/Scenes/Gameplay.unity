@@ -2524,7 +2524,7 @@ MonoBehaviour:
   _visionMap: {fileID: 1907651306}
   _spriteRenderer: {fileID: 388089113}
   _pixelScale: 1
-  _fogDimensions: {x: 200, y: 200}
+  _fogDimensions: {x: 100, y: 80}
   _hiddenColor: {r: 0, g: 0, b: 0, a: 1}
   _scoutedColor: {r: 0, g: 0, b: 0, a: 0.83137256}
   _revealedColor: {r: 0, g: 0, b: 0, a: 0}
@@ -5522,7 +5522,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 782747764}
-  - component: {fileID: 782747763}
   - component: {fileID: 782747765}
   m_Layer: 0
   m_Name: PuaseCrutch
@@ -5531,18 +5530,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &782747763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782747762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da1b40796b0a4f3d8acc82157575c6ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.PauseCrutch
 --- !u!4 &782747764
 Transform:
   m_ObjectHideFlags: 0

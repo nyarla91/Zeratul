@@ -1,6 +1,7 @@
 ﻿using System;
 using Gameplay.Data.Configs;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +23,7 @@ namespace Gameplay.Vision
 
         private void Start()
         {
-            Observable.EveryFixedUpdate()
+            this.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
                 .Subscribe(_ => RecalculateFog());
             

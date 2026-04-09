@@ -5,6 +5,7 @@ using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -21,7 +22,7 @@ namespace Gameplay.Units
             _config = config;
             _spawnPoint = unit.Position;
             
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
                 .Where(_ => _tacticalPause.IsUnpaused)
                 .Subscribe(_ => IssueOrder());

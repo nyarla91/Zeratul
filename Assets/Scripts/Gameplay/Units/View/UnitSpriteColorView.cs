@@ -1,5 +1,6 @@
 ﻿using System;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units.View
@@ -10,10 +11,10 @@ namespace Gameplay.Units.View
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Color _defaultColor;
         [SerializeField] private Color _cloakedColor;
-
+        
         private void Awake()
         {
-            Observable.EveryFixedUpdate()
+            this.FixedUpdateAsObservable()
                 .Subscribe(_ => UpdateColor());
         }
 

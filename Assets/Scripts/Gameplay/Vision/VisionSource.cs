@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using Gameplay.Data.Configs;
@@ -103,7 +102,8 @@ namespace Gameplay.Vision
         public void Dispose()
         {
             DetachFromAll();
-            Destroy(gameObject);
+            if (this)
+                Destroy(gameObject);
         }
 
         private void AttachToArea(bool ownedByPlayer)

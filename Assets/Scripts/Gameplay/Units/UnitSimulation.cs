@@ -4,6 +4,7 @@ using System.Linq;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -22,10 +23,11 @@ namespace Gameplay.Units
 
             _simulationCollider.transform.localScale = config.SimulationRadius * 2 * Vector3.one;
 
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateSimulated());
+
         }
 
         private void UpdateSimulated()

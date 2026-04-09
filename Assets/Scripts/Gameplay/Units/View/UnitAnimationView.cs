@@ -3,6 +3,8 @@ using System.Linq;
 using Extentions;
 using Gameplay.Data.Configs;
 using Gameplay.Enviroment;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
@@ -29,12 +31,14 @@ namespace Gameplay.Units.View
             _defaultSortingOrder = _unit.Type.IsAir
                 ? (_config.UnitBaseOrder + _config.AirUnitOrderBonus)
                 : _config.UnitBaseOrder;
+
+            this.UpdateAsObservable()
+                .Where(_ => TacticalPause.IsUnpaused)
+                .Subscribe(_ => UpdateSprite());
         }
 
-        private void Update()
+        private void UpdateSprite()
         {
-            if (TacticalPause.IsPaused)
-                return;
             
             string newAction = GetCurrentUnitAction();
             if (newAction.Equals(_currentAction))
@@ -46,7 +50,6 @@ namespace Gameplay.Units.View
                 DiscardCurrentActionTime();
                 _currentAction = newAction;
             }
-            
             
             if (!_unit.Visibility.IsVisibleToPlayer)
             {

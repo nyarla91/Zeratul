@@ -46,10 +46,15 @@ namespace Gameplay.Units
         [ShowNativeProperty] public bool CanMove { get; private set; }
         [ShowNativeProperty] public bool IsVisibleToPlayer => Visibility?.IsVisibleToPlayer ?? false;
 
-        public Vector2 Position => transform.position;
+        public bool IsDead { get; private set; }
+        public bool IsAlive => ! IsDead;
+        
+        public Vector2 Position => transform ? transform.position : Vector2.zero;
         public Vector2 InteractionPosition => _interactionCollider.transform.position + (Vector3) _interactionCollider.offset;
+        
         public bool IsHighlighted => MouseTargeting.Unit == this;
         public bool IsSelected => Selection.IsUnitSelected(this);
+        
         public Bounds Bounds => new Bounds(Position, Isometry.Scale * Type.Size + _pathfindingConfig.MaxObstacleDistance * Vector2.one);
 
         public UnitType Type { get; private set; }
@@ -102,18 +107,24 @@ namespace Gameplay.Units
             gameObject.layer = Type.IsAir ? _unitMovementConfig.AirLayer : _unitMovementConfig.GroundLayer;
             
             UnitPool.AddUnit(this);
-            Life.HitPointsOver += Kill;
         }
         
         public void Kill()
         {
-            Killed?.Invoke();
+            IsDead = true;
             UnitPool.RemoveUnit(this);
+            Killed?.Invoke();
             Destroy(gameObject);
             if (CanMove)
                 return;
             _obstacleCollider.enabled = false;
             NodeMap.QueueObstacleRecalculation(Bounds);
+        }
+
+        private void OnDestroy()
+        {
+            if (IsAlive)
+                Killed?.Invoke();
         }
     }
 }

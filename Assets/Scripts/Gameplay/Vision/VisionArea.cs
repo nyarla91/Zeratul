@@ -4,6 +4,7 @@ using System.Linq;
 using Gameplay.Data.Configs;
 using NaughtyAttributes;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Unit = Gameplay.Units.Unit;
 
@@ -23,7 +24,7 @@ namespace Gameplay.Vision
 
         private void Awake()
         {
-            Observable.EveryFixedUpdate()
+            this.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
                 .Subscribe(_ => Recalculate());
         }
@@ -57,7 +58,8 @@ namespace Gameplay.Vision
         {
             if ( ! _sources.Remove(source))
                 return;
-            source.transform.SetParent(null);
+            if (source)
+                source.transform.SetParent(null);
         }
         
         public bool IsUnitVisible(Unit unit)

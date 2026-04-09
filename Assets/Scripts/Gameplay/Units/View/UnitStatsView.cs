@@ -2,6 +2,7 @@
 using Extentions;
 using Gameplay.UI;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +40,7 @@ namespace Gameplay.Units.View
             _unit.ObserveEveryValueChanged(u => u.Visibility.IsVisibleToPlayer)
                 .Subscribe(v => _canvas.enabled = v);
             
-            Observable.EveryFixedUpdate()
+            this.UpdateAsObservable()
                 .Subscribe(_ => UpdateStats());
         }
 

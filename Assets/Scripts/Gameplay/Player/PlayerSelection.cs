@@ -37,6 +37,7 @@ namespace Gameplay.Player
                     continue;
                 _selectedUnits.Add(unit);
                 unit.Ownership.OwnerUpdated += ValidateSelectedUnits;
+                unit.Killed += ValidateSelectedUnits;
             }
             ValidateSelectedUnits();
         }
@@ -47,6 +48,7 @@ namespace Gameplay.Player
             {
                 _selectedUnits.Remove(unit);
                 unit.Ownership.OwnerUpdated -= ValidateSelectedUnits;
+                unit.Killed -= ValidateSelectedUnits;
             }
             ValidateSelectedUnits();
         }
@@ -89,8 +91,8 @@ namespace Gameplay.Player
                     _selectedUnits.RemoveAt(i);
                     continue;
                 }
-                if (selectedUnit == null
-                    || selectedUnit.Life.IsDead 
+                if ( ! selectedUnit
+                    || selectedUnit.IsDead 
                     || ! selectedUnit.Visibility.IsVisibleToPlayer
                     || (selectedUnit.Ownership.OwnedByEnemy && _selectedUnits.Count > 1))
                     RemoveUnitsFromSelection(selectedUnit);

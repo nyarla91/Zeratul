@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Extentions;
@@ -7,6 +8,7 @@ using Gameplay.Data.Abilities;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -15,6 +17,7 @@ namespace Gameplay.Units
     {
         private readonly HashSet<object> _lockSources = new();
         private readonly Timer _energyRestorationTimer;
+        private readonly Dictionary<AbilityType, Ability> _abilities = new();
 
         private float _energyPoints;
         public int EnergyPoints => Mathf.FloorToInt(_energyPoints);
@@ -24,8 +27,7 @@ namespace Gameplay.Units
         public bool HasEnergyPoints => MaxEnergyPoints > 0;
         public float EnergyPercent => HasEnergyPoints ? (float) EnergyPoints / MaxEnergyPoints : 1;
         
-        private readonly Dictionary<AbilityType, Ability> _abilities = new();
-        
+
         public bool IsLocked => _lockSources.Count > 0;
         public bool IsUnlocked => ! IsLocked;
 
@@ -35,7 +37,7 @@ namespace Gameplay.Units
         {
             TacticalPause = tacticalPause;
             
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Where(_ => TacticalPause.IsUnpaused)
                 .Subscribe(_ => RestoreEnergyPoints());
             

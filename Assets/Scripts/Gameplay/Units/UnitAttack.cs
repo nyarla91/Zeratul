@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Units;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -35,16 +37,19 @@ namespace Gameplay.Units
             if ( ! UnitType.WeaponType)
                 return;
             
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Where(_ => IsAttacking)
                 .Subscribe(_ => UpdateAttack());
-            
+
             if (UnitType.WeaponType.AutoAttack)
-                Observable.EveryFixedUpdate()
+            {
+                IDisposable autoAttackSubscription = Observable.EveryFixedUpdate()
                     .Where(_ => tacticalPause.IsUnpaused)
                     .Where(_ => ! IsAttacking)
                     .Subscribe(_ => TryAutoAttack());
+                Unit.Killed += autoAttackSubscription.Dispose;
+            }
         }
 
         public void StartAttacking(Unit target)
@@ -73,7 +78,7 @@ namespace Gameplay.Units
                 return false;
             }
             
-            if (target.Life.IsDead)
+            if (target.IsDead)
                 return false;
             
             if (UnitType.IsImmobile && !IsUnitInRange(target))

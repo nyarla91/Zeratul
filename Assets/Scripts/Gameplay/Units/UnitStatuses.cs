@@ -5,6 +5,7 @@ using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Statuses;
 using UniRx;
+using UniRx.Triggers;
 using Zenject;
 
 namespace Gameplay.Units
@@ -27,7 +28,7 @@ namespace Gameplay.Units
                 AddStatus(status, Unit);
             }
             
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateStatuses());
         }

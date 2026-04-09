@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using Extentions.Pause;
 using Gameplay.Data.Orders;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -25,20 +26,23 @@ namespace Gameplay.Units
         
         public UnitOrders(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
-            IObservable<long> unpausedFixedUpdate = Observable.EveryFixedUpdate().Where(_ => tacticalPause.IsUnpaused);
+            IObservable<UniRx.Unit> unpausedFixedUpdate = Unit.FixedUpdateAsObservable()
+                .Where(_ => tacticalPause.IsUnpaused);
 
-            unpausedFixedUpdate
+            IDisposable completeSubscription = unpausedFixedUpdate
                 .Where(_ => CurrentOrder != null)
                 .Where(_ => CurrentOrder.MustBeCanceled() || _currentOrderTask.GetAwaiter().IsCompleted)
                 .Subscribe(_ => CompleteCurrentOrder());
             
-            unpausedFixedUpdate
+            IDisposable nextOrderSubscription = unpausedFixedUpdate
                 .Where(_ => _currentOrderTask.GetAwaiter().IsCompleted)
                 .Where(_ => CurrentOrder == null)
                 .Where(_ => _pendingOrders.Count > 0)
                 .Subscribe(_ => TryCarryOutNextOrder());
 
             Unit.Killed += ClearAllOrders;
+            Unit.Killed += completeSubscription.Dispose;
+            Unit.Killed += nextOrderSubscription.Dispose;
         }
 
         public void IssueSmartOrder(OrderTarget target, bool queue)

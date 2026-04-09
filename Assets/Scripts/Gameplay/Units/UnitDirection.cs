@@ -1,6 +1,8 @@
-﻿using Extentions;
+﻿using System;
+using Extentions;
 using Extentions.Pause;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -12,7 +14,7 @@ namespace Gameplay.Units
         
         public UnitDirection(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
-            Observable.EveryFixedUpdate()
+            Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateLookAngle());
         }
