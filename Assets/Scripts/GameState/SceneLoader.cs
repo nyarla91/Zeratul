@@ -5,7 +5,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-namespace Scenes
+namespace GameState
 {
     public class SceneLoader : MonoBehaviour
     {
@@ -17,22 +17,11 @@ namespace Scenes
         
         public bool IsLoading { get; private set; }
 
-        public void LoadGameplay() => LoadScene(_gameplayScene);
+        public void LoadGameplay(UniTask additionalLoading = default) => LoadScene(_gameplayScene, additionalLoading);
         
-        public void LoadMainScene() => LoadScene(_mainMenuScene);
+        public void LoadMainScene(UniTask additionalLoading = default) => LoadScene(_mainMenuScene, additionalLoading);
 
-        /*private async UniTask LoadScene(AssetReference scene)
-        {
-            if (IsLoading)
-                return;
-            IsLoading = true;
-            await _loadingScene.LoadSceneAsync().Task;
-            await scene.LoadSceneAsync().Task;
-            scene.ReleaseAsset();
-            IsLoading = false;
-        }*/
-
-        private async UniTask LoadScene(AssetReference scene)
+        private async UniTask LoadScene(AssetReference scene, UniTask additionalLoading)
         {
             if (IsLoading)
                 return;
@@ -43,17 +32,22 @@ namespace Scenes
             {
                 await Addressables.UnloadSceneAsync(_currentSceneHandle.Value);
             }
-            
+
             AsyncOperationHandle<SceneInstance>? loadingSceneHandle = _loadingScene.LoadSceneAsync();
 
             await loadingSceneHandle.Value.Task;
 
-
-            _currentSceneHandle = scene.LoadSceneAsync();
-
+            Debug.Log($"Loading {scene}");
+            _currentSceneHandle = scene.LoadSceneAsync(LoadSceneMode.Single, false);
             await _currentSceneHandle.Value.Task;
-
+            Debug.Log($"{scene} loaded");
+            
+            await additionalLoading;
+            Debug.Log($"Awaiting {additionalLoading}");
             await Addressables.UnloadSceneAsync(loadingSceneHandle.Value);
+            Debug.Log($"Activating {scene}");
+            await _currentSceneHandle.Value.Result.ActivateAsync().ToUniTask();
+            Debug.Log($"{scene} activated");
 
             IsLoading = false;
         }

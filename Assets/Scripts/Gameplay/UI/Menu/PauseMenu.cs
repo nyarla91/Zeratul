@@ -1,5 +1,6 @@
 ﻿using System;
 using Extentions.Pause;
+using GameState;
 using UI;
 using UniRx;
 using UniRx.Triggers;
@@ -14,7 +15,7 @@ namespace Gameplay.UI.Menu
         [SerializeField] private UIWindow _window;
         
         [Inject] private GamePause GamePause { get; set; }
-        
+
         private void Awake()
         {
             this.UpdateAsObservable()
@@ -26,6 +27,7 @@ namespace Gameplay.UI.Menu
             _window.ObserveEveryValueChanged(w => w.IsOpened)
                 .Subscribe(UpdatePause);
         }
+
 
         private void UpdatePause(bool pause)
         {

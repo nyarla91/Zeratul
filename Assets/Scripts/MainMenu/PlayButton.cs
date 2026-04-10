@@ -1,4 +1,4 @@
-﻿using Scenes;
+﻿using GameState;
 using UnityEngine;
 using Zenject;
 
@@ -6,11 +6,13 @@ namespace MainMenu
 {
     public class PlayButton : MonoBehaviour
     {
-        [Inject] private SceneLoader SceneLoader { get; set; }
+        [SerializeField] private ScenarioData _scenario;
+        
+        [Inject] private GameFlowController GameFlowController { get; set; }
 
         public void Play()
         {
-            SceneLoader.LoadGameplay(); 
+            GameFlowController.StartScenario(_scenario);
         }
     }
 }

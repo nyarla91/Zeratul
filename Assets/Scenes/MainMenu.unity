@@ -444,6 +444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4649880053349864991, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
+      propertyPath: _text
+      value: Scenario 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -469,6 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7f0acf34b64b24a1c4482ccf384220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MainMenu::MainMenu.PlayButton
+  _scenario: {fileID: 11400000, guid: 22b59ef460d38cc42bd3e97676281831, type: 2}
 --- !u!1 &845605978
 GameObject:
   m_ObjectHideFlags: 0

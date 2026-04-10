@@ -95,6 +95,17 @@
                 },
                 {
                     "name": "",
+                    "id": "43f60129-b036-4d0c-872c-80c25659a499",
+                    "path": "<Mouse>/forwardButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DragCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "783729f0-c7b8-4da7-a067-dace62d19088",
                     "path": "<Mouse>/scroll/y",
                     "interactions": "",

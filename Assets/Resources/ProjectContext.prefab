@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2271309591220650897}
   - component: {fileID: -8236489006066594996}
   - component: {fileID: 8068587357324638866}
+  - component: {fileID: 9203218780266193080}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   - {fileID: -2271309591220650897}
   - {fileID: -8236489006066594996}
   - {fileID: 8068587357324638866}
+  - {fileID: 9203218780266193080}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -113,3 +115,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Architecture::DI.ProjectInstaller
   _sceneLoaderPrefab: {fileID: 699369253501963580, guid: db32131b252ffb8458587488c08c7799, type: 3}
+--- !u!114 &9203218780266193080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2216011889963564807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad006033b594b269043d4f399937f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Architecture::DI.GameStateInstaller
