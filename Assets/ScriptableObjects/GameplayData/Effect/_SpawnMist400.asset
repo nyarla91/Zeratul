@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: _SpawnMist400
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.SpawnEntityEffect
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _prefab: {fileID: -3866426998369780828, guid: 5d7c630f4c3a7854b9d9a1b88a125729, type: 3}
+  _prefab: {fileID: 5776702827455846786, guid: 5d7c630f4c3a7854b9d9a1b88a125729, type: 3}
   _lifetime: 400

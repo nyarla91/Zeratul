@@ -9,7 +9,7 @@ namespace Gameplay.Data.Effects
     public class SpawnEntityEffect : EffectTargetingPoint
     {
         [SerializeField] private SOInjectPresenter _gameplayPresenter;
-        [SerializeField] private Entity _prefab;
+        [SerializeField] private GameObject _prefab;
         [SerializeField] private int _lifetime;
         
         [Inject] private PoolFactory<Entity> EntityFactory { get; set; }
@@ -18,7 +18,7 @@ namespace Gameplay.Data.Effects
         {
             _gameplayPresenter.Inject(this);
 
-            Entity entity = EntityFactory.Get(_prefab.gameObject);
+            Entity entity = EntityFactory.Get(_prefab);
             entity.Lifetime =  _lifetime;
             entity.transform.position = target;
         }

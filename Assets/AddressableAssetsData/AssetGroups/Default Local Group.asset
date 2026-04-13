@@ -20,6 +20,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 622745bf78d9dfa4f988ae84a27f0c61
+    m_Address: Assets/ScriptableObjects/ProjectInjectPresenter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 709a4b54a359b604a89d2566ccc11544
+    m_Address: Assets/ScriptableObjects/GameplayInjectPresenter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
     m_Address: Scene/Gameplay
     m_ReadOnly: 0
