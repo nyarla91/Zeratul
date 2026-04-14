@@ -41,9 +41,10 @@ namespace Gameplay.Units
         public UnitMovement Movement { get; private set; }
         public UnitAI AI { get; private set; }
         public UnitSimulation Simulation { get; private set; }
+        public UnitPathing Pathing { get; private set; }
 
-        [ShowNativeProperty] public bool CanAttack { get; private set; }
-        [ShowNativeProperty] public bool CanMove { get; private set; }
+        [ShowNativeProperty] public bool CanAttack => Type.WeaponType;
+        [ShowNativeProperty] public bool CanMove => ! Type.IsImmobile;
         [ShowNativeProperty] public bool IsVisibleToPlayer => Visibility?.IsVisibleToPlayer ?? false;
 
         public bool IsDead { get; private set; }
@@ -55,8 +56,6 @@ namespace Gameplay.Units
         public bool IsHighlighted => MouseTargeting.Unit == this;
         public bool IsSelected => Selection.IsUnitSelected(this);
         
-        public Bounds Bounds => new Bounds(Position, Isometry.Scale * Type.Size + _pathfindingConfig.MaxObstacleDistance * Vector2.one);
-
         public UnitType Type { get; private set; }
 
         public event Action Killed; 
@@ -86,25 +85,13 @@ namespace Gameplay.Units
             Statuses = new UnitStatuses(this, TacticalPause);
             AI = new UnitAI(this, TacticalPause, _aiConfig);
             Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
+            Pathing = new UnitPathing(this, _pathfindingConfig, _unitMovementConfig, NodeMap, _rigidbody, _obstacleCollider, _collider);
             
-            CanAttack = type.WeaponType != null && type.AvailableOrders.Contains(_unitAttackConfig.DefaultAttackOrder);
             if (CanAttack)
                 Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig, _orderErrorConfig);
             
-            _obstacleCollider.enabled = type.IsImmobile;
-            CanMove = ! type.IsImmobile;
             if (CanMove)
                 Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _avoidanceCollider);
-            else
-            {
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-                NodeMap.QueueObstacleRecalculation(Bounds);
-            }
-            
-            _collider.transform.localScale = Vector3.one * Type.Size;
-            _collider.gameObject.layer = gameObject.layer;
-            _collider.isTrigger = Type.NoCollision;
-            gameObject.layer = Type.IsAir ? _unitMovementConfig.AirLayer : _unitMovementConfig.GroundLayer;
             
             UnitPool.AddUnit(this);
         }
@@ -115,10 +102,6 @@ namespace Gameplay.Units
             UnitPool.RemoveUnit(this);
             Killed?.Invoke();
             Destroy(gameObject);
-            if (CanMove)
-                return;
-            _obstacleCollider.enabled = false;
-            NodeMap.QueueObstacleRecalculation(Bounds);
         }
 
         private void OnDestroy()

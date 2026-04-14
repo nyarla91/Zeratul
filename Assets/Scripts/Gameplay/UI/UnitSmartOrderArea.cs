@@ -11,7 +11,7 @@ namespace Gameplay.UI
     public class UnitSmartOrderArea : MonoBehaviour
     {
         [SerializeField] private EventTrigger _eventTrigger;
-        [SerializeField] private int _pointerDownEventIndex;
+        [SerializeField] private int _pointerClickEventIndex;
         
         [Inject] private PlayerOrdersDispatcher OrdersDispatcher { get; set; }
         [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; }
@@ -19,12 +19,12 @@ namespace Gameplay.UI
         
         private void Awake()
         {
-            _eventTrigger.triggers[_pointerDownEventIndex].callback.AddListener(IssueSmartOrder);
+            _eventTrigger.triggers[_pointerClickEventIndex].callback.AddListener(IssueSmartOrder);
         }
 
         private void IssueSmartOrder(BaseEventData _)
         {
-            if (GamePause.IsPaused || ! Mouse.current.rightButton.wasPressedThisFrame)
+            if (GamePause.IsPaused || ! Mouse.current.rightButton.wasReleasedThisFrame)
                 return;
             const TargetRequirement requirement = TargetRequirement.PointOrUnit;
             OrdersDispatcher.IssueSmartOrderToSelection(TargetSelector.GetTargetForRequirement(requirement));

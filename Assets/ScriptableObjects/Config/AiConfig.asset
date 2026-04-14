@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a050d2fbc6b54ef99360fa486ec81fb1, type: 3}
   m_Name: AiConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.UnitAiConfig
+  _autoAttackEvaluator: {fileID: 11400000, guid: 60a7f7a5bfcf747449236e0be0c69042, type: 2}
   _moveOrder: {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
   _timeBetweenThinking: 0.5
   _damageForgiveTime: 5
