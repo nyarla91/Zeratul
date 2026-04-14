@@ -20,15 +20,6 @@ namespace Gameplay.Units
 
         private UnitWeaponType Weapon => UnitType.WeaponType;
 
-        public Unit ClosestTarget
-        {
-            get
-            {
-                HashSet<Unit> units = Unit.Sight.VisibleUnits(_config.AutoAttackValidators);
-                return units?.MinElement(unit => Isometry.Distance(Unit.Position, unit.Position));
-            }
-        }
-
         public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig config, OrderErrorConfig errors) : base(unit)
         {
             _config = config;
@@ -93,6 +84,11 @@ namespace Gameplay.Units
             return true;
         }
 
+        public bool IsUnitInRange(Unit other)
+        {
+            return Isometry.Distance(Unit.Position, other.Position) < Weapon.MaxDistance;
+        }
+
         private void UpdateAttack()
         {
             if ( ! CanAttackUnit(CurrentTarget))
@@ -121,21 +117,17 @@ namespace Gameplay.Units
 
         private void TryAutoAttack()
         {
-            if (IsAttacking || ! Unit.Orders.IsIdle)
+            if (Unit.Ownership.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false) || IsAttacking)
                 return;
-            if (_config.AutoAttackOnlyForEnemy && Unit.Ownership.OwnedByPlayer)
-                return;
-            
-            Unit closestTarget = ClosestTarget;
-            if ( ! closestTarget || ! CanAttackUnit(closestTarget))
-                return;
-            OrderTarget target = new(default, closestTarget);
-            Unit.Orders.IssueOrder(new Order(_config.DefaultAttackOrder, Unit, target), false);
-        }
 
-        private bool IsUnitInRange(Unit other)
-        {
-            return Isometry.Distance(Unit.Position, other.Position) < Weapon.MaxDistance;
+            if (!Unit.AI.PreferredAttackTarget)
+            {
+                StopAttacking();
+                return;
+            }
+
+            OrderTarget target = OrderTarget.FromUnit(Unit.AI.PreferredAttackTarget);
+            Unit.Orders.IssueOrder(new Order(_config.DefaultAttackOrder, Unit, target), false);
         }
 
         private async void StrikeUnit(Unit target)

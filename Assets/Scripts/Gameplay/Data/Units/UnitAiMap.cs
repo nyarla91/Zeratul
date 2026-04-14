@@ -45,7 +45,7 @@ namespace Gameplay.Data.Units
                 Order result = null;
                 foreach (Unit target in surroundings)
                 {
-                    OrderTarget orderTarget = new(default, target);
+                    OrderTarget orderTarget = OrderTarget.FromUnit(target);
                     if ( ! _order.IsTargetValid(agent, orderTarget, out _))
                         continue;
                     if (_targetValidator.IsInvalid(agent, target))

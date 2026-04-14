@@ -25,7 +25,7 @@ namespace Gameplay.Data.Units
         
         public Sprite GenericSprite => GetSprite("idle", 0, 225);
 
-        public Sprite GetSprite(string action, float timestamp, float angle)
+        public Sprite GetSprite(string action, float timestamp, float angle, float frameRateScale = 1)
         {
             _animationsDic ??= AnimationsToDictionary(_animations);
 
@@ -39,7 +39,8 @@ namespace Gameplay.Data.Units
                 }
             }
 
-            int frame = Mathf.RoundToInt(timestamp / animation.FramesTimeGap);
+            float frameGap = 1 / (animation.FrameRate * frameRateScale);
+            int frame = Mathf.RoundToInt(timestamp / frameGap);
             frame = animation.Loop
                 ? frame.RepeatIndex(animation.Frames.Length)
                 : Mathf.Min(frame, animation.Frames.Length - 1);

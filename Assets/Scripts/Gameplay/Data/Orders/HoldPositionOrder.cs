@@ -19,12 +19,21 @@ namespace Gameplay.Data.Orders
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {
             order.Actor.Movement.HoldPosition();
-            await UniTask.Never(ct);
+            while (true)
+            {
+                await UniTask.WaitForFixedUpdate(ct);
+                Unit attackTarget = order.Actor.AI.PreferredAttackTarget;
+                if (order.Actor.CanAttack && attackTarget && order.Actor.Attack.IsUnitInRange(attackTarget))
+                    order.Actor.Attack.StartAttacking(attackTarget);
+                else
+                    order.Actor.Attack.StopAttacking();
+            }
         }
 
         protected override void Dispose(Order order)
         {
             order.Actor.Movement.StopHoldingPosition();
+            order.Actor.Attack.StopAttacking();
         }
     }
 }

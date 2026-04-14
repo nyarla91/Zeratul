@@ -28,24 +28,17 @@ namespace Gameplay.Units
 
     public struct OrderTarget
     {
-        private Vector2 _point;
-        public Vector2 Point
-        {
-            readonly get
-            {
-                /*if (_point == default)
-                    throw new InvalidOperationException("Do not access OrderTarget.Point if it's default");*/
-                return _point;
-            }
-            set => _point = value;
-        }
-
+        public Vector2 Point { get; }
         public Unit Unit { get; }
         
         public OrderTarget(Vector2 point, Unit unit)
         {
-            _point = point;
+            Point = point;
             Unit = unit;
         }
+        
+        public static OrderTarget FromPoint(Vector2 point) => new(point, null);
+        
+        public static OrderTarget FromUnit(Unit unit) => new(default, unit);
     }
 }

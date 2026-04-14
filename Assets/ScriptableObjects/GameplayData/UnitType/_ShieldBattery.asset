@@ -18,6 +18,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
   _controlWorth: 3
+  _attackWorth:
+    _baseWorth: 50
+    _evaluators:
+    - {fileID: 11400000, guid: bf685f645467db34b9731d3a399689fd, type: 2}
   _maxHitPoints: 125
   _maxShieldPoints: 75
   _shieldRestoreDelay: 250
@@ -25,6 +29,7 @@ MonoBehaviour:
   _maxEnergyPoints: 0
   _energyRestoreDelay: 0
   _energyPointsPerSecond: 0
+  _noCollision: 0
   _isImmobile: 1
   _maxSpeed: 0
   _size: 2

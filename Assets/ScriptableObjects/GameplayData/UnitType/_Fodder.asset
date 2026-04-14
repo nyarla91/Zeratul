@@ -17,6 +17,9 @@ MonoBehaviour:
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
   _controlWorth: 1
+  _attackWorth:
+    _baseWorth: 100
+    _evaluators: []
   _maxHitPoints: 45
   _maxShieldPoints: 10
   _shieldRestoreDelay: 250
@@ -24,8 +27,9 @@ MonoBehaviour:
   _maxEnergyPoints: 0
   _energyRestoreDelay: 0
   _energyPointsPerSecond: 0
+  _noCollision: 0
   _isImmobile: 0
-  _maxSpeed: 60
+  _maxSpeed: 4
   _size: 1.2
   _rotationSpeed: 720
   _isAir: 0

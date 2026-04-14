@@ -57,7 +57,9 @@ namespace Gameplay.Units.View
                 return;
             }
 
-            _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSprite(_currentAction, _currentActionTime, _unit.Direction.LookAngle);
+            float frameRateScale = _currentAction.Equals("move") ? _unit.Movement.Speed : 1;
+            _spriteRenderer.sprite = _unit.Type.SpriteMap.GetSprite(_currentAction, _currentActionTime,
+                _unit.Direction.LookAngle, frameRateScale);
             _spriteRenderer.sortingOrder = CalculateSortingOrder();
         }
 

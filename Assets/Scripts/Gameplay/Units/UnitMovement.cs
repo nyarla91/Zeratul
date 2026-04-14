@@ -42,15 +42,12 @@ namespace Gameplay.Units
             _rigidbody = rigidbody;
             _avoidanceCollider = avoidanceCollider;
             _avoidanceCollider.gameObject.layer = Unit.gameObject.layer;
-
-            IObservable<UniRx.Unit> observable = Unit.FixedUpdateAsObservable()
-                .Where(_ => tacticalPause.IsUnpaused);
+            Unit.FixedUpdateAsObservable()
+                .Where(_ => tacticalPause.IsUnpaused)
+                .Subscribe(_ => MoveAlongPath());
             
-            IDisposable moveSubscription = observable.Subscribe(_ => MoveAlongPath());
-            IDisposable physicsSubscription = observable.Subscribe(_ => UpdatePhysics());
-            
-            Unit.Killed += moveSubscription.Dispose;
-            Unit.Killed += physicsSubscription.Dispose;
+            Unit.FixedUpdateAsObservable()
+                .Subscribe(_ => UpdatePhysics());
         }
 
         public void Move(Vector2 destination)
@@ -61,7 +58,7 @@ namespace Gameplay.Units
             if (_path.Count == 0 || HasReachedPoint(_path.Last()))
             {
                 Stop();
-                return; 
+                return;
             }
             _lastPathRecalculationTime = Time.time;
         }
@@ -89,6 +86,9 @@ namespace Gameplay.Units
                 : RigidbodyConstraints2D.FreezeRotation;
 
             _rigidbody.mass = Displaceable ? 0.001f : 1;
+
+            if (_tacticalPause.IsPaused)
+                _rigidbody.linearVelocity = Vector2.zero;
         }
 
         private void MoveAlongPath()
@@ -112,7 +112,8 @@ namespace Gameplay.Units
             direction = AvoidObstaclesForDirection(direction);
             float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             Unit.Direction.RotateTowards(direction / Isometry.Scale);
-            _rigidbody.linearVelocity = direction * speed;
+            _rigidbody.linearVelocity = speed * direction;
+            Debug.Log($"{UnitType.MaxSpeed} {SpeedModifier.Value} {speed} {direction} {_rigidbody.linearVelocity}");
         }
 
         public bool HasReachedPoint(Vector2 point)

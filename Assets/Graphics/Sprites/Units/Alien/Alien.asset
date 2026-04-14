@@ -1116,7 +1116,7 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 6190caac207986649ab30fdfa2006de4, type: 3}
   - <Name>k__BackingField: alien-move
     <Action>k__BackingField: move
-    <FrameRate>k__BackingField: 15
+    <FrameRate>k__BackingField: 4
     <Loop>k__BackingField: 1
     <Frames>k__BackingField:
     - <Directions>k__BackingField:

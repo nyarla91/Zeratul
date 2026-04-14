@@ -15,16 +15,20 @@ namespace Gameplay.Units
         private float _shieldPoints;
 
         public int HitPoints => Mathf.FloorToInt(_hitPoints);
-        public int MissingHitPoints => MaxHitPoints - HitPoints;
-        public int ShieldPoints => Mathf.FloorToInt(_shieldPoints);
-        public int MissingShieldPoints => MaxShieldPoints - ShieldPoints;
-
         public int MaxHitPoints => UnitType.MaxHitPoints; 
-        public int MaxShieldPoints => UnitType.MaxShieldPoints;
-        
         public float HitPercent => (float) HitPoints / MaxHitPoints;
-        public bool HasShieldPoints => MaxShieldPoints > 0;
+        public int MissingHitPoints => MaxHitPoints - HitPoints;
+        
+        public int ShieldPoints => Mathf.FloorToInt(_shieldPoints);
+        public int MaxShieldPoints => UnitType.MaxShieldPoints;
         public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 0;
+        public int MissingShieldPoints => MaxShieldPoints - ShieldPoints;
+        public bool HasShieldPoints => MaxShieldPoints > 0;
+
+        public int LifePoints => HitPoints + ShieldPoints;
+        public int MaxLifePoints => MaxHitPoints + ShieldPoints;
+        public float LifePercent => (float) LifePoints / MaxLifePoints;
+        public int MissingLifePoints => MaxLifePoints - LifePoints;
         
         public Unit LastDamageDealer { get; private set; }
         public float LastDamageTime { get; private set; } = -1000;

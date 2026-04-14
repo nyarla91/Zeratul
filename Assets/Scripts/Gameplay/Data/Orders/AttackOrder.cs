@@ -35,8 +35,8 @@ namespace Gameplay.Data.Orders
             UnitMovement actorMovement = order.Actor.Movement;
             do
             {
-                if (!actorAttack.IsAttacking && actorAttack.ClosestTarget)
-                    actorAttack.StartAttacking(actorAttack.ClosestTarget);
+                if ( ! actorAttack.IsAttacking && order.Actor.AI.PreferredAttackTarget)
+                    actorAttack.StartAttacking(order.Actor.AI.PreferredAttackTarget);
 
                 await UniTask.WaitUntil(() => !actorAttack.IsAttacking, PlayerLoopTiming.FixedUpdate, ct);
 

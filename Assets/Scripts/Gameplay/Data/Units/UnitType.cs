@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gameplay.Data.AiEvaluators;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Statuses;
 using Gameplay.Map;
@@ -15,6 +16,7 @@ namespace Gameplay.Data.Units
         [Space]
         [SerializeField] private UnitTag[] _tags;
         [SerializeField] private int _controlWorth;
+        [SerializeField] private AiUnitTargetEvaluatorGroup _attackWorth;
         [Space]
         [SerializeField] private int _maxHitPoints;
         [Space]
@@ -49,6 +51,7 @@ namespace Gameplay.Data.Units
         public int FocusPriority => _focusPriority;
         public UnitTag[] Tags => _tags;
         public int ControlWorth => _controlWorth;
+        public AiUnitTargetEvaluatorGroup AttackWorth => _attackWorth;
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;
         public int ShieldRestoreDelay => _shieldRestoreDelay;

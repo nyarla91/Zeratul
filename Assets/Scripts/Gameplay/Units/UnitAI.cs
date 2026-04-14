@@ -16,11 +16,20 @@ namespace Gameplay.Units
         private readonly UnitAiConfig _config;
         private readonly Vector2 _spawnPoint;
         
+        public HashSet<Unit> Threats { get; private set; }
+        public HashSet<Unit> SurroundingUnits { get; private set; }
+        public Unit PreferredAttackTarget { get; private set; }
+        
         public UnitAI(Unit unit, IPauseReadonly tacticalPause, UnitAiConfig config) : base(unit)
         {
             _tacticalPause = tacticalPause;
             _config = config;
             _spawnPoint = unit.Position;
+            
+            Unit.FixedUpdateAsObservable()
+                .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
+                .Where(_ => _tacticalPause.IsUnpaused)
+                .Subscribe(_ => UpdateSurroundings());
             
             Unit.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
@@ -33,20 +42,13 @@ namespace Gameplay.Units
             if (Unit.Ownership.OwnedByPlayer)
                 return;
 
-            if ( ! Unit.Simulation.IsSimulated)
+            if ( ! Unit.Simulation.IsSimulated || Threats.Count == 0)
             {
                 MoveToSpawnPoint();
                 return;
             }
-            
-            HashSet<Unit> surroundings = GetThreats();
-            if (surroundings.Count == 0)
-            {
-                MoveToSpawnPoint();
-                return;
-            }
-            surroundings.UnionWith(Unit.Sight.VisibleUnits());
-            Order order = UnitType.AIMap.GetBestOrder(Unit, surroundings);
+
+            Order order = UnitType.AIMap.GetBestOrder(Unit, SurroundingUnits);
             if (order == null)
             {
                 MoveToSpawnPoint();
@@ -59,28 +61,35 @@ namespace Gameplay.Units
         {
             if ( ! Unit.CanMove)
                 return;
-            Unit.Orders.IssueOrder(new Order(_config.MoveOrder, Unit, new OrderTarget(_spawnPoint, null)), false);
+            Unit.Orders.IssueOrder(new Order(_config.MoveOrder, Unit, OrderTarget.FromPoint(_spawnPoint)), false);
         }
 
-        private HashSet<Unit> GetThreats()
+        private void UpdateSurroundings()
         {
-            HashSet<Unit> visibleAllies = new() {Unit};
-            HashSet<Unit> result = new();
+            UpdateSurroundingUnits();
+            UpdateThreats(SurroundingUnits);
+            UpdatePreferredAttackTarget(Threats);
+        }
 
-            foreach (Unit visible in Unit.Sight.VisibleUnits())
-            {
-                if (visible.Ownership.IsHostile(Unit))
-                    result.Add(visible);
-                else
-                    visibleAllies.Add(visible);
-            }
+        private void UpdateSurroundingUnits()
+        {
+            SurroundingUnits = Unit.Sight.VisibleUnits();
+        }
 
-            result.UnionWith(visibleAllies
+        private void UpdateThreats(HashSet<Unit> surroundingUnits)
+        {
+            Threats = surroundingUnits.Where(u => u.Ownership.IsHostile(Unit)).ToHashSet();
+
+            Threats.UnionWith(SurroundingUnits
+                .Where(u => u.Ownership.IsFriendly(Unit))
                 .Where(a => Time.fixedTime - a.Life.LastDamageTime < _config.DamageForgiveTime)
                 .Select(a => a.Life.LastDamageDealer)
                 .NoNull().ToHashSet());
-            
-            return result;
+        }
+
+        private void UpdatePreferredAttackTarget(HashSet<Unit> threats)
+        {
+            PreferredAttackTarget = threats.MaxElement(t => _config.AutoAttackEvaluator.EvaluteTargetWorth(Unit, t));
         }
     }
 }

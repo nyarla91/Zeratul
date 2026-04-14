@@ -48,8 +48,8 @@ namespace Gameplay.Player
             return requirement switch
             {
                 TargetRequirement.None => default,
-                TargetRequirement.Point => new OrderTarget(_mouseTargeting.Point, null),
-                TargetRequirement.Unit => new OrderTarget(default, _mouseTargeting.Unit),
+                TargetRequirement.Point => OrderTarget.FromPoint(_mouseTargeting.Point),
+                TargetRequirement.Unit => OrderTarget.FromUnit(_mouseTargeting.Unit),
                 TargetRequirement.PointOrUnit => EstimatedPointOrUnitTarget,
                 _ => throw new ArgumentOutOfRangeException()
             };
