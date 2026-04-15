@@ -1,9 +1,6 @@
 ﻿using System;
 using Extentions.Pause;
-using GameState;
-using UI;
 using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -12,29 +9,20 @@ namespace Gameplay.UI.Menu
 {
     public class PauseMenu : MonoBehaviour
     {
-        [SerializeField] private UIWindow _window;
+        [SerializeField] private UIUtility.Menu _menu;
         
         [Inject] private GamePause GamePause { get; set; }
 
         private void Awake()
         {
-            this.UpdateAsObservable()
-                .Where(_ => ! _window.IsOpened)
-                .Where(_ => Keyboard.current.escapeKey.wasPressedThisFrame)
-                .Delay(TimeSpan.FromSeconds(0.1f))
-                .Subscribe(_ => _window.Open());
+            Observable.EveryUpdate()
+                .Where(_ => ! _menu.IsOpened)
+                .Where(_ => Keyboard.current.escapeKey.wasReleasedThisFrame)
+                .Delay(TimeSpan.FromMilliseconds(100))
+                .Subscribe(_ => _menu.Open());
 
-            _window.ObserveEveryValueChanged(w => w.IsOpened)
-                .Subscribe(UpdatePause);
-        }
-
-
-        private void UpdatePause(bool pause)
-        {
-            if (pause)
-                GamePause.Pause(this);
-            else
-                GamePause.Unpause(this);
+            _menu.Opened += () => GamePause.Pause(this);
+            _menu.Closed += () => GamePause.Unpause(this);
         }
     }
 }
