@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
   m_Name: _FodderWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
-  _baseDamage: 1
+  _baseDamage: 7
   _windupTime: 10
   _recoveryTime: 10
   _maxDistance: 7
