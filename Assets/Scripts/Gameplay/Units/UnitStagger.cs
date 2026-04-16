@@ -13,6 +13,7 @@ namespace Gameplay.Units
         
         public int RecoveryFramesLeft { get; private set; }
         public bool IsStaggered { get; private set; }
+        public bool IsRecovering { get; private set; }
 
         public string Action { get; private set; } = "idle";
 
@@ -29,11 +30,12 @@ namespace Gameplay.Units
 
         public async UniTask<bool> TryBegin(int windupTime, int recoveryTime, string action)
         {
-            if (IsStaggered)
+            if (IsStaggered || IsRecovering)
             {
                 return false;
             }
             IsStaggered = true;
+            IsRecovering = false;
             Action = action;
             Began?.Invoke();
 
@@ -44,6 +46,8 @@ namespace Gameplay.Units
                 await UniTask.WaitForFixedUpdate();
             }
             RecoveryFramesLeft = recoveryTime;
+            IsStaggered = false;
+            IsRecovering = true;
             return true;
         }
 
@@ -51,7 +55,7 @@ namespace Gameplay.Units
         {
             if (RecoveryFramesLeft == 0)
             {
-                IsStaggered = false;
+                IsRecovering = false;
             }
             RecoveryFramesLeft--;
         }

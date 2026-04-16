@@ -67,9 +67,11 @@ namespace Gameplay.Units.View
         {
             if (_unit.Stagger.IsStaggered)
                 return _unit.Stagger.Action;
-            if (_unit.Stagger.RecoveryFramesLeft < -1)
-                return (_unit.CanMove && _unit.Movement.HasPath) ? "move" : "idle";
-            return _unit.Stagger.Action;
+            if (_unit.CanMove && _unit.Movement.HasPath)
+                return "move";
+            if (_unit.Stagger.IsRecovering)
+                return _unit.Stagger.Action;
+            return "idle";
         }
 
         private void DiscardCurrentActionTime()
