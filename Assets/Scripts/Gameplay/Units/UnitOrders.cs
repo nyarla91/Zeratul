@@ -21,8 +21,9 @@ namespace Gameplay.Units
         public Order CurrentOrder { get; private set; }
 
         public Order[] PendingOrders => _pendingOrders.ToArray();
-
         public bool IsIdle => CurrentOrder == null;
+
+        public event Action<Order> CurrentOrderUpdated;
         
         public UnitOrders(Unit unit, IPauseReadonly tacticalPause) : base(unit)
         {
@@ -40,9 +41,12 @@ namespace Gameplay.Units
                 .Where(_ => _pendingOrders.Count > 0)
                 .Subscribe(_ => TryCarryOutNextOrder());
 
-            Unit.Killed += ClearAllOrders;
+            Unit.ObserveEveryValueChanged(u => u.Ownership.OwnedByPlayer)
+                .Subscribe(_ => ClearAllOrders());
+
             Unit.Killed += completeSubscription.Dispose;
             Unit.Killed += nextOrderSubscription.Dispose;
+            Unit.Ownership.OwnerUpdated += _ => ClearAllOrders();
         }
 
         public void IssueSmartOrder(OrderTarget target, bool queue)
@@ -75,6 +79,7 @@ namespace Gameplay.Units
         {
             _currentOrderCts?.Cancel();
             CurrentOrder = null;
+            CurrentOrderUpdated?.Invoke(CurrentOrder);
         }
 
         private bool TryCarryOutNextOrder()
@@ -82,6 +87,7 @@ namespace Gameplay.Units
             if (CurrentOrder != null)
                 return false;
             CurrentOrder = _pendingOrders.Dequeue();
+            CurrentOrderUpdated?.Invoke(CurrentOrder);
             _currentOrderCts = new CancellationTokenSource();
             _currentOrderTask = CurrentOrder.CarryOut(_currentOrderCts.Token);
             return true;
@@ -90,6 +96,7 @@ namespace Gameplay.Units
         private void ClearAllOrders()
         {
             CurrentOrder =  null;
+            CurrentOrderUpdated?.Invoke(CurrentOrder);
             _pendingOrders.Clear();
         }
     }

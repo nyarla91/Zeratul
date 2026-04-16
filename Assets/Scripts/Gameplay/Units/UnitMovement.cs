@@ -113,7 +113,6 @@ namespace Gameplay.Units
             float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             Unit.Direction.RotateTowards(direction / Isometry.Scale);
             _rigidbody.linearVelocity = speed * direction;
-            Debug.Log($"{UnitType.MaxSpeed} {SpeedModifier.Value} {speed} {direction} {_rigidbody.linearVelocity}");
         }
 
         public bool HasReachedPoint(Vector2 point)

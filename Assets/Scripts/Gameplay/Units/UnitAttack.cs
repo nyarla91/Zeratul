@@ -33,12 +33,13 @@ namespace Gameplay.Units
                 .Where(_ => IsAttacking)
                 .Subscribe(_ => UpdateAttack());
 
+            Unit.Orders.CurrentOrderUpdated += _ => CurrentTarget = null;
+
             if (UnitType.WeaponType.AutoAttack)
             {
                 IDisposable autoAttackSubscription = Observable.EveryFixedUpdate()
                     .Where(_ => tacticalPause.IsUnpaused)
-                    .Where(_ => ! IsAttacking)
-                    .Subscribe(_ => TryAutoAttack());
+                    .Subscribe(_ => UpdateAutoAttackTarget());
                 Unit.Killed += autoAttackSubscription.Dispose;
             }
         }
@@ -115,19 +116,14 @@ namespace Gameplay.Units
             StrikeUnit(CurrentTarget);
         }
 
-        private void TryAutoAttack()
+        private void UpdateAutoAttackTarget()
         {
-            if (Unit.Ownership.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false) || IsAttacking)
+            Debug.Log($"{Unit} {Unit.Ownership.OwnedByEnemy} { ! Unit.Orders.IsIdle} {(Unit.Movement?.IsHoldingPosition ?? false)}");
+            if (Unit.Ownership.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false))
                 return;
 
-            if (!Unit.AI.PreferredAttackTarget)
-            {
-                StopAttacking();
-                return;
-            }
-
-            OrderTarget target = OrderTarget.FromUnit(Unit.AI.PreferredAttackTarget);
-            Unit.Orders.IssueOrder(new Order(_config.DefaultAttackOrder, Unit, target), false);
+            Debug.Log(Unit.AI.PreferredAttackTarget);
+            CurrentTarget = Unit.AI.PreferredAttackTarget;
         }
 
         private async void StrikeUnit(Unit target)

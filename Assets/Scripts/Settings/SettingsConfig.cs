@@ -4,32 +4,21 @@ using UnityEngine;
 namespace Settings
 {
     [Serializable]
-    public struct SettingsConfig
+    public class SettingsConfig
     {
-        [SerializeField] private SettingsSection _video;
-        [SerializeField] private SettingsSection _audio;
-        [SerializeField] private SettingsSection _game;
-        
-        public SettingsSection Video => _video;
-        public SettingsSection Audio => _audio;
-        public SettingsSection Game => _game;
-
-        public SettingsSection GetSection(SettingsSectionLabel label)
-        {
-            return label switch
-            {
-                SettingsSectionLabel.Video => Video,
-                SettingsSectionLabel.Audio => Audio,
-                SettingsSectionLabel.Game => Game,
-                _ => throw new ArgumentOutOfRangeException(nameof(label), label, null)
-            };
-        }
+        [SerializeField] private SettingsEntry[] _settings;
     }
 
-    public enum SettingsSectionLabel
+    public struct SettingsEntry
     {
-        Video,
-        Audio,
-        Game,
+        [SerializeField] private string _key;
+        [SerializeField] private int _value;
+        
+        public string Key => _key;
+        public int Value
+        {
+            get => _value;
+            set => _value = value;
+        }
     }
 }

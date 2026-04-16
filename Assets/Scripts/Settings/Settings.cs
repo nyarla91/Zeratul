@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Settings
 {
-    public class Settings : MonoBehaviour
+    [CreateAssetMenu(menuName = "Settings")]
+    public class Settings : ScriptableObject
     {
         [SerializeField] private AnimationCurve _soundCurve;
         [SerializeField] private string _savedFileName;
@@ -20,7 +21,6 @@ namespace Settings
         {
             if (TryLoad(out SettingsConfig loadedConfig))
                 _config = loadedConfig;
-            Apply(Config);
         }
 
         private void Update()
@@ -39,42 +39,6 @@ namespace Settings
             string json = File.ReadAllText(SaveFilePath);
             loadedConfig = JsonUtility.FromJson<SettingsConfig>(json);
             return true;
-        }
-
-        public void SaveAndApply()
-        {
-            string json = JsonUtility.ToJson(Config);
-            File.WriteAllText(SaveFilePath, json);
-            Apply(Config);
-            ConfigChanged?.Invoke();
-        } 
-
-        private void Apply(SettingsConfig config)
-        {
-            FullScreenMode fullScreenMode = config.Video.IsSettingToggled("fullscreen") ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
-            Screen.fullScreenMode = fullScreenMode;
-            int resolution = Config.Video.GetSettingValue("resolution");
-            int screenWidth = resolution switch
-            {
-                0 => 960,
-                1 => 1280,
-                2 => 1366,
-                3 => 1920,
-                4 => 2560,
-                5 => 3840,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-            int screenHeight = resolution switch
-            {
-                0 => 540,
-                1 => 720,
-                2 => 768,
-                3 => 1080,
-                4 => 1440,
-                5 => 2160,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-            Screen.SetResolution(screenWidth, screenHeight, fullScreenMode);
         }
     }
 }

@@ -80,10 +80,11 @@ namespace Gameplay.Units
         {
             Threats = surroundingUnits.Where(u => u.Ownership.IsHostile(Unit)).ToHashSet();
 
-            Threats.UnionWith(SurroundingUnits
+            Threats.UnionWith(surroundingUnits
                 .Where(u => u.Ownership.IsFriendly(Unit))
                 .Where(a => Time.fixedTime - a.Life.LastDamageTime < _config.DamageForgiveTime)
                 .Select(a => a.Life.LastDamageDealer)
+                .Where(u => u.Ownership.IsHostile(Unit))
                 .NoNull().ToHashSet());
         }
 
