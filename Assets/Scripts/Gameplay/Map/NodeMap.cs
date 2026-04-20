@@ -51,11 +51,14 @@ namespace Gameplay.Map
                     _nodes[x, y] = new Node(_config, nodeWorldPosition, new Vector2Int(x, y));
                 }
             }
-            RecalculateAllObstacles();
-
             Observable.EveryFixedUpdate()
                 .Where(_ => _obstacleRecalculationQueue.Count > 0)
                 .Subscribe(_ => RecalculateAllObstacles(_obstacleRecalculationQueue.Dequeue()));
+        }
+
+        private void Start()
+        {
+            RecalculateAllObstacles();
         }
 
         public void QueueObstacleRecalculation(Bounds bounds) => _obstacleRecalculationQueue.Enqueue(bounds);

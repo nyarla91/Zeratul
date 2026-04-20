@@ -1,11 +1,9 @@
 ﻿using Extentions.Pause;
 using Gameplay;
-using Gameplay.Data;
+using Gameplay.Data.Configs;
 using Gameplay.Map;
-using Gameplay.Player;
 using Gameplay.UI;
 using Gameplay.Units;
-using Gameplay.Units.View;
 using Gameplay.Vision;
 using Gameplay.Visual;
 using UnityEngine;
@@ -22,6 +20,7 @@ namespace DI
         [SerializeField] private Tooltip _tooltip;
         [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
         [SerializeField] private OrderErrorMessage _orderErrorMessage;
+        [SerializeField] private TutorialWindow _tutorialWindow;
         
         public override void InstallBindings()
         {
@@ -35,6 +34,7 @@ namespace DI
             Container.BindInstance(_tooltip).AsSingle();
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
             Container.BindInstance(_orderErrorMessage).AsSingle();
+            Container.BindInstance(_tutorialWindow).AsSingle();
             
         }
     }
