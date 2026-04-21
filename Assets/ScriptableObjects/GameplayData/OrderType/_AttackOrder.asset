@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.AttackOrder
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _displayName: order-attack-name
+  _displayValidators:
+    _unitValidators:
+    - {fileID: 11400000, guid: 8aa1b5f02c185884eb6b593db4f5867f, type: 2}
   _rawDisplayDescription: order-attack-description
   _icon: {fileID: 21300000, guid: 9dc9a55ae44c7544ba14d215397b61f1, type: 3}
   _hotkeyAlias: Attack

@@ -10,9 +10,9 @@ namespace Gameplay.Data.Abilities
     [CreateAssetMenu(menuName = "Gameplay Data/Ability", order = 0)]
     public class AbilityType : ScriptableObject
     {
-        [Tooltip("Cooldown between uses (in fixed frames)")]
         [SerializeField] private int _windupTime;
         [SerializeField] private int _recoveryTime;
+        [Tooltip("Cooldown between uses (in fixed frames)")]
         [SerializeField] private int _cooldown;
         [SerializeField] private int _energyCost;
         [SerializeField] private bool _ignoreLock;

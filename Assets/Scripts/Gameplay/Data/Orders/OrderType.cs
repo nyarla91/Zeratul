@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Gameplay.Data.Validator;
 using Gameplay.UI;
 using Gameplay.Units;
 using Localization;
@@ -14,6 +15,7 @@ namespace Gameplay.Data.Orders
         [SerializeField] private Localizer _localizer;
         
         [SerializeField] private string _displayName;
+        [SerializeField] private UnitValidatorGroup _displayValidators;
         [SerializeField] [TextArea(4, 10)] private string _rawDisplayDescription;
         [SerializeField] private Sprite _icon;
         [SerializeField] private string _hotkeyAlias;
@@ -34,6 +36,8 @@ namespace Gameplay.Data.Orders
         public abstract TargetRequirement TargetRequirement { get; }
         
         public virtual bool IsValidForSmartOrder(OrderTarget target) => false;
+
+        public bool CanBeDisplayed(Unit actor) => _displayValidators.IsValid(actor, actor);
 
         public bool CanBeIssued(Order order) =>
             IsTargetValid(order.Actor, order.Target, out _) && IsActorValid(order.Actor, out _);

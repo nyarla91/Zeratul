@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
@@ -50,6 +52,8 @@ namespace Gameplay.UI
 
         public void ApplyOrderType(OrderType orderType)
         {
+            if ( ! CanDisplayOrder(orderType))
+                orderType = null;
             if (OrderType == orderType)
                 return;
             
@@ -156,6 +160,19 @@ namespace Gameplay.UI
         {
             _showTooltip = false;
             Tooltip.Hide();
+        }
+
+        private bool CanDisplayOrder(OrderType orderType)
+        {
+            if ( ! orderType)
+                return false;
+            
+            HashSet<Unit> units = Selection.SelectedUnits
+                .Where(u => u.Type.AvailableOrders.Contains(orderType))
+                .ToHashSet();
+            
+            return units
+                .Any(orderType.CanBeDisplayed);
         }
 
         private void Update()

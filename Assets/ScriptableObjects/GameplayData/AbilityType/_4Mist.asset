@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
-  m_Name: _Hinderance
+  m_Name: _4Mist
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
   _windupTime: 35
   _recoveryTime: 10
-  _cooldown: 300
-  _energyCost: 7
+  _cooldown: 0
+  _energyCost: 4
   _ignoreLock: 0
-  _targetRequirement: 2
+  _targetRequirement: 1
   _maxDistance: 12
   _casterValidators:
     _unitValidators: []
@@ -25,7 +25,7 @@ MonoBehaviour:
     _unitValidators: []
   _casterEffects: []
   _mustLookAtTarget: 1
-  _unitTargetEffects:
-  - {fileID: 11400000, guid: f961727913654634d94ef23accd2dbd9, type: 2}
-  _pointTargetEffects: []
+  _unitTargetEffects: []
+  _pointTargetEffects:
+  - {fileID: 11400000, guid: f68cd969008df464985b0cbc4c6b812d, type: 2}
   _animationAction: ability

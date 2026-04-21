@@ -10,9 +10,11 @@ namespace GameState
     public class ScenarioData : ScriptableObject
     {
         [SerializeField] private AssetReferenceGameObject _prefab;
+        [SerializeField] private int _abilitiesAvailable;
 
         public GameObject LoadedPrefab { get; private set; }
-        
+        public int AbilitiesAvailable => _abilitiesAvailable;
+
         public async UniTask<GameObject> LoadPrefab()
         {
             AsyncOperationHandle<GameObject> handle = _prefab.LoadAssetAsync<GameObject>();
