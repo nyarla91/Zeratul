@@ -18,14 +18,11 @@ namespace Gameplay.Pickups
 
         private void TryPickUp(Collider2D other)
         {
-            Debug.Log(other);
             Unit unit = other.GetComponentInParent<Unit>();
             if ( ! unit)
                 return;
-            Debug.Log(unit);
             if (_interactionValidator.IsInvalid(unit, unit))
                 return;
-            Debug.Log(unit);
             OnPickup(unit);
             Destroy(gameObject);
         }

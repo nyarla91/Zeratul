@@ -13,7 +13,7 @@ namespace Gameplay.Units
         [SerializeField] private GameObject _prefab;
         [Space]
         [SerializeField] private UnitType _unitType;
-        [SerializeField] private bool _ownedByPlayer;
+        [SerializeField] private UnitSpawnInfo _spawnInfo;
 
         [Inject] private ContainerInstantiator Instantiator { get; set; }
         
@@ -21,17 +21,18 @@ namespace Gameplay.Units
         {
             Unit unit = Instantiator.Instantiate<Unit>(_prefab, transform.position, transform.parent);
             unit.gameObject.name = gameObject.name;
-            unit.Init(_unitType, _ownedByPlayer);
+            _spawnInfo.PatrolPath.Init();
+            unit.Init(_unitType, _spawnInfo);
             Destroy(gameObject);
         }
 
         public void OnValidate()
         {
-            _spriteRenderer.sprite = _unitType?.SpriteMap.GenericSprite;
-            _spriteRenderer.color = _ownedByPlayer ? Color.green : Color.red;
+            _spriteRenderer.sprite = _unitType?.SpriteMap.GetSprite("idle", 0, _spawnInfo.LookAngle);
+            _spriteRenderer.color = _spawnInfo.OwnedByPlayer ? Color.green : Color.red;
             
             StringBuilder name =  new();
-            name.Append($"{(_ownedByPlayer ? "Player" : "Enemy")} - ");
+            name.Append($"{(_spawnInfo.OwnedByPlayer ? "Player" : "Enemy")} - ");
             name.Append(_unitType?.DisplayName ?? "No unit");
             gameObject.name = name.ToString();
         }

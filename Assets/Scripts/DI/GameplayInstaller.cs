@@ -26,6 +26,7 @@ namespace DI
         {
             Container.Bind<GamePause>().AsSingle();
             Container.Bind<TacticalPause>().AsSingle();
+            Container.Bind<GameTime>().AsSingle();
             
             Container.BindInstance(_unitPool).AsSingle();
             Container.BindInstance(_nodeMap).AsSingle();

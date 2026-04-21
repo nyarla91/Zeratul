@@ -13,17 +13,22 @@ namespace Gameplay.Units
     public class UnitAI : UnitComponent
     {
         private readonly IPauseReadonly _tacticalPause;
+        private readonly GameTime _gameTime;
         private readonly UnitAiConfig _config;
+        private readonly UnitPatrolPath _patrolPath;
         private readonly Vector2 _spawnPoint;
         
         public HashSet<Unit> Threats { get; private set; }
         public HashSet<Unit> SurroundingUnits { get; private set; }
         public Unit PreferredAttackTarget { get; private set; }
         
-        public UnitAI(Unit unit, IPauseReadonly tacticalPause, UnitAiConfig config) : base(unit)
+        public UnitAI(Unit unit, IPauseReadonly tacticalPause, GameTime gameTime, UnitAiConfig config, UnitPatrolPath patrolPath) : base(unit)
         {
             _tacticalPause = tacticalPause;
+            _gameTime = gameTime;
             _config = config;
+            _patrolPath = patrolPath;
+            
             _spawnPoint = unit.Position;
             
             Unit.FixedUpdateAsObservable()
@@ -44,24 +49,28 @@ namespace Gameplay.Units
 
             if ( ! Unit.Simulation.IsSimulated || Threats.Count == 0)
             {
-                MoveToSpawnPoint();
+                Patrol();
                 return;
             }
 
             Order order = UnitType.AIMap.GetBestOrder(Unit, SurroundingUnits);
             if (order == null)
             {
-                MoveToSpawnPoint();
+                Patrol();
                 return;
             }
             Unit.Orders.IssueOrder(order, false);
         }
 
-        private void MoveToSpawnPoint()
+        private void Patrol()
         {
             if ( ! Unit.CanMove)
                 return;
-            Unit.Orders.IssueOrder(new Order(_config.MoveOrder, Unit, OrderTarget.FromPoint(_spawnPoint)), false);
+            if ( ! _patrolPath.TryGetDestination(_gameTime.Time, out Vector2 destination))
+            {
+                destination = _spawnPoint;
+            }
+            Unit.Orders.IssueOrder(new Order(_config.MoveOrder, Unit, OrderTarget.FromPoint(destination)), false);
         }
 
         private void UpdateSurroundings()

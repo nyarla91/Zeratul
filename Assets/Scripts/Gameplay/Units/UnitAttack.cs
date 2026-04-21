@@ -118,7 +118,6 @@ namespace Gameplay.Units
 
         private void UpdateAutoAttackTarget()
         {
-            Debug.Log($"{Unit} {Unit.Ownership.OwnedByEnemy} { ! Unit.Orders.IsIdle} {(Unit.Movement?.IsHoldingPosition ?? false)}");
             if (Unit.Ownership.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false))
                 return;
 

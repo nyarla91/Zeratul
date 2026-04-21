@@ -24,14 +24,14 @@ namespace Gameplay.UI
             _description.text = _config.Format(_localizer.Translate(entry.Description));
             
             _canvasGroup.DOComplete();
-            _canvasGroup.DOFade(1, 0.2f);
+            _canvasGroup.DOFade(1, 0.5f);
             _canvasGroup.interactable = _canvasGroup.blocksRaycasts = true;
         }
 
         public void Hide()
         {
             _canvasGroup.DOComplete();
-            _canvasGroup.DOFade(0, 0.2f);
+            _canvasGroup.DOFade(0, 0.5f);
             _canvasGroup.interactable = _canvasGroup.blocksRaycasts = false;
         }
     }

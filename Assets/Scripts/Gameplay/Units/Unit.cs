@@ -61,29 +61,30 @@ namespace Gameplay.Units
         public event Action Killed; 
         
         [Inject] private TacticalPause TacticalPause { get; set; }
+        [Inject] private GameTime GameTime { get; set; }
         [Inject] private NodeMap NodeMap { get; set; }
         [Inject] private UnitPool UnitPool { get; set; }
         [Inject] private VisionMap VisionMap { get; set; }
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
         
-        public void Init(UnitType type, bool ownedByPlayer)
+        public void Init(UnitType type, UnitSpawnInfo spawnInfo)
         {
             if (Type != null)
                 return;
             
             Type = type;
 
-            Direction = new UnitDirection(this, TacticalPause);
+            Direction = new UnitDirection(this, TacticalPause, spawnInfo.LookAngle);
             Abilities = new UnitAbilities(this, TacticalPause);
             Life = new UnitLife(this, TacticalPause);
-            Ownership = new UnitOwnership(this, ownedByPlayer);
+            Ownership = new UnitOwnership(this, spawnInfo.OwnedByPlayer);
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
-            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, ownedByPlayer);
+            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo.OwnedByPlayer);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
-            AI = new UnitAI(this, TacticalPause, _aiConfig);
+            AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo.PatrolPath);
             Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
             Pathing = new UnitPathing(this, _pathfindingConfig, _unitMovementConfig, NodeMap, _rigidbody, _obstacleCollider, _collider);
             

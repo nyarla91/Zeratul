@@ -12,8 +12,9 @@ namespace Gameplay.Units
         public float LookAngle { get; private set; }
         public float TargetLookAngle { get; private set; }
         
-        public UnitDirection(Unit unit, IPauseReadonly tacticalPause) : base(unit)
+        public UnitDirection(Unit unit, IPauseReadonly tacticalPause, float lookAngle) : base(unit)
         {
+            LookAngle = lookAngle;
             Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateLookAngle());
