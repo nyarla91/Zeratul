@@ -36,7 +36,14 @@ MonoBehaviour:
       Enemies cannot see you or
       attack you directly.'
   - _label: Attack
-    _description: Right-click an enemy to order selected unit to attack this enemy.
+    _description: 'Right-click an enemy to order selected unit to attack this enemy.
+
+
+      Alternatively
+      you can hover your mouse over enemy and press A.'
+  - _label: Attack-move
+    _description: Hover mouse over any point and press A to order selected character
+      to move towards this location attacking any enemy on their way.
   - _label: Detectors
     _description: 'Enemy sensor towers can detect your presence and see through your
       cloak.

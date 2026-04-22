@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Gameplay
 {
-    public class ScenarioInitializer : MonoBehaviour
+    public class ScenarioLifetime : MonoBehaviour
     {
         [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
         [Inject] private GameFlowController GameFlowController { get; set; }

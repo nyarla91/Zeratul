@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
   _baseDamage: 7
   _windupTime: 10
-  _recoveryTime: 10
+  _recoveryTime: 20
   _maxDistance: 7
   _autoAttack: 1

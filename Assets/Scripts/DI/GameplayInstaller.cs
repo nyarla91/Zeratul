@@ -21,6 +21,7 @@ namespace DI
         [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
         [SerializeField] private OrderErrorMessage _orderErrorMessage;
         [SerializeField] private TutorialWindow _tutorialWindow;
+        [SerializeField] private ScenarioLifetime _scenarioLifetime;
         
         public override void InstallBindings()
         {
@@ -36,7 +37,7 @@ namespace DI
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
             Container.BindInstance(_orderErrorMessage).AsSingle();
             Container.BindInstance(_tutorialWindow).AsSingle();
-            
+            Container.BindInstance(_scenarioLifetime).AsSingle();
         }
     }
 }

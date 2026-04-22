@@ -1027,6 +1027,7 @@ MonoBehaviour:
   _rangeEllipseFactory: {fileID: 550176832}
   _orderErrorMessage: {fileID: 1544542344}
   _tutorialWindow: {fileID: 1227034973}
+  _scenarioLifetime: {fileID: 1257592636}
 --- !u!4 &189624905
 Transform:
   m_ObjectHideFlags: 0
@@ -1818,7 +1819,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 832.19, y: -66}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 312.85, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297041596
 MonoBehaviour:
@@ -4402,7 +4403,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1152.425, y: -66}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 183.62, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927343562
 MonoBehaviour:
