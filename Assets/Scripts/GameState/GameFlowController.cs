@@ -1,7 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
 using GameState.States;
+using UnityEditor.Overlays;
 using UnityEngine;
 using Zenject;
+using SaveData = Saving.Data.SaveData;
 
 namespace GameState
 {
@@ -17,6 +19,12 @@ namespace GameState
             _scenarioSession = scenarioSession;
             Debug.Log(this);
             LaunchGame();
+        }
+
+        public void StartScenarioFromSaveData(SaveData saveData)
+        {
+            _scenarioSession.SetSaveData(saveData);
+            _stateMachine.Enter<GameplayState>();
         }
 
         public void StartScenario(ScenarioData scenario)

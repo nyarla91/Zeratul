@@ -2,7 +2,6 @@
 using System.Linq;
 using Extentions;
 using Gameplay.Data.Configs;
-using Gameplay.Enviroment;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;

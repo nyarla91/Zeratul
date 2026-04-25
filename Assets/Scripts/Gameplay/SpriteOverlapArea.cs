@@ -1,8 +1,7 @@
-﻿using System;
-using Gameplay.Data.Configs;
+﻿using Gameplay.Data.Configs;
 using UnityEngine;
 
-namespace Gameplay.Enviroment
+namespace Gameplay
 {
     public class SpriteOverlapArea : MonoBehaviour
     {
