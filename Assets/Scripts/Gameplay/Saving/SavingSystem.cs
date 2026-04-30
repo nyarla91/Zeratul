@@ -8,9 +8,9 @@ namespace Gameplay.Saving
     {
         [SerializeField] private GameplaySaver _saver;
         
-        public abstract void ReproduceSavedSystem(TSystem payload);
+        public abstract void ReproduceFromSaveData(TSystem payload);
         
-        public abstract ISaveSystem SaveSystem();
+        public abstract ISaveSystem Save();
 
         protected virtual void Awake()
         {
@@ -20,6 +20,6 @@ namespace Gameplay.Saving
 
     public interface ISavingSystem
     {
-        public ISaveSystem SaveSystem();
+        public ISaveSystem Save();
     }
 }

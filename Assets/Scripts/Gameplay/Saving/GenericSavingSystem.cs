@@ -5,16 +5,16 @@ using Zenject;
 
 namespace Gameplay.Saving
 {
-    public class GenericSavingSystem : SavingSystem<GenericSaveSystem>
+    public class GenericSavingSystem : SavingSystem<GeneralSaveSystem>
     {
         [Inject] private ScenarioSession ScenarioSession { get; set; }
         
-        public override void ReproduceSavedSystem(GenericSaveSystem payload) { }
+        public override void ReproduceFromSaveData(GeneralSaveSystem payload) { }
 
-        public override ISaveSystem SaveSystem()
+        public override ISaveSystem Save()
         {
             int id = ScenarioSession.CurrentId;
-            return new GenericSaveSystem(id);
+            return new GeneralSaveSystem(id);
         }
     }
 }

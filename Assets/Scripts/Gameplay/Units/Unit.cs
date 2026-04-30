@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
-using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Units;
 using Gameplay.Map;
 using Gameplay.Player;
 using Gameplay.Vision;
 using NaughtyAttributes;
+using Saving.Data.Units;
 using UnityEngine;
 using Zenject;
 
@@ -59,7 +58,7 @@ namespace Gameplay.Units
         public UnitType Type { get; private set; }
 
         public event Action Killed; 
-        public int Id { get; set; }
+        public int Id { get; private set; }
         
         [Inject] private TacticalPause TacticalPause { get; set; }
         [Inject] private GameTime GameTime { get; set; }
@@ -97,6 +96,45 @@ namespace Gameplay.Units
                 Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _avoidanceCollider);
             
             UnitPool.AddUnit(this);
+        }
+
+        public UnitSaveData Save()
+        {   
+            return new UnitSaveData(new[]
+            {
+                Direction.Save(),
+                Abilities.Save(),
+                Life.Save(),
+                Ownership.Save(),
+                Stagger.Save(),
+                Visibility.Save(),
+                Sight.Save(),
+                Orders.Save(),
+                Statuses.Save(),
+                AI.Save(),
+                Simulation.Save(),
+                Pathing.Save(),
+                Attack?.Save(),
+                Movement?.Save()
+            }, Id, Type.name, Position);
+        }
+
+        public void ReproduceFromSave(UnitSaveData saveData)
+        {
+            Direction.ReproduceFromSave(saveData);
+            Abilities.ReproduceFromSave(saveData);
+            Life.ReproduceFromSave(saveData);
+            Ownership.ReproduceFromSave(saveData);
+            Stagger.ReproduceFromSave(saveData);
+            Visibility.ReproduceFromSave(saveData);
+            Sight.ReproduceFromSave(saveData);
+            Orders.ReproduceFromSave(saveData);
+            Statuses.ReproduceFromSave(saveData);
+            AI.ReproduceFromSave(saveData);
+            Simulation.ReproduceFromSave(saveData);
+            Pathing.ReproduceFromSave(saveData);
+            Attack?.ReproduceFromSave(saveData);
+            Movement?.ReproduceFromSave(saveData);
         }
 
         public void Kill()

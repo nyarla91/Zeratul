@@ -1,4 +1,5 @@
 ﻿using Gameplay.Data.Units;
+using Saving.Data.Units;
 
 namespace Gameplay.Units
 {
@@ -12,5 +13,9 @@ namespace Gameplay.Units
         {
             Unit = unit;
         }
+
+        public virtual IUnitSaveSystem Save() => null;
+
+        public virtual void ReproduceFromSave(UnitSaveData saveData) { }
     }
 }

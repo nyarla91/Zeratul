@@ -1,11 +1,23 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Saving.Data.Units;
 using UnityEngine;
 
 namespace Saving.Data
 {
     [Serializable]
-    public struct UnitsSaveData
+    public class UnitsSaveData : ISaveSystem
     {
-        [SerializeField] private UnitSaveData _units;
+        public static string LoadKey => "units";
+        public string SaveKey => "units";
+        
+        [JsonProperty] private UnitSaveData[] _units;
+
+        public UnitSaveData[] Units => _units;
+
+        public UnitsSaveData(UnitSaveData[] units)
+        {
+            _units = units;
+        }
     }
 }

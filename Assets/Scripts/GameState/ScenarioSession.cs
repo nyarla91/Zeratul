@@ -26,8 +26,8 @@ namespace GameState
         public void SetSaveData(SaveData data)
         {
             SaveData = data;
-            GenericSaveSystem generic = data.Get<GenericSaveSystem>(GenericSaveSystem.LoadKey);
-            Set(generic.ScenarioId);
+            GeneralSaveSystem general = data.Get<GeneralSaveSystem>(GeneralSaveSystem.LoadKey);
+            Set(general.ScenarioId);
         }
         
         public void Set(int scenarioId)

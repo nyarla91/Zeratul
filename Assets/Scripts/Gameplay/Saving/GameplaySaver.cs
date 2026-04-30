@@ -30,7 +30,7 @@ namespace Gameplay.Saving
 
         private SaveData SaveGameplayData()
         {
-            ISaveSystem[] systems = _systems.Select(s => s.SaveSystem()).ToArray();
+            ISaveSystem[] systems = _systems.Select(s => s.Save()).ToArray();
             return new SaveData(systems);
         }
     }

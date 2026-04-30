@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Extentions;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Saving.Data
 
         public SaveData(ISaveSystem[] systems)
         {
-            _systems = systems.ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);
+            _systems = systems.NoNull().ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);
         }
 
         public TSystem Get<TSystem>(string key) where TSystem : ISaveSystem
