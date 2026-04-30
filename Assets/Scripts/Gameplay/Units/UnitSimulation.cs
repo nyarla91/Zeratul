@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
 using UniRx;
@@ -32,8 +33,9 @@ namespace Gameplay.Units
 
         private void UpdateSimulated()
         {
-            _simulationCollider.enabled = Unit.Ownership.OwnedByPlayer;
-            if (Unit.Ownership.OwnedByPlayer)
+            bool simulationSource = Unit.Alliance.IsFriendly(Owner.Player);
+            _simulationCollider.enabled = simulationSource;
+            if (simulationSource)
             {
                 IsSimulated = true;
                 return;

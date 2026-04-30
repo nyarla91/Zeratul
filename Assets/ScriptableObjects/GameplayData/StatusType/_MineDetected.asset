@@ -25,8 +25,8 @@ MonoBehaviour:
   _cooldown: 0
   _triggerValidator:
     _unitValidators:
-    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
-    - {fileID: 11400000, guid: d7c2d1d521b79144e8eef1f9638b1cf2, type: 2}
+    - {fileID: 11400000, guid: 161b97ff5218e624ab499324e33049ce, type: 2}
+    - {fileID: 11400000, guid: 820d8692e183cce4e8bbaa99739fca88, type: 2}
   _triggerEffects:
   - {fileID: 11400000, guid: ffec104d9f8458a42bfb371a86e89eb6, type: 2}
   _mineTriggerEffects: []

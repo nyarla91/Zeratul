@@ -24,10 +24,25 @@ namespace Gameplay.Units
         private void OnValidate()
         {
             _spriteRenderer.sprite = SpawnInfo.UnitType?.SpriteMap.GetSprite("idle", 0, SpawnInfo.LookAngle);
-            _spriteRenderer.color = SpawnInfo.OwnedByPlayer ? Color.green : Color.red;
+            _spriteRenderer.color = SpawnInfo.Owner switch
+            {
+                Owner.Player => Color.green,
+                Owner.Ally => Color.cyan,
+                Owner.Neutral => Color.yellow,
+                Owner.Enemy => Color.red,
+                _ => throw new ArgumentOutOfRangeException()
+            };
             
             StringBuilder name =  new();
-            name.Append($"{(SpawnInfo.OwnedByPlayer ? "Player" : "Enemy")} - ");
+            string ownerLabel = SpawnInfo.Owner switch
+            {
+                Owner.Player => "Player",
+                Owner.Ally => "Ally",
+                Owner.Neutral => "Neutral",
+                Owner.Enemy => "Enemy",
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            name.Append($"{ownerLabel} - ");
             name.Append(SpawnInfo.UnitType?.DisplayName ?? "No unit");
             gameObject.name = name.ToString();
         }

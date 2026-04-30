@@ -1,4 +1,6 @@
-﻿using Gameplay.Player;
+﻿using System;
+using Extentions;
+using Gameplay.Player;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -12,7 +14,9 @@ namespace Gameplay.Units.View
         [SerializeField] private SpriteRenderer _mainSpriteRenderer;
         [SerializeField] private SpriteRenderer _overlaySpriteRenderer;
         [SerializeField] private Material _defaultMaterial;
-        [SerializeField] private Material _selectedMaterial;
+        [SerializeField] private Material _selectedPlayerMaterial;
+        [SerializeField] private Material _selectedAllyMaterial;
+        [SerializeField] private Material _selectedNeutralMaterial;
         [SerializeField] private Material _selectedEnemyMaterial;
         [SerializeField] private Material _highlightedMaterial;
 
@@ -32,7 +36,17 @@ namespace Gameplay.Units.View
             else
             {
                 if (_unit.IsSelected)
-                    _overlaySpriteRenderer.material = _unit.Ownership.OwnedByEnemy ? _selectedEnemyMaterial : _selectedMaterial;
+                {
+                    _overlaySpriteRenderer.material = _unit.Alliance.CurrentOwner switch
+                    {
+                        Owner.Player => _selectedPlayerMaterial,
+                        Owner.Ally => _selectedAllyMaterial,
+                        Owner.Neutral => _selectedNeutralMaterial,
+                        Owner.Enemy => _selectedEnemyMaterial,
+                        _ => throw new ArgumentOutOfRangeException()
+                    };
+                    
+                }
                 else
                     _overlaySpriteRenderer.material = _defaultMaterial;
             }

@@ -14,7 +14,7 @@ namespace Gameplay.Data.Orders
         
         public override TargetRequirement TargetRequirement => TargetRequirement.PointOrUnit;
 
-        public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && ! target.Unit.Ownership.OwnedByPlayer;
+        public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && target.Unit.Alliance.OwnedByEnemy;
 
         protected override async UniTask CarryOutBody(Order order, CancellationToken ct)
         {

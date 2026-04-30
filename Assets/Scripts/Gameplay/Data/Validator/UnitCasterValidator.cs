@@ -6,11 +6,6 @@ namespace Gameplay.Data.Validator
     [CreateAssetMenu(menuName = "Gameplay Data/Unit Validator/Caster", order = 0)]
     public class UnitCasterValidator : UnitValidator
     {
-        [SerializeField] private bool _isCaster;
-        
-        public override bool IsValid(Unit actor, Unit target)
-        {
-            return _isCaster == (actor == target);
-        }
+        public override bool IsValid(Unit actor, Unit target) => actor == target;
     }
 }

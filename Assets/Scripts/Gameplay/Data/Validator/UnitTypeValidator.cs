@@ -8,8 +8,7 @@ namespace Gameplay.Data.Validator
     public class UnitTypeValidator : UnitValidator
     {
         [SerializeField] private UnitType _type;
-        [SerializeField] private bool _required;
         
-        public override bool IsValid(Unit actor, Unit target) => (target.Type == _type) == _required;
+        public override bool IsValid(Unit actor, Unit target) => target.Type == _type;
     }
 }

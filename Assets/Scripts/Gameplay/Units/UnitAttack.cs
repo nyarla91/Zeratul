@@ -118,7 +118,7 @@ namespace Gameplay.Units
 
         private void UpdateAutoAttackTarget()
         {
-            if (Unit.Ownership.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false))
+            if (Unit.Alliance.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false))
                 return;
 
             Debug.Log(Unit.AI.PreferredAttackTarget);

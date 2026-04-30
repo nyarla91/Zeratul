@@ -39,24 +39,9 @@ namespace Gameplay.Units
         public bool IsRevealed => ! IsHidden;
         
         /// <summary>
-        /// Returns true if unit is revealed and is in sight of any player's unit or owned by player
-        /// </summary>
-        public bool IsVisibleToPlayer => _visionMap.PlayerArea.IsUnitVisible(Unit);
-
-        /// <summary>
-        /// Returns true if unit is revealed and is in sight of any enemy unit or owned by enemy
-        /// </summary>
-        public bool IsVisibleToEnemy => _visionMap.EnemyArea.IsUnitVisible(Unit);
-
-        /// <summary>
-        /// Returns true if unit is revealed and is in sight of any unit owned by hostile
-        /// </summary>
-        public bool IsVisibleToHostile  => Unit.Ownership.OwnedByPlayer ? IsVisibleToEnemy :  IsVisibleToPlayer;
-        
-        /// <summary>
         /// Returns true if unit is visible to targetingUnit's owner
         /// </summary>
-        public bool CanBeTargetedBy(Unit targetingUnit) => Unit.Ownership.IsFriendly(targetingUnit) || IsVisibleToHostile;
+        public bool CanBeTargetedBy(Unit targetingUnit) => Unit.Alliance.IsFriendly(targetingUnit) || IsVisibleTo(targetingUnit.Alliance.CurrentOwner);
         
         public void Detect(object source) => _detectionSources.Add(source);
         
@@ -65,5 +50,7 @@ namespace Gameplay.Units
         public void Cloak(object source) => _cloakSources.Add(source);
         
         public void Decloak(object source) => _cloakSources.Remove(source);
+
+        public bool IsVisibleTo(Owner other) => _visionMap.GetAreaForOwner(other).IsUnitVisible(Unit);
     }
 }

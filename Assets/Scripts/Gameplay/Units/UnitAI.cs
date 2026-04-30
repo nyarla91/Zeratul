@@ -44,7 +44,7 @@ namespace Gameplay.Units
 
         private void IssueOrder()
         {
-            if (Unit.Ownership.OwnedByPlayer)
+            if (Unit.Alliance.OwnedByPlayer)
                 return;
 
             if ( ! Unit.Simulation.IsSimulated || Threats.Count == 0)
@@ -85,13 +85,13 @@ namespace Gameplay.Units
 
         private void UpdateThreats(HashSet<Unit> surroundingUnits)
         {
-            Threats = surroundingUnits.Where(u => u.Ownership.IsHostile(Unit)).ToHashSet();
+            Threats = surroundingUnits.Where(u => u.Alliance.IsHostile(Unit)).ToHashSet();
 
             Threats.UnionWith(surroundingUnits
-                .Where(u => u.Ownership.IsFriendly(Unit))
+                .Where(u => u.Alliance.IsFriendly(Unit))
                 .Where(a => Time.fixedTime - a.Life.LastDamageTime < _config.DamageForgiveTime)
                 .Select(a => a.Life.LastDamageDealer)
-                .Where(u => u.Ownership.IsHostile(Unit))
+                .Where(u => u.Alliance.IsHostile(Unit))
                 .NoNull().ToHashSet());
         }
 

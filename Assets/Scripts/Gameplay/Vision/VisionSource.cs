@@ -16,19 +16,19 @@ namespace Gameplay.Vision
         
         private bool _isAir;
         private Transform _anchor;
-        private bool _ownedByPlayer;
+        private Owner _owner;
         
         public float Radius { get; set; }
         
-        public bool OwnedByPlayer
+        public Owner Owner
         {
-            get => _ownedByPlayer;
+            get => _owner;
             set
             {
-                if (_ownedByPlayer == value)
+                if (_owner == value)
                     return;
-                _ownedByPlayer = value;
-                AttachToArea(_ownedByPlayer);
+                _owner = value;
+                AttachToArea(_owner);
             }
         }
 
@@ -40,14 +40,14 @@ namespace Gameplay.Vision
 
         [Inject] private VisionMap VisionMap { get; set; }
 
-        public void Set(Transform anchor, bool isAir, float radius, bool ownedByPlayer)
+        public void Set(Transform anchor, bool isAir, float radius, Owner owner)
         {
             _anchor = anchor;
             _isAir = isAir;
             Radius = radius;
-            OwnedByPlayer = ownedByPlayer;
+            Owner = owner;
             _collider.compositeOperation = Collider2D.CompositeOperation.Merge;
-            AttachToArea(ownedByPlayer);
+            AttachToArea(owner);
         }
         
         public void Recalculate()
@@ -90,10 +90,10 @@ namespace Gameplay.Vision
         
         public HashSet<Unit> VisibleUnits(Unit host = null, UnitValidatorGroup validatorGroup = default)
         {
-            HashSet<Unit> result = VisionMap.GetAreaForOwner(OwnedByPlayer).VisibleUnits;
+            HashSet<Unit> result = VisionMap.GetAreaForOwner(Owner).VisibleUnits;
             result = result
                 .Where(u => Isometry.Distance(transform.position, u.Position) < Radius)
-                .Where(u => _ownedByPlayer ? u.Visibility.IsVisibleToPlayer : u.Visibility.IsVisibleToEnemy)
+                .Where(u => u.Visibility.IsVisibleTo(_owner))
                 .ToHashSet();
             
             return result.Where(u => validatorGroup.IsValid(host, u)).ToHashSet();
@@ -106,10 +106,10 @@ namespace Gameplay.Vision
                 Destroy(gameObject);
         }
 
-        private void AttachToArea(bool ownedByPlayer)
+        private void AttachToArea(Owner owner)
         {
             DetachFromAll();
-            VisionMap.GetAreaForOwner(ownedByPlayer).AttachSource(this);
+            VisionMap.GetAreaForOwner(owner).AttachSource(this);
         }
 
         private void DetachFromAll()

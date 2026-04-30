@@ -10,9 +10,9 @@ namespace Gameplay.Units
 
         public HashSet<Unit> Units => _units.Values.ToHashSet();
         
-        public HashSet<Unit> PlayerUnits => Units.Where(u => u.Ownership.OwnedByPlayer).ToHashSet();
+        public HashSet<Unit> PlayerUnits => Units.Where(u => u.Alliance.OwnedByPlayer).ToHashSet();
         
-        public HashSet<Unit> EnemyUnits => Units.Where(u => ! u.Ownership.OwnedByPlayer).ToHashSet();
+        public HashSet<Unit> EnemyUnits => Units.Where(u => u.Alliance.OwnedByEnemy).ToHashSet();
         
         public Unit GetUnitById(int id) => _units[id];
         

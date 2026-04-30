@@ -16,9 +16,9 @@ namespace Gameplay.Player
         public UnitType FocusedUnitType => _selectedUnitTypes.Count > 0 ? _selectedUnitTypes[_focusedUnitTypeIndex] : null;
         
         public Unit[] SelectedUnits => _selectedUnits.ToArray();
-        public Unit[] SelectedPlayerUnits => _selectedUnits.Where(u => u.Ownership.OwnedByPlayer).ToArray();
+        public Unit[] SelectedPlayerUnits => _selectedUnits.Where(u => u.Alliance.OwnedByPlayer).ToArray();
         
-        public bool IsEnemySelected => _selectedUnits.Count == 1 && _selectedUnits[0].Ownership.OwnedByEnemy;
+        public bool IsUncontrollableSelected => _selectedUnits.Count == 1 && ! _selectedUnits[0].Alliance.OwnedByPlayer;
 
         public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
         
@@ -36,7 +36,7 @@ namespace Gameplay.Player
                 if (_selectedUnits.Contains(unit))
                     continue;
                 _selectedUnits.Add(unit);
-                unit.Ownership.OwnerUpdated += ValidateSelectedUnits;
+                unit.Alliance.OwnerUpdated += ValidateSelectedUnits;
                 unit.Killed += ValidateSelectedUnits;
             }
             ValidateSelectedUnits();
@@ -47,7 +47,7 @@ namespace Gameplay.Player
             foreach (Unit unit in units)
             {
                 _selectedUnits.Remove(unit);
-                unit.Ownership.OwnerUpdated -= ValidateSelectedUnits;
+                unit.Alliance.OwnerUpdated -= ValidateSelectedUnits;
                 unit.Killed -= ValidateSelectedUnits;
             }
             ValidateSelectedUnits();
@@ -78,7 +78,7 @@ namespace Gameplay.Player
             SelectionUpdated?.Invoke();
         }
 
-        private void ValidateSelectedUnits(bool _) => ValidateSelectedUnits();
+        private void ValidateSelectedUnits(Owner _) => ValidateSelectedUnits();
 
         private void ValidateSelectedUnits()
         {
@@ -93,8 +93,8 @@ namespace Gameplay.Player
                 }
                 if ( ! selectedUnit
                     || selectedUnit.IsDead 
-                    || ! selectedUnit.Visibility.IsVisibleToPlayer
-                    || (selectedUnit.Ownership.OwnedByEnemy && _selectedUnits.Count > 1))
+                    || ! selectedUnit.IsVisibleToPlayer
+                    || ( ! selectedUnit.Alliance.OwnedByPlayer && _selectedUnits.Count > 1))
                     RemoveUnitsFromSelection(selectedUnit);
             }
 

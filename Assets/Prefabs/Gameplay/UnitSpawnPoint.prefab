@@ -104,10 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitSpawnPoint
   _spriteRenderer: {fileID: 6679539492248759336}
-  _prefab: {fileID: 2932572241072970818, guid: ac417da6a3dbef84abe6ef557bdfe9de, type: 3}
-  _unitType: {fileID: 0}
   _spawnInfo:
-    _ownedByPlayer: 0
+    _unitType: {fileID: 0}
+    _owner: 3
     _lookAngle: 320
     _patrolPath:
       _waypoints: []

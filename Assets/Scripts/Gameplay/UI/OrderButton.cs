@@ -86,7 +86,7 @@ namespace Gameplay.UI
         {
             if (GamePause.IsPaused)
                 return;
-            if (Selection.IsEnemySelected)
+            if (Selection.IsUncontrollableSelected)
                 return;
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
@@ -110,7 +110,7 @@ namespace Gameplay.UI
         {
             if (GamePause.IsPaused)
                 return;
-            if (Selection.IsEnemySelected)
+            if (Selection.IsUncontrollableSelected)
                 return;
             if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
                 return;
@@ -139,7 +139,7 @@ namespace Gameplay.UI
         {
             if (GamePause.IsPaused)
                 return;
-            if (Selection.IsEnemySelected)
+            if (Selection.IsUncontrollableSelected)
                 return;
             if (OrderType == null || OrderType.TargetRequirement != TargetRequirement.None)
                 return;

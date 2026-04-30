@@ -16,6 +16,6 @@ MonoBehaviour:
   _radius: 9
   _applyValidators:
     _unitValidators:
-    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    - {fileID: 11400000, guid: 161b97ff5218e624ab499324e33049ce, type: 2}
   _effects:
   - {fileID: 11400000, guid: 58d52fd01efc992459d28c5acadab0b2, type: 2}

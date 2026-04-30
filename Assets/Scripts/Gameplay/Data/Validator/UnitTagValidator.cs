@@ -9,8 +9,7 @@ namespace Gameplay.Data.Validator
     public class UnitTagValidator : UnitValidator
     {
         [SerializeField] private UnitTag _tag;
-        [SerializeField] private bool _required;
         
-        public override bool IsValid(Unit actor, Unit target) => target.Type.Tags.Contains(_tag) == _required;
+        public override bool IsValid(Unit actor, Unit target) => target.Type.Tags.Contains(_tag);
     }
 }

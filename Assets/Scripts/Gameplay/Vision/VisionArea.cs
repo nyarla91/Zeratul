@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Extentions;
 using Gameplay.Data.Configs;
 using NaughtyAttributes;
 using UniRx;
@@ -19,7 +20,7 @@ namespace Gameplay.Vision
         private readonly HashSet<Unit> _visibleUnits = new();
         private bool _isInitialized;
         
-        public bool IsOwnedByPlayer { get; private set; }
+        public Owner Owner { get; private set; }
         public HashSet<Unit> VisibleUnits => _visibleUnits.ToHashSet();
 
         private void Awake()
@@ -38,12 +39,12 @@ namespace Gameplay.Vision
             _compositeCollider.GenerateGeometry();
         }
 
-        public void Init(bool isOwnedByPlayer)
+        public void Init(Owner owner)
         {
             if (_isInitialized)
                 return;
             _isInitialized = true;
-            IsOwnedByPlayer = isOwnedByPlayer;
+            Owner = owner;
         }
         
         public void AttachSource(VisionSource source)
@@ -63,7 +64,7 @@ namespace Gameplay.Vision
         }
         
         public bool IsUnitVisible(Unit unit)
-            => unit.Ownership.OwnedByPlayer == IsOwnedByPlayer 
+            => unit.Alliance.IsFriendly(Owner)
                 || (_visibleUnits.Contains(unit) && unit.Visibility.IsRevealed);
 
         private void OnTriggerEnter2D(Collider2D other)

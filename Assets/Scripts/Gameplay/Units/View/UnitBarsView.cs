@@ -41,7 +41,7 @@ namespace Gameplay.Units.View
             else
                 _energyPointsBar.Hide();
             
-            _unit.ObserveEveryValueChanged(u => u.Visibility.IsVisibleToPlayer)
+            _unit.ObserveEveryValueChanged(u => u.IsVisibleToPlayer)
                 .Subscribe(v => _canvas.enabled = v);
         }
 

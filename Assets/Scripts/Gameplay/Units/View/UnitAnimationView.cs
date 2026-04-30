@@ -50,7 +50,7 @@ namespace Gameplay.Units.View
                 _currentAction = newAction;
             }
             
-            if (!_unit.Visibility.IsVisibleToPlayer)
+            if (!_unit.IsVisibleToPlayer)
             {
                 _spriteRenderer.sprite = null;
                 return;

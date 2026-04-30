@@ -1,4 +1,5 @@
 ﻿using System;
+using Extentions;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Units;
 using Gameplay.Map;
@@ -30,7 +31,7 @@ namespace Gameplay.Units
         public UnitDirection Direction { get; private set; }
         public UnitAbilities Abilities { get; private set; }
         public UnitLife Life { get; private set; }
-        public UnitOwnership Ownership { get; private set; }
+        public UnitAlliance Alliance { get; private set; }
         public UnitStatuses Statuses { get; private set; }
         public UnitStagger Stagger { get; private set; }
         public UnitVisibility Visibility { get; private set; }
@@ -44,7 +45,7 @@ namespace Gameplay.Units
 
         [ShowNativeProperty] public bool CanAttack => Type.WeaponType;
         [ShowNativeProperty] public bool CanMove => ! Type.IsImmobile;
-        [ShowNativeProperty] public bool IsVisibleToPlayer => Visibility?.IsVisibleToPlayer ?? false;
+        [ShowNativeProperty] public bool IsVisibleToPlayer => Visibility?.IsVisibleTo(Owner.Player) ?? false;
 
         public bool IsDead { get; private set; }
         public bool IsAlive => ! IsDead;
@@ -79,10 +80,10 @@ namespace Gameplay.Units
             Direction = new UnitDirection(this, TacticalPause, spawnInfo.LookAngle);
             Abilities = new UnitAbilities(this, TacticalPause);
             Life = new UnitLife(this, TacticalPause);
-            Ownership = new UnitOwnership(this, spawnInfo.OwnedByPlayer);
+            Alliance = new UnitAlliance(this, spawnInfo.Owner);
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
-            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo.OwnedByPlayer);
+            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo.Owner);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
             AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo.PatrolPath);
@@ -105,7 +106,7 @@ namespace Gameplay.Units
                 Direction.Save(),
                 Abilities.Save(),
                 Life.Save(),
-                Ownership.Save(),
+                Alliance.Save(),
                 Stagger.Save(),
                 Visibility.Save(),
                 Sight.Save(),
@@ -124,7 +125,7 @@ namespace Gameplay.Units
             Direction.ReproduceFromSave(saveData);
             Abilities.ReproduceFromSave(saveData);
             Life.ReproduceFromSave(saveData);
-            Ownership.ReproduceFromSave(saveData);
+            Alliance.ReproduceFromSave(saveData);
             Stagger.ReproduceFromSave(saveData);
             Visibility.ReproduceFromSave(saveData);
             Sight.ReproduceFromSave(saveData);
@@ -135,6 +136,26 @@ namespace Gameplay.Units
             Pathing.ReproduceFromSave(saveData);
             Attack?.ReproduceFromSave(saveData);
             Movement?.ReproduceFromSave(saveData);
+        }
+
+        public bool GetFlag(UnitFlag flag)
+        {
+            return flag switch
+            {
+                UnitFlag.IsAir => Type.IsAir,
+                UnitFlag.CanMove => CanMove,
+                UnitFlag.CanAttack => CanAttack,
+                UnitFlag.IsHighlighted => IsHighlighted,
+                UnitFlag.IsSelected => IsSelected,
+                UnitFlag.IsLocked => Abilities.IsLocked,
+                UnitFlag.HasEnergy => Abilities.HasEnergyPoints,
+                UnitFlag.HasShields => Life.HasShieldPoints,
+                UnitFlag.IsStaggered => Stagger.IsStaggered,
+                UnitFlag.IsCloaked => Visibility.IsCloaked,
+                UnitFlag.IsDetected => Visibility.IsDetected,
+                UnitFlag.IsIdle => Orders.IsIdle,
+                _ => throw new ArgumentOutOfRangeException(nameof(flag), flag, null)
+            };
         }
 
         public void Kill()

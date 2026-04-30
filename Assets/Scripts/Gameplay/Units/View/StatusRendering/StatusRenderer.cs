@@ -1,4 +1,5 @@
 ﻿using System;
+using Extentions;
 using Gameplay.Data.Statuses;
 using UniRx;
 using UnityEngine;
@@ -23,13 +24,13 @@ namespace Gameplay.Units.View.StatusRendering
                 
                 Unit host = Status.Host;
                 
-                if ( ! _visibleInFogOfWar && ! host.Visibility.IsVisibleToPlayer)
+                if ( ! _visibleInFogOfWar && ! host.IsVisibleToPlayer)
                     return false;
                 
                 if ( ! _ignoreLocked && Status.IsLocked)
                     return false;
                 
-                DisplayBehaviour displayBehaviour = host.Ownership.OwnedByPlayer
+                DisplayBehaviour displayBehaviour = host.Alliance.IsFriendly(Owner.Player)
                     ? _playerDisplayBehaviour
                     : _enemyDisplayBehaviour;
 

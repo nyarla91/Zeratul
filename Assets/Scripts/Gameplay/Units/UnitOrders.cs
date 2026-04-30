@@ -41,12 +41,12 @@ namespace Gameplay.Units
                 .Where(_ => _pendingOrders.Count > 0)
                 .Subscribe(_ => TryCarryOutNextOrder());
 
-            Unit.ObserveEveryValueChanged(u => u.Ownership.OwnedByPlayer)
+            Unit.ObserveEveryValueChanged(u => u.Alliance.CurrentOwner)
                 .Subscribe(_ => ClearAllOrders());
 
             Unit.Killed += completeSubscription.Dispose;
             Unit.Killed += nextOrderSubscription.Dispose;
-            Unit.Ownership.OwnerUpdated += _ => ClearAllOrders();
+            Unit.Alliance.OwnerUpdated += _ => ClearAllOrders();
         }
 
         public void IssueSmartOrder(OrderTarget target, bool queue)

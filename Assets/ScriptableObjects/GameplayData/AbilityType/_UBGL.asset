@@ -17,7 +17,7 @@ MonoBehaviour:
   _cooldown: 350
   _energyCost: 0
   _ignoreLock: 0
-  _targetRequirement: 3
+  _targetRequirement: 1
   _maxDistance: 7
   _casterValidators:
     _unitValidators: []

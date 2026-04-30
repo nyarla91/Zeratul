@@ -16,6 +16,8 @@ namespace Gameplay.Units.View
         [SerializeField] private Image _shieldPoints;
         [SerializeField] private Image _energyPoints;
         [SerializeField] private Color _playerColor;
+        [SerializeField] private Color _allyColor;
+        [SerializeField] private Color _neutralColor;
         [SerializeField] private Color _enemyColor;
 
         private RectTransform _canvasRectTransform;
@@ -33,20 +35,27 @@ namespace Gameplay.Units.View
             if ( ! _unit.Abilities.HasEnergyPoints)
                 _energyPoints.enabled = false;
             
-            UpdateOwnershipColor(_unit.Ownership.OwnedByPlayer);
-            _unit.ObserveEveryValueChanged(u => u.Ownership.OwnedByPlayer)
+            UpdateOwnershipColor(_unit.Alliance.CurrentOwner);
+            _unit.ObserveEveryValueChanged(u => u.Alliance.CurrentOwner)
                 .Subscribe(UpdateOwnershipColor);
             
-            _unit.ObserveEveryValueChanged(u => u.Visibility.IsVisibleToPlayer)
+            _unit.ObserveEveryValueChanged(u => u.IsVisibleToPlayer)
                 .Subscribe(v => _canvas.enabled = v);
             
             this.UpdateAsObservable()
                 .Subscribe(_ => UpdateStats());
         }
 
-        private void UpdateOwnershipColor(bool ownedByPlayer)
+        private void UpdateOwnershipColor(Owner owner)
         {
-            _hitPoints.color = ownedByPlayer ? _playerColor : _enemyColor;
+            _hitPoints.color = owner switch
+            {
+                Owner.Player => _playerColor,
+                Owner.Ally => _allyColor,
+                Owner.Neutral => _neutralColor,
+                Owner.Enemy => _enemyColor,
+                _ => throw new ArgumentOutOfRangeException(nameof(owner), owner, null)
+            };
         }
 
         private void UpdateStats()

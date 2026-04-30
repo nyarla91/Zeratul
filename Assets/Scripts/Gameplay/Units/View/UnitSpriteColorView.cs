@@ -1,4 +1,5 @@
 ﻿using System;
+using Extentions;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -25,9 +26,9 @@ namespace Gameplay.Units.View
         
         private Color GetColorForUnit(Unit unit)
         {
-            if (unit.Ownership.OwnedByPlayer && unit.Visibility.IsHidden)
+            if (unit.Alliance.IsFriendly(Owner.Player) && unit.Visibility.IsHidden)
                 return _cloakedColor;
-            if (unit.Ownership.OwnedByEnemy && unit.Visibility.IsCloaked)
+            if ( ! unit.Alliance.IsFriendly(Owner.Player) && unit.Visibility.IsCloaked)
                 return _cloakedColor;
             return _defaultColor;
         }
