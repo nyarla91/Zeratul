@@ -172328,6 +172328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3791979278521614718}
+  - component: {fileID: 7975444252675985484}
   m_Layer: 0
   m_Name: Scenario
   m_TagString: Untagged
@@ -172354,6 +172355,19 @@ Transform:
   - {fileID: 2420254873010687056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7975444252675985484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8279466007732933957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06adf5121d04144a0a4c701554d48c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.ScenarioPrefab
+  _unitSpawnPointsParent: {fileID: 7989208908861164939}
 --- !u!1001 &747013598944467583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172410,6 +172424,10 @@ PrefabInstance:
       propertyPath: _ownedByPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: _spawnInfo._unitType
+      value: 
+      objectReference: {fileID: 11400000, guid: 38844722fafa1124096b7e70d46eb0fe, type: 2}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _spawnInfo._lookAngle
       value: 42

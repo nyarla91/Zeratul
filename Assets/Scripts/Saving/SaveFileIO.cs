@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Cysharp.Threading.Tasks;
-using UnityEditor.Overlays;
+using Newtonsoft.Json;
+using Saving.Data;
 using UnityEngine;
 
 namespace Saving
@@ -9,28 +10,28 @@ namespace Saving
     {
         private string SaveFolderPath => Application.dataPath + "/save/";
 
-        public async void Save(SaveData data, string filename)
+        public async void Write(SaveData data, string filename)
         {
-            string json = JsonUtility.ToJson(data);
+            string json = JsonConvert.SerializeObject(data);
             if ( ! Directory.Exists(SaveFolderPath))
                 Directory.CreateDirectory(SaveFolderPath);
             await File.WriteAllTextAsync(SaveFolderPath + filename + ".json", json);
         }
 
-        public async UniTask<SaveData> Load(string filename)
+        public async UniTask<SaveData> Read(string filename)
         {
             string json = await File.ReadAllTextAsync(SaveFolderPath + filename + ".json");
-            return JsonUtility.FromJson<SaveData>(json);
+            return JsonConvert.DeserializeObject<SaveData>(json);
         }
     }
     
     public interface ISaveFileSaveService
     {
-        public void Save(SaveData data, string filename);
+        public void Write(SaveData data, string filename);
     }
 
     public interface ISaveFileLoadService
     {
-        public UniTask<SaveData> Load(string filename);
+        public UniTask<SaveData> Read(string filename);
     }
 }

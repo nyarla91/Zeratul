@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23820ff8b6b945bf9844a83377572626, type: 3}
   m_Name: ScenarioRegistry
   m_EditorClassIdentifier: Scenes::GameState.ScenarioRegistry
-  _scenarios: []
+  _scenarios:
+  - {fileID: 11400000, guid: 22b59ef460d38cc42bd3e97676281831, type: 2}

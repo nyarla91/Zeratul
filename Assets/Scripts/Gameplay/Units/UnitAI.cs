@@ -66,10 +66,8 @@ namespace Gameplay.Units
         {
             if ( ! Unit.CanMove)
                 return;
-            if ( ! _patrolPath.TryGetDestination(_gameTime.Time, out Vector2 destination))
-            {
-                destination = _spawnPoint;
-            }
+            _patrolPath.TryGetRelativeDestination(_gameTime.Time, out Vector2 destination);
+            destination += _spawnPoint;
             Unit.Orders.IssueOrder(new Order(_config.MoveOrder, Unit, OrderTarget.FromPoint(destination)), false);
         }
 

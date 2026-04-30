@@ -8,7 +8,7 @@ namespace Gameplay.Saving
     {
         [SerializeField] private GameplaySaver _saver;
         
-        public abstract void ReproduceSavedSysyem(TSystem payload);
+        public abstract void ReproduceSavedSystem(TSystem payload);
         
         public abstract ISaveSystem SaveSystem();
 

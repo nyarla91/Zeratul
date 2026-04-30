@@ -8,6 +8,7 @@ namespace GameState
     {
         private readonly ScenarioRegistry _scenarioRegistry;
         
+        public int CurrentId { get; private set; }
         public ScenarioData Current { get; private set; }
         public SaveData SaveData { get; private set; }
 
@@ -25,15 +26,16 @@ namespace GameState
         public void SetSaveData(SaveData data)
         {
             SaveData = data;
-            SaveGenericSystem generic = data.Get<SaveGenericSystem>(SaveGenericSystem.LoadKey);
-            Set(_scenarioRegistry.Get(generic.ScenarioId));
+            GenericSaveSystem generic = data.Get<GenericSaveSystem>(GenericSaveSystem.LoadKey);
+            Set(generic.ScenarioId);
         }
         
-        public void Set(ScenarioData scenario)
+        public void Set(int scenarioId)
         {
             if (Current && Current.LoadedPrefab)
                 throw new InvalidOperationException($"Unload previous Scenario before setting a new one");
-            Current = scenario;
+            CurrentId = scenarioId;
+            Current = _scenarioRegistry.Get(scenarioId);
         }
     }
 }

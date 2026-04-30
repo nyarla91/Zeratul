@@ -27,11 +27,11 @@ namespace GameState
             _stateMachine.Enter<GameplayState>();
         }
 
-        public void StartScenario(ScenarioData scenario)
+        public void StartScenario(int scenarioId)
         {
             if (_stateMachine.CurrentState is GameplayState)
                 return;
-            _scenarioSession.Set(scenario);
+            _scenarioSession.Set(scenarioId);
             _stateMachine.Enter<GameplayState>();
         }
 

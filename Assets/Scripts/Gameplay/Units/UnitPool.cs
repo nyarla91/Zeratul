@@ -6,22 +6,24 @@ namespace Gameplay.Units
 {
     public class UnitPool : MonoBehaviour
     {
-        private readonly HashSet<Unit> _units = new();
+        private readonly Dictionary<int, Unit> _units = new();
 
-        public HashSet<Unit> Units => _units.ToHashSet();
+        public HashSet<Unit> Units => _units.Values.ToHashSet();
         
-        public HashSet<Unit> PlayerUnits => _units.Where(u => u.Ownership.OwnedByPlayer).ToHashSet();
+        public HashSet<Unit> PlayerUnits => Units.Where(u => u.Ownership.OwnedByPlayer).ToHashSet();
         
-        public HashSet<Unit> EnemyUnits => _units.Where(u => ! u.Ownership.OwnedByPlayer).ToHashSet();
+        public HashSet<Unit> EnemyUnits => Units.Where(u => ! u.Ownership.OwnedByPlayer).ToHashSet();
+        
+        public Unit GetUnitById(int id) => _units[id];
         
         public void AddUnit(Unit unit)
         {
-            _units.Add(unit);
+            _units.Add(unit.Id, unit);
         }
 
         public void RemoveUnit(Unit unit)
         {
-            _units.Remove(unit);
+            _units.Remove(unit.Id);
         }
     }
 }

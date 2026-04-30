@@ -8,21 +8,13 @@ namespace MainMenu
 {
     public class PlayButton : MonoBehaviour
     {
-        [SerializeField] private AssetReferenceT<ScenarioData> _scenarioReference;
-
-        private ScenarioData _scenario;
+        [SerializeField] private int _scenarioId;
         
         [Inject] private GameFlowController GameFlowController { get; set; }
 
-        private async void Awake()
-        {
-            _scenario = await _scenarioReference.LoadAssetAsync<ScenarioData>().Task;
-        }
-
         public void Play()
         {
-            if (_scenario != null)
-                GameFlowController.StartScenario(_scenario);
+            GameFlowController.StartScenario(_scenarioId);
         }
     }
 }

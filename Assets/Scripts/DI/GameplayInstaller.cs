@@ -2,6 +2,7 @@
 using Gameplay;
 using Gameplay.Data.Configs;
 using Gameplay.Map;
+using Gameplay.Saving;
 using Gameplay.UI;
 using Gameplay.Units;
 using Gameplay.Vision;
@@ -22,6 +23,8 @@ namespace DI
         [SerializeField] private OrderErrorMessage _orderErrorMessage;
         [SerializeField] private TutorialWindow _tutorialWindow;
         [SerializeField] private ScenarioLifetime _scenarioLifetime;
+        [SerializeField] private GameplaySaver _gameplaySaver;
+        [SerializeField] private UnitSpawner _unitSpawner;
         
         public override void InstallBindings()
         {
@@ -38,6 +41,8 @@ namespace DI
             Container.BindInstance(_orderErrorMessage).AsSingle();
             Container.BindInstance(_tutorialWindow).AsSingle();
             Container.BindInstance(_scenarioLifetime).AsSingle();
+            Container.BindInstance(_gameplaySaver).AsSingle();
+            Container.BindInstance(_unitSpawner).AsSingle();
         }
     }
 }

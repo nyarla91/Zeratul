@@ -9,31 +9,26 @@ namespace Gameplay.Units
 {
     public class UnitSpawnPoint : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer; 
-        [SerializeField] private GameObject _prefab;
-        [Space]
-        [SerializeField] private UnitType _unitType;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private UnitSpawnInfo _spawnInfo;
 
         [Inject] private ContainerInstantiator Instantiator { get; set; }
         
-        private void Start()
+        public UnitSpawnInfo SpawnInfo => _spawnInfo;
+
+        public void Dispose()
         {
-            Unit unit = Instantiator.Instantiate<Unit>(_prefab, transform.position, transform.parent);
-            unit.gameObject.name = gameObject.name;
-            _spawnInfo.PatrolPath.Init();
-            unit.Init(_unitType, _spawnInfo);
             Destroy(gameObject);
         }
-
-        public void OnValidate()
+        
+        private void OnValidate()
         {
-            _spriteRenderer.sprite = _unitType?.SpriteMap.GetSprite("idle", 0, _spawnInfo.LookAngle);
-            _spriteRenderer.color = _spawnInfo.OwnedByPlayer ? Color.green : Color.red;
+            _spriteRenderer.sprite = SpawnInfo.UnitType?.SpriteMap.GetSprite("idle", 0, SpawnInfo.LookAngle);
+            _spriteRenderer.color = SpawnInfo.OwnedByPlayer ? Color.green : Color.red;
             
             StringBuilder name =  new();
-            name.Append($"{(_spawnInfo.OwnedByPlayer ? "Player" : "Enemy")} - ");
-            name.Append(_unitType?.DisplayName ?? "No unit");
+            name.Append($"{(SpawnInfo.OwnedByPlayer ? "Player" : "Enemy")} - ");
+            name.Append(SpawnInfo.UnitType?.DisplayName ?? "No unit");
             gameObject.name = name.ToString();
         }
     }

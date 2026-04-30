@@ -59,6 +59,7 @@ namespace Gameplay.Units
         public UnitType Type { get; private set; }
 
         public event Action Killed; 
+        public int Id { get; set; }
         
         [Inject] private TacticalPause TacticalPause { get; set; }
         [Inject] private GameTime GameTime { get; set; }
@@ -67,13 +68,14 @@ namespace Gameplay.Units
         [Inject] private VisionMap VisionMap { get; set; }
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
-        
-        public void Init(UnitType type, UnitSpawnInfo spawnInfo)
+
+        public void Init(int id, UnitSpawnInfo spawnInfo)
         {
             if (Type != null)
                 return;
-            
-            Type = type;
+
+            Id = id;
+            Type = spawnInfo.UnitType;
 
             Direction = new UnitDirection(this, TacticalPause, spawnInfo.LookAngle);
             Abilities = new UnitAbilities(this, TacticalPause);
@@ -96,7 +98,7 @@ namespace Gameplay.Units
             
             UnitPool.AddUnit(this);
         }
-        
+
         public void Kill()
         {
             IsDead = true;
