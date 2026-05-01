@@ -10,10 +10,12 @@ namespace Gameplay.Units
     public class UnitSpawnPoint : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private UnitType _unitType;
         [SerializeField] private UnitSpawnInfo _spawnInfo;
 
         [Inject] private ContainerInstantiator Instantiator { get; set; }
-        
+
+        public UnitType UnitType => _unitType;
         public UnitSpawnInfo SpawnInfo => _spawnInfo;
 
         public void Dispose()
@@ -23,7 +25,7 @@ namespace Gameplay.Units
         
         private void OnValidate()
         {
-            _spriteRenderer.sprite = SpawnInfo.UnitType?.SpriteMap.GetSprite("idle", 0, SpawnInfo.LookAngle);
+            _spriteRenderer.sprite = UnitType?.SpriteMap.GetSprite("idle", 0, SpawnInfo.LookAngle);
             _spriteRenderer.color = SpawnInfo.Owner switch
             {
                 Owner.Player => Color.green,
@@ -43,7 +45,7 @@ namespace Gameplay.Units
                 _ => throw new ArgumentOutOfRangeException()
             };
             name.Append($"{ownerLabel} - ");
-            name.Append(SpawnInfo.UnitType?.DisplayName ?? "No unit");
+            name.Append(UnitType?.DisplayName ?? "No unit");
             gameObject.name = name.ToString();
         }
     }

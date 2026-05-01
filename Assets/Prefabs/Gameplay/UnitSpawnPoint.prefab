@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.UnitSpawnPoint
   _spriteRenderer: {fileID: 6679539492248759336}
+  _unitType: {fileID: 0}
   _spawnInfo:
-    _unitType: {fileID: 0}
     _owner: 3
     _lookAngle: 320
     _patrolPath:

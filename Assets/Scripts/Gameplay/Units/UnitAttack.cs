@@ -121,7 +121,6 @@ namespace Gameplay.Units
             if (Unit.Alliance.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false))
                 return;
 
-            Debug.Log(Unit.AI.PreferredAttackTarget);
             CurrentTarget = Unit.AI.PreferredAttackTarget;
         }
 

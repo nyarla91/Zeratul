@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using Gameplay.Data;
+using Saving.Data.Units;
 
 namespace Gameplay.Units
 {
     public class UnitAlliance : UnitComponent
     {
-        private readonly Owner _initialOwner; 
+        protected override string LoadKey => UnitAllianceSaveSystem.LoadKey;
+
+        private Owner _initialOwner; 
         
         private readonly Dictionary<object, Owner> _owners = new();
 
@@ -23,6 +26,17 @@ namespace Gameplay.Units
         public UnitAlliance(Unit unit, Owner initialOwner) : base(unit)
         {
             _initialOwner = initialOwner;
+        }
+
+        public override IUnitSaveSystem Save()
+        {
+            return new UnitAllianceSaveSystem(_initialOwner);
+        }
+
+        public override void ReproduceFromSave(UnitSaveData saveData)
+        {
+            UnitAllianceSaveSystem system = GetSaveSystem<UnitAllianceSaveSystem>(saveData);
+            _initialOwner = system.initialOwner;
         }
         
         public void AddOwner(object source, Owner owner)

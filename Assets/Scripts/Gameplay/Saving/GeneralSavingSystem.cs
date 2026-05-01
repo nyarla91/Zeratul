@@ -5,9 +5,11 @@ using Zenject;
 
 namespace Gameplay.Saving
 {
-    public class GenericSavingSystem : SavingSystem<GeneralSaveSystem>
+    public class GeneralSavingSystem : SavingSystem<GeneralSaveSystem>
     {
         [Inject] private ScenarioSession ScenarioSession { get; set; }
+
+        protected override string LoadKey => GeneralSaveSystem.LoadKey;
         
         public override void ReproduceFromSaveData(GeneralSaveSystem payload) { }
 

@@ -1,4 +1,7 @@
 ﻿using Extentions;
+using Gameplay.Data.Units;
+using Saving.Data;
+using Saving.Data.Units;
 using UnityEngine;
 using Zenject;
 
@@ -8,17 +11,25 @@ namespace Gameplay.Units
     {
         [SerializeField] private GameObject _prefab;
 
-        private int _nextId;
-        
+        public int NextId { get; private set; }
+
         [Inject] private ContainerInstantiator Instantiator { get; set; }
         
-        public void Spawn(UnitSpawnInfo spawnInfo, Vector2 position)
+        public Unit Spawn(Vector2 position, UnitType type, int id = -1, UnitSpawnInfo spawnInfo = null)
         {
             Unit unit = Instantiator.Instantiate<Unit>(_prefab, position, transform.parent);
-            spawnInfo.PatrolPath.Init();
-            unit.Init(_nextId, spawnInfo);
-            _nextId++;
-            Destroy(gameObject);
+            if (id == -1)
+            {
+                id = NextId;
+                NextId++;
+            }
+            unit.Init(id, type, spawnInfo);
+            return unit;
+        }
+
+        public void ReproduceFromSaveData(UnitsSaveData saveData)
+        {
+            NextId = saveData.nextId;
         }
     }
 }

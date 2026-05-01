@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Saving.Data.Units;
-using UnityEngine;
 
 namespace Saving.Data
 {
@@ -9,15 +8,17 @@ namespace Saving.Data
     public class UnitsSaveData : ISaveSystem
     {
         public static string LoadKey => "units";
-        public string SaveKey => "units";
+        public string SaveKey => LoadKey;
+
+        [JsonProperty] public UnitSaveData[] units;
+        [JsonProperty] public int nextId;
+
+        public UnitsSaveData() { }
         
-        [JsonProperty] private UnitSaveData[] _units;
-
-        public UnitSaveData[] Units => _units;
-
-        public UnitsSaveData(UnitSaveData[] units)
+        public UnitsSaveData(UnitSaveData[] units, int nextId)
         {
-            _units = units;
+            this.units = units;
+            this.nextId = nextId;
         }
     }
 }

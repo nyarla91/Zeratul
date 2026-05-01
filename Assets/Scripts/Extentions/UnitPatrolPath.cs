@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 
-namespace Gameplay.Units
+namespace Extentions
 {
     [Serializable]
     public class UnitPatrolPath
     {
         [SerializeField] [JsonProperty] private PatrolWaypoint[] _waypoints;
 
-        private float _totalLoopTime;
-        
-        public void Init()
-        {
-            _totalLoopTime = _waypoints.Sum(w => w.ReachTime);
-        }
+        public float TotalLoopTime => _waypoints.Sum(w => w.ReachTime);
 
         public bool TryGetRelativeDestination(float time, out Vector2 destination)
         {
@@ -24,7 +18,7 @@ namespace Gameplay.Units
             if (_waypoints.Length == 0)
                 return false;
             
-            time %= _totalLoopTime;
+            time %= TotalLoopTime;
 
             int i = 0;
             while (time > 0)

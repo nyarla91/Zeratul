@@ -1,6 +1,7 @@
 ﻿using System;
 using Extentions;
 using Extentions.Pause;
+using Saving.Data.Units;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Gameplay.Units
 {
     public class UnitDirection : UnitComponent
     {
+        protected override string LoadKey => UnitDirectionSaveSystem.LoadKey;
+
         public float LookAngle { get; private set; }
         public float TargetLookAngle { get; private set; }
         
@@ -19,7 +22,18 @@ namespace Gameplay.Units
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateLookAngle());
         }
-        
+
+        public override IUnitSaveSystem Save()
+        {
+            return new UnitDirectionSaveSystem(LookAngle);
+        }
+
+        public override void ReproduceFromSave(UnitSaveData saveData)
+        {
+            UnitDirectionSaveSystem system = GetSaveSystem<UnitDirectionSaveSystem>(saveData);
+            TargetLookAngle = LookAngle = system.lookAngle;
+        }
+
         public void RotateTowards(Vector2 direction) => RotateTowards(direction.ToDegrees());
         
         public void RotateTowards(float angle) => TargetLookAngle = angle;

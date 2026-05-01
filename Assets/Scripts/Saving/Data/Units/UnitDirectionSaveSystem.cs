@@ -8,13 +8,15 @@ namespace Saving.Data.Units
     public class UnitDirectionSaveSystem : IUnitSaveSystem
     {
         public static string LoadKey => "direction";
-        public string SaveKey => "direction";
+        public string SaveKey => LoadKey;
 
-        [JsonProperty] public float LookAngle { get; }
+        public float lookAngle;
 
+        public UnitDirectionSaveSystem() { }
+        
         public UnitDirectionSaveSystem(float lookAngle)
         {
-            LookAngle = lookAngle;
+            this.lookAngle = lookAngle;
         }
     }
 }

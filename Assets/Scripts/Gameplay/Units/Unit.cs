@@ -69,24 +69,24 @@ namespace Gameplay.Units
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
 
-        public void Init(int id, UnitSpawnInfo spawnInfo)
+        public void Init(int id, UnitType type, UnitSpawnInfo spawnInfo = null)
         {
             if (Type != null)
                 return;
 
             Id = id;
-            Type = spawnInfo.UnitType;
+            Type = type;
 
-            Direction = new UnitDirection(this, TacticalPause, spawnInfo.LookAngle);
+            Direction = new UnitDirection(this, TacticalPause, spawnInfo?.LookAngle ?? 0);
             Abilities = new UnitAbilities(this, TacticalPause);
             Life = new UnitLife(this, TacticalPause);
-            Alliance = new UnitAlliance(this, spawnInfo.Owner);
+            Alliance = new UnitAlliance(this, spawnInfo?.Owner ?? Owner.Enemy);
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
-            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo.Owner);
+            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo?.Owner ?? Owner.Enemy);
             Orders = new UnitOrders(this, TacticalPause);
             Statuses = new UnitStatuses(this, TacticalPause);
-            AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo.PatrolPath);
+            AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo?.PatrolPath);
             Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
             Pathing = new UnitPathing(this, _pathfindingConfig, _unitMovementConfig, NodeMap, _rigidbody, _obstacleCollider, _collider);
             

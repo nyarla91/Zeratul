@@ -17,7 +17,7 @@ namespace Gameplay.Units
         private readonly UnitAiConfig _config;
         private readonly UnitPatrolPath _patrolPath;
         private readonly Vector2 _spawnPoint;
-        
+
         public HashSet<Unit> Threats { get; private set; }
         public HashSet<Unit> SurroundingUnits { get; private set; }
         public Unit PreferredAttackTarget { get; private set; }

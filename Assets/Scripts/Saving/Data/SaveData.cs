@@ -12,9 +12,14 @@ namespace Saving.Data
     {
         [JsonProperty] private Dictionary<string, string> _systems;
 
+        public SaveData() { }
+        
         public SaveData(ISaveSystem[] systems)
         {
-            _systems = systems.NoNull().ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);
+            Debug.Log(systems.Length);
+            _systems = systems
+                .Where(s => s != null)
+                .ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);
         }
 
         public TSystem Get<TSystem>(string key) where TSystem : ISaveSystem

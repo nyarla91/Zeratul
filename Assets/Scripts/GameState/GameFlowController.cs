@@ -31,6 +31,7 @@ namespace GameState
         {
             if (_stateMachine.CurrentState is GameplayState)
                 return;
+            _scenarioSession.ClearSaveData();
             _scenarioSession.Set(scenarioId);
             _stateMachine.Enter<GameplayState>();
         }
@@ -39,6 +40,7 @@ namespace GameState
         {
             if (_stateMachine.CurrentState is not GameplayState)
                 return;
+            _scenarioSession.ClearSaveData();
             _stateMachine.GetState<GameplayState>().RestartScenario();
         }
 
@@ -46,6 +48,7 @@ namespace GameState
         {
             if (_stateMachine.CurrentState is not GameplayState)
                 return;
+            _scenarioSession.ClearSaveData();
             _stateMachine.Enter<MainMenuState>();
         }
 

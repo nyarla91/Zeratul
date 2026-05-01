@@ -16,7 +16,7 @@ namespace Gameplay
         [Inject] private ScenarioSession ScenarioSession { get; set; }
         [Inject] private UnitSpawner UnitSpawner { get; set; }
         
-        private void Awake()
+        public void Instantiate()
         {
             ScenarioData scenario = ScenarioSession.Current;
             if ( ! scenario)
@@ -28,9 +28,11 @@ namespace Gameplay
             
             ScenarioInstantiation instantiation = ContainerInstantiator.Instantiate<ScenarioInstantiation>(prefab, Vector3.zero);
 
+            bool spawnUnits = ScenarioSession.SaveData == null;
             foreach (UnitSpawnPoint spawnPoint in instantiation.UnitSpawnPoints)
             {
-                UnitSpawner.Spawn(spawnPoint.SpawnInfo, spawnPoint.transform.position);
+                if (spawnUnits)
+                    UnitSpawner.Spawn(spawnPoint.transform.position, spawnPoint.UnitType, -1, spawnPoint.SpawnInfo);
                 spawnPoint.Dispose();
             }
         }

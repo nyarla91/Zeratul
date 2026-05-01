@@ -8,19 +8,22 @@ using UnityEngine;
 namespace Saving.Data.Units
 {
     [Serializable]
-    public struct UnitSaveData
+    public class UnitSaveData
     {
         [JsonProperty] private Dictionary<string, string> _systems;
-        [JsonProperty] public int Id { get; }
-        [JsonProperty] public string UnitType { get; }
-        [JsonProperty] public Vector2 Position { get; }
+          
+        public int id;
+        public string unitType;
+        public SerializableVector2 position;
 
+        public UnitSaveData() { }
+        
         public UnitSaveData(IUnitSaveSystem[] systems, int id, string unitType, Vector2 position)
         {
-            Id = id;
-            UnitType = unitType;
-            Position = position;
             _systems = systems.NoNull().ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);
+            this.id = id;
+            this.unitType = unitType;
+            this.position = SerializableVector2.FromVector2(position);
         }
 
         public TSystem Get<TSystem>(string key) where TSystem : IUnitSaveSystem
@@ -28,5 +31,5 @@ namespace Saving.Data.Units
             string json = _systems[key];
             return JsonConvert.DeserializeObject<TSystem>(json);
         }
-    }
+    }                                              
 }
