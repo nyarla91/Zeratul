@@ -29,7 +29,7 @@ namespace Gameplay.Data.Statuses
 
         public override void OnUpdate(Status status)
         {
-            if (status.CurrentFrame % 5 != 0)
+            if (status.FramesSinceAddition % 5 != 0)
                 return;
             if ( ! status.Host.Simulation.IsSimulated)
                 return;

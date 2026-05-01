@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
-  m_Name: _4Mist
+  m_Name: _ConcealAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
-  _windupTime: 35
-  _recoveryTime: 10
+  _windupTime: 5
+  _recoveryTime: 50
   _cooldown: 0
-  _energyCost: 4
+  _energyCost: 50
   _ignoreLock: 0
-  _targetRequirement: 1
-  _maxDistance: 12
+  _targetRequirement: 2
+  _maxDistance: 7
   _casterValidators:
     _unitValidators: []
   _targetValidators:
     _unitValidators: []
   _casterEffects: []
   _mustLookAtTarget: 1
-  _unitTargetEffects: []
-  _pointTargetEffects:
-  - {fileID: 11400000, guid: f68cd969008df464985b0cbc4c6b812d, type: 2}
+  _unitTargetEffects:
+  - {fileID: 11400000, guid: 69ca662f083e03745ad8eb84c6b92f5e, type: 2}
+  _pointTargetEffects: []
   _animationAction: ability

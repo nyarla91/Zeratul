@@ -1,5 +1,6 @@
 ﻿using Extentions;
 using Gameplay.Data.Statuses;
+using Gameplay.Units;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,8 +12,7 @@ namespace Gameplay.UI
     {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Image _icon;
-        [SerializeField] private Image _fillIcon;
-        [SerializeField] private RectMask2D _fillMask;
+        [SerializeField] private AnimationCurve _alphaPerFramesLeft;
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _pointerEnterEventIndex;
         [SerializeField] private int _pointerExitEventIndex;
@@ -38,9 +38,7 @@ namespace Gameplay.UI
             }
             _canvasGroup.alpha = 1;
             _icon.sprite = _currentStatus.Type.DisplayIcon;
-            _fillIcon.sprite = _currentStatus.Type.DisplayIcon;
-            float fillPercent = _currentStatus.FramesLeft > 0 ? (float) _currentStatus.FramesLeft / _currentStatus.Duration : 1;
-            _fillMask.Fill(true, false, fillPercent);
+            _icon.color = Color.white.WithA(_alphaPerFramesLeft.Evaluate(status.FramesLeft));
         }
 
         private void StartShowingTooltip(BaseEventData _)

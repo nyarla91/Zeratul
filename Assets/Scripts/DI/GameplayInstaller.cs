@@ -15,7 +15,6 @@ namespace DI
 {
     public class GameplayInstaller : MonoInstaller
     {
-        [SerializeField] private UnitPool _unitPool;
         [SerializeField] private NodeMap _nodeMap;
         [SerializeField] private IsometricOverlap _isometricOverlap;
         [SerializeField] private VisionMap _visionMap;
@@ -33,8 +32,8 @@ namespace DI
             Container.Bind<GamePause>().AsSingle();
             Container.Bind<TacticalPause>().AsSingle();
             Container.Bind<GameTime>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UnitPool>().AsSingle();
             
-            Container.BindInstance(_unitPool).AsSingle();
             Container.BindInstance(_nodeMap).AsSingle();
             Container.BindInstance(_isometricOverlap).AsSingle();
             Container.BindInstance(_visionMap).AsSingle();

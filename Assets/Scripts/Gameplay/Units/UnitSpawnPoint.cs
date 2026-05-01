@@ -48,5 +48,21 @@ namespace Gameplay.Units
             name.Append(UnitType?.DisplayName ?? "No unit");
             gameObject.name = name.ToString();
         }
+
+        private void OnDrawGizmos()
+        {
+            PatrolWaypoint[] waypoints = _spawnInfo.PatrolPath.Waypoints;
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                Vector2 position = transform.position + (Vector3) waypoints[i].RelativePoint;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawCube(position, Vector3.one * 0.1f);
+                if (i == 0)
+                    continue;
+                Vector2 previousPosition = transform.position + (Vector3) waypoints[i - 1].RelativePoint;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(previousPosition, position);
+            }
+        }
     }
 }

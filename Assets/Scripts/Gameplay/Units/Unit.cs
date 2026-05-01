@@ -1,5 +1,6 @@
 ﻿using System;
 using Extentions;
+using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Units;
 using Gameplay.Map;
@@ -68,6 +69,7 @@ namespace Gameplay.Units
         [Inject] private VisionMap VisionMap { get; set; }
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
+        [Inject] private GameDataRegistry GameDataRegistry { get; set; }
 
         public void Init(int id, UnitType type, UnitSpawnInfo spawnInfo = null)
         {
@@ -78,14 +80,14 @@ namespace Gameplay.Units
             Type = type;
 
             Direction = new UnitDirection(this, TacticalPause, spawnInfo?.LookAngle ?? 0);
-            Abilities = new UnitAbilities(this, TacticalPause);
-            Life = new UnitLife(this, TacticalPause);
+            Abilities = new UnitAbilities(this, GameTime, TacticalPause, GameDataRegistry);
+            Life = new UnitLife(this, GameTime, TacticalPause, UnitPool);
             Alliance = new UnitAlliance(this, spawnInfo?.Owner ?? Owner.Enemy);
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
             Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo?.Owner ?? Owner.Enemy);
             Orders = new UnitOrders(this, TacticalPause);
-            Statuses = new UnitStatuses(this, TacticalPause);
+            Statuses = new UnitStatuses(this, GameTime, TacticalPause, GameDataRegistry, UnitPool);
             AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo?.PatrolPath);
             Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
             Pathing = new UnitPathing(this, _pathfindingConfig, _unitMovementConfig, NodeMap, _rigidbody, _obstacleCollider, _collider);

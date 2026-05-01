@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Units
 {
-    public class UnitPool : MonoBehaviour
+    public class UnitPool : IGetUnitByIdService
     {
         private readonly Dictionary<int, Unit> _units = new();
 
@@ -14,8 +14,8 @@ namespace Gameplay.Units
         
         public HashSet<Unit> EnemyUnits => Units.Where(u => u.Alliance.OwnedByEnemy).ToHashSet();
         
-        public Unit GetUnitById(int id) => _units[id];
-        
+        public Unit GetUnitById(int id) => _units.GetValueOrDefault(id);
+
         public void AddUnit(Unit unit)
         {
             _units.Add(unit.Id, unit);
@@ -25,5 +25,10 @@ namespace Gameplay.Units
         {
             _units.Remove(unit.Id);
         }
+    }
+    
+    public interface IGetUnitByIdService
+    {
+        public Unit GetUnitById(int id);
     }
 }

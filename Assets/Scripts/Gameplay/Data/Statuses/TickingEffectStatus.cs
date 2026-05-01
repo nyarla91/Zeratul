@@ -19,7 +19,7 @@ namespace Gameplay.Data.Statuses
 
         public override void OnUpdate(Status status)
         {
-            if (status.CurrentFrame % _tickPeriod != 0)
+            if (status.FramesSinceAddition % _tickPeriod != 0)
                 return;
             if (_requireSimulation && ! status.Host.Simulation.IsSimulated)
                 return;

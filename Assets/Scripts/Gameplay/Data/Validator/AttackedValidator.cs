@@ -9,6 +9,6 @@ namespace Gameplay.Data.Validator
         [SerializeField] private float _maxTimeSinceTookDamage;
 
         public override bool IsValid(Unit actor, Unit target) =>
-            Time.fixedTime - target.Life.LastDamageTime < _maxTimeSinceTookDamage;
+            Time.fixedTime - target.Life.LastDamageFrame < _maxTimeSinceTookDamage;
     }
 }

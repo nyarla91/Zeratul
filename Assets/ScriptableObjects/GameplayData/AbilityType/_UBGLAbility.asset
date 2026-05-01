@@ -10,27 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
-  m_Name: _1Invasion
+  m_Name: _UBGLAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
   _windupTime: 35
   _recoveryTime: 10
-  _cooldown: 150
+  _cooldown: 350
   _energyCost: 0
   _ignoreLock: 0
-  _targetRequirement: 2
-  _maxDistance: 12
+  _targetRequirement: 1
+  _maxDistance: 7
   _casterValidators:
     _unitValidators: []
   _targetValidators:
-    _unitValidators:
-    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
-    - {fileID: 11400000, guid: 1b46ab317f7c72f449679b9ec9b45c94, type: 2}
-    - {fileID: 11400000, guid: 34840aa4d4189ae41a58fe7a2442cba9, type: 2}
+    _unitValidators: []
   _casterEffects: []
   _mustLookAtTarget: 1
   _unitTargetEffects:
-  - {fileID: 11400000, guid: 8f2754233458ed34583cfb246333a9a4, type: 2}
-  - {fileID: 11400000, guid: fe62053f85348ba45950a2d802f635b2, type: 2}
-  - {fileID: 11400000, guid: c1baac24590bea94ca8ecfb1d12c0bd1, type: 2}
-  _pointTargetEffects: []
-  _animationAction: ability
+  - {fileID: 11400000, guid: 3dfa6bf92a380e14d97519920d20fa5b, type: 2}
+  _pointTargetEffects:
+  - {fileID: 11400000, guid: 3dfa6bf92a380e14d97519920d20fa5b, type: 2}
+  _animationAction: attack

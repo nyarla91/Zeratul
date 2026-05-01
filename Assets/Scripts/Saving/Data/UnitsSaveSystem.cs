@@ -5,7 +5,7 @@ using Saving.Data.Units;
 namespace Saving.Data
 {
     [Serializable]
-    public class UnitsSaveData : ISaveSystem
+    public class UnitsSaveSystem : ISaveSystem
     {
         public static string LoadKey => "units";
         public string SaveKey => LoadKey;
@@ -13,9 +13,9 @@ namespace Saving.Data
         [JsonProperty] public UnitSaveData[] units;
         [JsonProperty] public int nextId;
 
-        public UnitsSaveData() { }
+        public UnitsSaveSystem() { }
         
-        public UnitsSaveData(UnitSaveData[] units, int nextId)
+        public UnitsSaveSystem(UnitSaveData[] units, int nextId)
         {
             this.units = units;
             this.nextId = nextId;

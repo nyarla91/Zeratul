@@ -4,6 +4,7 @@ using System.Linq;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
+using Saving.Data.Units;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -12,11 +13,13 @@ namespace Gameplay.Units
 {
     public class UnitAI : UnitComponent
     {
+        protected override string LoadKey => UnitAISaveSystem.LoadKey;
+
         private readonly IPauseReadonly _tacticalPause;
         private readonly GameTime _gameTime;
         private readonly UnitAiConfig _config;
-        private readonly UnitPatrolPath _patrolPath;
-        private readonly Vector2 _spawnPoint;
+        private Vector2 _spawnPoint;
+        private UnitPatrolPath _patrolPath;
 
         public HashSet<Unit> Threats { get; private set; }
         public HashSet<Unit> SurroundingUnits { get; private set; }
@@ -40,6 +43,18 @@ namespace Gameplay.Units
                 .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
                 .Where(_ => _tacticalPause.IsUnpaused)
                 .Subscribe(_ => IssueOrder());
+        }
+
+        public override IUnitSaveSystem Save()
+        {
+            return new UnitAISaveSystem(_patrolPath, SerializableVector2.FromVector2(_spawnPoint));
+        }
+
+        public override void ReproduceFromSave(UnitSaveData saveData)
+        {
+            UnitAISaveSystem system = GetSaveSystem<UnitAISaveSystem>(saveData);
+            _spawnPoint =  system.spawnPoint.ToVector2();
+            _patrolPath = system.patrolPath;
         }
 
         private void IssueOrder()
@@ -66,8 +81,13 @@ namespace Gameplay.Units
         {
             if ( ! Unit.CanMove)
                 return;
-            _patrolPath.TryGetRelativeDestination(_gameTime.Time, out Vector2 destination);
-            destination += _spawnPoint;
+
+            Vector2 destination = _spawnPoint;
+            if (_patrolPath != null)
+            {
+                _patrolPath.TryGetRelativeDestination(_gameTime.Time, out Vector2 relativeDestination);
+                destination += relativeDestination;
+            }
             Unit.Orders.IssueOrder(new Order(_config.MoveOrder, Unit, OrderTarget.FromPoint(destination)), false);
         }
 
@@ -89,9 +109,9 @@ namespace Gameplay.Units
 
             Threats.UnionWith(surroundingUnits
                 .Where(u => u.Alliance.IsFriendly(Unit))
-                .Where(a => Time.fixedTime - a.Life.LastDamageTime < _config.DamageForgiveTime)
+                .Where(a => Time.fixedTime - a.Life.LastDamageFrame < _config.DamageForgiveTime)
                 .Select(a => a.Life.LastDamageDealer)
-                .Where(u => u.Alliance.IsHostile(Unit))
+                .Where(u => u?.Alliance.IsHostile(Unit) ?? false)
                 .NoNull().ToHashSet());
         }
 

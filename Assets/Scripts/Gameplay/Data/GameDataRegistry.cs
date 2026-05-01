@@ -13,7 +13,7 @@ namespace Gameplay.Data
 
         private void GenerateRegistry()
         {
-            _registry = _objects.ToDictionary(o => $"{o.GetType().Name}/{o.name}", o => o);
+            _registry = _objects.ToDictionary(o => o.name, o => o);
         }
 
         public T Get<T>(string name) where T : ScriptableObject
@@ -21,8 +21,7 @@ namespace Gameplay.Data
             if (_registry == null)
                 GenerateRegistry();
 
-            string key = $"{typeof(T).Name}/{name}";
-            if ( ! _registry.TryGetValue(key, out ScriptableObject result))
+            if ( ! _registry.TryGetValue(name, out ScriptableObject result))
             {
                 throw new KeyNotFoundException($"{this.name} does not contain object {name} of type {typeof(T).Name}");
             }

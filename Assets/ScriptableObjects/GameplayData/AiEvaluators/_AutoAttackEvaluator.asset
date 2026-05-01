@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98bfe865738d4c51be2208716f3b716a, type: 3}
-  m_Name: NoAI
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitAiMap
-  _aiOrders: []
+  m_Script: {fileID: 11500000, guid: 7d4ebb6931e145d9beb6332a785c5e16, type: 3}
+  m_Name: _AutoAttackEvaluator
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.AiEvaluators.AutoAttackEvaluator

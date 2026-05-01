@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98bfe865738d4c51be2208716f3b716a, type: 3}
-  m_Name: ExpertAI
+  m_Name: _ExpertAI
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitAiMap
   _aiOrders:
   - _order: {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}

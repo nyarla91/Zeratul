@@ -1,6 +1,7 @@
 ﻿using System;
 using Extentions;
 using Extentions.Pause;
+using Saving.Data.Units;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -9,8 +10,10 @@ namespace Gameplay.Units
 {
     public class UnitLife : UnitComponent
     {
-        private readonly Timer _shieldRestorationTimer;
-        
+        protected override string LoadKey => UnitLifeSaveSystem.LoadKey;
+
+        private readonly GameTime _gameTime;
+        private readonly IGetUnitByIdService _getUnitByIdService;
         private float _hitPoints;
         private float _shieldPoints;
 
@@ -31,23 +34,37 @@ namespace Gameplay.Units
         public int MissingLifePoints => MaxLifePoints - LifePoints;
         
         public Unit LastDamageDealer { get; private set; }
-        public float LastDamageTime { get; private set; } = -1000;
+        public int LastDamageFrame { get; private set; } = -1000;
         
         public event Action<int> DamageTaken;
         public event Action<int> HitPointsLost;
         public event Action<int> ShieldPointsLost;
 
-        public UnitLife(Unit unit, IPauseReadonly tacticalPause) : base(unit)
+        public UnitLife(Unit unit, GameTime gameTime, IPauseReadonly tacticalPause, IGetUnitByIdService getUnitByIdService) : base(unit)
         {
+            _gameTime = gameTime;
+            _getUnitByIdService = getUnitByIdService;
             _hitPoints = MaxHitPoints;
             _shieldPoints = MaxShieldPoints;
-            
-            if (UnitType.ShieldRestoreDelay > 0)
-                _shieldRestorationTimer = new Timer(UnitType.ShieldRestoreDelay, tacticalPause);
             
             Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => RestoreShieldPoints());
+        }
+
+        public override IUnitSaveSystem Save()
+        {
+            int lastDamageDealerId = LastDamageDealer?.Id ?? -1;
+            return new UnitLifeSaveSystem(_hitPoints, _shieldPoints, lastDamageDealerId, LastDamageFrame);
+        }
+
+        public override void ReproduceFromSave(UnitSaveData saveData)
+        {
+            UnitLifeSaveSystem system = GetSaveSystem<UnitLifeSaveSystem>(saveData);
+            _hitPoints = system.hitPoints;
+            _shieldPoints = system.shieldPoints;
+            LastDamageDealer = _getUnitByIdService.GetUnitById(system.lastDamageDealerId);
+            LastDamageFrame = system.lastDamageFrame;
         }
 
         public void TakeDamage(int damage, Unit damageDealer)
@@ -62,15 +79,13 @@ namespace Gameplay.Units
             _shieldPoints -=  shieldDamage;
 
             LastDamageDealer = damageDealer;
-            LastDamageTime = Time.fixedTime;
+            LastDamageFrame = _gameTime.Frame;
             DamageTaken?.Invoke(damage);
             HitPointsLost?.Invoke(hitDamage);
             ShieldPointsLost?.Invoke(shieldDamage);
             
             if (HitPoints < 1)
                 Unit.Kill();
-            
-            _shieldRestorationTimer?.Restart();
         }
 
         public void RestoreHitPoints(int value)
@@ -89,7 +104,7 @@ namespace Gameplay.Units
 
         private void RestoreShieldPoints()
         {
-            if (_shieldRestorationTimer?.IsOn ?? false)
+            if ( ! HasShieldPoints || _gameTime.Frame - LastDamageFrame < UnitType.ShieldRestoreDelay)
                 return;
             _shieldPoints += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
             _shieldPoints = Mathf.Min(_shieldPoints, MaxShieldPoints);

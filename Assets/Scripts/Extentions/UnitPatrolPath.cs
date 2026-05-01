@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Extentions
@@ -10,7 +10,8 @@ namespace Extentions
     {
         [SerializeField] [JsonProperty] private PatrolWaypoint[] _waypoints;
 
-        public float TotalLoopTime => _waypoints.Sum(w => w.ReachTime);
+        [JsonIgnore] public PatrolWaypoint[] Waypoints => _waypoints;
+        [JsonIgnore] public float TotalLoopTime => _waypoints.Sum(w => w.ReachTime);
 
         public bool TryGetRelativeDestination(float time, out Vector2 destination)
         {
@@ -26,7 +27,6 @@ namespace Extentions
                 if (time <= _waypoints[i].ReachTime || i >= _waypoints.Length - 1)
                 {
                     destination = _waypoints[i].RelativePoint;
-                    Debug.Log(_waypoints[i].RelativePoint);
                     return true;
                 }
                 time -= _waypoints[i].ReachTime;
@@ -35,14 +35,15 @@ namespace Extentions
             return false;
         }
 
-        [Serializable]
-        private struct PatrolWaypoint
-        {
-            [SerializeField] [JsonProperty] private Vector2 _relativePoint;
-            [SerializeField] [JsonProperty] private float _reachTime;
+    }
+    
+    [Serializable]
+    public struct PatrolWaypoint
+    {
+        [SerializeField] [JsonProperty] private SerializableVector2 _relativePoint;
+        [SerializeField] [JsonProperty] private float _reachTime;
 
-            public float ReachTime => _reachTime;
-            public Vector2 RelativePoint => _relativePoint;
-        }
+        [JsonIgnore] public float ReachTime => _reachTime;
+        [JsonIgnore] public Vector2 RelativePoint => _relativePoint.ToVector2();
     }
 }

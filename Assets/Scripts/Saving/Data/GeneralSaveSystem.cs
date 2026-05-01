@@ -10,12 +10,16 @@ namespace Saving.Data
         public string SaveKey => LoadKey;
 
         [JsonProperty] public int scenarioId;
+        [JsonProperty] public int gameTimeFrame;
+        [JsonProperty] public int gameTimeUnpausedFrame;
 
         public GeneralSaveSystem() { }
         
-        public GeneralSaveSystem(int scenarioId)
+        public GeneralSaveSystem(int scenarioId, int gameTimeFrame, int gameTimeUnpausedFrame)
         {
             this.scenarioId = scenarioId;
+            this.gameTimeFrame = gameTimeFrame;
+            this.gameTimeUnpausedFrame = gameTimeUnpausedFrame;
         }
     }
 }

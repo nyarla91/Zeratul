@@ -34,8 +34,8 @@ namespace Gameplay.UI
                 SetFill(0);
                 return;
             }
-            Timer timer = unitAbilities.Select(a => a.CooldownTimer).MinElement(t => t.FramesLeft);
-            float percent = (float) timer.FramesLeft / timer.Duration;
+            float cooldownLeft = unitAbilities.Min(a => a.CooldownLeft);
+            float percent = cooldownLeft / abilityType.Cooldown;
             SetFill(percent);
         }
 

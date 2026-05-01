@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Extentions
 {
+    [Serializable]
     public struct SerializableVector2
     {
         public float x;

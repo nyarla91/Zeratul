@@ -1,25 +1,37 @@
-﻿using UniRx;
+﻿using Saving.Data;
+using UniRx;
 using Zenject;
 
 namespace Gameplay
 {
     public class GameTime
     {
-        public float Time { get; private set; }
-        public int Frames { get; private set; }
+        private readonly TacticalPause _tacticalPause;
+        
+        public int UnpausedFrame { get; private set; }
+        public int Frame { get; private set; }
+        public float UnpausedTime => UnityEngine.Time.fixedDeltaTime * UnpausedFrame;
+        public float Time => UnityEngine.Time.fixedDeltaTime * Frame;
         
         [Inject]
         public GameTime(TacticalPause tacticalPause)
         {
+            _tacticalPause = tacticalPause;
             Observable.EveryFixedUpdate()
-                .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => Tick());
+        }
+
+        public void ReproduceFromSaveData(GeneralSaveSystem saveSystem)
+        {
+            Frame = saveSystem.gameTimeFrame;
+            UnpausedFrame = saveSystem.gameTimeUnpausedFrame;
         }
 
         private void Tick()
         {
-            Time += UnityEngine.Time.fixedDeltaTime;
-            Frames++;
+            UnpausedFrame++;
+            if (_tacticalPause.IsUnpaused)
+                Frame++;
         }
     }
 }

@@ -27,9 +27,9 @@ namespace Gameplay.Units
             return unit;
         }
 
-        public void ReproduceFromSaveData(UnitsSaveData saveData)
+        public void ReproduceFromSaveData(UnitsSaveSystem saveSystem)
         {
-            NextId = saveData.nextId;
+            NextId = saveSystem.nextId;
         }
     }
 }

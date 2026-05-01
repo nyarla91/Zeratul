@@ -1,5 +1,4 @@
-﻿using Extentions.Pause;
-using Gameplay.UI;
+﻿using Gameplay.UI;
 using Gameplay.Units;
 using Gameplay.Units.View;
 using Gameplay.Units.View.StatusRendering;
@@ -34,88 +33,5 @@ namespace Gameplay.Data.Statuses
         public abstract void OnRemove(Status status);
 
         public bool IsLocked(Status status) => _useLock && status.Host.Abilities.IsLocked;
-    }
-
-    public class Status : IStatusInfo
-    {
-        public StatusType Type { get; }
-        public Unit Instigator { get; }
-        public Unit Host { get; }
-        public int AdditionFrame { get; private set; }
-        public int RemovalFrame { get; private set; }
-        public int CurrentFrame { get; private set; }
-        public IPauseReadonly Pause { get; }
-
-        public bool IsLocked => Type.IsLocked(this);
-        
-        public int FramesLeft => RemovalFrame - CurrentFrame;
-        public int Duration =>  RemovalFrame - AdditionFrame;
-        
-        public string DisplayDescription
-        {
-            get
-            {
-                string result = Type.RawDisplayDescription;
-                if (FramesLeft < 3)
-                    return result;
-                int secondsLeft = Mathf.CeilToInt(Time.fixedDeltaTime * FramesLeft);
-                result += $"<stat>\n{secondsLeft} sec. left</stat>";
-                return result;
-            }
-        }
-
-        public TooltipInfo TooltipInfo => Type.GetTooltipInfoForStatus(this);
-        
-        public Status(StatusType type, Unit instigator, Unit host, int duration = -1, IPauseReadonly pause = null)
-        {
-            Type = type;
-            Instigator = instigator;
-            Host = host;
-            AdditionFrame = 0;
-            RemovalFrame = duration;
-            Pause = pause;
-        }
-        
-        public void OnAdd() => Type.OnAdd(this);
-
-        public void OnUpdate()
-        {
-            if (Pause.IsPaused)
-                return;
-            Type.OnUpdate(this);
-            CurrentFrame++;
-            if (CurrentFrame == RemovalFrame)
-                Remove();
-        }
-
-        public void OnRemove() => Type.OnRemove(this);
-
-        public void Restart(int newDuration)
-        {
-            if (RemovalFrame == -1  || FramesLeft > newDuration)
-                return;
-            AdditionFrame = CurrentFrame;
-            RemovalFrame = CurrentFrame + newDuration;
-        }
-
-        private void Remove()
-        {
-            Host.Statuses.RemoveStatus(Type);
-        }
-    }
-    
-    public interface IStatusInfo
-    {
-        public StatusType Type { get; }
-        public Unit Instigator { get; }
-        public Unit Host { get; }
-        public int AdditionFrame { get; }
-        public int RemovalFrame { get; }
-        public int CurrentFrame { get; }
-        public bool IsLocked { get; }
-        public int FramesLeft { get; }
-        public int Duration { get; }
-        public string DisplayDescription { get; }
-        public TooltipInfo TooltipInfo { get; }
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using Extentions;
 using Extentions.Pause;
+using Gameplay.Data;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
+using Saving.Data.Units;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -15,8 +15,11 @@ namespace Gameplay.Units
 {
     public class UnitAbilities : UnitComponent
     {
+        protected override string LoadKey => UnitAbilitiesSaveSystem.LoadKey;
+
+        private readonly GameTime _gameTime;
+        private readonly GameDataRegistry _gameDataRegistry;
         private readonly HashSet<object> _lockSources = new();
-        private readonly Timer _energyRestorationTimer;
         private readonly Dictionary<AbilityType, Ability> _abilities = new();
 
         private float _energyPoints;
@@ -27,14 +30,17 @@ namespace Gameplay.Units
         public bool HasEnergyPoints => MaxEnergyPoints > 0;
         public float EnergyPercent => HasEnergyPoints ? (float) EnergyPoints / MaxEnergyPoints : 1;
         
+        public int LastEnergySpentFrame { get; private set; }
 
         public bool IsLocked => _lockSources.Count > 0;
         public bool IsUnlocked => ! IsLocked;
 
         private IPauseReadonly TacticalPause { get; set; }
 
-        public UnitAbilities(Unit unit, IPauseReadonly tacticalPause) : base(unit)
+        public UnitAbilities(Unit unit, GameTime gameTime, IPauseReadonly tacticalPause, GameDataRegistry gameDataRegistry) : base(unit)
         {
+            _gameTime = gameTime;
+            _gameDataRegistry = gameDataRegistry;
             TacticalPause = tacticalPause;
             
             Unit.FixedUpdateAsObservable()
@@ -43,9 +49,6 @@ namespace Gameplay.Units
             
             _energyPoints = MaxEnergyPoints;
             
-            if (UnitType.EnergyRestoreDelay > 0)
-                _energyRestorationTimer = new Timer(UnitType.EnergyRestoreDelay, TacticalPause);
-            
             AbilityOrder[] abilityOrders = UnitType.AvailableOrders.OfType<AbilityOrder>().ToArray();
             
             if (abilityOrders.Length == 0)
@@ -53,7 +56,28 @@ namespace Gameplay.Units
             
             foreach (AbilityOrder abilityOrder in abilityOrders)
             {
-                _abilities.Add(abilityOrder.AbilityType, new Ability(abilityOrder.AbilityType, Unit, TacticalPause));
+                _abilities.Add(abilityOrder.AbilityType, new Ability(abilityOrder.AbilityType, Unit, gameTime));
+            }
+        }
+
+        public override IUnitSaveSystem Save()
+        {
+            Dictionary<string, int> lastCastFrameByAbilityName = _abilities
+                .ToDictionary(pair => pair.Key.name, pair => pair.Value.LastCastFrame);
+            
+            return new UnitAbilitiesSaveSystem(_energyPoints, LastEnergySpentFrame, lastCastFrameByAbilityName);
+        }
+
+        public override void ReproduceFromSave(UnitSaveData saveData)
+        {
+            UnitAbilitiesSaveSystem system = GetSaveSystem<UnitAbilitiesSaveSystem>(saveData);
+            _energyPoints = system.energyPoints;
+            LastEnergySpentFrame = system.lastEnergySpentFrame;
+
+            foreach (KeyValuePair<string, int> pair in system.lastCastFrameByAbilityName)
+            {
+                AbilityType abilityType = _gameDataRegistry.Get<AbilityType>(pair.Key);
+                _abilities[abilityType].LastCastFrame = pair.Value;
             }
         }
         
@@ -105,7 +129,7 @@ namespace Gameplay.Units
             if (energy > EnergyPoints)
                 return false;
             _energyPoints -= energy;
-            _energyRestorationTimer?.Restart();
+            LastEnergySpentFrame = _gameTime.Frame;
             return true;
         }
         
@@ -113,7 +137,7 @@ namespace Gameplay.Units
 
         private void RestoreEnergyPoints()
         {
-            if (_energyRestorationTimer?.IsOn ?? false)
+            if ( ! HasEnergyPoints || _gameTime.Frame - LastEnergySpentFrame < UnitType.EnergyRestoreDelay)
                 return;
             _energyPoints += Time.fixedDeltaTime * UnitType.EnergyPointsPerSecond;
             _energyPoints = Mathf.Min(_energyPoints, MaxEnergyPoints);
