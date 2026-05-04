@@ -2837,6 +2837,7 @@ GameObject:
   - component: {fileID: 667987119}
   - component: {fileID: 667987118}
   - component: {fileID: 667987121}
+  - component: {fileID: 667987122}
   m_Layer: 0
   m_Name: Saving
   m_TagString: Untagged
@@ -2897,6 +2898,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Saving.UnitsSavingSystem
   _saveLoad: {fileID: 667987119}
+--- !u!114 &667987122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667987117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8692ce57a7e4c00865ffcafc5c8cc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Saving.MapSavingSystem
+  _saveLoad: {fileID: 667987119}
+  _camera: {fileID: 519420031}
+  _fogOfWar: {fileID: 388089112}
 --- !u!1 &691535653
 GameObject:
   m_ObjectHideFlags: 0
