@@ -1,6 +1,8 @@
-﻿using Extentions.Pause;
+﻿using System;
+using Extentions.Pause;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -13,21 +15,36 @@ namespace Gameplay.UI
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _pointerClickEventIndex;
         
+        [Inject] private ClickArea ClickArea { get; set; }
         [Inject] private PlayerOrdersDispatcher OrdersDispatcher { get; set; }
-        [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; }
+        [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
+        [Inject] private PlayerOrderTargeter Targeter { get; set; }
         [Inject] private GamePause GamePause { get; set; }
         
         private void Awake()
         {
-            _eventTrigger.triggers[_pointerClickEventIndex].callback.AddListener(IssueSmartOrder);
+            Targeter.ObserveEveryValueChanged(t => t.IsTargeting)
+                .Subscribe(UpdateSubscriptions);
         }
 
-        private void IssueSmartOrder(BaseEventData _)
+        private void UpdateSubscriptions(bool isTargeting)
+        {
+            if (isTargeting)
+            {
+                ClickArea.RightClicked -= IssueSmartOrder;
+            }
+            else
+            {
+                ClickArea.RightClicked += IssueSmartOrder;
+            }
+        }
+
+        private void IssueSmartOrder()
         {
             if (GamePause.IsPaused || ! Mouse.current.rightButton.wasReleasedThisFrame)
                 return;
             const TargetRequirement requirement = TargetRequirement.PointOrUnit;
-            OrdersDispatcher.IssueSmartOrderToSelection(TargetSelector.GetTargetForRequirement(requirement));
+            OrdersDispatcher.IssueSmartOrderToSelection(MouseTargeting.GetTargetForRequirement(requirement));
         }
     }
 }

@@ -12,11 +12,10 @@ using Zenject;
 
 namespace Gameplay.UI
 {
-    public class TargetSelectorView : MonoBehaviour
+    public class TargeterView : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _showDelay;
-        [SerializeField] private bool _enableTacticalPause;
         [SerializeField] private Image _orderIcon;
         [SerializeField] private TMP_Text _orderName;
         [SerializeField] private TMP_Text _validationMessage;
@@ -28,19 +27,21 @@ namespace Gameplay.UI
         private AoeView _rangeAoe;
         private AoeView _targetAoe;
 
-        private OrderType CurrentOrder => Selector.CurrentOrder; 
+        private OrderType CurrentOrder => Targeter.CurrentOrder; 
         private AbilityOrder CurrentAbilityOrder => CurrentOrder as AbilityOrder; 
         
         [Inject] private PlayerSelection Selection { get; set; }
-        [Inject] public PlayerOrderTargetSelector Selector { get; }
+        [Inject] public PlayerOrderTargeter Targeter { get; }
+        [Inject] public PlayerOrdersDispatcher OrdersDispatcher { get; }
         [Inject] private PoolFactory<AoeView> AoeFactory { get; set; }
-        [Inject] private TacticalPause TacticalPause { get; set; }
 
         private void Awake()
         {
             _rangeAoe = AoeFactory.Get();
             _targetAoe = AoeFactory.Get();
         }
+
+        public void CancelTargeting() => Targeter.CancelTargeting();
 
         private void Update()
         {
@@ -49,46 +50,22 @@ namespace Gameplay.UI
             if (_targetingTime < _showDelay)
             {
                 _canvasGroup.alpha = 0;
+                _canvasGroup.blocksRaycasts = _canvasGroup.interactable = false;
                 _rangeAoe.Hide();
                 _targetAoe.Hide();
-                TacticalPause.Unpause(this);
                 return;
             }
-            if (_enableTacticalPause)
-                TacticalPause.Pause(this);
             
             Unit[] actors = Selection.SelectedUnits.Where(u => u.Type.AvailableOrders.Contains(CurrentOrder)).ToArray();
             
             _canvasGroup.alpha = 1;
+            _canvasGroup.blocksRaycasts = _canvasGroup.interactable = true;
             _orderName.text = CurrentOrder.DisplayName;
             _orderIcon.sprite = CurrentOrder.Icon;
-            _validationMessage.text = GetValidationMessageText(actors);
+            OrdersDispatcher.CanIssueWithTarget(CurrentOrder, Targeter.CurrentTarget, out string errorMessage);
+            _validationMessage.text = errorMessage;
             
             UpdateEllipses(actors);
-        }
-
-        private string GetValidationMessageText(Unit[] actors)
-        {
-            if (CurrentOrder.TargetRequirement == TargetRequirement.None)
-                return null;
-            if (CurrentOrder.TargetRequirement == TargetRequirement.Point)
-                return null;
-            if (CurrentOrder.TargetRequirement == TargetRequirement.Unit && ! Selector.CurrentTarget.Unit)
-                return "Must target a unit";
-            if ( ! Selector.CurrentTarget.Unit)
-                return null;
-            
-            if ( ! CurrentAbilityOrder)
-                return null;
-
-
-            string invalidMessage = "";
-            foreach (Unit actor in actors)
-            {
-                if (CurrentAbilityOrder.AbilityType.TargetValidators.IsValid(actor, Selector.CurrentTarget.Unit, out invalidMessage))
-                    return null;
-            }
-            return invalidMessage;
         }
 
         private void UpdateEllipses(Unit[] actors)
@@ -107,14 +84,14 @@ namespace Gameplay.UI
             _rangeAoe.Move(closestUnit.Position);
 
             radius = CurrentAbilityOrder.AoeEllipseRadius;
-            if (radius == 0 || (CurrentAbilityOrder.TargetRequirement == TargetRequirement.Unit && ! Selector.CurrentTarget.Unit))
+            if (radius == 0 || (CurrentAbilityOrder.TargetRequirement == TargetRequirement.Unit && ! Targeter.CurrentTarget.Unit))
             {
                 _targetAoe.Hide();
                 return;
             }
             _targetAoe.Show();
             _targetAoe.Set(_targetVariant.WithRadius(radius));
-            Vector3 position = Selector.CurrentTarget.Unit ? Selector.CurrentTarget.Unit.Position : Selector.CurrentTarget.Point;
+            Vector3 position = Targeter.CurrentTarget.Unit ? Targeter.CurrentTarget.Unit.Position : Targeter.CurrentTarget.Point;
             _targetAoe.Move(position);
         }
     }

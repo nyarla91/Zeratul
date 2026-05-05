@@ -19,15 +19,15 @@ namespace DI
         
         public override void InstallBindings()
         {
-            Container.Bind().FromInstance(_orderError);
-            Container.Bind().FromInstance(_pathfinding);
-            Container.Bind().FromInstance(_playerControl);
-            Container.Bind().FromInstance(_spriteLayering);
-            Container.Bind().FromInstance(_textFormatting);
-            Container.Bind().FromInstance(_unitAttack);
-            Container.Bind().FromInstance(_unitMovement);
-            Container.Bind().FromInstance(_vision);
-            Container.Bind().FromInstance(_localizer);
+            Container.BindInstance(_orderError);
+            Container.BindInstance(_pathfinding);
+            Container.BindInstance(_playerControl);
+            Container.BindInstance(_spriteLayering);
+            Container.BindInstance(_textFormatting);
+            Container.BindInstance(_unitAttack);
+            Container.BindInstance(_unitMovement);
+            Container.BindInstance(_vision);
+            Container.BindInstance(_localizer);
         }
     }
 }

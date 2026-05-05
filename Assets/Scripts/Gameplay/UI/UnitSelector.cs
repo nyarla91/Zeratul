@@ -3,17 +3,18 @@ using System.Linq;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Player;
-using Gameplay.Units;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Zenject;
+using UniRx;
 using PlayerInput = Gameplay.Player.PlayerInput;
+using Unit = Gameplay.Units.Unit;
 
 namespace Gameplay.UI
 {
     
-    public class UnitSelectionArea : MonoBehaviour
+    public class UnitSelector : MonoBehaviour
     {
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _beginDragEventIndex;
@@ -24,8 +25,10 @@ namespace Gameplay.UI
         public Vector2 SelectionStartPosition { get; private set; }
         public bool IsSelecting { get; private set; }
         
+        [Inject] private ClickArea ClickArea { get; set; }
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private PlayerInput Input { get; set; }
+        [Inject] private PlayerOrderTargeter Targeter { get; set; }
         [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
         [Inject] private GamePause GamePause { get; set; }
         
@@ -33,7 +36,20 @@ namespace Gameplay.UI
         {
             _eventTrigger.triggers[_beginDragEventIndex].callback.AddListener(StartBoxSelection);
             _eventTrigger.triggers[_endDragEventIndex].callback.AddListener(FinishBoxSelection);
-            _eventTrigger.triggers[_clickEventIndex].callback.AddListener(SelectSingleUnit);
+            Targeter.ObserveEveryValueChanged(t => t.IsTargeting)
+                .Subscribe(UpdateSubscriptions);
+        }
+
+        private void UpdateSubscriptions(bool isTargeting)
+        {
+            if (isTargeting)
+            {
+                ClickArea.LeftClicked -= SelectSingleUnit;
+            }
+            else
+            {
+                ClickArea.LeftClicked += SelectSingleUnit;
+            }
         }
 
         private void StartBoxSelection(BaseEventData _)
@@ -73,7 +89,7 @@ namespace Gameplay.UI
             colliders.Select(unit => unit.GetComponentInParent<Unit>()).NoNull()
                 .Where(unit => unit.Alliance.OwnedByPlayer).NoNull();
 
-        private void SelectSingleUnit(BaseEventData arg)
+        private void SelectSingleUnit()
         {
             if (GamePause.IsPaused || ! Mouse.current.leftButton.wasReleasedThisFrame)
                 return;

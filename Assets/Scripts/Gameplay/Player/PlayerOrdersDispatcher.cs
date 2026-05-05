@@ -48,8 +48,13 @@ namespace Gameplay.Player
 
         public bool CanIssueWithTarget(OrderType orderType, OrderTarget target, out string errorMessage)
         {
-            if (!CanIssueWithoutTarget(orderType, out errorMessage))
+            if ( ! CanIssueWithoutTarget(orderType, out errorMessage))
                 return false;
+            if (orderType.TargetRequirement == TargetRequirement.Unit && target.Unit == null)
+            {
+                errorMessage = _errors.MustBeUnit;
+                return false;
+            }
             foreach (Unit selectedUnit in _playerSelection.SelectedPlayerUnits)
             {
                 if (orderType.IsTargetValid(selectedUnit, target, out errorMessage))

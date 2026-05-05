@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Extentions;
 using Extentions.Pause;
+using Gameplay.Data.Orders;
+using Gameplay.Units;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +29,18 @@ namespace Gameplay.Player
 
             Observable.EveryFixedUpdate()
                 .Subscribe(_ => UpdateTargets());
+        }
+
+        public OrderTarget GetTargetForRequirement(TargetRequirement requirement)
+        {
+            return requirement switch
+            {
+                TargetRequirement.None => default,
+                TargetRequirement.Point => OrderTarget.FromPoint(Point),
+                TargetRequirement.Unit => OrderTarget.FromUnit(Unit),
+                TargetRequirement.PointOrUnit => new OrderTarget(Point, Unit),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         private void UpdateTargets()

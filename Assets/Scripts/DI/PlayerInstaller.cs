@@ -15,7 +15,7 @@ namespace DI
         private PlayerInput _input;
         private PlayerMouseTargeting _mouseTargeting;
         private PlayerOrdersDispatcher _ordersDispatcher;
-        private PlayerOrderTargetSelector _orderTargetSelector;
+        private PlayerOrderTargeter _orderTargeter;
         private PlayerSelection _selection;
         private PlayerControlResources _controlResources;
         
@@ -25,21 +25,21 @@ namespace DI
             _mouseTargeting = new PlayerMouseTargeting(Camera.main, _unitsMask);
             _selection = new PlayerSelection(_input);
             _ordersDispatcher = new PlayerOrdersDispatcher(_selection, _input, _errors);
-            _orderTargetSelector = new PlayerOrderTargetSelector(_mouseTargeting);
+            _orderTargeter = new PlayerOrderTargeter(_mouseTargeting, _selection, _ordersDispatcher);
             _controlResources = new PlayerControlResources(_controlConfig);
 
             Container.Inject(_input);
             Container.Inject(_mouseTargeting);
             Container.Inject(_selection);
             Container.Inject(_ordersDispatcher);
-            Container.Inject(_orderTargetSelector);
+            Container.Inject(_orderTargeter);
             Container.Inject(_controlResources);
             
             Container.Bind<PlayerInput>().FromInstance(_input).AsSingle();
             Container.Bind<PlayerMouseTargeting>().FromInstance(_mouseTargeting).AsSingle();
             Container.Bind<PlayerSelection>().FromInstance(_selection).AsSingle();
             Container.Bind<PlayerOrdersDispatcher>().FromInstance(_ordersDispatcher).AsSingle();
-            Container.Bind<PlayerOrderTargetSelector>().FromInstance(_orderTargetSelector).AsSingle();
+            Container.Bind<PlayerOrderTargeter>().FromInstance(_orderTargeter).AsSingle();
             Container.Bind<PlayerControlResources>().FromInstance(_controlResources).AsSingle();
         }
 

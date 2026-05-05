@@ -26,6 +26,7 @@ namespace DI
         [SerializeField] private GameplaySaveLoad _gameplaySaveLoad;
         [SerializeField] private UnitSpawner _unitSpawner;
         [SerializeField] private GameDataRegistry _gameDataRegistry;
+        [SerializeField] private ClickArea _clickArea;
         
         public override void InstallBindings()
         {
@@ -45,6 +46,7 @@ namespace DI
             Container.BindInstance(_gameplaySaveLoad).AsSingle();
             Container.BindInstance(_unitSpawner).AsSingle();
             Container.BindInstance(_gameDataRegistry).AsSingle();
+            Container.BindInstance(_clickArea).AsSingle();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Gameplay.UI
         public OrderType OrderType { get; private set; }
         
         [Inject] private PlayerInput PlayerInput { get; set; } 
-        [Inject] private PlayerOrderTargetSelector TargetSelector { get; set; } 
+        [Inject] private PlayerOrderTargeter Targeter { get; set; } 
         [Inject] private PlayerOrdersDispatcher Dispatcher { get; set; } 
         [Inject] private PlayerSelection Selection { get; set; } 
         [Inject] private Tooltip Tooltip { get; set; } 
@@ -43,11 +43,9 @@ namespace Gameplay.UI
 
         private void Awake()
         {
-            _eventTrigger.triggers[_beginDragEventIndex].callback.AddListener(StartTargeting);
-            _eventTrigger.triggers[_endDragEventIndex].callback.AddListener(IssueWithTarget);
-            _eventTrigger.triggers[_clickEventIndex].callback.AddListener(IssueWithoutTarget);
+            _eventTrigger.triggers[_clickEventIndex].callback.AddListener(HandleActivation);
             _eventTrigger.triggers[_pointerEnterEventIndex].callback.AddListener(StartShowingTooltip);
-            _eventTrigger.triggers[_pointerExitEventIndex].callback.AddListener(HideToolip);
+            _eventTrigger.triggers[_pointerExitEventIndex].callback.AddListener(HideTooltip);
         }
 
         public void ApplyOrderType(OrderType orderType)
@@ -66,89 +64,37 @@ namespace Gameplay.UI
             
             if (_hotkey != null)
             {
-                _hotkey.started += StartTargeting;
-                _hotkey.canceled += IssueWithTarget;
-                _hotkey.performed += IssueWithoutTarget;
+                _hotkey.performed += HandleActivation;
             }
             
             OrderType = orderType;
         }
 
-        private void StartTargeting(BaseEventData _)
+        private void HandleActivation(BaseEventData _)
         {
-            if (Mouse.current.leftButton.isPressed)
-                StartTargeting();
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
+                HandleActivation();
         }
 
-        private void StartTargeting(InputAction.CallbackContext _) => StartTargeting();
+        private void HandleActivation(InputAction.CallbackContext _) => HandleActivation();
 
-        private void StartTargeting()
+        private void HandleActivation()
         {
             if (GamePause.IsPaused)
                 return;
             if (Selection.IsUncontrollableSelected)
                 return;
-            if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
+            if (OrderType == null)
                 return;
             if ( ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
             {
                 OrderErrorMessage.Show(errorMessage);
                 return;
             }
-            TargetSelector.StartTargeting(OrderType);
-        }
-
-        private void IssueWithTarget(BaseEventData _)
-        {
-            if (Mouse.current.leftButton.wasReleasedThisFrame)
-                IssueWithTarget();
-        }
-
-        private void IssueWithTarget(InputAction.CallbackContext _) => IssueWithTarget();
-
-        private void IssueWithTarget()
-        {
-            if (GamePause.IsPaused)
-                return;
-            if (Selection.IsUncontrollableSelected)
-                return;
-            if (OrderType == null || OrderType.TargetRequirement == TargetRequirement.None)
-                return;
-            if ( ! TargetSelector.IsTargeting)
-                return;
-            OrderTarget target = TargetSelector.FinishTargeting();
-            if ( ! Dispatcher.CanIssueWithTarget(OrderType, target, out string errorMessage))
-            {
-                OrderErrorMessage.Show(errorMessage);
-                return;
-            }
-            if (OrderType.TargetRequirement == TargetRequirement.Unit && target.Unit == null)
-                return;
-            Dispatcher.IssueOrderToSelection(OrderType, target);
-        }
-
-        private void IssueWithoutTarget(BaseEventData _)
-        {
-            if (Mouse.current.leftButton.wasReleasedThisFrame)
-                IssueWithoutTarget();
-        }
-
-        private void IssueWithoutTarget(InputAction.CallbackContext _) => IssueWithoutTarget();
-
-        private void IssueWithoutTarget()
-        {
-            if (GamePause.IsPaused)
-                return;
-            if (Selection.IsUncontrollableSelected)
-                return;
-            if (OrderType == null || OrderType.TargetRequirement != TargetRequirement.None)
-                return;
-            if ( ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
-            {
-                OrderErrorMessage.Show(errorMessage);
-                return;
-            }
-            Dispatcher.IssueOrderToSelection(OrderType, default);
+            if (OrderType.TargetRequirement == TargetRequirement.None)
+                Dispatcher.IssueOrderToSelection(OrderType, default);
+            else
+                Targeter.StartTargeting(OrderType);
         }
 
         private void StartShowingTooltip(BaseEventData _)
@@ -156,7 +102,7 @@ namespace Gameplay.UI
             _showTooltip = true;
         }
 
-        private void HideToolip(BaseEventData _)
+        private void HideTooltip(BaseEventData _)
         {
             _showTooltip = false;
             Tooltip.Hide();
@@ -179,7 +125,7 @@ namespace Gameplay.UI
         {
             if (GamePause.IsPaused)
             {
-                HideToolip(null);
+                HideTooltip(null);
             }
             if (_showTooltip && OrderType)
                 Tooltip.Show(OrderType.TooltipInfo);
@@ -189,9 +135,7 @@ namespace Gameplay.UI
         {
             if (_hotkey == null)
                 return;
-            _hotkey.started -= StartTargeting;
-            _hotkey.canceled -= IssueWithTarget;
-            _hotkey.performed -= IssueWithoutTarget;
+            _hotkey.performed -= HandleActivation;
         }
     }
 }
