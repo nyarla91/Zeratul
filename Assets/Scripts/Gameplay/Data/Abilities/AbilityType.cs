@@ -1,4 +1,5 @@
-﻿using Gameplay.Data.Effects;
+﻿using System.Linq;
+using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Validator;
 using Gameplay.Units;
@@ -14,6 +15,7 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private int _recoveryTime;
         [Tooltip("Cooldown between uses (in fixed frames)")]
         [SerializeField] private int _cooldown;
+        [SerializeField] private AbilityCooldownGroup _cooldownGroup;
         [SerializeField] private int _energyCost;
         [SerializeField] private bool _ignoreLock;
         [HorizontalLine(2, EColor.White)]
@@ -43,7 +45,8 @@ namespace Gameplay.Data.Abilities
         public bool IgnoreLock => _ignoreLock;
         public int WindupTime => _windupTime;
         public int RecoveryTime => _recoveryTime;
-        public int Cooldown => _cooldown;
+        public int Cooldown => _cooldownGroup?.Cooldown ?? _cooldown;
+        public AbilityCooldownGroup CooldownGroup => _cooldownGroup;
         public bool MustLookAtTarget => _mustLookAtTarget;
         public EffectTargetingUnit[] CasterEffects => _casterEffects;
         public EffectTargetingUnit[] UnitTargetEffects => _unitTargetEffects;
@@ -72,9 +75,12 @@ namespace Gameplay.Data.Abilities
 
         private void OnValidate()
         {
-            if (TargetRequirement != TargetRequirement.None)
-                return;
-            _maxDistance = 0;
+            _windupTime = Mathf.Max(0, _windupTime);
+            _recoveryTime = Mathf.Max(0, _recoveryTime);
+            _cooldown = _cooldownGroup ? 0 : Mathf.Max(0, _cooldown);
+            _energyCost = Mathf.Max(0, _energyCost);
+            if (TargetRequirement == TargetRequirement.None)
+                _maxDistance = 0;
         }
     }
 }

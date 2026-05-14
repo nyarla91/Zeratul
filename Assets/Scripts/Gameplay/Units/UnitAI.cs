@@ -112,7 +112,7 @@ namespace Gameplay.Units
                 .Where(a => Time.fixedTime - a.Life.LastDamageFrame < _config.DamageForgiveTime)
                 .Select(a => a.Life.LastDamageDealer)
                 .Where(u => u?.Alliance.IsHostile(Unit) ?? false)
-                .NoNull().ToHashSet());
+                .ClearNull().ToHashSet());
         }
 
         private void UpdatePreferredAttackTarget(HashSet<Unit> threats)

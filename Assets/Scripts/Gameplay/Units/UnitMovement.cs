@@ -135,7 +135,7 @@ namespace Gameplay.Units
             if (overlapTotal == 0)
                 return direction;
             
-            Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).NoNull();
+            Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).ClearNull();
             obstacles = obstacles.Where(unit => unit.Movement == null || ! unit.Movement.Displaceable).ToArray();
             if (obstacles.Length == 0)
                 return direction;

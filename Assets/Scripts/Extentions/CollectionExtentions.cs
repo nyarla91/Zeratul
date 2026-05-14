@@ -114,7 +114,7 @@ namespace Extentions
             return array;
         }
 
-        public static T[] NoNull<T>(this IEnumerable<T> source) => source.Where(element => element != null).ToArray();
+        public static T[] ClearNull<T>(this IEnumerable<T> source) => source.Where(element => element != null).ToArray();
 
         public static T MaxElement<T>(this IEnumerable<T> source, Func<T, float> selector)
         {

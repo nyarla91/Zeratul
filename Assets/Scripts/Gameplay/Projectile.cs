@@ -47,7 +47,7 @@ namespace Gameplay
                 Despawn();
                 return;
             }
-            EffectTargetingPoint[] pointEffects = effects.Select(e => e as EffectTargetingPoint).NoNull().ToArray();
+            EffectTargetingPoint[] pointEffects = effects.Select(e => e as EffectTargetingPoint).ClearNull().ToArray();
             foreach (EffectTargetingPoint pointEffect in pointEffects)
             {
                 pointEffect.Apply(caster, travelResult.FinalPosition);

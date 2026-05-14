@@ -810,6 +810,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cloak",
+                    "type": "Button",
+                    "id": "01bc1276-2a38-47ad-9d4b-9545d02f4392",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Decloak",
+                    "type": "Button",
+                    "id": "05475dfe-198a-4eb0-ba7a-56341e49280a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -920,6 +938,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c4a278d-1167-4615-8ff9-ca6206f4926f",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cloak",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95713d7c-3078-4e0d-ab36-96889d8b585a",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Decloak",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

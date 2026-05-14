@@ -20,7 +20,7 @@ namespace Saving.Data.Units
         
         public UnitSaveData(IUnitSaveSystem[] systems, int id, string unitType, Vector2 position)
         {
-            _systems = systems.NoNull().ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);
+            _systems = systems.ClearNull().ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);
             this.id = id;
             this.unitType = unitType;
             this.position = SerializableVector2.FromVector2(position);

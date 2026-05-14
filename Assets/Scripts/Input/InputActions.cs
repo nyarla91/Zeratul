@@ -896,6 +896,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cloak"",
+                    ""type"": ""Button"",
+                    ""id"": ""01bc1276-2a38-47ad-9d4b-9545d02f4392"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Decloak"",
+                    ""type"": ""Button"",
+                    ""id"": ""05475dfe-198a-4eb0-ba7a-56341e49280a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1008,6 +1026,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Ability5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c4a278d-1167-4615-8ff9-ca6206f4926f"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cloak"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95713d7c-3078-4e0d-ab36-96889d8b585a"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Decloak"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1110,6 +1150,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Orders_Ability3 = m_Orders.FindAction("Ability3", throwIfNotFound: true);
         m_Orders_Ability4 = m_Orders.FindAction("Ability4", throwIfNotFound: true);
         m_Orders_Ability5 = m_Orders.FindAction("Ability5", throwIfNotFound: true);
+        m_Orders_Cloak = m_Orders.FindAction("Cloak", throwIfNotFound: true);
+        m_Orders_Decloak = m_Orders.FindAction("Decloak", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -1581,6 +1623,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Orders_Ability3;
     private readonly InputAction m_Orders_Ability4;
     private readonly InputAction m_Orders_Ability5;
+    private readonly InputAction m_Orders_Cloak;
+    private readonly InputAction m_Orders_Decloak;
     /// <summary>
     /// Provides access to input actions defined in input action map "Orders".
     /// </summary>
@@ -1632,6 +1676,14 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Orders/Ability5".
         /// </summary>
         public InputAction @Ability5 => m_Wrapper.m_Orders_Ability5;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Cloak".
+        /// </summary>
+        public InputAction @Cloak => m_Wrapper.m_Orders_Cloak;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Decloak".
+        /// </summary>
+        public InputAction @Decloak => m_Wrapper.m_Orders_Decloak;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1688,6 +1740,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Ability5.started += instance.OnAbility5;
             @Ability5.performed += instance.OnAbility5;
             @Ability5.canceled += instance.OnAbility5;
+            @Cloak.started += instance.OnCloak;
+            @Cloak.performed += instance.OnCloak;
+            @Cloak.canceled += instance.OnCloak;
+            @Decloak.started += instance.OnDecloak;
+            @Decloak.performed += instance.OnDecloak;
+            @Decloak.canceled += instance.OnDecloak;
         }
 
         /// <summary>
@@ -1729,6 +1787,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Ability5.started -= instance.OnAbility5;
             @Ability5.performed -= instance.OnAbility5;
             @Ability5.canceled -= instance.OnAbility5;
+            @Cloak.started -= instance.OnCloak;
+            @Cloak.performed -= instance.OnCloak;
+            @Cloak.canceled -= instance.OnCloak;
+            @Decloak.started -= instance.OnDecloak;
+            @Decloak.performed -= instance.OnDecloak;
+            @Decloak.canceled -= instance.OnDecloak;
         }
 
         /// <summary>
@@ -2053,5 +2117,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAbility5(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cloak" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCloak(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Decloak" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDecloak(InputAction.CallbackContext context);
     }
 }

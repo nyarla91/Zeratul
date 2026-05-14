@@ -115,6 +115,11 @@ namespace Gameplay.Units
             }
             
             ability.StartCooldown();
+            foreach (Ability sharedAbility in _abilities.Values)
+            {
+                if (sharedAbility.Type.CooldownGroup == ability.Type.CooldownGroup)
+                    sharedAbility.StartCooldown();
+            }
             return true;
         }
         
@@ -122,7 +127,7 @@ namespace Gameplay.Units
         
         public void Unlock(object source) => _lockSources.Remove(source);
 
-        private bool TrySpendEnergy(int energy)
+        public bool TrySpendEnergy(int energy)
         {
             if (energy <= 0)
                 return true;

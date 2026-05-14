@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c154c07e1d854549a52e56c2476bb4a5, type: 3}
+  m_Name: _DrainCloak
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.DrainCloakStatus
+  _useLock: 0
+  _display: 1
+  _displayIcon: {fileID: 21300000, guid: 5fefede769f23f045aaa2aa09039ccc6, type: 3}
+  _displayName: status-cloaked-name
+  _displayDescription: status-cloaked-description
+  _rendererPrefabs: []
+  _energyDrain: 1
+  _energyDrainPeriod: 25

@@ -51,5 +51,17 @@ namespace Extentions
             result.SetKeys( new[]{colorKeys}, new[]{alphaKeys});
             return result;
         }
+
+        public static void ToggleOn(this CanvasGroup canvasGroup)
+        {
+            canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
+            canvasGroup.alpha = 1;
+        }
+
+        public static void ToggleOff(this CanvasGroup canvasGroup)
+        {
+            canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
+            canvasGroup.alpha = 0;
+        }
     }
 }

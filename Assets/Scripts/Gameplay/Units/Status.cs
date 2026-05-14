@@ -76,7 +76,7 @@ namespace Gameplay.Units
             return new StatusSaveData(Type.name, Instigator.Id, AdditionFrame, RemovalFrame);
         }
 
-        private void Remove()
+        public void Remove()
         {
             Host.Statuses.RemoveStatus(Type);
         }

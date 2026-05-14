@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Extentions;
 using Gameplay.Data.AiEvaluators;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Statuses;
@@ -90,6 +91,7 @@ namespace Gameplay.Data.Units
             _size = Mathf.Max(_size, 0.05f);
             _rotationSpeed = Mathf.Max(_rotationSpeed, 0);
             _sightRadius = Mathf.Max(_sightRadius, 0);
+            _innateStatuses = _innateStatuses.ClearNull();
 
             if (IsImmobile)
                 _maxSpeed = 0;

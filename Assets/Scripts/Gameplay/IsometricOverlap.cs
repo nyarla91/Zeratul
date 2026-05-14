@@ -22,7 +22,7 @@ namespace Gameplay
             List<Collider2D> colliders = new();
             Physics2D.OverlapCircle(point, radius, contactFilter, colliders);
             
-            units = colliders.Select(col => col.GetComponentInParent<Unit>()).NoNull().ToHashSet();
+            units = colliders.Select(col => col.GetComponentInParent<Unit>()).ClearNull().ToHashSet();
             units = units.Where(u => IsUnitInRadius(point, radius, u)).ToHashSet();
             
             return units.Count != 0;

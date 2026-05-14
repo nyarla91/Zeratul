@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
@@ -18,6 +18,7 @@ namespace Gameplay.UI
 {
     public class OrderButton : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup _displayGroup;
         [SerializeField] private OrderErrorConfig _errors;
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _hotkeyPrompt;
@@ -30,6 +31,8 @@ namespace Gameplay.UI
 
         private InputAction _hotkey;
         private bool _showTooltip;
+
+        private bool IsVisible => OrderType && _displayGroup.interactable;
         
         public OrderType OrderType { get; private set; }
         
@@ -50,8 +53,6 @@ namespace Gameplay.UI
 
         public void ApplyOrderType(OrderType orderType)
         {
-            if ( ! CanDisplayOrder(orderType))
-                orderType = null;
             if (OrderType == orderType)
                 return;
             
@@ -85,6 +86,8 @@ namespace Gameplay.UI
             if (Selection.IsUncontrollableSelected)
                 return;
             if (OrderType == null)
+                return;
+            if ( ! IsVisible)
                 return;
             if ( ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
             {
@@ -129,6 +132,11 @@ namespace Gameplay.UI
 
         private void Update()
         {
+            if (OrderType && CanDisplayOrder(OrderType))
+                _displayGroup.ToggleOn();
+            else
+                _displayGroup.ToggleOff();
+
             if (GamePause.IsPaused)
             {
                 HideTooltip(null);
