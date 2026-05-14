@@ -1,6 +1,8 @@
-﻿using Extentions;
+﻿using System.Text;
+using Extentions;
 using Gameplay.Data.Statuses;
 using Gameplay.Units;
+using Localization;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ namespace Gameplay.UI
 {
     public class StatusView : MonoBehaviour
     {
+        [SerializeField] private Localizer _localizer;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Image _icon;
         [SerializeField] private AnimationCurve _alphaPerFramesLeft;
@@ -55,7 +58,28 @@ namespace Gameplay.UI
         private void Update()
         {
             if (_showTooltip && _currentStatus != null)
-                Tooltip.Show(_currentStatus.TooltipInfo);
+                Tooltip.Show(GetTooltipInfoForStatus(_currentStatus));
+        }
+
+        private TooltipInfo GetTooltipInfoForStatus(IStatusInfo currentStatus)
+        {
+            Sprite icon = currentStatus.Type.DisplayIcon;
+            string label = _localizer.Translate(currentStatus.Type.DisplayName);
+            string sublabel = _localizer.Translate("status");
+            string description = GetDescriptionForStatus(currentStatus);
+            return new TooltipInfo(icon, label, sublabel, description);
+        }
+
+        private string GetDescriptionForStatus(IStatusInfo currentStatus)
+        {
+            string description = _localizer.Translate(currentStatus.Type.DisplayDescription);
+            if (currentStatus.FramesLeft > 3)
+            { 
+                string timeLeft = _localizer.Translate("status-duration");
+                float secondsLeft = Time.fixedDeltaTime * currentStatus.FramesLeft;
+                description += "\n" + timeLeft.Replace("#", secondsLeft.ToString("F2"));
+            }
+            return description;
         }
     }
 }

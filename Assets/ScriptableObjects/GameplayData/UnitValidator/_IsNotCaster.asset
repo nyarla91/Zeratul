@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc23a1b4547a4551bdce49c9bb111c48, type: 3}
   m_Name: _IsNotCaster
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.CasterValidator
-  _invalidMessage: Can't target self
-  _isCaster: 0
+  _invalidMessage: ordererror-cannot-target-self
+  _not: 0

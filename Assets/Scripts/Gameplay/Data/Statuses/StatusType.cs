@@ -12,19 +12,14 @@ namespace Gameplay.Data.Statuses
         [SerializeField] private bool _display;
         [SerializeField] private Sprite _displayIcon;
         [SerializeField] private string _displayName;
-        [SerializeField] [TextArea(4, 10)] private string _rawDisplayDescription;
+        [SerializeField] [TextArea(4, 10)] private string _displayDescription;
         [SerializeField] private StatusRenderer[] _rendererPrefabs;
 
         public bool Display => _display;
         public Sprite DisplayIcon => _displayIcon;
         public string DisplayName => _displayName;
-        public string RawDisplayDescription => _rawDisplayDescription;
+        public string DisplayDescription => _displayDescription;
         public StatusRenderer[] RendererPrefabs => _rendererPrefabs;
-
-        public TooltipInfo GetTooltipInfoForStatus(Status status)
-        {
-            return new TooltipInfo(DisplayIcon, DisplayName, "Status", status.DisplayDescription);
-        }
 
         public abstract void OnAdd(Status status);
         

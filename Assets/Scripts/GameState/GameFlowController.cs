@@ -13,7 +13,7 @@ namespace GameState
         private readonly ScenarioSession _scenarioSession;
 
         [Inject]
-        public GameFlowController(GameStateMachine stateMachine, ScenarioSession scenarioSession)
+        public GameFlowController(GameStateMachine stateMachine, ScenarioSession scenarioSession) 
         {
             _stateMachine = stateMachine;
             _scenarioSession = scenarioSession;

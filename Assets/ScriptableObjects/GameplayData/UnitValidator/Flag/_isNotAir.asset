@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41b143b934b74941a30606c160a0bcd3, type: 3}
-  m_Name: _HasDifferentOwner
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitOwnershipValidator
-  _invalidMessage: validator-has-different-owner
-  _not: 0
-  _behaviour: 3
+  m_Script: {fileID: 11500000, guid: 1e177b279f6442bbb7c7c2e8fdc5d26c, type: 3}
+  m_Name: _isNotAir
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitFlagValidator
+  _invalidMessage: validator-is-not-air
+  _not: 1
+  _flag: 0

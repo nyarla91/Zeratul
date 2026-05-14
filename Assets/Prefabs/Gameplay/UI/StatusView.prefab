@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56362ef79cd47379bf82cd7d08f849b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.UI.StatusView
+  _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _canvasGroup: {fileID: 1424695427185997962}
   _icon: {fileID: 3883402126223538982}
   _alphaPerFramesLeft:

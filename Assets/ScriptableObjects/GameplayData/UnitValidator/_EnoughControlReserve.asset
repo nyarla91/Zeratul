@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca3dacaa17e46be957ddcdc7abade6c, type: 3}
   m_Name: _EnoughControlReserve
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitControlReserveValidator
-  _invalidMessage: Control reserve insufficent
+  _invalidMessage: validator-enough-control-reserve
+  _not: 0
   _gameplayInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f94a1f6634421596d68f4aea8d78c5, type: 3}
   m_Name: _Invasion
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.OwnershipStatus
+  _useLock: 0
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 47ede2516144cbf4b98544b2b2978efb, type: 3}
-  _displayName: Invasion
-  _rawDisplayDescription: This unit's mind is invaded. You can control it.
-  _isFriendly: 1
+  _displayName: status-invasion-name
+  _displayDescription: status-invasion-description
+  _rendererPrefabs: []

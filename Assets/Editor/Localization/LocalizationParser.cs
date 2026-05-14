@@ -39,11 +39,10 @@ namespace Editor.Localization
 
             for (int y = 0; y < result.GetLength(1); y++)
             {
-                string[] row = rows[y].Split(',');
+                string[] row = rows[y].Split(';');
                 
                 for (int x = 0; x < result.GetLength(0) && x < row.Length; x++)
                 {
-                    Debug.Log($"{x}, {y} - {row[x]}");
                     result[x, y] = row[x];
                 }
             }

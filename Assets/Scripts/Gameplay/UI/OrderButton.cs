@@ -91,10 +91,16 @@ namespace Gameplay.UI
                 OrderErrorMessage.Show(errorMessage);
                 return;
             }
+
             if (OrderType.TargetRequirement == TargetRequirement.None)
+            {
                 Dispatcher.IssueOrderToSelection(OrderType, default);
+                Targeter.CancelTargeting();
+            }
             else
+            {
                 Targeter.StartTargeting(OrderType);
+            }
         }
 
         private void StartShowingTooltip(BaseEventData _)

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63664c97746e4a668b728d4b01232233, type: 3}
   m_Name: _Locked
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.LockedStatus
+  _useLock: 0
   _display: 1
   _displayIcon: {fileID: 21300000, guid: e82a8f8848391834c98fdece83a66845, type: 3}
-  _displayName: Locked
-  _rawDisplayDescription: Abilities and passives unavailable.
+  _displayName: status-locked-name
+  _displayDescription: status-locked-description
   _rendererPrefabs:
   - {fileID: 485935788325951280, guid: 15b3ec035526ec64d8d8c24f6b409bc0, type: 3}

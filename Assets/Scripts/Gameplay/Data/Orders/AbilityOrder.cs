@@ -82,6 +82,7 @@ namespace Gameplay.Data.Orders
         {
             if (target.Unit && AbilityType.TargetValidators.IsInvalid(actor, target.Unit, out errorMessage))
             {
+                errorMessage = Localizer.Translate(errorMessage);
                 return false;
             }
             if ( ! actor.CanMove && ! AbilityType.IsTargetInRadius(actor, target))

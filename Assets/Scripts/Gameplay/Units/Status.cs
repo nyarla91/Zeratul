@@ -24,7 +24,7 @@ namespace Gameplay.Units
         {
             get
             {
-                string result = Type.RawDisplayDescription;
+                string result = Type.DisplayDescription;
                 if (FramesLeft < 3)
                     return result;
                 int secondsLeft = Mathf.CeilToInt(Time.fixedDeltaTime * FramesLeft);
@@ -32,8 +32,6 @@ namespace Gameplay.Units
                 return result;
             }
         }
-
-        public TooltipInfo TooltipInfo => Type.GetTooltipInfoForStatus(this);
 
         public Status(GameTime gameTime, StatusType type, Unit instigator, Unit host, int additionFrame, int removalFrame)
         {
@@ -94,7 +92,5 @@ namespace Gameplay.Units
         public int FramesSinceAddition { get; }
         public bool IsLocked { get; }
         public int FramesLeft { get; }
-        public string DisplayDescription { get; }
-        public TooltipInfo TooltipInfo { get; }
     }
 }

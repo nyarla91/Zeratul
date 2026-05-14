@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e636130e47433eb7f5357069c51eaf, type: 3}
   m_Name: _EnoughControlSlots
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitControlSlotsValidator
-  _invalidMessage: Not enough control slots
+  _invalidMessage: validator-enough-control-slots
+  _not: 0
   _gameplayInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}

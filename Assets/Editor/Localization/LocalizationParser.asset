@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b00f4f69b194e56a256bea16a011276, type: 3}
   m_Name: LocalizationParser
   m_EditorClassIdentifier: Assembly-CSharp-Editor::Editor.Localization.LocalizationParser
-  _csv: {fileID: 4900000, guid: 4be348fb14c24484f8116ef28638ed39, type: 3}
+  _csv: {fileID: 4900000, guid: bad2d49ee914d18409b47890b262f83a, type: 3}
   _columns:
   - _columnIndex: 1
     _table: {fileID: 11400000, guid: fd5ae244cff66174ba1dd402d7491337, type: 2}

@@ -15,8 +15,8 @@ MonoBehaviour:
   _useLock: 1
   _display: 1
   _displayIcon: {fileID: 21300000, guid: e386bd21493374c46821ba14059f76c2, type: 3}
-  _displayName: Detector
-  _rawDisplayDescription: Can detect cloaked units in radius of 6
+  _displayName: status-detector-name
+  _displayDescription: status-detector-description
   _rendererPrefabs:
   - {fileID: 1872224104527679214, guid: 1c287fed9f4da4d4f9ba10ad9d0aefe8, type: 3}
   _casterType: 0

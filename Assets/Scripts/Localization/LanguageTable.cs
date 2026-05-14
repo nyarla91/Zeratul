@@ -23,6 +23,8 @@ namespace Localization
         
         public string Translate(string key)
         {
+            if (string.IsNullOrEmpty(key))
+                return key;
             _tableDictionary ??= _entries.ToDictionary(e => e.Key);
             return _tableDictionary.TryGetValue(key, out LanguageEntry entry) ? entry.Line : key;
         }
