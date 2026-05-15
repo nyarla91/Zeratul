@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
   _windupTime: 0
   _recoveryTime: 0
-  _cooldown: 250
+  _cooldown: 0
+  _cooldownGroup: {fileID: 11400000, guid: 25b8605a62229eb4aac4955f434caa0d, type: 2}
   _energyCost: 0
   _ignoreLock: 1
   _targetRequirement: 0

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
+  m_Name: _Drone
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _displayName: Drone
+  _focusPriority: 9
+  _tags:
+  - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
+  - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
+  _controlWorth: 100
+  _attackWorth:
+    _baseWorth: 50
+    _evaluators: []
+  _maxHitPoints: 20
+  _maxShieldPoints: 20
+  _shieldRestoreDelay: 250
+  _shieldPointsPerSecond: 5
+  _maxEnergyPoints: 0
+  _energyRestoreDelay: 0
+  _energyPointsPerSecond: 0
+  _noCollision: 0
+  _isImmobile: 0
+  _maxSpeed: 9
+  _size: 1.2
+  _rotationSpeed: 720
+  _isAir: 1
+  _sightRadius: 12
+  _weaponType: {fileID: 0}
+  _innateStatuses:
+  - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
+  _availableOrders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}
+  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteMap: {fileID: 11400000, guid: 208dfa90999987f4ebcc4353b1b3e45e, type: 2}
+  _interactionColliderSize: {x: 1, y: 0.7}
+  _interactionColliderOffset: {x: 0, y: 0.1}
+  _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}

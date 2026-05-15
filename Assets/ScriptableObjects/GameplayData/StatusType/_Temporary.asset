@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3464863731ae427ea33143d47cc1d65d, type: 3}
+  m_Name: _Temporary
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TemporaryStatus
+  _useLock: 0
+  _display: 1
+  _displayIcon: {fileID: 21300000, guid: 085187b15945b7e4687c311f4edd1440, type: 3}
+  _displayName: status-temporary-name
+  _displayDescription: status-temporary-description
+  _rendererPrefabs: []
+  _effectsOnRemove:
+  - {fileID: 11400000, guid: d2c23c210c9fd63488983c0dc976dc32, type: 2}

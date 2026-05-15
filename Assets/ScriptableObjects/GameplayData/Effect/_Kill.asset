@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1ce6c0589a449e8088f480ea92d5ad, type: 3}
-  m_Name: _CloakCooldownGroup
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityCooldownGroup
-  _cooldown: 150
+  m_Script: {fileID: 11500000, guid: 344ffedfae35461c9c328dcc833b3e31, type: 3}
+  m_Name: _Kill
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.KillEffect

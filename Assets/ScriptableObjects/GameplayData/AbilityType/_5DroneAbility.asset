@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
-  m_Name: _4MistAbility
+  m_Name: _5DroneAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
   _windupTime: 35
   _recoveryTime: 10
-  _cooldown: 0
+  _cooldown: 500
   _cooldownGroup: {fileID: 0}
-  _energyCost: 50
+  _energyCost: 25
   _ignoreLock: 0
   _targetRequirement: 1
-  _maxDistance: 12
+  _maxDistance: 6
   _casterValidators:
     _unitValidators: []
   _targetValidators:
@@ -28,5 +28,5 @@ MonoBehaviour:
   _mustLookAtTarget: 1
   _unitTargetEffects: []
   _pointTargetEffects:
-  - {fileID: 11400000, guid: f68cd969008df464985b0cbc4c6b812d, type: 2}
+  - {fileID: 11400000, guid: 7b06aa97821d34347b07baca6c6106c2, type: 2}
   _animationAction: ability

@@ -15,7 +15,8 @@ MonoBehaviour:
   _windupTime: 0
   _recoveryTime: 0
   _cooldown: 600
-  _energyCost: 2
+  _cooldownGroup: {fileID: 0}
+  _energyCost: 25
   _ignoreLock: 0
   _targetRequirement: 1
   _maxDistance: 6

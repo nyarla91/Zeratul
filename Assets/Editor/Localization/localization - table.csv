@@ -42,9 +42,12 @@ status-locked-description;Cannot use active and passive abilities;Не може�
 status-locked-name;Locked;Заблокирован
 status-shield-battery-description;Restores shields to nearby friendly units;Восстанавливает щиты дружественных юнитов поблизости
 status-shield-battery-name;Shield restoration;Восстановление щитов
+status-temporary-description;Has limited lifetime;Имеет ограниченное время жизни
+status-temporary-name;Temporary;Временный
 ui-choose-a-target;Choose a target;Выберите цель
 ui-continue;Continue;Продолжить
 ui-game-paused;Game paused;Игра приостановлена
+ui-loading;Loading...;Загрузка...
 ui-quit-to-menu;Quit to menu;Выйти в меню
 ui-restart;Restart;Начать заново
 unit-snake-name;Snake;Змеюка
@@ -63,4 +66,3 @@ validator-is-not-air;Target cannot be air;Цель не должна быть в
 validator-is-not-cloaked;Target cannot be cloaked;Цель не должна быть замаскированной
 validator-is-not-friendly;Target cannot be friendly;Цель не должна быть дружественной
 validator-is-not-hostile;Target cannot be hostile;Цель не должна быть враждебной
-ui-loading;Loading...;Загрузка...

@@ -117,8 +117,11 @@ namespace Gameplay.Units
             ability.StartCooldown();
             foreach (Ability sharedAbility in _abilities.Values)
             {
-                if (sharedAbility.Type.CooldownGroup == ability.Type.CooldownGroup)
-                    sharedAbility.StartCooldown();
+                if (sharedAbility.Type.CooldownGroup == null)
+                    continue;
+                if (sharedAbility.Type.CooldownGroup != ability.Type.CooldownGroup)
+                    continue;
+                sharedAbility.StartCooldown();
             }
             return true;
         }
