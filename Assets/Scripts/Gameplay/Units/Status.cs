@@ -1,6 +1,6 @@
 ﻿using Gameplay.Data.Statuses;
 using Gameplay.UI;
-using Saving.Data.Units;
+using Save.Data.Units;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -19,19 +19,6 @@ namespace Gameplay.Units
         public bool IsLocked => Type.IsLocked(this);
 
         public int FramesLeft => RemovalFrame - _gameTime.Frame;
-        
-        public string DisplayDescription
-        {
-            get
-            {
-                string result = Type.DisplayDescription;
-                if (FramesLeft < 3)
-                    return result;
-                int secondsLeft = Mathf.CeilToInt(Time.fixedDeltaTime * FramesLeft);
-                result += $"<stat>\n{secondsLeft} sec. left</stat>";
-                return result;
-            }
-        }
 
         public Status(GameTime gameTime, StatusType type, Unit instigator, Unit host, int additionFrame, int removalFrame)
         {

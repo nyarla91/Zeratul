@@ -1,6 +1,6 @@
 ﻿using System;
 using Gameplay.Data.Configs;
-using Saving.Data;
+using Save.Data;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
