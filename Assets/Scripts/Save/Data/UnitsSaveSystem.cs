@@ -10,8 +10,8 @@ namespace Save.Data
         public static string LoadKey => "units";
         public string SaveKey => LoadKey;
 
-        [JsonProperty] public UnitSaveData[] units;
-        [JsonProperty] public int nextId;
+        public UnitSaveData[] units;
+        public int nextId;
 
         public UnitsSaveSystem() { }
         

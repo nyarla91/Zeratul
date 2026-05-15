@@ -1,5 +1,6 @@
 ﻿using System;
 using Extentions;
+using Save.Data;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -22,8 +23,18 @@ namespace Gameplay.Entities
                 .Subscribe(_ => TickLifetime());
         }
 
-        public void InitEntity(Unit instigator, int duration)
+        public EntitySaveData Save()
         {
+            string prefabName = Prefab.name;
+            SerializableVector2 position = SerializableVector2.FromVector2(transform.position);
+            int instigatorId = Instigator?.Id ?? -1;
+            int duration = DespawnFrame - GameTime.Frame;
+            return new EntitySaveData(prefabName, position, instigatorId, Owner, duration);
+        }
+
+        public void InitEntity(Vector2 position, Unit instigator, int duration)
+        {
+            transform.position = position;
             Instigator = instigator;
             Owner = instigator.Alliance.CurrentOwner;
             DespawnFrame = GameTime.Frame + duration;

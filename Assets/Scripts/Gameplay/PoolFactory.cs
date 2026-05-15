@@ -11,6 +11,8 @@ namespace Gameplay
     {
         private readonly GameObject _defaultPrefab;
         private readonly Dictionary<GameObject, List<TElement>> _pool = new();
+
+        public HashSet<TElement> Pool => _pool.Values.SelectMany(l => l).ToHashSet();
         
         [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
 
@@ -47,7 +49,7 @@ namespace Gameplay
                 _pool.Add(prefab, pool);
             }
             TElement result = ContainerInstantiator.Instantiate<TElement>(prefab.gameObject, Vector3.zero);
-            result.Init(this);
+            result.Init(this, prefab);
             pool.Add(result);
             return result;
         }

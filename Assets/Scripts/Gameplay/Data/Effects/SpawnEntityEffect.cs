@@ -19,8 +19,7 @@ namespace Gameplay.Data.Effects
             _gameplayPresenter.Inject(this);
 
             Entity entity = EntityFactory.Get(_prefab);
-            entity.InitEntity(caster, _lifetime);
-            entity.transform.position = target;
+            entity.InitEntity(target, caster, _lifetime);
         }
     }
 }

@@ -1849,7 +1849,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0446\u0435\u043B\u044C\r"
+  m_text: ui-choose-a-target
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -2840,6 +2840,7 @@ GameObject:
   - component: {fileID: 667987118}
   - component: {fileID: 667987121}
   - component: {fileID: 667987122}
+  - component: {fileID: 667987123}
   m_Layer: 0
   m_Name: Saving
   m_TagString: Untagged
@@ -2915,6 +2916,19 @@ MonoBehaviour:
   _saveLoad: {fileID: 667987119}
   _camera: {fileID: 519420031}
   _fogOfWar: {fileID: 388089112}
+--- !u!114 &667987123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667987117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e021026c1ea14f7cb28c5c56e7ca90e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Arrangement::Gameplay.Arrangement.Saving.EntitiesSavingSystem
+  _saveLoad: {fileID: 667987119}
 --- !u!1 &691535653
 GameObject:
   m_ObjectHideFlags: 0

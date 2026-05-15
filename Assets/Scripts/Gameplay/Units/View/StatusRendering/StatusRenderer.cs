@@ -45,9 +45,9 @@ namespace Gameplay.Units.View.StatusRendering
             }
         }
 
-        public override void Init(PoolFactory<StatusRenderer> factory)
+        public override void Init(PoolFactory<StatusRenderer> factory, GameObject prefab)
         {
-            base.Init(factory);
+            base.Init(factory, prefab);
             this.ObserveEveryValueChanged(s => s.IsVisible)
                 .Subscribe(UpdateVisibility);
             UpdateVisibility(IsVisible);
