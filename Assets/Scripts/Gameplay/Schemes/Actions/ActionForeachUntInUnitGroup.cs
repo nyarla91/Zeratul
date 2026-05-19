@@ -17,7 +17,7 @@ namespace Gameplay.Schemes.Actions
         {
             foreach (Unit unit in _unitGroup.Value)
             {
-                _out.Set(unit);
+                _out?.Set(unit);
                 foreach (SchemeAction action in _actions)
                 {
                     action.Act();

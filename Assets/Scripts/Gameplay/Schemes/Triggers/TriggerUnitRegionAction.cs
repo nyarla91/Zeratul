@@ -33,7 +33,7 @@ namespace Gameplay.Schemes.Triggers
         {
             if (_validators.IsInvalid(unit, unit)) 
                 return;
-            _out.Set(unit);
+            _out?.Set(unit);
             Trigger();
         }
 
