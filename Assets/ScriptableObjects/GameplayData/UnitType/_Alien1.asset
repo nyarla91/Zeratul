@@ -39,11 +39,11 @@ MonoBehaviour:
   _innateStatuses:
   - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
   _availableOrders:
-  - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
-  - {fileID: 11400000, guid: 56ccb81e15e21bf4c89b3b8b6af0a627, type: 2}
-  - {fileID: 11400000, guid: 8e46b8ad7a8c2274a902a80ff1444133, type: 2}
-  - {fileID: 11400000, guid: 1e633693066517f499bc1f35751d025f, type: 2}
-  - {fileID: 11400000, guid: 96f305882e103f44ba1aff3817d915c1, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
   - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}

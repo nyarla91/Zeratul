@@ -137,15 +137,16 @@ namespace Extentions
             return result;
         }
 
-        public static string Enumerate<T>(this IEnumerable<T> list, string separator = ", ", string endWith = "")
+        public static string Enumerate<T>(this IEnumerable<T> list, string separator = ", ", string endWith = "", Func<T, string> toString = null)
         {
             T[] array = list.ToArray();
+            toString ??= t => t?.ToString();
             string result = "";
             for (int i = 0; i < array.Length; i++)
             {
                 if (i > 0)
                     result += separator;
-                result += array[i].ToString();
+                result += toString.Invoke(array[i]);
             }
             result += endWith;
             return result;

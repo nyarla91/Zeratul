@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Extentions;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -46,5 +47,10 @@ namespace Gameplay.Data.Validator
         public bool IsInvalid(Unit actor, Unit unit) => IsInvalid(actor, unit, out _);
         
         public bool IsValid(Unit actor, Unit target) => IsValid(actor, target, out _);
+
+        public override string ToString()
+        {
+            return _unitValidators.Length == 0 ? "" : $"({_unitValidators.Enumerate(", ", "", v => v.name)})";
+        }
     }
 }

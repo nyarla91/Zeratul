@@ -30,9 +30,10 @@ namespace Gameplay.Arrangement
             bool spawnUnits = ScenarioSession.SaveData == null;
             foreach (UnitSpawnPoint spawnPoint in instantiation.UnitSpawnPoints)
             {
+                Unit spawnedUnit = null;
                 if (spawnUnits)
-                    UnitSpawner.Spawn(spawnPoint.transform.position, spawnPoint.UnitType, -1, spawnPoint.SpawnInfo);
-                spawnPoint.Dispose();
+                    spawnedUnit = UnitSpawner.Spawn(spawnPoint.transform.position, spawnPoint.UnitType, -1, spawnPoint.SpawnInfo);
+                spawnPoint.OnSpawn(spawnedUnit);
             }
         }
         

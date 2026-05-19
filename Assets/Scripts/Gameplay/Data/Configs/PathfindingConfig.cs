@@ -14,6 +14,7 @@ namespace Gameplay.Data.Configs
         [SerializeField] private int _diagonalTravelCost;
         [SerializeField] private int _tooCloseToObstaclePenalty;
         [Space]
+        [SerializeField] private LayerMask _unitLayerMask;
         [SerializeField] private LayerMask _groundLayerMask;
         [SerializeField] private LayerMask _commonLayerMask;
         [SerializeField] private float _maxObstacleDistance;
@@ -25,6 +26,7 @@ namespace Gameplay.Data.Configs
         public int OrtogonalTravelCost => _ortogonalTravelCost;
         public int DiagonalTravelCost => _diagonalTravelCost;
         public int TooCloseToObstaclePenalty => _tooCloseToObstaclePenalty;
+        public LayerMask UnitLayerMask => _unitLayerMask;
         public LayerMask GroundLayerMask => _groundLayerMask;
         public LayerMask CommonLayerMask => _commonLayerMask;
         public float MaxObstacleDistance => _maxObstacleDistance;

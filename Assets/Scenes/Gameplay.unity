@@ -8742,9 +8742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6e53acf0e04119a48aa7d2b85b65ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.IsometricOverlap
-  _unitLayerMask:
-    serializedVersion: 2
-    m_Bits: 192
+  _config: {fileID: 11400000, guid: 44bb6e3c67114844eb9f197e7bf91e62, type: 2}
 --- !u!4 &2127400929
 Transform:
   m_ObjectHideFlags: 0

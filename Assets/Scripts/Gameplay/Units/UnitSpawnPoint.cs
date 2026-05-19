@@ -18,8 +18,11 @@ namespace Gameplay.Units
         public UnitType UnitType => _unitType;
         public UnitSpawnInfo SpawnInfo => _spawnInfo;
 
-        public void Dispose()
+        public event Action<Unit> Spawned;
+
+        public void OnSpawn(Unit spawnedUnit)
         {
+            Spawned?.Invoke(spawnedUnit);
             Destroy(gameObject);
         }
         

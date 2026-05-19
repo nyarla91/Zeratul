@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e1c2afd069a418b97468e32df657660, type: 3}
-  m_Name: _IsPlayerUnit
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitTagValidator
+  m_Script: {fileID: 11500000, guid: df0751091347409eace64292c2ac2b91, type: 3}
+  m_Name: _IsOwnedByNeutral
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitOwnerValidator
   _invalidMessage: 
   _not: 0
-  _tag: {fileID: 11400000, guid: 4d9ddd1194806ac44bcc0d691328a7b0, type: 2}
+  _owner: 2

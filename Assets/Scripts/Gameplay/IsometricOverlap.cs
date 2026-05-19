@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Extentions;
+using Gameplay.Data.Configs;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Gameplay
 {
     public class IsometricOverlap : MonoBehaviour
     {
-        [SerializeField] private LayerMask _unitLayerMask;
+        [SerializeField] private PathfindingConfig _config;
         
         public bool TryGetUnits(Vector2 point, float radius, out HashSet<Unit> units)
         {
@@ -16,7 +17,7 @@ namespace Gameplay
             {
                 useTriggers = true,
                 useLayerMask = true,
-                layerMask = _unitLayerMask
+                layerMask = _config.UnitLayerMask
             };
 
             List<Collider2D> colliders = new();
