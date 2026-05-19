@@ -20,7 +20,10 @@ namespace Save
 
         public async UniTask<SaveData> Read(string filename)
         {
-            string json = await File.ReadAllTextAsync(SaveFolderPath + filename + ".json");
+            string path = SaveFolderPath + filename + ".json";
+            if (!File.Exists(path))
+                return null;
+            string json = await File.ReadAllTextAsync(path);
             return JsonConvert.DeserializeObject<SaveData>(json);
         }
     }

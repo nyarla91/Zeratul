@@ -20,11 +20,11 @@ namespace Gameplay.Units
             _nodeMap = nodeMap;
             _obstacleCollider = obstacleCollider;
 
+            Unit.gameObject.layer = UnitType.IsAir ? movementConfig.AirLayer : movementConfig.GroundLayer;
             obstacleCollider.enabled = ! Unit.CanMove;
             collider.transform.localScale = Vector3.one * UnitType.Size;
             collider.gameObject.layer = Unit.gameObject.layer;
             collider.isTrigger = UnitType.NoCollision;
-            Unit.gameObject.layer = UnitType.IsAir ? movementConfig.AirLayer : movementConfig.GroundLayer;
 
             if (Unit.CanMove)
                 return;

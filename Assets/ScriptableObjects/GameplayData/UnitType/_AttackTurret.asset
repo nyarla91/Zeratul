@@ -26,8 +26,8 @@ MonoBehaviour:
   _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 5
   _maxEnergyPoints: 0
-  _energyRestoreDelay: 0
-  _energyPointsPerSecond: 0
+  _energyRestoreDelay: 250
+  _energyPointsPerSecond: 5
   _noCollision: 0
   _isImmobile: 1
   _maxSpeed: 0
@@ -36,7 +36,8 @@ MonoBehaviour:
   _isAir: 0
   _sightRadius: 12
   _weaponType: {fileID: 11400000, guid: 68d6cbcfc4a2d0d4584c3b5242f8eac2, type: 2}
-  _innateStatuses: []
+  _innateStatuses:
+  - {fileID: 11400000, guid: e7aea8bc3e9c13645a5f8b68d58129b3, type: 2}
   _availableOrders:
   - {fileID: 0}
   - {fileID: 0}

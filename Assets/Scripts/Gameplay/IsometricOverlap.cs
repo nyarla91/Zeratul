@@ -30,7 +30,7 @@ namespace Gameplay
 
         private bool IsUnitInRadius(Vector2 point, float radius, Unit unit)
         {
-            return Isometry.Distance(point, unit.Position) < (radius + unit.Type.Size / 2);
+            return Isometry.Distance(point, unit) < (radius + unit.Type.Size / 2);
         }
     }
 }

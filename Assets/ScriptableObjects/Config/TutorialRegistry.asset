@@ -13,61 +13,21 @@ MonoBehaviour:
   m_Name: TutorialRegistry
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.TutorialRegistry
   _entries:
-  - _label: Basic controls
-    _description: 'Left-click on your character to select it.
-
-
-      Right-click
-      anywhere to order selected character to move towards this point.'
-  - _label: Camera movement
-    _description: 'Hold [Middle Mouse Button] to drag the camera.
-
-
-      Alternatively
-      you can bring the cursor the edge of the screen to move the camera in respective
-      direction
-
-
-      Use scroll-wheel ro zoom camera in and out.'
-  - _label: Cloak
-    _description: 'You are permanently cloaked.
-
-
-      Enemies cannot see you or
-      attack you directly.'
-  - _label: Attack
-    _description: 'Right-click an enemy to order selected unit to attack this enemy.
-
-
-      Alternatively
-      you can hover your mouse over enemy and press A.'
-  - _label: Attack-move
-    _description: Hover mouse over any point and press A to order selected character
-      to move towards this location attacking any enemy on their way.
-  - _label: Detectors
-    _description: 'Enemy sensor towers can detect your presence and see through your
-      cloak.
-
-
-      Standing in range of the detectors disables your cloak.
-
-
-      While
-      you are detected, enemies have an opportunity to attack you if you are in their
-      sight range.'
-  - _label: Hit and Shield point
-    _description: 'Every unit has hit points and shield points that protect them
-      from damage. Those values are represented by circles around them
-
-
-      Whenever
-      a unit is taking damage, it is first substracted from their shield points.
-      Once sheild points are depleted, damage directly reduces hit points.
-
-
-      Shield
-      points slowly replenish over time while unit is not taking any damahe.
-
-
-      Damage
-      dealt to hit points is permanent.'
+  - _label: tutorial-basic-controls-label
+    _description: tutorial-basic-controls-description
+  - _label: tutorial-camera-label
+    _description: tutorial-camera-description
+  - _label: tutorial-cloak-label
+    _description: tutorial-cloak-description
+  - _label: tutorial-save-label
+    _description: tutorial-save-description
+  - _label: tutorial-detectors-label
+    _description: tutorial-detectors-description
+  - _label: tutorial-attack-label
+    _description: tutorial-attack-description
+  - _label: tutorial-attack-move-label
+    _description: tutorial-attack-move-description
+  - _label: tutorial-life-label
+    _description: tutorial-life-description
+  - _label: tutorial-tactical-pause-label
+    _description: tutorial-tactical-pause-description

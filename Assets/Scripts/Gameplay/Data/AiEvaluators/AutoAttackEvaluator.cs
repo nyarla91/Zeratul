@@ -20,7 +20,7 @@ namespace Gameplay.Data.AiEvaluators
         {
             float totalTargetHitPoints = target.Life.LifePoints;
             float agentDPS = GetDPS(agent);
-            float travelDistance = Isometry.Distance(agent.Position, target.Position) - agent.Type.WeaponType.MaxDistance;
+            float travelDistance = Isometry.Distance(agent.Position, target) - agent.Type.WeaponType.MaxDistance;
             return totalTargetHitPoints / agentDPS + TimeToReach(agent, target, travelDistance);
         }
 

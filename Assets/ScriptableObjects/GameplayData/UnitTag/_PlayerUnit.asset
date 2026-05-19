@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
-  m_Name: SentryTurretWeapon
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
-  _baseDamage: 45
-  _windupTime: 0
-  _recoveryTime: 80
-  _maxDistance: 9
-  _autoAttack: 0
+  m_Script: {fileID: 11500000, guid: a6f78a01f9544ae097a8b1113dacb629, type: 3}
+  m_Name: _PlayerUnit
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitTag
+  _localizer: {fileID: 0}
+  _display: 0
+  _displayName: 

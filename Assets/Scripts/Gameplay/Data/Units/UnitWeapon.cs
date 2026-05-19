@@ -3,7 +3,7 @@
 namespace Gameplay.Data.Units
 {
     [CreateAssetMenu(menuName = "Gameplay Data/Unit/Unit Weapon", order = 0)]
-    public class UnitWeaponType : ScriptableObject
+    public class UnitWeaponType : ScriptableObject, IRadiusSource
     {
         [SerializeField] private int _baseDamage;
         [SerializeField] private int _windupTime;
@@ -16,5 +16,6 @@ namespace Gameplay.Data.Units
         public int RecoveryTime => _recoveryTime;
         public float MaxDistance => _maxDistance;
         public bool AutoAttack => _autoAttack;
+        public float Radius => MaxDistance;
     }
 }

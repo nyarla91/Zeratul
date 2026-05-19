@@ -13,7 +13,7 @@ namespace Gameplay.Data.AiEvaluators
         
         public override float EvaluteTargetWorth(Unit agent, Unit target)
         {
-            float distance = Isometry.Distance(agent.Position, target.Position);
+            float distance = Isometry.Distance(agent.Position, target);
             
             float result = Mathf.InverseLerp(_minDistance, _maxDistance, distance);
             result = Mathf.Clamp(result, 0, 1);

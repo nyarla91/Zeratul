@@ -68,7 +68,7 @@ namespace Gameplay.Data.Abilities
             return TargetRequirement switch
             {
                 TargetRequirement.None => true,
-                TargetRequirement.Unit => Isometry.Distance(caster.Position, target.Unit.Position) < MaxDistance,
+                TargetRequirement.Unit => Isometry.Distance(caster.Position, target.Unit) < MaxDistance,
                 _ => Isometry.Distance(caster.Position, target.Point) < MaxDistance
             };
         }

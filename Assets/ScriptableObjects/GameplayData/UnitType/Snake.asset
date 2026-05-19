@@ -17,13 +17,17 @@ MonoBehaviour:
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
   _controlWorth: 1
+  _attackWorth:
+    _baseWorth: 0
+    _evaluators: []
   _maxHitPoints: 50
   _maxShieldPoints: 50
   _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 5
   _maxEnergyPoints: 100
-  _energyRestoreDelay: 50
+  _energyRestoreDelay: 250
   _energyPointsPerSecond: 5
+  _noCollision: 0
   _isImmobile: 0
   _maxSpeed: 80
   _size: 1.2
@@ -34,7 +38,7 @@ MonoBehaviour:
   _innateStatuses: []
   _availableOrders:
   - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
-  - {fileID: 11400000, guid: df29f6f11f2ddf840966aeb2744eb539, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 2b9a798ec3a9b0641bad856f193dee9d, type: 2}
   - {fileID: 0}
   - {fileID: 0}

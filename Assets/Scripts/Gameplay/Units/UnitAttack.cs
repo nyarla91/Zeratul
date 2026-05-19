@@ -87,7 +87,7 @@ namespace Gameplay.Units
 
         public bool IsUnitInRange(Unit other)
         {
-            return Isometry.Distance(Unit.Position, other.Position) < Weapon.MaxDistance;
+            return Isometry.Distance(Unit.Position, other) < Weapon.MaxDistance;
         }
 
         private void UpdateAttack()
@@ -97,7 +97,8 @@ namespace Gameplay.Units
                 StopAttacking();
                 return;
             }
-            
+
+            Debug.Log("is in range");
             if ( ! IsUnitInRange(CurrentTarget))
             {
                 if (Unit.CanMove)
@@ -110,9 +111,11 @@ namespace Gameplay.Units
                 
             float targetAngle = (Unit.Position.DirectionTo(CurrentTarget.Position) / Isometry.Scale).ToDegrees();
             Unit.Direction.RotateTowards(targetAngle);
-            if ( ! Mathf.Approximately(Unit.Direction.LookAngle, targetAngle))
+            Debug.Log("is looking at target");
+            if (Mathf.Abs(Unit.Direction.LookAngle - targetAngle) > _config.DeltaAngleTolerance)
                 return;
                 
+            Debug.Log("strike");
             StrikeUnit(CurrentTarget);
         }
 
@@ -126,6 +129,7 @@ namespace Gameplay.Units
 
         private async void StrikeUnit(Unit target)
         {
+            Debug.Log("can enter stagger");
             if ( ! await Unit.Stagger.TryBegin(Weapon.WindupTime, Weapon.RecoveryTime, "attack"))
                 return;
             target.Life.TakeDamage(Weapon.BaseDamage, Unit);

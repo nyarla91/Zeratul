@@ -11,7 +11,7 @@ namespace Gameplay.Data.Validator
 
         public override bool IsValid(Unit actor, Unit target)
         {
-            float distance = Isometry.Distance(actor.Position, target.Position);
+            float distance = Isometry.Distance(actor.Position, target);
             return distance >= _minDistance && distance <= _maxDistance;
         }
     }
