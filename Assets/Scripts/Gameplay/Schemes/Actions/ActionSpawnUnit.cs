@@ -25,7 +25,7 @@ namespace Gameplay.Schemes.Actions
 
         private void OnValidate()
         {
-            gameObject.name = $"Spawn {_unitType.name} at ({_point?.gameObject.name})";
+            gameObject.name = $"> Spawn {_unitType.name} at ({_point?.gameObject.name})";
         }
     }
 }

@@ -1,23 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using Gameplay.Schemes.Values;
 using Gameplay.Schemes.Values.Variables;
-using Gameplay.Units;
 using UnityEngine;
 
 namespace Gameplay.Schemes.Actions
 {
-    public class ActionForeachUntInUnitGroup : SchemeAction
+    public class ActionLoop : SchemeAction
     {
-        [SerializeField] private SchemeValue<HashSet<Unit>> _unitGroup;
-        [SerializeField] private VariableUnit _out;
+        [SerializeField] private SchemeValue<int> _from;
+        [SerializeField] private SchemeValue<int> _step;
+        [SerializeField] private SchemeValue<int> _to;
+        [SerializeField] private SchemeVariable<int> _out;
         [SerializeField] private SchemeAction[] _actions;
         
         public override void Act()
         {
-            foreach (Unit unit in _unitGroup.Value)
+            for (int i = _from?.Value ?? 0; i <= _to.Value; i += _step?.Value ?? 1)
             {
-                _out?.Set(unit);
+                _out?.Set(i);
                 foreach (SchemeAction action in _actions)
                 {
                     action.Act();
@@ -31,7 +32,7 @@ namespace Gameplay.Schemes.Actions
                 .Where(a => a.transform.parent == transform)
                 .ToArray();
 
-            gameObject.name = $"> Foreach ({_out?.name}) in ({_unitGroup?.name})";
+            gameObject.name = $"> Loop ({_out?.name}) from ({_from?.name ?? 0.ToString()}) to ({_to?.name}) with step ({_step?.name ?? 1.ToString()})";
         }
     }
 }

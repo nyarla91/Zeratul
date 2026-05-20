@@ -2841,6 +2841,7 @@ GameObject:
   - component: {fileID: 667987121}
   - component: {fileID: 667987122}
   - component: {fileID: 667987123}
+  - component: {fileID: 667987124}
   m_Layer: 0
   m_Name: Saving
   m_TagString: Untagged
@@ -2928,6 +2929,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e021026c1ea14f7cb28c5c56e7ca90e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Arrangement::Gameplay.Arrangement.Saving.EntitiesSavingSystem
+  _saveLoad: {fileID: 667987119}
+--- !u!114 &667987124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667987117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05406000d6af402faaa3611befd25227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Arrangement::Gameplay.Arrangement.Saving.SchemeSavingSystem
   _saveLoad: {fileID: 667987119}
 --- !u!1 &691535653
 GameObject:
