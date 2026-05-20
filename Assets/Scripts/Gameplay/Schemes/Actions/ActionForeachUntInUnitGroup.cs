@@ -31,7 +31,7 @@ namespace Gameplay.Schemes.Actions
                 .Where(a => a.transform.parent == transform)
                 .ToArray();
 
-            gameObject.name = $"> Foreach ({_out?.name}) in ({_unitGroup?.name})";
+            gameObject.name = $"> Foreach {_out?.name} in {_unitGroup?.name}";
         }
     }
 }

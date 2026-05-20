@@ -10,7 +10,7 @@ namespace Gameplay.Schemes.Values.Variables
         [SerializeField] private UnitSpawnPoint _spawnPoint;
 
         protected override Unit DefaultValue => null;
-        protected override string DisplayDefaultValue => _spawnPoint?.name;
+        protected override string DisplayDefaultValue => $"({_spawnPoint?.name})";
 
         [Inject] private IGetUnitByIdService GetUnitByIdService { get; set; }
 
@@ -28,6 +28,8 @@ namespace Gameplay.Schemes.Values.Variables
         protected override void Awake()
         {
             base.Awake();
+            if (_spawnPoint == null)
+                return;
             _spawnPoint.Spawned += unit =>
             {
                 if (unit == null)

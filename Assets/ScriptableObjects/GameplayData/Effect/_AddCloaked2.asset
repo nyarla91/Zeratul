@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: _AddCloaked2
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AddStatusEffect
   _statusType: {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}
-  _duration: 600
+  _duration: 2

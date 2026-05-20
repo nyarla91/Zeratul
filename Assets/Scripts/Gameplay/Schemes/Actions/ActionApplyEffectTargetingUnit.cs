@@ -27,7 +27,7 @@ namespace Gameplay.Schemes.Actions
 
         private void OnValidate()
         {
-            gameObject.name = $"> Apply ({_effects.Enumerate(", ", "", e => e.name)}) from ({_caster.name}) to ({_target.name})";
+            gameObject.name = $"> Apply ({_effects.Enumerate(", ", "", e => e?.name)}) from {_caster?.name} to {_target?.name}";
         }
     }
 }

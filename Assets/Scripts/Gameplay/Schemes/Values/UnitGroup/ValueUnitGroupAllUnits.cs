@@ -12,7 +12,7 @@ namespace Gameplay.Schemes.Values.UnitGroup
 
         private void OnValidate()
         {
-            gameObject.name = "All units";
+            gameObject.name = "(All units)";
         }
     }
 }

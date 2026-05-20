@@ -17,6 +17,7 @@ namespace Gameplay.Data.Configs
         [SerializeField] private string _outOfRange;
         [SerializeField] private string _locked;
         [SerializeField] private string _mustBeUnit;
+        [SerializeField] private string _passive;
 
         public string Generic => _localizer.Translate(_generic);
         public string CannotMove => _localizer.Translate(_cannotMove);
@@ -28,5 +29,6 @@ namespace Gameplay.Data.Configs
         public string OutOfRange => _localizer.Translate(_outOfRange);
         public string Locked => _localizer.Translate(_locked);
         public string MustBeUnit => _localizer.Translate(_mustBeUnit);
+        public string Passive => _localizer.Translate(_passive);
     }
 }

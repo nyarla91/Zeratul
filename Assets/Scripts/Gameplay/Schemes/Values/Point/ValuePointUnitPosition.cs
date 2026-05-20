@@ -12,7 +12,7 @@ namespace Gameplay.Schemes.Values.Point
 
         private void OnValidate()
         {
-            gameObject.name = $"Position of ({_unit?.gameObject.name})";
+            gameObject.name = $"(Position of {_unit?.gameObject.name})";
         }
     }
 }

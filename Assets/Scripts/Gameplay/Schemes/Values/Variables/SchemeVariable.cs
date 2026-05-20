@@ -37,7 +37,7 @@ namespace Gameplay.Schemes.Values.Variables
 
         private void OnValidate()
         {
-            gameObject.name = _key == "" ? DisplayDefaultValue : _key;
+            gameObject.name = _key == "" ? DisplayDefaultValue : $"({_key})";
         }
     }
 

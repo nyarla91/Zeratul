@@ -8,6 +8,6 @@ namespace Gameplay.Schemes.Values.Variables
         [SerializeField] private bool _defaultValue;
 
         protected override bool DefaultValue => _defaultValue;
-        protected override string DisplayDefaultValue => DefaultValue ? "True" : "False";
+        protected override string DisplayDefaultValue => DefaultValue ? "(True)" : "(False)";
     }
 }

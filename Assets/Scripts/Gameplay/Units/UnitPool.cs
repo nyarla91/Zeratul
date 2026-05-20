@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using ModestTree.Util;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -13,17 +15,22 @@ namespace Gameplay.Units
         public HashSet<Unit> PlayerUnits => Units.Where(u => u.Alliance.OwnedByPlayer).ToHashSet();
         
         public HashSet<Unit> EnemyUnits => Units.Where(u => u.Alliance.OwnedByEnemy).ToHashSet();
+
+        public event Action<Unit> UnitAdded;
+        public event Action<Unit> UnitRemoved;
         
         public Unit GetUnitById(int id) => _units.GetValueOrDefault(id);
 
         public void AddUnit(Unit unit)
         {
-            _units.Add(unit.Id, unit);
+            if (_units.TryAdd(unit.Id, unit))
+                UnitAdded?.Invoke(unit);
         }
 
         public void RemoveUnit(Unit unit)
         {
-            _units.Remove(unit.Id);
+            if (_units.Remove(unit.Id))
+                UnitRemoved?.Invoke(unit);
         }
     }
     

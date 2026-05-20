@@ -7,6 +7,6 @@ namespace Gameplay.Schemes.Values.Variables
         [SerializeField] private int _defaultValue;
         
         protected override int DefaultValue => _defaultValue;
-        protected override string DisplayDefaultValue => DefaultValue.ToString();
+        protected override string DisplayDefaultValue => $"({DefaultValue.ToString()})";
     }
 }

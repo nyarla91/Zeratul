@@ -23,7 +23,7 @@ namespace Gameplay.Schemes.Triggers
 
         private void OnValidate()
         {
-            gameObject.name = $"Every ({_framePeriod?.name}) frames";
+            gameObject.name = $"Every {_framePeriod?.name} frames";
         }
     }
 }

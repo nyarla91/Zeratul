@@ -23,3 +23,4 @@ MonoBehaviour:
   _outOfRange: ordererror-out-of-range
   _locked: ordererror-locked
   _mustBeUnit: ordererror-must-target-unit
+  _passive: ordererror-passive

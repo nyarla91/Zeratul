@@ -7,7 +7,7 @@ namespace Gameplay.Schemes.Values.Variables
     public class VariablePoint : SchemeVariable<Vector2>
     {
         protected override Vector2 DefaultValue => transform.position;
-        protected override string DisplayDefaultValue => DefaultValue.ToString();
+        protected override string DisplayDefaultValue => $"({DefaultValue.ToString()})";
 
         public override string Save()
         {

@@ -17,7 +17,7 @@ namespace Gameplay.Schemes.Actions
 
         private void OnValidate()
         {
-            gameObject.name = $"> Set ({_variable?.name}) to ({_value?.name})";
+            gameObject.name = $"> Set {_variable?.name} to {_value?.name}";
             
         }
     }

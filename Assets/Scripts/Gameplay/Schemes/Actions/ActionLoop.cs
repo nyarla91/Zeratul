@@ -32,7 +32,7 @@ namespace Gameplay.Schemes.Actions
                 .Where(a => a.transform.parent == transform)
                 .ToArray();
 
-            gameObject.name = $"> Loop ({_out?.name}) from ({_from?.name ?? 0.ToString()}) to ({_to?.name}) with step ({_step?.name ?? 1.ToString()})";
+            gameObject.name = $"> Loop {_out?.name} from {_from?.name ?? 0.ToString()} to {_to?.name} with step {_step?.name ?? 1.ToString()}";
         }
     }
 }

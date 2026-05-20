@@ -13,8 +13,8 @@ namespace Gameplay.Schemes.Values.Variables
         [SerializeField] private UnitSpawnPoint[] _spawnPoints;
 
         protected override HashSet<Unit> DefaultValue => null;
-        protected override string DisplayDefaultValue => _spawnPoints
-            .Enumerate(", ", "", p => p?.name);
+        protected override string DisplayDefaultValue => "(" + _spawnPoints
+            .Enumerate(", ", "", p => p?.name) + ")";
 
         [Inject] private IGetUnitByIdService GetUnitByIdService { get; set; }
 
@@ -27,6 +27,16 @@ namespace Gameplay.Schemes.Values.Variables
         {
             HashSet<int> unitsId = JsonConvert.DeserializeObject<HashSet<int>>(json);
             value = unitsId.Select(id => GetUnitByIdService.GetUnitById(id)).ToHashSet();
+        }
+
+        public void AddUnit(Unit unit)
+        {
+            value.Add(unit);
+        }
+
+        public void RemoveUnit(Unit unit)
+        {
+            value.Remove(unit);
         }
 
         protected override void Awake()

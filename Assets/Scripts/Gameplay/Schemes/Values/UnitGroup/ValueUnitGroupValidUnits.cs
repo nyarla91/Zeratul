@@ -18,7 +18,7 @@ namespace Gameplay.Schemes.Values.UnitGroup
 
         private void OnValidate()
         {
-            gameObject.name = $"{_validator} units from ({_unitGroup?.gameObject.name})";
+            gameObject.name = $"({_validator} units from {_unitGroup?.gameObject.name})";
         }
     }
 }
