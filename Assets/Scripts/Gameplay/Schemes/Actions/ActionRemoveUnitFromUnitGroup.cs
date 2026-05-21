@@ -17,7 +17,7 @@ namespace Gameplay.Schemes.Actions
 
         private void OnValidate()
         {
-            gameObject.name = $"Remove {_unit?.name} from {_unitGroup?.name}";
+            gameObject.name = $"> Remove {_unit?.name} from {_unitGroup?.name}";
         }
     }
 }

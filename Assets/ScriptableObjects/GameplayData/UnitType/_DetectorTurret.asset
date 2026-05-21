@@ -35,7 +35,7 @@ MonoBehaviour:
   _size: 2
   _rotationSpeed: 0
   _isAir: 0
-  _sightRadius: 2
+  _sightRadius: 5
   _weaponType: {fileID: 0}
   _innateStatuses:
   - {fileID: 11400000, guid: ea01647ee3e24184d81fa55f76413eb5, type: 2}
@@ -59,3 +59,5 @@ MonoBehaviour:
   _interactionColliderSize: {x: 1.8, y: 2}
   _interactionColliderOffset: {x: 0, y: 0.58}
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
+  _editorRadius:
+    _object: {fileID: 11400000, guid: 757e5c5c3c32a2c4d8331dc66056af68, type: 2}

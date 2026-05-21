@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
   m_Name: _AttackTurretRadius
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
-  _useLock: 0
+  _useLock: 1
   _display: 0
   _displayIcon: {fileID: 0}
   _displayName: 
@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 1872224104527679214, guid: 7c08aa871c148284698ee5ee1d3a3e0e, type: 3}
   _casterType: 0
   _unitEffects: []
-  _tickPeriod: 1
+  _tickPeriod: 999999999
   _requireSimulation: 0

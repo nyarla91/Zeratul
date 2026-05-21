@@ -16,7 +16,7 @@ namespace Gameplay.Schemes.Triggers
         {
             Observable.EveryFixedUpdate()
                 .Where(_ => TacticalPause.IsUnpaused)
-                .Where(_ => GameTime.Frame % _frame.Value == 0)
+                .Where(_ => GameTime.Frame == _frame.Value)
                 .Take(1)
                 .Subscribe(_ => Trigger());
         }

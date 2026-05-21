@@ -36,9 +36,6 @@ namespace Gameplay.Schemes
             _actions = GetComponentsInChildren<SchemeAction>()
                 .Where(a => a.transform.parent == transform)
                 .ToArray();
-            _conditions = GetComponentsInChildren<SchemeValue<bool>>()
-                .Where(a => a.transform.parent == transform)
-                .ToArray();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Gameplay.UI;
+﻿using System;
+using Gameplay.UI;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,11 @@ namespace Gameplay.Schemes.Actions
         public override void Act()
         {
             TutorialWindow.Show(_tutorialIndex);
+        }
+
+        private void OnValidate()
+        {
+            gameObject.name = $"> Show tutorial {_tutorialIndex}";
         }
     }
 }

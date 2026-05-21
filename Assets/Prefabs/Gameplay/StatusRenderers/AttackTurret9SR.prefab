@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _ignoreLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _alwaysVisible

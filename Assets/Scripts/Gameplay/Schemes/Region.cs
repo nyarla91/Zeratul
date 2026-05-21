@@ -54,5 +54,11 @@ namespace Gameplay.Schemes
             unit = other.GetComponentInParent<Unit>();
             return true;
         }
+
+        private void OnValidate()
+        {
+            if (_collider != null)
+                _collider.isTrigger = true;
+        }
     }
 }

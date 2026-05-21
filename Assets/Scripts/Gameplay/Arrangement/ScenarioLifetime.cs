@@ -13,6 +13,7 @@ namespace Gameplay.Arrangement
         [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
         [Inject] private GameFlowController GameFlowController { get; set; }
         [Inject] private ScenarioSession ScenarioSession { get; set; }
+        [Inject] private IScenarioCompletionInfo ScenarioCompletion { get; set; }
         [Inject] private UnitSpawner UnitSpawner { get; set; }
         
         public void Instantiate()
@@ -35,6 +36,8 @@ namespace Gameplay.Arrangement
                     spawnedUnit = UnitSpawner.Spawn(spawnPoint.transform.position, spawnPoint.UnitType, -1, spawnPoint.SpawnInfo);
                 spawnPoint.OnSpawn(spawnedUnit);
             }
+
+            ScenarioCompletion.Completed += LeaveScenario;
         }
         
         public void RestartScenario()

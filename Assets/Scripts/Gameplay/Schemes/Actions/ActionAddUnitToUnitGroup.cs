@@ -18,7 +18,7 @@ namespace Gameplay.Schemes.Actions
 
         private void OnValidate()
         {
-            gameObject.name = $"Add {_unit?.name} to {_unitGroup?.name}";
+            gameObject.name = $"> Add {_unit?.name} to {_unitGroup?.name}";
         }
     }
 }

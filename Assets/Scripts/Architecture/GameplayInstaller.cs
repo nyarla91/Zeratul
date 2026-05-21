@@ -34,6 +34,7 @@ namespace Architecture
             Container.Bind<TacticalPause>().AsSingle();
             Container.Bind<GameTime>().AsSingle();
             Container.BindInterfacesAndSelfTo<UnitPool>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScenarioCompletion>().AsSingle();
             
             Container.BindInstance(_nodeMap).AsSingle();
             Container.BindInstance(_isometricOverlap).AsSingle();

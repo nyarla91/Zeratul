@@ -17,17 +17,21 @@ MonoBehaviour:
     _description: tutorial-basic-controls-description
   - _label: tutorial-camera-label
     _description: tutorial-camera-description
-  - _label: tutorial-cloak-label
-    _description: tutorial-cloak-description
   - _label: tutorial-save-label
     _description: tutorial-save-description
-  - _label: tutorial-detectors-label
-    _description: tutorial-detectors-description
   - _label: tutorial-attack-label
     _description: tutorial-attack-description
-  - _label: tutorial-attack-move-label
-    _description: tutorial-attack-move-description
   - _label: tutorial-life-label
     _description: tutorial-life-description
+  - _label: tutorial-hinderance-label
+    _description: tutorial-hinderance-description
+  - _label: tutorial-energy-label
+    _description: tutorial-energy-description
+  - _label: tutorial-attack-move-label
+    _description: tutorial-attack-move-description
   - _label: tutorial-tactical-pause-label
     _description: tutorial-tactical-pause-description
+  - _label: tutorial-cloak-label
+    _description: tutorial-cloak-description
+  - _label: tutorial-detectors-label
+    _description: tutorial-detectors-description
