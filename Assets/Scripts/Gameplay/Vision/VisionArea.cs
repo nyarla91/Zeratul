@@ -27,6 +27,7 @@ namespace Gameplay.Vision
         {
             this.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
+                .Delay(TimeSpan.FromMilliseconds(1))
                 .Subscribe(_ => Recalculate());
         }
 

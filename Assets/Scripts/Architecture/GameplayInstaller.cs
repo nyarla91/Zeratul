@@ -27,6 +27,7 @@ namespace Architecture
         [SerializeField] private UnitSpawner _unitSpawner;
         [SerializeField] private GameDataRegistry _gameDataRegistry;
         [SerializeField] private ClickArea _clickArea;
+        [SerializeField] private TacticalPauseControl _tacticalPauseControl;
         
         public override void InstallBindings()
         {
@@ -48,6 +49,7 @@ namespace Architecture
             Container.BindInstance(_unitSpawner).AsSingle();
             Container.BindInstance(_gameDataRegistry).AsSingle();
             Container.BindInstance(_clickArea).AsSingle();
+            Container.BindInstance(_tacticalPauseControl).AsSingle();
         }
     }
 }

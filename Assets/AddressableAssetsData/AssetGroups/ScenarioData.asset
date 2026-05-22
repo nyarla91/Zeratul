@@ -20,11 +20,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8fa37bc79f62168428d9e8907b845953
-    m_Address: Assets/ScriptableObjects/ScenarioData/Sc2.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3bf937d0d93ef534da8394ae4bc544d6, type: 2}
   m_SchemaSet:

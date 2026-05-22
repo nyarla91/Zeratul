@@ -32,25 +32,27 @@ namespace Gameplay.Units.View
                 : _config.UnitBaseOrder;
 
             this.UpdateAsObservable()
-                .Where(_ => TacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateSprite());
         }
 
         private void UpdateSprite()
         {
-            
             string newAction = GetCurrentUnitAction();
-            if (newAction.Equals(_currentAction))
+            
+            if (TacticalPause.IsUnpaused)
             {
-                _currentActionTime += Time.deltaTime;
-            }
-            else
-            {
-                DiscardCurrentActionTime();
-                _currentAction = newAction;
+                if (newAction.Equals(_currentAction))
+                {
+                    _currentActionTime += Time.deltaTime;
+                }
+                else
+                {
+                    DiscardCurrentActionTime();
+                    _currentAction = newAction;
+                }
             }
             
-            if (!_unit.IsVisibleToPlayer)
+            if ( ! _unit.IsVisibleToPlayer)
             {
                 _spriteRenderer.sprite = null;
                 return;

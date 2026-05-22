@@ -1031,6 +1031,7 @@ MonoBehaviour:
   _unitSpawner: {fileID: 1540660401}
   _gameDataRegistry: {fileID: 11400000, guid: 8eafc8fb6e5c86640b404deefdbdd811, type: 2}
   _clickArea: {fileID: 1938674401}
+  _tacticalPauseControl: {fileID: 418630285}
 --- !u!4 &189624905
 Transform:
   m_ObjectHideFlags: 0

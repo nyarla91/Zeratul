@@ -14,7 +14,7 @@ namespace Gameplay
             PlayerInput.TacticalPause.Performed += TogglePause;
         }
 
-        private void TogglePause()
+        public void TogglePause()
         {
             if (TacticalPause.IsPausedFrom(this))
                 TacticalPause.Unpause(this);

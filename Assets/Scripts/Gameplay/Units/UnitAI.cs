@@ -62,7 +62,7 @@ namespace Gameplay.Units
             if (Unit.Alliance.OwnedByPlayer)
                 return;
 
-            if ( ! Unit.Simulation.IsSimulated || Threats.Count == 0)
+            if (Threats.Count == 0)
             {
                 Patrol();
                 return;

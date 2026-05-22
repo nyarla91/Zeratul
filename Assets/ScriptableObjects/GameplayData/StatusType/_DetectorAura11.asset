@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
-  m_Name: _DetectorAura9
+  m_Name: _DetectorAura11
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
   _useLock: 1
   _display: 1

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c29638cefae4b53acadb2b9738ba9e5, type: 3}
-  m_Name: _AOE9_Aura_Detected2
+  m_Name: _AOE11_Aura_Detected2
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
   _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _radius: 9
+  _radius: 11
   _applyValidators:
     _unitValidators:
     - {fileID: 11400000, guid: 161b97ff5218e624ab499324e33049ce, type: 2}
