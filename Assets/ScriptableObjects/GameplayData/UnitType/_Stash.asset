@@ -16,6 +16,7 @@ MonoBehaviour:
   _focusPriority: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
+  - {fileID: 11400000, guid: d2259cc015c4ec447ad995922eb87208, type: 2}
   _controlWorth: 100
   _attackWorth:
     _baseWorth: 0
@@ -56,3 +57,5 @@ MonoBehaviour:
   _interactionColliderSize: {x: 1.8, y: 1.6}
   _interactionColliderOffset: {x: 0, y: 0.4}
   _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
+  _editorRadius:
+    _object: {fileID: 0}

@@ -364,7 +364,7 @@ TextureImporter:
         height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 5, y: 5, z: 5, w: 5}
       customData: 
       outline: []
       physicsShape: []
@@ -381,12 +381,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 492
-        y: 755
-        width: 65
-        height: 35
+        y: 760
+        width: 27
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 5, y: 5, z: 5, w: 5}
       customData: 
       outline: []
       physicsShape: []
@@ -926,6 +926,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: High-Tech UI_1
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 760
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1594e77599a35b41964a4c1d4aaf4bc
+      internalID: -621624727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: High-Tech UI_2
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 459
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c940b5ad7f6acf948a9b6b4b520147ce
+      internalID: -1221780050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: High-Tech UI_3
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 459
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb80cd34e40b4d409dc51e4f33ee07f
+      internalID: 1967011401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: High-Tech UI_4
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 459
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8749656f62fcfd42a421215cc3cfdd2
+      internalID: 655880048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -946,6 +1034,7 @@ TextureImporter:
       Button2: -477240440
       Button3: 1807434099
       High-Tech UI_0: 4583035236823368791
+      High-Tech UI_1: -621624727
       High-Tech UI_10: 829804649
       High-Tech UI_11: 702919172
       High-Tech UI_12: -130022326
@@ -956,11 +1045,14 @@ TextureImporter:
       High-Tech UI_17: -2040182997
       High-Tech UI_18: -657737749
       High-Tech UI_19: -107351062
+      High-Tech UI_2: -1221780050
       High-Tech UI_20: -1729364007
       High-Tech UI_21: 1809874376
       High-Tech UI_22: -68340866
       High-Tech UI_23: -538534229
+      High-Tech UI_3: 1967011401
       High-Tech UI_36: 1052099680
+      High-Tech UI_4: 655880048
       High-Tech UI_6: -1523140466
       High-Tech UI_7: -1118409023
       High-Tech UI_8: -2080038118

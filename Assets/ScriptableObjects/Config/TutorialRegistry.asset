@@ -31,7 +31,13 @@ MonoBehaviour:
     _description: tutorial-tactical-pause-description
   - _label: tutorial-cloak-label
     _description: tutorial-cloak-description
-  - _label: tutorial-attack-move-label
-    _description: tutorial-attack-move-description
   - _label: tutorial-detectors-label
     _description: tutorial-detectors-description
+  - _label: tutorial-vision-label
+    _description: tutorial-vision-description
+  - _label: tutorial-invasion-label
+    _description: tutorial-invasion-description
+  - _label: tutorial-control-label
+    _description: tutorial-control-description
+  - _label: tutorial-attack-move-label
+    _description: tutorial-attack-move-description

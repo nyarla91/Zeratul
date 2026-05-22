@@ -108,7 +108,8 @@ namespace Gameplay.UI
 
         private void StartShowingTooltip(BaseEventData _)
         {
-            _showTooltip = true;
+            if (IsVisible)
+                _showTooltip = true;
         }
 
         private void HideTooltip(BaseEventData _)
