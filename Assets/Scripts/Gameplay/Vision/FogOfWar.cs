@@ -42,9 +42,9 @@ namespace Gameplay.Vision
             FillSprite(TargetSprite, _hiddenColor);
         }
 
-        public void ReproduceFromSaveData(MapSaveSystem saveSystem)
+        public void ReproduceFromSaveData(MapSaveSystem payload)
         {
-            bool[,] scouted = saveSystem.scoutedFogOfWar;
+            bool[,] scouted = payload.scoutedFogOfWar;
             for (int y = 0; y < _fogDimensions.y && y < scouted.GetLength(1); y++)
             {
                 for (int x = 0; x < _fogDimensions.x && x < scouted.GetLength(0); x++)

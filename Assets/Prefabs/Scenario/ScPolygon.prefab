@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1065030370007848757}
   - component: {fileID: 156293467144152353}
   m_Layer: 0
-  m_Name: '> Apply (_AOE9_Aura_Detected2) from (PlayerUnit) to (LastEnteredUnit)'
+  m_Name: '> Apply (_AOE11_Aura_Detected2) from (playerUnit) to (LastEnteredUnit)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 451613345728331252}
   - component: {fileID: 496271052350909751}
   m_Layer: 0
-  m_Name: '> Set (LastEnteredUnit) to (TriggergingUnit)'
+  m_Name: '> Set (LastEnteredUnit) to (triggergingUnit)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 7140610826722326894}
   - component: {fileID: 3756015312568541369}
   m_Layer: 0
-  m_Name: '> Apply (_AddCloaked2) from (PlayerUnit) to (LastEnteredUnit)'
+  m_Name: '> Apply (_AddCloaked2) from (playerUnit) to (LastEnteredUnit)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1309,7 +1309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099147821774625545, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       propertyPath: m_Name
-      value: (PlayerUnit)
+      value: (playerUnit)
       objectReference: {fileID: 0}
     - target: {fileID: 3099147821774625545, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1361,7 +1361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5536576789618234137, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       propertyPath: m_Name
-      value: (IteratedUnit)
+      value: (iteratedUnit)
       objectReference: {fileID: 0}
     - target: {fileID: 5536576789618234137, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       propertyPath: m_StaticEditorFlags

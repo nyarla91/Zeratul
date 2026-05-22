@@ -11,6 +11,8 @@ namespace Gameplay.Schemes.Triggers
     {
         [SerializeField] private SchemeVariable<Unit> _out;
 
+        protected SchemeVariable<Unit> Out => _out;
+
         [Inject] private UnitPool UnitPool { get; set; }
         
         private void Awake()

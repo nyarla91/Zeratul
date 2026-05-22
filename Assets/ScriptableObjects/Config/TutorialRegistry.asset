@@ -39,5 +39,5 @@ MonoBehaviour:
     _description: tutorial-invasion-description
   - _label: tutorial-control-label
     _description: tutorial-control-description
-  - _label: tutorial-attack-move-label
-    _description: tutorial-attack-move-description
+  - _label: tutorial-order-label
+    _description: tutorial-order-description

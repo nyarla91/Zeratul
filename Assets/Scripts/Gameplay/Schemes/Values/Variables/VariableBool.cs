@@ -1,4 +1,4 @@
-﻿using Unity.Plastic.Newtonsoft.Json;
+﻿
 using UnityEngine;
 
 namespace Gameplay.Schemes.Values.Variables

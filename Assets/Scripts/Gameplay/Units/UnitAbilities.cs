@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Extentions.Pause;
@@ -6,6 +7,7 @@ using Gameplay.Data;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
+using ModestTree.Util;
 using Save.Data.Units;
 using UniRx;
 using UniRx.Triggers;
@@ -34,6 +36,8 @@ namespace Gameplay.Units
 
         public bool IsLocked => _lockSources.Count > 0;
         public bool IsUnlocked => ! IsLocked;
+
+        public event Action<AbilityType, OrderTarget> CastedAbility;
 
         private IPauseReadonly TacticalPause { get; set; }
 
@@ -123,6 +127,7 @@ namespace Gameplay.Units
                     continue;
                 sharedAbility.StartCooldown();
             }
+            CastedAbility?.Invoke(abilityType, target);
             return true;
         }
         

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
   m_Name: _AttackTurretWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
-  _baseDamage: 45
+  _baseDamage: 40
   _windupTime: 0
-  _recoveryTime: 35
+  _recoveryTime: 32
   _maxDistance: 9
   _autoAttack: 0

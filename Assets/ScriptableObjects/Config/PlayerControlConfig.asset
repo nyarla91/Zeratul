@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221d8ba466cf4df1b4674eb192057ed7, type: 3}
   m_Name: PlayerControlConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.PlayerControlConfig
-  _startingReserve: 4
+  _startingReserve: 2
   _slots: 10

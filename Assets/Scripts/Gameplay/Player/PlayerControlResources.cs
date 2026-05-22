@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Data.Configs;
+using Gameplay.Units;
+using Save.Data;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +16,8 @@ namespace Gameplay.Player
         
         public int Reserve { get; private set; }
         public int Slots { get; private set; }
-        
+
+        public HashSet<Unit> ControlledUnits => _controlledUnits.ToHashSet();
         public int OccupiedSlots => _controlledUnits.Sum(u => u.Type.ControlWorth);
         public int AvailableSlots => Slots - OccupiedSlots;
         public int ExtraReserve => Mathf.Max(Reserve - AvailableSlots, 0);
@@ -31,6 +34,12 @@ namespace Gameplay.Player
                 .Where(_ => Keyboard.current.ctrlKey.isPressed)
                 .Where(_ => Keyboard.current.rKey.wasPressedThisFrame)
                 .Subscribe(_ => AddReserve(1));
+        }
+
+        public void ReproduceFromSaveData(ControlSaveSystem payload, IGetUnitByIdService getUnitByIdService)
+        {
+            Reserve = payload.controlReserve;
+            _controlledUnits = payload.controlledUnits.Select(getUnitByIdService.GetUnitById).ToHashSet();
         }
 
         public void AddReserve(int quantity)
