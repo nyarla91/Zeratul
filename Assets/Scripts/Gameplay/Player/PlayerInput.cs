@@ -19,6 +19,7 @@ namespace Gameplay.Player
         private InputBinding _togglePause;
         private InputBinding _quickSave;
         private InputBinding _quickLoad;
+        private InputBinding _toggleEnemyVision;
         
         public IInputBindingReadonly SelectMultiple => _selectMultiple ??= new InputBinding(_actions.General.SelectMultiple, GamePause);
         public IInputBindingReadonly QueueOrder => _queueOrder ??= new InputBinding(_actions.General.QueueOrder, GamePause);
@@ -28,6 +29,7 @@ namespace Gameplay.Player
         public IInputBindingReadonly TogglePause => _toggleTacticalPause ??= new InputBinding(_actions.General.TogglePause, GamePause);
         public IInputBindingReadonly QuickSave => _quickSave ??= new InputBinding(_actions.General.QuickSave, GamePause);
         public IInputBindingReadonly QuickLoad => _quickLoad ??= new InputBinding(_actions.General.QuickLoad, GamePause);
+        public IInputBindingReadonly ToggleEnemyVision => _toggleEnemyVision ??= new InputBinding(_actions.General.ToggleEnemyVision, GamePause);
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 
@@ -51,6 +53,7 @@ namespace Gameplay.Player
             _togglePause?.Dispose();
             _quickSave?.Dispose();
             _quickLoad?.Dispose();
+            _toggleEnemyVision?.Dispose();
         }
     }
 }

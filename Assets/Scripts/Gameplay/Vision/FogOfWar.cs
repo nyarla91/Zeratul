@@ -11,16 +11,19 @@ namespace Gameplay.Vision
     public class FogOfWar : MonoBehaviour
     {
         [SerializeField] private VisionConfig _config;
-        [SerializeField] private VisionMap _visionMap;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteRenderer _enemySpriteRenderer;
         [SerializeField] private float _pixelScale;
         [SerializeField] private Vector2Int _fogDimensions;
         [SerializeField] private Color _hiddenColor;
         [SerializeField] private Color _scoutedColor;
         [SerializeField] private Color _revealedColor;
+        [SerializeField] private Color _enemyRevealedColor;
         [SerializeField] private LayerMask _revealMask;
+        [SerializeField] private LayerMask _enemyRevealMask;
 
         private Sprite TargetSprite => _spriteRenderer.sprite;
+        private Sprite EnemyTargetSprite => _enemySpriteRenderer.sprite;
 
         private bool _loaded;
 
@@ -32,17 +35,11 @@ namespace Gameplay.Vision
             
             transform.localScale = _pixelScale * Vector3.one;
             
+            FillSprite(EnemyTargetSprite, _revealedColor);
+            
             if (_loaded)
                 return;
-            
-            for (int y = 0; y < _fogDimensions.y; y++)
-            {
-                for (int x = 0; x < _fogDimensions.x; x++)
-                {
-                    TargetSprite.texture.SetPixel(x, y, _hiddenColor);
-                }
-            }
-            TargetSprite.texture.Apply();
+            FillSprite(TargetSprite, _hiddenColor);
         }
 
         public void ReproduceFromSaveData(MapSaveSystem saveSystem)
@@ -83,14 +80,34 @@ namespace Gameplay.Vision
                 {
                     Vector2 point = new Vector2(x + 0.5f, y + 0.5f) * _pixelScale;
                     bool revealed = Physics2D.OverlapPoint(point, _revealMask);
-                    
+
                     if (revealed)
+                    {
                         TargetSprite.texture.SetPixel(x, y, _revealedColor);
+                        bool enemyRevealed = Physics2D.OverlapPoint(point, _enemyRevealMask);
+                        EnemyTargetSprite.texture.SetPixel(x, y, enemyRevealed ? _enemyRevealedColor : _revealedColor);
+                    }
                     else if (TargetSprite.texture.GetPixel(x, y).Equals(_revealedColor))
+                    {
                         TargetSprite.texture.SetPixel(x, y, _scoutedColor);
+                        EnemyTargetSprite.texture.SetPixel(x, y, _revealedColor);
+                    }
                 }
             }
             TargetSprite.texture.Apply();
+            EnemyTargetSprite.texture.Apply();
+        }
+
+        private void FillSprite(Sprite sprite, Color color)
+        {
+            for (int y = 0; y < _fogDimensions.y; y++)
+            {
+                for (int x = 0; x < _fogDimensions.x; x++)
+                {
+                    sprite.texture.SetPixel(x, y, color);
+                }
+            }
+            sprite.texture.Apply();
         }
     }
 }
