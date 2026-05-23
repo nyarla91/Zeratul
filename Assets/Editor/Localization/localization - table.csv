@@ -1,68 +1,141 @@
-Key;English;Русский
-ability-blink-description;Teleport on a short distance.;Телепорт на короткую дистанцию
-ability-blink-name;Transfer;Перенос
-ability-invasion-description;Take control of target <kw>non-Robotic</kw> enemy unit. You must have enough <kw>control slots</kw> available and enough <kw>control points<kw/>.;Получите контроль надо выбранным <kw>не Роботическим</kw> вражеским юнитом У вас должно быть достаточно свободных <kw>ячеек контроля</kw>, а также <kw>очков контроля</kw>.
-ability-invasion-name;Invasion;Вторжение
-ability-lockdown-description;<kw>Lock</kw> target unit for 6 sec. Lock prevents unit from using it's active passive abilities.;<kw>Блокирует</kw> выбранного юнита на 6 сек. Блокировка не позволяет юниту использовать его активные и пассивные способности.
-ability-lockdown-name;Hinderance;Прерывание
-ability-stat-cooldown;Cooldown: # sec.;Восстановление: # сек.
-ability-stat-energy;Cost: # energy;Стоимость: # энергии
-ability-stat-range;Range: #;Дальность: #
-order;Order;Приказ
-order-ability;Order — Ability;Приказ — Способность
-order-attack-description;Attack target unit or move to target point automatically attacking any enemy on the path.;Атаковать выбранного юнита или двигаться к выбранной точке, атакуя всех вражеских юнитов на своём пути.
-order-attack-name;Attack;Атаковать
-order-hold-position-description;Order unit to stand still indefinitely.;Приказать юниту оставаться на месте.
-order-hold-position-name;Hold position;Удерживать позицию
-order-move-description;Move to target point or follow target unit.;Двигаться к выбранной точке или следовать за выбанным юнитом.
-order-move-name;Move;Двигаться
-order-stop-description;Cancel all current orders.;Отменить все текущие приказы.
-order-stop-name;Stop;Остановиться
-ordererror-ability-not-ready;Ability not ready;Способность не готова
-ordererror-cannot-attack;Cannot attack;Невозможно атаковать
-ordererror-cannot-move;Cannot move;Невозможно двигаться
-ordererror-cannot-target-self;Canoot target self;Нельзя выбирать целью себя
-ordererror-generic;Cannot do this;Действие невозможно
-ordererror-locked;Cannot use abilities right now;Способности временно недоступны
-ordererror-must-target-unit;Target a unit;Выберите юнита
-ordererror-not-enough-energy;Not enough energy;Недостаточно энергии
-ordererror-out-of-range;Target is out of range;Цель вне досягаемости
-ordererror-target-invalid;Target is invalid;Неверная цель
-status;Status;Состояние
-status-cloaked-description;Cannot be targeted by hostile attacks and abilities, unless it is detected;Не может быть целью вражеских атак и способностей, если он не обнаружен
-status-cloaked-name;Cloaked;Маскировка
-status-detected-description;Can be targeted by hostile attacks and abilities even if its is cloaked;Может быть целью вражеских атак и способностей, даже если он замаскирован
-status-detected-name;Detected;Обнаружен
-status-detector-description;Can detect cloaked hostile units nearby;Может обнаруживать замаскированных юнитов поблизости
-status-detector-name;Detector;Детектор
-status-duration;<stat># sec. left</stat>;<stat># сек. осталось</stat>
-status-invasion-description;You can control this unit;Вы получаете контроль над этим юнитом
-status-invasion-name;Invasion;Вторжение
-status-locked-description;Cannot use active and passive abilities;Не может использовать активные и пассивные способности
-status-locked-name;Locked;Заблокирован
-status-shield-battery-description;Restores shields to nearby friendly units;Восстанавливает щиты дружественных юнитов поблизости
-status-shield-battery-name;Shield restoration;Восстановление щитов
-status-temporary-description;Has limited lifetime;Имеет ограниченное время жизни
-status-temporary-name;Temporary;Временный
-ui-choose-a-target;Choose a target;Выберите цель
-ui-continue;Continue;Продолжить
-ui-game-paused;Game paused;Игра приостановлена
-ui-loading;Loading...;Загрузка...
-ui-quit-to-menu;Quit to menu;Выйти в меню
-ui-restart;Restart;Начать заново
-unit-snake-name;Snake;Змеюка
-unittag-mechanical;Mechanical;Механический
-unittag-organic;Organic;Органический
-unittag-robotic;Robotic;Роботический
-validator-enough-control-reserve;Not enought control reserve;Недостаточно резерва контроля
-validator-enough-control-slots;Not enough control slots;Недостаточно ячеек контроля
-validator-has-different-owner;Can't target your own units;Нельзя выбирать своих юнитов
-validator-has-same-owner;Target your own unit;Выберите своего юнита
-validator-is-air;Target must be air;Цель должна быть воздушной
-validator-is-cloaked;Target must be cloaked;Цель должна быть замаскированной
-validator-is-friendly;Target must be friendly;Цель должна быть дружественной
-validator-is-hostile;Target must be hostile;Цель должна быть враждебной
-validator-is-not-air;Target cannot be air;Цель не должна быть воздушной
-validator-is-not-cloaked;Target cannot be cloaked;Цель не должна быть замаскированной
-validator-is-not-friendly;Target cannot be friendly;Цель не должна быть дружественной
-validator-is-not-hostile;Target cannot be hostile;Цель не должна быть враждебной
+Key;English;Русский^
+ability-blink-description;Teleport on a short distance.;Телепорт на короткую дистанцию^
+ability-blink-name;Transfer;Перенос^
+ability-invasion-description;Take control of target enemy unit. You must have enough <kw>control slots</kw> available.;Получите контроль надо выбранным вражеским юнитом У вас должно быть достаточно свободных <kw>ячеек контроля</kw>^
+ability-invasion-name;Invasion;Вторжение^
+ability-lockdown-description;<kw>Lock</kw> target unit for 6 sec. Lock prevents unit from attacking, using it's active and passive abilities.;<kw>Блокирует</kw> выбранного юнита на 6 сек. Блокировка не позволяет юниту атаковать, использовать свои активные и пассивные способности.^
+ability-lockdown-name;Hinderance;Прерывание^
+ability-stat-cooldown;Cooldown: # sec.;Восстановление: # сек.^
+ability-stat-energy;Cost: # energy;Стоимость: # энергии^
+ability-stat-range;Range: #;Дальность: #^
+order;Order;Приказ^
+order-ability;Order — Ability;Приказ — Способность^
+order-attack-description;Attack target unit or move to target point attacking any enemy on the path.;Атаковать выбранного юнита или двигаться к выбранной точке, атакуя всех вражеских юнитов на своём пути.^
+order-attack-name;Attack;Атаковать^
+order-hold-position-description;Order unit to stand still indefinitely.;Приказать юниту оставаться на месте.^
+order-hold-position-name;Hold position;Удерживать позицию^
+order-move-description;Move to target point or follow target unit.;Двигаться к выбранной точке или следовать за выбанным юнитом.^
+order-move-name;Move;Двигаться^
+order-stop-description;Cancel all current orders.;Отменить все текущие приказы.^
+order-stop-name;Stop;Остановиться^
+ordererror-ability-not-ready;Ability not ready;Способность не готова^
+ordererror-cannot-attack;Cannot attack;Невозможно атаковать^
+ordererror-cannot-move;Cannot move;Невозможно двигаться^
+ordererror-cannot-target-self;Cannot target self;Нельзя выбирать целью себя^
+ordererror-generic;Cannot do this;Действие невозможно^
+ordererror-locked;Cannot use abilities right now;Способности временно недоступны^
+ordererror-must-target-unit;Target a unit;Выберите юнита^
+ordererror-not-enough-energy;Not enough energy;Недостаточно энергии^
+ordererror-out-of-range;Target is out of range;Цель вне досягаемости^
+ordererror-passive;Cannot use passive ability;Невозможно использовать пассивную способность^
+ordererror-target-invalid;Target is invalid;Неверная цель^
+status;Status;Состояние^
+status-cloaked-description;Cannot be targeted by hostile attacks and abilities, unless it is detected;Не может быть целью вражеских атак и способностей, если он не обнаружен^
+status-cloaked-name;Cloaked;Маскировка^
+status-detected-description;Can be targeted by hostile attacks and abilities even if its is cloaked;Может быть целью вражеских атак и способностей, даже если он замаскирован^
+status-detected-name;Detected;Обнаружен^
+status-detector-description;Can detect cloaked hostile units nearby;Может обнаруживать замаскированных вражеских юнитов поблизости^
+status-detector-name;Detector;Детектор^
+status-duration;<stat># sec. left</stat>;<stat># сек. осталось</stat>^
+status-invasion-description;You can control this unit;Вы получаете контроль над этим юнитом^
+status-invasion-name;Invasion;Вторжение^
+status-locked-description;Cannot attack, use active and passive abilities;Не может атаковать, использовать активные и пассивные способности^
+status-locked-name;Locked;Заблокирован^
+status-shield-battery-description;Restores shields to nearby friendly units;Восстанавливает щиты дружественных юнитов поблизости^
+status-shield-battery-name;Shield restoration;Восстановление щитов^
+status-temporary-description;Has limited lifetime;Имеет ограниченное время жизни^
+status-temporary-name;Temporary;Временный^
+tutorial-attack-description;;Нажмите правой кнопкой мыши на противника, чтобы приказать выбранному юниту его атаковать^
+tutorial-attack-label;;Атака^
+tutorial-order-description;;Чтобы выбрать сразу несколько юнитов, проведите по ним мышкой с зажатой левой кнопкой.
+
+Используйте ""Атака"" (A), чтобы приказать юнитам перемещаться в выбранную точку, атакуя всех противников на своём пути
+ или атаковать собственных юнитов, чтобы освободить ячейки контроля.
+
+Используйте ""Отменить"" (S), чтобы отменить все текущие приказы выбранных юнитов.
+
+Используйте ""Удерживать позицию"" (D), чтобы приказать юнитам не сдвигаться с места.^
+tutorial-order-label;;Управление юнитами^
+tutorial-basic-controls-description;;Нажмите левой кнопкой мыши на своего юнита, чтобы выбрать его.
+
+Нажмите правой кнопкой мыши в любом месте, чтобы приказать выбранному юниту двигаться в эту точку^
+tutorial-basic-controls-label;;Базовое управление^
+tutorial-camera-description;;Для того, чтобы переместить камеру зажмите среднюю кнопку мыши или подведите курсор к краю экрана
+
+Используйте колёсико мыши, чтобы масштабировать камеру^
+tutorial-camera-label;;Управление камерой^
+tutorial-cloak-description;;Теперь вы замаскированы.
+
+Противники не могут атаковать вас напрямую, даже если вы находитесь в области их видимости.^
+tutorial-cloak-label;;Маскировка^
+tutorial-control-description;;Вы можете контроллировать несколько вражеских юнитов. пока у вас достаточно свободных ячеек контроля.
+
+Убивайте вражеских юнитов, чтобы восстанавливать ячейки контроля.^
+tutorial-control-label;;Ячейки контроля^
+tutorial-detectors-description;;Детекторы могут обнаруживать вас даже в маскировке.
+
+Пока вы находить в области действия детектора, ваша маскировка не действиует.
+
+Прерывание также отключает эту способность.^
+tutorial-detectors-label;;Детекторы^
+tutorial-energy-description;;Использлвание способностей расходует энергию юнита.
+
+Энергия восстанавливается со временем^
+tutorial-energy-label;;Энергия^
+tutorial-invasion-description;;Используйте Вторжение (T), чтобы захватить полный контроль над противником.
+
+Вторжение расходует ваши ячейки контроля, в зависимости от юнита, которого вы хотите захватить.^
+tutorial-invasion-label;;Вторжение^
+tutorial-life-description;;Помимо здоровья у юнитов есть щиты.
+
+Щиты восстанавливаются постепенно, пока юнит не получает урон.
+
+Здоровье не восстанавливается.^
+tutorial-life-label;;Здоровье и щиты^
+tutorial-save-description;;В любой момент времени вы можете нажать F5. чтобы сохранить игру.
+
+Нажмите F8, чтобы загрузить последнее сохранение.^
+tutorial-save-label;;Быстрое сохранение и загрузка^
+tutorial-hinderance-description;;Теперь вы можете использовать Прерывание.
+
+Для этого нажмите Q, затем левой кнопкой мыши на противника, против которого вы хотите его использовать.
+
+Юниты под действием Прерывания временно не могут атаковать и использовать способности.
+^
+tutorial-hinderance-label;;Прерывание^
+tutorial-tactical-pause-description;;В любой момент времени вы можете нажать Пробел, чтобы активировать тактическую паузу.
+
+Во время паузы игра останавливается, однако вы всё ещё можете осматривать поле боя, планировать свои действия и отдавать приказы юнитам.
+Вы можете отдавать приказы в очередь, удерживая Shift. Такие приказы будут исполнены по порядку.
+
+Как только вы готовы продолжить игру, нажмите Пробел снова.^
+tutorial-tactical-pause-label;;Тактическая пауза^
+tutorial-vision-description;;У противников, также как и у вас есть область видимости, которая не проходит через некоторые объекты.
+
+Для того, чтобы отобразить область видимости противников, нажмите Alt.^
+tutorial-vision-label;;Видимость^
+ui-choose-a-target;Choose a target;Выберите цель^
+ui-close;Close;Закрыть^
+ui-continue;Continue;Продолжить^
+ui-game-paused;Game paused;Игра приостановлена^
+ui-loading;Loading...;Загрузка...^
+ui-quit-the-game;Quit;Выйти^
+ui-quit-to-menu;Quit to menu;Выйти в меню^
+ui-restart;Restart;Начать заново^
+unit-snake-name;Snake;Змеюка^
+unittag-mechanical;Mechanical;Механический^
+unittag-organic;Organic;Органический^
+unittag-robotic;Robotic;Роботический^
+validator-enough-control-reserve;Not enought available control slots;Недостаточно доступных ячеек контроля^
+validator-enough-control-slots;Not enough control slots;Недостаточно ячеек контроля^
+validator-has-different-owner;Can't target your own units;Нельзя выбирать своих юнитов^
+validator-has-same-owner;Target your own unit;Выберите своего юнита^
+validator-is-air;Target must be air;Цель должна быть воздушной^
+validator-is-cloaked;Target must be cloaked;Цель должна быть замаскированной^
+validator-is-friendly;Target must be friendly;Цель должна быть дружественной^
+validator-is-hostile;Target must be hostile;Цель должна быть враждебной^
+validator-is-not-air;Target cannot be air;Цель не должна быть воздушной^
+validator-is-not-cloaked;Target cannot be cloaked;Цель не должна быть замаскированной^
+validator-is-not-friendly;Target cannot be friendly;Цель не должна быть дружественной^
+validator-is-not-hostile;Target cannot be hostile;Цель не должна быть враждебной^
+validator-is-not-uncontrollable;Cannot control this unit;Этого юнита нельзя контроллировать^

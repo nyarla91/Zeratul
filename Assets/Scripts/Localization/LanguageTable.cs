@@ -20,12 +20,18 @@ namespace Localization
             _entries = entries.ToArray();
 #endif
         }
-        
+
+        public void GenerateDictionary()
+        {
+            _tableDictionary = _entries.ToDictionary(e => e.Key);
+        }
+
         public string Translate(string key)
         {
             if (string.IsNullOrEmpty(key))
                 return key;
-            _tableDictionary ??= _entries.ToDictionary(e => e.Key);
+            if (_tableDictionary == null)
+                GenerateDictionary();
             return _tableDictionary.TryGetValue(key, out LanguageEntry entry) ? entry.Line : key;
         }
     }

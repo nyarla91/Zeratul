@@ -17,7 +17,7 @@ MonoBehaviour:
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
-  _controlWorth: 7
+  _controlWorth: 8
   _attackWorth:
     _baseWorth: 125
     _evaluators: []

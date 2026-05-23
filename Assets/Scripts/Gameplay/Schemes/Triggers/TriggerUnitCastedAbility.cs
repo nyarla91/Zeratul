@@ -9,15 +9,15 @@ namespace Gameplay.Schemes.Triggers
     public class TriggerUnitCastedAbility : TriggerUnitEvent
     {
         [SerializeField] private AbilityType _abilityType;
-        [SerializeField] private SchemeVariable<Unit> _outTargetUnit;
-        [SerializeField] private SchemeVariable<Vector2> _outTargetPoint;
+        [SerializeField] private VariableUnit _outTargetUnit;
+        [SerializeField] private VariablePoint _outTargetPoint;
 
 
         protected override void Subscribe(Unit unit)
         {
             unit.Abilities.CastedAbility += (ability, orderTarget) =>
             {
-                if (ability != _abilityType)
+                if (_abilityType && ability != _abilityType)
                     return;
                 if (orderTarget.Unit)
                     _outTargetUnit?.Set(orderTarget.Unit);
@@ -29,7 +29,7 @@ namespace Gameplay.Schemes.Triggers
 
         private void OnValidate()
         {
-            gameObject.name = $"Unit casted ({_abilityType?.name})";
+            gameObject.name = $"Unit {Out?.name} casted ({_abilityType?.name}) targeting {_outTargetUnit?.name} {_outTargetPoint?.name}";
         }
     }
 }

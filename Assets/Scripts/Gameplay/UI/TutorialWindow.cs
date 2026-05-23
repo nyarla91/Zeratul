@@ -16,7 +16,6 @@ namespace Gameplay.UI
         [SerializeField] private TMP_Text _label;
         [SerializeField] private TMP_Text _description;
         
-
         public void Show(int index)
         {
             TutorialEntry entry = _registry.GetEntry(index);
@@ -24,6 +23,7 @@ namespace Gameplay.UI
             _description.text = _config.Format(_localizer.Translate(entry.Description));
             
             _canvasGroup.DOComplete();
+            _canvasGroup.alpha = 0;
             _canvasGroup.DOFade(1, 0.5f);
             _canvasGroup.interactable = _canvasGroup.blocksRaycasts = true;
         }

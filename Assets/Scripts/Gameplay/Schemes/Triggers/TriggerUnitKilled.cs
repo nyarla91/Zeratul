@@ -13,7 +13,7 @@ namespace Gameplay.Schemes.Triggers
 
         private void OnValidate()
         {
-            gameObject.name = "Unit killed";
+            gameObject.name = $"Unit {Out?.name} killed";
         }
     }
 }

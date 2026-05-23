@@ -19,6 +19,8 @@ namespace Gameplay.Units
         public bool IsAttacking => CurrentTarget != null;
 
         private UnitWeaponType Weapon => UnitType.WeaponType;
+        
+        public event Action<Unit> Struck;
 
         public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig config, OrderErrorConfig errors) : base(unit)
         {
@@ -131,6 +133,7 @@ namespace Gameplay.Units
             if ( ! await Unit.Stagger.TryBegin(Weapon.WindupTime, Weapon.RecoveryTime, "attack"))
                 return;
             target.Life.TakeDamage(Weapon.BaseDamage, Unit);
+            Struck?.Invoke(target);
         }
     }
 }

@@ -117,6 +117,7 @@ MonoBehaviour:
   _sceneLoaderPrefab: {fileID: 699369253501963580, guid: db32131b252ffb8458587488c08c7799, type: 3}
   _scenarioRegistry: {fileID: 11400000, guid: 6996ffca75e85724da84099bded356c2, type: 2}
   _tutorialRegistry: {fileID: 11400000, guid: b0b21a7fe9fbc75418396ad86a1ce4c8, type: 2}
+  _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
 --- !u!114 &9203218780266193080
 MonoBehaviour:
   m_ObjectHideFlags: 0

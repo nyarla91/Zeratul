@@ -173007,7 +173007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4407308526153367626, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: m_Name
-      value: Unit killed
+      value: Unit (triggergingUnit) killed
       objectReference: {fileID: 0}
     - target: {fileID: 6324511491291145919, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: m_Name

@@ -1,5 +1,6 @@
 ﻿using Gameplay.Data.Configs;
 using GameState;
+using Localization;
 using Save;
 using UnityEngine;
 using Zenject;

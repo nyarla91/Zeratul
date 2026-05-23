@@ -11,5 +11,11 @@ namespace Localization
         private LanguageTable CurrentTable => _tables[0];
         
         public string Translate(string key) => CurrentTable.Translate(key);
+
+        public void GenerateDictionaries()
+        {
+            foreach (LanguageTable languageTable in _tables) 
+                languageTable.GenerateDictionary();
+        }
     }
 }

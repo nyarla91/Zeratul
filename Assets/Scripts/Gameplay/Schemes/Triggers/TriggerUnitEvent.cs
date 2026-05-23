@@ -9,7 +9,7 @@ namespace Gameplay.Schemes.Triggers
 {
     public abstract class TriggerUnitEvent : SchemeTrigger
     {
-        [SerializeField] private SchemeVariable<Unit> _out;
+        [SerializeField] private VariableUnit _out;
 
         protected SchemeVariable<Unit> Out => _out;
 
