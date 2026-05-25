@@ -25,7 +25,8 @@ namespace Editor.Localization
                 {
                     if (table[languageColumn.ColumnIndex, y] == "")
                         continue;
-                    LanguageEntry entry = new(table[0, y].Replace("\r\n", ""), table[languageColumn.ColumnIndex, y]);
+                    string key = table[0, y];
+                    LanguageEntry entry = new(key, table[languageColumn.ColumnIndex, y]);
                     entries.Add(entry);
                 }
                 languageColumn.Table.Set(entries);
@@ -34,7 +35,7 @@ namespace Editor.Localization
 
         private string[,] CSVtoArray(string csv)
         {
-            string[] rows = csv.Split('^');
+            string[] rows = csv.Replace("^\r\n", "^").Replace("\r", "").Split('^');
             string[,] result =  new string[_columns.Max(c => c.ColumnIndex) + 1, rows.Length];
 
             for (int y = 0; y < result.GetLength(1); y++)

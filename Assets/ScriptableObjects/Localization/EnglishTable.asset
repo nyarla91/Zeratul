@@ -13,26 +13,33 @@ MonoBehaviour:
   m_Name: EnglishTable
   m_EditorClassIdentifier: Loalization::Localization.LanguageTable
   _entries:
+  - _key: ability-blink-description
+    _line: Teleport on a short distance.
+  - _key: ability-blink-name
+    _line: Transfer
   - _key: ability-invasion-description
-    _line: Take control of target <kw>Sentient</kw> enemy unit. You must have enough
-      <kw>control slots</kw> available and enough <kw>control points</kw>.
+    _line: Take control of target enemy unit. You must have enough <kw>control slots</kw>
+      available.
   - _key: ability-invasion-name
     _line: Invasion
+  - _key: ability-lockdown-description
+    _line: <kw>Lock</kw> target unit for 6 sec. Lock prevents unit from attacking,
+      using it's active and passive abilities.
+  - _key: ability-lockdown-name
+    _line: Hinderance
   - _key: ability-stat-cooldown
     _line: 'Cooldown: # sec.'
   - _key: ability-stat-energy
     _line: 'Cost: # energy'
   - _key: ability-stat-range
     _line: 'Range: #'
-  - _key: choose-target-prompt
-    _line: Choose target for
   - _key: order
     _line: Order
   - _key: order-ability
-    _line: Order - Ability
+    _line: "Order \u2014 Ability"
   - _key: order-attack-description
-    _line: Attack target unit or move to target point automatically attacking any
-      enemy on the path.
+    _line: Attack target unit or move to target point attacking any enemy on the
+      path.
   - _key: order-attack-name
     _line: Attack
   - _key: order-hold-position-description
@@ -50,24 +57,106 @@ MonoBehaviour:
   - _key: ordererror-ability-not-ready
     _line: Ability not ready
   - _key: ordererror-cannot-attack
-    _line: This unit cannot move
+    _line: Cannot attack
   - _key: ordererror-cannot-move
-    _line: This unit cannot move
+    _line: Cannot move
   - _key: ordererror-cannot-target-self
-    _line: Canoot target self
+    _line: Cannot target self
   - _key: ordererror-generic
     _line: Cannot do this
+  - _key: ordererror-locked
+    _line: Cannot use abilities right now
+  - _key: ordererror-must-target-unit
+    _line: Target a unit
   - _key: ordererror-not-enough-energy
-    _line: Not enought energy
+    _line: Not enough energy
   - _key: ordererror-out-of-range
     _line: Target is out of range
+  - _key: ordererror-passive
+    _line: Cannot use passive ability
   - _key: ordererror-target-invalid
-    _line: Target invalid
+    _line: Target is invalid
+  - _key: status
+    _line: Status
+  - _key: status-cloaked-description
+    _line: Cannot be targeted by hostile attacks and abilities, unless it is detected
+  - _key: status-cloaked-name
+    _line: Cloaked
+  - _key: status-detected-description
+    _line: Can be targeted by hostile attacks and abilities even if its is cloaked
+  - _key: status-detected-name
+    _line: Detected
+  - _key: status-detector-description
+    _line: Can detect cloaked hostile units nearby
+  - _key: status-detector-name
+    _line: Detector
+  - _key: status-duration
+    _line: <stat># sec. left</stat>
+  - _key: status-invasion-description
+    _line: You can control this unit
+  - _key: status-invasion-name
+    _line: Invasion
+  - _key: status-locked-description
+    _line: Cannot attack, use active and passive abilities
+  - _key: status-locked-name
+    _line: Locked
+  - _key: status-shield-battery-description
+    _line: Restores shields to nearby friendly units
+  - _key: status-shield-battery-name
+    _line: Shield restoration
+  - _key: status-temporary-description
+    _line: Has limited lifetime
+  - _key: status-temporary-name
+    _line: Temporary
+  - _key: ui-choose-a-target
+    _line: Choose a target
+  - _key: ui-close
+    _line: Close
+  - _key: ui-continue
+    _line: Continue
+  - _key: ui-game-paused
+    _line: Game paused
+  - _key: ui-loading
+    _line: Loading...
+  - _key: ui-quit-the-game
+    _line: Quit
+  - _key: ui-quit-to-menu
+    _line: Quit to menu
+  - _key: ui-restart
+    _line: Restart
   - _key: unit-snake-name
     _line: Snake
   - _key: unittag-mechanical
     _line: Mechanical
   - _key: unittag-organic
     _line: Organic
-  - _key: unittag-sentient
-    _line: Sentient
+  - _key: unittag-robotic
+    _line: Robotic
+  - _key: validator-enough-control-reserve
+    _line: Not enought available control slots
+  - _key: validator-enough-control-slots
+    _line: Not enough control slots
+  - _key: validator-has-different-owner
+    _line: Can't target your own units
+  - _key: validator-has-same-owner
+    _line: Target your own unit
+  - _key: validator-is-air
+    _line: Target must be air
+  - _key: validator-is-cloaked
+    _line: Target must be cloaked
+  - _key: validator-is-friendly
+    _line: Target must be friendly
+  - _key: validator-is-hostile
+    _line: Target must be hostile
+  - _key: validator-is-not-air
+    _line: Target cannot be air
+  - _key: validator-is-not-cloaked
+    _line: Target cannot be cloaked
+  - _key: validator-is-not-friendly
+    _line: Target cannot be friendly
+  - _key: validator-is-not-hostile
+    _line: Target cannot be hostile
+  - _key: validator-is-not-uncontrollable
+    _line: Cannot control this unit
+  - _key: 
+    _line: 

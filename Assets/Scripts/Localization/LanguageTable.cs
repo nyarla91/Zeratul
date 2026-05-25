@@ -18,6 +18,7 @@ namespace Localization
             if (Application.isPlaying)
                 throw new InvalidOperationException("Set LocalizationTable only in edit mode");
             _entries = entries.ToArray();
+            _tableDictionary = null;
 #endif
         }
 

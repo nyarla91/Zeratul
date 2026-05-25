@@ -56,7 +56,7 @@ namespace Gameplay.Map
                 .Subscribe(_ => RecalculateAllObstacles(_obstacleRecalculationQueue.Dequeue()));
         }
 
-        private void Start()
+        public void Init()
         {
             RecalculateAllObstacles();
         }
@@ -312,28 +312,19 @@ namespace Gameplay.Map
             if (_nodes == null)
                 return;
 
-            for (int y = 0; y < _nodes.GetLength(1); y++)
+            /*for (int y = 0; y < _nodes.GetLength(1); y++)
             {
                 for (int x = 0; x < _nodes.GetLength(0); x++)
                 {
                     Node node = _nodes[x, y];
                     if (node == _closestToMouseNode)
                         Gizmos.color = Color.yellow;
+                    else if (node.IsPassableByGround)
+                        Gizmos.color = Color.white;
                     else
-                        continue;
+                        Gizmos.color = Color.red;
 
                     Gizmos.DrawCube(_nodes[x, y].WorldPosition, Vector3.one * 0.1f);
-                }
-            }
-/*
-            for (int y = 0; y < _nodes.GetLength(1); y++)
-            {
-                for (int x = 0; x < _nodes.GetLength(0); x++)
-                {
-                    if (_nodes[x, y].PreviousNode == null)
-                        continue;
-                    Gizmos.color = Color.yellow;
-                    Gizmos.DrawLine(_nodes[x,  y].WorldPosition, _nodes[x, y].PreviousNode.WorldPosition);
                 }
             }*/
         }

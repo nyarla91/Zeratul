@@ -9548,7 +9548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Loalization::Localization.TranslatedText
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _tmp: {fileID: 2090364089}
-  _text: Game paused
+  _text: ui-game-paused
 --- !u!114 &2090364089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9569,7 +9569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game paused
+  m_text: "\u0418\u0433\u0440\u0430 \u043F\u0440\u0438\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
