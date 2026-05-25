@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
+  m_Name: _Mjolnir
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _displayName: Mjolnir
+  _focusPriority: 0
+  _tags:
+  - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
+  _controlWorth: 5
+  _attackWorth:
+    _baseWorth: 150
+    _evaluators: []
+  _maxHitPoints: 40
+  _maxShieldPoints: 60
+  _shieldRestoreDelay: 250
+  _shieldPointsPerSecond: 5
+  _maxEnergyPoints: 0
+  _energyRestoreDelay: 250
+  _energyPointsPerSecond: 5
+  _noCollision: 0
+  _isImmobile: 0
+  _maxSpeed: 7
+  _size: 1.6
+  _rotationSpeed: 720
+  _isAir: 0
+  _sightRadius: 12
+  _weaponType: {fileID: 11400000, guid: f670526c591fe744ebeb35a19db1fc1b, type: 2}
+  _innateStatuses: []
+  _availableOrders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+  - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}
+  - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 1a70c4e7c8580314398776427e8ea8de, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteMap: {fileID: 11400000, guid: c09629c7e634ab04cb061aa1cd83c49a, type: 2}
+  _interactionColliderSize: {x: 1, y: 2}
+  _interactionColliderOffset: {x: 0, y: 0.75}
+  _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
+  _editorRadius:
+    _object: {fileID: 0}

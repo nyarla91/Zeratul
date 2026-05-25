@@ -16,7 +16,7 @@ MonoBehaviour:
   _focusPriority: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
-  _controlWorth: 4
+  _controlWorth: 3
   _attackWorth:
     _baseWorth: 100
     _evaluators: []

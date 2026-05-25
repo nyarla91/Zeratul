@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
+using Gameplay.Data.Effects;
 using Gameplay.Data.Units;
 using UniRx;
 using UniRx.Triggers;
@@ -17,6 +18,8 @@ namespace Gameplay.Units
 
         public Unit CurrentTarget { get; private set; }
         public bool IsAttacking => CurrentTarget != null;
+
+        public Modifier AttackSpeedModifier { get; } = new();
 
         private UnitWeaponType Weapon => UnitType.WeaponType;
         
@@ -130,9 +133,16 @@ namespace Gameplay.Units
 
         private async void StrikeUnit(Unit target)
         {
-            if ( ! await Unit.Stagger.TryBegin(Weapon.WindupTime, Weapon.RecoveryTime, "attack"))
+            float staggerMultiplier = 1 / AttackSpeedModifier.Value;
+            int windupTime = Mathf.RoundToInt(Weapon.WindupTime * staggerMultiplier);
+            int recoveryTime = Mathf.RoundToInt(Weapon.RecoveryTime * staggerMultiplier);
+            if ( ! await Unit.Stagger.TryBegin(windupTime, recoveryTime, "attack"))
                 return;
             target.Life.TakeDamage(Weapon.BaseDamage, Unit);
+            foreach (EffectTargetingUnit effect in Weapon.AdditionalEffects)
+            {
+                effect.Apply(Unit, target);
+            }
             Struck?.Invoke(target);
         }
     }

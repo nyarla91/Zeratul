@@ -12,6 +12,8 @@ namespace Gameplay.Data.Orders
         [SerializeField] private OrderErrorConfig _errors;
         
         public override TargetRequirement TargetRequirement => TargetRequirement.None;
+        
+        public override string DisplayType => Localizer.Translate("order-passive");
 
         protected override UniTask CarryOutBody(Order order, CancellationToken ct) => UniTask.CompletedTask;
 

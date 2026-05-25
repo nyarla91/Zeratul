@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
+  m_Name: _MjolnirWeapon
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
+  _baseDamage: 18
+  _additionalEffects:
+  - {fileID: 11400000, guid: 801776ed75b50e14184880ec84e1fed1, type: 2}
+  - {fileID: 11400000, guid: 6cf2b9b3fc6dafc4bb09fb6e57a3e6cd, type: 2}
+  _windupTime: 25
+  _recoveryTime: 50
+  _maxDistance: 2.2
+  _autoAttack: 0
