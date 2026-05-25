@@ -21,7 +21,10 @@ namespace Gameplay.Units
         private Vector2 _spawnPoint;
         private UnitPatrolPath _patrolPath;
 
+        public HashSet<Unit> DirectThreats { get; private set; }
         public HashSet<Unit> Threats { get; private set; }
+        public HashSet<Unit> SurroundingAllies { get; private set; }
+        public HashSet<Unit> SurroundingHostiles { get; private set; }
         public HashSet<Unit> SurroundingUnits { get; private set; }
         public Unit PreferredAttackTarget { get; private set; }
         
@@ -93,31 +96,28 @@ namespace Gameplay.Units
 
         private void UpdateSurroundings()
         {
-            UpdateSurroundingUnits();
-            UpdateThreats(SurroundingUnits);
-            UpdatePreferredAttackTarget(Threats);
-        }
-
-        private void UpdateSurroundingUnits()
-        {
             SurroundingUnits = Unit.Sight.VisibleUnits();
-        }
 
-        private void UpdateThreats(HashSet<Unit> surroundingUnits)
-        {
-            Threats = surroundingUnits.Where(u => u.Alliance.IsHostile(Unit)).ToHashSet();
+            SurroundingAllies = SurroundingUnits
+                .Where(u => Unit.Alliance.IsFriendly(u))
+                .ToHashSet();
 
-            Threats.UnionWith(surroundingUnits
-                .Where(u => u.Alliance.IsFriendly(Unit))
+            SurroundingHostiles = SurroundingUnits
+                .Where(u => Unit.Alliance.IsHostile(u))
+                .ToHashSet();
+            
+            DirectThreats = SurroundingAllies
                 .Where(a => Time.fixedTime - a.Life.LastDamageFrame < _config.DamageForgiveTime)
                 .Select(a => a.Life.LastDamageDealer)
                 .Where(u => u?.Alliance.IsHostile(Unit) ?? false)
-                .ClearNull().ToHashSet());
-        }
+                .ClearNull()
+                .ToHashSet();
 
-        private void UpdatePreferredAttackTarget(HashSet<Unit> threats)
-        {
-            PreferredAttackTarget = threats.MaxElement(t => _config.AutoAttackEvaluator.EvaluteTargetWorth(Unit, t));
+            Threats = SurroundingHostiles
+                .Union(DirectThreats)
+                .ToHashSet();
+            
+            PreferredAttackTarget = DirectThreats.MaxElement(t => _config.AutoAttackEvaluator.EvaluteTargetWorth(Unit, t));
         }
     }
 }

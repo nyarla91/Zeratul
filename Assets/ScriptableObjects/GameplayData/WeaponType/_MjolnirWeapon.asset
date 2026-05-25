@@ -19,4 +19,4 @@ MonoBehaviour:
   _windupTime: 25
   _recoveryTime: 50
   _maxDistance: 2.2
-  _autoAttack: 0
+  _autoAttack: 1

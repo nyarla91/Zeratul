@@ -38,14 +38,13 @@ namespace Gameplay.Units
                 .Where(_ => IsAttacking)
                 .Subscribe(_ => UpdateAttack());
 
-            Unit.Orders.CurrentOrderUpdated += _ => CurrentTarget = null;
+            Unit.Orders.LeftIdle += StopAttacking;
 
             if (UnitType.WeaponType.AutoAttack)
             {
-                IDisposable autoAttackSubscription = Observable.EveryFixedUpdate()
+                Unit.FixedUpdateAsObservable()
                     .Where(_ => tacticalPause.IsUnpaused)
                     .Subscribe(_ => UpdateAutoAttackTarget());
-                Unit.Killed += autoAttackSubscription.Dispose;
             }
         }
 
@@ -62,6 +61,7 @@ namespace Gameplay.Units
             if ( ! IsAttacking)
                 return;
             CurrentTarget = null;
+            Unit.Movement?.Stop();
         }
 
         public bool CanAttackUnit(Unit target) => CanAttackUnit(target, out _);

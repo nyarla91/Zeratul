@@ -30,6 +30,7 @@ namespace Gameplay.Units
         public Order[] OrdersQueue => _ordersQueue.ToArray();
         public bool IsIdle => CurrentOrder == null;
 
+        public event Action LeftIdle;
         public event Action<Order> CurrentOrderUpdated;
         
         public UnitOrders(Unit unit, IPauseReadonly tacticalPause, GameDataRegistry gameDataRegistry, IGetUnitByIdService getUnitByIdService) : base(unit)
@@ -88,11 +89,16 @@ namespace Gameplay.Units
         
         public void IssueOrder(Order order,  bool queue)
         {
+            if (order == null)
+                return;
             if ( ! UnitType.AvailableOrders.Contains(order.Type))
                 return;
             if ( ! order.CanBeIssued())
                 return;
 
+            if (IsIdle)
+                LeftIdle?.Invoke();
+            
             if ( ! queue)
             {
                 ClearAllOrders();
