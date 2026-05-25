@@ -22,11 +22,17 @@ namespace Gameplay.Arrangement.Saving
         public override void ReproduceFromSaveData(UnitsSaveSystem payload)
         {
             UnitSpawner.ReproduceFromSaveData(payload);
+            Dictionary<UnitSaveData, Unit> spawnedUnits = new ();
             foreach (UnitSaveData unitSaveData in payload.units)
             {
                 UnitType unitType = GameDataRegistry.Get<UnitType>(unitSaveData.unitType);
-                Unit unit = UnitSpawner.Spawn(unitSaveData.position.ToVector2(), unitType, unitSaveData.id);
-                unit.ReproduceFromSave(unitSaveData);
+                Unit spawnedUnit = UnitSpawner.Spawn(unitSaveData.position.ToVector2(), unitType, unitSaveData.id);
+                spawnedUnits.Add(unitSaveData, spawnedUnit);
+            }
+
+            foreach (KeyValuePair<UnitSaveData, Unit> spawnedUnit in spawnedUnits)
+            {
+                spawnedUnit.Value.ReproduceFromSave(spawnedUnit.Key);
             }
             
             HashSet<Unit> selection = payload.selection.Select(s => UnitPool.GetUnitById(s)).ToHashSet();

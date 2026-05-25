@@ -9,17 +9,17 @@ namespace Save.Data
         public static string LoadKey => "general";
         public string SaveKey => LoadKey;
 
-        [JsonProperty] public int scenarioId;
-        [JsonProperty] public int gameTimeFrame;
-        [JsonProperty] public int gameTimeUnpausedFrame;
-
-        public GeneralSaveSystem() { }
+        public int scenarioId;
+        public int gameTimeFrame;
+        public int gameTimeUnpausedFrame;
+        public bool isTacticalPauseOn;
         
-        public GeneralSaveSystem(int scenarioId, int gameTimeFrame, int gameTimeUnpausedFrame)
+        public GeneralSaveSystem(int scenarioId, int gameTimeFrame, int gameTimeUnpausedFrame, bool isTacticalPauseOn)
         {
             this.scenarioId = scenarioId;
             this.gameTimeFrame = gameTimeFrame;
             this.gameTimeUnpausedFrame = gameTimeUnpausedFrame;
+            this.isTacticalPauseOn = isTacticalPauseOn;
         }
     }
 }

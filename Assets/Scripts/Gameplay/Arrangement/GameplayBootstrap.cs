@@ -12,7 +12,7 @@ namespace Gameplay.Arrangement
         [Inject] private ScenarioLifetime ScenarioLifetime { get; set; }
         [Inject] private GameplaySaveLoad GameplaySaveLoad { get; set; }
         
-        private void Awake()
+        private void Start()
         {
             ScenarioLifetime.Instantiate();
             if (ScenarioSession.SaveData != null)

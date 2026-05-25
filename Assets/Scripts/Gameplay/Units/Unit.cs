@@ -86,7 +86,7 @@ namespace Gameplay.Units
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
             Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo?.Owner ?? Owner.Enemy);
-            Orders = new UnitOrders(this, TacticalPause);
+            Orders = new UnitOrders(this, TacticalPause, GameDataRegistry, UnitPool);
             Statuses = new UnitStatuses(this, GameTime, TacticalPause, GameDataRegistry, UnitPool);
             AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo?.PatrolPath);
             Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
@@ -131,8 +131,8 @@ namespace Gameplay.Units
             Stagger.ReproduceFromSave(saveData);
             Visibility.ReproduceFromSave(saveData);
             Sight.ReproduceFromSave(saveData);
-            Orders.ReproduceFromSave(saveData);
             Statuses.ReproduceFromSave(saveData);
+            Orders.ReproduceFromSave(saveData);
             AI.ReproduceFromSave(saveData);
             Simulation.ReproduceFromSave(saveData);
             Pathing.ReproduceFromSave(saveData);

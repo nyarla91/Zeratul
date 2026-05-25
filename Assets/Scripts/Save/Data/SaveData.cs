@@ -15,7 +15,6 @@ namespace Save.Data
         
         public SaveData(ISaveSystem[] systems)
         {
-            Debug.Log(systems.Length);
             _systems = systems
                 .Where(s => s != null)
                 .ToDictionary(s => s.SaveKey, JsonConvert.SerializeObject);

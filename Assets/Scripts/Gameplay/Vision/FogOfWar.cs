@@ -49,7 +49,6 @@ namespace Gameplay.Vision
             {
                 for (int x = 0; x < _fogDimensions.x && x < scouted.GetLength(0); x++)
                 {
-                    Debug.Log($"{x} {y} {scouted[x, y]}");
                     Color color = scouted[x, y] ? _scoutedColor : _hiddenColor;
                     TargetSprite.texture.SetPixel(x, y, color);
                 }

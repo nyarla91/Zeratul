@@ -37,7 +37,7 @@ namespace Gameplay.UI
                 List<Order> orders = new();
                 if (unit.Orders.CurrentOrder != null)
                     orders.Add(unit.Orders.CurrentOrder);
-                orders.AddRange(unit.Orders.PendingOrders);
+                orders.AddRange(unit.Orders.OrdersQueue);
                 Vector3 previousPoint = unit.Position;
                 
                 foreach (Order order in orders)

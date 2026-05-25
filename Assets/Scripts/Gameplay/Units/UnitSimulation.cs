@@ -26,7 +26,6 @@ namespace Gameplay.Units
 
             Unit.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
-                .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateSimulated());
 
         }
