@@ -21,8 +21,8 @@ namespace Gameplay.Units
         private Vector2 _spawnPoint;
         private UnitPatrolPath _patrolPath;
 
-        public HashSet<Unit> DirectThreats { get; private set; }
-        public HashSet<Unit> Threats { get; private set; }
+        public Unit DirectThreat { get; private set; }
+        public HashSet<Unit> Threats { get; private set; } = new();
         public HashSet<Unit> SurroundingAllies { get; private set; }
         public HashSet<Unit> SurroundingHostiles { get; private set; }
         public HashSet<Unit> SurroundingUnits { get; private set; }
@@ -41,6 +41,12 @@ namespace Gameplay.Units
                 .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
                 .Where(_ => _tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateSurroundings());
+            
+            Unit.FixedUpdateAsObservable()
+                .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
+                .Delay(TimeSpan.FromMilliseconds(10))
+                .Where(_ => _tacticalPause.IsUnpaused)
+                .Subscribe(_ => UpdateThreats());
             
             Unit.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
@@ -71,7 +77,8 @@ namespace Gameplay.Units
                 return;
             }
 
-            Order order = UnitType.AIMap.GetBestOrder(Unit, SurroundingUnits);
+            HashSet<Unit> targets = SurroundingUnits.Union(Threats).ToHashSet();
+            Order order = UnitType.AIMap.GetBestOrder(Unit, targets);
             if (order == null)
             {
                 Patrol();
@@ -105,19 +112,19 @@ namespace Gameplay.Units
             SurroundingHostiles = SurroundingUnits
                 .Where(u => Unit.Alliance.IsHostile(u))
                 .ToHashSet();
-            
-            DirectThreats = SurroundingAllies
-                .Where(a => Time.fixedTime - a.Life.LastDamageFrame < _config.DamageForgiveTime)
-                .Select(a => a.Life.LastDamageDealer)
-                .Where(u => u?.Alliance.IsHostile(Unit) ?? false)
-                .ClearNull()
-                .ToHashSet();
+        }
 
-            Threats = SurroundingHostiles
-                .Union(DirectThreats)
+        private void UpdateThreats()
+        {
+            DirectThreat = _gameTime.Frame - Unit.Life.LastDamageFrame < _config.DamageForgiveTime
+                ? Unit.Life.LastDamageDealer.Alliance.IsHostile(Unit) ? Unit.Life.LastDamageDealer : null
+                : null;
+
+            Threats = SurroundingAllies
+                .SelectMany(a => a.AI.SurroundingHostiles)
                 .ToHashSet();
             
-            PreferredAttackTarget = DirectThreats.MaxElement(t => _config.AutoAttackEvaluator.EvaluteTargetWorth(Unit, t));
+            PreferredAttackTarget = SurroundingHostiles.MaxElement(t => _config.AutoAttackEvaluator.EvaluteTargetWorth(Unit, t));;
         }
     }
 }

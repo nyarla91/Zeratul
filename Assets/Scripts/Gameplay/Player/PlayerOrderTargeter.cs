@@ -11,6 +11,7 @@ namespace Gameplay.Player
 {
     public class PlayerOrderTargeter
     {
+        private readonly PlayerInput _input;
         private readonly PlayerMouseTargeting _mouseTargeting;
         private readonly PlayerSelection _selection;
         private readonly PlayerOrdersDispatcher _ordersDispatcher;
@@ -24,8 +25,9 @@ namespace Gameplay.Player
         [Inject] private OrderErrorMessage OrderErrorMessage { get; set; }
         [Inject] private OrderErrorConfig Errors { get; set; }
         
-        public PlayerOrderTargeter(PlayerMouseTargeting mouseTargeting, PlayerSelection selection, PlayerOrdersDispatcher ordersDispatcher)
+        public PlayerOrderTargeter(PlayerInput input, PlayerMouseTargeting mouseTargeting, PlayerSelection selection, PlayerOrdersDispatcher ordersDispatcher)
         {
+            _input = input;
             _mouseTargeting = mouseTargeting;
             _selection = selection;
             _ordersDispatcher = ordersDispatcher;
@@ -74,7 +76,8 @@ namespace Gameplay.Player
                 return;
             }
             _ordersDispatcher.IssueOrderToSelection(CurrentOrder, CurrentTarget);
-            CancelTargeting();
+            if ( ! _input.QueueOrder.IsHeld)
+                CancelTargeting();
         }
 
         private void UpdateCurrentTarget()

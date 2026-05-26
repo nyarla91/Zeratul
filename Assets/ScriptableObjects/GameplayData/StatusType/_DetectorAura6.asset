@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: _DetectorAura6
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
   _useLock: 1
-  _display: 1
+  _display: 0
   _displayIcon: {fileID: 21300000, guid: e386bd21493374c46821ba14059f76c2, type: 3}
   _displayName: status-detector-name
   _displayDescription: status-detector-description

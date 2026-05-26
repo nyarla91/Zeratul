@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
@@ -40,11 +39,11 @@ namespace Gameplay.Units
 
             Unit.Orders.LeftIdle += StopAttacking;
 
-            if (UnitType.WeaponType.AutoAttack)
+            if (UnitType.WeaponType.AutoAttackDistance > 0)
             {
                 Unit.FixedUpdateAsObservable()
                     .Where(_ => tacticalPause.IsUnpaused)
-                    .Subscribe(_ => UpdateAutoAttackTarget());
+                    .Subscribe(_ => UpdateAutoAttack());
             }
         }
 
@@ -123,12 +122,16 @@ namespace Gameplay.Units
             StrikeUnit(CurrentTarget);
         }
 
-        private void UpdateAutoAttackTarget()
+        private void UpdateAutoAttack()
         {
             if (Unit.Alliance.OwnedByEnemy || ! Unit.Orders.IsIdle || (Unit.Movement?.IsHoldingPosition ?? false))
                 return;
 
-            CurrentTarget = Unit.AI.PreferredAttackTarget;
+            Unit target = Unit.AI.PreferredAttackTarget;
+            if (target != null && Isometry.Distance(Unit.Position, target) < Weapon.AutoAttackDistance)
+                StartAttacking(target);
+            else
+                StopAttacking();
         }
 
         private async void StrikeUnit(Unit target)

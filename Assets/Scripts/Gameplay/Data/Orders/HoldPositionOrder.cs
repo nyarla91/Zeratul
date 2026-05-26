@@ -22,11 +22,6 @@ namespace Gameplay.Data.Orders
             while (true)
             {
                 await UniTask.WaitForFixedUpdate(ct);
-                Unit attackTarget = order.Actor.AI.PreferredAttackTarget;
-                if (order.Actor.CanAttack && attackTarget && order.Actor.Attack.IsUnitInRange(attackTarget))
-                    order.Actor.Attack.StartAttacking(attackTarget);
-                else
-                    order.Actor.Attack.StopAttacking();
             }
         }
 

@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 4918c80d691b5b54ca761f136c17bfec, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -61,3 +61,4 @@ MonoBehaviour:
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
   _editorRadius:
     _object: {fileID: 11400000, guid: 7a52afd7eb95e5a4fb110304b6d50e5f, type: 2}
+  _editorRadiusColor: {r: 0.061918736, g: 1, b: 0, a: 0.050980393}

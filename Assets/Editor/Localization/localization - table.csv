@@ -9,13 +9,14 @@ ability-stat-cooldown;Cooldown: # sec.;Восстановление: # сек.^
 ability-stat-energy;Cost: # energy;Стоимость: # энергии^
 ability-stat-range;Range: #;Дальность: #^
 order;Order;Приказ^
-order-ability;Order — Ability;Приказ — Способность^
+order-ability;Ability;Способность^
 order-attack-description;Attack target unit or move to target point attacking any enemy on the path.;Атаковать выбранного юнита или двигаться к выбранной точке, атакуя всех вражеских юнитов на своём пути.^
 order-attack-name;Attack;Атаковать^
 order-hold-position-description;Order unit to stand still indefinitely.;Приказать юниту оставаться на месте.^
 order-hold-position-name;Hold position;Удерживать позицию^
 order-move-description;Move to target point or follow target unit.;Двигаться к выбранной точке или следовать за выбанным юнитом.^
 order-move-name;Move;Двигаться^
+order-passive;Passive;Пассивная способность^
 order-stop-description;Cancel all current orders.;Отменить все текущие приказы.^
 order-stop-name;Stop;Остановиться^
 ordererror-ability-not-ready;Ability not ready;Способность не готова^
@@ -29,6 +30,10 @@ ordererror-not-enough-energy;Not enough energy;Недостаточно энер
 ordererror-out-of-range;Target is out of range;Цель вне досягаемости^
 ordererror-passive;Cannot use passive ability;Невозможно использовать пассивную способность^
 ordererror-target-invalid;Target is invalid;Неверная цель^
+passive-concussion-description;Оглушение;Атаки этого юнита снижают скорость атаки и перемещения.^
+passive-concussion-name;Concussion;This unit's attacks slow target's move and attack speed^
+passive-detector-description;Can detect cloaked hostile units nearby;Может обнаруживать замаскированных вражеских юнитов поблизости^
+passive-detector-name;Detector;Детектор^
 status;Status;Состояние^
 status-cloaked-description;Cannot be targeted by hostile attacks and abilities, unless it is detected;Не может быть целью вражеских атак и способностей, если он не обнаружен^
 status-cloaked-name;Cloaked;Маскировка^
@@ -47,15 +52,6 @@ status-temporary-description;Has limited lifetime;Имеет ограничен�
 status-temporary-name;Temporary;Временный^
 tutorial-attack-description;;Нажмите правой кнопкой мыши на противника, чтобы приказать выбранному юниту его атаковать^
 tutorial-attack-label;;Атака^
-tutorial-order-description;;Чтобы выбрать сразу несколько юнитов, проведите по ним мышкой с зажатой левой кнопкой.
-
-Используйте ""Атака"" (A), чтобы приказать юнитам перемещаться в выбранную точку, атакуя всех противников на своём пути
- или атаковать собственных юнитов, чтобы освободить ячейки контроля.
-
-Используйте ""Отменить"" (S), чтобы отменить все текущие приказы выбранных юнитов.
-
-Используйте ""Удерживать позицию"" (D), чтобы приказать юнитам не сдвигаться с места.^
-tutorial-order-label;;Управление юнитами^
 tutorial-basic-controls-description;;Нажмите левой кнопкой мыши на своего юнита, чтобы выбрать его.
 
 Нажмите правой кнопкой мыши в любом месте, чтобы приказать выбранному юниту двигаться в эту точку^
@@ -82,7 +78,14 @@ tutorial-energy-description;;Использлвание способностей
 
 Энергия восстанавливается со временем^
 tutorial-energy-label;;Энергия^
-tutorial-invasion-description;;Используйте Вторжение (T), чтобы захватить полный контроль над противником.
+tutorial-hinderance-description;;Теперь вы можете использовать Прерывание.
+
+Для этого нажмите Q, затем левой кнопкой мыши на противника.
+
+Юниты под действием Прерывания временно не могут атаковать и использовать способности.
+^
+tutorial-hinderance-label;;Прерывание^
+tutorial-invasion-description;;Используйте Вторжение (T), чтобы захватить контроль над противником.
 
 Вторжение расходует ваши ячейки контроля, в зависимости от юнита, которого вы хотите захватить.^
 tutorial-invasion-label;;Вторжение^
@@ -92,17 +95,19 @@ tutorial-life-description;;Помимо здоровья у юнитов ест�
 
 Здоровье не восстанавливается.^
 tutorial-life-label;;Здоровье и щиты^
+tutorial-order-description;;Чтобы выбрать сразу несколько юнитов, проведите по ним мышкой с зажатой левой кнопкой.
+
+Используйте ""Атака"" (A), чтобы приказать юнитам перемещаться в выбранную точку, атакуя всех противников на своём пути
+ или атаковать собственных юнитов, чтобы освободить ячейки контроля.
+
+Используйте ""Отменить"" (S), чтобы отменить все текущие приказы выбранных юнитов.
+
+Используйте ""Удерживать позицию"" (D), чтобы приказать юнитам не сдвигаться с места.^
+tutorial-order-label;;Управление юнитами^
 tutorial-save-description;;В любой момент времени вы можете нажать F5. чтобы сохранить игру.
 
 Нажмите F8, чтобы загрузить последнее сохранение.^
 tutorial-save-label;;Быстрое сохранение и загрузка^
-tutorial-hinderance-description;;Теперь вы можете использовать Прерывание.
-
-Для этого нажмите Q, затем левой кнопкой мыши на противника, против которого вы хотите его использовать.
-
-Юниты под действием Прерывания временно не могут атаковать и использовать способности.
-^
-tutorial-hinderance-label;;Прерывание^
 tutorial-tactical-pause-description;;В любой момент времени вы можете нажать Пробел, чтобы активировать тактическую паузу.
 
 Во время паузы игра останавливается, однако вы всё ещё можете осматривать поле боя, планировать свои действия и отдавать приказы юнитам.
@@ -110,6 +115,8 @@ tutorial-tactical-pause-description;;В любой момент времени �
 
 Как только вы готовы продолжить игру, нажмите Пробел снова.^
 tutorial-tactical-pause-label;;Тактическая пауза^
+tutorial-enemy-select-description;;Нажмите левой кнопкой мыши на вражеского юнита, чтобы узнать о нём больше.^
+tutorial-enemy-select-name;;Выбор противников^
 tutorial-vision-description;;У противников, также как и у вас есть область видимости, которая не проходит через некоторые объекты.
 
 Для того, чтобы отобразить область видимости противников, нажмите Alt.^

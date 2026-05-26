@@ -14,7 +14,7 @@ namespace Localization
 
         public void GenerateDictionaries()
         {
-            foreach (LanguageTable languageTable in _tables) 
+            foreach (LanguageTable languageTable in _tables)
                 languageTable.GenerateDictionary();
         }
     }

@@ -35,7 +35,7 @@ namespace Editor.Localization
 
         private string[,] CSVtoArray(string csv)
         {
-            string[] rows = csv.Replace("^\r\n", "^").Replace("\r", "").Split('^');
+            string[] rows = csv.Replace("^\r\n", "^").Split('^');
             string[,] result =  new string[_columns.Max(c => c.ColumnIndex) + 1, rows.Length];
 
             for (int y = 0; y < result.GetLength(1); y++)

@@ -24,7 +24,7 @@ namespace Architecture
             _mouseTargeting = new PlayerMouseTargeting(Camera.main, _unitsMask);
             _selection = new PlayerSelection(_input);
             _ordersDispatcher = new PlayerOrdersDispatcher(_selection, _input, _errors);
-            _orderTargeter = new PlayerOrderTargeter(_mouseTargeting, _selection, _ordersDispatcher);
+            _orderTargeter = new PlayerOrderTargeter(_input, _mouseTargeting, _selection, _ordersDispatcher);
             _controlResources = new PlayerControlResources(_controlConfig);
 
             Container.Inject(_input);
