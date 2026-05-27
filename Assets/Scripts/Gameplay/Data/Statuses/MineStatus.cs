@@ -3,6 +3,7 @@ using System.Linq;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Validator;
 using Gameplay.Units;
+using Gameplay.Vision;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,7 @@ namespace Gameplay.Data.Statuses
         [SerializeField] private EffectTargetingUnit[] _mineTriggerEffects;
         
         [Inject] private IsometricOverlap Overlap { get; }
+        [Inject] private VisionMap VisionMap { get; }
 
         public float Radius => _triggerRadius;
 
@@ -31,7 +33,7 @@ namespace Gameplay.Data.Statuses
         {
             if (status.FramesSinceAddition % 5 != 0)
                 return;
-            if ( ! status.Host.Simulation.IsSimulated)
+            if ( ! status.Host.IsSimulated)
                 return;
             if (status.IsLocked)
                 return;

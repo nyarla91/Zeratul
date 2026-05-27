@@ -2,6 +2,7 @@
 using Gameplay.Entities;
 using Gameplay.Units.View;
 using Gameplay.Units.View.StatusRendering;
+using Gameplay.Vision;
 using Gameplay.Visual;
 using UnityEngine;
 using Zenject;

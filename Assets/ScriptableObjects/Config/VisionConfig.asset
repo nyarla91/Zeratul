@@ -19,7 +19,4 @@ MonoBehaviour:
     m_Bits: 16384
   _absoluteExtraSight: -0.5
   _minSight: 2
-  _simulationRadius: 30
-  _simulationMask:
-    serializedVersion: 2
-    m_Bits: 32768
+  _simulationRadius: 20

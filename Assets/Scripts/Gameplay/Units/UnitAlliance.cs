@@ -15,7 +15,7 @@ namespace Gameplay.Units
         
         private readonly Dictionary<object, Owner> _owners = new();
 
-        public Owner CurrentOwner => _owners.Any() ? _owners.Values.Last() : _initialOwner;
+        public Owner CurrentOwner { get; private set; }
         public bool OwnedByPlayer => CurrentOwner == Owner.Player;
         public bool OwnedByAlly => CurrentOwner == Owner.Ally;
         public bool OwnedByNeutral => CurrentOwner == Owner.Neutral;
@@ -25,7 +25,7 @@ namespace Gameplay.Units
         
         public UnitAlliance(Unit unit, Owner initialOwner) : base(unit)
         {
-            _initialOwner = initialOwner;
+            CurrentOwner = _initialOwner = initialOwner;
         }
 
         public override IUnitSaveSystem Save()
@@ -42,12 +42,14 @@ namespace Gameplay.Units
         public void AddOwner(object source, Owner owner)
         {
             _owners.TryAdd(source, owner);
+            CurrentOwner = _owners.Any() ? _owners.Values.Last() : _initialOwner;
             OwnerUpdated?.Invoke(CurrentOwner);
         }
 
         public void RemoveOwner(object source)
         {
             _owners.Remove(source);
+            CurrentOwner = _owners.Any() ? _owners.Values.Last() : _initialOwner;
             OwnerUpdated?.Invoke(CurrentOwner);
         }
 

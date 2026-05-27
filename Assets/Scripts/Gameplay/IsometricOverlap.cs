@@ -10,8 +10,8 @@ namespace Gameplay
     public class IsometricOverlap : MonoBehaviour
     {
         [SerializeField] private PathfindingConfig _config;
-        
-        public bool TryGetUnits(Vector2 point, float radius, out HashSet<Unit> units)
+
+        public HashSet<Unit> GetUnits(Vector2 point, float radius)
         {
             ContactFilter2D contactFilter = new()
             {
@@ -22,10 +22,14 @@ namespace Gameplay
 
             List<Collider2D> colliders = new();
             Physics2D.OverlapCircle(point, radius, contactFilter, colliders);
-            
-            units = colliders.Select(col => col.GetComponentInParent<Unit>()).ClearNull().ToHashSet();
-            units = units.Where(u => IsUnitInRadius(point, radius, u)).ToHashSet();
-            
+
+            HashSet<Unit> units = colliders.Select(col => col.GetComponentInParent<Unit>()).ClearNull().ToHashSet();
+            return units.Where(u => IsUnitInRadius(point, radius, u)).ToHashSet();
+        }
+        
+        public bool TryGetUnits(Vector2 point, float radius, out HashSet<Unit> units)
+        {
+            units = GetUnits(point, radius);
             return units.Count != 0;
         }
 

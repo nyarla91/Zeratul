@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 namespace Gameplay.Data.Configs
 {
@@ -11,7 +12,6 @@ namespace Gameplay.Data.Configs
         [SerializeField] private float _absoluteExtraSight;
         [SerializeField] private float _minSight;
         [SerializeField] private float _simulationRadius;
-        [SerializeField] private LayerMask _simulationMask;
 
         public int UnitVisionPoints => _unitVisionPoints;
         public float RecalculationPeriod => _recalculationPeriod;
@@ -19,6 +19,5 @@ namespace Gameplay.Data.Configs
         public float AbsoluteExtraSight => _absoluteExtraSight;
         public float MinSight => _minSight;
         public float SimulationRadius => _simulationRadius;
-        public LayerMask SimulationMask => _simulationMask;
     }
 }

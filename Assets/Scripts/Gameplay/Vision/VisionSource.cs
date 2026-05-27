@@ -1,121 +1,103 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Extentions;
 using Gameplay.Data.Configs;
-using Gameplay.Data.Validator;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Vision
 {
-    public class VisionSource : MonoBehaviour
+    public class VisionSource
     {
-        [SerializeField] private VisionConfig _config;
-        [SerializeField] private PolygonCollider2D _collider;
-        
-        private bool _isAir;
-        private Transform _anchor;
-        private Owner _owner;
-        
-        public float Radius { get; set; }
-        
-        public Owner Owner
-        {
-            get => _owner;
-            set
-            {
-                if (_owner == value)
-                    return;
-                _owner = value;
-                AttachToArea(_owner);
-            }
-        }
+        private readonly VisionMap _visionMap;
+        private readonly IsometricOverlap _isometricOverlap;
+        private readonly VisionConfig _config;
 
-        public bool IsSimulated
-        {
-            get => _collider.enabled;
-            set => _collider.enabled = value;
-        }
+        private VisionResult _visionResult;
+        private HashSet<Unit> _visibleUnits = new();
+        private Func<Vector3> _position;
+        private Func<float> _radius;
+        private Func<Owner> _owner;
+        private Func<bool> _isAir;
 
-        [Inject] private VisionMap VisionMap { get; set; }
+        public HashSet<Unit> VisibleUnits => _visibleUnits
+            .Where(u => u.Visibility.IsRevealed || u.Alliance.IsFriendly(Owner))
+            .ToHashSet();
 
-        public void Set(Transform anchor, bool isAir, float radius, Owner owner)
+        public Vector3 Position => _position.Invoke();
+        public float Radius => _radius.Invoke();
+        public Owner Owner => _owner.Invoke();
+        public bool IsAir => _isAir.Invoke();
+        
+        public Bounds Bounds => new(Position, Radius * 2 * Isometry.Scale);
+        public Bounds SimulationBounds => new(Position, Radius * 2 * Isometry.Scale + Vector2.one * _config.SimulationRadius);
+
+        public VisionSource(VisionMap visionMap, VisionConfig config, IsometricOverlap isometricOverlap, Func<Vector3> position, Func<Owner> owner, Func<float> radius, Func<bool> isAir)
         {
-            _anchor = anchor;
+            _position = position;
+            _owner = owner;
+            _radius = radius;
             _isAir = isAir;
-            Radius = radius;
-            Owner = owner;
-            _collider.compositeOperation = Collider2D.CompositeOperation.Merge;
-            AttachToArea(owner);
+            _visionMap = visionMap;
+            _isometricOverlap = isometricOverlap;
+            _config = config;
         }
-        
-        public void Recalculate()
-        {
-            if ( ! IsSimulated)
-                return;
-            
-            _collider.transform.position = _anchor.transform.position;
-            int areaPoints = _config.UnitVisionPoints;
 
-            Vector2[] points =  new Vector2[areaPoints];
+        public bool IsPointVisible(Vector2 point) => _visionResult?.IsPointVisible(point) ?? false;
+        
+        public async UniTask Recalculate(bool isSimulated)
+        {
+            if (!isSimulated)
+            {
+                _visionResult = new VisionResult(Position, new AnimationCurve());
+                _visibleUnits = new HashSet<Unit>();
+                return;
+            }
+            
+            int areaPoints = _config.UnitVisionPoints;
+            AnimationCurve distanceCurve = new();
             
             for (int i = 0; i < areaPoints; i++)
             {
-                float angle = 360 / (float) areaPoints * i;
-                Vector2 direction = angle.DegreesToVector2();
-                direction.Normalize();
-                float maxDistance = Radius;
-                maxDistance *= Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
-                Vector2 point;
-                if (_isAir)
+                float rawAngle = 360f / areaPoints * i;
+                Vector2 isoDirection = rawAngle.DegreesToVector2() * Isometry.Scale;
+                float isoMaxDistance = Radius * isoDirection.magnitude;
+                float isoResult;
+                
+                if (IsAir)
                 {
-                    point = direction * (maxDistance + _config.AbsoluteExtraSight);
+                    isoResult = isoMaxDistance;
                 }
                 else
                 {
-                    RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, maxDistance, _config.VisionBlockerMask);
-                    point = raycast.collider ? (raycast.point - (Vector2) transform.position) : direction * maxDistance;
-                    point += direction * _config.AbsoluteExtraSight;
+                    RaycastHit2D raycast = Physics2D.Raycast(Position, isoDirection, isoMaxDistance, _config.VisionBlockerMask);
+                    isoResult = raycast.collider ? raycast.distance : isoMaxDistance;
                 }
-                float minDistance = _config.MinSight;
-                minDistance = Isometry.DistanceTowards(minDistance, direction.y);
-                if (point.magnitude < minDistance)
-                    point = direction * minDistance;
-                points[i] =  point;
+                
+                float rawResult = isoResult / isoDirection.magnitude + _config.AbsoluteExtraSight;
+                rawResult = Mathf.Max(rawResult, _config.MinSight);
+
+                Keyframe keyframe = new();
+                keyframe.time = rawAngle;
+                keyframe.value = rawResult;
+                keyframe.weightedMode = WeightedMode.None;
+
+                distanceCurve.AddKey(keyframe);
+                if (i == 0)
+                {
+                    keyframe.time = 360;
+                    distanceCurve.AddKey(keyframe);
+                }
             }
-
-            _collider.points = points;
-        }
-        
-        public HashSet<Unit> VisibleUnits(Unit host = null, UnitValidatorGroup validatorGroup = default)
-        {
-            HashSet<Unit> result = VisionMap.GetAreaForOwner(Owner).VisibleUnits;
-            result = result
-                .Where(u => Isometry.Distance(transform.position, u.Position) < Radius)
-                .Where(u => u.Visibility.IsVisibleTo(_owner))
-                .ToHashSet();
+            _visionResult = new VisionResult(Position, distanceCurve);
             
-            return result.Where(u => validatorGroup.IsValid(host, u)).ToHashSet();
-        }
-
-        public void Dispose()
-        {
-            DetachFromAll();
-            if (this)
-                Destroy(gameObject);
-        }
-
-        private void AttachToArea(Owner owner)
-        {
-            DetachFromAll();
-            VisionMap.GetAreaForOwner(owner).AttachSource(this);
-        }
-
-        private void DetachFromAll()
-        {
-            VisionMap.PlayerArea.DetachSource(this);
-            VisionMap.EnemyArea.DetachSource(this);
+            _visibleUnits = _isometricOverlap.GetUnits(Position, Radius)
+                .Where(u => _visionResult.IsPointVisible(u.Position))
+                .Where(u => u.Visibility.IsRevealed || u.Alliance.IsFriendly(Owner))
+                .ToHashSet();
         }
     }
 }

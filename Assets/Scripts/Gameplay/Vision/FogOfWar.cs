@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
+using Extentions;
 using Gameplay.Data.Configs;
 using Save.Data;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Gameplay.Vision
 {
@@ -26,13 +31,11 @@ namespace Gameplay.Vision
         private Sprite EnemyTargetSprite => _enemySpriteRenderer.sprite;
 
         private bool _loaded;
+        
+        [Inject] private VisionMap VisionMap { get; set; }
 
         private void Start()
         {
-            this.FixedUpdateAsObservable()
-                .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
-                .Subscribe(_ => RecalculateFog());
-            
             transform.localScale = _pixelScale * Vector3.one;
             
             FillSprite(EnemyTargetSprite, _revealedColor);
@@ -71,19 +74,19 @@ namespace Gameplay.Vision
             return result;
         }
 
-        private void RecalculateFog()
+        public async UniTask Recalculate()
         {
             for (int y = 0; y < _fogDimensions.y; y++)
             {
                 for (int x = 0; x < _fogDimensions.x; x++)
                 {
                     Vector2 point = new Vector2(x + 0.5f, y + 0.5f) * _pixelScale;
-                    bool revealed = Physics2D.OverlapPoint(point, _revealMask);
+                    bool revealed = IsPointRevealable(VisionMap.PlayerSimulationBounds, point) && VisionMap.IsPointVisibleBy(point, Owner.Player);
 
                     if (revealed)
                     {
                         TargetSprite.texture.SetPixel(x, y, _revealedColor);
-                        bool enemyRevealed = Physics2D.OverlapPoint(point, _enemyRevealMask);
+                        bool enemyRevealed = VisionMap.IsPointVisibleBy(point, Owner.Enemy);
                         EnemyTargetSprite.texture.SetPixel(x, y, enemyRevealed ? _enemyRevealedColor : _revealedColor);
                     }
                     else if (TargetSprite.texture.GetPixel(x, y).Equals(_revealedColor))
@@ -95,6 +98,16 @@ namespace Gameplay.Vision
             }
             TargetSprite.texture.Apply();
             EnemyTargetSprite.texture.Apply();
+        }
+
+        private bool IsPointRevealable(HashSet<Bounds> playerBounds, Vector2 point)
+        {
+            foreach (Bounds bounds in playerBounds)
+            {
+                if (bounds.Contains(point))
+                    return true;
+            }
+            return false;
         }
 
         private void FillSprite(Sprite sprite, Color color)

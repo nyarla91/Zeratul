@@ -24,10 +24,8 @@ namespace Gameplay.Units
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Collider2D _avoidanceCollider;
-        [SerializeField] private Collider2D _simulationCollider;
         [SerializeField] private Collider2D _obstacleCollider;
         [SerializeField] private BoxCollider2D _interactionCollider;
-        [SerializeField] private VisionSource _visionSource;
         
         public UnitDirection Direction { get; private set; }
         public UnitAbilities Abilities { get; private set; }
@@ -41,7 +39,6 @@ namespace Gameplay.Units
         public UnitAttack Attack { get; private set; }
         public UnitMovement Movement { get; private set; }
         public UnitAI AI { get; private set; }
-        public UnitSimulation Simulation { get; private set; }
         public UnitPathing Pathing { get; private set; }
 
         [ShowNativeProperty] public bool CanAttack => Type.WeaponType;
@@ -56,6 +53,7 @@ namespace Gameplay.Units
         
         public bool IsHighlighted => MouseTargeting.Unit == this;
         public bool IsSelected => Selection.IsUnitSelected(this);
+        public bool IsSimulated => VisionMap.IsPointSimulated(Position);
         
         public UnitType Type { get; private set; }
 
@@ -85,11 +83,10 @@ namespace Gameplay.Units
             Alliance = new UnitAlliance(this, spawnInfo?.Owner ?? Owner.Enemy);
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
-            Sight = new UnitSight(this, _visionConfig, _visionSource, VisionMap, spawnInfo?.Owner ?? Owner.Enemy);
+            Sight = new UnitSight(this, VisionMap);
             Orders = new UnitOrders(this, TacticalPause, GameDataRegistry, UnitPool);
             Statuses = new UnitStatuses(this, GameTime, TacticalPause, GameDataRegistry, UnitPool);
             AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo?.PatrolPath);
-            Simulation = new UnitSimulation(this, TacticalPause, _visionConfig, _simulationCollider);
             Pathing = new UnitPathing(this, _pathfindingConfig, _unitMovementConfig, NodeMap, _rigidbody, _obstacleCollider, _collider);
             
             if (CanAttack)
@@ -115,7 +112,6 @@ namespace Gameplay.Units
                 Orders.Save(),
                 Statuses.Save(),
                 AI.Save(),
-                Simulation.Save(),
                 Pathing.Save(),
                 Attack?.Save(),
                 Movement?.Save()
@@ -134,7 +130,6 @@ namespace Gameplay.Units
             Statuses.ReproduceFromSave(saveData);
             Orders.ReproduceFromSave(saveData);
             AI.ReproduceFromSave(saveData);
-            Simulation.ReproduceFromSave(saveData);
             Pathing.ReproduceFromSave(saveData);
             Attack?.ReproduceFromSave(saveData);
             Movement?.ReproduceFromSave(saveData);

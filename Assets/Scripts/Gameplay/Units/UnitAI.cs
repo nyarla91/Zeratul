@@ -103,7 +103,7 @@ namespace Gameplay.Units
 
         private void UpdateSurroundings()
         {
-            SurroundingUnits = Unit.Sight.VisibleUnits();
+            SurroundingUnits = Unit.Sight.VisionSource.VisibleUnits;
 
             SurroundingAllies = SurroundingUnits
                 .Where(u => Unit.Alliance.IsFriendly(u))

@@ -21,7 +21,7 @@ namespace Gameplay.Data.Statuses
         {
             if (status.FramesSinceAddition % _tickPeriod != 0)
                 return;
-            if (_requireSimulation && ! status.Host.Simulation.IsSimulated)
+            if (_requireSimulation && ! status.Host.IsSimulated)
                 return;
             if (status.IsLocked)
                 return;

@@ -51,7 +51,6 @@ namespace Gameplay.Units
         
         public void Decloak(object source) => _cloakSources.Remove(source);
 
-        public bool IsVisibleTo(Owner other)
-            => Unit.Alliance.CurrentOwner == other || _visionMap.GetAreaForOwner(other).IsUnitVisible(Unit);
+        public bool IsVisibleTo(Owner other) => _visionMap.IsUnitVisibleBy(Unit, other);
     }
 }
