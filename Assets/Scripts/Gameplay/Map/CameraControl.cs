@@ -16,6 +16,10 @@ namespace Gameplay.Map
         [SerializeField] private float _dragSpeed;
         [SerializeField] private int _edgeTolerance;
         [SerializeField] private float _edgeMoveSpeed;
+        [SerializeField] private bool _disableEdgeMovementInEditor;
+        
+        public bool IsDragging { get; private set; }
+        public Vector2Int EdgeMoveDirection { get; private set; }
         
         [Inject] private PlayerInput PlayerInput { get; set; }
         [Inject] private GamePause GamePause { get; set; }
@@ -24,8 +28,14 @@ namespace Gameplay.Map
         {
             if (GamePause.IsPaused)
                 return;
-            if (PlayerInput.DragCamera.IsHeld)
+
+            IsDragging = PlayerInput.DragCamera.IsHeld;
+            if (IsDragging)
+            {
                 DragCamera( - Mouse.current.delta.ReadValue());
+                EdgeMoveDirection = Vector2Int.zero;
+                return;
+            }
             if (_edgeMoveSpeed > 0)
                 EdgeMoveCamera();
             ZoomCamera(PlayerInput.ZoomDelta * Time.deltaTime);
@@ -35,7 +45,8 @@ namespace Gameplay.Map
         private void EdgeMoveCamera()
         {
 #if UNITY_EDITOR
-            return;
+            if (_disableEdgeMovementInEditor)
+                return;
 #endif
             Cursor.lockState = CursorLockMode.Confined;
             Vector2 direction = Vector2.zero;
@@ -48,7 +59,9 @@ namespace Gameplay.Map
                 direction.y = 1;
             else if (mousePosition.y <= _edgeTolerance)
                 direction.y = -1;
-            transform.position +=  _edgeMoveSpeed * _camera.orthographicSize * Time.deltaTime * (Vector3) direction;
+            Vector3 velocity = direction * _edgeMoveSpeed;
+            transform.position +=  _edgeMoveSpeed * _camera.orthographicSize * Time.deltaTime * velocity;
+            EdgeMoveDirection = Vector2Int.RoundToInt(direction);
         }
 
         private void BoundCamera()

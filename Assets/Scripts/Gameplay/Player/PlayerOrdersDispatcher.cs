@@ -46,6 +46,9 @@ namespace Gameplay.Player
             return false;
         }
 
+        public bool CanIssueWithTarget(OrderType orderType, OrderTarget target) =>
+            CanIssueWithTarget(orderType, target, out _);
+        
         public bool CanIssueWithTarget(OrderType orderType, OrderTarget target, out string errorMessage)
         {
             if ( ! CanIssueWithoutTarget(orderType, out errorMessage))
