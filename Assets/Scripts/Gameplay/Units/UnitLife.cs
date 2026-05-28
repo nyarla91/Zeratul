@@ -1,5 +1,4 @@
 ﻿using System;
-using Extentions;
 using Extentions.Pause;
 using Save.Data.Units;
 using UniRx;

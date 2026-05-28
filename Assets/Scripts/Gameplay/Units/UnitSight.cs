@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Extentions;
-using Gameplay.Data.Configs;
-using Gameplay.Data.Validator;
-using Gameplay.Vision;
-using UniRx;
-using UniRx.Triggers;
+﻿using Gameplay.Vision;
 
 namespace Gameplay.Units
 {

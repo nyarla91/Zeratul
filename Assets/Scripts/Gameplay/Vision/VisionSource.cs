@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using Extentions;
 using Gameplay.Data.Configs;
 using Gameplay.Units;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Zenject;
 
 namespace Gameplay.Vision
 {

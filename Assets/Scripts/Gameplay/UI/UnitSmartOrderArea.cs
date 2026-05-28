@@ -1,5 +1,4 @@
-﻿using System;
-using Extentions.Pause;
+﻿using Extentions.Pause;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
 using UniRx;

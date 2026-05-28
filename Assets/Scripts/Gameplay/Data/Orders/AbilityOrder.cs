@@ -1,10 +1,8 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using Extentions;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Configs;
-using Gameplay.Data.Effects;
 using Gameplay.Units;
 using NaughtyAttributes;
 using UnityEngine;
@@ -108,7 +106,7 @@ namespace Gameplay.Data.Orders
         
                 if ( ! AbilityType.IsTargetInRadius(order.Actor, order.Target))
                 {
-                    order.Actor.Movement?.Move(destination);
+                    order.Actor.Movement?.Move(destination, AbilityType.MaxDistance);
                     continue;
                 }
                 order.Actor.Movement?.Stop();

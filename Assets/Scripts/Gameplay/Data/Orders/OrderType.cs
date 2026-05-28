@@ -6,7 +6,6 @@ using Gameplay.UI;
 using Gameplay.Units;
 using Localization;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Data.Orders
 {

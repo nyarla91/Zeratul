@@ -105,7 +105,7 @@ namespace Gameplay.Units
             if ( ! IsUnitInRange(CurrentTarget))
             {
                 if (Unit.CanMove)
-                    Unit.Movement.Move(CurrentTarget.Position);
+                    Unit.Movement.Move(CurrentTarget.Position, Weapon.MaxDistance);
                 else
                     StopAttacking();
                 return;

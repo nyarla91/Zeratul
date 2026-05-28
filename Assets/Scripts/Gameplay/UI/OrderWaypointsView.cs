@@ -5,7 +5,6 @@ using Gameplay.Data.Orders;
 using Gameplay.Player;
 using Gameplay.Units;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Gameplay.UI

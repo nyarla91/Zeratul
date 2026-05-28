@@ -1,5 +1,4 @@
-﻿using System;
-using Extentions;
+﻿using Extentions;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;

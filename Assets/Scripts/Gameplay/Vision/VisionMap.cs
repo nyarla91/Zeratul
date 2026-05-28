@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using Extentions;
 using Gameplay.Data.Configs;
 using UniRx.Triggers;

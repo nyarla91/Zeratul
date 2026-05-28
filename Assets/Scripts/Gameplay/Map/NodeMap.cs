@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Extentions;
 using Gameplay.Data.Configs;
@@ -62,6 +60,20 @@ namespace Gameplay.Map
         }
 
         public void QueueObstacleRecalculation(Bounds bounds) => _obstacleRecalculationQueue.Enqueue(bounds);
+
+        public bool CanPassBetween(Vector2 worldStart, Vector2 worldTarget, PathfindingAgent agent)
+            => CanPassBetween(worldStart, worldTarget, agent, out _);
+
+        public bool CanPassBetween(Vector2 worldStart, Vector2 worldTarget, PathfindingAgent agent, out RaycastHit2D hit)
+        {
+            LayerMask layerMask = agent.IsAir ? _config.CommonLayerMask : _config.GroundLayerMask;
+            
+            Vector2 direction = worldTarget - worldStart;
+            float distance = direction.magnitude;
+
+            hit = Physics2D.BoxCast(worldStart, agent.BoundingBoxSize, 0, direction, distance, layerMask);
+            return hit.collider == null;
+        }
 
         public bool TryFindPath(Vector2 worldStart, Vector2 worldTarget, out List<Vector2> path, PathfindingAgent agent)
         {
@@ -268,17 +280,6 @@ namespace Gameplay.Map
             }
             result.Add(worldTarget);
             return result;
-        }
-
-        private bool CanPassBetween(Vector2 worldStart, Vector2 worldTarget, PathfindingAgent agent)
-        {
-            LayerMask layerMask = agent.IsAir ? _config.CommonLayerMask : _config.GroundLayerMask;
-            
-            Vector2 direction = worldTarget - worldStart;
-            float distance = direction.magnitude;
-
-            RaycastHit2D hit = Physics2D.BoxCast(worldStart, agent.BoundingBoxSize, 0, direction, distance, layerMask);
-            return hit.collider == null;
         }
 
         private async void RecalculateAllObstacles() =>

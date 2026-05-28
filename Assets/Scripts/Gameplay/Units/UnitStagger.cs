@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using Extentions.Pause;
 using UniRx;
 using UniRx.Triggers;
-using Zenject;
 
 namespace Gameplay.Units
 {

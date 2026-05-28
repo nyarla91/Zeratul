@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Extentions;
-using Gameplay.Data;
 using Gameplay.Data.Configs;
 using Gameplay.Map;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Units
 {
@@ -50,10 +47,20 @@ namespace Gameplay.Units
                 .Subscribe(_ => UpdatePhysics());
         }
 
-        public void Move(Vector2 destination)
+        public void Move(Vector2 destination, float desiredDistance = 0)
         {
             if (UnitType.IsImmobile || HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
                 return;
+
+            if (desiredDistance > 0)
+            {
+                _nodeMap.CanPassBetween(Unit.Position, destination, UnitType.PathfindingAgent, out RaycastHit2D hit);
+                if ((Isometry.Distance(hit.point, destination)) < desiredDistance)
+                {
+                    destination = hit.point;
+                }
+            }
+                
             _nodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
             if (_path.Count == 0 || HasReachedPoint(_path.Last()))
             {

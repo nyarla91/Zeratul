@@ -1,6 +1,5 @@
 ﻿using System;
 using Gameplay.Data;
-using Gameplay.Data.Effects;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;

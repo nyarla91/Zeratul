@@ -1,6 +1,5 @@
 ﻿using System;
 using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 

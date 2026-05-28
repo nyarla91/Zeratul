@@ -1,6 +1,5 @@
 ﻿using System;
 using Extentions;
-using Gameplay.Data.Statuses;
 using UniRx;
 using UnityEngine;
 

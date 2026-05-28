@@ -1,6 +1,4 @@
-﻿using System.Text;
-using Extentions;
-using Gameplay.Data.Statuses;
+﻿using Extentions;
 using Gameplay.Units;
 using Localization;
 using UnityEngine;

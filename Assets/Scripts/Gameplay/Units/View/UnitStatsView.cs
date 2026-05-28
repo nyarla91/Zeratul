@@ -1,6 +1,5 @@
 ﻿using System;
 using Extentions;
-using Gameplay.UI;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Extentions;
-using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units.View

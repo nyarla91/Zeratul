@@ -1,6 +1,5 @@
 ﻿using System;
 using Extentions;
-using Gameplay.Data.Units;
 using UnityEngine;
 
 namespace Gameplay.Units

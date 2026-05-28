@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Gameplay.Data.Effects;
+﻿using Gameplay.Data.Effects;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Validator;
 using Gameplay.Units;

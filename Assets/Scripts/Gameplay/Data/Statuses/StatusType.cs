@@ -1,6 +1,4 @@
-﻿using Gameplay.UI;
-using Gameplay.Units;
-using Gameplay.Units.View;
+﻿using Gameplay.Units;
 using Gameplay.Units.View.StatusRendering;
 using UnityEngine;
 

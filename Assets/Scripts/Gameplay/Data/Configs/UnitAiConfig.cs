@@ -1,6 +1,5 @@
 ﻿using Gameplay.Data.AiEvaluators;
 using Gameplay.Data.Orders;
-using Gameplay.Data.Units;
 using UnityEngine;
 
 namespace Gameplay.Data.Configs

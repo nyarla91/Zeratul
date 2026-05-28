@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.Data.Configs;
+﻿using Gameplay.Data.Configs;
 using UniRx;
 using UnityEngine;
 

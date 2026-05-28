@@ -1,6 +1,4 @@
-﻿using Extentions;
-using Extentions.Pause;
-using Gameplay.Data.Abilities;
+﻿using Gameplay.Data.Abilities;
 using UnityEngine;
 
 namespace Gameplay.Units

@@ -1,6 +1,5 @@
 ﻿using Extentions.Input;
 using Extentions.Pause;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 using InputBinding = Extentions.Input.InputBinding;

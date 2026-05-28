@@ -1,6 +1,4 @@
-﻿using Gameplay.Data.Orders;
-using Gameplay.Data.Validator;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gameplay.Data.Configs
 {

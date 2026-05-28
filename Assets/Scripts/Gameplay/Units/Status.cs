@@ -1,7 +1,5 @@
 ﻿using Gameplay.Data.Statuses;
-using Gameplay.UI;
 using Save.Data.Units;
-using UnityEngine;
 
 namespace Gameplay.Units
 {

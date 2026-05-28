@@ -1,5 +1,4 @@
-﻿using Extentions;
-using Gameplay.Units;
+﻿using Gameplay.Units;
 using UnityEngine;
 
 namespace Gameplay.Data.Statuses

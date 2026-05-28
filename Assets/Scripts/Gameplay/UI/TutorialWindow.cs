@@ -3,7 +3,6 @@ using Gameplay.Data.Configs;
 using Localization;
 using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.UI
 {

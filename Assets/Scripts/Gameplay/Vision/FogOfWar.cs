@@ -8,9 +8,7 @@ using Save.Data;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Zenject;
-using Random = UnityEngine.Random;
 
 namespace Gameplay.Vision
 {

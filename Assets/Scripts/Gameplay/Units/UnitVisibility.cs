@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Extentions;
 using Gameplay.Vision;
-using Zenject;
 
 namespace Gameplay.Units
 {
