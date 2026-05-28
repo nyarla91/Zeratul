@@ -12,9 +12,12 @@ namespace Gameplay.Map
         public int LastQuery { get; set; }
         public bool WasProcessedThisQuery { get; set; }
         public Node PreviousNode { get; set; }
+        public int Island { get; set; } = -1;
         public int H { get; set; }
         public int G { get; set; }
         public int F => G + H;
+        
+        public int Priority => F * 100000 + H;
         
         public float GroundObstacleDistance { get; private set; }
         public float CommonObstacleDistance { get; private set; }
@@ -38,6 +41,8 @@ namespace Gameplay.Map
         public float ObstacleDistanceFor(bool isAgentAir) => isAgentAir ? CommonObstacleDistance : GroundObstacleDistance;
         
         public bool IsPassable(bool isAgentAir) => isAgentAir ? IsPassableByAir : IsPassableByGround;
+        
+        public bool IsOnTheSameIsland(Node other) => Island == -1 || other.Island == -1 || Island == other.Island;
         
         private float ObstacleDistance(float maxRadius, LayerMask mask)
         {

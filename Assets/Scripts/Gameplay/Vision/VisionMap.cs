@@ -111,8 +111,6 @@ namespace Gameplay.Vision
                 else
                     IdleVisionSources.Add(visionSource);
             }
-
-            Debug.Log($"{PlayerSimulationBounds.Count} {PlayerBounds.Count}");
             
             foreach (VisionSource visionSource in SimulatedVisionSources)
                 visionSource.Recalculate();

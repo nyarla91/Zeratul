@@ -3,6 +3,7 @@ using System.Linq;
 using Extentions;
 using Gameplay.Data.Configs;
 using UniRx;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,24 +31,25 @@ namespace Gameplay.Map
             }
         }
 
-        private Node[,] _nodes;
+        private Node[] _nodes;
         private Node _closestToMouseNode;
         private int _lastQuery;
+        private int _nextIsland;
         private Queue<Bounds> _obstacleRecalculationQueue = new();
 
         public Vector2Int MapSize => _mapSize;
 
         private void Awake()
         {
-            _nodes = new Node[_mapSize.x, _mapSize.y];
+            _nodes = new Node[_mapSize.x * _mapSize.y];
 
-            for (int y = 0; y < _nodes.GetLength(1); y++)
+            for (int i = 0; i < _nodes.Length;i++)
             {
-                for (int x = 0; x < _nodes.GetLength(0); x++)
-                {
-                    Vector2 nodeWorldPosition = _config.MapOrigin + new Vector2(x, y) * _config.NodesWorldSpacing;
-                    _nodes[x, y] = new Node(_config, nodeWorldPosition, new Vector2Int(x, y));
-                }
+                int x = i % _mapSize.x;
+                int y = i / _mapSize.x;
+
+                Vector2 nodeWorldPosition = _config.MapOrigin + new Vector2(x, y) * _config.NodesWorldSpacing;
+                _nodes[i] = new Node(_config, nodeWorldPosition, new Vector2Int(x, y));
             }
             Observable.EveryFixedUpdate()
                 .Where(_ => _obstacleRecalculationQueue.Count > 0)
@@ -102,23 +104,25 @@ namespace Gameplay.Map
 
         private bool TryFindPath(Node startNode, Node targetNode, out List<Vector2> path, PathfindingAgent agent)
         {
-            if (startNode == targetNode || ! targetNode.IsPassable(agent.IsAir))
+            if (startNode == targetNode || ! targetNode.IsPassable(agent.IsAir) || ! startNode.IsOnTheSameIsland(targetNode))
             {
                 path = new List<Vector2>();
                 return false;
             }
 
             _lastQuery++;
-            List<Node> pendingNodes = new(){startNode};
             
             startNode.G = 0;
             startNode.H = GetNodeH(startNode, targetNode.MapCoordinates);
             startNode.LastQuery = _lastQuery;
             startNode.WasProcessedThisQuery = false;
+            
+            PriorityQueue<Node, int> nodesQueue =new();
+            nodesQueue.Enqueue(startNode, startNode.Priority);
 
-            while (pendingNodes.Count > 0)
+            while (nodesQueue.Count > 0)
             {
-                Node currentNode = GetBestPendingNode(pendingNodes, out int currentNodeIndex);
+                Node currentNode = nodesQueue.Dequeue();
                 if (currentNode.Equals(targetNode))
                 {
                     path = GetPathFromFinalNode(currentNode, startNode).Select(n => n.WorldPosition).ToList();
@@ -133,40 +137,44 @@ namespace Gameplay.Map
                             continue;
                         int x = currentNode.MapCoordinates.x + xOffset;
                         int y = currentNode.MapCoordinates.y + yOffset;
-                        if (x < 0 || x >= _nodes.GetLength(0) || y < 0 || y >= _nodes.GetLength(1))
+                        if (x < 0 || x >= _mapSize.x || y < 0 || y >= _mapSize.y)
                             continue;
-                        Node adjacentNode = _nodes[x, y];
-                        if ( ! adjacentNode.IsPassable(agent.IsAir))
+                        Node neightbor = _nodes[x + y * _mapSize.x];
+                        if ( ! neightbor.IsPassable(agent.IsAir))
                             continue;
-                        if (adjacentNode.LastQuery < _lastQuery)
+                        bool firstProcessing = neightbor.LastQuery < _lastQuery;
+                        if (firstProcessing)
                         {
-                            adjacentNode.LastQuery = _lastQuery;
-                            adjacentNode.WasProcessedThisQuery = false;
-                            adjacentNode.PreviousNode = null;
-                            adjacentNode.H = GetNodeH(adjacentNode, targetNode.MapCoordinates);
-                            adjacentNode.G = int.MaxValue;
-                            pendingNodes.Add(adjacentNode);
+                            neightbor.LastQuery = _lastQuery;
+                            neightbor.WasProcessedThisQuery = false;
+                            neightbor.PreviousNode = null;
+                            neightbor.H = GetNodeH(neightbor, targetNode.MapCoordinates);
+                            neightbor.G = int.MaxValue;
                         }
-                        if (adjacentNode.WasProcessedThisQuery)
+
+                        if (neightbor.WasProcessedThisQuery)
                             continue;
 
                         bool diagonal = xOffset != 0 && yOffset != 0;
                         
                         int newG = currentNode.G;
                         newG += diagonal ? _config.DiagonalTravelCost : _config.OrtogonalTravelCost;
-                        if (adjacentNode.ObstacleDistanceFor(agent.IsAir) < agent.Radius)
+                        if (neightbor.ObstacleDistanceFor(agent.IsAir) < agent.Radius)
                             newG += _config.TooCloseToObstaclePenalty;
 
-                        if (newG > adjacentNode.G)
+                        if (newG > neightbor.G)
                             continue;
-                        adjacentNode.PreviousNode = currentNode;
-                        adjacentNode.G = newG;
+                        neightbor.PreviousNode = currentNode;
+                        neightbor.G = newG;
+                        if (firstProcessing)
+                            nodesQueue.Enqueue(neightbor, neightbor.Priority);
                     }
                 }
-                pendingNodes.RemoveAt(currentNodeIndex);
                 currentNode.WasProcessedThisQuery = true;
             }
             Debug.LogError($"No path was found from {startNode.WorldPosition} to {targetNode.WorldPosition}");
+            FillIsland(startNode);
+            FillIsland(targetNode);
             path = new List<Vector2>();
             return false;
         }
@@ -222,7 +230,6 @@ namespace Gameplay.Map
                 result.Insert(0, currentNode);
                 currentNode = currentNode.PreviousNode;
             }
-
             return result.ToArray();
         }
 
@@ -260,10 +267,10 @@ namespace Gameplay.Map
         {
             Vector2 relativePosition = worldPosition - _config.MapOrigin;
             Vector2 mapCoordinates = new(relativePosition.x / _config.NodesWorldSpacing.x,   relativePosition.y / _config.NodesWorldSpacing.y);
-            mapCoordinates.x = Mathf.Clamp(mapCoordinates.x, 0, _nodes.GetLength(0) - 1);
-            mapCoordinates.y = Mathf.Clamp(mapCoordinates.y, 0, _nodes.GetLength(1) - 1);
+            mapCoordinates.x = Mathf.Clamp(mapCoordinates.x, 0, _mapSize.x);
+            mapCoordinates.y = Mathf.Clamp(mapCoordinates.y, 0, _mapSize.y);
             Vector2Int nodeCoordinates = new Vector2Int(Mathf.RoundToInt(mapCoordinates.x), Mathf.RoundToInt(mapCoordinates.y));
-            return _nodes[nodeCoordinates.x, nodeCoordinates.y];
+            return _nodes[nodeCoordinates.x + nodeCoordinates.y * _mapSize.x];
         }
 
         private List<Vector2> SimplifyPath(List<Vector2> path, Vector2 worldStart, Vector2 worldTarget, PathfindingAgent agent)
@@ -283,24 +290,62 @@ namespace Gameplay.Map
         }
 
         private async void RecalculateAllObstacles() =>
-            RecalculateAllObstacles(Vector2Int.zero, _mapSize - new Vector2Int(1, 1));
+            RecalculateAllObstacles(Vector2Int.zero, _mapSize - new Vector2Int(1, 1), out _);
 
-        private async void RecalculateAllObstacles(Bounds bounds)
+        private void RecalculateAllObstacles(Bounds bounds)
         {
             Vector2Int min = GetClosestNode(bounds.min).MapCoordinates;
             Vector2Int max = GetClosestNode(bounds.max).MapCoordinates;
-            RecalculateAllObstacles(min, max);
+            RecalculateAllObstacles(min, max, out bool includesDifferentIslands);
+            if (includesDifferentIslands)
+                FillIsland(GetClosestNode(bounds.center));
         }
 
-        private async void RecalculateAllObstacles(Vector2Int min,  Vector2Int max)
+        private void RecalculateAllObstacles(Vector2Int min,  Vector2Int max, out bool includesDifferentIslands)
         {
+            includesDifferentIslands = false;
+            int firstIsland = -1;
             for (int y = min.y; y <= max.y; y++)
             {
                 for (int x = min.x; x <= max.x; x++)
                 {
-                    _nodes[x, y].RecalculateObstacles();
+                    Node node = _nodes[x + y * _mapSize.x];
+                    node.RecalculateObstacles();
+                    if (firstIsland == -1)
+                        firstIsland = node.Island;
+                    else if (firstIsland != node.Island)
+                        includesDifferentIslands = true;
                 }
             }
+        }
+
+        private void FillIsland(Node startNode)
+        {
+            Queue<Node> queue = new();
+            queue.Enqueue(startNode);
+
+            while (queue.Count > 0)
+            {
+                Node currentNode = queue.Dequeue();
+                currentNode.Island = _nextIsland;
+                
+                for (int yOffset = -1; yOffset <= 1; yOffset++)
+                {
+                    for (int xOffset = -1; xOffset <= 1; xOffset++)
+                    {
+                        if (Mathf.Abs(xOffset) == Mathf.Abs(yOffset))
+                            continue;
+                        int x = currentNode.MapCoordinates.x + xOffset;
+                        int y = currentNode.MapCoordinates.y + yOffset;
+                        Node neighbor = _nodes[x + y * _mapSize.x];
+                        if (neighbor.Island == currentNode.Island || ! neighbor.IsPassableByGround)
+                            continue;
+                        neighbor.Island = _nextIsland;
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }
+            _nextIsland++;
         }
 
         private void Update()
@@ -313,21 +358,20 @@ namespace Gameplay.Map
             if (_nodes == null)
                 return;
 
-            /*for (int y = 0; y < _nodes.GetLength(1); y++)
+            for (int i = 0; i < _nodes.Length; i++)
             {
-                for (int x = 0; x < _nodes.GetLength(0); x++)
-                {
-                    Node node = _nodes[x, y];
-                    if (node == _closestToMouseNode)
-                        Gizmos.color = Color.yellow;
-                    else if (node.IsPassableByGround)
-                        Gizmos.color = Color.white;
-                    else
-                        Gizmos.color = Color.red;
+                Node node = _nodes[i];
+                if (node == _closestToMouseNode)
+                    Gizmos.color = Color.yellow;
+                else if (node.LastQuery == _lastQuery)
+                    Gizmos.color = Color.cyan;
+                else if ( ! node.IsPassableByGround)
+                    Gizmos.color = Color.red;
+                else
+                    Gizmos.color = Color.white;
 
-                    Gizmos.DrawCube(_nodes[x, y].WorldPosition, Vector3.one * 0.1f);
-                }
-            }*/
+                Gizmos.DrawCube(_nodes[i].WorldPosition, Vector3.one * 0.1f);
+            }
         }
     }
 }

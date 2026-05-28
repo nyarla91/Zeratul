@@ -62,7 +62,7 @@ namespace Gameplay.Units
             }
                 
             _nodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
-            if (_path.Count == 0 || HasReachedPoint(_path.Last()))
+            if (_path.Count == 0 || HasReachedPoint(_path.Last(), true))
             {
                 Stop();
                 return;
@@ -106,7 +106,10 @@ namespace Gameplay.Units
                 return;
             }
             
-            if (HasReachedPoint(_path.First()))
+            Vector2 direction = Unit.Position.DirectionTo(_path.First());
+            direction = AvoidObstaclesForDirection(direction, out Unit[] obstacles);
+            
+            if (HasReachedPoint(_path.First(), obstacles.Length == 0))
                 _path.RemoveAt(0);
             
             if (_path.Count == 0)
@@ -115,20 +118,22 @@ namespace Gameplay.Units
                 return;
             }
 
-            Vector2 direction = Unit.Position.DirectionTo(_path.First());
-            direction = AvoidObstaclesForDirection(direction);
             float speed = Speed * Mathf.Lerp(1, Isometry.VerticalScale, Mathf.Abs(direction.y));
             Unit.Direction.RotateTowards(direction / Isometry.Scale);
             _rigidbody.linearVelocity = speed * direction;
         }
 
-        public bool HasReachedPoint(Vector2 point)
+        public bool HasReachedPoint(Vector2 point, bool exact)
         {
-            return point.OrthogonalDistance(Unit.Position) < UnitType.Size / 2 + _config.NodeProximityDistance;
+            float tolerance = _config.NodeProximityDistance;
+            if (!exact)
+                tolerance += UnitType.Size / 2;
+            return point.OrthogonalDistance(Unit.Position) < tolerance;
         }
 
-        private Vector2 AvoidObstaclesForDirection(Vector2 direction)
+        private Vector2 AvoidObstaclesForDirection(Vector2 direction, out Unit[] obstacles)
         {
+            obstacles = new Unit[0];
             Collider2D[] overlap = new Collider2D[3];
             
             ContactFilter2D contactFilter = new()
@@ -142,7 +147,7 @@ namespace Gameplay.Units
             if (overlapTotal == 0)
                 return direction;
             
-            Unit[] obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).ClearNull();
+            obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).ClearNull();
             obstacles = obstacles.Where(unit => unit.Movement == null || ! unit.Movement.Displaceable).ToArray();
             if (obstacles.Length == 0)
                 return direction;
