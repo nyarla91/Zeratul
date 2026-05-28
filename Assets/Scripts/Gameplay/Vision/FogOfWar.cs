@@ -24,6 +24,8 @@ namespace Gameplay.Vision
         [SerializeField] private Color32 _revealedColor;
         [SerializeField] private Color32 _enemyRevealedColor;
 
+        private bool _isBusy;
+            
         private Sprite TargetSprite => _spriteRenderer.sprite;
         private Sprite EnemyTargetSprite => _enemySpriteRenderer.sprite;
 
@@ -39,6 +41,7 @@ namespace Gameplay.Vision
 
         private void Awake()
         {
+            _isBusy = true;
             int width = _config.FogDimensions.x;
             int height = _config.FogDimensions.y;
             
@@ -49,12 +52,16 @@ namespace Gameplay.Vision
             
             CreateTextureForRenderer(_spriteRenderer, width, height);
             CreateTextureForRenderer(_enemySpriteRenderer, width, height);
+            
+            this.FixedUpdateAsObservable()
+                .Where(_ => ! _isBusy)
+                .Subscribe(_ => Repaint());
         }
 
         private void CreateTextureForRenderer(SpriteRenderer spriteRenderer, int width, int height)
         {
             Texture2D texture = new(width, height, TextureFormat.RGBA32, false);
-            texture.filterMode = FilterMode.Point;
+            texture.filterMode = FilterMode.Trilinear;
             texture.wrapMode = TextureWrapMode.Clamp;
             
             Color32[] clear = new Color32[width * height];
@@ -74,23 +81,30 @@ namespace Gameplay.Vision
             spriteRenderer.sprite = sprite;
         }
 
-        private void Start()
+        private async void Start()
         {
             transform.localScale = _config.FogPixelScale * Vector3.one;
             
             if ( ! _loaded)
                 Fill(FogOfWarCell.Hidden);
-            Paint();
+            await Paint();
+            _isBusy = false;
         }
 
-        public void ReproduceFromSaveData(MapSaveSystem payload)
+        public async void ReproduceFromSaveData(MapSaveSystem payload)
         {
             _cells = payload.cells;
             Paint();
         }
 
-        public async UniTask Recalculate()
+        public async UniTask Repaint()
         {
+            _isBusy = true;
+
+            HashSet<VisionResult> playerVision = VisionMap.PlayerVisionSources.Select(v => v.Result).ToHashSet();
+            HashSet<VisionResult> enemyVision = VisionMap.EnemyVisionSources.Select(v => v.Result).ToHashSet();
+            HashSet<Bounds> playerBounds = VisionMap.PlayerBounds.ToHashSet();
+                
             await UniTask.RunOnThreadPool(() =>
             {
                 for (int i = 0; i < _cells.Length; i++)
@@ -101,21 +115,16 @@ namespace Gameplay.Vision
                     FogOfWarCell previousCell = _cells[i];
                     
                     Vector2 point = new Vector2(x + 0.5f, y + 0.5f) * _config.FogPixelScale;
-                    bool revealed = IsPointRevealable(point) && VisionMap.IsPointVisibleBy(point, Owner.Player);
-
-                    if (revealed)
-                    {
-                        _cells[i] = VisionMap.IsPointVisibleBy(point, Owner.Enemy) ? FogOfWarCell.EnemyRevealed : FogOfWarCell.Revealed;
-                    }
-                    else
-                    {
-                        _cells[i] = _cells[i] == FogOfWarCell.Hidden ? FogOfWarCell.Hidden : FogOfWarCell.Scouted;
-                    }
+                    FogOfWarCell rawCell = GetCellForPoint(point, playerBounds, playerVision, enemyVision);
+                    _cells[i] = rawCell == FogOfWarCell.Hidden
+                        ? _cells[i] == FogOfWarCell.Hidden ? FogOfWarCell.Hidden : FogOfWarCell.Scouted
+                        : rawCell;
 
                     _repaintMask[i] = _cells[i] != previousCell;
                 }
             });
-            Paint();
+            await Paint();
+            _isBusy = false;
         }
 
         private async UniTask Paint(bool[] mask = null)
@@ -155,11 +164,31 @@ namespace Gameplay.Vision
             EnemyTargetSprite.texture.Apply(false);
         }
 
-        private bool IsPointRevealable(Vector2 point)
+        private FogOfWarCell GetCellForPoint(Vector2 point, HashSet<Bounds> playerBounds, HashSet<VisionResult> playerVision, HashSet<VisionResult> enemyVision)
         {
-            foreach (Bounds bounds in VisionMap.PlayerSimulationBounds)
+            if ( ! IsPointInBounds(point, playerBounds) || ! IsPointVisible(point, playerVision))
+                return FogOfWarCell.Hidden;
+            if (IsPointVisible(point, enemyVision))
+                return FogOfWarCell.EnemyRevealed;
+            return FogOfWarCell.Revealed;
+        }
+
+        private bool IsPointInBounds(Vector2 point, HashSet<Bounds> sourceBounds)
+        {
+            foreach (Bounds bounds in sourceBounds)
             {
-                if (bounds.Contains(point))
+                if (point.x >= bounds.min.x && point.x <= bounds.max.x 
+                    && point.y >= bounds.min.y && point.y <= bounds.max.y)
+                    return true;
+            }
+            return false;
+        }
+
+        private bool IsPointVisible(Vector2 point, HashSet<VisionResult> vision)
+        {
+            foreach (VisionResult visionSource in vision)
+            {
+                if (visionSource.IsPointVisible(point))
                     return true;
             }
             return false;

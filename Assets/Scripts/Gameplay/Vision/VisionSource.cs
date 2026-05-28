@@ -17,7 +17,7 @@ namespace Gameplay.Vision
         private readonly IsometricOverlap _isometricOverlap;
         private readonly VisionConfig _config;
 
-        private VisionResult _visionResult;
+        private VisionResult _result;
         private HashSet<Unit> _visibleUnits = new();
         private Func<Vector3> _position;
         private Func<float> _radius;
@@ -27,6 +27,8 @@ namespace Gameplay.Vision
         public HashSet<Unit> VisibleUnits => _visibleUnits
             .Where(u => u.Visibility.IsRevealed || u.Alliance.IsFriendly(Owner))
             .ToHashSet();
+
+        public VisionResult Result => _result;
 
         public Vector3 Position => _position.Invoke();
         public float Radius => _radius.Invoke();
@@ -58,15 +60,13 @@ namespace Gameplay.Vision
             _isAir = () => false;
         }
 
-        public bool IsPointVisible(Vector2 point) => _visionResult?.IsPointVisible(point) ?? false;
-
         public void Mute()
         {
-            _visionResult = new VisionResult(Position, new AnimationCurve());
-            _visibleUnits = new HashSet<Unit>();
+            _result = default;
+            _visibleUnits.Clear();
         }
         
-        public async UniTask Recalculate()
+        public void Recalculate()
         {
             AnimationCurve distanceCurve = new();
             bool previousHit = false;
@@ -97,7 +97,7 @@ namespace Gameplay.Vision
             };
             distanceCurve.AddKey(keyframe360);
             
-            _visionResult = new VisionResult(Position, distanceCurve);
+            _result = new VisionResult(Position, distanceCurve);
 
             _visibleUnits.Clear();
             HashSet<Unit> overlapUnits = _isometricOverlap.GetUnits(Position, Radius);
@@ -105,7 +105,7 @@ namespace Gameplay.Vision
             {
                 if (unit.Visibility.IsHidden && unit.Alliance.IsHostile(Owner))
                     continue;
-                if ( ! _visionResult.IsPointVisible(unit.Position))
+                if ( ! _result.IsPointVisible(unit.Position))
                     continue;
                 _visibleUnits.Add(unit);
             }

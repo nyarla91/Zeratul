@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.VisionConfig
   _visionPoints: 12
   _visionCorrectionPoints: 2
-  _recalculationPeriod: 0.1
+  _recalculationPeriod: 0.2
   _visionBlockerMask:
     serializedVersion: 2
     m_Bits: 16384
-  _absoluteExtraSight: -0.5
-  _minSight: 2
+  _absoluteExtraSight: -0.3
+  _minSight: 2.5
   _simulationRadius: 20
   _fogPixelScale: 0.5
   _fogDimensions: {x: 200, y: 150}

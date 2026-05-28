@@ -17,8 +17,6 @@ namespace Gameplay.Vision
         [SerializeField] private FogOfWar _fogOfWar;
         [SerializeField] private VisionConfig _config;
 
-        private bool _isRecalculating;
-
         public HashSet<VisionSource> VisionSources { get; } = new();
         public HashSet<VisionSource> SimulatedVisionSources { get; } = new();
         public HashSet<VisionSource> IdleVisionSources { get; } = new();
@@ -34,7 +32,6 @@ namespace Gameplay.Vision
         {
             this.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
-                .Where(_ => ! _isRecalculating)
                 .Subscribe(_ => Recalculate());
         }
 
@@ -52,7 +49,7 @@ namespace Gameplay.Vision
             {
                 if (visionSource.Owner != owner)
                     continue;
-                if (visionSource.IsPointVisible(point))
+                if (visionSource.Result.IsPointVisible(point))
                     return true;
             }
             return false;
@@ -78,10 +75,8 @@ namespace Gameplay.Vision
             return source;
         }
 
-        private async UniTask Recalculate()
+        private void Recalculate()
         {
-            _isRecalculating = true;
-            
             SimulatedVisionSources.Clear();
             IdleVisionSources.Clear();
             PlayerVisionSources.Clear();
@@ -90,14 +85,9 @@ namespace Gameplay.Vision
             EnemyVisionSources.Clear();
 
             VisionSources.RemoveWhere(v => v.Disposed);
-            
+
             foreach (VisionSource visionSource in VisionSources)
             {
-                if (visionSource.Owner is Owner.Player or Owner.Ally || IsPointSimulated(visionSource.Position))
-                    SimulatedVisionSources.Add(visionSource);
-                else
-                    IdleVisionSources.Add(visionSource);
-                
                 switch (visionSource.Owner)
                 {
                     case Owner.Enemy:
@@ -105,19 +95,48 @@ namespace Gameplay.Vision
                         break;
                     case Owner.Neutral:
                         continue;
+                    case Owner.Player or Owner.Ally:
+                        PlayerVisionSources.Add(visionSource);
+                        PlayerBounds.Add(visionSource.Bounds);
+                        PlayerSimulationBounds.Add(visionSource.SimulationBounds);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
-                PlayerVisionSources.Add(visionSource);
-                PlayerBounds.Add(visionSource.Bounds);
-                PlayerSimulationBounds.Add(visionSource.SimulationBounds);
             }
+
+            foreach (VisionSource visionSource in VisionSources)
+            {
+                if (visionSource.Owner is Owner.Player or Owner.Ally || IsPointSimulated(visionSource.Position))
+                    SimulatedVisionSources.Add(visionSource);
+                else
+                    IdleVisionSources.Add(visionSource);
+            }
+
+            Debug.Log($"{PlayerSimulationBounds.Count} {PlayerBounds.Count}");
             
             foreach (VisionSource visionSource in SimulatedVisionSources)
-                await visionSource.Recalculate();
+                visionSource.Recalculate();
             foreach (VisionSource visionSource in IdleVisionSources)
                 visionSource.Mute();
-            
-            await _fogOfWar.Recalculate();
-            _isRecalculating = false;
+        }
+
+        private void OnDrawGizmos()
+        {
+            foreach (Bounds bounds in PlayerSimulationBounds)
+            {
+                Gizmos.DrawWireCube(bounds.center, bounds.size);
+            }
+            foreach (VisionSource visionSource in SimulatedVisionSources)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(visionSource.Position, 0.1f);
+            }
+            foreach (VisionSource visionSource in IdleVisionSources)
+            {
+                Gizmos.color = IsPointSimulated(visionSource.Position) ? Color.yellow : Color.orangeRed;
+                Gizmos.DrawSphere(visionSource.Position, 0.1f);
+            }
         }
     }
 }

@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace Gameplay.Vision
 {
-    public class VisionResult
+    public struct VisionResult : IEquatable<VisionResult>
     {
         private readonly Vector2 _origin;
         private readonly AnimationCurve _distanceCurve;
-        private readonly float[] _maxDistancePerDirection;
-        private readonly float _degreesPerIndex;
-
+        
         public VisionResult(Vector2 origin, AnimationCurve distanceCurve)
         {
             _origin = origin;
@@ -19,7 +17,7 @@ namespace Gameplay.Vision
 
         public bool IsPointVisible(Vector2 vector)
         {
-            if (_distanceCurve.keys.Length == 0)
+            if (_distanceCurve == null)
                 return false;
             Vector2 delta = vector - _origin;
             delta /= Isometry.Scale;
@@ -35,6 +33,21 @@ namespace Gameplay.Vision
             while (angle > 360) 
                 angle -= 360;
             return _distanceCurve.Evaluate(angle);
+        }
+
+        public bool Equals(VisionResult other)
+        {
+            return _origin.Equals(other._origin) && Equals(_distanceCurve, other._distanceCurve);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is VisionResult other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_origin, _distanceCurve);
         }
     }
 }
