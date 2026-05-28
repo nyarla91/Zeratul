@@ -58,3 +58,6 @@ MonoBehaviour:
   _interactionColliderSize: {x: 1, y: 0.7}
   _interactionColliderOffset: {x: 0, y: 0.1}
   _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
+  _editorRadius:
+    _object: {fileID: 0}
+  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}

@@ -9,7 +9,7 @@ namespace Gameplay.Data.Statuses
     {
         public override void OnAdd(Status status)
         {
-            status.Host.Alliance.AddOwner(status, status.Instigator.Alliance.CurrentOwner);
+            status.Host.Alliance.SetOwner(status.Instigator.Alliance.CurrentOwner);
         }
 
         public override void OnUpdate(Status status)
@@ -19,7 +19,7 @@ namespace Gameplay.Data.Statuses
 
         public override void OnRemove(Status status)
         {
-            status.Host.Alliance.RemoveOwner(status);
+            status.Host.Alliance.RevertOwner();
         }
     }
 }

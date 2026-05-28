@@ -11,10 +11,7 @@ namespace Gameplay.Units
     {
         protected override string LoadKey => UnitAllianceSaveSystem.LoadKey;
 
-        private Owner _initialOwner; 
-        
-        private readonly Dictionary<object, Owner> _owners = new();
-
+        public Owner InitialOwner { get; private set; }
         public Owner CurrentOwner { get; private set; }
         public bool OwnedByPlayer => CurrentOwner == Owner.Player;
         public bool OwnedByAlly => CurrentOwner == Owner.Ally;
@@ -23,33 +20,30 @@ namespace Gameplay.Units
 
         public event Action<Owner> OwnerUpdated;
         
-        public UnitAlliance(Unit unit, Owner initialOwner) : base(unit)
+        public UnitAlliance(Unit unit, Owner owner) : base(unit)
         {
-            CurrentOwner = _initialOwner = initialOwner;
+            InitialOwner = CurrentOwner = owner;
         }
 
         public override IUnitSaveSystem Save()
         {
-            return new UnitAllianceSaveSystem(_initialOwner);
+            return new UnitAllianceSaveSystem(InitialOwner, CurrentOwner);
         }
 
         public override void ReproduceFromSave(UnitSaveData saveData)
         {
             UnitAllianceSaveSystem system = GetSaveSystem<UnitAllianceSaveSystem>(saveData);
-            _initialOwner = system.initialOwner;
+            InitialOwner = system.initialOwner;
+            CurrentOwner = system.currentOwner;
         }
         
-        public void AddOwner(object source, Owner owner)
-        {
-            _owners.TryAdd(source, owner);
-            CurrentOwner = _owners.Any() ? _owners.Values.Last() : _initialOwner;
-            OwnerUpdated?.Invoke(CurrentOwner);
-        }
+        public void RevertOwner() => SetOwner(InitialOwner);
 
-        public void RemoveOwner(object source)
+        public void SetOwner(Owner owner)
         {
-            _owners.Remove(source);
-            CurrentOwner = _owners.Any() ? _owners.Values.Last() : _initialOwner;
+            if (CurrentOwner == owner)
+                return;
+            CurrentOwner = owner;
             OwnerUpdated?.Invoke(CurrentOwner);
         }
 

@@ -48,7 +48,7 @@ namespace Gameplay.Units
         public bool IsDead { get; private set; }
         public bool IsAlive => ! IsDead;
         
-        public Vector2 Position => transform ? transform.position : Vector2.zero;
+        public Vector2 Position => this ? transform.position : Vector2.zero;
         public Vector2 InteractionPosition => _interactionCollider.transform.position + (Vector3) _interactionCollider.offset;
         
         public bool IsHighlighted => MouseTargeting.Unit == this;

@@ -19,6 +19,8 @@ namespace Gameplay.Vision
 
         public bool IsPointVisible(Vector2 vector)
         {
+            if (_distanceCurve.keys.Length == 0)
+                return false;
             Vector2 delta = vector - _origin;
             delta /= Isometry.Scale;
             float maxDistance = GetMaxDistanceForDelta(delta);

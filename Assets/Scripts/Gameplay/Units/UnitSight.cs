@@ -18,9 +18,14 @@ namespace Gameplay.Units
 
         public UnitSight(Unit unit, VisionMap visionMap) : base(unit)
         {
-            VisionSource = visionMap.CreateSource(() => Unit.Position, () => unit.Alliance.CurrentOwner, () => Radius, () => UnitType.IsAir);
+            VisionSource = visionMap.CreateSource(
+                () => Unit.Position,
+                () => unit.Alliance.CurrentOwner,
+                () => Radius,
+                () => UnitType.IsAir
+                );
             
-            Unit.Killed += () => visionMap.RemoveSource(VisionSource);
+            Unit.Killed += VisionSource.Dispose;
         }
     }
 }

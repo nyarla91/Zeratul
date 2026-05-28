@@ -22,9 +22,15 @@ namespace Gameplay
 
             List<Collider2D> colliders = new();
             Physics2D.OverlapCircle(point, radius, contactFilter, colliders);
-
-            HashSet<Unit> units = colliders.Select(col => col.GetComponentInParent<Unit>()).ClearNull().ToHashSet();
-            return units.Where(u => IsUnitInRadius(point, radius, u)).ToHashSet();
+            
+            HashSet<Unit> result = new();
+            foreach (Collider2D collider in colliders)
+            {
+                Unit unit = collider.GetComponentInParent<Unit>();
+                if (unit && IsUnitInRadius(point, radius, unit))
+                    result.Add(unit);
+            }
+            return result;
         }
         
         public bool TryGetUnits(Vector2 point, float radius, out HashSet<Unit> units)

@@ -8,12 +8,12 @@ namespace Save.Data.Units
         public string SaveKey => LoadKey;
 
         public Owner initialOwner;
-
-        public UnitAllianceSaveSystem() { }
+        public Owner currentOwner;
         
-        public UnitAllianceSaveSystem(Owner initialOwner)
+        public UnitAllianceSaveSystem(Owner initialOwner, Owner currentOwner)
         {
             this.initialOwner = initialOwner;
+            this.currentOwner = currentOwner;
         }
     }
 }

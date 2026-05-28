@@ -20,10 +20,12 @@ namespace Gameplay.Vision
         private bool _isRecalculating;
 
         public HashSet<VisionSource> VisionSources { get; } = new();
-        public HashSet<VisionSource> PlayerVisionSources { get; private set; }
-        public HashSet<VisionSource> EnemyVisionSources { get; private set; }
-        public HashSet<Bounds> PlayerBounds { get; private set; }
-        public HashSet<Bounds> PlayerSimulationBounds { get; private set; }
+        public HashSet<VisionSource> SimulatedVisionSources { get; } = new();
+        public HashSet<VisionSource> IdleVisionSources { get; } = new();
+        public HashSet<VisionSource> PlayerVisionSources { get; } = new();
+        public HashSet<VisionSource> EnemyVisionSources { get; } = new();
+        public HashSet<Bounds> PlayerBounds { get; } = new();
+        public HashSet<Bounds> PlayerSimulationBounds { get; } = new();
 
         [Inject] private TacticalPause TacticalPause { get; set; }
         [Inject] private IsometricOverlap IsometricOverlap { get; set; }
@@ -46,7 +48,7 @@ namespace Gameplay.Vision
         
         public bool IsPointVisibleBy(Vector2 point, Owner owner)
         {
-            foreach (VisionSource visionSource in VisionSources)
+            foreach (VisionSource visionSource in SimulatedVisionSources)
             {
                 if (visionSource.Owner != owner)
                     continue;
@@ -60,7 +62,8 @@ namespace Gameplay.Vision
         {
             foreach (Bounds bounds in PlayerSimulationBounds)
             {
-                if (bounds.Contains(point))
+                if (point.x >= bounds.min.x && point.x <= bounds.max.x
+                    && point.y >= bounds.min.y && point.y <= bounds.max.y)
                     return true;
             }
             return false;
@@ -75,34 +78,43 @@ namespace Gameplay.Vision
             return source;
         }
 
-        public void RemoveSource(VisionSource source)
-        {
-            VisionSources.Remove(source);
-        }
-
         private async UniTask Recalculate()
         {
             _isRecalculating = true;
-            PlayerVisionSources = VisionSources
-                .Where(v => v.Owner is Owner.Player or Owner.Ally)
-                .ToHashSet();
+            
+            SimulatedVisionSources.Clear();
+            IdleVisionSources.Clear();
+            PlayerVisionSources.Clear();
+            PlayerBounds.Clear();
+            PlayerSimulationBounds.Clear();
+            EnemyVisionSources.Clear();
 
-            EnemyVisionSources = VisionSources
-                .Where(v => v.Owner is Owner.Enemy)
-                .ToHashSet();
-
-            PlayerBounds = PlayerVisionSources
-                .Select(v => v.Bounds)
-                .ToHashSet();
-
-            PlayerSimulationBounds = PlayerVisionSources
-                .Select(v => v.SimulationBounds)
-                .ToHashSet();
+            VisionSources.RemoveWhere(v => v.Disposed);
             
             foreach (VisionSource visionSource in VisionSources)
             {
-                await visionSource.Recalculate(IsPointSimulated(visionSource.Position));
+                if (visionSource.Owner is Owner.Player or Owner.Ally || IsPointSimulated(visionSource.Position))
+                    SimulatedVisionSources.Add(visionSource);
+                else
+                    IdleVisionSources.Add(visionSource);
+                
+                switch (visionSource.Owner)
+                {
+                    case Owner.Enemy:
+                        EnemyVisionSources.Add(visionSource);
+                        break;
+                    case Owner.Neutral:
+                        continue;
+                }
+                PlayerVisionSources.Add(visionSource);
+                PlayerBounds.Add(visionSource.Bounds);
+                PlayerSimulationBounds.Add(visionSource.SimulationBounds);
             }
+            
+            foreach (VisionSource visionSource in SimulatedVisionSources)
+                await visionSource.Recalculate();
+            foreach (VisionSource visionSource in IdleVisionSources)
+                visionSource.Mute();
             
             await _fogOfWar.Recalculate();
             _isRecalculating = false;

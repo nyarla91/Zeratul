@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -2138,12 +2138,18 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: 3419c58748f8fc24fa1f59e94c65c703, type: 2}
   _spriteRenderer: {fileID: 388089113}
   _enemySpriteRenderer: {fileID: 272383238}
-  _pixelScale: 1
-  _fogDimensions: {x: 100, y: 75}
-  _hiddenColor: {r: 0, g: 0, b: 0, a: 1}
-  _scoutedColor: {r: 0, g: 0, b: 0, a: 0.83137256}
-  _revealedColor: {r: 0, g: 0, b: 0, a: 0}
-  _enemyRevealedColor: {r: 1, g: 0, b: 0, a: 0.101960786}
+  _hiddenColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  _scoutedColor:
+    serializedVersion: 2
+    rgba: 2986344448
+  _revealedColor:
+    serializedVersion: 2
+    rgba: 0
+  _enemyRevealedColor:
+    serializedVersion: 2
+    rgba: 855638271
   _revealMask:
     serializedVersion: 2
     m_Bits: 2048
