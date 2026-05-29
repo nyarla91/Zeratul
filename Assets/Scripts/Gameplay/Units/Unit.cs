@@ -102,7 +102,7 @@ namespace Gameplay.Units
                 Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig, _orderErrorConfig);
             
             if (CanMove)
-                Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _avoidanceCollider);
+                Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _collider);
             
             UnitPool.AddUnit(this);
         }

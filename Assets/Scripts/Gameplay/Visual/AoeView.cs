@@ -22,8 +22,9 @@ namespace Gameplay.Visual
         public void Set(AoeVariant variant)
         {
             _spriteRenderer.sprite = variant.Sprite;
+            _spriteRenderer.sortingOrder = variant.SortingOrder;
             _spriteRenderer.color = variant.Color;
-            Radius = variant.Radius;
+            Radius = variant.Radius + 0.1f;
             _rotationSpeed = variant.RotationSpeed;
         }
         
@@ -56,6 +57,7 @@ namespace Gameplay.Visual
     public struct AoeVariant
     {
         [SerializeField] private Sprite _sprite;
+        [SerializeField] private int _sortingOrder;
         [SerializeField] private AoeSpriteStep[] _steps;
         [SerializeField] private Color _color;
         [SerializeField] private ReferenceIRadiusSource _radiusSource;
@@ -76,12 +78,13 @@ namespace Gameplay.Visual
                 return result;
             }
         }
-        
+
+        public int SortingOrder => _sortingOrder;
         public Color Color => _color;
         public float Radius => _radiusSource?.I?.Radius ?? _radius;
         public float RotationSpeed => _rotationSpeed;
 
-        public AoeVariant(ReferenceIRadiusSource radiusSource, float radius, Sprite sprite, AoeSpriteStep[] steps, Color color, float rotationSpeed)
+        public AoeVariant(ReferenceIRadiusSource radiusSource, float radius, Sprite sprite, int sortingOrder, AoeSpriteStep[] steps, Color color, float rotationSpeed)
         {
             _radiusSource = radiusSource;
             _sprite = sprite;
@@ -89,6 +92,7 @@ namespace Gameplay.Visual
             _color = color;
             _radius = radius;
             _rotationSpeed = rotationSpeed;
+            _sortingOrder = sortingOrder;
         }
 
         public AoeVariant WithRadius(float radius)

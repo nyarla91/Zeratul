@@ -26,10 +26,10 @@ MonoBehaviour:
   _maxHitPoints: 5
   _maxShieldPoints: 0
   _shieldRestoreDelay: 0
-  _shieldPointsPerSecond: 0
+  _shieldPointsPerSecond: 7
   _maxEnergyPoints: 0
   _energyRestoreDelay: 250
-  _energyPointsPerSecond: 5
+  _energyPointsPerSecond: 7
   _disableCollision: 1
   _isImmobile: 1
   _isAir: 0

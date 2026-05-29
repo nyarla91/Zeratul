@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &28032597375591758
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8300068938752092212}
@@ -666,7 +666,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a0181a6ae687275498fe3a621d9da143, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -698,7 +698,6 @@ MonoBehaviour:
   _rigidbody: {fileID: 2212058817159712324}
   _collider: {fileID: 9103159375792626044}
   _avoidanceCollider: {fileID: 1249983972513825726}
-  _simulationCollider: {fileID: 0}
   _obstacleCollider: {fileID: 5439190634493720149}
   _interactionCollider: {fileID: 3110789615665679930}
 --- !u!1 &6475753974446673389

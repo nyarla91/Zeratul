@@ -1,4 +1,5 @@
 ﻿using System;
+using Extentions.Pause;
 using Gameplay.Map;
 using Gameplay.Player;
 using UnityEngine;
@@ -16,12 +17,15 @@ namespace Gameplay.UI
         [SerializeField] private CursorDefinition _drag;
         [SerializeField] private CursorDefinition[] _edge;
 
+        [Inject] private GamePause GamePause { get; set; }
         [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
         [Inject] private PlayerOrderTargeter OrderTargeter { get; set; }
         [Inject] private PlayerOrdersDispatcher OrdersDispatcher { get; set; }
         
         private void Update()
         {
+            if (GamePause.IsPaused)
+                SetCursor(_default);
             if (_cameraControl.IsDragging)
                 SetCursor(_drag);
             else if (_cameraControl.EdgeMoveDirection != Vector2Int.zero)
@@ -59,6 +63,11 @@ namespace Gameplay.UI
         private void SetCursor(CursorDefinition definition)
         {
             Cursor.SetCursor(definition.Texture, definition.Hotspot, CursorMode.Auto);
+        }
+
+        private void OnDestroy()
+        {
+            SetCursor(_default);
         }
 
         [Serializable]

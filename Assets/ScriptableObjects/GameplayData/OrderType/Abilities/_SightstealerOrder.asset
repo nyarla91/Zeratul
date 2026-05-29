@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: _SightstealerOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.AbilityOrder
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
-  _displayName: Mist
+  _displayName: Sightstealer
   _displayValidators:
     _unitValidators: []
-  _rawDisplayDescription: Smoke
+  _rawDisplayDescription: Blind all units in the area
   _icon: {fileID: 21300000, guid: e7f181d8169864b408f728138cf015c4, type: 3}
   _hotkeyAlias: Ability3
-  _abilityType: {fileID: 11400000, guid: dcd2fee746ff10d409150f27a386db32, type: 2}
+  _abilityType: {fileID: 11400000, guid: 6f34252a1e8160c42827df59b82b90fb, type: 2}
   _aoeEllipseRadius:
-    _object: {fileID: 0}
+    _object: {fileID: 11400000, guid: e65daa351364e04409e573c246ebe3c2, type: 2}
   _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}

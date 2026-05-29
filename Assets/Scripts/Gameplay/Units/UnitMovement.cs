@@ -24,7 +24,7 @@ namespace Gameplay.Units
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
         public bool HasPath => _path.Count > 0;
-        public bool Displaceable => ! HasPath && ! IsHoldingPosition && ! UnitType.IsImmobile;
+        public bool Displaceable => Unit.Orders.IsIdle;
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public bool IsHoldingPosition { get; private set; }
         public Modifier SpeedModifier => _speedModifier;
@@ -62,7 +62,7 @@ namespace Gameplay.Units
             }
                 
             _nodeMap.TryFindPath(Unit.Position, destination, out _path, UnitType.PathfindingAgent);
-            if (_path.Count == 0 || HasReachedPoint(_path.Last(), true))
+            if (_path == null || _path.Count == 0 || HasReachedPoint(_path.Last(), true))
             {
                 Stop();
                 return;
@@ -107,9 +107,9 @@ namespace Gameplay.Units
             }
             
             Vector2 direction = Unit.Position.DirectionTo(_path.First());
-            direction = AvoidObstaclesForDirection(direction, out Unit[] obstacles);
+            direction = AvoidObstaclesForDirection(direction, out bool corrected);
             
-            if (HasReachedPoint(_path.First(), obstacles.Length == 0))
+            if (HasReachedPoint(_path.First(), ! corrected))
                 _path.RemoveAt(0);
             
             if (_path.Count == 0)
@@ -131,33 +131,81 @@ namespace Gameplay.Units
             return point.OrthogonalDistance(Unit.Position) < tolerance;
         }
 
-        private Vector2 AvoidObstaclesForDirection(Vector2 direction, out Unit[] obstacles)
+        private Vector2 AvoidObstaclesForDirection(Vector2 direction, out bool corrected)
         {
-            obstacles = new Unit[0];
-            Collider2D[] overlap = new Collider2D[3];
+            direction.Normalize();
+            corrected = false;
             
             ContactFilter2D contactFilter = new()
             {
                 useTriggers = false,
                 useLayerMask = true,
-                layerMask = UnitType.IsAir ? _config.AirLayerMask : _config.GroundLayerMask
+                layerMask = UnitType.IsAir
+                    ? (_config.AirMask | _config.CommonObstacleMask)
+                    : (_config.GroundMask | _config.GroundObstacleMask)
             };
-            
-            int overlapTotal = _avoidanceCollider.Overlap(contactFilter, overlap);
-            if (overlapTotal == 0)
+
+            List<RaycastHit2D> results = new();
+            if (_avoidanceCollider.Cast(direction, contactFilter, results, _config.AvoidanceDistance) == 0)
                 return direction;
             
-            obstacles = overlap.Select(col => col?.GetComponentInParent<Unit>()).ClearNull();
-            obstacles = obstacles.Where(unit => unit.Movement == null || ! unit.Movement.Displaceable).ToArray();
-            if (obstacles.Length == 0)
+            RaycastHit2D hit = results[0];
+            if ( ! IsColliderAvoidable(hit.collider))
                 return direction;
-            float angle = direction.ToDegrees();
-            Vector2[] oppositeDirections = obstacles
-                .Select(obs => obs.Position.DirectionTo(Unit.Position))
-                .ToArray();
-            float oppositeAngle = oppositeDirections.Average().ToDegrees();
-            float newAngle = Mathf.LerpAngle(angle, oppositeAngle, _config.AvoidanceStrength);
-            return newAngle.DegreesToVector2().normalized;
+            
+            Vector2 directionToObstacle = hit.point - Unit.Position;
+            directionToObstacle.Normalize();
+
+            /*int closestObtacleSideSign = 0;
+            float angleToClosestObstacle = 180;
+            Vector2 directionToClosestObstacle = Vector2.zero;
+            
+            foreach (Collider2D collider in overlap)
+            {
+                if (collider == null || ! IsColliderAvoidable(collider))
+                    continue;
+                Vector2 contactPoint = collider.ClosestPoint(Unit.Position);
+
+                Vector2 a = Unit.Position;
+                Vector2 b = a + direction;
+                float side =
+                    (b.x - a.x) * (contactPoint.y - a.y) -
+                    (b.y - a.y) * (contactPoint.x - a.x);
+                int sideSign = side.Sign();
+                Debug.Log($"Sign {sideSign}");
+                if (closestObtacleSideSign != 0 && closestObtacleSideSign != sideSign)
+                    return direction;
+                closestObtacleSideSign = sideSign;
+
+                Vector2 directionToObstacle = Unit.Position.DirectionTo(contactPoint);
+                float angle = Vector2.Angle(direction, contactPoint);
+                if (angle > angleToClosestObstacle || angle > _config.AvoidanceArc / 2)
+                    continue;
+
+                directionToClosestObstacle = directionToObstacle;
+                angleToClosestObstacle = angle;
+            }*/
+            
+            Vector2 correctedDirection = direction - directionToObstacle;
+            correctedDirection.Normalize();
+            corrected = true;
+            return Vector2.Lerp(direction,  correctedDirection, _config.AvoidanceStrength).normalized;
+        }
+
+        private bool IsColliderAvoidable(Collider2D collider)
+        {
+            LayerMask mask = (_config.CommonObstacleMask | _config.GroundObstacleMask);
+            if (mask.Includes(collider.gameObject.layer))
+                return true;
+            Unit unit = collider.GetComponentInParent<Unit>();
+            if ( ! unit)
+                return false;
+            if ( ! unit.CanMove)
+                return true;
+            if (unit.Orders.IsIdle)
+                return false;
+            float deltaVelocity = Vector2.Angle(Velocity, unit.Movement.Velocity);
+            return deltaVelocity > 60;
         }
     }
 }

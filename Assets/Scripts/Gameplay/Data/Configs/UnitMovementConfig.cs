@@ -8,21 +8,25 @@ namespace Gameplay.Data.Configs
     {
         [SerializeField] private float _nodeProximityDistance;
         [SerializeField] private float _minPathRecalculationPeriod;
-        [SerializeField] [Range(0, 1)] private float _avoidanceAdditionalRadius;
+        [SerializeField]  private float _avoidanceDistance;
         [SerializeField] [Range(0, 1)] private float _avoidanceStrength;
         [Space]
         [SerializeField] [Layer] private int _groundLayer;
-        [SerializeField] private LayerMask _groundLayerMask;
         [SerializeField] [Layer] private int _airLayer;
-        [SerializeField] private LayerMask _airLayerMask;
+        [SerializeField] private LayerMask _groundMask;
+        [SerializeField] private LayerMask _airMask;
+        [SerializeField] private LayerMask _groundObstacleMask;
+        [SerializeField] private LayerMask _commonObstacleMask;
 
         public float NodeProximityDistance => _nodeProximityDistance;
         public float MinPathRecalculationPeriod => _minPathRecalculationPeriod;
-        public float AvoidanceAdditionalRadius => _avoidanceAdditionalRadius;
+        public float AvoidanceDistance => _avoidanceDistance;
         public float AvoidanceStrength => _avoidanceStrength;
         public int GroundLayer => _groundLayer;
-        public LayerMask GroundLayerMask => _groundLayerMask;
         public int AirLayer => _airLayer;
-        public LayerMask AirLayerMask => _airLayerMask;
+        public LayerMask GroundMask => _groundMask;
+        public LayerMask AirMask => _airMask;
+        public LayerMask GroundObstacleMask => _groundObstacleMask;
+        public LayerMask CommonObstacleMask => _commonObstacleMask;
     }
 }

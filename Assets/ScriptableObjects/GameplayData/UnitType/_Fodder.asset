@@ -25,18 +25,18 @@ MonoBehaviour:
   _maxHitPoints: 35
   _maxShieldPoints: 10
   _shieldRestoreDelay: 250
-  _shieldPointsPerSecond: 5
+  _shieldPointsPerSecond: 7
   _maxEnergyPoints: 0
   _energyRestoreDelay: 250
-  _energyPointsPerSecond: 5
+  _energyPointsPerSecond: 7
   _disableCollision: 0
   _isImmobile: 0
   _isAir: 0
   _maxSpeed: 4
   _size: 1.2
   _rotationSpeed: 720
-  _disableSight: 1
-  _sightRadius: 0
+  _disableSight: 0
+  _sightRadius: 12
   _weaponType: {fileID: 11400000, guid: 0bce0853e1d939445b75026d09ef27c8, type: 2}
   _innateStatuses: []
   _availableOrders:

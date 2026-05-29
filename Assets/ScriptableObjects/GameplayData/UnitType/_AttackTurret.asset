@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Sentry Turret
   _focusPriority: 0
+  _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
@@ -21,19 +22,21 @@ MonoBehaviour:
   _attackWorth:
     _baseWorth: 125
     _evaluators: []
+  _isInvulnerable: 0
   _maxHitPoints: 75
   _maxShieldPoints: 75
   _shieldRestoreDelay: 250
-  _shieldPointsPerSecond: 5
+  _shieldPointsPerSecond: 7
   _maxEnergyPoints: 0
   _energyRestoreDelay: 250
-  _energyPointsPerSecond: 5
-  _noCollision: 0
+  _energyPointsPerSecond: 7
+  _disableCollision: 0
   _isImmobile: 1
+  _isAir: 0
   _maxSpeed: 0
   _size: 2
   _rotationSpeed: 360
-  _isAir: 0
+  _disableSight: 0
   _sightRadius: 12
   _weaponType: {fileID: 11400000, guid: 68d6cbcfc4a2d0d4584c3b5242f8eac2, type: 2}
   _innateStatuses:

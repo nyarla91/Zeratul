@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 8
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -2226,7 +2226,7 @@ MonoBehaviour:
     rgba: 0
   _enemyRevealedColor:
     serializedVersion: 2
-    rgba: 218135551
+    rgba: 251661055
 --- !u!212 &388089113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4616,7 +4616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Pathfinding.NodeMap
   _config: {fileID: 11400000, guid: 44bb6e3c67114844eb9f197e7bf91e62, type: 2}
-  _mapSize: {x: 100, y: 75}
+  _mapSize: {x: 200, y: 150}
 --- !u!61 &819588474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4651,7 +4651,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 50, y: 37.5}
+  m_Offset: {x: 25.25, y: 19}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4661,7 +4661,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 100, y: 75}
+  m_Size: {x: 50, y: 37.5}
   m_EdgeRadius: 0
 --- !u!114 &819588475
 MonoBehaviour:
@@ -9708,6 +9708,7 @@ MonoBehaviour:
   _validationMessage: {fileID: 855361459}
   _rangeVariant:
     _sprite: {fileID: 21300000, guid: 25123bc2c5b2b3548b1ccac591d106fa, type: 3}
+    _sortingOrder: 0
     _steps:
     - _sprite: {fileID: 21300000, guid: 7e910652a6cefa44c93f7d76bf793cd3, type: 3}
       _minRadius: 2.5
@@ -9720,6 +9721,7 @@ MonoBehaviour:
     _rotationSpeed: 10
   _targetVariant:
     _sprite: {fileID: 21300000, guid: 44a47e995565fe445a9a8472368ce0e1, type: 3}
+    _sortingOrder: 0
     _steps: []
     _color: {r: 1, g: 1, b: 1, a: 0.101960786}
     _radiusSource:

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Alien
   _focusPriority: 10
+  _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
   - {fileID: 11400000, guid: 4d9ddd1194806ac44bcc0d691328a7b0, type: 2}
@@ -22,19 +23,21 @@ MonoBehaviour:
   _attackWorth:
     _baseWorth: 200
     _evaluators: []
+  _isInvulnerable: 0
   _maxHitPoints: 100
   _maxShieldPoints: 50
   _shieldRestoreDelay: 250
-  _shieldPointsPerSecond: 5
+  _shieldPointsPerSecond: 7
   _maxEnergyPoints: 100
   _energyRestoreDelay: 250
-  _energyPointsPerSecond: 5
-  _noCollision: 0
+  _energyPointsPerSecond: 7
+  _disableCollision: 0
   _isImmobile: 0
+  _isAir: 0
   _maxSpeed: 5
   _size: 1.4
   _rotationSpeed: 720
-  _isAir: 0
+  _disableSight: 0
   _sightRadius: 15
   _weaponType: {fileID: 11400000, guid: 4a0193a5eb22770419840eff264f1a8d, type: 2}
   _innateStatuses:
@@ -42,7 +45,7 @@ MonoBehaviour:
   _availableOrders:
   - {fileID: 11400000, guid: 56ccb81e15e21bf4c89b3b8b6af0a627, type: 2}
   - {fileID: 11400000, guid: 8e46b8ad7a8c2274a902a80ff1444133, type: 2}
-  - {fileID: 11400000, guid: 1e633693066517f499bc1f35751d025f, type: 2}
+  - {fileID: 11400000, guid: 1ed3b8f0a96f47b4da6bea3a8718c792, type: 2}
   - {fileID: 11400000, guid: 96f305882e103f44ba1aff3817d915c1, type: 2}
   - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
@@ -61,3 +64,4 @@ MonoBehaviour:
   _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
   _editorRadius:
     _object: {fileID: 0}
+  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}

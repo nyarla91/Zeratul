@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Stash
   _focusPriority: 0
-  _nonInteractable: 1
+  _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: d2259cc015c4ec447ad995922eb87208, type: 2}
@@ -26,10 +26,10 @@ MonoBehaviour:
   _maxHitPoints: 30
   _maxShieldPoints: 0
   _shieldRestoreDelay: 250
-  _shieldPointsPerSecond: 5
+  _shieldPointsPerSecond: 7
   _maxEnergyPoints: 0
   _energyRestoreDelay: 250
-  _energyPointsPerSecond: 5
+  _energyPointsPerSecond: 7
   _disableCollision: 0
   _isImmobile: 1
   _isAir: 0

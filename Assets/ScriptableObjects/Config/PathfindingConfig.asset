@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59df81d3f5054f38b727f872cf352002, type: 3}
   m_Name: PathfindingConfig
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.PathfindingConfig
-  _mapOrigin: {x: 0, y: 0}
-  _nodesWorldSpacing: {x: 1, y: 1}
+  _mapOrigin: {x: 0.25, y: 0.25}
+  _nodesWorldSpacing: {x: 0.5, y: 0.5}
   _obstacleRecalculationPeriod: 0
   _bypassDistance: 3
   _ortogonalTravelCost: 2

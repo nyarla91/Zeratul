@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Expert
   _focusPriority: 1
+  _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
   _controlWorth: 1
@@ -21,19 +22,21 @@ MonoBehaviour:
     _baseWorth: 60
     _evaluators:
     - {fileID: 11400000, guid: bdd36bc7d33cd5543bb2ba9864ec8dae, type: 2}
+  _isInvulnerable: 0
   _maxHitPoints: 30
   _maxShieldPoints: 30
   _shieldRestoreDelay: 250
-  _shieldPointsPerSecond: 5
+  _shieldPointsPerSecond: 7
   _maxEnergyPoints: 100
   _energyRestoreDelay: 250
-  _energyPointsPerSecond: 5
-  _noCollision: 0
+  _energyPointsPerSecond: 7
+  _disableCollision: 0
   _isImmobile: 0
+  _isAir: 0
   _maxSpeed: 5
   _size: 1.2
   _rotationSpeed: 720
-  _isAir: 0
+  _disableSight: 0
   _sightRadius: 12
   _weaponType: {fileID: 0}
   _innateStatuses:
@@ -58,3 +61,6 @@ MonoBehaviour:
   _interactionColliderSize: {x: 1, y: 2}
   _interactionColliderOffset: {x: 0, y: 0.75}
   _aiMap: {fileID: 11400000, guid: d027de8ecba73d94b9493dac5d3cb2a8, type: 2}
+  _editorRadius:
+    _object: {fileID: 0}
+  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Alien
   _focusPriority: 10
+  _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
   - {fileID: 11400000, guid: 4d9ddd1194806ac44bcc0d691328a7b0, type: 2}
@@ -22,19 +23,21 @@ MonoBehaviour:
   _attackWorth:
     _baseWorth: 200
     _evaluators: []
+  _isInvulnerable: 0
   _maxHitPoints: 100
   _maxShieldPoints: 50
   _shieldRestoreDelay: 250
-  _shieldPointsPerSecond: 5
+  _shieldPointsPerSecond: 7
   _maxEnergyPoints: 100
   _energyRestoreDelay: 250
-  _energyPointsPerSecond: 5
-  _noCollision: 0
+  _energyPointsPerSecond: 7
+  _disableCollision: 0
   _isImmobile: 0
+  _isAir: 0
   _maxSpeed: 5
   _size: 1.4
   _rotationSpeed: 720
-  _isAir: 0
+  _disableSight: 0
   _sightRadius: 15
   _weaponType: {fileID: 11400000, guid: 4a0193a5eb22770419840eff264f1a8d, type: 2}
   _innateStatuses: []
@@ -60,3 +63,4 @@ MonoBehaviour:
   _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
   _editorRadius:
     _object: {fileID: 0}
+  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}
