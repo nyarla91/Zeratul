@@ -10,7 +10,6 @@ namespace Gameplay.Vision
 {
     public class VisionSource
     {
-        private readonly VisionMap _visionMap;
         private readonly IsometricOverlap _isometricOverlap;
         private readonly VisionConfig _config;
 
@@ -28,7 +27,7 @@ namespace Gameplay.Vision
         public VisionResult Result => _result;
 
         public Vector3 Position => _position.Invoke();
-        public float Radius => _radius.Invoke();
+        public float Radius => Mathf.Max(_radius.Invoke(), _config.MinSight);
         public Owner Owner => _owner.Invoke();
         public bool IsAir => _isAir.Invoke();
         
@@ -37,13 +36,12 @@ namespace Gameplay.Vision
         
         public bool Disposed { get; private set; }
 
-        public VisionSource(VisionMap visionMap, VisionConfig config, IsometricOverlap isometricOverlap, Func<Vector3> position, Func<Owner> owner, Func<float> radius, Func<bool> isAir)
+        public VisionSource(VisionConfig config, IsometricOverlap isometricOverlap, Func<Vector3> position, Func<Owner> owner, Func<float> radius, Func<bool> isAir)
         {
             _position = position;
             _owner = owner;
             _radius = radius;
             _isAir = isAir;
-            _visionMap = visionMap;
             _isometricOverlap = isometricOverlap;
             _config = config;
         }

@@ -41,9 +41,12 @@ namespace Gameplay.Units
         public UnitAI AI { get; private set; }
         public UnitPathing Pathing { get; private set; }
 
-        [ShowNativeProperty] public bool CanAttack => Type.WeaponType;
-        [ShowNativeProperty] public bool CanMove => ! Type.IsImmobile;
-        [ShowNativeProperty] public bool IsVisibleToPlayer => Visibility?.IsVisibleTo(Owner.Player) ?? false;
+        public bool HasLife => ! Type.IsInvulnerable;
+        public bool IsInteractable => ! Type.NonInteractable;
+        public bool HasSight => ! Type.DisableSight;
+        public bool CanAttack => Type.WeaponType;
+        public bool CanMove => ! Type.IsImmobile;
+        public bool IsVisibleToPlayer => Visibility?.IsVisibleTo(Owner.Player) ?? false;
 
         public bool IsDead { get; private set; }
         public bool IsAlive => ! IsDead;
@@ -71,7 +74,7 @@ namespace Gameplay.Units
 
         public void Init(int id, UnitType type, UnitSpawnInfo spawnInfo = null)
         {
-            if (Type != null)
+            if (Type)
                 return;
 
             Id = id;
@@ -79,11 +82,17 @@ namespace Gameplay.Units
 
             Direction = new UnitDirection(this, TacticalPause, spawnInfo?.LookAngle ?? 0);
             Abilities = new UnitAbilities(this, GameTime, TacticalPause, GameDataRegistry);
-            Life = new UnitLife(this, GameTime, TacticalPause, UnitPool);
+            
+            if (HasLife)
+                Life = new UnitLife(this, GameTime, TacticalPause, UnitPool);
+            
             Alliance = new UnitAlliance(this, spawnInfo?.Owner ?? Owner.Enemy);
             Stagger = new UnitStagger(this, TacticalPause);
             Visibility = new UnitVisibility(this, VisionMap);
-            Sight = new UnitSight(this, VisionMap);
+            
+            if (HasSight)
+                Sight = new UnitSight(this, VisionMap);
+            
             Orders = new UnitOrders(this, TacticalPause, GameDataRegistry, UnitPool);
             Statuses = new UnitStatuses(this, GameTime, TacticalPause, GameDataRegistry, UnitPool);
             AI = new UnitAI(this, TacticalPause, GameTime, _aiConfig, spawnInfo?.PatrolPath);
@@ -104,11 +113,11 @@ namespace Gameplay.Units
             {
                 Direction.Save(),
                 Abilities.Save(),
-                Life.Save(),
+                Life?.Save(),
                 Alliance.Save(),
                 Stagger.Save(),
                 Visibility.Save(),
-                Sight.Save(),
+                Sight?.Save(),
                 Orders.Save(),
                 Statuses.Save(),
                 AI.Save(),
@@ -122,11 +131,11 @@ namespace Gameplay.Units
         {
             Direction.ReproduceFromSave(saveData);
             Abilities.ReproduceFromSave(saveData);
-            Life.ReproduceFromSave(saveData);
+            Life?.ReproduceFromSave(saveData);
             Alliance.ReproduceFromSave(saveData);
             Stagger.ReproduceFromSave(saveData);
             Visibility.ReproduceFromSave(saveData);
-            Sight.ReproduceFromSave(saveData);
+            Sight?.ReproduceFromSave(saveData);
             Statuses.ReproduceFromSave(saveData);
             Orders.ReproduceFromSave(saveData);
             AI.ReproduceFromSave(saveData);
@@ -142,11 +151,13 @@ namespace Gameplay.Units
                 UnitFlag.IsAir => Type.IsAir,
                 UnitFlag.CanMove => CanMove,
                 UnitFlag.CanAttack => CanAttack,
+                UnitFlag.HasLife => HasLife,
+                UnitFlag.IsInteractable => IsInteractable,
                 UnitFlag.IsHighlighted => IsHighlighted,
                 UnitFlag.IsSelected => IsSelected,
                 UnitFlag.IsLocked => Abilities.IsLocked,
                 UnitFlag.HasEnergy => Abilities.HasEnergyPoints,
-                UnitFlag.HasShields => Life.HasShieldPoints,
+                UnitFlag.HasShields => HasLife && Life.HasShieldPoints,
                 UnitFlag.IsStaggered => Stagger.IsStaggered,
                 UnitFlag.IsCloaked => Visibility.IsCloaked,
                 UnitFlag.IsDetected => Visibility.IsDetected,

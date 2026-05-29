@@ -10,7 +10,7 @@ namespace Gameplay.Data.Effects
         
         public override void Apply(Unit caster, Unit target)
         {
-            target.Life.TakeDamage(_damage, caster);
+            target.Life?.TakeDamage(_damage, caster);
         }
     }
 }

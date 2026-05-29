@@ -78,6 +78,11 @@ namespace Gameplay.Data.Orders
 
         public override bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
         {
+            if (target.Unit && ! target.Unit.Visibility.CanBeTargetedBy(actor))
+            {
+                errorMessage = Localizer.Translate(_errors.TargetInvalid);
+                return false;
+            }
             if (target.Unit && AbilityType.TargetValidators.IsInvalid(actor, target.Unit, out errorMessage))
             {
                 errorMessage = Localizer.Translate(errorMessage);

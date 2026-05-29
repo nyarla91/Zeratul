@@ -9,7 +9,7 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
-            transform.localPosition = Vector3.up * _unit.Type.SpriteMap.SpriteHeight;
+            transform.localPosition = Vector3.up * (_unit.Type.SpriteMap?.SpriteHeight ?? 0);
             _collider.size = _unit.Type.InteractionColliderSize;
             _collider.offset = _unit.Type.InteractionColliderOffset;
         }

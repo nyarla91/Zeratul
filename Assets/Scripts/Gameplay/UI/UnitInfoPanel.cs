@@ -33,17 +33,20 @@ namespace Gameplay.UI
             _canvasGroup.alpha = 1;
 
             _name.text = CurrentUnit.Type.DisplayName;
-            UpdateStat(_hitPoints, true, CurrentUnit.Life.HitPoints, CurrentUnit.Life.MaxHitPoints);
-            UpdateStat(_shieldPoints, CurrentUnit.Life.HasShieldPoints, CurrentUnit.Life.ShieldPoints, CurrentUnit.Life.MaxShieldPoints);
-            UpdateStat(_energyPoints, CurrentUnit.Abilities.HasEnergyPoints, CurrentUnit.Abilities.EnergyPoints, CurrentUnit.Abilities.MaxEnergyPoints);
+            bool displayHitPoints = CurrentUnit.HasLife;
+            bool displayShieldPoints = CurrentUnit.HasLife && CurrentUnit.Life.HasShieldPoints;
+            bool displayEnergyPoints = CurrentUnit.Abilities.HasEnergyPoints;
+            UpdateStat(_hitPoints, displayHitPoints, CurrentUnit.Life?.HitPoints ?? 0, CurrentUnit.Life?.MaxHitPoints ?? 0);
+            UpdateStat(_shieldPoints, displayShieldPoints, CurrentUnit.Life?.ShieldPoints ?? 0, CurrentUnit.Life?.MaxShieldPoints ?? 0);
+            UpdateStat(_energyPoints, displayEnergyPoints, CurrentUnit.Abilities.EnergyPoints, CurrentUnit.Abilities.MaxEnergyPoints);
             
             UnitTag[] unitTags = CurrentUnit.Type.Tags.Where(t => t.Display).ToArray();
             _tags.text = unitTags.Select(t => t.DisplayName).Enumerate();
         }
 
-        private void UpdateStat(TMP_Text stat, bool show, int current, int max)
+        private void UpdateStat(TMP_Text stat, bool display, int current, int max)
         {
-            stat.text = show ? $"{current} / {max}" : "";
+            stat.text = display ? $"{current} / {max}" : "";
         }
     }
 }

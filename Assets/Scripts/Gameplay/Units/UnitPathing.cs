@@ -24,7 +24,7 @@ namespace Gameplay.Units
             obstacleCollider.enabled = ! Unit.CanMove;
             collider.transform.localScale = Vector3.one * UnitType.Size;
             collider.gameObject.layer = Unit.gameObject.layer;
-            collider.isTrigger = UnitType.NoCollision;
+            collider.isTrigger = UnitType.DisableCollision;
 
             if (Unit.CanMove)
                 return;

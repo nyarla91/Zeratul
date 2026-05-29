@@ -24,6 +24,12 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
+            if (_unit.Type.SpriteMap == null)
+            {
+                _spriteRenderer.sprite = null;
+                return;
+            }
+            
             _unit.Stagger.Began += DiscardCurrentActionTime;
             
             _spriteRenderer.transform.localPosition = _unit.Type.SpriteMap.SpriteHeight * Vector2.up;

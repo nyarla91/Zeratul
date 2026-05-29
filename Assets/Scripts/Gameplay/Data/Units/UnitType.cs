@@ -13,10 +13,13 @@ namespace Gameplay.Data.Units
     {
         [SerializeField] private string _displayName;
         [SerializeField] private int _focusPriority;
-        [Space]
+        [SerializeField] private bool _nonInteractable;
+        [HorizontalLine(2, EColor.White)]
         [SerializeField] private UnitTag[] _tags;
         [SerializeField] private int _controlWorth;
         [SerializeField] private AiUnitTargetEvaluatorGroup _attackWorth;
+        [HorizontalLine(2, EColor.White)]
+        [SerializeField] private bool _isInvulnerable;
         [Space]
         [SerializeField] private int _maxHitPoints;
         [Space]
@@ -28,12 +31,15 @@ namespace Gameplay.Data.Units
         [SerializeField] private int _energyRestoreDelay;
         [SerializeField] private float _energyPointsPerSecond;
         [HorizontalLine(2, EColor.White)]
-        [SerializeField] private bool _noCollision;
+        [SerializeField] private bool _disableCollision;
         [SerializeField] private bool _isImmobile;
+        [SerializeField] private bool _isAir;
+        [Space]
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _size;
         [SerializeField] private float _rotationSpeed;
-        [SerializeField] private bool _isAir;
+        [HorizontalLine(2, EColor.White)]
+        [SerializeField] private bool _disableSight;
         [SerializeField] private int _sightRadius;
         [HorizontalLine(2, EColor.White)]
         [Expandable] [SerializeField] private UnitWeaponType _weaponType;
@@ -52,9 +58,11 @@ namespace Gameplay.Data.Units
 
         public string DisplayName => _displayName;
         public int FocusPriority => _focusPriority;
+        public bool NonInteractable => _nonInteractable;
         public UnitTag[] Tags => _tags;
         public int ControlWorth => _controlWorth;
         public AiUnitTargetEvaluatorGroup AttackWorth => _attackWorth;
+        public bool IsInvulnerable => _isInvulnerable;
         public int MaxHitPoints => _maxHitPoints;
         public int MaxShieldPoints => _maxShieldPoints;
         public int ShieldRestoreDelay => _shieldRestoreDelay;
@@ -62,12 +70,13 @@ namespace Gameplay.Data.Units
         public int MaxEnergyPoints => _maxEnergyPoints;
         public int EnergyRestoreDelay => _energyRestoreDelay;
         public float EnergyPointsPerSecond => _energyPointsPerSecond;
-        public bool NoCollision => _noCollision;
+        public bool DisableCollision => _disableCollision;
         public bool IsImmobile => _isImmobile;
         public float MaxSpeed => _maxSpeed;
         public float Size => _size;
         public float RotationSpeed => _rotationSpeed;
         public bool IsAir => _isAir;
+        public bool DisableSight => _disableSight;
         public int SightRadius => _sightRadius;
         public UnitWeaponType WeaponType => _weaponType;
         public StatusType[] InnateStatuses => _innateStatuses;
@@ -84,8 +93,8 @@ namespace Gameplay.Data.Units
         private void OnValidate()
         {
             _controlWorth = Mathf.Max(_controlWorth, 0);
-            _maxHitPoints = Mathf.Max(_maxHitPoints, 1);
-            _maxShieldPoints = Mathf.Max(_maxShieldPoints, 0);
+            _maxHitPoints = IsInvulnerable ? 0 : Mathf.Max(_maxHitPoints, 1);
+            _maxShieldPoints = IsInvulnerable ? 0 : Mathf.Max(_maxShieldPoints, 0);
             _shieldRestoreDelay = Mathf.Max(_shieldRestoreDelay, 0);
             _shieldPointsPerSecond = Mathf.Max(_shieldPointsPerSecond, 0);
             _maxEnergyPoints  = Mathf.Max(_maxEnergyPoints, 0);
@@ -94,7 +103,7 @@ namespace Gameplay.Data.Units
             _maxSpeed = Mathf.Max(_maxSpeed, 0);
             _size = Mathf.Max(_size, 0.05f);
             _rotationSpeed = Mathf.Max(_rotationSpeed, 0);
-            _sightRadius = Mathf.Max(_sightRadius, 0);
+            _sightRadius = DisableSight ? 0 : Mathf.Max(_sightRadius, 0);
 
             if (IsImmobile)
                 _maxSpeed = 0;

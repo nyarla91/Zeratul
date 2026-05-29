@@ -23,9 +23,9 @@ namespace Gameplay.Units
 
         public Unit DirectThreat { get; private set; }
         public HashSet<Unit> Threats { get; private set; } = new();
-        public HashSet<Unit> SurroundingAllies { get; private set; }
-        public HashSet<Unit> SurroundingHostiles { get; private set; }
-        public HashSet<Unit> SurroundingUnits { get; private set; }
+        public HashSet<Unit> SurroundingAllies { get; private set; } = new();
+        public HashSet<Unit> SurroundingHostiles { get; private set; } = new();
+        public HashSet<Unit> SurroundingUnits { get; private set; } = new();
         public Unit PreferredAttackTarget { get; private set; }
         
         public UnitAI(Unit unit, IPauseReadonly tacticalPause, GameTime gameTime, UnitAiConfig config, UnitPatrolPath patrolPath) : base(unit)
@@ -36,11 +36,14 @@ namespace Gameplay.Units
             _patrolPath = patrolPath;
             
             _spawnPoint = unit.Position;
-            
-            Unit.FixedUpdateAsObservable()
-                .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
-                .Where(_ => _tacticalPause.IsUnpaused)
-                .Subscribe(_ => UpdateSurroundings());
+
+            if (Unit.HasSight)
+            {
+                Unit.FixedUpdateAsObservable()
+                    .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
+                    .Where(_ => _tacticalPause.IsUnpaused)
+                    .Subscribe(_ => UpdateSurroundings());
+            }
             
             Unit.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.TimeBetweenThinking))
@@ -116,9 +119,12 @@ namespace Gameplay.Units
 
         private void UpdateThreats()
         {
-            DirectThreat = _gameTime.Frame - Unit.Life.LastDamageFrame < _config.DamageForgiveTime
-                ? Unit.Life.LastDamageDealer.Alliance.IsHostile(Unit) ? Unit.Life.LastDamageDealer : null
-                : null;
+            if (Unit.HasLife)
+            {
+                DirectThreat = _gameTime.Frame - Unit.Life.LastDamageFrame < _config.DamageForgiveTime
+                    ? Unit.Life.LastDamageDealer.Alliance.IsHostile(Unit) ? Unit.Life.LastDamageDealer : null
+                    : null;
+            }
 
             Threats = SurroundingAllies
                 .SelectMany(a => a.AI.SurroundingHostiles)

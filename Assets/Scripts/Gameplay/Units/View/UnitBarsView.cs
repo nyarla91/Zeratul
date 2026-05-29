@@ -22,16 +22,21 @@ namespace Gameplay.Units.View
         private void Start()
         {
             float canvasWidth = _unit.Type.Size;
-            float canvasYOffset = _unit.Type.SpriteMap.SpriteHeight - _unit.Type.Size * Isometry.VerticalScale * 0.8f;
+            float canvasYOffset = _unit.Type.SpriteMap?.SpriteHeight ?? 0 - _unit.Type.Size * Isometry.VerticalScale * 0.8f;
             _canvasRectTransform = _canvas.GetComponent<RectTransform>();
             _canvasRectTransform.sizeDelta = _canvasRectTransform.sizeDelta.WithX(canvasWidth);
             _canvasRectTransform.localPosition = new Vector3(0, canvasYOffset);
 
-            IObservable<float> observableHitPoints = _unit.ObserveEveryValueChanged(u => u.Life.HitPercent);
-            _hitPointsBar.SubscribeToPercent(observableHitPoints);
-            observableHitPoints.Subscribe(UpdateHitPointsColor);
+            if (_unit.HasLife)
+            {
+                IObservable<float> observableHitPoints = _unit.ObserveEveryValueChanged(u => u.Life.HitPercent);
+                _hitPointsBar.SubscribeToPercent(observableHitPoints);
+                observableHitPoints.Subscribe(UpdateHitPointsColor);
+            }
+            else
+                _hitPointsBar.Hide();
             
-            if (_unit.Life.HasShieldPoints)
+            if (_unit.HasLife && _unit.Life.HasShieldPoints)
                 _shieldPointsBar.SubscribeToPercent(_unit.ObserveEveryValueChanged(u => u.Life.ShieldPercent));
             else
                 _shieldPointsBar.Hide();

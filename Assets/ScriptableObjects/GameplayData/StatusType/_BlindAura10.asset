@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
+  m_Name: _BlindAura10
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
+  _useLock: 1
+  _display: 0
+  _displayIcon: {fileID: 0}
+  _displayName: 
+  _displayDescription: 
+  _rendererPrefabs:
+  - {fileID: 1872224104527679214, guid: 8275ed001d421ea48bdbdb7ee3994549, type: 3}
+  _casterType: 0
+  _unitEffects:
+  - {fileID: 11400000, guid: e65daa351364e04409e573c246ebe3c2, type: 2}
+  _tickPeriod: 1
+  _requireSimulation: 1

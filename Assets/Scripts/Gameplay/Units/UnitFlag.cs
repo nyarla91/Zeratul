@@ -5,6 +5,8 @@
         IsAir,
         CanMove,
         CanAttack,
+        HasLife,
+        IsInteractable,
         IsHighlighted,
         IsSelected,
         IsLocked,

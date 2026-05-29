@@ -309,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _unitType
       value: 
-      objectReference: {fileID: 11400000, guid: 0017f6f735aa34c4e8d56240640e77a4, type: 2}
+      objectReference: {fileID: 11400000, guid: b8483493249b0ba4fa046d200f758168, type: 2}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _ownedByPlayer
       value: 1
@@ -332,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Mjolnir
+      value: Player - Fodder
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -341,7 +341,7 @@ PrefabInstance:
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43b2c4789cbb3c8478ca66f803af5dda, type: 3}
+      objectReference: {fileID: 21300000, guid: 2b6e949bfcb19ec4a8d9ed1737c084b4, type: 3}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Color.g
       value: 1
@@ -839,7 +839,7 @@ PrefabInstance:
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _unitType
       value: 
-      objectReference: {fileID: 11400000, guid: 0017f6f735aa34c4e8d56240640e77a4, type: 2}
+      objectReference: {fileID: 11400000, guid: b8483493249b0ba4fa046d200f758168, type: 2}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _ownedByPlayer
       value: 1
@@ -862,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Mjolnir
+      value: Player - Fodder
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43b2c4789cbb3c8478ca66f803af5dda, type: 3}
+      objectReference: {fileID: 21300000, guid: 2b6e949bfcb19ec4a8d9ed1737c084b4, type: 3}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Color.g
       value: 1
@@ -1051,14 +1051,14 @@ PrefabInstance:
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _unitType
       value: 
-      objectReference: {fileID: 11400000, guid: fadb21d08ea59884cb6f7db676a2ca59, type: 2}
+      objectReference: {fileID: 11400000, guid: 2bef1aa7664d58d49965b743c939c887, type: 2}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _ownedByPlayer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _spawnInfo._owner
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _spawnInfo._unitType
@@ -1074,7 +1074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Sensor Tower
+      value: Enemy - Stash
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -1083,14 +1083,14 @@ PrefabInstance:
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c7fed3e105ddb6f4eb753fca5f14d7ee, type: 3}
+      objectReference: {fileID: 21300000, guid: 8f6ff83d217f8e84f9027f6fbc9e6b14, type: 3}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -1475,7 +1475,7 @@ PrefabInstance:
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _unitType
       value: 
-      objectReference: {fileID: 11400000, guid: 0017f6f735aa34c4e8d56240640e77a4, type: 2}
+      objectReference: {fileID: 11400000, guid: b8483493249b0ba4fa046d200f758168, type: 2}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _ownedByPlayer
       value: 1
@@ -1498,7 +1498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Mjolnir
+      value: Player - Fodder
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -1507,7 +1507,7 @@ PrefabInstance:
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43b2c4789cbb3c8478ca66f803af5dda, type: 3}
+      objectReference: {fileID: 21300000, guid: 2b6e949bfcb19ec4a8d9ed1737c084b4, type: 3}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Color.g
       value: 1
@@ -1635,6 +1635,112 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
   m_PrefabInstance: {fileID: 2130794573959776561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2452370228292235324
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6900177600862257616}
+    m_Modifications:
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 64.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 28.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: _unitType
+      value: 
+      objectReference: {fileID: 11400000, guid: c592bd6dfc7dfb749958435bc08aa595, type: 2}
+    - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: _ownedByPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: _spawnInfo._owner
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: _spawnInfo._unitType
+      value: 
+      objectReference: {fileID: 11400000, guid: 38844722fafa1124096b7e70d46eb0fe, type: 2}
+    - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: _spawnInfo._lookAngle
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: _spawnInfo._ownedByPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_Name
+      value: Player - Sightstealer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e85112154fc93a9458d8fcd05b10ed9c, type: 3}
+    - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+--- !u!4 &4152552329919351075 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1992919721251076383, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
+  m_PrefabInstance: {fileID: 2452370228292235324}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3266251652298085660
 PrefabInstance:
@@ -161076,6 +161182,9 @@ PrefabInstance:
       addedObject: {fileID: 6624950093444712417}
     - targetCorrespondingSourceObject: {fileID: 7989208908861164939, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4152552329919351075}
+    - targetCorrespondingSourceObject: {fileID: 7989208908861164939, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2064507642793332128}
     - targetCorrespondingSourceObject: {fileID: 7989208908861164939, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       insertIndex: -1
@@ -161954,14 +162063,14 @@ PrefabInstance:
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _unitType
       value: 
-      objectReference: {fileID: 11400000, guid: fadb21d08ea59884cb6f7db676a2ca59, type: 2}
+      objectReference: {fileID: 11400000, guid: 2bef1aa7664d58d49965b743c939c887, type: 2}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _ownedByPlayer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _spawnInfo._owner
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2138144213156622876, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: _spawnInfo._unitType
@@ -161977,7 +162086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4497946307925500796, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Name
-      value: Player - Sensor Tower
+      value: Enemy - Stash
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Size.y
@@ -161986,14 +162095,14 @@ PrefabInstance:
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c7fed3e105ddb6f4eb753fca5f14d7ee, type: 3}
+      objectReference: {fileID: 21300000, guid: 8f6ff83d217f8e84f9027f6fbc9e6b14, type: 3}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6679539492248759336, guid: c138f3221916d824aaa69ad8c74174d2, type: 3}
       propertyPath: m_WasSpriteAssigned

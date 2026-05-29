@@ -17,6 +17,7 @@ MonoBehaviour:
   _cannotMove: ordererror-cannot-move
   _cannotAttack: ordererror-cannot-attack
   _targetInvalid: ordererror-target-invalid
+  _targetInvulnerable: ordererror-target-invulnerable
   _cantTargetSelf: ordererror-cannot-target-self
   _notEnoughEnergy: ordererror-not-enough-energy
   _notReadyAbility: ordererror-ability-not-ready

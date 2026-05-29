@@ -48,7 +48,7 @@ namespace Gameplay.Data.Statuses
             {
                 ModifierType.MoveSpeed => unit.Movement?.SpeedModifier,
                 ModifierType.AttackSpeed => unit.Attack?.AttackSpeedModifier,
-                ModifierType.Sight => unit.Sight.RadiusModifier,
+                ModifierType.Sight => unit.Sight?.RadiusModifier,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

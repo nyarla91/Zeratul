@@ -69,7 +69,7 @@ namespace Gameplay.Vision
 
         public VisionSource CreateSource(Func<Vector3> position, Func<Owner> owner, Func<float> radius, Func<bool> isAir)
         {
-            VisionSource source = new(this, _config, IsometricOverlap, position, owner, radius, isAir);
+            VisionSource source = new(_config, IsometricOverlap, position, owner, radius, isAir);
             VisionSources.Add(source);
             return source;
         }
@@ -120,8 +120,14 @@ namespace Gameplay.Vision
 
         private void OnDrawGizmos()
         {
+            foreach (Bounds bounds in PlayerBounds)
+            {
+                Gizmos.color = Color.white;
+                Gizmos.DrawWireCube(bounds.center, bounds.size);
+            }
             foreach (Bounds bounds in PlayerSimulationBounds)
             {
+                Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(bounds.center, bounds.size);
             }
             foreach (VisionSource visionSource in SimulatedVisionSources)

@@ -13,6 +13,9 @@ namespace Gameplay.Data.AiEvaluators
         [SerializeField] private float _multiplier = 1;
         public override float EvaluteTargetWorth(Unit agent, Unit target)
         {
+            if (target.Type.IsInvulnerable)
+                return 0;
+            
             float result = 0;
             
             if (_countHitPoints)

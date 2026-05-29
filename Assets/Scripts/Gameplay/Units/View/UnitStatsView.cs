@@ -24,12 +24,14 @@ namespace Gameplay.Units.View
         private void Start()
         {
             float canvasSize = _unit.Type.Size;
-            float canvasYOffset = _unit.Type.SpriteMap.SpriteHeight;
+            float canvasYOffset = _unit.Type.SpriteMap?.SpriteHeight ?? 0;
             _canvasRectTransform = _canvas.GetComponent<RectTransform>();
             _canvasRectTransform.localScale = new Vector3(1, 0.5f, 1) * canvasSize;
             _canvasRectTransform.localPosition = new Vector3(0, canvasYOffset);
 
-            if ( ! _unit.Life.HasShieldPoints)
+            if (_unit.Type.IsInvulnerable)
+                _shieldPoints.enabled = false;
+            if (_unit.Type.IsInvulnerable || ! _unit.Life.HasShieldPoints)
                 _shieldPoints.enabled = false;
             if ( ! _unit.Abilities.HasEnergyPoints)
                 _energyPoints.enabled = false;
@@ -59,8 +61,8 @@ namespace Gameplay.Units.View
 
         private void UpdateStats()
         {
-            _hitPoints.fillAmount = _unit.Life.HitPercent;
-            _shieldPoints.fillAmount = _unit.Life.ShieldPercent;
+            _hitPoints.fillAmount = _unit.Life?.HitPercent ?? 0;
+            _shieldPoints.fillAmount = _unit.Life?.ShieldPercent ?? 0;
             _energyPoints.fillAmount = _unit.Abilities.EnergyPercent;
         }
     }

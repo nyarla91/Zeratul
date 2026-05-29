@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77a6d601bdf4c3792e6a178ea220de4, type: 3}
-  m_Name: _SpawnMist400
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.SpawnEntityEffect
+  m_Script: {fileID: 11500000, guid: 89b331393bc94174bcc9159c7e20632e, type: 3}
+  m_Name: _SpawnDrone-500
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.SpawnUnitEffect
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _prefab: {fileID: 5776702827455846786, guid: 5d7c630f4c3a7854b9d9a1b88a125729, type: 3}
-  _lifetime: 400
+  _unitType: {fileID: 11400000, guid: eb8a559f80c76bd4e9c7f5653d938a73, type: 2}
+  _spawnedUnitEffects:
+  - {fileID: 11400000, guid: e9447bf6c0040e94c926538a203944d3, type: 2}

@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Fodder
   _focusPriority: 0
+  _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
   _controlWorth: 3
   _attackWorth:
     _baseWorth: 100
     _evaluators: []
+  _isInvulnerable: 0
   _maxHitPoints: 35
   _maxShieldPoints: 10
   _shieldRestoreDelay: 250
@@ -27,13 +29,14 @@ MonoBehaviour:
   _maxEnergyPoints: 0
   _energyRestoreDelay: 250
   _energyPointsPerSecond: 5
-  _noCollision: 0
+  _disableCollision: 0
   _isImmobile: 0
+  _isAir: 0
   _maxSpeed: 4
   _size: 1.2
   _rotationSpeed: 720
-  _isAir: 0
-  _sightRadius: 12
+  _disableSight: 1
+  _sightRadius: 0
   _weaponType: {fileID: 11400000, guid: 0bce0853e1d939445b75026d09ef27c8, type: 2}
   _innateStatuses: []
   _availableOrders:
@@ -58,3 +61,4 @@ MonoBehaviour:
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
   _editorRadius:
     _object: {fileID: 0}
+  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Explosive Mine
   _focusPriority: 0
+  _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
@@ -21,6 +22,7 @@ MonoBehaviour:
   _attackWorth:
     _baseWorth: 20
     _evaluators: []
+  _isInvulnerable: 0
   _maxHitPoints: 5
   _maxShieldPoints: 0
   _shieldRestoreDelay: 0
@@ -28,12 +30,13 @@ MonoBehaviour:
   _maxEnergyPoints: 0
   _energyRestoreDelay: 250
   _energyPointsPerSecond: 5
-  _noCollision: 1
+  _disableCollision: 1
   _isImmobile: 1
+  _isAir: 0
   _maxSpeed: 0
   _size: 0.7
   _rotationSpeed: 0
-  _isAir: 0
+  _disableSight: 0
   _sightRadius: 5
   _weaponType: {fileID: 0}
   _innateStatuses:
@@ -59,3 +62,6 @@ MonoBehaviour:
   _interactionColliderSize: {x: 1, y: 0.7}
   _interactionColliderOffset: {x: 0, y: 0.1}
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
+  _editorRadius:
+    _object: {fileID: 0}
+  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}

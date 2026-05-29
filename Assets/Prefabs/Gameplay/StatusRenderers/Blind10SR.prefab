@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _playerDisplayBehaviour
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2445494940654201378, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Name
-      value: Detector11SR
+      value: Blind10SR
       objectReference: {fileID: 0}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Sprite
@@ -59,18 +59,22 @@ PrefabInstance:
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e0f31c0cdef936418e895bfbccb4a81, type: 3}
+      objectReference: {fileID: 21300000, guid: 44a47e995565fe445a9a8472368ce0e1, type: 3}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.a
-      value: 0.03137255
+      value: 0.019607844
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.b
-      value: 0.35686275
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.g
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.r
+      value: 0.57008934
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._rotationSpeed
@@ -79,7 +83,7 @@ PrefabInstance:
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._radiusSource._object
       value: 
-      objectReference: {fileID: 11400000, guid: 757e5c5c3c32a2c4d8331dc66056af68, type: 2}
+      objectReference: {fileID: 11400000, guid: e65daa351364e04409e573c246ebe3c2, type: 2}
     - target: {fileID: 9068363557109631805, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

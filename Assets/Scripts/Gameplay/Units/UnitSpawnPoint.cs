@@ -10,6 +10,7 @@ namespace Gameplay.Units
     public class UnitSpawnPoint : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Sprite _defaultSprite;
         [SerializeField] private UnitType _unitType;
         [SerializeField] private UnitSpawnInfo _spawnInfo;
 
@@ -28,7 +29,7 @@ namespace Gameplay.Units
         
         private void OnValidate()
         {
-            _spriteRenderer.sprite = UnitType?.SpriteMap.GetSprite("idle", 0, SpawnInfo.LookAngle);
+            _spriteRenderer.sprite = UnitType?.SpriteMap?.GetSprite("idle", 0, SpawnInfo.LookAngle) ?? _defaultSprite;
             _spriteRenderer.color = SpawnInfo.Owner switch
             {
                 Owner.Player => Color.green,

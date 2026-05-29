@@ -73,6 +73,12 @@ namespace Gameplay.Units
                 errorMessage = _errors.CantTargetSelf;
                 return false;
             }
+
+            if (target.Type.IsInvulnerable)
+            {
+                errorMessage = _errors.TargetInvulnerable;
+                return false;
+            }
             
             if (target.IsDead)
                 return false;
