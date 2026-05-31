@@ -1,4 +1,5 @@
-﻿using Gameplay.Vision;
+﻿using Extentions;
+using Gameplay.Vision;
 
 namespace Gameplay.Units
 {
@@ -12,9 +13,9 @@ namespace Gameplay.Units
         public UnitSight(Unit unit, VisionMap visionMap) : base(unit)
         {
             VisionSource = visionMap.CreateSource(
-                () => Unit.Position,
-                () => unit.Alliance.CurrentOwner,
-                () => Radius,
+                () => Unit.IsAlive ? Unit.Position : default,
+                () => Unit.IsAlive ?  unit.Alliance.CurrentOwner : Owner.Neutral,
+                () => Unit.IsAlive ? Radius : 0,
                 () => UnitType.IsAir
                 );
             

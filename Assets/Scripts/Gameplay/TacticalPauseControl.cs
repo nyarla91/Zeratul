@@ -11,7 +11,7 @@ namespace Gameplay
 
         private void Awake()
         {
-            PlayerInput.TacticalPause.Performed += TogglePause;
+            PlayerInput.ToggleTacticalPause.Performed += TogglePause;
         }
 
         public void TogglePause()

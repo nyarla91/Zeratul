@@ -89,13 +89,11 @@ namespace Gameplay.UI
                 return;
             if ( ! IsVisible)
                 return;
-            if ( ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
+            if (OrderType.TargetRequirement == TargetRequirement.None && ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
             {
                 OrderErrorMessage.Show(errorMessage);
-                return;
             }
-
-            if (OrderType.TargetRequirement == TargetRequirement.None)
+            else if (OrderType.TargetRequirement == TargetRequirement.None)
             {
                 Dispatcher.IssueOrderToSelection(OrderType, default);
                 Targeter.CancelTargeting();

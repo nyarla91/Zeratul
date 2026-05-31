@@ -10,7 +10,7 @@ namespace Gameplay.Data.AiEvaluators
     {
         public override float EvaluteTargetWorth(Unit agent, Unit target)
         {
-            if ( ! agent.CanAttack || target.Type.IsInvulnerable || target.Type.NonInteractable)
+            if ( ! agent.CanAttack || target.IsDead ||  target.Type.IsInvulnerable || target.Type.NonInteractable)
                 return MinValue;
             float targetWorth = target.Type.AttackWorth.EvaluteTargetWorth(agent, target) / target.Life.MaxLifePoints * 100;
             return targetWorth / TimeToKill(agent, target);

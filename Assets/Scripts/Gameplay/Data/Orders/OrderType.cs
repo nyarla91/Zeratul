@@ -38,8 +38,10 @@ namespace Gameplay.Data.Orders
 
         public bool CanBeDisplayed(Unit actor) => _displayValidators.IsValid(actor, actor);
 
-        public bool CanBeIssued(Order order) =>
-            IsTargetValid(order.Actor, order.Target, out _) && IsActorValid(order.Actor, out _);
+        public bool CanBeIssued(Order order)
+        {
+            return CanBeDisplayed(order.Actor) && IsTargetValid(order.Actor, order.Target, out _) && IsActorValid(order.Actor, out _);
+        }
 
         public virtual bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
         {

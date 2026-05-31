@@ -4,6 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using Extentions;
 using Gameplay.Data.Configs;
+using Gameplay.Player;
 using Save.Data;
 using UniRx;
 using UniRx.Triggers;
@@ -21,6 +22,7 @@ namespace Gameplay.Vision
         [SerializeField] private Color32 _scoutedColor;
         [SerializeField] private Color32 _revealedColor;
         [SerializeField] private Color32 _enemyRevealedColor;
+        [SerializeField] private Color32 _enemyHighlightedColor;
 
         private bool _isBusy;
             
@@ -36,6 +38,7 @@ namespace Gameplay.Vision
         public FogOfWarCell[] Cells => _cells;
 
         [Inject] private VisionMap VisionMap { get; set; }
+        [Inject] private PlayerSelection Selection { get; set; }
 
         private void Awake()
         {
@@ -99,9 +102,12 @@ namespace Gameplay.Vision
         {
             _isBusy = true;
 
+            HashSet<Bounds> playerBounds = VisionMap.PlayerBounds.ToHashSet();
             HashSet<VisionResult> playerVision = VisionMap.PlayerVisionSources.Select(v => v.Result).ToHashSet();
             HashSet<VisionResult> enemyVision = VisionMap.EnemyVisionSources.Select(v => v.Result).ToHashSet();
-            HashSet<Bounds> playerBounds = VisionMap.PlayerBounds.ToHashSet();
+            VisionResult highlightedEnemyVision = Selection.IsUncontrollableSelected
+                ? Selection.SelectedUnits[0].Sight?.VisionSource.Result ?? default
+                : default;
                 
             await UniTask.RunOnThreadPool(() =>
             {
@@ -113,7 +119,7 @@ namespace Gameplay.Vision
                     FogOfWarCell previousCell = _cells[i];
                     
                     Vector2 point = new Vector2(x + 0.5f, y + 0.5f) * _config.FogPixelScale;
-                    FogOfWarCell rawCell = GetCellForPoint(point, playerBounds, playerVision, enemyVision);
+                    FogOfWarCell rawCell = GetCellForPoint(point, playerBounds, playerVision, enemyVision, highlightedEnemyVision);
                     _cells[i] = rawCell == FogOfWarCell.Hidden
                         ? _cells[i] == FogOfWarCell.Hidden ? FogOfWarCell.Hidden : FogOfWarCell.Scouted
                         : rawCell;
@@ -142,6 +148,7 @@ namespace Gameplay.Vision
                         FogOfWarCell.Scouted => _scoutedColor,
                         FogOfWarCell.Revealed => _revealedColor,
                         FogOfWarCell.EnemyRevealed => _revealedColor,
+                        FogOfWarCell.EnemyHighlighted => _revealedColor,
                         _ => throw new ArgumentOutOfRangeException()
                     };
                 
@@ -151,6 +158,7 @@ namespace Gameplay.Vision
                         FogOfWarCell.Scouted => _revealedColor,
                         FogOfWarCell.Revealed => _revealedColor,
                         FogOfWarCell.EnemyRevealed => _enemyRevealedColor,
+                        FogOfWarCell.EnemyHighlighted => _enemyHighlightedColor,
                         _ => throw new ArgumentOutOfRangeException()
                     };
                 }
@@ -162,10 +170,13 @@ namespace Gameplay.Vision
             EnemyTargetSprite.texture.Apply(false);
         }
 
-        private FogOfWarCell GetCellForPoint(Vector2 point, HashSet<Bounds> playerBounds, HashSet<VisionResult> playerVision, HashSet<VisionResult> enemyVision)
+        private FogOfWarCell GetCellForPoint(Vector2 point, HashSet<Bounds> playerBounds,
+            HashSet<VisionResult> playerVision, HashSet<VisionResult> enemyVision, VisionResult highlightedEnemyVision)
         {
             if ( ! IsPointInBounds(point, playerBounds) || ! IsPointVisible(point, playerVision))
                 return FogOfWarCell.Hidden;
+            if (IsPointVisible(point, new HashSet<VisionResult> {highlightedEnemyVision}))
+                return FogOfWarCell.EnemyHighlighted;
             if (IsPointVisible(point, enemyVision))
                 return FogOfWarCell.EnemyRevealed;
             return FogOfWarCell.Revealed;

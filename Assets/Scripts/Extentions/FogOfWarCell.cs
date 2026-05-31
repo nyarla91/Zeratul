@@ -5,6 +5,7 @@
         Hidden,
         Scouted,
         Revealed,
-        EnemyRevealed
+        EnemyRevealed,
+        EnemyHighlighted
     }
 }

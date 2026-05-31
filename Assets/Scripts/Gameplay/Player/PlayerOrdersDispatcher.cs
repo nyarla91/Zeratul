@@ -1,6 +1,8 @@
-﻿using Gameplay.Data.Configs;
+﻿using System.Linq;
+using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Units;
+using Zenject;
 
 namespace Gameplay.Player
 {
@@ -12,6 +14,7 @@ namespace Gameplay.Player
 
         private bool QueueOrder => _playerInput.QueueOrder.IsHeld;
 
+        [Inject]
         public PlayerOrdersDispatcher(PlayerSelection playerSelection, PlayerInput playerInput, OrderErrorConfig errors)
         {
             _playerSelection = playerSelection;
@@ -40,7 +43,9 @@ namespace Gameplay.Player
             errorMessage = _errors.Generic;
             foreach (Unit selectedUnit in _playerSelection.SelectedPlayerUnits)
             {
-                if (orderType.IsActorValid(selectedUnit, out errorMessage))
+                if ( ! selectedUnit.Type.AvailableOrders.Contains(orderType))
+                    continue;
+                if (orderType.CanBeDisplayed(selectedUnit) && orderType.IsActorValid(selectedUnit, out errorMessage))
                     return true;
             }
             return false;
@@ -60,6 +65,8 @@ namespace Gameplay.Player
             }
             foreach (Unit selectedUnit in _playerSelection.SelectedPlayerUnits)
             {
+                if ( ! selectedUnit.Type.AvailableOrders.Contains(orderType))
+                    continue;
                 if (orderType.IsTargetValid(selectedUnit, target, out errorMessage))
                     return true;
             }

@@ -2,6 +2,7 @@
 using System.Linq;
 using Extentions;
 using Extentions.Pause;
+using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Units;
 using UniRx;
@@ -14,18 +15,17 @@ namespace Gameplay.Player
 {
     public class PlayerMouseTargeting
     {
-        private readonly Camera _mainCamera;
-        private readonly LayerMask _unitsMask;
+        private readonly GamePause _gamePause;
+        private readonly LayersConfig _config;
 
         public Unit Unit { get; private set; }
         public Vector2 Point { get; private set; }
-        
-        [Inject] public GamePause GamePause { get; }
-        
-        public PlayerMouseTargeting(Camera mainCamera, LayerMask unitsMask)
+
+        [Inject]
+        public PlayerMouseTargeting(GamePause gamePause, LayersConfig config)
         {
-            _mainCamera = mainCamera;
-            _unitsMask = unitsMask;
+            _gamePause = gamePause;
+            _config = config;
 
             Observable.EveryFixedUpdate()
                 .Subscribe(_ => UpdateTargets());
@@ -45,12 +45,12 @@ namespace Gameplay.Player
 
         private void UpdateTargets()
         {
-            if (GamePause.IsPaused)
+            if (_gamePause.IsPaused)
                 return;
             
-            Point = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Point = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             
-            Collider2D[] overlap = Physics2D.OverlapPointAll(Point, _unitsMask);
+            Collider2D[] overlap = Physics2D.OverlapPointAll(Point, _config.UnitInteractionMask);
             Unit[] units = overlap.Select(x => x.transform.GetComponentInParent<Unit>()).ClearNull();
             units = units.Where(u => u.IsInteractable && u.IsVisibleToPlayer).ToArray();
 

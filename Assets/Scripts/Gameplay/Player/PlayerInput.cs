@@ -1,5 +1,7 @@
-﻿using Extentions.Input;
+﻿using System;
+using Extentions.Input;
 using Extentions.Pause;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 using InputBinding = Extentions.Input.InputBinding;
@@ -10,49 +12,46 @@ namespace Gameplay.Player
     {
         private readonly InputActions _actions;
 
-        private InputBinding _selectMultiple;
-        private InputBinding _queueOrder;
-        private InputBinding _dragCamera;
-        private InputBinding _focusNextUnitType;
-        private InputBinding _toggleTacticalPause;
-        private InputBinding _togglePause;
-        private InputBinding _quickSave;
-        private InputBinding _quickLoad;
-        private InputBinding _toggleEnemyVision;
-        
-        public IInputBindingReadonly SelectMultiple => _selectMultiple ??= new InputBinding(_actions.General.SelectMultiple, GamePause);
-        public IInputBindingReadonly QueueOrder => _queueOrder ??= new InputBinding(_actions.General.QueueOrder, GamePause);
-        public IInputBindingReadonly DragCamera => _dragCamera ??= new InputBinding(_actions.General.DragCamera, GamePause);
-        public IInputBindingReadonly FocusNextUnitType => _focusNextUnitType ??= new InputBinding(_actions.General.FocusNextUnitType, GamePause);
-        public IInputBindingReadonly TacticalPause => _toggleTacticalPause ??= new InputBinding(_actions.General.ToggleTacticalPause, GamePause);
-        public IInputBindingReadonly TogglePause => _toggleTacticalPause ??= new InputBinding(_actions.General.TogglePause, GamePause);
-        public IInputBindingReadonly QuickSave => _quickSave ??= new InputBinding(_actions.General.QuickSave, GamePause);
-        public IInputBindingReadonly QuickLoad => _quickLoad ??= new InputBinding(_actions.General.QuickLoad, GamePause);
-        public IInputBindingReadonly ToggleEnemyVision => _toggleEnemyVision ??= new InputBinding(_actions.General.ToggleEnemyVision, GamePause);
+        public InputBinding SelectMultiple { get; }
+        public InputBinding QueueOrder { get; }
+        public InputBinding DragCamera { get; }
+        public InputBinding FocusNextUnitType { get; }
+        public InputBinding ToggleTacticalPause { get; }
+        public InputBinding QuickSave { get; }
+        public InputBinding QuickLoad { get; }
+        public InputBinding ToggleEnemyVision { get; }
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 
-        [Inject] public GamePause GamePause { get; set; }
-
-        public PlayerInput()
+        [Inject]
+        public PlayerInput(GamePause pause, ScenarioCompletion scenarioCompletion)
         {
             _actions = new InputActions();
+            SelectMultiple = new InputBinding(_actions.General.SelectMultiple, pause);
+            QueueOrder = new InputBinding(_actions.General.QueueOrder, pause);
+            DragCamera = new InputBinding(_actions.General.DragCamera, pause);
+            FocusNextUnitType = new InputBinding(_actions.General.FocusNextUnitType, pause);
+            ToggleTacticalPause = new InputBinding(_actions.General.ToggleTacticalPause, pause);
+            QuickSave = new InputBinding(_actions.General.QuickSave, pause);
+            QuickLoad = new InputBinding(_actions.General.QuickLoad, pause);
+            ToggleEnemyVision = new InputBinding(_actions.General.ToggleEnemyVision, pause);
             _actions.Enable();
+
+            scenarioCompletion.Completed += Dispose;
         }
 
         public InputAction GetOrderHotkeyAction(string alias) => _actions.FindAction(alias);
 
         public void Dispose()
         {
-            _selectMultiple?.Dispose();
-            _queueOrder?.Dispose();
-            _dragCamera?.Dispose();
-            _focusNextUnitType?.Dispose();
-            _toggleTacticalPause?.Dispose();
-            _togglePause?.Dispose();
-            _quickSave?.Dispose();
-            _quickLoad?.Dispose();
-            _toggleEnemyVision?.Dispose();
+            SelectMultiple.Dispose();
+            QueueOrder.Dispose();
+            DragCamera.Dispose();
+            FocusNextUnitType.Dispose();
+            ToggleTacticalPause.Dispose();
+            QuickSave.Dispose();
+            QuickLoad.Dispose();
+            ToggleEnemyVision.Dispose();
         }
     }
 }

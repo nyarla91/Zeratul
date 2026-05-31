@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 189624906}
   - component: {fileID: 189624909}
   - component: {fileID: 189624907}
+  - component: {fileID: 189624911}
   - component: {fileID: 189624904}
   - component: {fileID: 189624908}
   - component: {fileID: 189624910}
@@ -1176,6 +1177,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 189624909}
   - {fileID: 189624907}
+  - {fileID: 189624911}
   - {fileID: 189624904}
   - {fileID: 189624908}
   - {fileID: 189624910}
@@ -1252,6 +1254,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Architecture::DI.GameplayFactoryInstaller
   _aoePrefab: {fileID: 8065145186129730971, guid: 51e79703bc5e0704f84c8281e9139dc9, type: 3}
   _hitMarkerPrefab: {fileID: 2591187454462232235, guid: 430c56af003b78f4ca121cf730baf543, type: 3}
+--- !u!114 &189624911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189624903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3727815b64744f6a98eb2385bf3188d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Architecture::Architecture.GameplayInstaller
 --- !u!1001 &192217889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2227,6 +2241,9 @@ MonoBehaviour:
   _enemyRevealedColor:
     serializedVersion: 2
     rgba: 251661055
+  _enemyHighlightedColor:
+    serializedVersion: 2
+    rgba: 520096511
 --- !u!212 &388089113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4651,7 +4668,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 25.25, y: 19}
+  m_Offset: {x: 50.25, y: 37.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4661,7 +4678,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 50, y: 37.5}
+  m_Size: {x: 100, y: 75}
   m_EdgeRadius: 0
 --- !u!114 &819588475
 MonoBehaviour:

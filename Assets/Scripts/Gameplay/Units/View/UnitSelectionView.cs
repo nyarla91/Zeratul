@@ -15,6 +15,7 @@ namespace Gameplay.Units.View
         [SerializeField] private SpriteRenderer _overlaySpriteRenderer;
         [SerializeField] private Material _defaultMaterial;
         [SerializeField] private Material _selectedPlayerMaterial;
+        [SerializeField] private Material _selectedPlayerFocusedMaterial;
         [SerializeField] private Material _selectedAllyMaterial;
         [SerializeField] private Material _selectedNeutralMaterial;
         [SerializeField] private Material _selectedEnemyMaterial;
@@ -39,7 +40,7 @@ namespace Gameplay.Units.View
                 {
                     _overlaySpriteRenderer.material = _unit.Alliance.CurrentOwner switch
                     {
-                        Owner.Player => _selectedPlayerMaterial,
+                        Owner.Player => IsFocused() ? _selectedPlayerFocusedMaterial : _selectedPlayerMaterial,
                         Owner.Ally => _selectedAllyMaterial,
                         Owner.Neutral => _selectedNeutralMaterial,
                         Owner.Enemy => _selectedEnemyMaterial,
@@ -51,5 +52,7 @@ namespace Gameplay.Units.View
                     _overlaySpriteRenderer.material = _defaultMaterial;
             }
         }
+
+        private bool IsFocused() => Selection.FocusedUnitType == _unit.Type;
     }
 }

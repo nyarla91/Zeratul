@@ -4,6 +4,7 @@ using System.Linq;
 using Extentions;
 using Gameplay.Data.Units;
 using Gameplay.Units;
+using Zenject;
 
 namespace Gameplay.Player
 {
@@ -24,6 +25,7 @@ namespace Gameplay.Player
         
         public event Action SelectionUpdated;
         
+        [Inject]
         public PlayerSelection(PlayerInput input)
         {
             input.FocusNextUnitType.Performed += FocusNextUnitType;

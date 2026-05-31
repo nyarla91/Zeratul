@@ -150,7 +150,7 @@ namespace Gameplay.Units
             target.Life.TakeDamage(Weapon.BaseDamage, Unit);
             foreach (EffectTargetingUnit effect in Weapon.AdditionalEffects)
             {
-                effect.Apply(Unit, target);
+                effect?.Apply(Unit, target);
             }
             Struck?.Invoke(target);
         }

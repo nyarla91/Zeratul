@@ -298,6 +298,7 @@ MonoBehaviour:
   _overlaySpriteRenderer: {fileID: 7699221574000668089}
   _defaultMaterial: {fileID: 2100000, guid: ef598bce2d9f26d4d876e23c1bfe9341, type: 2}
   _selectedPlayerMaterial: {fileID: 2100000, guid: 8414ac87dfe71134a863d702e13d1e37, type: 2}
+  _selectedPlayerFocusedMaterial: {fileID: 2100000, guid: 90182d4ad7005eb4aa98c731ccc205cc, type: 2}
   _selectedAllyMaterial: {fileID: 2100000, guid: 7d1edd7bcaaacd542a7020fd7f466820, type: 2}
   _selectedNeutralMaterial: {fileID: 2100000, guid: 3eb7b1fba29f156449c7afd7eb6d0017, type: 2}
   _selectedEnemyMaterial: {fileID: 2100000, guid: 90014f5d1b592dc49a7d0cdadd55134f, type: 2}

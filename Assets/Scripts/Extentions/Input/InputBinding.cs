@@ -1,5 +1,6 @@
 ﻿using System;
 using Extentions.Pause;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Extentions.Input

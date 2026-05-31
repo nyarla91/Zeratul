@@ -15,7 +15,7 @@ MonoBehaviour:
   _nodeProximityDistance: 0.1
   _minPathRecalculationPeriod: 0.5
   _avoidanceDistance: 0.2
-  _avoidanceStrength: 0.264
+  _avoidanceStrength: 0.75
   _groundLayer: 6
   _airLayer: 7
   _groundMask:

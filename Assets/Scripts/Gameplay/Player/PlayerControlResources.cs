@@ -6,6 +6,7 @@ using Save.Data;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 using Unit = Gameplay.Units.Unit;
 
 namespace Gameplay.Player
@@ -22,6 +23,7 @@ namespace Gameplay.Player
         public int AvailableSlots => Slots - OccupiedSlots;
         public int ExtraReserve => Mathf.Max(Reserve - AvailableSlots, 0);
         
+        [Inject]
         public PlayerControlResources(PlayerControlConfig config)
         {
             Reserve = Mathf.Max(config.StartingReserve, 0);

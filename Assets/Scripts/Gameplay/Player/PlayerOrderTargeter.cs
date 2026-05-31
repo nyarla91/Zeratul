@@ -15,22 +15,30 @@ namespace Gameplay.Player
         private readonly PlayerMouseTargeting _mouseTargeting;
         private readonly PlayerSelection _selection;
         private readonly PlayerOrdersDispatcher _ordersDispatcher;
+        private readonly OrderErrorConfig _errors;
+        private readonly GamePause _gamePause;
+        private readonly ClickArea _clickArea;
+        private readonly OrderErrorMessage _orderErrorMessage;
         
         public OrderType CurrentOrder { get; private set; }
         public OrderTarget CurrentTarget { get; private set; }
         public bool IsTargeting => CurrentOrder;
 
-        [Inject] private GamePause GamePause { get; set; }
-        [Inject] private ClickArea ClickArea { get; set; }
-        [Inject] private OrderErrorMessage OrderErrorMessage { get; set; }
-        [Inject] private OrderErrorConfig Errors { get; set; }
         
-        public PlayerOrderTargeter(PlayerInput input, PlayerMouseTargeting mouseTargeting, PlayerSelection selection, PlayerOrdersDispatcher ordersDispatcher)
+        [Inject]
+        public PlayerOrderTargeter(PlayerInput input, PlayerMouseTargeting mouseTargeting, PlayerSelection selection,
+            PlayerOrdersDispatcher ordersDispatcher, OrderErrorConfig errors, GamePause gamePause, ClickArea clickArea,
+            OrderErrorMessage orderErrorMessage)
         {
             _input = input;
             _mouseTargeting = mouseTargeting;
             _selection = selection;
             _ordersDispatcher = ordersDispatcher;
+            _errors = errors;
+            _gamePause = gamePause;
+            _clickArea = clickArea;
+            _orderErrorMessage = orderErrorMessage;
+            
             Observable.EveryFixedUpdate()
                 .Subscribe(_ => UpdateCurrentTarget());
             
@@ -43,13 +51,13 @@ namespace Gameplay.Player
         {
             if (isTargeting)
             {
-                ClickArea.LeftClicked += DispatchOrderWithTarget;
-                ClickArea.RightClicked += CancelTargeting;
+                _clickArea.LeftClicked += DispatchOrderWithTarget;
+                _clickArea.RightClicked += CancelTargeting;
             }
             else
             {
-                ClickArea.LeftClicked -= DispatchOrderWithTarget;
-                ClickArea.RightClicked -= CancelTargeting;
+                _clickArea.LeftClicked -= DispatchOrderWithTarget;
+                _clickArea.RightClicked -= CancelTargeting;
             }
         }
 
@@ -72,7 +80,7 @@ namespace Gameplay.Player
                 return;
             if ( ! _ordersDispatcher.CanIssueWithTarget(CurrentOrder, CurrentTarget, out string errorMessage))
             {
-                OrderErrorMessage.Show(errorMessage);
+                _orderErrorMessage.Show(errorMessage);
                 return;
             }
             _ordersDispatcher.IssueOrderToSelection(CurrentOrder, CurrentTarget);
@@ -82,7 +90,7 @@ namespace Gameplay.Player
 
         private void UpdateCurrentTarget()
         {
-            if (GamePause.IsPaused)
+            if (_gamePause.IsPaused)
             {
                 DispatchOrderWithTarget();
             }

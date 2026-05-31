@@ -14,6 +14,7 @@ namespace Architecture
         [SerializeField] private TextFormattingConfig _textFormatting;
         [SerializeField] private UnitAttackConfig _unitAttack;
         [SerializeField] private UnitMovementConfig _unitMovement;
+        [SerializeField] private LayersConfig _layers;
         [SerializeField] private VisionConfig _vision;
         [SerializeField] private Localizer _localizer;
         
@@ -26,6 +27,7 @@ namespace Architecture
             Container.BindInstance(_textFormatting);
             Container.BindInstance(_unitAttack);
             Container.BindInstance(_unitMovement);
+            Container.BindInstance(_layers);
             Container.BindInstance(_vision);
             Container.BindInstance(_localizer);
         }
