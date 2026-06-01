@@ -56,6 +56,7 @@ namespace Gameplay.Units
         
         public bool IsHighlighted => MouseTargeting.Unit == this;
         public bool IsSelected => Selection.IsUnitSelected(this);
+        public bool IsFocused => IsSelected && Selection.FocusedUnitType == Type;
         public bool IsSimulated => VisionMap.IsPointSimulated(Position);
         
         public UnitType Type { get; private set; }

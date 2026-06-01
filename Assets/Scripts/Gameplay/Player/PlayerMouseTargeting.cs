@@ -4,6 +4,7 @@ using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
+using Gameplay.UI;
 using Gameplay.Units;
 using UniRx;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace Gameplay.Player
 
         public Unit Unit { get; private set; }
         public Vector2 Point { get; private set; }
+        
+        public Unit OverrideUnit { get; set; }
 
         [Inject]
         public PlayerMouseTargeting(GamePause gamePause, LayersConfig config)
@@ -47,6 +50,13 @@ namespace Gameplay.Player
         {
             if (_gamePause.IsPaused)
                 return;
+
+            if (OverrideUnit)
+            {
+                Unit = OverrideUnit;
+                Point = OverrideUnit.Position;
+                return;
+            }
             
             Point = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             

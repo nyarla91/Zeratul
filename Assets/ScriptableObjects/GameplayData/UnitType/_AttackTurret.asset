@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: _AttackTurret
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Sentry Turret
-  _focusPriority: 0
+  _focusPriority: -1
   _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}

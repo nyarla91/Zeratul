@@ -14,13 +14,15 @@ namespace Gameplay.Data.Units
         public const int Directions = 16;
 
         private const float AngleStep = 360f / Directions;
-        
+
+        [SerializeField] private Sprite _portrait;
         [SerializeField] private Sprite[] _sprites;
         [SerializeField] private List<UnitAnimation> _animations;
         [SerializeField] private float _spriteHeight;
 
         private Dictionary<string, UnitAnimation> _animationsDic;
-        
+
+        public Sprite Portrait => _portrait;
         public float SpriteHeight => _spriteHeight;
         
         public Sprite GenericSprite => GetSprite("idle", 0, 225);

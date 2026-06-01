@@ -1,7 +1,4 @@
-﻿using System;
-using Extentions.Input;
-using Extentions.Pause;
-using UnityEngine;
+﻿using Extentions.Pause;
 using UnityEngine.InputSystem;
 using Zenject;
 using InputBinding = Extentions.Input.InputBinding;
@@ -20,6 +17,7 @@ namespace Gameplay.Player
         public InputBinding QuickSave { get; }
         public InputBinding QuickLoad { get; }
         public InputBinding ToggleEnemyVision { get; }
+        public InputBinding[] SelectUnit { get; }
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 
@@ -35,6 +33,19 @@ namespace Gameplay.Player
             QuickSave = new InputBinding(_actions.General.QuickSave, pause);
             QuickLoad = new InputBinding(_actions.General.QuickLoad, pause);
             ToggleEnemyVision = new InputBinding(_actions.General.ToggleEnemyVision, pause);
+            SelectUnit = new[]
+            {
+                new InputBinding(_actions.General.SelectUnit1, pause),
+                new InputBinding(_actions.General.SelectUnit2, pause),
+                new InputBinding(_actions.General.SelectUnit3, pause),
+                new InputBinding(_actions.General.SelectUnit4, pause),
+                new InputBinding(_actions.General.SelectUnit5, pause),
+                new InputBinding(_actions.General.SelectUnit6, pause),
+                new InputBinding(_actions.General.SelectUnit7, pause),
+                new InputBinding(_actions.General.SelectUnit8, pause),
+                new InputBinding(_actions.General.SelectUnit9, pause),
+                new InputBinding(_actions.General.SelectUnit10, pause),
+            };
             _actions.Enable();
 
             scenarioCompletion.Completed += Dispose;
@@ -52,6 +63,10 @@ namespace Gameplay.Player
             QuickSave.Dispose();
             QuickLoad.Dispose();
             ToggleEnemyVision.Dispose();
+            foreach (InputBinding inputBinding in SelectUnit)
+            {
+                inputBinding.Dispose();
+            }
         }
     }
 }

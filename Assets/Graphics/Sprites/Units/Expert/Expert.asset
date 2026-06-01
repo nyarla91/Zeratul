@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
   m_Name: Expert
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitSpriteMap
+  _portrait: {fileID: 21300000, guid: ee698fb445a8cf643ac5d6550fab903f, type: 3}
   _sprites:
   - {fileID: 21300000, guid: 358210e5650af774dbfbb3e82ff21820, type: 3}
   - {fileID: 21300000, guid: 1d45baa528f09f9428b4a1c5c07ae08d, type: 3}

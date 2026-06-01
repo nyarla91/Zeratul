@@ -40,7 +40,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaThreshold: 0
-    - _Angle: 569.91
+    - _Angle: 0
     - _ConnectedAlpha: 1
     - _OutlineEnabled: 1
     - _OutlineMode: 0
@@ -48,12 +48,12 @@ Material:
     - _OutlineShape: 0
     - _Thickness: 2
     - _TileMode: 0
-    - _Weight: 0
+    - _Weight: 0.402
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _GradientOutline1: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientOutline2: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline2: {r: 0, g: 0, b: 0, a: 1}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

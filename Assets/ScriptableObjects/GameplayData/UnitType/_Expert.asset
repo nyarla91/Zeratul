@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: _Expert
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Expert
-  _focusPriority: 1
+  _focusPriority: 2
   _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}

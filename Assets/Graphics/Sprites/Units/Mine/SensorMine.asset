@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
   m_Name: SensorMine
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitSpriteMap
+  _portrait: {fileID: 21300000, guid: b5ac7285011300b41b469b2942df741a, type: 3}
   _sprites:
   - {fileID: 21300000, guid: 7997dab5fcde32e40b18e8265daf495d, type: 3}
   _animations:

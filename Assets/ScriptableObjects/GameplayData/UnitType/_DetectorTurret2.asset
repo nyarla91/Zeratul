@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: _DetectorTurret2
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Enhanced Sensor Tower
-  _focusPriority: 0
+  _focusPriority: -100
   _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}

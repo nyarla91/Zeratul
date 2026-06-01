@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
   m_Name: AttackTurret
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitSpriteMap
+  _portrait: {fileID: 21300000, guid: fa01bdd437b30d34fa65b579c3a9ea44, type: 3}
   _sprites:
   - {fileID: 21300000, guid: b9b2f076b4577b2429ae87012e2e1078, type: 3}
   - {fileID: 21300000, guid: 70d0667ad9865574b836e2d8aceb3562, type: 3}

@@ -181,6 +181,105 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit1"",
+                    ""type"": ""Button"",
+                    ""id"": ""b04c28d8-051f-4f38-a55a-d03cb9c576aa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit2"",
+                    ""type"": ""Button"",
+                    ""id"": ""139438dd-10f2-4822-81ce-a9eb28331039"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit3"",
+                    ""type"": ""Button"",
+                    ""id"": ""f11d2a00-2012-4e8c-9b87-858020395454"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit4"",
+                    ""type"": ""Button"",
+                    ""id"": ""092c5d9e-8866-4d9e-bb34-baca9be2f72c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit5"",
+                    ""type"": ""Button"",
+                    ""id"": ""551498e9-9dc3-4a37-9aba-d52917b058b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit6"",
+                    ""type"": ""Button"",
+                    ""id"": ""9417a046-f66f-40ff-918f-7aec1d5cbca6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit7"",
+                    ""type"": ""Button"",
+                    ""id"": ""818fddb3-d580-47db-bc48-f5393923e6e5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit8"",
+                    ""type"": ""Button"",
+                    ""id"": ""41f08568-7111-45c0-9fa9-fac248fe2b8c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit9"",
+                    ""type"": ""Button"",
+                    ""id"": ""94ab5a4d-27fb-4074-a2b0-9a050d94162f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectUnit10"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2b09a94-5eab-4a3f-9ff4-0238c9642346"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectAllUnits"",
+                    ""type"": ""Button"",
+                    ""id"": ""166c639a-596f-4aa5-af3f-a7ad475f5ff2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,6 +401,127 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToggleEnemyVision"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22124d8e-0765-4dd3-b733-c35d1035cf2f"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4659eb40-11e4-4c6e-b750-8ab33faf0d55"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1f06df0-213e-4aa9-a317-d08d642f9dd0"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d571219d-bb36-4832-a0c1-41d32e8a4453"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9b21b27-ea59-4fab-9351-236499b79221"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84800a31-28e1-4609-938e-ba8eafa7cee7"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""245e1d4c-c320-4b96-bc41-4296b138f1a4"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbf11fa4-2681-41c8-af65-603bf3f09a87"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f104f580-b672-4843-bd9c-b23e1e45df65"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70f3fb02-4e55-4514-83b6-da23a8907f83"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectUnit10"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15b21328-22cd-4710-a10f-c624cc57a609"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectAllUnits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1147,6 +1367,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_General_QuickSave = m_General.FindAction("QuickSave", throwIfNotFound: true);
         m_General_QuickLoad = m_General.FindAction("QuickLoad", throwIfNotFound: true);
         m_General_ToggleEnemyVision = m_General.FindAction("ToggleEnemyVision", throwIfNotFound: true);
+        m_General_SelectUnit1 = m_General.FindAction("SelectUnit1", throwIfNotFound: true);
+        m_General_SelectUnit2 = m_General.FindAction("SelectUnit2", throwIfNotFound: true);
+        m_General_SelectUnit3 = m_General.FindAction("SelectUnit3", throwIfNotFound: true);
+        m_General_SelectUnit4 = m_General.FindAction("SelectUnit4", throwIfNotFound: true);
+        m_General_SelectUnit5 = m_General.FindAction("SelectUnit5", throwIfNotFound: true);
+        m_General_SelectUnit6 = m_General.FindAction("SelectUnit6", throwIfNotFound: true);
+        m_General_SelectUnit7 = m_General.FindAction("SelectUnit7", throwIfNotFound: true);
+        m_General_SelectUnit8 = m_General.FindAction("SelectUnit8", throwIfNotFound: true);
+        m_General_SelectUnit9 = m_General.FindAction("SelectUnit9", throwIfNotFound: true);
+        m_General_SelectUnit10 = m_General.FindAction("SelectUnit10", throwIfNotFound: true);
+        m_General_SelectAllUnits = m_General.FindAction("SelectAllUnits", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1265,6 +1496,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_General_QuickSave;
     private readonly InputAction m_General_QuickLoad;
     private readonly InputAction m_General_ToggleEnemyVision;
+    private readonly InputAction m_General_SelectUnit1;
+    private readonly InputAction m_General_SelectUnit2;
+    private readonly InputAction m_General_SelectUnit3;
+    private readonly InputAction m_General_SelectUnit4;
+    private readonly InputAction m_General_SelectUnit5;
+    private readonly InputAction m_General_SelectUnit6;
+    private readonly InputAction m_General_SelectUnit7;
+    private readonly InputAction m_General_SelectUnit8;
+    private readonly InputAction m_General_SelectUnit9;
+    private readonly InputAction m_General_SelectUnit10;
+    private readonly InputAction m_General_SelectAllUnits;
     /// <summary>
     /// Provides access to input actions defined in input action map "General".
     /// </summary>
@@ -1316,6 +1558,50 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "General/ToggleEnemyVision".
         /// </summary>
         public InputAction @ToggleEnemyVision => m_Wrapper.m_General_ToggleEnemyVision;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit1".
+        /// </summary>
+        public InputAction @SelectUnit1 => m_Wrapper.m_General_SelectUnit1;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit2".
+        /// </summary>
+        public InputAction @SelectUnit2 => m_Wrapper.m_General_SelectUnit2;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit3".
+        /// </summary>
+        public InputAction @SelectUnit3 => m_Wrapper.m_General_SelectUnit3;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit4".
+        /// </summary>
+        public InputAction @SelectUnit4 => m_Wrapper.m_General_SelectUnit4;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit5".
+        /// </summary>
+        public InputAction @SelectUnit5 => m_Wrapper.m_General_SelectUnit5;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit6".
+        /// </summary>
+        public InputAction @SelectUnit6 => m_Wrapper.m_General_SelectUnit6;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit7".
+        /// </summary>
+        public InputAction @SelectUnit7 => m_Wrapper.m_General_SelectUnit7;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit8".
+        /// </summary>
+        public InputAction @SelectUnit8 => m_Wrapper.m_General_SelectUnit8;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit9".
+        /// </summary>
+        public InputAction @SelectUnit9 => m_Wrapper.m_General_SelectUnit9;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectUnit10".
+        /// </summary>
+        public InputAction @SelectUnit10 => m_Wrapper.m_General_SelectUnit10;
+        /// <summary>
+        /// Provides access to the underlying input action "General/SelectAllUnits".
+        /// </summary>
+        public InputAction @SelectAllUnits => m_Wrapper.m_General_SelectAllUnits;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1372,6 +1658,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ToggleEnemyVision.started += instance.OnToggleEnemyVision;
             @ToggleEnemyVision.performed += instance.OnToggleEnemyVision;
             @ToggleEnemyVision.canceled += instance.OnToggleEnemyVision;
+            @SelectUnit1.started += instance.OnSelectUnit1;
+            @SelectUnit1.performed += instance.OnSelectUnit1;
+            @SelectUnit1.canceled += instance.OnSelectUnit1;
+            @SelectUnit2.started += instance.OnSelectUnit2;
+            @SelectUnit2.performed += instance.OnSelectUnit2;
+            @SelectUnit2.canceled += instance.OnSelectUnit2;
+            @SelectUnit3.started += instance.OnSelectUnit3;
+            @SelectUnit3.performed += instance.OnSelectUnit3;
+            @SelectUnit3.canceled += instance.OnSelectUnit3;
+            @SelectUnit4.started += instance.OnSelectUnit4;
+            @SelectUnit4.performed += instance.OnSelectUnit4;
+            @SelectUnit4.canceled += instance.OnSelectUnit4;
+            @SelectUnit5.started += instance.OnSelectUnit5;
+            @SelectUnit5.performed += instance.OnSelectUnit5;
+            @SelectUnit5.canceled += instance.OnSelectUnit5;
+            @SelectUnit6.started += instance.OnSelectUnit6;
+            @SelectUnit6.performed += instance.OnSelectUnit6;
+            @SelectUnit6.canceled += instance.OnSelectUnit6;
+            @SelectUnit7.started += instance.OnSelectUnit7;
+            @SelectUnit7.performed += instance.OnSelectUnit7;
+            @SelectUnit7.canceled += instance.OnSelectUnit7;
+            @SelectUnit8.started += instance.OnSelectUnit8;
+            @SelectUnit8.performed += instance.OnSelectUnit8;
+            @SelectUnit8.canceled += instance.OnSelectUnit8;
+            @SelectUnit9.started += instance.OnSelectUnit9;
+            @SelectUnit9.performed += instance.OnSelectUnit9;
+            @SelectUnit9.canceled += instance.OnSelectUnit9;
+            @SelectUnit10.started += instance.OnSelectUnit10;
+            @SelectUnit10.performed += instance.OnSelectUnit10;
+            @SelectUnit10.canceled += instance.OnSelectUnit10;
+            @SelectAllUnits.started += instance.OnSelectAllUnits;
+            @SelectAllUnits.performed += instance.OnSelectAllUnits;
+            @SelectAllUnits.canceled += instance.OnSelectAllUnits;
         }
 
         /// <summary>
@@ -1413,6 +1732,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ToggleEnemyVision.started -= instance.OnToggleEnemyVision;
             @ToggleEnemyVision.performed -= instance.OnToggleEnemyVision;
             @ToggleEnemyVision.canceled -= instance.OnToggleEnemyVision;
+            @SelectUnit1.started -= instance.OnSelectUnit1;
+            @SelectUnit1.performed -= instance.OnSelectUnit1;
+            @SelectUnit1.canceled -= instance.OnSelectUnit1;
+            @SelectUnit2.started -= instance.OnSelectUnit2;
+            @SelectUnit2.performed -= instance.OnSelectUnit2;
+            @SelectUnit2.canceled -= instance.OnSelectUnit2;
+            @SelectUnit3.started -= instance.OnSelectUnit3;
+            @SelectUnit3.performed -= instance.OnSelectUnit3;
+            @SelectUnit3.canceled -= instance.OnSelectUnit3;
+            @SelectUnit4.started -= instance.OnSelectUnit4;
+            @SelectUnit4.performed -= instance.OnSelectUnit4;
+            @SelectUnit4.canceled -= instance.OnSelectUnit4;
+            @SelectUnit5.started -= instance.OnSelectUnit5;
+            @SelectUnit5.performed -= instance.OnSelectUnit5;
+            @SelectUnit5.canceled -= instance.OnSelectUnit5;
+            @SelectUnit6.started -= instance.OnSelectUnit6;
+            @SelectUnit6.performed -= instance.OnSelectUnit6;
+            @SelectUnit6.canceled -= instance.OnSelectUnit6;
+            @SelectUnit7.started -= instance.OnSelectUnit7;
+            @SelectUnit7.performed -= instance.OnSelectUnit7;
+            @SelectUnit7.canceled -= instance.OnSelectUnit7;
+            @SelectUnit8.started -= instance.OnSelectUnit8;
+            @SelectUnit8.performed -= instance.OnSelectUnit8;
+            @SelectUnit8.canceled -= instance.OnSelectUnit8;
+            @SelectUnit9.started -= instance.OnSelectUnit9;
+            @SelectUnit9.performed -= instance.OnSelectUnit9;
+            @SelectUnit9.canceled -= instance.OnSelectUnit9;
+            @SelectUnit10.started -= instance.OnSelectUnit10;
+            @SelectUnit10.performed -= instance.OnSelectUnit10;
+            @SelectUnit10.canceled -= instance.OnSelectUnit10;
+            @SelectAllUnits.started -= instance.OnSelectAllUnits;
+            @SelectAllUnits.performed -= instance.OnSelectAllUnits;
+            @SelectAllUnits.canceled -= instance.OnSelectAllUnits;
         }
 
         /// <summary>
@@ -2000,6 +2352,83 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleEnemyVision(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit5" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit5(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit6" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit6(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit7" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit7(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit8" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit8(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit9" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit9(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectUnit10" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectUnit10(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectAllUnits" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectAllUnits(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

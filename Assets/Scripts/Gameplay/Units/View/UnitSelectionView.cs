@@ -40,7 +40,7 @@ namespace Gameplay.Units.View
                 {
                     _overlaySpriteRenderer.material = _unit.Alliance.CurrentOwner switch
                     {
-                        Owner.Player => IsFocused() ? _selectedPlayerFocusedMaterial : _selectedPlayerMaterial,
+                        Owner.Player => _unit.IsFocused ? _selectedPlayerFocusedMaterial : _selectedPlayerMaterial,
                         Owner.Ally => _selectedAllyMaterial,
                         Owner.Neutral => _selectedNeutralMaterial,
                         Owner.Enemy => _selectedEnemyMaterial,
@@ -52,7 +52,5 @@ namespace Gameplay.Units.View
                     _overlaySpriteRenderer.material = _defaultMaterial;
             }
         }
-
-        private bool IsFocused() => Selection.FocusedUnitType == _unit.Type;
     }
 }
