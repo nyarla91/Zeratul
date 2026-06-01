@@ -19,9 +19,8 @@ namespace Gameplay.Player
         public int Slots { get; private set; }
 
         public HashSet<Unit> ControlledUnits => _controlledUnits.ToHashSet();
-        public int OccupiedSlots => _controlledUnits.Sum(u => u.Type.ControlWorth);
+        public int OccupiedSlots => _controlledUnits.Sum(u => u.Type.ControlSlots);
         public int AvailableSlots => Slots - OccupiedSlots;
-        public int ExtraReserve => Mathf.Max(Reserve - AvailableSlots, 0);
         
         [Inject]
         public PlayerControlResources(PlayerControlConfig config)
@@ -64,7 +63,7 @@ namespace Gameplay.Player
             _controlledUnits = _controlledUnits.Where(u => u.Alliance.OwnedByPlayer && u.IsAlive).ToHashSet();
         }
 
-        public bool CanFitUnit(Unit unit) => AvailableSlots >= unit.Type.ControlWorth;
+        public bool CanFitUnit(Unit unit) => AvailableSlots >= unit.Type.ControlSlots;
 
         public bool TryAddUnit(Unit unit)
         {

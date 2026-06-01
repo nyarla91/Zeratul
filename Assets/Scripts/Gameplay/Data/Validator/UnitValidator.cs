@@ -10,10 +10,15 @@ namespace Gameplay.Data.Validator
         [SerializeField] private string _invalidMessage;
         [SerializeField] private bool _not;
 
-        public string InvalidMessage => _invalidMessage;
+        protected string RawInvalidMessage => _invalidMessage;
         public bool Not => _not;
 
         public abstract bool IsValid(Unit actor, Unit target);
+
+        public virtual string GetInvalidMessage(Unit actor, Unit target)
+        {
+            return RawInvalidMessage;
+        }
     }
     
     [Serializable]
@@ -32,7 +37,7 @@ namespace Gameplay.Data.Validator
                     continue;
                 if (validator.IsValid(actor, unit) != validator.Not)
                     continue;
-                invalidMessage = validator.InvalidMessage;
+                invalidMessage = validator.GetInvalidMessage(actor, unit);
                 return true;
             }
             return false;

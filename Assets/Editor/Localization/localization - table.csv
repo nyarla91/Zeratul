@@ -20,6 +20,7 @@ order-passive;Passive;Пассивная способность^
 order-stop-description;Cancel all current orders.;Отменить все текущие приказы.^
 order-stop-name;Stop;Остановиться^
 ordererror-ability-not-ready;Ability not ready;Способность не готова^
+ordererror-target-invulnerable;;^
 ordererror-cannot-attack;Cannot attack;Невозможно атаковать^
 ordererror-cannot-move;Cannot move;Невозможно двигаться^
 ordererror-cannot-target-self;Cannot target self;Нельзя выбирать целью себя^
@@ -133,8 +134,8 @@ unit-snake-name;Snake;Змеюка^
 unittag-mechanical;Mechanical;Механический^
 unittag-organic;Organic;Органический^
 unittag-robotic;Robotic;Роботический^
-validator-enough-control-reserve;Not enought available control slots;Недостаточно доступных ячеек контроля^
-validator-enough-control-slots;Not enough control slots;Недостаточно ячеек контроля^
+validator-enough-control-reserve;Not enought control points (#);Недостаточно очков контроля (#)^
+validator-enough-control-slots;Not enough control slots (#);Недостаточно ячеек контроля (#)^
 validator-has-different-owner;Can't target your own units;Нельзя выбирать своих юнитов^
 validator-has-same-owner;Target your own unit;Выберите своего юнита^
 validator-is-air;Target must be air;Цель должна быть воздушной^

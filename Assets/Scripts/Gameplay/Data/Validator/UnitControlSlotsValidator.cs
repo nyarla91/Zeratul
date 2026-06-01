@@ -1,5 +1,6 @@
 ﻿using Gameplay.Player;
 using Gameplay.Units;
+using Localization;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace Gameplay.Data.Validator
     public class UnitControlSlotsValidator : UnitValidator
     {
         [SerializeField] private SOInjectPresenter _gameplayInjectPresenter;
+        [SerializeField] private Localizer _localizer;
         
         [Inject] private PlayerControlResources PlayerControlResources { get; set; }
         
@@ -16,6 +18,12 @@ namespace Gameplay.Data.Validator
         {
             _gameplayInjectPresenter.Inject(this);
             return PlayerControlResources.CanFitUnit(target);
+        }
+
+        public override string GetInvalidMessage(Unit actor, Unit target)
+        {
+            string result = _localizer.Translate(RawInvalidMessage);
+            return result.Replace("#", (target.Type.ControlSlots - PlayerControlResources.AvailableSlots).ToString());
         }
     }
 }

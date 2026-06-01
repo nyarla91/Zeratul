@@ -20,6 +20,7 @@ MonoBehaviour:
   _rawDisplayDescription: ability-invasion-description
   _icon: {fileID: 21300000, guid: 47ede2516144cbf4b98544b2b2978efb, type: 3}
   _hotkeyAlias: Ability5
+  _highlightControl: 1
   _abilityType: {fileID: 11400000, guid: ecc620c3ad6959f4dbf350f78d520812, type: 2}
   _aoeEllipseRadius:
     _object: {fileID: 0}

@@ -17,6 +17,7 @@ namespace Gameplay.Player
         public InputBinding QuickSave { get; }
         public InputBinding QuickLoad { get; }
         public InputBinding ToggleEnemyVision { get; }
+        public InputBinding SelectAllUnits { get; }
         public InputBinding[] SelectUnit { get; }
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
@@ -33,6 +34,7 @@ namespace Gameplay.Player
             QuickSave = new InputBinding(_actions.General.QuickSave, pause);
             QuickLoad = new InputBinding(_actions.General.QuickLoad, pause);
             ToggleEnemyVision = new InputBinding(_actions.General.ToggleEnemyVision, pause);
+            SelectAllUnits = new InputBinding(_actions.General.SelectAllUnits, pause);
             SelectUnit = new[]
             {
                 new InputBinding(_actions.General.SelectUnit1, pause),

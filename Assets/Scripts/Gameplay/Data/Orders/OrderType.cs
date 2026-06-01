@@ -18,9 +18,11 @@ namespace Gameplay.Data.Orders
         [SerializeField] [TextArea(4, 10)] private string _rawDisplayDescription;
         [SerializeField] private Sprite _icon;
         [SerializeField] private string _hotkeyAlias;
+        [SerializeField] private bool _highlightControl;
 
         protected Localizer Localizer => _localizer;
-        
+        public bool HighlightControl => _highlightControl;
+
         public string DisplayName => Localizer.Translate(_displayName);
         public string RawDisplayDescription => Localizer.Translate(_rawDisplayDescription);
         public Sprite Icon => _icon;

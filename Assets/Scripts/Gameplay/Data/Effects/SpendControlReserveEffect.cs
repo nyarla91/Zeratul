@@ -15,7 +15,7 @@ namespace Gameplay.Data.Effects
         public override void Apply(Unit caster, Unit target)
         {
             _gameplayInjectPresenter.Inject(this);
-            PlayerControlResources.TrySpendReserve(target.Type.ControlWorth);
+            PlayerControlResources.TrySpendReserve(target.Type.ControlCost);
         }
     }
 }

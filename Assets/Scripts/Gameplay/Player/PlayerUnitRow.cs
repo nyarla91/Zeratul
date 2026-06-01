@@ -31,8 +31,10 @@ namespace Gameplay.Player
             {
                 InputBinding binding = input.SelectUnit[i];
                 int unitIndex = i;
-                binding.Pressed += () => SelectUnit(unitIndex);
+                binding.Performed += () => SelectUnit(unitIndex);
             }
+
+            _input.SelectAllUnits.Performed += SelectAll;
 
             Debug.Log(unitPool);
 
@@ -56,6 +58,11 @@ namespace Gameplay.Player
                 _selection.ToggleUnitSelection(_slots[index]);
             else
                 _selection.SelectUnits(_slots[index]);
+        }
+
+        private void SelectAll()
+        {
+            _selection.SelectUnits(_slots);
         }
 
         public void Dispose()

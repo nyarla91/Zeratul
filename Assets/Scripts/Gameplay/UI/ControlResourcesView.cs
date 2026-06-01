@@ -18,17 +18,15 @@ namespace Gameplay.UI
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Image[] _slots;
         [SerializeField] private UnitValidatorGroup _displayValidator;
-        [SerializeField] private TMP_Text _extraReserve;
-        [SerializeField] private Sprite _occupiedSprite;
+        [SerializeField] private TMP_Text _reserve;
         [SerializeField] private Sprite _availableSprite;
-        [SerializeField] private Sprite _availableReserveSprite;
-        [SerializeField] private Color _defaultColor;
-        [SerializeField] private Color _highlightColor;
-        [SerializeField] private Color _extraReserveColor;
-        [SerializeField] private Color _extraCostColor;
+        [SerializeField] private Sprite _highlightedSprite;
+        [SerializeField] private Color _reserveColor;
+        [SerializeField] private Color _unavailableReserveColor;
         [SerializeField] private UnitValidatorGroup _highlightValidator;
         
         [Inject] private PlayerControlResources ControlResources { get; set; }
+        [Inject] private PlayerOrderTargeter Targeter { get; set; }
         [Inject] private PlayerMouseTargeting PlayerMouseTargeting { get; set; }
         [Inject] private UnitPool UnitPool { get; set; }
 
@@ -44,52 +42,53 @@ namespace Gameplay.UI
             
             this.UpdateAsObservable()
                 .Where(_ => _canvasGroup.alpha.Equals(1))
-                .Subscribe(_ => UpdateSlots());
+                .Subscribe(_ => UpdateView());
         }
 
-        private void UpdateSlots()
+        private void UpdateView()
         {
-            int highlightStart = -1;
-            int highlightLength = 0;
-            Unit highlightedUnit = PlayerMouseTargeting.Unit;
-            bool highlight = PlayerMouseTargeting.Unit && _highlightValidator.IsValid(highlightedUnit, highlightedUnit); 
-            if (highlight)
-            {
-                highlightStart = highlightedUnit.Alliance.OwnedByPlayer ? 0 : ControlResources.OccupiedSlots;
-                highlightLength = highlightedUnit.Type.ControlWorth;
-            }
+            Unit highlightedUnit = GetHighlightedUnit();
+            UpdateSlots(highlightedUnit);
+            UpdateReserve(highlightedUnit);
+        }
+
+        private void UpdateSlots(Unit highlightedUnit)
+        {
+            int availableSlots = ControlResources.AvailableSlots;
+            int highlightedSlots = highlightedUnit ? (Mathf.Min(availableSlots, highlightedUnit.Type.ControlSlots)) : 0;
             
             for (int i = 0; i < _slots.Length; i++)
             {
-                if (i >= ControlResources.Slots)
+                Image slot = _slots[i];
+                if (i >= availableSlots)
                 {
-                    _slots[i].gameObject.SetActive(false);
+                    slot.gameObject.SetActive(false);
                     continue;
                 }
-                _slots[i].gameObject.SetActive(true);
-
-                if (i < ControlResources.OccupiedSlots)
-                    _slots[i].sprite = _occupiedSprite;
-                else if (i < ControlResources.OccupiedSlots + ControlResources.Reserve)
-                    _slots[i].sprite = _availableReserveSprite;
+                slot.gameObject.SetActive(true);
+                if (i < highlightedSlots)
+                    slot.sprite = _highlightedSprite;
                 else
-                    _slots[i].sprite = _availableSprite;
-                
-                bool highlightSlot = i >= highlightStart && i < highlightStart + highlightLength;
-                _slots[i].color = highlightSlot ? _highlightColor : _defaultColor;
+                    slot.sprite = _availableSprite;
             }
+        }
 
-            int extra = ControlResources.ExtraReserve;
-            Color extraColor = _extraReserveColor;
-            if (highlight && highlightedUnit.Alliance.OwnedByEnemy && highlightedUnit.Type.ControlWorth > ControlResources.AvailableSlots)
-            {
-                extra = highlightedUnit.Type.ControlWorth - ControlResources.AvailableSlots;
-                extraColor = _extraCostColor;
-            }
-            
-            _extraReserve.gameObject.SetActive(extra > 0);
-            _extraReserve.text = $"+{extra}";
-            _extraReserve.color = extraColor;
+        private void UpdateReserve(Unit highlightedUnit)
+        {
+            int reserve = ControlResources.Reserve;
+            int reserveRequired = highlightedUnit?.Type.ControlCost ?? 0;
+            _reserve.color = (reserveRequired > reserve) ? _unavailableReserveColor : _reserveColor;
+            _reserve.text = reserveRequired > 0 ? $"{reserveRequired}/{reserve}" : $"{reserve}";
+        }
+
+        private Unit GetHighlightedUnit()
+        {
+            if ( ! (Targeter.CurrentOrder?.HighlightControl ?? false))
+                return null;
+            Unit result = PlayerMouseTargeting.Unit;
+            if (result == null || _highlightValidator.IsInvalid(result, result))
+                return null;
+            return result;
         }
     }
 }

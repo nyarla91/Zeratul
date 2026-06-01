@@ -16,7 +16,8 @@ namespace Gameplay.Data.Units
         [SerializeField] private bool _nonInteractable;
         [HorizontalLine(2, EColor.White)]
         [SerializeField] private UnitTag[] _tags;
-        [SerializeField] private int _controlWorth;
+        [SerializeField] private int _controlCost;
+        [SerializeField] private int _controlSlots;
         [SerializeField] private AiUnitTargetEvaluatorGroup _attackWorth;
         [HorizontalLine(2, EColor.White)]
         [SerializeField] private bool _isInvulnerable;
@@ -60,7 +61,8 @@ namespace Gameplay.Data.Units
         public int FocusPriority => _focusPriority;
         public bool NonInteractable => _nonInteractable;
         public UnitTag[] Tags => _tags;
-        public int ControlWorth => _controlWorth;
+        public int ControlCost => _controlCost;
+        public int ControlSlots => _controlSlots;
         public AiUnitTargetEvaluatorGroup AttackWorth => _attackWorth;
         public bool IsInvulnerable => _isInvulnerable;
         public int MaxHitPoints => _maxHitPoints;
@@ -92,7 +94,8 @@ namespace Gameplay.Data.Units
 
         private void OnValidate()
         {
-            _controlWorth = Mathf.Max(_controlWorth, 0);
+            _controlCost = Mathf.Max(_controlCost, 0);
+            _controlSlots = Mathf.Max(_controlSlots, 0);
             _maxHitPoints = IsInvulnerable ? 0 : Mathf.Max(_maxHitPoints, 1);
             _maxShieldPoints = IsInvulnerable ? 0 : Mathf.Max(_maxShieldPoints, 0);
             _shieldRestoreDelay = Mathf.Max(_shieldRestoreDelay, 0);

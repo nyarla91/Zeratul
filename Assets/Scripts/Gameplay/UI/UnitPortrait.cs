@@ -1,4 +1,5 @@
-﻿using Gameplay.Player;
+﻿using System;
+using Gameplay.Player;
 using Gameplay.Units;
 using TMPro;
 using UnityEngine;
@@ -17,17 +18,29 @@ namespace Gameplay.UI
         [SerializeField] private Material _selectedMaterial;
         [SerializeField] private Material _focusedMaterial;
 
+        private RectTransform _rectTransform;
+        private Vector2 _defaultSize;
+        
         public Unit Unit { get; private set; }
         
         [Inject] private PlayerInput Input { get; set; }
         [Inject] private PlayerMouseTargeting MouseTargeting { get; set; }
         [Inject] private PlayerSelection Selection { get; set; }
 
+        private void Awake()
+        {
+            _rectTransform = GetComponent<RectTransform>();
+            _defaultSize = _rectTransform.sizeDelta;
+        }
+
         public void Set(Unit unit, int index)
         {
             Unit = unit;
             _portraitImage.sprite = Unit.Type.SpriteMap?.Portrait;
             _indexText.text = (index + 1).ToString();
+
+            int slotsOccupied = Mathf.Max(1, Unit.Type.ControlSlots);
+            _rectTransform.sizeDelta = _defaultSize * new Vector2(slotsOccupied, 1);
         }
 
         private void Update()
