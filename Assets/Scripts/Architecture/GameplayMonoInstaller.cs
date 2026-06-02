@@ -1,5 +1,4 @@
-﻿using Extentions.Pause;
-using Gameplay;
+﻿using Gameplay;
 using Gameplay.Arrangement;
 using Gameplay.Arrangement.Saving;
 using Gameplay.Data;

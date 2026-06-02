@@ -1,5 +1,7 @@
 ﻿using System;
+using Settings;
 using UnityEngine;
+using Zenject;
 
 namespace Localization
 {
@@ -8,8 +10,10 @@ namespace Localization
     {
         [SerializeField] private LanguageTable[] _tables;
 
-        private LanguageTable CurrentTable => _tables[0];
-        
+        private LanguageTable CurrentTable => _tables[Settings?.Language ?? 0];
+
+        [Inject] private ISettingsReadService Settings { get; set; }
+
         public string Translate(string key) => CurrentTable.Translate(key);
 
         public void GenerateDictionaries()

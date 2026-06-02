@@ -20,7 +20,7 @@ order-passive;Passive;Пассивная способность^
 order-stop-description;Cancel all current orders.;Отменить все текущие приказы.^
 order-stop-name;Stop;Остановиться^
 ordererror-ability-not-ready;Ability not ready;Способность не готова^
-ordererror-target-invulnerable;;^
+ordererror-target-invulnerable;Target is invulnerable;Цель неуязвима^
 ordererror-cannot-attack;Cannot attack;Невозможно атаковать^
 ordererror-cannot-move;Cannot move;Невозможно двигаться^
 ordererror-cannot-target-self;Cannot target self;Нельзя выбирать целью себя^
@@ -158,3 +158,16 @@ quick-save-filename;Quick save;Быстрое сохранение^
 message-save-success;Game saved;Игра сохранена^
 message-save-error;Saving has failed;Сохранение не удалось^
 message-saving-in-progress;Saving is in progress;Сохранение в процессе^
+ui-scenario-selection;Scenario selection;Выбор сценария^
+ui-settings;Settings;Настройки^
+ui-settings-graphics;Graphics;Графика^
+ui-settings-fullscreen;Fullscreen;Полный экран^
+ui-settings-language;Language;Язык^
+ui-settings-general;General;Основные^
+ui-settings-apply;Apply;Применить^
+ui-settings-discard;Discard changes;Сбросить изменения^
+ui-settings-reset;Reset to default;Восстановить по умолчанию^
+ui-settings-camera-move-speed;Camera move speed;Скорость движения камеры^
+ui-settings-camera-drag-speed;Camera drag speed;Скорость перетаскивания камера^
+ui-settings-resolution;Resolution;Разрешение^
+ui-settings-gameplay;Gameplay;Игровой процесс^

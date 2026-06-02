@@ -1,7 +1,6 @@
 ﻿using Extentions.Pause;
 using Gameplay;
 using Gameplay.Units;
-using UnityEngine;
 using Zenject;
 
 namespace Architecture

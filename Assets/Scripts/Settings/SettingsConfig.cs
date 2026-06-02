@@ -1,24 +1,21 @@
 ﻿using System;
-using UnityEngine;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Settings
 {
     [Serializable]
     public class SettingsConfig
     {
-        [SerializeField] private SettingsEntry[] _settings;
-    }
+        [JsonProperty] private Dictionary<string, int> _values;
 
-    public struct SettingsEntry
-    {
-        [SerializeField] private string _key;
-        [SerializeField] private int _value;
-        
-        public string Key => _key;
-        public int Value
+        public SettingsConfig(Dictionary<string, int> values)
         {
-            get => _value;
-            set => _value = value;
+            _values = values;
         }
+        
+        public int GetValue(string key) => _values[key];
+
+        public void ChangeValue(string key, int value) => _values[key] = value;
     }
 }

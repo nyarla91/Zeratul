@@ -1,7 +1,7 @@
 ﻿using Gameplay.Data.Configs;
 using GameState;
-using Localization;
 using Save;
+using Settings;
 using UnityEngine;
 using Zenject;
 
@@ -21,6 +21,7 @@ namespace Architecture
             Container.Bind<ScenarioSession>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SaveFileIO>().AsSingle().NonLazy();
             Container.Bind<SaveFileList>().AsSingle().NonLazy();
+            Container.Bind<ScreenSettingsApplier>().AsSingle().NonLazy();
         }
     }
 }

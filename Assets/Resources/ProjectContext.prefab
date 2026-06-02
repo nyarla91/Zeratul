@@ -103,6 +103,7 @@ MonoBehaviour:
   _layers: {fileID: 11400000, guid: c91d6dd2d9fa4ff45b09c3829e5ce3c9, type: 2}
   _vision: {fileID: 11400000, guid: 3419c58748f8fc24fa1f59e94c65c703, type: 2}
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
+  _settings: {fileID: 11400000, guid: bd848eb819d3ea14aa45a8e081681d1d, type: 2}
 --- !u!114 &8068587357324638866
 MonoBehaviour:
   m_ObjectHideFlags: 0

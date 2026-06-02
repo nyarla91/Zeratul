@@ -1,44 +1,94 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using Extentions;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Settings
 {
     [CreateAssetMenu(menuName = "Settings")]
-    public class Settings : ScriptableObject
+    public class Settings : ScriptableObject, ISettingsReadService, ISettingsWriteService
     {
-        [SerializeField] private AnimationCurve _soundCurve;
         [SerializeField] private string _savedFileName;
-        [SerializeField] private SettingsConfig _config;
+        [SerializeField] private SerialazibleKeyValuePair<string, int>[] _defaultValues;
 
-        public SettingsConfig Config => _config;
+        private SettingsConfig _config;
 
         private string SaveFilePath => Application.dataPath + "/" + _savedFileName + ".json";
+        
+        public int Language => _config.GetValue("language");
+        public bool Fullscreen => _config.GetValue("fullscreen") == 1;
+        public int Resolution => _config.GetValue("resolution");
+        public int CameraMoveSpeed => _config.GetValue("cameraMoveSpeed");
+        public int CameraDragSpeed => _config.GetValue("cameraDragSpeed");
 
         public event Action ConfigChanged;
-        
+
         private void Awake()
         {
-            if (TryLoad(out SettingsConfig loadedConfig))
-                _config = loadedConfig;
+            _config = LoadConfig();
+            ConfigChanged?.Invoke();
         }
 
-        private void Update()
+        public int GetValue(string key) => _config.GetValue(key);
+
+        public void ChangeValue(string key, int value) => _config.ChangeValue(key, value);
+
+        public void ResetToDefault()
         {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.G))
-                Screen.fullScreenMode = FullScreenMode.Windowed;
-            if (UnityEngine.Input.GetKeyDown(KeyCode.H))
-                Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+            _config = GetDefaultConfig();
+            if (File.Exists(SaveFilePath))
+                File.Delete(SaveFilePath);
+            ConfigChanged?.Invoke();
         }
 
-        private bool TryLoad(out SettingsConfig loadedConfig)
+        public void Apply()
         {
-            loadedConfig = new SettingsConfig();
-            if (!File.Exists(SaveFilePath))
-                return false;
+            string json = JsonConvert.SerializeObject(_config);
+            File.WriteAllText(SaveFilePath, json);
+            ConfigChanged?.Invoke();
+        }
+
+        private SettingsConfig LoadConfig()
+        {
+            if ( ! File.Exists(SaveFilePath))
+                return GetDefaultConfig();
             string json = File.ReadAllText(SaveFilePath);
-            loadedConfig = JsonUtility.FromJson<SettingsConfig>(json);
-            return true;
+            try
+            {
+                return JsonConvert.DeserializeObject<SettingsConfig>(json);
+            }
+            catch (JsonException e)
+            {
+                Debug.LogError(e.Message);
+                return GetDefaultConfig();
+            }
         }
+
+        private SettingsConfig GetDefaultConfig()
+        {
+            Dictionary<string, int> values = _defaultValues.ToDictionary(p => p.key, p => p.value);
+            return new SettingsConfig(values);
+        }
+}
+
+    public interface ISettingsReadService
+    {
+        public event Action ConfigChanged;
+        public int GetValue(string key);
+        public int Language { get; }
+        public bool Fullscreen { get; }
+        public int Resolution { get; }
+        public int CameraMoveSpeed { get; }
+        public int CameraDragSpeed { get; }
+    }
+
+    public interface ISettingsWriteService
+    {
+        public void ChangeValue(string key, int value);
+        public void ResetToDefault();
+        public void Apply();
     }
 }

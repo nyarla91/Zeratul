@@ -1,5 +1,6 @@
 ﻿using Extentions;
 using Extentions.Pause;
+using Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -23,6 +24,7 @@ namespace Gameplay.Map
         
         [Inject] private PlayerInput PlayerInput { get; set; }
         [Inject] private GamePause GamePause { get; set; }
+        [Inject] private ISettingsReadService Settings { get; set; }
 
         private void Update()
         {
@@ -59,8 +61,8 @@ namespace Gameplay.Map
                 direction.y = 1;
             else if (mousePosition.y <= _edgeTolerance)
                 direction.y = -1;
-            Vector3 velocity = direction * _edgeMoveSpeed;
-            transform.position +=  _edgeMoveSpeed * _camera.orthographicSize * Time.deltaTime * velocity;
+            Vector3 velocity = _edgeMoveSpeed * Settings.CameraMoveSpeed * direction;
+            transform.position +=  _camera.orthographicSize * Time.deltaTime * velocity;
             EdgeMoveDirection = Vector2Int.RoundToInt(direction);
         }
 
@@ -74,7 +76,7 @@ namespace Gameplay.Map
         private void DragCamera(Vector2 screenDelta)
         {
             Vector3 worldDelta = _camera.ScreenToWorldPoint(screenDelta) - _camera.ScreenToWorldPoint(Vector3.zero);
-            transform.position += worldDelta * _dragSpeed;
+            transform.position += worldDelta * _dragSpeed * Settings.CameraDragSpeed;
         }
 
         private void ZoomCamera(float zoomDelta)

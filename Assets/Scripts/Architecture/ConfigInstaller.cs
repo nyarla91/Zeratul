@@ -17,6 +17,7 @@ namespace Architecture
         [SerializeField] private LayersConfig _layers;
         [SerializeField] private VisionConfig _vision;
         [SerializeField] private Localizer _localizer;
+        [SerializeField] private Settings.Settings _settings;
         
         public override void InstallBindings()
         {
@@ -30,6 +31,9 @@ namespace Architecture
             Container.BindInstance(_layers);
             Container.BindInstance(_vision);
             Container.BindInstance(_localizer);
+            Container.BindInterfacesTo<Settings.Settings>().FromInstance(Instantiate(_settings));
+            
+            Container.Inject(_localizer);
         }
     }
 }
