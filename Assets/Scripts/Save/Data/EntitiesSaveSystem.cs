@@ -17,5 +17,10 @@ namespace Save.Data
         {
             this.entities = entities;
         }
+
+        public bool IsValid()
+        {
+            return entities != null;
+        }
     }
 }

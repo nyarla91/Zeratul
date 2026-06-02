@@ -18,7 +18,7 @@ namespace Gameplay.Player
         private readonly OrderErrorConfig _errors;
         private readonly GamePause _gamePause;
         private readonly ClickArea _clickArea;
-        private readonly OrderErrorMessage _orderErrorMessage;
+        private readonly Message _message;
         
         public OrderType CurrentOrder { get; private set; }
         public OrderTarget CurrentTarget { get; private set; }
@@ -28,7 +28,7 @@ namespace Gameplay.Player
         [Inject]
         public PlayerOrderTargeter(PlayerInput input, PlayerMouseTargeting mouseTargeting, PlayerSelection selection,
             PlayerOrdersDispatcher ordersDispatcher, OrderErrorConfig errors, GamePause gamePause, ClickArea clickArea,
-            OrderErrorMessage orderErrorMessage)
+            Message message)
         {
             _input = input;
             _mouseTargeting = mouseTargeting;
@@ -37,7 +37,7 @@ namespace Gameplay.Player
             _errors = errors;
             _gamePause = gamePause;
             _clickArea = clickArea;
-            _orderErrorMessage = orderErrorMessage;
+            _message = message;
             
             Observable.EveryFixedUpdate()
                 .Subscribe(_ => UpdateCurrentTarget());
@@ -80,7 +80,7 @@ namespace Gameplay.Player
                 return;
             if ( ! _ordersDispatcher.CanIssueWithTarget(CurrentOrder, CurrentTarget, out string errorMessage))
             {
-                _orderErrorMessage.Show(errorMessage);
+                _message.Show(errorMessage, MessageType.Error);
                 return;
             }
             _ordersDispatcher.IssueOrderToSelection(CurrentOrder, CurrentTarget);

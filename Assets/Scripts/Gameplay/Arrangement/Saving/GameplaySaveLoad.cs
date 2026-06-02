@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Player;
 using GameState;
@@ -13,8 +14,9 @@ namespace Gameplay.Arrangement.Saving
     {
         [Inject] private PlayerInput PlayerInput { get; set; }
         [Inject] private GameFlowController GameFlowController { get; set; }
-        [Inject] private ISaveFileSaveService SaveService { get; set; }
-        [Inject] private ISaveFileLoadService LoadService { get; set; }
+        [Inject] private ISaveFileWriteService SaveService { get; set; }
+        [Inject] private ISaveFileReadService ReadService { get; set; }
+        [Inject] private ScenarioSession ScenarioSession { get; set; }
         
         private readonly List<ISavingSystem> _systems = new();
 
@@ -27,29 +29,14 @@ namespace Gameplay.Arrangement.Saving
                 savingSystem.ReproduceFromSaveData(saveData);
             }
         }
-        
-        private void Awake()
-        {
-            PlayerInput.QuickSave.Performed += SaveAndWrite;
-            PlayerInput.QuickLoad.Performed += Load;
-        }
 
-        private void SaveAndWrite()
-        {
-            SaveData data = SaveGameplayData();
-            SaveService.Write(data, "bibaboba");
-        }
-
-        private async void Load()
-        {
-            SaveData saveData = await LoadService.Read("bibaboba");
-            GameFlowController.StartScenarioFromSaveData(saveData);
-        }
-
-        private SaveData SaveGameplayData()
+        public SaveData SaveGameplayData()
         {
             ISaveSystem[] systems = _systems.Select(s => s.Save()).ToArray();
-            return new SaveData(systems);
+            DateTime saveTime = DateTime.Now;
+            int id = ScenarioSession.CurrentId;
+            string gameVersion = Application.version;
+            return new SaveData(systems, saveTime, gameVersion, id);
         }
     }
 }

@@ -29,8 +29,7 @@ namespace Gameplay.Arrangement.Saving
 
         public override ISaveSystem Save()
         {
-            int id = ScenarioSession.CurrentId;
-            return new GeneralSaveSystem(id, GameTime.Frame, GameTime.UnpausedFrame, TacticalPause.IsPaused);
+            return new GeneralSaveSystem(GameTime.Frame, GameTime.UnpausedFrame, TacticalPause.IsPausedSelf);
         }
     }
 }

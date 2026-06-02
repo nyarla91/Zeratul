@@ -42,7 +42,7 @@ namespace Gameplay.UI
         [Inject] private PlayerSelection Selection { get; set; } 
         [Inject] private Tooltip Tooltip { get; set; } 
         [Inject] private GamePause GamePause { get; set; }
-        [Inject] private OrderErrorMessage OrderErrorMessage { get; set; }
+        [Inject] private Message Message { get; set; }
 
         private void Awake()
         {
@@ -91,7 +91,7 @@ namespace Gameplay.UI
                 return;
             if (OrderType.TargetRequirement == TargetRequirement.None && ! Dispatcher.CanIssueWithoutTarget(OrderType, out string errorMessage))
             {
-                OrderErrorMessage.Show(errorMessage);
+                Message.Show(errorMessage, MessageType.Error);
             }
             else if (OrderType.TargetRequirement == TargetRequirement.None)
             {

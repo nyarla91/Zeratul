@@ -1,40 +1,104 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Cysharp.Threading.Tasks;
+using Extentions;
 using Newtonsoft.Json;
 using Save.Data;
 using UnityEngine;
 
 namespace Save
 {
-    public class SaveFileIO : ISaveFileLoadService, ISaveFileSaveService
+    public class SaveFileIO : ISaveFileWriteService, ISaveFileReadService
     {
-        private string SaveFolderPath => Application.dataPath + "/save/";
+        public string SaveFolderPath => Application.dataPath + "/save/";
+        private string Extension => ".json";
 
-        public async void Write(SaveData data, string filename)
+        public async UniTask<bool> Write(SaveData data)
         {
+            if ( ! data.filename.IsFilenameValid())
+                return false;
+            string filepath = FilenameToPath(data.filename);
+            if ( ! IsPathValid(filepath))
+                return false;
             string json = JsonConvert.SerializeObject(data);
             if ( ! Directory.Exists(SaveFolderPath))
                 Directory.CreateDirectory(SaveFolderPath);
-            await File.WriteAllTextAsync(SaveFolderPath + filename + ".json", json);
+            try
+            {
+                await File.WriteAllTextAsync(filepath, json);
+                return true;
+            }
+            catch (IOException e)
+            {
+                return false;
+            }
         }
 
-        public async UniTask<SaveData> Read(string filename)
+        public void Delete(string filename)
         {
-            string path = SaveFolderPath + filename + ".json";
-            if (!File.Exists(path))
-                return null;
-            string json = await File.ReadAllTextAsync(path);
-            return JsonConvert.DeserializeObject<SaveData>(json);
+            string filepath = FilenameToPath(filename);
+            if ( ! IsPathValid(filepath) || ! File.Exists(filepath))
+                return;
+            File.Delete(filepath);
         }
+
+        public async UniTask<SaveData[]> ReadAll()
+        {
+            if ( ! Directory.Exists(SaveFolderPath))
+                return new SaveData[0];
+            
+            List<SaveData> result = new();
+            string[] files = Directory.GetFiles(SaveFolderPath);
+            foreach (string file in files)
+            {
+                if ( ! file.EndsWith(".json"))
+                    continue;
+
+                result.Add(await Read(file));
+            }
+            return result.ToArray();
+        }
+
+        public async UniTask<SaveData> Read(string filepath)
+        {
+            if ( ! IsPathValid(filepath) || ! File.Exists(filepath))
+                return null;
+            
+            try
+            {
+                string json = await File.ReadAllTextAsync(filepath);
+                SaveData saveData = JsonConvert.DeserializeObject<SaveData>(json);
+                if ( ! saveData.IsValid())
+                    return null;
+                saveData.filename = FilepathToName(filepath);
+                return saveData;
+            }
+            catch (JsonException e)
+            {
+                Debug.LogError($"Failed to deserialize save file: {e}");
+                return null;
+            }
+        }
+        
+        private string FilenameToPath(string filename) => SaveFolderPath + filename + Extension;
+        
+        private string FilepathToName(string filepath) => filepath.Replace(SaveFolderPath, "").Replace(Extension, "");
+
+        private bool IsPathValid(string path) => path.Contains(SaveFolderPath) && path.EndsWith(Extension);
     }
     
-    public interface ISaveFileSaveService
+    public interface ISaveFileWriteService
     {
-        public void Write(SaveData data, string filename);
+        public UniTask<bool> Write(SaveData data);
+        
+        public void Delete(string filename);
     }
 
-    public interface ISaveFileLoadService
+    public interface ISaveFileReadService
     {
-        public UniTask<SaveData> Read(string filename);
+        public UniTask<SaveData[]> ReadAll();
+        
+        public UniTask<SaveData> Read(string filepath);
     }
 }

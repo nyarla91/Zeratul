@@ -20,7 +20,7 @@ namespace Architecture
         [SerializeField] private VisionMap _visionMap;
         [SerializeField] private Tooltip _tooltip;
         [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
-        [SerializeField] private OrderErrorMessage _orderErrorMessage;
+        [SerializeField] private Message _message;
         [SerializeField] private TutorialWindow _tutorialWindow;
         [SerializeField] private ScenarioLifetime _scenarioLifetime;
         [SerializeField] private GameplaySaveLoad _gameplaySaveLoad;
@@ -36,7 +36,7 @@ namespace Architecture
             Container.BindInstance(_visionMap).AsSingle();
             Container.BindInstance(_tooltip).AsSingle();
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
-            Container.BindInstance(_orderErrorMessage).AsSingle();
+            Container.BindInstance(_message).AsSingle();
             Container.BindInstance(_tutorialWindow).AsSingle();
             Container.BindInstance(_scenarioLifetime).AsSingle();
             Container.BindInstance(_gameplaySaveLoad).AsSingle();

@@ -20,6 +20,7 @@ namespace Architecture
             Container.Bind<SceneLoader>().FromComponentInNewPrefab(_sceneLoaderPrefab).AsSingle().NonLazy();
             Container.Bind<ScenarioSession>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SaveFileIO>().AsSingle().NonLazy();
+            Container.Bind<SaveFileList>().AsSingle().NonLazy();
         }
     }
 }

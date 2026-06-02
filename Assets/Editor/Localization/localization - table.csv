@@ -147,3 +147,14 @@ validator-is-not-cloaked;Target cannot be cloaked;Цель не должна б�
 validator-is-not-friendly;Target cannot be friendly;Цель не должна быть дружественной^
 validator-is-not-hostile;Target cannot be hostile;Цель не должна быть враждебной^
 validator-is-not-uncontrollable;Cannot control this unit;Этого юнита нельзя контроллировать^
+ui-load;Load;Загрузить^
+ui-save;Save;Сохранить^
+ui-delete;Delete;Удалить^
+ui-back;Back;Назад^
+ui-save-load;Save and load;Сохранение и загрузка^
+ui-filename-invalid;File name invalid;Имя файла недопустимо^
+ui-enter-filename;Enter save file name;Введите название файла сохранения^
+quick-save-filename;Quick save;Быстрое сохранение^
+message-save-success;Game saved;Игра сохранена^
+message-save-error;Saving has failed;Сохранение не удалось^
+message-saving-in-progress;Saving is in progress;Сохранение в процессе^

@@ -7,7 +7,9 @@ namespace Gameplay
     {
         [Inject] private GamePause SystemPause { get; set; }
 
-        public override bool IsPaused => base.IsPaused || SystemPause.IsPaused;
+        public override bool IsPaused => IsPausedSelf || SystemPause.IsPaused;
+        
+        public bool IsPausedSelf => base.IsPaused;
 
         public override bool IsUnpaused => ! IsPaused;
     }

@@ -2,6 +2,7 @@
     "name": "Gameplay.Arrangement",
     "rootNamespace": "",
     "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
@@ -9,7 +10,8 @@
         "GUID:a5abe1502e897be44bcbd02100677a1c",
         "GUID:a28432ecfe65539488aff0e0642e9ae1",
         "GUID:45fafdd6f21c1f6438a650eb245b99bf",
-        "GUID:0d1dc2648261a9b4eb62ac850b4a5967"
+        "GUID:0d1dc2648261a9b4eb62ac850b4a5967",
+        "GUID:76ff0e070b6c9644cb80bf92cb0a86db"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
