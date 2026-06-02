@@ -77,3 +77,4 @@ crashlytics-build.properties
 
 *.blend
 *.blend1
+/Assets/save
