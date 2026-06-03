@@ -456,7 +456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -2758,7 +2758,7 @@ GameObject:
   - component: {fileID: 606710736}
   - component: {fileID: 606710737}
   m_Layer: 5
-  m_Name: UnitSelectionHandler
+  m_Name: UnitSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5558,7 +5558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter save file name
+  m_text: ui-enter-filename
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -6188,7 +6188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de2822916744e58a72a2595aa7418d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.UnitManagement.UnitSelectionBoxView
-  _model: {fileID: 606710737}
+  _canvas: {fileID: 2084491711}
+  _selector: {fileID: 606710737}
   _rectTransform: {fileID: 1184607832}
   _canvasGroup: {fileID: 1184607836}
 --- !u!225 &1184607836
@@ -10945,7 +10946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: File name invalid
+  m_text: ui-filename-invalid
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}

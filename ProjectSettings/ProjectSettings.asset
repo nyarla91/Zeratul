@@ -18,7 +18,7 @@ PlayerSettings:
   cursorHotspot: {x: 3, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
-  m_ShowUnitySplashLogo: 1
+  m_ShowUnitySplashLogo: 0
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
   m_SplashScreenLogoStyle: 1
@@ -297,7 +297,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 47ede2516144cbf4b98544b2b2978efb, type: 3}
+      m_Icon: {fileID: 2800000, guid: 18aa0c6993639644895f01522d1f3fa6, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
