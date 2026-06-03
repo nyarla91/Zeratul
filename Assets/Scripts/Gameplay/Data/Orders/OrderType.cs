@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Data.Validator;
 using Gameplay.UI;
 using Gameplay.Units;
-using Localization;
+using Settings.Localization;
 using UnityEngine;
 
 namespace Gameplay.Data.Orders

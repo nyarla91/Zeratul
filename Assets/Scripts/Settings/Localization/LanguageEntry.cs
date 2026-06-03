@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Localization
+namespace Settings.Localization
 {
     [Serializable]
     public struct LanguageEntry

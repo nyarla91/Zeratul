@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "NaughtyAttributes.Core",
-        "Loalization"
+        "Loalization",
+        "Settings"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

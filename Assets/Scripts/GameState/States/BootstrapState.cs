@@ -1,4 +1,4 @@
-﻿using Localization;
+﻿using Settings.Localization;
 using Zenject;
 
 namespace GameState.States

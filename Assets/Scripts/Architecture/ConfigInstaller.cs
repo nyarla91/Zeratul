@@ -1,5 +1,6 @@
 ﻿using Gameplay.Data.Configs;
-using Localization;
+using Settings;
+using Settings.Localization;
 using UnityEngine;
 using Zenject;
 
@@ -32,8 +33,7 @@ namespace Architecture
             Container.BindInstance(_vision);
             Container.BindInstance(_localizer);
             Container.BindInterfacesTo<Settings.Settings>().FromInstance(Instantiate(_settings));
-            
-            Container.Inject(_localizer);
+            Container.Bind<Language>().AsSingle().NonLazy();
         }
     }
 }

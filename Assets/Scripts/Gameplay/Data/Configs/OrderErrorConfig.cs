@@ -1,4 +1,4 @@
-﻿using Localization;
+﻿using Settings.Localization;
 using UnityEngine;
 
 namespace Gameplay.Data.Configs

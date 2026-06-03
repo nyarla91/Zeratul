@@ -72,7 +72,7 @@ namespace Settings
             Dictionary<string, int> values = _defaultValues.ToDictionary(p => p.key, p => p.value);
             return new SettingsConfig(values);
         }
-}
+    }
 
     public interface ISettingsReadService
     {

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb09e0a447ab43fba0d471003bdb79b1, type: 3}
   m_Name: Localizer
   m_EditorClassIdentifier: Assembly-CSharp::Localization.LocalizationConfig
+  _settings: {fileID: 11400000, guid: bd848eb819d3ea14aa45a8e081681d1d, type: 2}
   _tables:
   - {fileID: 11400000, guid: fd5ae244cff66174ba1dd402d7491337, type: 2}
   - {fileID: 11400000, guid: 41c1fd7a596f81b4d857b28cc9acb03b, type: 2}

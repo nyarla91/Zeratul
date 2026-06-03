@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
 using Gameplay.Data.Configs;
-using Localization;
+using Settings.Localization;
 using TMPro;
 using UnityEngine;
 

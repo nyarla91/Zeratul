@@ -1,6 +1,6 @@
 ﻿using Extentions;
 using Gameplay.Units;
-using Localization;
+using Settings.Localization;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

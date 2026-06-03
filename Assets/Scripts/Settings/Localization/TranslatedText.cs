@@ -1,10 +1,8 @@
-﻿using System;
-using Settings;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Localization
+namespace Settings.Localization
 {
     public class TranslatedText : MonoBehaviour
     {

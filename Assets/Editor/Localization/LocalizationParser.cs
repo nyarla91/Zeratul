@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Localization;
 using NaughtyAttributes;
+using Settings.Localization;
 using UnityEngine;
 
 namespace Editor.Localization

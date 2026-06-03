@@ -1,4 +1,6 @@
-﻿using Extentions;
+﻿using System;
+using Extentions;
+using Settings.Localization;
 using TMPro;
 using UnityEngine;
 
@@ -6,12 +8,12 @@ namespace Settings.UI
 {
     public class SettingsMenuItemList : SettingsMenuItem
     {
+        [SerializeField] private Localizer _localizer;
+        [SerializeField] private TMP_Text _text;
         [SerializeField] private string[] _options;
 
         private int _lastValue;
         private int _currentValue;
-        
-        public string CurrentOption => _options[_currentValue];
         
         public override void ApplyValue(int value)
         {
@@ -26,5 +28,10 @@ namespace Settings.UI
         public void SwitchRight() => _currentValue = (_currentValue + 1).RepeatIndex(_options.Length);
         
         public void SwitchLeft() => _currentValue = (_currentValue - 1).RepeatIndex(_options.Length);
+
+        private void Update()
+        {
+            _text.text = _localizer.Translate(_options[_currentValue]);
+        }
     }
 }

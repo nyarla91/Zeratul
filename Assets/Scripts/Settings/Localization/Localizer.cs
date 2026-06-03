@@ -1,18 +1,13 @@
-﻿using System;
-using Settings;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
-namespace Localization
+namespace Settings.Localization
 {
     [CreateAssetMenu(menuName = "Localization/Localizer")]
     public class Localizer : ScriptableObject
     {
         [SerializeField] private LanguageTable[] _tables;
 
-        private LanguageTable CurrentTable => _tables[Settings?.Language ?? 0];
-
-        [Inject] private ISettingsReadService Settings { get; set; }
+        private LanguageTable CurrentTable => _tables[Language.Current];
 
         public string Translate(string key) => CurrentTable.Translate(key);
 

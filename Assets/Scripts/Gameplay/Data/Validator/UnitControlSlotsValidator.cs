@@ -1,6 +1,6 @@
 ﻿using Gameplay.Player;
 using Gameplay.Units;
-using Localization;
+using Settings.Localization;
 using UnityEngine;
 using Zenject;
 

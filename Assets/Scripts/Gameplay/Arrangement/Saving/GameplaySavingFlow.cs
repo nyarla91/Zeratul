@@ -4,10 +4,10 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Player;
 using Gameplay.UI;
 using GameState;
-using Localization;
 using Save;
 using Save.Data;
 using Save.UI;
+using Settings.Localization;
 using UnityEngine;
 using Zenject;
 

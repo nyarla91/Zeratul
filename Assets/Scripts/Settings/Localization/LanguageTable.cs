@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Localization
+namespace Settings.Localization
 {
     [CreateAssetMenu(menuName = "Localization/Language Table")]
     public class LanguageTable : ScriptableObject

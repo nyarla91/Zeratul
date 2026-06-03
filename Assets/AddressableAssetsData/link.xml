@@ -188,13 +188,6 @@
     <type fullname="Gameplay.Schemes.Values.Variables.VariableInt" preserve="all" />
     <type fullname="Gameplay.Schemes.Values.Variables.VariableUnit" preserve="all" />
   </assembly>
-  <assembly fullname="Loalization, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="Localization.LanguageTable" preserve="all" />
-    <type fullname="Localization.Localizer" preserve="all" />
-    <type fullname="Localization.TranslatedSettingOption" preserve="all" />
-    <type fullname="Localization.TranslatedText" preserve="all" />
-    <type fullname="Localization.LanguageEntry" preserve="nothing" serialized="true" />
-  </assembly>
   <assembly fullname="MainMenu, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="MainMenu.MainMenuGameLoader" preserve="all" />
     <type fullname="MainMenu.PlayButton" preserve="all" />
@@ -209,11 +202,15 @@
     <type fullname="GameState.ScenarioData" preserve="all" />
   </assembly>
   <assembly fullname="Settings, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Settings.Localization.LanguageTable" preserve="all" />
+    <type fullname="Settings.Localization.Localizer" preserve="all" />
+    <type fullname="Settings.Localization.TranslatedText" preserve="all" />
     <type fullname="Settings.Settings" preserve="all" />
     <type fullname="Settings.UI.SettingsMenu" preserve="all" />
     <type fullname="Settings.UI.SettingsMenuItemList" preserve="all" />
     <type fullname="Settings.UI.SettingsMenuItemSlider" preserve="all" />
     <type fullname="Settings.UI.SettingsMenuItemToggle" preserve="all" />
+    <type fullname="Settings.Localization.LanguageEntry" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UIUtility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UIUtility.Menu" preserve="all" />
