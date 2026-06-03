@@ -16,6 +16,8 @@ MonoBehaviour:
   _display: 1
   _displayIcon: {fileID: 21300000, guid: e82a8f8848391834c98fdece83a66845, type: 3}
   _displayName: status-locked-name
+  _showDuration: 1
+  _showDurationPriority: 100
   _displayDescription: status-locked-description
   _rendererPrefabs:
   - {fileID: 485935788325951280, guid: 15b3ec035526ec64d8d8c24f6b409bc0, type: 3}

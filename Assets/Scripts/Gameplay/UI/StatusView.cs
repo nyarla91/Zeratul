@@ -74,8 +74,7 @@ namespace Gameplay.UI
             if (currentStatus.FramesLeft > 3)
             { 
                 string timeLeft = _localizer.Translate("status-duration");
-                float secondsLeft = Time.fixedDeltaTime * currentStatus.FramesLeft;
-                description += "\n" + timeLeft.Replace("#", secondsLeft.ToString("F2"));
+                description += "\n" + timeLeft.Replace("#", currentStatus.FramesLeft.FramesToSeconds());
             }
             return description;
         }

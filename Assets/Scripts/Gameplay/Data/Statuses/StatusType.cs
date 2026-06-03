@@ -10,6 +10,8 @@ namespace Gameplay.Data.Statuses
         [SerializeField] private bool _display;
         [SerializeField] private Sprite _displayIcon;
         [SerializeField] private string _displayName;
+        [SerializeField] private bool _showDuration;
+        [SerializeField] private int _showDurationPriority;
         [SerializeField] [TextArea(4, 10)] private string _displayDescription;
         [SerializeField] private StatusRenderer[] _rendererPrefabs;
 
@@ -17,6 +19,8 @@ namespace Gameplay.Data.Statuses
         public Sprite DisplayIcon => _displayIcon;
         public string DisplayName => _displayName;
         public string DisplayDescription => _displayDescription;
+        public bool ShowDuration => _showDuration;
+        public int ShowDurationPriority => _showDurationPriority;
         public StatusRenderer[] RendererPrefabs => _rendererPrefabs;
 
         public abstract void OnAdd(Status status);

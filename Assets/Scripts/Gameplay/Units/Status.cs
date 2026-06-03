@@ -11,6 +11,7 @@ namespace Gameplay.Units
         public Unit Instigator { get; }
         public Unit Host { get; }
         public int AdditionFrame { get; private set; }
+        public int RestartFrame { get; private set; }
         public int RemovalFrame { get; private set; }
 
         public int FramesSinceAddition => _gameTime.Frame - AdditionFrame;
@@ -25,6 +26,7 @@ namespace Gameplay.Units
             Instigator = instigator;
             Host = host;
             AdditionFrame = additionFrame;
+            RestartFrame = additionFrame;
             RemovalFrame = removalFrame;
         }
         
@@ -35,6 +37,7 @@ namespace Gameplay.Units
             Instigator = instigator;
             Host = host;
             AdditionFrame = _gameTime.Frame;
+            RestartFrame = _gameTime.Frame;
             RemovalFrame = AdditionFrame + duration;
         }
         
@@ -53,6 +56,7 @@ namespace Gameplay.Units
         {
             if (RemovalFrame == -1  || FramesLeft > newDuration)
                 return;
+            RestartFrame = _gameTime.Frame;
             RemovalFrame = _gameTime.Frame + newDuration;
         }
 
@@ -73,6 +77,7 @@ namespace Gameplay.Units
         public Unit Instigator { get; }
         public Unit Host { get; }
         public int AdditionFrame { get; }
+        public int RestartFrame { get; }
         public int RemovalFrame { get; }
         public int FramesSinceAddition { get; }
         public bool IsLocked { get; }

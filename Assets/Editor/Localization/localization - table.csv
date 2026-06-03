@@ -19,7 +19,7 @@ order-move-name;Move;Двигаться^
 order-passive;Passive;Пассивная способность^
 order-stop-description;Cancel all current orders.;Отменить все текущие приказы.^
 order-stop-name;Stop;Остановиться^
-ordererror-ability-not-ready;Ability not ready;Способность не готова^
+ordererror-ability-not-ready;Ability not ready (# sec. left);Способность не готова (# сек.)^
 ordererror-target-invulnerable;Target is invulnerable;Цель неуязвима^
 ordererror-cannot-attack;Cannot attack;Невозможно атаковать^
 ordererror-cannot-move;Cannot move;Невозможно двигаться^
@@ -27,7 +27,7 @@ ordererror-cannot-target-self;Cannot target self;Нельзя выбирать �
 ordererror-generic;Cannot do this;Действие невозможно^
 ordererror-locked;Cannot use abilities right now;Способности временно недоступны^
 ordererror-must-target-unit;Target a unit;Выберите юнита^
-ordererror-not-enough-energy;Not enough energy;Недостаточно энергии^
+ordererror-not-enough-energy;Not enough energy (#);Недостаточно энергии (#)^
 ordererror-out-of-range;Target is out of range;Цель вне досягаемости^
 ordererror-passive;Cannot use passive ability;Невозможно использовать пассивную способность^
 ordererror-target-invalid;Target is invalid;Неверная цель^

@@ -14,6 +14,7 @@ namespace Gameplay.Units.View
         [SerializeField] private Image _hitPoints;
         [SerializeField] private Image _shieldPoints;
         [SerializeField] private Image _energyPoints;
+        [SerializeField] private Image _status;
         [SerializeField] private Color _playerColor;
         [SerializeField] private Color _allyColor;
         [SerializeField] private Color _neutralColor;
@@ -45,6 +46,8 @@ namespace Gameplay.Units.View
             
             this.UpdateAsObservable()
                 .Subscribe(_ => UpdateStats());
+            this.UpdateAsObservable()
+                .Subscribe(_ => UpdateStatus());
         }
 
         private void UpdateOwnershipColor(Owner owner)
@@ -64,6 +67,30 @@ namespace Gameplay.Units.View
             _hitPoints.fillAmount = _unit.Life?.HitPercent ?? 0;
             _shieldPoints.fillAmount = _unit.Life?.ShieldPercent ?? 0;
             _energyPoints.fillAmount = _unit.Abilities.EnergyPercent;
+        }
+
+        private void UpdateStatus()
+        {
+            IStatusInfo[] statuses = _unit.Statuses.StatusesInfo;
+            IStatusInfo displayedStatus = null;
+            int maxPriority = int.MinValue;
+            foreach (IStatusInfo status in statuses)
+            {
+                if ( ! status.Type.ShowDuration || status.Type.ShowDurationPriority < maxPriority)
+                    continue;
+                displayedStatus = status;
+                maxPriority = status.Type.ShowDurationPriority;
+            }
+
+            if (displayedStatus == null || displayedStatus.FramesLeft <= 2)
+            {
+                _status.fillAmount = 0;
+                return;
+            }
+
+            int framesTotal = displayedStatus.RemovalFrame - displayedStatus.RestartFrame;
+            float percent = (float) displayedStatus.FramesLeft / framesTotal;
+            _status.fillAmount = percent;
         }
     }
 }

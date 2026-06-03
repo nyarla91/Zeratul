@@ -38,7 +38,7 @@ namespace Gameplay.Data.Orders
                 if (AbilityType.Cooldown > 0)
                 {
                     string cooldonwnSec = Mathf.Round(Time.fixedDeltaTime * AbilityType.Cooldown).ToString("F1");
-                    result += Localizer.Translate("ability-stat-cooldown").Replace("#", cooldonwnSec) + "\n";
+                    result += Localizer.Translate("ability-stat-cooldown").Replace("#", AbilityType.Cooldown.FramesToSeconds()) + "\n";
                 }
 
                 if (AbilityType.MaxDistance > 0)
@@ -58,14 +58,18 @@ namespace Gameplay.Data.Orders
                 errorMessage = _errors.Locked;
                 return false;
             }
-            if ( ! actor.Abilities.GetAbility(AbilityType).IsReady)
+
+            Ability ability = actor.Abilities.GetAbility(AbilityType);
+            if ( ! ability.IsReady)
             {
-                errorMessage = _errors.NotReadyAbility;
+                int framesLeft = ability.CooldownLeft;
+                errorMessage = _errors.NotReadyAbility.Replace("#", framesLeft.FramesToSeconds());
                 return false;
             }
             if (actor.Abilities.EnergyPoints < AbilityType.EnergyCost)
             {
-                errorMessage = _errors.NotEnoughEnergy;
+                int missingEnergy = AbilityType.EnergyCost - actor.Abilities.EnergyPoints;
+                errorMessage = _errors.NotEnoughEnergy.Replace("#", missingEnergy.ToString());
                 return false;
             }
             if (AbilityType.CasterValidators.IsInvalid(actor, actor, out errorMessage))

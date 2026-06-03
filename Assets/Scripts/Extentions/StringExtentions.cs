@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEngine;
 
 namespace Extentions
 {
@@ -55,6 +56,12 @@ namespace Extentions
             string nameWithoutExtension = Path.GetFileNameWithoutExtension(filename);
 
             return !reserved.Contains(nameWithoutExtension, StringComparer.OrdinalIgnoreCase);
+        }
+
+        public static string FramesToSeconds(this int frames)
+        {
+            float secondsLeft = Time.fixedDeltaTime * frames;
+            return secondsLeft.ToString("F1");
         }
     }
 
