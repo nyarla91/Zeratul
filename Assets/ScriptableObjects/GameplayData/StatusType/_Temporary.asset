@@ -16,6 +16,8 @@ MonoBehaviour:
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 085187b15945b7e4687c311f4edd1440, type: 3}
   _displayName: status-temporary-name
+  _showDuration: 1
+  _showDurationPriority: 101
   _displayDescription: status-temporary-description
   _rendererPrefabs: []
   _effectsOnRemove:

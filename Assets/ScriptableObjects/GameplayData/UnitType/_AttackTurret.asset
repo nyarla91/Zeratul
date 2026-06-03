@@ -24,7 +24,7 @@ MonoBehaviour:
     _baseWorth: 125
     _evaluators: []
   _isInvulnerable: 0
-  _maxHitPoints: 75
+  _maxHitPoints: 50
   _maxShieldPoints: 75
   _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 7

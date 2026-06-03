@@ -144,6 +144,13 @@ namespace Gameplay.Units
             LastEnergySpentFrame = _gameTime.Frame;
             return true;
         }
+
+        public void RestoreEnergyPoints(int value)
+        {
+            if (value <= 0)
+                return;
+            _energyPoints = Mathf.Min(_energyPoints + value, MaxEnergyPoints);
+        }
         
         public Ability GetAbility(AbilityType abilityType) => _abilities.GetValueOrDefault(abilityType);
 

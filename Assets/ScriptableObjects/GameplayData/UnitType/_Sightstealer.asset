@@ -16,7 +16,8 @@ MonoBehaviour:
   _focusPriority: 0
   _nonInteractable: 1
   _tags: []
-  _controlWorth: 0
+  _controlCost: 0
+  _controlSlots: 0
   _attackWorth:
     _baseWorth: 0
     _evaluators: []
@@ -32,7 +33,7 @@ MonoBehaviour:
   _isImmobile: 1
   _isAir: 1
   _maxSpeed: 0
-  _size: 0.05
+  _size: 2
   _rotationSpeed: 0
   _disableSight: 1
   _sightRadius: 0

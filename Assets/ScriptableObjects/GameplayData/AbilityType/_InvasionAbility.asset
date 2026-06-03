@@ -34,5 +34,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f2754233458ed34583cfb246333a9a4, type: 2}
   - {fileID: 11400000, guid: fe62053f85348ba45950a2d802f635b2, type: 2}
   - {fileID: 11400000, guid: c1baac24590bea94ca8ecfb1d12c0bd1, type: 2}
+  - {fileID: 11400000, guid: f401164916dd9974b9b42f51d9160faf, type: 2}
+  - {fileID: 11400000, guid: 488b0b61867a61448867077c2ad02644, type: 2}
+  - {fileID: 11400000, guid: 00dadf170b4bc7c4aaa12a4de779b8db, type: 2}
   _pointTargetEffects: []
   _animationAction: ability

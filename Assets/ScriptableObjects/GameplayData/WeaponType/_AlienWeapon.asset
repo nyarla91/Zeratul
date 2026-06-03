@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734c31456e0848f797b3f6b6df393f0c, type: 3}
   m_Name: _AlienWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
-  _baseDamage: 12
+  _baseDamage: 35
+  _additionalEffects: []
   _windupTime: 22
-  _recoveryTime: 5
+  _recoveryTime: 30
   _maxDistance: 1.5
-  _autoAttack: 0
+  _autoAttackDistance: 0
