@@ -172816,6 +172816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acf11abdadd46ff88bc839b86018f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionDefeat
+  _result: 0
 --- !u!1 &8279466007732933957
 GameObject:
   m_ObjectHideFlags: 0

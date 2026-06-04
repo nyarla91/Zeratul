@@ -30,6 +30,7 @@ namespace Architecture
         [SerializeField] private TacticalPauseControl _tacticalPauseControl;
         [SerializeField] private DefeatMenu _defeatMenu;
         [SerializeField] private VictoryMenu _victoryMenu;
+        [SerializeField] private ObjectiveViewFactory _objectiveViewFactory;
         
         public override void InstallBindings()
         {
@@ -48,6 +49,7 @@ namespace Architecture
             Container.BindInstance(_tacticalPauseControl).AsSingle();
             Container.BindInstance(_defeatMenu).AsSingle();
             Container.BindInstance(_victoryMenu).AsSingle();
+            Container.BindInstance(_objectiveViewFactory).AsSingle();
         }
     }
 }
