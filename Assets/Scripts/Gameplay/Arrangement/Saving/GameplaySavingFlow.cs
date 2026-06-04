@@ -16,7 +16,7 @@ namespace Gameplay.Arrangement.Saving
     public class GameplaySavingFlow : MonoBehaviour
     {
         [SerializeField] private GameplaySaveLoad _saveLoad;
-        [SerializeField] private SaveDataViewList _viewList;
+        [SerializeField] private SaveDataViewList[] _viewLists;
         [SerializeField] private string _quickSaveFilename;
         [SerializeField] private int _maxQuickSaves;
         [SerializeField] private string _successMessage;
@@ -34,7 +34,10 @@ namespace Gameplay.Arrangement.Saving
 
         private void Awake()
         {
-            _viewList.LoadRequested += GameFlowController.StartScenarioFromSaveData;
+            foreach (SaveDataViewList list in _viewLists)
+            {
+                list.LoadRequested += GameFlowController.StartScenarioFromSaveData;
+            }
             PlayerInput.QuickSave.Performed += QuickSave;
             PlayerInput.QuickLoad.Performed += QuickLoad;
         }
@@ -43,10 +46,15 @@ namespace Gameplay.Arrangement.Saving
         {
             if (_savingTask.Status == UniTaskStatus.Pending)
             {
-                
                 return;
             }
             _savingTask = SaveAsync(name, quick);
+        }
+
+        public void QuickLoad()
+        {
+            if (SaveFileList.Saves.Length > 0)
+                GameFlowController.StartScenarioFromSaveData(SaveFileList.Saves[0]);
         }
 
         private async UniTask SaveAsync(string name, bool quick)
@@ -89,12 +97,6 @@ namespace Gameplay.Arrangement.Saving
             string filename = Localizer.Translate(_quickSaveFilename);
             filename += " " + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss");
             Save(filename, true);
-        }
-
-        private void QuickLoad()
-        {
-            if (SaveFileList.Saves.Length > 0)
-                GameFlowController.StartScenarioFromSaveData(SaveFileList.Saves[0]);
         }
     }
 }

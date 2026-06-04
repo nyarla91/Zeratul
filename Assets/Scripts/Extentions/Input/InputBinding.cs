@@ -19,7 +19,7 @@ namespace Extentions.Input
         public event Action Released;
         public event Action Performed;
 
-        public InputBinding(InputAction action, IPauseReadonly pause, bool holdOnPerform = false)
+        public InputBinding(InputAction action, IPauseReadonly pause = null, bool holdOnPerform = false)
         {
             _pause = pause;
             _action = action;
@@ -31,7 +31,7 @@ namespace Extentions.Input
 
         private void OnPress(InputAction.CallbackContext obj)
         {
-            if (_pause.IsPaused)
+            if (_pause?.IsPaused ?? false)
                 return;
             if  ( ! _holdOnPerform)
                 IsHeld = true;
@@ -40,7 +40,7 @@ namespace Extentions.Input
 
         private void OnPerform(InputAction.CallbackContext obj)
         {
-            if (_pause.IsPaused)
+            if (_pause?.IsPaused ?? false)
                 return;
             if  (_holdOnPerform)
                 IsHeld = true;
@@ -50,7 +50,7 @@ namespace Extentions.Input
         private void OnRelease(InputAction.CallbackContext obj)
         {
             IsHeld = false;
-            if (_pause.IsPaused)
+            if (_pause?.IsPaused ?? false)
                 return;
             Released?.Invoke();
         }

@@ -4,6 +4,7 @@ using Gameplay.Arrangement.Saving;
 using Gameplay.Data;
 using Gameplay.Map;
 using Gameplay.UI;
+using Gameplay.UI.Menu;
 using Gameplay.Units;
 using Gameplay.Vision;
 using Gameplay.Visual;
@@ -27,6 +28,8 @@ namespace Architecture
         [SerializeField] private GameDataRegistry _gameDataRegistry;
         [SerializeField] private ClickArea _clickArea;
         [SerializeField] private TacticalPauseControl _tacticalPauseControl;
+        [SerializeField] private DefeatMenu _defeatMenu;
+        [SerializeField] private VictoryMenu _victoryMenu;
         
         public override void InstallBindings()
         {
@@ -43,6 +46,8 @@ namespace Architecture
             Container.BindInstance(_gameDataRegistry).AsSingle();
             Container.BindInstance(_clickArea).AsSingle();
             Container.BindInstance(_tacticalPauseControl).AsSingle();
+            Container.BindInstance(_defeatMenu).AsSingle();
+            Container.BindInstance(_victoryMenu).AsSingle();
         }
     }
 }

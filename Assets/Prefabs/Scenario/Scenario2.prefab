@@ -1108,9 +1108,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4930299729826729955}
-  - component: {fileID: 5629241940625800033}
+  - component: {fileID: 7578217255794222948}
   m_Layer: 0
-  m_Name: '> Complete scenario'
+  m_Name: '> End scenario in Victory'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1132,7 +1132,7 @@ Transform:
   - {fileID: 7592495600435172698}
   m_Father: {fileID: 3227225635170641617}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5629241940625800033
+--- !u!114 &7578217255794222948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1141,9 +1141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8722903730937541833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836fbfa601c44006be8bd04c24747d51, type: 3}
+  m_Script: {fileID: 11500000, guid: 1acf11abdadd46ff88bc839b86018f74, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionCompleteScenario
+  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionFinishScenario
+  _result: 1
 --- !u!1 &9157368531435207864
 GameObject:
   m_ObjectHideFlags: 0
@@ -315527,7 +315528,7 @@ PrefabInstance:
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[0]'
       value: 
-      objectReference: {fileID: 5629241940625800033}
+      objectReference: {fileID: 7578217255794222948}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: _conditions.Array.size
       value: 0

@@ -63,5 +63,15 @@ namespace Extentions
             canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = 0;
         }
+
+        public static Vector2 ScreenToCanvasPoint(this Vector2 screenPoint, RectTransform canvas)
+        {
+            Rect canvasRect = canvas.rect;
+            return new Vector2
+            (
+                screenPoint.x.Remap(0, Screen.width, 0, canvasRect.width),
+                screenPoint.y.Remap(0, Screen.height, 0, canvasRect.height)
+            );
+        }
     }
 }

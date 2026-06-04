@@ -1706,9 +1706,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4930299729826729955}
-  - component: {fileID: 5629241940625800033}
+  - component: {fileID: 7220739734014398434}
   m_Layer: 0
-  m_Name: '> Complete scenario'
+  m_Name: '> End scenario in Victory'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1730,7 +1730,7 @@ Transform:
   - {fileID: 7592495600435172698}
   m_Father: {fileID: 3227225635170641617}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5629241940625800033
+--- !u!114 &7220739734014398434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1739,9 +1739,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8722903730937541833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836fbfa601c44006be8bd04c24747d51, type: 3}
+  m_Script: {fileID: 11500000, guid: 1acf11abdadd46ff88bc839b86018f74, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionCompleteScenario
+  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionFinishScenario
+  _result: 1
 --- !u!1 &9149469290456429784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,11 +2110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1294126304671753056, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.94
+      value: 86.5
       objectReference: {fileID: 0}
     - target: {fileID: 1294126304671753056, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.41
+      value: 51.3
       objectReference: {fileID: 0}
     - target: {fileID: 1725400084846831715, guid: 5415b120aa4429445abb939a0f5a0225, type: 3}
       propertyPath: _unitType
@@ -272506,7 +272507,7 @@ PrefabInstance:
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[0]'
       value: 
-      objectReference: {fileID: 5629241940625800033}
+      objectReference: {fileID: 7220739734014398434}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: _conditions.Array.size
       value: 0

@@ -32,7 +32,7 @@ namespace Gameplay.Player
             FocusNextUnitType = new InputBinding(_actions.General.FocusNextUnitType, pause);
             ToggleTacticalPause = new InputBinding(_actions.General.ToggleTacticalPause, pause);
             QuickSave = new InputBinding(_actions.General.QuickSave, pause);
-            QuickLoad = new InputBinding(_actions.General.QuickLoad, pause);
+            QuickLoad = new InputBinding(_actions.General.QuickLoad);
             ToggleEnemyVision = new InputBinding(_actions.General.ToggleEnemyVision, pause);
             SelectAllUnits = new InputBinding(_actions.General.SelectAllUnits, pause);
             SelectUnit = new[]

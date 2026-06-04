@@ -20,13 +20,9 @@ namespace Gameplay.UI
             _canvasGroup.alpha = 0;
         }
         
-        public void Draw(Sprite icon, Vector3 worldFrom, Vector3 worldTo)
+        public void Draw(Sprite icon, Vector3 screenFrom, Vector3 screenTo)
         {
             _canvasGroup.alpha = 1;
-
-            Camera mainCamera = Camera.main;
-            Vector3 screenFrom = mainCamera.WorldToScreenPoint(worldFrom);
-            Vector3 screenTo = mainCamera.WorldToScreenPoint(worldTo);
 
             _icon.sprite = icon;
             RectTransform.anchoredPosition = screenTo;

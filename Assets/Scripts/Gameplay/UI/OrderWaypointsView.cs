@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Extentions;
 using Extentions.Pause;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
@@ -11,9 +12,11 @@ namespace Gameplay.UI
 {
     public class OrderWaypointsView : MonoBehaviour
     {
+        [SerializeField] private RectTransform _hud;
         [SerializeField] private GameObject _waypointPrefab;
 
         private readonly List<OrderWaypoint> _waypoints = new();
+        private Camera _mainCamera;
 
         private HashSet<Unit> UnitsToDisplay => TacticalPause.IsPaused
             ? UnitPool.PlayerUnits.ToHashSet().Union(Selection.SelectedUnits).ToHashSet()
@@ -23,6 +26,11 @@ namespace Gameplay.UI
         [Inject] private PlayerSelection Selection { get; set; }
         [Inject] private GamePause GamePause { get; set; }
         [Inject] private TacticalPause TacticalPause { get; set; }
+
+        private void Awake()
+        {
+            _mainCamera = Camera.main;
+        }
 
         private void Update()
         {
@@ -44,7 +52,13 @@ namespace Gameplay.UI
                     Vector3 worldTo = order.Type.TargetRequirement == TargetRequirement.None
                         ? previousPoint
                         : (order.Target.Unit ? order.Target.Unit.Position : order.Target.Point);
-                    GetIdleWaypoint().Draw(order.Type.Icon, previousPoint, worldTo);
+
+                    Vector2 screenFrom = _mainCamera.WorldToScreenPoint(previousPoint);
+                    screenFrom = screenFrom.ScreenToCanvasPoint(_hud);
+                    Vector2 screenTo = _mainCamera.WorldToScreenPoint(worldTo);
+                    screenTo = screenTo.ScreenToCanvasPoint(_hud);
+                    
+                    GetIdleWaypoint().Draw(order.Type.Icon, screenFrom, screenTo);
                     previousPoint = worldTo;
                 }
             }

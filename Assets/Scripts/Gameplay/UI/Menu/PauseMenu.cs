@@ -16,7 +16,7 @@ namespace Gameplay.UI.Menu
         private void Awake()
         {
             Observable.EveryUpdate()
-                .Where(_ => ! _menu.IsOpened)
+                .Where(_ => GamePause.IsUnpaused)
                 .Where(_ => Keyboard.current.escapeKey.wasReleasedThisFrame)
                 .Delay(TimeSpan.FromMilliseconds(100))
                 .Subscribe(_ => _menu.Open());

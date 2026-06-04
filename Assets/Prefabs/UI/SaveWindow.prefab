@@ -696,9 +696,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5832074534208319372, guid: c65825d9a906c754cbef79a42f8ad6d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 429777654462400255}
-    - targetCorrespondingSourceObject: {fileID: 5832074534208319372, guid: c65825d9a906c754cbef79a42f8ad6d8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1637134362053054735}
   m_SourcePrefab: {fileID: 100100000, guid: c65825d9a906c754cbef79a42f8ad6d8, type: 3}
 --- !u!224 &5892941755643305952 stripped
 RectTransform:
@@ -724,19 +721,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Save::Save.UI.SaveDataViewList
   _viewPrefab: {fileID: 8168558612791764151, guid: 0a8711c96ce16f34f9d933155a2e1150, type: 3}
   _content: {fileID: 3897846126660565607}
---- !u!114 &1637134362053054735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5978544200987307101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 947f4e20567840b5ad4debf001c02b52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: MainMenu::MainMenu.MainMenuGameLoader
-  _viewList: {fileID: 429777654462400255}
 --- !u!1001 &2905481884358538479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -851,7 +835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4267548369543591454, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_text
-      value: Back
+      value: "\u041D\u0430\u0437\u0430\u0434"
       objectReference: {fileID: 0}
     - target: {fileID: 4386158569423927629, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_Name
