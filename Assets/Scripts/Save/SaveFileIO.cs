@@ -14,6 +14,9 @@ namespace Save
         public string SaveFolderPath => Application.dataPath + "/save/";
         private string Extension => ".json";
 
+        public event Action<SaveData> SaveWritten; 
+        public event Action<string> SaveDeleted; 
+
         public async UniTask<bool> Write(SaveData data)
         {
             if ( ! data.filename.IsFilenameValid())
@@ -27,10 +30,12 @@ namespace Save
             try
             {
                 await File.WriteAllTextAsync(filepath, json);
+                SaveWritten?.Invoke(data);
                 return true;
             }
-            catch (IOException e)
+            catch (Exception e)
             {
+                Debug.LogError($"Failed to write file {filepath}: {e}");
                 return false;
             }
         }
@@ -40,7 +45,15 @@ namespace Save
             string filepath = FilenameToPath(filename);
             if ( ! IsPathValid(filepath) || ! File.Exists(filepath))
                 return;
-            File.Delete(filepath);
+            try
+            {
+                File.Delete(filepath);
+                SaveDeleted?.Invoke(filename);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to delete file {filepath}: {e}");
+            }
         }
 
         public async UniTask<SaveData[]> ReadAll()
@@ -49,7 +62,7 @@ namespace Save
                 return new SaveData[0];
             
             List<SaveData> result = new();
-            string[] files = Directory.GetFiles(SaveFolderPath);
+            string[] files = await UniTask.RunOnThreadPool(() => Directory.GetFiles(SaveFolderPath));
             foreach (string file in files)
             {
                 if ( ! file.EndsWith(".json"))
@@ -64,17 +77,27 @@ namespace Save
         {
             if ( ! IsPathValid(filepath) || ! File.Exists(filepath))
                 return null;
+
+            string json;
+            try
+            {
+                json = await UniTask.RunOnThreadPool(() => File.ReadAllText(filepath));
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to read file {filepath}: {e}");
+                return null;
+            }
             
             try
             {
-                string json = await File.ReadAllTextAsync(filepath);
                 SaveData saveData = JsonConvert.DeserializeObject<SaveData>(json);
                 if ( ! saveData.IsValid())
                     return null;
                 saveData.filename = FilepathToName(filepath);
                 return saveData;
             }
-            catch (JsonException e)
+            catch (Exception e)
             {
                 Debug.LogError($"Failed to deserialize save file: {e}");
                 return null;
@@ -91,14 +114,14 @@ namespace Save
     public interface ISaveFileWriteService
     {
         public UniTask<bool> Write(SaveData data);
-        
         public void Delete(string filename);
     }
 
     public interface ISaveFileReadService
     {
+        public event Action<SaveData> SaveWritten; 
+        public event Action<string> SaveDeleted;
         public UniTask<SaveData[]> ReadAll();
-        
         public UniTask<SaveData> Read(string filepath);
     }
 }

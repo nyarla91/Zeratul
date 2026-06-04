@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2307c0c598475b8ced907a6018caba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Architecture::DI.ProjectInstaller
+  _loadingScreenPrefab: {fileID: 7442429249242382348, guid: e2f2fd1e3d982ec4986d19ff7d4f751e, type: 3}
   _sceneLoaderPrefab: {fileID: 699369253501963580, guid: db32131b252ffb8458587488c08c7799, type: 3}
   _scenarioRegistry: {fileID: 11400000, guid: 6996ffca75e85724da84099bded356c2, type: 2}
   _tutorialRegistry: {fileID: 11400000, guid: b0b21a7fe9fbc75418396ad86a1ce4c8, type: 2}

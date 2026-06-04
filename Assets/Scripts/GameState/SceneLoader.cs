@@ -1,9 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace GameState
 {
@@ -16,17 +18,21 @@ namespace GameState
         private AsyncOperationHandle<SceneInstance>? _currentSceneHandle;
         
         public bool IsLoading { get; private set; }
-
-        public void LoadGameplay(UniTask additionalLoading = default) => LoadScene(_gameplayScene, additionalLoading);
         
-        public void LoadMainScene(UniTask additionalLoading = default) => LoadScene(_mainMenuScene, additionalLoading);
+        [Inject] private LoadingScreen LoadingScreen { get; set; }
 
-        private async UniTask LoadScene(AssetReference scene, UniTask additionalLoading)
+        public void LoadGameplay(Func<UniTask> additionalLoading = null) => LoadScene(_gameplayScene, additionalLoading);
+        
+        public void LoadMainScene(Func<UniTask> additionalLoading = null) => LoadScene(_mainMenuScene, additionalLoading);
+        
+        private async UniTask LoadScene(AssetReference scene, Func<UniTask> additionalLoading)
         {
             if (IsLoading)
                 return;
 
             IsLoading = true;
+
+            await LoadingScreen.Show();
 
             if (_currentSceneHandle.HasValue)
             {
@@ -36,18 +42,24 @@ namespace GameState
             AsyncOperationHandle<SceneInstance>? loadingSceneHandle = _loadingScene.LoadSceneAsync();
 
             await loadingSceneHandle.Value.Task;
+            
+            if (additionalLoading != null)
+                await additionalLoading.Invoke();
 
-            Debug.Log($"Loading {scene}");
             _currentSceneHandle = scene.LoadSceneAsync(LoadSceneMode.Single, false);
             await _currentSceneHandle.Value.Task;
-            Debug.Log($"{scene} loaded");
             
-            await additionalLoading;
-            Debug.Log($"Awaiting {additionalLoading}");
+            
             await Addressables.UnloadSceneAsync(loadingSceneHandle.Value);
-            Debug.Log($"Activating {scene}");
             await _currentSceneHandle.Value.Result.ActivateAsync().ToUniTask();
-            Debug.Log($"{scene} activated");
+            
+            SceneBootstrap bootstrap = FindAnyObjectByType<SceneBootstrap>();
+            if (bootstrap)
+            {
+                await bootstrap.Initialize();
+            }
+            
+            await LoadingScreen.Hide();
 
             IsLoading = false;
         }

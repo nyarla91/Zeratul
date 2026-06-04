@@ -18,10 +18,24 @@ namespace Save.UI
         [Inject] private SaveFileList SaveFileList { get; set; }
         [Inject] private ISaveFileWriteService SaveFileWriteService { get; set; }
         
-        private void Awake()
+        private void Start()
         {
-            SaveFileList.Refreshed += Refresh;
+            SaveFileList.RefreshStarted += Clear;
+            SaveFileList.RefreshFinished += Refresh;
+            Refresh();;
+        }
+
+        public void RefreshList()
+        {
             SaveFileList.Refresh();
+        }
+
+        private void Clear()
+        {
+            foreach (SaveDataView view in _views)
+            {
+                view.gameObject.SetActive(false);
+            }
         }
 
         private void Refresh()
@@ -59,12 +73,12 @@ namespace Save.UI
         private void Delete(SaveData saveData)
         {
             SaveFileWriteService.Delete(saveData.filename);
-            SaveFileList.Refresh();
         }
 
         private void OnDestroy()
         {
-            SaveFileList.Refreshed -= Refresh;
+            SaveFileList.RefreshStarted -= Clear;
+            SaveFileList.RefreshFinished -= Refresh;
         }
     }
 }

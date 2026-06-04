@@ -62,7 +62,6 @@ namespace Gameplay.Arrangement.Saving
             }
             if (quick)
                 DeleteExcessQuickSaves();
-            SaveFileList.Refresh();
             Message.Show(Localizer.Translate(_successMessage), MessageType.Success);
         }
 

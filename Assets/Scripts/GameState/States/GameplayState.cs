@@ -30,8 +30,7 @@ namespace GameState.States
 
         public async void Enter()
         {
-            UniTask<GameObject> task = _scenarioSession.Current.LoadPrefab();
-            _sceneLoader.LoadGameplay(task);
+            _sceneLoader.LoadGameplay(() => _scenarioSession.Current.LoadPrefab());
         }
 
         public void Exit()
