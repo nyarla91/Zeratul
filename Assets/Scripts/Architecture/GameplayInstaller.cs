@@ -1,4 +1,4 @@
-﻿using Extentions.Pause;
+﻿using _Core.Pause;
 using Gameplay;
 using Gameplay.Units;
 using Zenject;

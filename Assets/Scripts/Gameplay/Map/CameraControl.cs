@@ -1,5 +1,5 @@
-﻿using Extentions;
-using Extentions.Pause;
+﻿using _Core;
+using _Core.Pause;
 using Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;

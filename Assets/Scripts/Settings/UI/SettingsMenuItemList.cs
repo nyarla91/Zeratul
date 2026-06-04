@@ -1,5 +1,5 @@
 ﻿using System;
-using Extentions;
+using _Core;
 using Settings.Localization;
 using TMPro;
 using UnityEngine;

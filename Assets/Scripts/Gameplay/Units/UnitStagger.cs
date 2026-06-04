@@ -1,6 +1,6 @@
 ﻿using System;
+using _Core.Pause;
 using Cysharp.Threading.Tasks;
-using Extentions.Pause;
 using UniRx;
 using UniRx.Triggers;
 

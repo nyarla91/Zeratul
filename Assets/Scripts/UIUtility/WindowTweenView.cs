@@ -1,5 +1,4 @@
-﻿using Extentions;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UIUtility
 {

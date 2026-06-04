@@ -1,6 +1,6 @@
 ﻿using System;
+using _Core.Pause;
 using Cysharp.Threading.Tasks;
-using Extentions.Pause;
 using Gameplay.Arrangement.Saving;
 using Gameplay.Map;
 using GameState;

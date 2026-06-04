@@ -1,8 +1,8 @@
 ﻿using System;
-using Extentions;
+using _Core;
 using UnityEngine;
 using UnityEngine.UI;
-using Range = Extentions.Range;
+using Range = _Core.Range;
 
 namespace UIUtility
 {

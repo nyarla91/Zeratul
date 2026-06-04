@@ -1,6 +1,6 @@
 ﻿using System;
-using Extentions;
-using Extentions.Pause;
+using _Core;
+using _Core.Pause;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Units;

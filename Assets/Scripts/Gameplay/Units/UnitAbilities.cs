@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using _Core.Pause;
 using Cysharp.Threading.Tasks;
-using Extentions.Pause;
 using Gameplay.Data;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Effects;

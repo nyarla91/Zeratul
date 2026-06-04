@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using Extentions;
-using Extentions.Pause;
+using _Core;
+using _Core.Pause;
 using Gameplay.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;

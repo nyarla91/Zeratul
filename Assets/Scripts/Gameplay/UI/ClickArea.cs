@@ -1,5 +1,5 @@
 ﻿using System;
-using Extentions.Pause;
+using _Core.Pause;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;

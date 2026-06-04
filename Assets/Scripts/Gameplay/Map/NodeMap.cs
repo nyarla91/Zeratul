@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Extentions;
+using _Core;
 using Gameplay.Data.Configs;
 using UniRx;
 using UnityEditor;
