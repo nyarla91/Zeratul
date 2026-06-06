@@ -22,4 +22,4 @@ MonoBehaviour:
   _minSight: 2.5
   _simulationRadius: 20
   _fogPixelScale: 0.5
-  _fogDimensions: {x: 200, y: 150}
+  _fogDimensions: {x: 300, y: 200}

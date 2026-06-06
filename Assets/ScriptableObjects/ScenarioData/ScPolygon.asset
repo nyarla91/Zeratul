@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ScPolygon
   m_EditorClassIdentifier: Scenes::Scenes.ScenarioData
   _prefab:
-    m_AssetGUID: e8ec117c01d27194e8ab15fdde7bfa0e
+    m_AssetGUID: d18695b0d88945647b6e9465c3b60e1b
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
-    m_EditorAssetChanged: 0
+    m_EditorAssetChanged: 1
   _abilitiesAvailable: 10000
