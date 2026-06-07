@@ -21,18 +21,18 @@ MonoBehaviour:
   _targetRequirement: 2
   _maxDistance: 12
   _casterValidators:
-    _unitValidators: []
+    _unitValidators:
+    - {fileID: 11400000, guid: 22fb83621604890419cef759b688ee9b, type: 2}
   _targetValidators:
     _unitValidators:
     - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
     - {fileID: 11400000, guid: fb7851ca18712c647ab258ebbb86829b, type: 2}
     - {fileID: 11400000, guid: 1b46ab317f7c72f449679b9ec9b45c94, type: 2}
-    - {fileID: 11400000, guid: 34840aa4d4189ae41a58fe7a2442cba9, type: 2}
   _casterEffects: []
   _mustLookAtTarget: 1
   _unitTargetEffects:
   - {fileID: 11400000, guid: 8f2754233458ed34583cfb246333a9a4, type: 2}
-  - {fileID: 11400000, guid: fe62053f85348ba45950a2d802f635b2, type: 2}
+  - {fileID: 11400000, guid: f3e18357da2357c468c74e407c4b24bb, type: 2}
   - {fileID: 11400000, guid: c1baac24590bea94ca8ecfb1d12c0bd1, type: 2}
   - {fileID: 11400000, guid: f401164916dd9974b9b42f51d9160faf, type: 2}
   - {fileID: 11400000, guid: 488b0b61867a61448867077c2ad02644, type: 2}

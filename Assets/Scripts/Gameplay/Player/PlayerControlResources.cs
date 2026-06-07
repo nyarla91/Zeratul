@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Data.Configs;
 using Gameplay.Units;
@@ -16,6 +17,7 @@ namespace Gameplay.Player
         private HashSet<Unit> _controlledUnits =  new();
         
         public int Reserve { get; private set; }
+        public int KillCounter { get; private set; }
         public int Slots { get; private set; }
 
         public HashSet<Unit> ControlledUnits => _controlledUnits.ToHashSet();
@@ -57,6 +59,10 @@ namespace Gameplay.Player
             Reserve -= quantity;
             return true;
         }
+
+        public void SetKillCounter(int value) => KillCounter = Math.Max(value, 0);
+        
+        public void ReduceKillCounter() => KillCounter--;
 
         private void ValidateControlledUnits()
         {

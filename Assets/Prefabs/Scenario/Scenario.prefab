@@ -335657,7 +335657,7 @@ GameObject:
   - component: {fileID: 1462331189903903426}
   - component: {fileID: 4289161003628266521}
   m_Layer: 0
-  m_Name: (Does (triggergingUnit)  meet (_IsOwnedByEnemy) validators)
+  m_Name: (Does (triggergingUnit)  meet (_IsOwnedByEnemy, _IsOrganic) validators)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335695,6 +335695,7 @@ MonoBehaviour:
   _validator:
     _unitValidators:
     - {fileID: 11400000, guid: 54c953249b553d6428f29d151ea1a829, type: 2}
+    - {fileID: 11400000, guid: 59b3db44ec86e2c4c91038440d676105, type: 2}
   _not: 0
 --- !u!1 &7409386448966938806
 GameObject:
@@ -336304,9 +336305,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5679219036625927696}
-  - component: {fileID: 3009250400903663991}
+  - component: {fileID: 4876938757569118968}
   m_Layer: 0
-  m_Name: '> Add (1) control reserve'
+  m_Name: '> Reduce Kill Counter'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336328,7 +336329,7 @@ Transform:
   - {fileID: 5535547958005566542}
   m_Father: {fileID: 4030012012106155648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3009250400903663991
+--- !u!114 &4876938757569118968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336337,10 +336338,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8704829331997058473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 568187fd7788425aab184637265875bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 38acfdf69bdf4bb69f15d3a5ff41cf36, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionAddControlReserve
-  _quantity: {fileID: 4278133122611922814}
+  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionReduceKillCounter
 --- !u!1 &8925166872699668371
 GameObject:
   m_ObjectHideFlags: 0
@@ -349085,7 +349085,7 @@ PrefabInstance:
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[0]'
       value: 
-      objectReference: {fileID: 3009250400903663991}
+      objectReference: {fileID: 4876938757569118968}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: _conditions.Array.size
       value: 1
@@ -349140,7 +349140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324511491291145919, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: m_Name
-      value: ControlReserveForKills
+      value: KillCounterReduction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
