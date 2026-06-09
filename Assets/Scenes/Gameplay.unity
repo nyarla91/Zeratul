@@ -561,7 +561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -2389,7 +2389,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295165155}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83c4d24f83c849de98a4dc844c4d82a6, type: 3}
   m_Name: 
@@ -2398,9 +2398,7 @@ MonoBehaviour:
   _slots:
   - {fileID: 2061815005}
   - {fileID: 961530706}
-  _displayValidator:
-    _unitValidators:
-    - {fileID: 11400000, guid: 8d89c58d36239e740b725bf57186c4e0, type: 2}
+  _upgradeRequired: {fileID: 11400000, guid: 141b60590f7578f41ae64a1546b243ae, type: 2}
   _reserve: {fileID: 1275388682}
   _availableSprite: {fileID: -513813991, guid: dfaa460de7f80a24aa77b890dfaac3d8, type: 3}
   _highlightedSprite: {fileID: 702919172, guid: dfaa460de7f80a24aa77b890dfaac3d8, type: 3}
@@ -3389,6 +3387,7 @@ GameObject:
   - component: {fileID: 667987123}
   - component: {fileID: 667987124}
   - component: {fileID: 667987125}
+  - component: {fileID: 667987126}
   m_Layer: 0
   m_Name: Saving
   m_TagString: Untagged
@@ -3502,6 +3501,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1770afe0dd487f84a0d3eb9f005442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Arrangement::Gameplay.Arrangement.Saving.ControlSavingSystem
+  _saveLoad: {fileID: 667987119}
+--- !u!114 &667987126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667987117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4947b60e033c4208b2895343a8cc8c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Arrangement::Gameplay.Arrangement.Saving.UpgradeSavingSystem
   _saveLoad: {fileID: 667987119}
 --- !u!1 &691535653
 GameObject:

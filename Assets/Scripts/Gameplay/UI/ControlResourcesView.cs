@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
+using _Core;
+using Gameplay.Data;
 using Gameplay.Data.Validator;
 using Gameplay.Player;
 using Gameplay.Units;
+using Gameplay.Upgrades;
 using TMPro;
 using UniRx;
 using UniRx.Triggers;
@@ -17,7 +20,7 @@ namespace Gameplay.UI
     {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Image[] _slots;
-        [SerializeField] private UnitValidatorGroup _displayValidator;
+        [SerializeField] private Upgrade _upgradeRequired;
         [SerializeField] private TMP_Text _reserve;
         [SerializeField] private Sprite _availableSprite;
         [SerializeField] private Sprite _highlightedSprite;
@@ -29,6 +32,7 @@ namespace Gameplay.UI
         [Inject] private PlayerOrderTargeter Targeter { get; set; }
         [Inject] private PlayerMouseTargeting PlayerMouseTargeting { get; set; }
         [Inject] private UnitPool UnitPool { get; set; }
+        [Inject] private UpgradeStorage UpgradeStorage { get; set; }
 
         private void Awake()
         {
@@ -36,7 +40,7 @@ namespace Gameplay.UI
 
             this.UpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(1))
-                .Where(_ => UnitPool.PlayerUnits.Any(u => _displayValidator.IsValid(u, u)))
+                .Where(_ => UpgradeStorage.IsUpgradeResearched(Owner.Player, _upgradeRequired))
                 .Take(1)
                 .Subscribe(_ => _canvasGroup.alpha = 1);
             

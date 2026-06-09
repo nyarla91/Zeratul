@@ -19,7 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
   - {fileID: 11400000, guid: 4d9ddd1194806ac44bcc0d691328a7b0, type: 2}
   - {fileID: 11400000, guid: d2259cc015c4ec447ad995922eb87208, type: 2}
-  _controlWorth: 100
+  _controlCost: 0
+  _controlSlots: 0
   _attackWorth:
     _baseWorth: 200
     _evaluators: []
@@ -58,7 +59,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _spriteMap: {fileID: 11400000, guid: 21c92a6a426fb994db6074e194c7b7dc, type: 2}
+  _spriteMap: {fileID: 11400000, guid: e7544b88e71ce4e49be104bfd8b85708, type: 2}
   _interactionColliderSize: {x: 1.3, y: 2}
   _interactionColliderOffset: {x: 0, y: 0.6}
   _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}

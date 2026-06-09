@@ -43,6 +43,7 @@ namespace Gameplay.Player
         {
             Reserve = payload.controlReserve;
             _controlledUnits = payload.controlledUnits.Select(getUnitByIdService.GetUnitById).ToHashSet();
+            KillCounter = payload.killCounter;
         }
 
         public void AddReserve(int quantity)

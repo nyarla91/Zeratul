@@ -15,7 +15,8 @@ MonoBehaviour:
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _displayName: ability-invasion-name
   _displayValidators:
-    _unitValidators: []
+    _unitValidators:
+    - {fileID: 11400000, guid: 2347914afa212fe4a9493d44a9ba03e2, type: 2}
   _rawDisplayDescription: ability-invasion-description
   _icon: {fileID: 21300000, guid: 47ede2516144cbf4b98544b2b2978efb, type: 3}
   _hotkeyAlias: Ability5

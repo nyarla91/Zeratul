@@ -23,8 +23,9 @@ namespace Gameplay.Arrangement.Saving
         public override ISaveSystem Save()
         {
             int controlReserve = PlayerControlResources.Reserve;
+            int killCounter = PlayerControlResources.KillCounter;
             HashSet<int> controlledUnits = PlayerControlResources.ControlledUnits.Select(u => u.Id).ToHashSet();
-            return new ControlSaveSystem(controlReserve, controlledUnits);
+            return new ControlSaveSystem(controlReserve, controlledUnits, killCounter);
         }
     }
 }

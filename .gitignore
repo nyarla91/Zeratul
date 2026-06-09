@@ -80,3 +80,4 @@ crashlytics-build.properties
 /Assets/save
 Assets/config.json
 Assets/config.json.meta
+/Assets/Editor/renders
