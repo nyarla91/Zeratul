@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: _Drone
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Drone
-  _focusPriority: 99
+  _focusPriority: 9
   _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
-  _controlWorth: 100
+  _controlCost: 0
+  _controlSlots: 0
   _attackWorth:
     _baseWorth: 50
     _evaluators: []

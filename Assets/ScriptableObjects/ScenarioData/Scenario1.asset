@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scenario1
   m_EditorClassIdentifier: Scenes::Scenes.ScenarioData
   _prefab:
-    m_AssetGUID: 59db3bd33974e7f42819e691d54467e3
+    m_AssetGUID: ef0e84cc39219184dbac6ac36a000042
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

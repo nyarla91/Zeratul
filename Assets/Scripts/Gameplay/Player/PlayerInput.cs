@@ -17,8 +17,8 @@ namespace Gameplay.Player
         public InputBinding QuickSave { get; }
         public InputBinding QuickLoad { get; }
         public InputBinding ToggleEnemyVision { get; }
-        public InputBinding SelectAllUnits { get; }
         public InputBinding[] SelectUnit { get; }
+        public InputBinding SelectAllUnits { get; }
 
         public float ZoomDelta => _actions.General.ZoomDelta.ReadValue<float>();
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4826021679006543932}
   - component: {fileID: 1653221710375583603}
   - component: {fileID: 485935788325951280}
+  - component: {fileID: 2676148986216522732}
   m_Layer: 0
   m_Name: LockedSR
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e82a8f8848391834c98fdece83a66845, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.62352943}
+  m_Sprite: {fileID: 21300000, guid: 502b8730785cce34b9daa9bfd0647701, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,6 +104,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e1286e540747ea8570e713fe75b8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.StatusRendering.StatusSprite
-  _alwaysVisible: 0
+  _playerDisplayBehaviour: 0
+  _enemyDisplayBehaviour: 0
+  _visibleInFogOfWar: 0
+  _ignoreLocked: 0
   _config: {fileID: 11400000, guid: a38f394a58a26e54cbef03f0caf8710d, type: 2}
   _spriteRenderer: {fileID: 1653221710375583603}
+--- !u!95 &2676148986216522732
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788756871627082595}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6354ef80fe9853b4b9fe89b99da95d52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -6,7 +6,6 @@ using Gameplay.Data.Units;
 using Gameplay.Map;
 using Gameplay.Player;
 using Gameplay.Vision;
-using NaughtyAttributes;
 using Save.Data.Units;
 using UnityEngine;
 using Zenject;

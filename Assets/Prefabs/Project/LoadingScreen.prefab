@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1643521892760020386}
   - component: {fileID: 2176310936261212495}
   - component: {fileID: 8482970772727713561}
-  - component: {fileID: 2070928212374574885}
+  - component: {fileID: 2864301916695493901}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -33,10 +33,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8151534706533327495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -286, y: 144}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2176310936261212495
 CanvasRenderer:
@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.11372549}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 47ede2516144cbf4b98544b2b2978efb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81944c5a1728b5c4880444b059c95c79, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2070928212374574885
+--- !u!114 &2864301916695493901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,17 +85,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 803457795366439204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a5f7f2bc2b4491b4e875e88df40409, type: 3}
+  m_Script: {fileID: 11500000, guid: 4792dd81fb184a5f95844f3b235eb743, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UIUtility::UIUtility.LoadingAnimation
+  m_EditorClassIdentifier: UIUtility::UIUtility.ImageAnimator
   _image: {fileID: 8482970772727713561}
-  _animationSpeed: 2
-  _scaleRange:
-    _min: 1
-    _max: 1.5
-  _alphaRange:
-    _min: 0.5
-    _max: 1
+  _sprites:
+  - {fileID: 21300000, guid: 04e94b8f5058133418725a04d07b307f, type: 3}
+  - {fileID: 21300000, guid: a0c91c997ece0b044b8466c83a1a2b25, type: 3}
+  - {fileID: 21300000, guid: 81944c5a1728b5c4880444b059c95c79, type: 3}
+  - {fileID: 21300000, guid: 083d2579a6b71684da5baffa0ce67cff, type: 3}
+  - {fileID: 21300000, guid: 8b01ec452cd63a4449d8f786013aa4b9, type: 3}
+  - {fileID: 21300000, guid: 14d22f8b29feb8d4dac3c3bfabd99121, type: 3}
+  - {fileID: 21300000, guid: 3eed082804a839143a371b120e7b5488, type: 3}
+  - {fileID: 21300000, guid: f8f4ab573f18f6c4ca8b410650c59671, type: 3}
+  - {fileID: 21300000, guid: f12fe723d1d5158469a6eda513035e28, type: 3}
+  - {fileID: 21300000, guid: 82763d03ce45eb442bdc490e2f77b9a2, type: 3}
+  _frameRate: 10
 --- !u!1 &6002935430210380962
 GameObject:
   m_ObjectHideFlags: 0

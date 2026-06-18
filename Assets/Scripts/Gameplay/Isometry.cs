@@ -13,8 +13,8 @@ namespace Gameplay
 
         public static float Distance(Vector2 a, Unit b) => Distance(a, b.Position) - b.Type.Size / 2;
         
-        public static float Distance(Unit a, Unit b) => Distance(a.Position, b.Position) - (a.Type.Size + b.Type.Size) / 2;
-
         public static float DistanceTowards(float distance, float directionY) => distance * Mathf.Lerp(1, VerticalScale, Mathf.Abs(directionY));
+
+        public static float Distance(Unit a, Unit b) => Distance(a.Position, b.Position) - (a.Type.Size + b.Type.Size) / 2;
     }
 }
