@@ -26,6 +26,7 @@ namespace Gameplay.Units
         public float ShieldPercent => HasShieldPoints ? (float) ShieldPoints / MaxShieldPoints : 0;
         public int MissingShieldPoints => MaxShieldPoints - ShieldPoints;
         public bool HasShieldPoints => MaxShieldPoints > 0;
+        public bool AreShieldsRestoring => HasShieldPoints && _gameTime.Frame - LastDamageFrame >= UnitType.ShieldRestoreDelay;
 
         public int LifePoints => HitPoints + ShieldPoints;
         public int MaxLifePoints => MaxHitPoints + ShieldPoints;
@@ -103,7 +104,7 @@ namespace Gameplay.Units
 
         private void RestoreShieldPoints()
         {
-            if ( ! HasShieldPoints || _gameTime.Frame - LastDamageFrame < UnitType.ShieldRestoreDelay)
+            if ( ! AreShieldsRestoring)
                 return;
             _shieldPoints += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
             _shieldPoints = Mathf.Min(_shieldPoints, MaxShieldPoints);
