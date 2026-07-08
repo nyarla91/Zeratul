@@ -61,6 +61,7 @@ namespace Gameplay.Units
         public UnitType Type { get; private set; }
 
         public event Action Killed; 
+        public event Action<Unit> KilledPayload; 
         public int Id { get; private set; }
         
         [Inject] private TacticalPause TacticalPause { get; set; }
@@ -171,13 +172,17 @@ namespace Gameplay.Units
             IsDead = true;
             UnitPool.RemoveUnit(this);
             Killed?.Invoke();
+            KilledPayload?.Invoke(this);
             Destroy(gameObject);
         }
 
         private void OnDestroy()
         {
             if (IsAlive)
+            {
                 Killed?.Invoke();
+                KilledPayload?.Invoke(this);
+            }
         }
     }
 }

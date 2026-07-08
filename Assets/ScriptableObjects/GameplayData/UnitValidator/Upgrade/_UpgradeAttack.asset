@@ -15,4 +15,4 @@ MonoBehaviour:
   _invalidMessage: 
   _not: 0
   _gameplayInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _upgradeRequired: {fileID: 11400000, guid: e3c61f474e180084aaa14a81565f5caf, type: 2}
+  _upgradeRequired: {fileID: 11400000, guid: deefe52563afebce68b1fb3a29dce45b, type: 2}
