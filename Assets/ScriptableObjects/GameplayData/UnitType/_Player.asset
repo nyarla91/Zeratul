@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: _Player
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _displayName: Agent
+  _displayName: Alien
   _focusPriority: 10
   _nonInteractable: 0
   _tags:
@@ -41,14 +41,13 @@ MonoBehaviour:
   _disableSight: 0
   _sightRadius: 15
   _weaponType: {fileID: 11400000, guid: 4a0193a5eb22770419840eff264f1a8d, type: 2}
-  _innateStatuses:
-  - {fileID: 11400000, guid: dcca474c092386b48b70450a077465e4, type: 2}
+  _innateStatuses: []
   _availableOrders:
-  - {fileID: 11400000, guid: 56ccb81e15e21bf4c89b3b8b6af0a627, type: 2}
+  - {fileID: 11400000, guid: 4b784a4120a403f478b964a1a00a9bc4, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
   - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}

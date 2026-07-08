@@ -1,36 +1,50 @@
 ﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameState
 {
     public class LoadingScreen : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private float _fadeDuration;
+        [SerializeField] private Image _background;
+        [SerializeField] private Image _animation;
+        [SerializeField] private float _transitionDuration;
+        [SerializeField] private Sprite[] _transitionFrames;
 
+        private float _transitionT;
+        private float _targetTransitionT;
+        
         private void Awake()
         {
-            _canvasGroup.alpha = 0;
-            _canvasGroup.blocksRaycasts = false;
-            _canvasGroup.interactable = false;
             gameObject.SetActive(false);
         }
 
         public async UniTask Show()
         {
             gameObject.SetActive(true);
-            _canvasGroup.DOComplete();
-            _canvasGroup.blocksRaycasts = true;
-            await _canvasGroup.DOFade(1, _fadeDuration).AsyncWaitForCompletion();
+            _animation.color = Color.clear;
+            _targetTransitionT = 1;
+            await UniTask.WaitUntil(() => _transitionT.Equals(1));
+            _animation.color = Color.white;
         }
         
         public async UniTask Hide()
         {
-            _canvasGroup.DOComplete();
-            _canvasGroup.blocksRaycasts = false;
-            await _canvasGroup.DOFade(0, _fadeDuration).AsyncWaitForCompletion();
-            gameObject.SetActive(false);
+            _animation.color = Color.clear;
+            _targetTransitionT = 0;
+            await UniTask.WaitUntil(() => _transitionT.Equals(1));
+            gameObject.SetActive(true);
+        }
+
+        private void Update()
+        {
+            float delta = 1 / _transitionDuration * Time.deltaTime;
+            _transitionT = Mathf.MoveTowards(_transitionT, _targetTransitionT, delta);
+            
+            int maxFrame = _transitionFrames.Length - 1;
+            int frame = Mathf.RoundToInt(_transitionT * maxFrame);
+            
+            _background.sprite = _transitionFrames[frame];
         }
     }
 }

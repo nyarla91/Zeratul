@@ -964,7 +964,7 @@ MonoBehaviour:
   _unit: {fileID: 1588366463054386623}
   _spriteRenderer: {fileID: 1600494382157285698}
   _defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  _cloakedColor: {r: 0.3820755, g: 0.9572713, b: 1, a: 0.45490196}
+  _cloakedColor: {r: 1, g: 1, b: 1, a: 0.7882353}
 --- !u!1 &6860139145215383467
 GameObject:
   m_ObjectHideFlags: 0

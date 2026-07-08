@@ -13,7 +13,7 @@ namespace Gameplay.Units.View
         
         [SerializeField] private Animator _animator;
         [SerializeField] private Unit _unit;
-        [SerializeField] private int _breakFrameWindow;s
+        [SerializeField] private int _breakFrameWindow;
 
         [Inject] private GameTime GameTime { get; set; }
 
