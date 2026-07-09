@@ -134,6 +134,15 @@ namespace Gameplay.Units
         
         public void Unlock(object source) => _lockSources.Remove(source);
 
+        public bool WasteEnergy(int energy)
+        {
+            if (energy <= 0)
+                return true;
+            _energyPoints -= Mathf.Min(energy, _energyPoints);
+            LastEnergySpentFrame = _gameTime.Frame;
+            return true;
+        }
+
         public bool TrySpendEnergy(int energy)
         {
             if (energy <= 0)

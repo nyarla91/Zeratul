@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95f09263c1eb4db5b50b7b0c0498f177, type: 3}
-  m_Name: ScPolygon
+  m_Name: Arena
   m_EditorClassIdentifier: Scenes::Scenes.ScenarioData
   _prefab:
-    m_AssetGUID: 6e5169c9d53f2cb2faf9e5b00955767e
+    m_AssetGUID: 9b59aafc9ccbe0cb39b4e6a94c399d7f
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

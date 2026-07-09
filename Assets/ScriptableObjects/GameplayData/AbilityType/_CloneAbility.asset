@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
-  m_Name: _ParasiteAbility
+  m_Name: _CloneAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
   _windupTime: 35
   _recoveryTime: 10
-  _cooldown: 0
+  _cooldown: 500
   _cooldownGroup: {fileID: 0}
   _energyCost: 25
   _ignoreLock: 0
-  _targetRequirement: 2
-  _maxDistance: 24
+  _targetRequirement: 1
+  _maxDistance: 999
   _casterValidators:
     _unitValidators: []
   _targetValidators:
-    _unitValidators:
-    - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    _unitValidators: []
   _casterEffects: []
   _mustLookAtTarget: 1
-  _unitTargetEffects:
-  - {fileID: 11400000, guid: 703738c70f88e7beaa890f1d8b39bd4f, type: 2}
-  _pointTargetEffects: []
+  _unitTargetEffects: []
+  _pointTargetEffects:
+  - {fileID: 11400000, guid: 43f7c2e3487a2c09bb6ab8eeb766f02e, type: 2}
   _animationAction: ability

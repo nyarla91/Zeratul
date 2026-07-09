@@ -12,6 +12,7 @@ namespace Gameplay.Data.Statuses
     {
         [SerializeField] private SOInjectPresenter _gameplayPresenter;
         [SerializeField] private float _radius;
+        [SerializeField] private bool _useHostRadius;
 
         private readonly Dictionary<int, VisionSource> _visionSources = new();
 
@@ -27,7 +28,7 @@ namespace Gameplay.Data.Statuses
             VisionSource source = VisionMap.CreateSource(
                 () => host.IsAlive ? host.Position : default,
                 () => owner,
-                () => _radius,
+                () => _useHostRadius ? (host.IsAlive ? host.Sight.Radius : 0) : _radius,
                 () => host.IsAlive && host.Type.IsAir
             );
             _visionSources.Add(host.Id, source);
@@ -53,6 +54,12 @@ namespace Gameplay.Data.Statuses
                 return;
             source.Dispose();
             _visionSources.Remove(id);
+        }
+
+        private void OnValidate()
+        {
+            if (_useHostRadius)
+                _radius = 0;
         }
     }
 }

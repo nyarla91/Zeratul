@@ -16,9 +16,10 @@ MonoBehaviour:
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 1d2f009d62a07d04f9202d0c804e1f3c, type: 3}
   _displayName: Parasite
-  _showDuration: 0
+  _showDuration: 1
   _showDurationPriority: 0
   _displayDescription: Grant vision to the caster
   _rendererPrefabs: []
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
-  _radius: 12
+  _radius: 0
+  _useHostRadius: 1

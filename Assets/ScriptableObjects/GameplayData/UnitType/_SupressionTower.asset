@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
+  m_Name: _SupressionTower
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _displayName: Supression Tower
+  _focusPriority: -100
+  _nonInteractable: 0
+  _tags:
+  - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
+  - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
+  _controlCost: 3
+  _controlSlots: 1
+  _attackWorth:
+    _baseWorth: 50
+    _evaluators:
+    - {fileID: 11400000, guid: e1f9c55336c20d049ab9c71bae3a73ab, type: 2}
+  _isInvulnerable: 0
+  _maxHitPoints: 50
+  _maxShieldPoints: 75
+  _shieldRestoreDelay: 250
+  _shieldPointsPerSecond: 7
+  _maxEnergyPoints: 0
+  _energyRestoreDelay: 250
+  _energyPointsPerSecond: 7
+  _disableCollision: 0
+  _isImmobile: 1
+  _isAir: 0
+  _maxSpeed: 0
+  _size: 2
+  _rotationSpeed: 0
+  _disableSight: 0
+  _sightRadius: 5
+  _weaponType: {fileID: 0}
+  _innateStatuses:
+  - {fileID: 11400000, guid: b91b4537667a2a38499e6fb4ce5bfc06, type: 2}
+  _availableOrders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 4918c80d691b5b54ca761f136c17bfec, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteMap: {fileID: 11400000, guid: fcae8b95d3cb1dc09acdcc32e26bb089, type: 2}
+  _interactionColliderSize: {x: 1.8, y: 2}
+  _interactionColliderOffset: {x: 0, y: 0.58}
+  _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
+  _editorRadius:
+    _object: {fileID: 11400000, guid: 0dd1ce0015c787c98a0e83d910fdc90c, type: 2}
+  _editorRadiusColor: {r: 1, g: 0, b: 0.93442976, a: 0.34901962}

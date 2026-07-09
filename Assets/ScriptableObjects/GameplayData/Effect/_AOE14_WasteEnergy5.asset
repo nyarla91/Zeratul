@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c29638cefae4b53acadb2b9738ba9e5, type: 3}
+  m_Name: _AOE14_WasteEnergy5
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
+  _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+  _radius: 12
+  _applyValidators:
+    _unitValidators:
+    - {fileID: 11400000, guid: 161b97ff5218e624ab499324e33049ce, type: 2}
+  _effects:
+  - {fileID: 11400000, guid: eecb6aa25d73e63a78dd0eabddb8e38a, type: 2}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
+  m_Name: _SupressionAura14
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
+  _useLock: 1
+  _display: 0
+  _displayIcon: {fileID: 21300000, guid: c9090108e3454b44d86dd3c9a49b5217, type: 3}
+  _displayName: Supressor
+  _showDuration: 0
+  _showDurationPriority: 0
+  _displayDescription: Drains energy from enemies nearby
+  _rendererPrefabs:
+  - {fileID: 1872224104527679214, guid: 2a7019e8aa215fa04a5c747d34342da7, type: 3}
+  _casterType: 0
+  _unitEffects:
+  - {fileID: 11400000, guid: 0dd1ce0015c787c98a0e83d910fdc90c, type: 2}
+  _tickPeriod: 10
+  _requireSimulation: 1
