@@ -21,12 +21,12 @@ namespace Gameplay.Units
             _obstacleCollider = obstacleCollider;
 
             Unit.gameObject.layer = UnitType.IsAir ? movementConfig.AirLayer : movementConfig.GroundLayer;
-            obstacleCollider.enabled = ! Unit.CanMove;
+            obstacleCollider.enabled = Unit.IsObstacle;
             collider.transform.localScale = Vector3.one * UnitType.Size;
             collider.gameObject.layer = Unit.gameObject.layer;
             collider.isTrigger = UnitType.DisableCollision;
 
-            if (Unit.CanMove)
+            if ( ! Unit.IsObstacle)
                 return;
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             _nodeMap.QueueObstacleRecalculation(RecalculationBounds);

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: _HasAttackingAllyNearby
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.SurroundingUnitsValidator
   _invalidMessage: 
+  _not: 0
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
   _surroundingValidators:
     _unitValidators:
     - {fileID: 11400000, guid: 006b21522d1b4294e9f6cccab1e4e3e3, type: 2}
-    - {fileID: 11400000, guid: 8aa1b5f02c185884eb6b593db4f5867f, type: 2}
+    - {fileID: 11400000, guid: b216183012fff2b0ca2a8def76efa2ad, type: 2}
+    - {fileID: 11400000, guid: 9688b55048c54d3428b0bfbd314bc345, type: 2}
   _radius: 10
   _maxValid: 99999999
   _minValid: 1

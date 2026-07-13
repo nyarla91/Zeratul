@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: _Attacked2
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.AttackedValidator
   _invalidMessage: 
-  _maxTimeSinceTookDamage: 2
+  _not: 0
+  _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+  _maxFramesSinceTookDamage: 125

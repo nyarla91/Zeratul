@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
+  m_Name: PickupRed
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitSpriteMap
+  _portrait: {fileID: 0}
+  _sprites:
+  - {fileID: 21300000, guid: e136b242a75b73a8b8a54c8622217402, type: 3}
+  - {fileID: 21300000, guid: 7a6bb0f595440a8648958f22bf9863a3, type: 3}
+  - {fileID: 21300000, guid: f3cf58c3e070240f2ad68cb633cb80ee, type: 3}
+  - {fileID: 21300000, guid: 9c1cf7dff13d5ed1cbe0e653605cc2e9, type: 3}
+  - {fileID: 21300000, guid: 38e2e5d9c1b601eac8b8e4be61762b31, type: 3}
+  - {fileID: 21300000, guid: 5d974ff7cb5b19259864c1dcbe2061d4, type: 3}
+  - {fileID: 21300000, guid: d40e0f19a9b931e4f94b4116c43e8ec9, type: 3}
+  - {fileID: 21300000, guid: 41a8c0a848f1118559ae76c96588e474, type: 3}
+  - {fileID: 21300000, guid: 186fcf9a50131c97aab455ade446a69e, type: 3}
+  - {fileID: 21300000, guid: c1fcc67adeb8557d6b48b27a9ccc9dd1, type: 3}
+  - {fileID: 21300000, guid: 49eba883057b26251a0f6b2bd1ec14c3, type: 3}
+  - {fileID: 21300000, guid: f19a251525c4dc6129789f316d29af12, type: 3}
+  - {fileID: 21300000, guid: 7add425ed82b7f996b37de64f153473b, type: 3}
+  - {fileID: 21300000, guid: 33f0e707b68b9345995006977eb1eab6, type: 3}
+  - {fileID: 21300000, guid: 636892be8d18a42758a0b7b0ee951101, type: 3}
+  - {fileID: 21300000, guid: ce57ea7b0866cc19e9f76324f508278d, type: 3}
+  - {fileID: 21300000, guid: 8af87bc18d21dbeee98448f198348b35, type: 3}
+  - {fileID: 21300000, guid: 99c42d3f9ebaff5f0bbc408c23d71395, type: 3}
+  - {fileID: 21300000, guid: 90446e83f100e403da419feddea33fc0, type: 3}
+  - {fileID: 21300000, guid: 671ff3606574136418d697051b118c5c, type: 3}
+  _animations:
+  - <Name>k__BackingField: pickup-red-idle
+    <Action>k__BackingField: idle
+    <FrameRate>k__BackingField: 5
+    <Loop>k__BackingField: 1
+    <Frames>k__BackingField:
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: e136b242a75b73a8b8a54c8622217402, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 7a6bb0f595440a8648958f22bf9863a3, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: f3cf58c3e070240f2ad68cb633cb80ee, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 9c1cf7dff13d5ed1cbe0e653605cc2e9, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 38e2e5d9c1b601eac8b8e4be61762b31, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 5d974ff7cb5b19259864c1dcbe2061d4, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: d40e0f19a9b931e4f94b4116c43e8ec9, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 41a8c0a848f1118559ae76c96588e474, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 186fcf9a50131c97aab455ade446a69e, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: c1fcc67adeb8557d6b48b27a9ccc9dd1, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 49eba883057b26251a0f6b2bd1ec14c3, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: f19a251525c4dc6129789f316d29af12, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 7add425ed82b7f996b37de64f153473b, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 33f0e707b68b9345995006977eb1eab6, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 636892be8d18a42758a0b7b0ee951101, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: ce57ea7b0866cc19e9f76324f508278d, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 8af87bc18d21dbeee98448f198348b35, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 99c42d3f9ebaff5f0bbc408c23d71395, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 90446e83f100e403da419feddea33fc0, type: 3}
+    - <Directions>k__BackingField:
+      - {fileID: 21300000, guid: 671ff3606574136418d697051b118c5c, type: 3}
+  _spriteHeight: 0

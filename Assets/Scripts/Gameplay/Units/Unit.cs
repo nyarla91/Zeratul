@@ -45,6 +45,7 @@ namespace Gameplay.Units
         public bool HasSight => ! Type.DisableSight;
         public bool CanAttack => Type.WeaponType;
         public bool CanMove => ! Type.IsImmobile;
+        public bool IsObstacle => ! CanMove && ! Type.DisableCollision;
         public bool IsVisibleToPlayer => Visibility?.IsVisibleTo(Owner.Player) ?? false;
 
         public bool IsDead { get; private set; }

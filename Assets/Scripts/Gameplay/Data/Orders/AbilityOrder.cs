@@ -121,7 +121,8 @@ namespace Gameplay.Data.Orders
                 order.Actor.Movement?.Stop();
                 
                 float angleToTarget = order.Actor.Position.DirectionTo(destination).ToDegrees();
-                if (ability.Type.MustLookAtTarget && ! order.Actor.Direction.LookAngle.Equals(angleToTarget))
+                float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(order.Actor.Direction.LookAngle, angleToTarget));
+                if (ability.Type.MustLookAtTarget && deltaAngle > 2)
                 {
                     order.Actor.Direction.RotateTowards(angleToTarget);
                     continue;
