@@ -12,11 +12,11 @@ Player is **permanently cloaked**, which means that they cannot be directly seen
 ![Cloak](docs/images/_cloak.gif)
 
 ### Invasion
-Another
+Another core ability player has is Invasion. This ability lets player to take control of any enemy unit at a certain cost, depending on target unit itself. This can be used to use valuable enemy abilities or strong enemy units against their allies.
 ![Invasion 1](docs/images/_invasion1.gif)
 ![Invasion 2](docs/images/_invasion2.gif)
 ### Plan your moves
-Hit pause and take your time to observe the situation and issue orders to your units
+Play can use tactical pause anytime and stop the game to observe the situation and issue orders to their units.
 ![Pause](docs/images/_pause.gif)
 ### Find creative solutions
 There is never a single right solution to any obstacle, use everything you have to deal with it.
