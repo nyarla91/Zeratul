@@ -4,7 +4,6 @@ using _Core;
 using _Core.Pause;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
-using Gameplay.UI;
 using Gameplay.Units;
 using UniRx;
 using UnityEngine;

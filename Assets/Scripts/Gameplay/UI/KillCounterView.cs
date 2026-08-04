@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.Player;
+﻿using Gameplay.Player;
 using TMPro;
 using UnityEngine;
 using Zenject;

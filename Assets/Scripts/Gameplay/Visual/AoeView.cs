@@ -24,7 +24,7 @@ namespace Gameplay.Visual
             _spriteRenderer.sprite = variant.Sprite;
             _spriteRenderer.sortingOrder = variant.SortingOrder;
             _spriteRenderer.color = variant.Color;
-            Radius = variant.Radius + 0.1f;
+            Radius = variant.Radius + 0.2f;
             _rotationSpeed = variant.RotationSpeed;
         }
         
