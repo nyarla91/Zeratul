@@ -25,8 +25,8 @@ MonoBehaviour:
     _evaluators:
     - {fileID: 11400000, guid: e1f9c55336c20d049ab9c71bae3a73ab, type: 2}
   _isInvulnerable: 0
-  _maxHitPoints: 50
-  _maxShieldPoints: 75
+  _maxHitPoints: 75
+  _maxShieldPoints: 50
   _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 7
   _maxEnergyPoints: 0

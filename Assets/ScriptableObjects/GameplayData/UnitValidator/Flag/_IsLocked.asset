@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitFlagValidator
   _invalidMessage: 
   _not: 0
-  _flag: 5
+  _flag: 7

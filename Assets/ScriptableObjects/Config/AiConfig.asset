@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.UnitAiConfig
   _autoAttackEvaluator: {fileID: 11400000, guid: 60a7f7a5bfcf747449236e0be0c69042, type: 2}
   _moveOrder: {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
-  _timeBetweenThinking: 0.5
+  _timeBetweenThinking: 0.1
   _damageForgiveTime: 5

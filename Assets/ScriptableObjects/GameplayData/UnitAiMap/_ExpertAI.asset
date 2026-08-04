@@ -41,9 +41,8 @@ MonoBehaviour:
     _targetValidator:
       _unitValidators:
       - {fileID: 11400000, guid: 1ac10117ad6eec04a8040955a3048024, type: 2}
-      - {fileID: 11400000, guid: 9e8a231498d33a345bd9e827f200c3b7, type: 2}
       - {fileID: 11400000, guid: 006b21522d1b4294e9f6cccab1e4e3e3, type: 2}
+      - {fileID: 11400000, guid: 9e8a231498d33a345bd9e827f200c3b7, type: 2}
     _evaluators:
-      _baseWorth: 3000
-      _evaluators:
-      - {fileID: 11400000, guid: de44a7b1848955c4cbea5280f1f4049e, type: 2}
+      _baseWorth: 200
+      _evaluators: []
