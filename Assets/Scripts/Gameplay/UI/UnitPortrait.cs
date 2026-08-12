@@ -1,9 +1,7 @@
-﻿using System;
-using Gameplay.Player;
+﻿using Gameplay.Player;
 using Gameplay.Units;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 

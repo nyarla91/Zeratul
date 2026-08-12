@@ -23,8 +23,8 @@ MonoBehaviour:
     _description: tutorial-attack-description
   - _label: tutorial-life-label
     _description: tutorial-life-description
-  - _label: tutorial-hinderance-label
-    _description: tutorial-hinderance-description
+  - _label: tutorial-lockdown-label
+    _description: tutorial-lockdown-description
   - _label: tutorial-energy-label
     _description: tutorial-energy-description
   - _label: tutorial-tactical-pause-label

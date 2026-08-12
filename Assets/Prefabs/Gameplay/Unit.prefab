@@ -847,7 +847,7 @@ GameObject:
   - component: {fileID: 7157529984151761609}
   - component: {fileID: 1600494382157285698}
   - component: {fileID: 7853164914835431106}
-  - component: {fileID: 4141729251931112795}
+  - component: {fileID: 1777432991172724159}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -949,7 +949,7 @@ MonoBehaviour:
   _collider: {fileID: 9103159375792626044}
   _spriteRenderer: {fileID: 1600494382157285698}
   _unit: {fileID: 1588366463054386623}
---- !u!114 &4141729251931112795
+--- !u!114 &1777432991172724159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -958,13 +958,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6475753974446673389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03ff8051c2145b8a898e15829d51638, type: 3}
+  m_Script: {fileID: 11500000, guid: 38008501a98345be8b6da24d43fc3829, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.UnitSpriteColorView
+  m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.UnitMaterialView
   _unit: {fileID: 1588366463054386623}
   _spriteRenderer: {fileID: 1600494382157285698}
-  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  _cloakedColor: {r: 1, g: 1, b: 1, a: 0.7882353}
+  _defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  _cloakedMaterial: {fileID: 2100000, guid: c3146eb5b515749428c66e3a6ce8f9dd, type: 2}
+  _detectedCloakedMaterial: {fileID: 2100000, guid: a799935f6956e0c26bef9523f1f6d699, type: 2}
 --- !u!1 &6860139145215383467
 GameObject:
   m_ObjectHideFlags: 0
