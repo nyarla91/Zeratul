@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cloak
+  m_Name: CloakEnemy
   m_Shader: {fileID: -6465566751694194690, guid: 03406f5563315b180bac21b553bcdc3f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -59,13 +59,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaImpact: 1
-    - _DisplayOriginalSprite: 1
+    - _DisplayOriginalSprite: 0
     - _InvertNoise: 1
     - _ShimmerSpeed: 0.05
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _OverlayColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OverlayColor: {r: 1, g: 1, b: 1, a: 0.16470589}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

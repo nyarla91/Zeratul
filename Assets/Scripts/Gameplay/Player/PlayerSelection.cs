@@ -95,7 +95,7 @@ namespace Gameplay.Player
                 }
                 if ( ! selectedUnit
                     || selectedUnit.IsDead 
-                    || ! selectedUnit.IsVisibleToPlayer
+                    || ! selectedUnit.CanBeTargetedByPlayer
                     || ( ! selectedUnit.Alliance.OwnedByPlayer && _selectedUnits.Count > 1))
                     RemoveUnitsFromSelection(selectedUnit);
             }

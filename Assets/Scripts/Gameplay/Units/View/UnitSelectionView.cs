@@ -31,6 +31,7 @@ namespace Gameplay.Units.View
 
         private void UpdateMaterial()
         {
+            _overlaySpriteRenderer.enabled = _unit.IsVisibleToPlayer;
             _overlaySpriteRenderer.sprite = _mainSpriteRenderer.sprite;
             if (_unit.IsHighlighted)
                 _overlaySpriteRenderer.material = _highlightedMaterial;

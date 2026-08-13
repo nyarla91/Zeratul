@@ -30,6 +30,6 @@ MonoBehaviour:
   _unitTargetEffects:
   - {fileID: 11400000, guid: e12b4a5a76b4b973f8760bb4109ed5c0, type: 2}
   - {fileID: 11400000, guid: dd7364b49a5bee5539a92d6458bfa25d, type: 2}
-  - {fileID: 11400000, guid: dd7364b49a5bee5539a92d6458bfa25d, type: 2}
+  - {fileID: 11400000, guid: a3664d73ef9ae7a56bc5975114e78e66, type: 2}
   _pointTargetEffects: []
   _animationAction: attack

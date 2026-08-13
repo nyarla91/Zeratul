@@ -58,11 +58,7 @@ namespace Gameplay.Units.View
                 }
             }
             
-            if ( ! _unit.IsVisibleToPlayer)
-            {
-                _spriteRenderer.sprite = null;
-                return;
-            }
+            _spriteRenderer.enabled = _unit.IsVisibleToPlayer;
 
             float frameRateScale = _currentAction.Equals("move")
                 ? _unit.Movement.Speed

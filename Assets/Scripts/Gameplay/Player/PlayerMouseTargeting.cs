@@ -61,7 +61,7 @@ namespace Gameplay.Player
             
             Collider2D[] overlap = Physics2D.OverlapPointAll(Point, _config.UnitInteractionMask);
             Unit[] units = overlap.Select(x => x.transform.GetComponentInParent<Unit>()).ClearNull();
-            units = units.Where(u => u.IsInteractable && u.IsVisibleToPlayer).ToArray();
+            units = units.Where(u => u.IsInteractable && u.CanBeTargetedByPlayer).ToArray();
 
             Unit = units.Length == 0 ? null : units.MinElement(u => Isometry.Distance(Point, u.InteractionPosition));
         }

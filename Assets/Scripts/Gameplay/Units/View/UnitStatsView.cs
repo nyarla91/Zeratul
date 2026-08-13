@@ -41,7 +41,7 @@ namespace Gameplay.Units.View
             _unit.ObserveEveryValueChanged(u => u.Alliance.CurrentOwner)
                 .Subscribe(UpdateOwnershipColor);
             
-            _unit.ObserveEveryValueChanged(u => u.IsVisibleToPlayer)
+            _unit.ObserveEveryValueChanged(u => u.CanBeTargetedByPlayer)
                 .Subscribe(v => _canvas.enabled = v);
             
             this.UpdateAsObservable()

@@ -40,7 +40,9 @@ namespace Gameplay.Units
         /// <summary>
         /// Returns true if unit is visible to targetingUnit's owner
         /// </summary>
-        public bool CanBeTargetedBy(Unit targetingUnit) => Unit.IsInteractable && IsVisibleTo(targetingUnit.Alliance.CurrentOwner);
+        public bool CanBeTargetedBy(Unit other) => CanBeTargetedBy(other.Alliance.CurrentOwner);
+        
+        public bool CanBeTargetedBy(Owner other) => Unit.IsInteractable && (Unit.Alliance.IsFriendly(other) || IsRevealed) && IsVisibleTo(other);
         
         public void Detect(object source) => _detectionSources.Add(source);
         
@@ -50,6 +52,8 @@ namespace Gameplay.Units
         
         public void Decloak(object source) => _cloakSources.Remove(source);
 
-        public bool IsVisibleTo(Owner other) => Unit.Alliance.IsFriendly(other) || _visionMap.IsUnitVisibleBy(Unit, other);
+        public bool IsVisibleTo(Unit other) => IsVisibleTo(other.Alliance.CurrentOwner);
+        
+        public bool IsVisibleTo(Owner other) => _visionMap.IsUnitVisibleBy(Unit, other);
     }
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82f0a32f6254397b81243c1b8f33925, type: 3}
   m_Name: _IssueAttackUpgradableOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.IssueOrderToCasterEffect
-  _orderType: {fileID: 11400000, guid: 508e525297c4b5f4fa219c05f5e6be49, type: 2}
+  _orderType: {fileID: 11400000, guid: 2ebe38e0fa02f618eb367cc04eee4aaa, type: 2}
   _onlyIfQueueIsClear: 1

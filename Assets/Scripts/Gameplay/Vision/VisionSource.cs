@@ -20,9 +20,7 @@ namespace Gameplay.Vision
         private Func<Owner> _owner;
         private Func<bool> _isAir;
 
-        public HashSet<Unit> VisibleUnits => _visibleUnits
-            .Where(u => u.Visibility.IsRevealed || u.Alliance.IsFriendly(Owner))
-            .ToHashSet();
+        public HashSet<Unit> VisibleUnits => _visibleUnits.ToHashSet();
 
         public VisionResult Result => _result;
 
@@ -98,8 +96,6 @@ namespace Gameplay.Vision
             HashSet<Unit> overlapUnits = _isometricOverlap.GetUnits(Position, Radius);
             foreach (Unit unit in overlapUnits)
             {
-                if (unit.Visibility.IsHidden && unit.Alliance.IsHostile(Owner))
-                    continue;
                 if ( ! _result.IsPointVisible(unit.Position))
                     continue;
                 _visibleUnits.Add(unit);

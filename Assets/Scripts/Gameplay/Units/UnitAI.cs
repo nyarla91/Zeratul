@@ -106,7 +106,9 @@ namespace Gameplay.Units
 
         private void UpdateSurroundings()
         {
-            SurroundingUnits = Unit.Sight.VisionSource.VisibleUnits;
+            SurroundingUnits = Unit.Sight.VisionSource.VisibleUnits
+                .Where(u => u.Visibility.CanBeTargetedBy(Unit))
+                .ToHashSet();
 
             SurroundingAllies = SurroundingUnits
                 .Where(u => Unit.Alliance.IsFriendly(u))

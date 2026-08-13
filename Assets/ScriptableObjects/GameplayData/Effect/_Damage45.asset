@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae9637151dc4897a9c6cd7d1109c6ef, type: 3}
   m_Name: _Damage45
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.DealDamageEffect
-  _damage: 35
+  _damage: 45

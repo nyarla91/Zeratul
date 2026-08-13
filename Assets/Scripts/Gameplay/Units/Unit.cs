@@ -46,6 +46,7 @@ namespace Gameplay.Units
         public bool CanAttack => Type.WeaponType;
         public bool CanMove => ! Type.IsImmobile;
         public bool IsObstacle => ! CanMove && ! Type.DisableCollision;
+        public bool CanBeTargetedByPlayer => Visibility?.CanBeTargetedBy(Owner.Player) ?? false;
         public bool IsVisibleToPlayer => Visibility?.IsVisibleTo(Owner.Player) ?? false;
 
         public bool IsDead { get; private set; }

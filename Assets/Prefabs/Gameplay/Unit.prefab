@@ -965,6 +965,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 1600494382157285698}
   _defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   _cloakedMaterial: {fileID: 2100000, guid: c3146eb5b515749428c66e3a6ce8f9dd, type: 2}
+  _cloakedEnemyMaterial: {fileID: 2100000, guid: fa0641126dd9ee57eb40d900559a8825, type: 2}
   _detectedCloakedMaterial: {fileID: 2100000, guid: a799935f6956e0c26bef9523f1f6d699, type: 2}
 --- !u!1 &6860139145215383467
 GameObject:

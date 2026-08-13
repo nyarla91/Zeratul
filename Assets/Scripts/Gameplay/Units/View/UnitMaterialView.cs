@@ -1,3 +1,4 @@
+using _Core;
 using UnityEngine;
 
 namespace Gameplay.Units.View
@@ -8,6 +9,7 @@ namespace Gameplay.Units.View
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Material _defaultMaterial;
         [SerializeField] private Material _cloakedMaterial;
+        [SerializeField] private Material _cloakedEnemyMaterial;
         [SerializeField] private Material _detectedCloakedMaterial;
 
         private void Update()
@@ -21,7 +23,7 @@ namespace Gameplay.Units.View
                 return _defaultMaterial;
             if (_unit.Visibility.IsDetected)
                 return _detectedCloakedMaterial;
-            return _cloakedMaterial;
+            return _unit.Alliance.IsFriendly(Owner.Player) ? _cloakedMaterial : _cloakedEnemyMaterial;
         }
     }
 }
