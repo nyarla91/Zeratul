@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85200319680843f6b31dec5cae1dafcd, type: 3}
-  m_Name: _PickupChargeSlice
+  m_Name: _PickupChargeStim
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.MineStatus
   _useLock: 0
   _display: 0

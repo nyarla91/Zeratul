@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f67301a34ee440febfe46980fc24fc03, type: 3}
-  m_Name: _HasAbilitySlice
+  m_Name: _HasAbilityStim
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitAbilityValidator
   _invalidMessage: 
   _not: 0
-  _ability: {fileID: 11400000, guid: 2a479cd773be673e98b9ebf21f613952, type: 2}
+  _ability: {fileID: 11400000, guid: 02c1a8b29a5e608e58df4da773b768df, type: 2}

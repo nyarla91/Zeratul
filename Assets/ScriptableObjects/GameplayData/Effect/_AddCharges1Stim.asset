@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42cb86d814564e4f91ab9f4e91506d84, type: 3}
-  m_Name: _AddCharges1Slice
+  m_Name: _AddCharges1Stim
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AddAbilityChargeEffect
-  _abilityType: {fileID: 11400000, guid: 2a479cd773be673e98b9ebf21f613952, type: 2}
+  _abilityType: {fileID: 11400000, guid: 02c1a8b29a5e608e58df4da773b768df, type: 2}
   _chargesAdded: 1

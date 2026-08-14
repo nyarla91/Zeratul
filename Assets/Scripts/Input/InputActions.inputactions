@@ -1068,6 +1068,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Consumable1",
+                    "type": "Button",
+                    "id": "37cbe6ad-1643-434a-88d0-cedf47a4fa02",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Consumable2",
+                    "type": "Button",
+                    "id": "5224ecce-47d0-45e0-91dd-5c17a0daa90f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Consumable3",
+                    "type": "Button",
+                    "id": "7e9675db-27fe-479d-a130-7a1e0057de2b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Consumable4",
+                    "type": "Button",
+                    "id": "9832daab-f407-4717-b713-ed4aa4d9f194",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1200,6 +1236,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Decloak",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a00ea55-1261-4d79-ae5b-0a5799176c42",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consumable1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50d89d82-455a-44ed-ab13-b9834bb05c2b",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consumable2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f6aaa8a-47c3-4198-9642-e84f0da10168",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consumable3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85a43754-cdd2-4f78-a6b2-bea8224e3ddf",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consumable4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

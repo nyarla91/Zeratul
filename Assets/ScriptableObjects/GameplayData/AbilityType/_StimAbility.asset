@@ -10,28 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
-  m_Name: _SliceAbility
+  m_Name: _StimAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
-  _windupTime: 13
-  _recoveryTime: 5
-  _cooldown: 150
+  _windupTime: 0
+  _recoveryTime: 0
+  _cooldown: 500
   _cooldownGroup: {fileID: 0}
-  _energyCost: 25
+  _energyCost: 0
   _startingCharges: 0
-  _chargesToUse: 0
+  _chargesToUse: 1
   _ignoreLock: 0
-  _targetRequirement: 2
-  _maxDistance: 1.5
+  _targetRequirement: 0
+  _maxDistance: 0
   _casterValidators:
     _unitValidators: []
   _targetValidators:
-    _unitValidators:
-    - {fileID: 11400000, guid: 7f2504c0303dc9d4988ac5e1f940d5b9, type: 2}
-  _casterEffects: []
-  _mustLookAtTarget: 1
-  _unitTargetEffects:
-  - {fileID: 11400000, guid: e12b4a5a76b4b973f8760bb4109ed5c0, type: 2}
-  - {fileID: 11400000, guid: dd7364b49a5bee5539a92d6458bfa25d, type: 2}
-  - {fileID: 11400000, guid: a3664d73ef9ae7a56bc5975114e78e66, type: 2}
+    _unitValidators: []
+  _casterEffects:
+  - {fileID: 11400000, guid: a29821341a6f4d66ab379c53289efbbd, type: 2}
+  _mustLookAtTarget: 0
+  _unitTargetEffects: []
   _pointTargetEffects: []
-  _animationAction: attack
+  _animationAction: ability

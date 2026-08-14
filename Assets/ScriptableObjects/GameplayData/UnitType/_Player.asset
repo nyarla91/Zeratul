@@ -54,9 +54,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69ec4ebbebf64b2458884e98aed25158, type: 2}
   - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
   - {fileID: 0}
+  - {fileID: 11400000, guid: 652cb0a6d8197c7e48b6431dd6406aeb, type: 2}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1e633693066517f499bc1f35751d025f, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: e7544b88e71ce4e49be104bfd8b85708, type: 2}

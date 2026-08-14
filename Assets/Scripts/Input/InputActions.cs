@@ -1154,6 +1154,42 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Consumable1"",
+                    ""type"": ""Button"",
+                    ""id"": ""37cbe6ad-1643-434a-88d0-cedf47a4fa02"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Consumable2"",
+                    ""type"": ""Button"",
+                    ""id"": ""5224ecce-47d0-45e0-91dd-5c17a0daa90f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Consumable3"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e9675db-27fe-479d-a130-7a1e0057de2b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Consumable4"",
+                    ""type"": ""Button"",
+                    ""id"": ""9832daab-f407-4717-b713-ed4aa4d9f194"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1288,6 +1324,50 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Decloak"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a00ea55-1261-4d79-ae5b-0a5799176c42"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Consumable1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50d89d82-455a-44ed-ab13-b9834bb05c2b"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Consumable2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f6aaa8a-47c3-4198-9642-e84f0da10168"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Consumable3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85a43754-cdd2-4f78-a6b2-bea8224e3ddf"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Consumable4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1404,6 +1484,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Orders_Ability5 = m_Orders.FindAction("Ability5", throwIfNotFound: true);
         m_Orders_Cloak = m_Orders.FindAction("Cloak", throwIfNotFound: true);
         m_Orders_Decloak = m_Orders.FindAction("Decloak", throwIfNotFound: true);
+        m_Orders_Consumable1 = m_Orders.FindAction("Consumable1", throwIfNotFound: true);
+        m_Orders_Consumable2 = m_Orders.FindAction("Consumable2", throwIfNotFound: true);
+        m_Orders_Consumable3 = m_Orders.FindAction("Consumable3", throwIfNotFound: true);
+        m_Orders_Consumable4 = m_Orders.FindAction("Consumable4", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -2009,6 +2093,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Orders_Ability5;
     private readonly InputAction m_Orders_Cloak;
     private readonly InputAction m_Orders_Decloak;
+    private readonly InputAction m_Orders_Consumable1;
+    private readonly InputAction m_Orders_Consumable2;
+    private readonly InputAction m_Orders_Consumable3;
+    private readonly InputAction m_Orders_Consumable4;
     /// <summary>
     /// Provides access to input actions defined in input action map "Orders".
     /// </summary>
@@ -2068,6 +2156,22 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Orders/Decloak".
         /// </summary>
         public InputAction @Decloak => m_Wrapper.m_Orders_Decloak;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Consumable1".
+        /// </summary>
+        public InputAction @Consumable1 => m_Wrapper.m_Orders_Consumable1;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Consumable2".
+        /// </summary>
+        public InputAction @Consumable2 => m_Wrapper.m_Orders_Consumable2;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Consumable3".
+        /// </summary>
+        public InputAction @Consumable3 => m_Wrapper.m_Orders_Consumable3;
+        /// <summary>
+        /// Provides access to the underlying input action "Orders/Consumable4".
+        /// </summary>
+        public InputAction @Consumable4 => m_Wrapper.m_Orders_Consumable4;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2130,6 +2234,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Decloak.started += instance.OnDecloak;
             @Decloak.performed += instance.OnDecloak;
             @Decloak.canceled += instance.OnDecloak;
+            @Consumable1.started += instance.OnConsumable1;
+            @Consumable1.performed += instance.OnConsumable1;
+            @Consumable1.canceled += instance.OnConsumable1;
+            @Consumable2.started += instance.OnConsumable2;
+            @Consumable2.performed += instance.OnConsumable2;
+            @Consumable2.canceled += instance.OnConsumable2;
+            @Consumable3.started += instance.OnConsumable3;
+            @Consumable3.performed += instance.OnConsumable3;
+            @Consumable3.canceled += instance.OnConsumable3;
+            @Consumable4.started += instance.OnConsumable4;
+            @Consumable4.performed += instance.OnConsumable4;
+            @Consumable4.canceled += instance.OnConsumable4;
         }
 
         /// <summary>
@@ -2177,6 +2293,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Decloak.started -= instance.OnDecloak;
             @Decloak.performed -= instance.OnDecloak;
             @Decloak.canceled -= instance.OnDecloak;
+            @Consumable1.started -= instance.OnConsumable1;
+            @Consumable1.performed -= instance.OnConsumable1;
+            @Consumable1.canceled -= instance.OnConsumable1;
+            @Consumable2.started -= instance.OnConsumable2;
+            @Consumable2.performed -= instance.OnConsumable2;
+            @Consumable2.canceled -= instance.OnConsumable2;
+            @Consumable3.started -= instance.OnConsumable3;
+            @Consumable3.performed -= instance.OnConsumable3;
+            @Consumable3.canceled -= instance.OnConsumable3;
+            @Consumable4.started -= instance.OnConsumable4;
+            @Consumable4.performed -= instance.OnConsumable4;
+            @Consumable4.canceled -= instance.OnConsumable4;
         }
 
         /// <summary>
@@ -2599,5 +2727,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDecloak(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Consumable1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConsumable1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Consumable2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConsumable2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Consumable3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConsumable3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Consumable4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConsumable4(InputAction.CallbackContext context);
     }
 }
