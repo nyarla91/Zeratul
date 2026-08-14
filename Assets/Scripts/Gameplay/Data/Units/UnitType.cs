@@ -49,6 +49,8 @@ namespace Gameplay.Data.Units
         [HorizontalLine(2, EColor.White)]
         [Expandable] [SerializeField] private UnitSpriteMap _spriteMap;
         [Space]
+        [SerializeField] private bool _hideOnMinimap;
+        [Space]
         [SerializeField] private Vector2 _interactionColliderSize;
         [SerializeField] private Vector2 _interactionColliderOffset;
         [HorizontalLine(2, EColor.White)]
@@ -84,6 +86,7 @@ namespace Gameplay.Data.Units
         public StatusType[] InnateStatuses => _innateStatuses;
         public OrderType[] AvailableOrders => _availableOrders.ToArray();
         public UnitSpriteMap SpriteMap => _spriteMap;
+        public bool HideOnMinimap => _hideOnMinimap;
         public Vector2 InteractionColliderSize => _interactionColliderSize;
         public Vector2 InteractionColliderOffset => _interactionColliderOffset;
         public UnitAiMap AIMap => _aiMap;

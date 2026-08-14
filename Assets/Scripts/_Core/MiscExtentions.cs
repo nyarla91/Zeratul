@@ -8,10 +8,17 @@ namespace _Core
 {
     public static class MiscExtentions
     {
-        public static Vector3 DirectionTo(this Transform transform, Vector3 target) => (target - transform.position).normalized;
-        public static Vector3 DirectionTo(this Transform transform, Transform target) => transform.DirectionTo(target.position);
-        public static Vector2 DirectionTo2D(this Transform transform, Vector2 target) => (target - (Vector2) transform.position).normalized;
-        public static Vector2 DirectionTo2D(this Transform transform, Transform target) => transform.DirectionTo2D(target.position);
+        public static Vector3 DirectionTo(this Transform transform, Vector3 target) =>
+            (target - transform.position).normalized;
+
+        public static Vector3 DirectionTo(this Transform transform, Transform target) =>
+            transform.DirectionTo(target.position);
+
+        public static Vector2 DirectionTo2D(this Transform transform, Vector2 target) =>
+            (target - (Vector2)transform.position).normalized;
+
+        public static Vector2 DirectionTo2D(this Transform transform, Transform target) =>
+            transform.DirectionTo2D(target.position);
 
         public static async Task WaitForCondition<T>(this T original, Func<T, bool> condition, int checkPeriod)
         {
@@ -47,7 +54,7 @@ namespace _Core
             Gradient result = new();
             GradientColorKey colorKeys = new GradientColorKey(color, 0);
             GradientAlphaKey alphaKeys = new GradientAlphaKey(color.a, 0);
-            result.SetKeys( new[]{colorKeys}, new[]{alphaKeys});
+            result.SetKeys(new[] { colorKeys }, new[] { alphaKeys });
             return result;
         }
 
@@ -71,6 +78,20 @@ namespace _Core
                 screenPoint.x.Remap(0, Screen.width, 0, canvasRect.width),
                 screenPoint.y.Remap(0, Screen.height, 0, canvasRect.height)
             );
+        }
+
+        public static Bounds GetCameraBounds(this Camera camera)
+        {
+            Vector2 min = camera.ViewportToWorldPoint(Vector3.zero);
+            Vector2 max = camera.ViewportToWorldPoint(Vector3.one);
+            return new Bounds(Vector3.Lerp(min, max, 0.5f), max - min);
+        }
+
+        public static Vector3 PointFromNormalized(this Bounds bounds, Vector3 normalized)
+        {
+            return new Vector3(Mathf.Lerp(bounds.min.x, bounds.max.x, normalized.x),
+                Mathf.Lerp(bounds.min.y, bounds.max.y, normalized.y),
+                Mathf.Lerp(bounds.min.z, bounds.max.z, normalized.z));
         }
     }
 }
