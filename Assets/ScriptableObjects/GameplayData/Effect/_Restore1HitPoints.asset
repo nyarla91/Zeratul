@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f30f1a995946cea6269a4b6ba732df, type: 3}
   m_Name: _Restore1HitPoints
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.RestoreHitPointsEffect
-  _value: 5
+  _value: 1

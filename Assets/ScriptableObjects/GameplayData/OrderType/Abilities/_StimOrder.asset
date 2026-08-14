@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: _StimOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.AbilityOrder
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
-  _displayName: Heal
+  _displayName: Srim
   _displayValidators:
     _unitValidators: []
-  _rawDisplayDescription: Heal over time
+  _rawDisplayDescription: Restore health and energy over time
   _icon: {fileID: 21300000, guid: 006f91f72ba2a7a478a1be0cc0fbaf97, type: 3}
   _hotkeyAlias: Consumable1
   _highlightControl: 0

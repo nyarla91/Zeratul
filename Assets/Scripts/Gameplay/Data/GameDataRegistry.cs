@@ -55,6 +55,7 @@ namespace Gameplay.Data
 
             _objects = result.ToArray();
             EditorUtility.SetDirty(this);
+            AssetDatabase.SaveAssetIfDirty(this);
         }
 #endif
 

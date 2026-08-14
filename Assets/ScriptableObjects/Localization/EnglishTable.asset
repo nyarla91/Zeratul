@@ -36,7 +36,7 @@ MonoBehaviour:
   - _key: order
     _line: Order
   - _key: order-ability
-    _line: "Order \u2014 Ability"
+    _line: Ability
   - _key: order-attack-description
     _line: Attack target unit or move to target point attacking any enemy on the
       path.
@@ -50,12 +50,16 @@ MonoBehaviour:
     _line: Move to target point or follow target unit.
   - _key: order-move-name
     _line: Move
+  - _key: order-passive
+    _line: Passive
   - _key: order-stop-description
     _line: Cancel all current orders.
   - _key: order-stop-name
     _line: Stop
   - _key: ordererror-ability-not-ready
-    _line: Ability not ready
+    _line: Ability not ready (# sec. left)
+  - _key: ordererror-target-invulnerable
+    _line: Target is invulnerable
   - _key: ordererror-cannot-attack
     _line: Cannot attack
   - _key: ordererror-cannot-move
@@ -69,13 +73,21 @@ MonoBehaviour:
   - _key: ordererror-must-target-unit
     _line: Target a unit
   - _key: ordererror-not-enough-energy
-    _line: Not enough energy
+    _line: Not enough energy (#)
   - _key: ordererror-out-of-range
     _line: Target is out of range
   - _key: ordererror-passive
     _line: Cannot use passive ability
   - _key: ordererror-target-invalid
     _line: Target is invalid
+  - _key: passive-concussion-description
+    _line: "\u041E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u0435"
+  - _key: passive-concussion-name
+    _line: Concussion
+  - _key: passive-detector-description
+    _line: Can detect cloaked hostile units nearby
+  - _key: passive-detector-name
+    _line: Detector
   - _key: status
     _line: Status
   - _key: status-cloaked-description
@@ -133,9 +145,9 @@ MonoBehaviour:
   - _key: unittag-robotic
     _line: Robotic
   - _key: validator-enough-control-reserve
-    _line: Not enought available control slots
+    _line: Not enought control points (#)
   - _key: validator-enough-control-slots
-    _line: Not enough control slots
+    _line: Not enough control slots (#)
   - _key: validator-has-different-owner
     _line: Can't target your own units
   - _key: validator-has-same-owner
@@ -158,5 +170,53 @@ MonoBehaviour:
     _line: Target cannot be hostile
   - _key: validator-is-not-uncontrollable
     _line: Cannot control this unit
+  - _key: ui-load
+    _line: Load
+  - _key: ui-save
+    _line: Save
+  - _key: ui-delete
+    _line: Delete
+  - _key: ui-back
+    _line: Back
+  - _key: ui-save-load
+    _line: Save and load
+  - _key: ui-filename-invalid
+    _line: File name invalid
+  - _key: ui-enter-filename
+    _line: Enter save file name
+  - _key: quick-save-filename
+    _line: Quick save
+  - _key: message-save-success
+    _line: Game saved
+  - _key: message-save-error
+    _line: Saving has failed
+  - _key: message-saving-in-progress
+    _line: Saving is in progress
+  - _key: ui-scenario-selection
+    _line: Scenario selection
+  - _key: ui-settings
+    _line: Settings
+  - _key: ui-settings-graphics
+    _line: Graphics
+  - _key: ui-settings-fullscreen
+    _line: Fullscreen
+  - _key: ui-settings-language
+    _line: Language
+  - _key: ui-settings-general
+    _line: General
+  - _key: ui-settings-apply
+    _line: Apply
+  - _key: ui-settings-discard
+    _line: Discard changes
+  - _key: ui-settings-reset
+    _line: Reset to default
+  - _key: ui-settings-camera-move-speed
+    _line: Camera move speed
+  - _key: ui-settings-camera-drag-speed
+    _line: Camera drag speed
+  - _key: ui-settings-resolution
+    _line: Resolution
+  - _key: ui-settings-gameplay
+    _line: Gameplay
   - _key: 
     _line: 

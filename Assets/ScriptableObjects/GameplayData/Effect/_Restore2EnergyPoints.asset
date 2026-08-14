@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dedb91f482444f85eb2114a8cb3c4b, type: 3}
   m_Name: _Restore2EnergyPoints
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.RestoreEnergyPointsEffect
-  _value: 1000
+  _value: 2

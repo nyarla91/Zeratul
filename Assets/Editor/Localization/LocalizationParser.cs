@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
 using Settings.Localization;
+using UnityEditor;
 using UnityEngine;
 
 namespace Editor.Localization
@@ -30,6 +31,8 @@ namespace Editor.Localization
                     entries.Add(entry);
                 }
                 languageColumn.Table.Set(entries);
+                EditorUtility.SetDirty(languageColumn.Table);
+                AssetDatabase.SaveAssetIfDirty(languageColumn.Table);
             }
         }
 

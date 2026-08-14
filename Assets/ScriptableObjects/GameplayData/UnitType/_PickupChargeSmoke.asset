@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
-  m_Name: _PickupChargeStim
+  m_Name: _PickupChargeSmoke
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
   _displayName: Pickup Slice Charge
   _focusPriority: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
   _sightRadius: 0
   _weaponType: {fileID: 0}
   _innateStatuses:
-  - {fileID: 11400000, guid: 4eddabfbaf344a6ee857389e248e145d, type: 2}
+  - {fileID: 11400000, guid: cbe69841f24cf931ba7be5a7cf493b25, type: 2}
   _availableOrders:
   - {fileID: 0}
   - {fileID: 0}

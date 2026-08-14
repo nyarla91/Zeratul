@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85200319680843f6b31dec5cae1dafcd, type: 3}
+  m_Name: _PickupChargeSmoke
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.MineStatus
+  _useLock: 0
+  _display: 0
+  _displayIcon: {fileID: 0}
+  _displayName: 
+  _showDuration: 0
+  _showDurationPriority: 0
+  _displayDescription: 
+  _rendererPrefabs: []
+  _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+  _triggerRadius: 1
+  _cooldown: 0
+  _triggerValidator:
+    _unitValidators:
+    - {fileID: 11400000, guid: 8f44c3d9dd475d9ce9dc34b3937d5a6b, type: 2}
+  _triggerEffects:
+  - {fileID: 11400000, guid: 89332e3101538c5c788c13a53f19da12, type: 2}
+  _mineTriggerEffects:
+  - {fileID: 11400000, guid: d2c23c210c9fd63488983c0dc976dc32, type: 2}
