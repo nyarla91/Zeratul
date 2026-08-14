@@ -12,13 +12,26 @@ namespace Save.Data.Units
 
         [JsonProperty] public float energyPoints;
         [JsonProperty] public int lastEnergySpentFrame;
-        [JsonProperty] public Dictionary<string, int> lastCastFrameByAbilityName;
+        [JsonProperty] public Dictionary<string, AbilitySaveData> abilities;
 
-        public UnitAbilitiesSaveSystem(float energyPoints, int lastEnergySpentFrame, Dictionary<string, int> lastCastFrameByAbilityName)
+        public UnitAbilitiesSaveSystem(float energyPoints, int lastEnergySpentFrame, Dictionary<string, AbilitySaveData> abilities)
         {
             this.energyPoints = energyPoints;
             this.lastEnergySpentFrame = lastEnergySpentFrame;
-            this.lastCastFrameByAbilityName = lastCastFrameByAbilityName;
+            this.abilities = abilities;
+        }
+    }
+
+    [Serializable]
+    public class AbilitySaveData
+    {
+        public int lastCastFrame;
+        public int charges;
+
+        public AbilitySaveData(int lastCastFrame, int charges)
+        {
+            this.lastCastFrame = lastCastFrame;
+            this.charges = charges;
         }
     }
 }

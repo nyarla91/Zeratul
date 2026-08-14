@@ -38,7 +38,7 @@ namespace Gameplay.Data.Orders
         
         public virtual bool IsValidForSmartOrder(OrderTarget target) => false;
 
-        public bool CanBeDisplayed(Unit actor) => _displayValidators.IsValid(actor, actor);
+        public virtual bool CanBeDisplayed(Unit actor) => _displayValidators.IsValid(actor, actor);
 
         public bool CanBeIssued(Order order)
         {

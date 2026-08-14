@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
+  m_Name: _PickupChargeSlice
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
+  _displayName: Pickup Slice Charge
+  _focusPriority: 0
+  _nonInteractable: 1
+  _tags: []
+  _controlCost: 0
+  _controlSlots: 0
+  _attackWorth:
+    _baseWorth: 0
+    _evaluators: []
+  _isInvulnerable: 1
+  _maxHitPoints: 0
+  _maxShieldPoints: 0
+  _shieldRestoreDelay: 250
+  _shieldPointsPerSecond: 7
+  _maxEnergyPoints: 0
+  _energyRestoreDelay: 250
+  _energyPointsPerSecond: 7
+  _disableCollision: 1
+  _isImmobile: 1
+  _isAir: 0
+  _maxSpeed: 0
+  _size: 0.05
+  _rotationSpeed: 1440
+  _disableSight: 1
+  _sightRadius: 0
+  _weaponType: {fileID: 0}
+  _innateStatuses:
+  - {fileID: 11400000, guid: 4eddabfbaf344a6ee857389e248e145d, type: 2}
+  _availableOrders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteMap: {fileID: 11400000, guid: a0f370abda47941199f52f1264f130fc, type: 2}
+  _interactionColliderSize: {x: 1.3, y: 2}
+  _interactionColliderOffset: {x: 0, y: 0.6}
+  _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
+  _editorRadius:
+    _object: {fileID: 0}
+  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}

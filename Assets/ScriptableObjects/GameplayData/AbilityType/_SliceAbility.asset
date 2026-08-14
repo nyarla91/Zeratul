@@ -17,6 +17,8 @@ MonoBehaviour:
   _cooldown: 150
   _cooldownGroup: {fileID: 0}
   _energyCost: 25
+  _startingCharges: 3
+  _chargesToUse: 1
   _ignoreLock: 0
   _targetRequirement: 2
   _maxDistance: 1.5

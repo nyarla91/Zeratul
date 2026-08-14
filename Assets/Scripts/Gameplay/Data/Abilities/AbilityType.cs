@@ -16,6 +16,8 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private int _cooldown;
         [SerializeField] private AbilityCooldownGroup _cooldownGroup;
         [SerializeField] private int _energyCost;
+        [SerializeField] private int _startingCharges;
+        [SerializeField] private int _chargesToUse;
         [SerializeField] private bool _ignoreLock;
         [HorizontalLine(2, EColor.White)]
         [SerializeField] private TargetRequirement _targetRequirement;
@@ -45,6 +47,8 @@ namespace Gameplay.Data.Abilities
         public int WindupTime => _windupTime;
         public int RecoveryTime => _recoveryTime;
         public int Cooldown => _cooldownGroup?.Cooldown ?? _cooldown;
+        public int StartingCharges => _startingCharges;
+        public int ChargesToUse => _chargesToUse;
         public AbilityCooldownGroup CooldownGroup => _cooldownGroup;
         public bool MustLookAtTarget => _mustLookAtTarget;
         public EffectTargetingUnit[] CasterEffects => _casterEffects;
@@ -59,6 +63,7 @@ namespace Gameplay.Data.Abilities
                    && (ability.Caster.CanMove || IsTargetInRadius(ability.Caster, target))
                    && ability.Caster.Abilities.EnergyPoints >= EnergyCost
                    && (IgnoreLock || ability.Caster.Abilities.IsUnlocked) 
+                   && ability.Charges >= ChargesToUse 
                    && ability.IsReady;
         }
         
@@ -77,6 +82,8 @@ namespace Gameplay.Data.Abilities
             _windupTime = Mathf.Max(0, _windupTime);
             _recoveryTime = Mathf.Max(0, _recoveryTime);
             _cooldown = _cooldownGroup ? 0 : Mathf.Max(0, _cooldown);
+            _startingCharges = Mathf.Max(0, _startingCharges);
+            _chargesToUse = Mathf.Max(0, _chargesToUse);
             _energyCost = Mathf.Max(0, _energyCost);
             if (TargetRequirement == TargetRequirement.None)
                 _maxDistance = 0;

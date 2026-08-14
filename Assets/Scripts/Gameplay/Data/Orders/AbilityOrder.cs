@@ -60,6 +60,11 @@ namespace Gameplay.Data.Orders
             }
 
             Ability ability = actor.Abilities.GetAbility(AbilityType);
+            if (ability.Charges < ability.Type.ChargesToUse)
+            {
+                errorMessage = _errors.NotEnoughCharges;
+                return false;
+            }
             if ( ! ability.IsReady)
             {
                 int framesLeft = ability.CooldownLeft;
@@ -136,6 +141,14 @@ namespace Gameplay.Data.Orders
         protected override void Dispose(Order order)
         {
             order.Actor.Movement.Stop();
+        }
+
+        public override bool CanBeDisplayed(Unit actor)
+        {
+            if (AbilityType.ChargesToUse <= 0)
+                return base.CanBeDisplayed(actor);
+            Ability ability = actor.Abilities.GetAbility(AbilityType);
+            return ability.Charges >= ability.Type.ChargesToUse && base.CanBeDisplayed(actor);
         }
 
         private Ability GetAbilityForOrder(Order order)

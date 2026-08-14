@@ -59,6 +59,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaImpact: 0
+    - _DisplayOriginalSprite: 1
     - _InvertNoise: 1
     - _ShimmerSpeed: 0.4
     m_Colors:

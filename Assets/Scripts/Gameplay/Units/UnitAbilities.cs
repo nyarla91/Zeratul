@@ -65,8 +65,8 @@ namespace Gameplay.Units
 
         public override IUnitSaveSystem Save()
         {
-            Dictionary<string, int> lastCastFrameByAbilityName = _abilities
-                .ToDictionary(pair => pair.Key.name, pair => pair.Value.LastCastFrame);
+            Dictionary<string, AbilitySaveData> lastCastFrameByAbilityName = _abilities
+                .ToDictionary(pair => pair.Key.name, pair => pair.Value.Save());
             
             return new UnitAbilitiesSaveSystem(_energyPoints, LastEnergySpentFrame, lastCastFrameByAbilityName);
         }
@@ -77,10 +77,10 @@ namespace Gameplay.Units
             _energyPoints = system.energyPoints;
             LastEnergySpentFrame = system.lastEnergySpentFrame;
 
-            foreach (KeyValuePair<string, int> pair in system.lastCastFrameByAbilityName)
+            foreach (KeyValuePair<string, AbilitySaveData> pair in system.abilities)
             {
                 AbilityType abilityType = _gameDataRegistry.Get<AbilityType>(pair.Key);
-                _abilities[abilityType].LastCastFrame = pair.Value;
+                _abilities[abilityType].ReproduceFromSaveData(pair.Value);
             }
         }
         
@@ -117,6 +117,7 @@ namespace Gameplay.Units
                 }
             }
             
+            ability.SpendCharges();
             ability.StartCooldown();
             foreach (Ability sharedAbility in _abilities.Values)
             {

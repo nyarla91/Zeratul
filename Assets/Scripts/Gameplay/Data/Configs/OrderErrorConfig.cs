@@ -14,6 +14,7 @@ namespace Gameplay.Data.Configs
         [SerializeField] private string _targetInvulnerable;
         [SerializeField] private string _cantTargetSelf;
         [SerializeField] private string _notEnoughEnergy;
+        [SerializeField] private string _notEnoughCharges;
         [SerializeField] private string _notReadyAbility;
         [SerializeField] private string _outOfRange;
         [SerializeField] private string _locked;
@@ -27,6 +28,7 @@ namespace Gameplay.Data.Configs
         public string TargetInvulnerable => _localizer.Translate(_targetInvulnerable);
         public string CantTargetSelf => _localizer.Translate(_cantTargetSelf);
         public string NotEnoughEnergy => _localizer.Translate(_notEnoughEnergy);
+        public string NotEnoughCharges => _localizer.Translate(_notEnoughCharges);
         public string NotReadyAbility => _localizer.Translate(_notReadyAbility);
         public string OutOfRange => _localizer.Translate(_outOfRange);
         public string Locked => _localizer.Translate(_locked);
