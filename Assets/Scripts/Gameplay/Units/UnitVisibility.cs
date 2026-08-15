@@ -54,6 +54,6 @@ namespace Gameplay.Units
 
         public bool IsVisibleTo(Unit other) => IsVisibleTo(other.Alliance.CurrentOwner);
         
-        public bool IsVisibleTo(Owner other) => _visionMap.IsUnitVisibleBy(Unit, other);
+        public bool IsVisibleTo(Owner other) => Unit.Alliance.IsFriendly(other) || _visionMap.IsUnitVisibleBy(Unit, other);
     }
 }

@@ -143,7 +143,6 @@ namespace Gameplay.Units
         {
             OrderType orderType = _gameDataRegistry.Get<OrderType>(saveData.orderType);
             Unit targetUnit = _getUnitByIdService.GetUnitById(saveData.targetUnit);
-            Debug.Log($"{saveData.targetUnit} {targetUnit}");
             Vector2 targetPoint = saveData.targetPoint.ToVector2();
             return new Order(orderType, Unit, new OrderTarget(targetPoint, targetUnit));
         }

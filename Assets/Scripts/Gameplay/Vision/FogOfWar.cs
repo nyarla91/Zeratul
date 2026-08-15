@@ -95,7 +95,8 @@ namespace Gameplay.Vision
         public async void ReproduceFromSaveData(MapSaveSystem payload)
         {
             _cells = payload.cells;
-            Paint();
+            _loaded = true;
+            await Paint();
         }
 
         public async UniTask Repaint()

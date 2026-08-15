@@ -19,7 +19,6 @@ namespace Gameplay.UI.Minimap
             Vector3[] corners = new Vector3[4];
             RectTransform.GetWorldCorners(corners);
             ScreenBounds = new Bounds(Vector3.Lerp(corners[0], corners[2], 0.5f), corners[2] - corners[0]);
-            Debug.Log($"{ScreenBounds.min} {ScreenBounds.max} {ScreenBounds.center} {ScreenBounds.size}");
         }
 
         public Vector2 WorldToMinimap(Vector2 worldPosition)

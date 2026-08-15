@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
 using UnityEditor;
@@ -17,7 +18,16 @@ namespace Gameplay.Data
 
         public T Get<T>(string name) where T : Object
         {
-            _registry ??= _objects.ToDictionary(o => o.name, o => o);
+            if (_registry == null)
+            {
+                _registry = new Dictionary<string, Object>();
+                foreach (Object o in _objects)
+                {
+                    if (_registry.ContainsKey(o.name))
+                        throw new ArgumentException($"{this} contains multiple objects with name {o.name}");
+                    _registry.Add(o.name, o);
+                }
+            }
 
             if ( ! _registry.TryGetValue(name, out Object result))
                 throw new KeyNotFoundException($"{this.name} does not contain object {name} of type {typeof(T).Name}");
@@ -53,9 +63,8 @@ namespace Gameplay.Data
                 }
             }
 
-            _objects = result.ToArray();
+            _objects = result.ToHashSet().ToArray();
             EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssetIfDirty(this);
         }
 #endif
 

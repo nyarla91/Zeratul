@@ -19,7 +19,8 @@ namespace Gameplay.Units.View
 
         private void Start()
         {
-            _unit.Life.ShieldPointsLost += TrySetHitTrigger;
+            if (_unit.HasLife)
+                _unit.Life.ShieldPointsLost += TrySetHitTrigger;
         }
 
         private void TrySetHitTrigger(int damage)
@@ -35,7 +36,7 @@ namespace Gameplay.Units.View
 
         private int GetCurrentTrigger()
         {
-            if ( ! _unit.Life.HasShieldPoints)
+            if ( ! _unit.HasLife || ! _unit.Life.HasShieldPoints)
                 return Idle;
             if (_unit.Life.ShieldPoints == _unit.Life.MaxShieldPoints)
                 return Full;
