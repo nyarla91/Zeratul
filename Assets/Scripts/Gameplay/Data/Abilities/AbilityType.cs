@@ -10,6 +10,7 @@ namespace Gameplay.Data.Abilities
     [CreateAssetMenu(menuName = "Gameplay Data/Ability", order = 0)]
     public class AbilityType : ScriptableObject
     {
+        [SerializeField] private bool _isImmediate;
         [SerializeField] private int _windupTime;
         [SerializeField] private int _recoveryTime;
         [Tooltip("Cooldown between uses (in fixed frames)")]
@@ -38,6 +39,7 @@ namespace Gameplay.Data.Abilities
         [SerializeField] private EffectTargetingPoint[] _pointTargetEffects;
         [SerializeField] private string _animationAction;
 
+        public bool IsImmediate => _isImmediate;
         public TargetRequirement TargetRequirement => _targetRequirement;
         public UnitValidatorGroup CasterValidators => _casterValidators;
         public UnitValidatorGroup TargetValidators => _targetValidators;
@@ -79,8 +81,17 @@ namespace Gameplay.Data.Abilities
 
         private void OnValidate()
         {
-            _windupTime = Mathf.Max(0, _windupTime);
-            _recoveryTime = Mathf.Max(0, _recoveryTime);
+            if (_isImmediate)
+            {
+                _windupTime = 0;
+                _recoveryTime = 0;
+                _targetRequirement = TargetRequirement.None;
+            }
+            else
+            {
+                _windupTime = Mathf.Max(0, _windupTime);
+                _recoveryTime = Mathf.Max(0, _recoveryTime);
+            }
             _cooldown = _cooldownGroup ? 0 : Mathf.Max(0, _cooldown);
             _startingCharges = Mathf.Max(0, _startingCharges);
             _chargesToUse = Mathf.Max(0, _chargesToUse);

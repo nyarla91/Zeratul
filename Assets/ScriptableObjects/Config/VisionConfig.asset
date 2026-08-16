@@ -19,7 +19,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   _absoluteExtraSight: -0.3
-  _minSight: 2.5
+  _minSight: 1.5
   _simulationRadius: 20
   _fogPixelScale: 0.5
   _fogDimensions: {x: 300, y: 200}

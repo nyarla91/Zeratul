@@ -68,6 +68,8 @@ namespace Gameplay.Data.Orders
             return false;
         }
 
+        public virtual bool TryCarryOutImmediately(Order order) => false;
+
         public async UniTask CarryOut(Order order, CancellationToken ct)
         {
             try
@@ -85,7 +87,7 @@ namespace Gameplay.Data.Orders
         }
 
         protected abstract UniTask CarryOutBody(Order order, CancellationToken ct);
-        
+
         protected abstract void Dispose(Order order);
     }
 

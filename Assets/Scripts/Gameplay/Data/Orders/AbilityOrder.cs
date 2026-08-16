@@ -138,6 +138,8 @@ namespace Gameplay.Data.Orders
             }
         }
 
+        public override bool TryCarryOutImmediately(Order order) => order.Actor.Abilities.TryCastImmediateAbility(AbilityType);
+
         protected override void Dispose(Order order)
         {
             order.Actor.Movement.Stop();

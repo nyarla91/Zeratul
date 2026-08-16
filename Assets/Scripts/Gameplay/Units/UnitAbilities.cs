@@ -97,6 +97,25 @@ namespace Gameplay.Units
             if ( ! TrySpendEnergy(abilityType.EnergyCost))
                 return false;
 
+            CastAbility(ability, target);
+            return true;
+        }
+
+        public bool TryCastImmediateAbility(AbilityType abilityType)
+        {
+            if ( ! abilityType.IsImmediate)
+                return false;
+            Ability ability = GetAbility(abilityType);
+            if (ability == null)
+                return false;
+            CastAbility(ability, OrderTarget.NoTarget);
+            return true;
+        }
+
+        private void CastAbility(Ability ability, OrderTarget target)
+        {
+            AbilityType abilityType = ability.Type;
+            
             foreach (EffectTargetingUnit effect in abilityType.CasterEffects)
             {
                 effect.Apply(ability.Caster, ability.Caster);
@@ -128,9 +147,8 @@ namespace Gameplay.Units
                 sharedAbility.StartCooldown();
             }
             CastedAbility?.Invoke(abilityType, target);
-            return true;
         }
-        
+
         public void Lock(object source) => _lockSources.Add(source);
         
         public void Unlock(object source) => _lockSources.Remove(source);

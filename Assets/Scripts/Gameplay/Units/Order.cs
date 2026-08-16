@@ -23,10 +23,14 @@ namespace Gameplay.Units
         public bool CanBeIssued() => Type.CanBeIssued(this);
 
         public bool MustBeCanceled() => Type.MustBeCanceled(this);
+
+        public bool TryCarryOutImmediately() => Type.TryCarryOutImmediately(this);
     }
 
     public struct OrderTarget
     {
+        public static OrderTarget NoTarget => new();
+        
         public Vector2 Point { get; }
         public Unit Unit { get; }
         

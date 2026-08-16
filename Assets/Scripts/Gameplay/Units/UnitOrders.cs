@@ -101,6 +101,8 @@ namespace Gameplay.Units
             
             if ( ! queue)
             {
+                if (order.TryCarryOutImmediately())
+                    return;
                 ClearAllOrders();
             }
             _ordersQueue.Enqueue(order);
