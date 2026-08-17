@@ -46,8 +46,8 @@ MonoBehaviour:
   _availableOrders:
   - {fileID: 11400000, guid: 56ccb81e15e21bf4c89b3b8b6af0a627, type: 2}
   - {fileID: 11400000, guid: 9de54a68f0039d20bbe7ec9ad6d80615, type: 2}
-  - {fileID: 11400000, guid: 19eb34cc9da5ae92f8e9c9098af6728f, type: 2}
   - {fileID: 11400000, guid: ddc547fc8d3048032a6d61e556800a58, type: 2}
+  - {fileID: 11400000, guid: 19eb34cc9da5ae92f8e9c9098af6728f, type: 2}
   - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
   - {fileID: 11400000, guid: 2ebe38e0fa02f618eb367cc04eee4aaa, type: 2}
   - {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}

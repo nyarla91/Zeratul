@@ -9,11 +9,11 @@ namespace Gameplay.Schemes.Actions
     {
         [SerializeField] private int _tutorialIndex;
         
-        [Inject] private TutorialWindow TutorialWindow { get; set; }
+        [Inject] private TipWindow TipWindow { get; set; }
         
         public override void Act()
         {
-            TutorialWindow.Show(_tutorialIndex);
+            TipWindow.Show(_tutorialIndex);
         }
 
         private void OnValidate()

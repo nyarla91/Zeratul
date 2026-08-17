@@ -15,7 +15,8 @@ MonoBehaviour:
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
   _displayName: Slice
   _displayValidators:
-    _unitValidators: []
+    _unitValidators:
+    - {fileID: 11400000, guid: 5a2bd3cbb89af23249ca034d5c920aa8, type: 2}
   _rawDisplayDescription: Melee attack
   _icon: {fileID: 21300000, guid: b4e8ef14be3827e488ef6d6daa1bb0ba, type: 3}
   _hotkeyAlias: Ability2

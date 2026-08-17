@@ -18,7 +18,7 @@ MonoBehaviour:
   _tags:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
-  _controlCost: 0
+  _controlCost: 1
   _controlSlots: 1
   _attackWorth:
     _baseWorth: 0
@@ -61,8 +61,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: 6ecb537c2cda2884bb70917209a9cb09, type: 2}
-  _interactionColliderSize: {x: 1, y: 0.7}
-  _interactionColliderOffset: {x: 0, y: 0.1}
+  _hideOnMinimap: 0
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
   _editorRadius:
     _object: {fileID: 0}

@@ -9,11 +9,11 @@ namespace Gameplay.Pickups
     {
         [SerializeField] private int _tutorialIndex;
         
-        [Inject] private TutorialWindow TutorialWindow { get; set; }
+        [Inject] private TipWindow TipWindow { get; set; }
         
         protected override void OnPickup(Unit picker)
         {
-            TutorialWindow.Show(_tutorialIndex);
+            TipWindow.Show(_tutorialIndex);
         }
     }
 }

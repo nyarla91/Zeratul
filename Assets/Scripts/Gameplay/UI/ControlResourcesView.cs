@@ -81,7 +81,7 @@ namespace Gameplay.UI
             int reserve = ControlResources.Reserve;
             int reserveRequired = highlightedUnit?.Type.ControlCost ?? 0;
             _reserve.color = (reserveRequired > reserve) ? _unavailableReserveColor : _reserveColor;
-            _reserve.text = reserveRequired > 0 ? $"{reserveRequired}/{reserve}" : $"{reserve}";
+            _reserve.text = reserveRequired > 0 ? $"{reserve}/{reserveRequired}" : $"{reserve}";
         }
 
         private Unit GetHighlightedUnit()

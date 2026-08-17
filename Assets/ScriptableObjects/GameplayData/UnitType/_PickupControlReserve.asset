@@ -10,39 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
-  m_Name: _ShieldBattery
+  m_Name: _PickupControlReserve
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _displayName: Shield Battery
+  _displayName: Pickup EMP Charge
   _focusPriority: 0
-  _nonInteractable: 0
-  _tags:
-  - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
-  - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
-  _controlCost: 4
-  _controlSlots: 2
+  _nonInteractable: 1
+  _tags: []
+  _controlCost: 0
+  _controlSlots: 0
   _attackWorth:
-    _baseWorth: 50
-    _evaluators:
-    - {fileID: 11400000, guid: bf685f645467db34b9731d3a399689fd, type: 2}
-  _isInvulnerable: 0
-  _maxHitPoints: 50
-  _maxShieldPoints: 75
+    _baseWorth: 0
+    _evaluators: []
+  _isInvulnerable: 1
+  _maxHitPoints: 0
+  _maxShieldPoints: 0
   _shieldRestoreDelay: 250
   _shieldPointsPerSecond: 7
   _maxEnergyPoints: 0
   _energyRestoreDelay: 250
   _energyPointsPerSecond: 7
-  _disableCollision: 0
+  _disableCollision: 1
   _isImmobile: 1
   _isAir: 0
   _maxSpeed: 0
-  _size: 2
-  _rotationSpeed: 360
-  _disableSight: 0
-  _sightRadius: 5
+  _size: 0.05
+  _rotationSpeed: 1440
+  _disableSight: 1
+  _sightRadius: 0
   _weaponType: {fileID: 0}
   _innateStatuses:
-  - {fileID: 11400000, guid: 10a20d113c9ba6040b2ea115c43bbe57, type: 2}
+  - {fileID: 11400000, guid: 725a29e83e8a0dbf6bf3fa30e38253d1, type: 2}
+  - {fileID: 11400000, guid: 3955ebf2cadd10b4e816ce8c20adc5dd, type: 2}
   _availableOrders:
   - {fileID: 0}
   - {fileID: 0}
@@ -59,9 +57,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _spriteMap: {fileID: 11400000, guid: 053df19baa687164eb9465eb01f36fe4, type: 2}
+  _spriteMap: {fileID: 11400000, guid: f0fc9700111456493aea651825fb91c2, type: 2}
   _hideOnMinimap: 0
-  _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
+  _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
   _editorRadius:
     _object: {fileID: 0}
   _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}
