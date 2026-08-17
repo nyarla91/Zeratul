@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1653221710375583603}
   - component: {fileID: 485935788325951280}
   m_Layer: 0
-  m_Name: DetectedSR
+  m_Name: SpriteSR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

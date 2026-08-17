@@ -59,6 +59,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaImpact: 0
+    - _ColorFlipSpeed: 0
     - _DisplayOriginalSprite: 1
     - _InvertNoise: 1
     - _ShimmerSpeed: 0.4
@@ -66,6 +67,6 @@ Material:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _OverlayColor: {r: 0.07111032, g: 0.509434, b: 0, a: 1}
+    - _OverlayColor: {r: 0.8207547, g: 0.7370699, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

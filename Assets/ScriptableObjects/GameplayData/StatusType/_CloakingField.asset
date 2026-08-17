@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
+  m_Name: _CloakingField
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
+  _useLock: 1
+  _display: 1
+  _displayIcon: {fileID: 21300000, guid: 6b5a94bb9b16bf542b44a108e537142d, type: 3}
+  _displayName: Cloaking Fielld
+  _showDuration: 1
+  _showDurationPriority: 50
+  _displayDescription: 
+  _rendererPrefabs:
+  - {fileID: 1872224104527679214, guid: 0665843e6a2ee4003a3c79f31ea6febc, type: 3}
+  _casterType: 0
+  _unitEffects:
+  - {fileID: 11400000, guid: 58d52fd01efc992459d28c5acadab0b2, type: 2}
+  - {fileID: 11400000, guid: 3af562038736206269d93644b4bd66be, type: 2}
+  _tickPeriod: 1
+  _requireSimulation: 0

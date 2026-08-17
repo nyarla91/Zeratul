@@ -14,7 +14,7 @@ namespace Gameplay.Data.Effects
             int energyBurnt = Mathf.Min(target.Abilities.EnergyPoints, _maxEnergyBurn);
             target.Abilities.WasteEnergy(energyBurnt);
             int damage = Mathf.CeilToInt(_damageMultiplier * energyBurnt);
-            target.Life?.TakeDamage(damage, caster);
+            target.Life?.TakeDamage(damage, DamageType.Normal, caster);
         }
     }
 }

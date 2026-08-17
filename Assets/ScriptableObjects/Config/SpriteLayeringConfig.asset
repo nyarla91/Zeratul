@@ -20,4 +20,5 @@ MonoBehaviour:
   _shadowOrder: 0
   _overlayDeltaOrderMultiplier: 5
   _verticalZScale: 0
-  _statusOrder: 1000
+  _statusOrder: 900
+  _minimapPingOrder: 1100

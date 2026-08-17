@@ -7,10 +7,12 @@ namespace Gameplay.Units.View.StatusRendering
     {
         [SerializeField] private SpriteLayeringConfig _config;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private bool _overrideSortingOrder = true;
         
         private void Awake()
         {
-            _spriteRenderer.sortingOrder = _config.StatusOrder;
+            if (_overrideSortingOrder)
+                _spriteRenderer.sortingOrder = _config.StatusOrder;
         }
 
         protected override void UpdateVisibility(bool isVisible) => _spriteRenderer.enabled = isVisible;

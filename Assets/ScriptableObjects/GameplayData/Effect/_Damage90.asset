@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f44ec71ae14a05af13e1955e5f8747, type: 3}
-  m_Name: _Feedback100Damage0-5
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.FeedbackEffect
-  _maxEnergyBurn: 9999
-  _damageMultiplier: 0.5
+  m_Script: {fileID: 11500000, guid: fae9637151dc4897a9c6cd7d1109c6ef, type: 3}
+  m_Name: _Damage90
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.DealDamageEffect
+  _damage: 90

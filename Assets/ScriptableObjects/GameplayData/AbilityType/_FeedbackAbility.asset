@@ -15,14 +15,14 @@ MonoBehaviour:
   _isImmediate: 0
   _windupTime: 5
   _recoveryTime: 50
-  _cooldown: 0
+  _cooldown: 150
   _cooldownGroup: {fileID: 0}
   _energyCost: 50
   _startingCharges: 0
   _chargesToUse: 0
   _ignoreLock: 0
   _targetRequirement: 2
-  _maxDistance: 6
+  _maxDistance: 8
   _casterValidators:
     _unitValidators: []
   _targetValidators:

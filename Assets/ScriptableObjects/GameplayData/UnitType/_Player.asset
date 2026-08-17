@@ -46,7 +46,7 @@ MonoBehaviour:
   _availableOrders:
   - {fileID: 11400000, guid: 56ccb81e15e21bf4c89b3b8b6af0a627, type: 2}
   - {fileID: 11400000, guid: 9de54a68f0039d20bbe7ec9ad6d80615, type: 2}
-  - {fileID: 11400000, guid: 8f5fc9de665641eba8a2ef84494c61bb, type: 2}
+  - {fileID: 11400000, guid: 19eb34cc9da5ae92f8e9c9098af6728f, type: 2}
   - {fileID: 11400000, guid: ddc547fc8d3048032a6d61e556800a58, type: 2}
   - {fileID: 11400000, guid: bb72de459cc2a6048b8fe4a4f962a165, type: 2}
   - {fileID: 11400000, guid: 2ebe38e0fa02f618eb367cc04eee4aaa, type: 2}
@@ -55,13 +55,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
   - {fileID: 0}
   - {fileID: 11400000, guid: 652cb0a6d8197c7e48b6431dd6406aeb, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d293bcf727f78f4869c67bee3b182465, type: 2}
   - {fileID: 11400000, guid: 1e633693066517f499bc1f35751d025f, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 99e595afbdeafa556a8d415a6650e3db, type: 2}
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: e7544b88e71ce4e49be104bfd8b85708, type: 2}
-  _interactionColliderSize: {x: 1.3, y: 2}
-  _interactionColliderOffset: {x: 0, y: 0.6}
+  _hideOnMinimap: 0
   _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
   _editorRadius:
     _object: {fileID: 0}

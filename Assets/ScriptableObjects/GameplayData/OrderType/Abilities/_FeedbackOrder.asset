@@ -16,8 +16,8 @@ MonoBehaviour:
   _displayName: Feedback
   _displayValidators:
     _unitValidators: []
-  _rawDisplayDescription: 'Burn target''s energy and deal damage equal to the half
-    of energy burnt '
+  _rawDisplayDescription: 'Burn up to 50 of target''s energy and deal damage that
+    much damage '
   _icon: {fileID: 21300000, guid: 1d2f009d62a07d04f9202d0c804e1f3c, type: 3}
   _hotkeyAlias: Ability1
   _highlightControl: 0

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b84bfd97a664fcfa7b6f2cb8b1872d9, type: 3}
+  m_Name: _MinimapPingTarget
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.BlankStatus
+  _useLock: 0
+  _display: 0
+  _displayIcon: {fileID: 0}
+  _displayName: 
+  _showDuration: 0
+  _showDurationPriority: 0
+  _displayDescription: 
+  _rendererPrefabs:
+  - {fileID: 5624198553192146132, guid: bdb505192a55745938cd8f444b340d27, type: 3}

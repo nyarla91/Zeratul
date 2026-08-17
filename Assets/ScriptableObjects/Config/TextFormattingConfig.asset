@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Configs.TextFormattingConfig
   _pairs:
   - _key: <stat>
-    _value: <color=grey>
+    _value: <color=orange>
   - _key: </stat>
     _value: </color>
   - _key: <kw>

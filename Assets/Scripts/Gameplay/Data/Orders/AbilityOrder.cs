@@ -31,20 +31,27 @@ namespace Gameplay.Data.Orders
             {
                 string result = "";
                 result += "<stat>";
-                if (AbilityType.EnergyCost > 0)
-                {
-                    result += Localizer.Translate("ability-stat-energy").Replace("#", AbilityType.EnergyCost.ToString()) + "\n";
-                }
+                bool anyStat = false;
                 if (AbilityType.Cooldown > 0)
                 {
+                    anyStat = true;
                     string cooldonwnSec = Mathf.Round(Time.fixedDeltaTime * AbilityType.Cooldown).ToString("F1");
-                    result += Localizer.Translate("ability-stat-cooldown").Replace("#", AbilityType.Cooldown.FramesToSeconds()) + "\n";
+                    result += $"<sprite name=cooldown> {cooldonwnSec} s.    ";
+                }
+                if (AbilityType.EnergyCost > 0)
+                {
+                    anyStat = true;
+                    result += $"<sprite name=energy> {AbilityType.EnergyCost}    ";
                 }
 
                 if (AbilityType.MaxDistance > 0)
                 {
-                    result += Localizer.Translate("ability-stat-range").Replace("#", AbilityType.MaxDistance.ToString()) + "\n";
+                    anyStat = true;
+                    result += $"<sprite name=distance> {AbilityType.MaxDistance}    ";
                 }
+
+                if (anyStat)
+                    result += "\n";
                 result += "</stat>";
                 result += RawDisplayDescription;
                 return result;

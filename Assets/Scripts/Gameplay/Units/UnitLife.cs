@@ -67,13 +67,24 @@ namespace Gameplay.Units
             LastDamageFrame = system.lastDamageFrame;
         }
 
-        public void TakeDamage(int damage, Unit damageDealer)
+        public void TakeDamage(int damage, DamageType damageType, Unit damageDealer)
         {
             if (Unit.IsDead || damage <= 0)
                 return;
             
-            int shieldDamage = Mathf.Min(damage, ShieldPoints);
-            int hitDamage = Mathf.Min(damage - shieldDamage, HitPoints);
+            int shieldDamage = damageType switch
+            {
+                DamageType.Normal or DamageType.ShieldPoints => Mathf.Min(damage, ShieldPoints),
+                DamageType.HitPoints => 0,
+                _ => throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null)
+            };
+            int hitDamage = damageType switch
+            {
+                DamageType.Normal => Mathf.Min(damage - shieldDamage, HitPoints),
+                DamageType.HitPoints => Mathf.Min(damage, HitPoints),
+                DamageType.ShieldPoints => 0,
+                _ => throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null)
+            };
             
             _hitPoints -=  hitDamage;
             _shieldPoints -=  shieldDamage;
@@ -109,5 +120,12 @@ namespace Gameplay.Units
             _shieldPoints += Time.fixedDeltaTime * UnitType.ShieldPointsPerSecond;
             _shieldPoints = Mathf.Min(_shieldPoints, MaxShieldPoints);
         }
+    }
+
+    public enum DamageType
+    {
+        Normal,
+        HitPoints,
+        ShieldPoints,
     }
 }

@@ -6,11 +6,12 @@ namespace Gameplay.Data.Effects
     [CreateAssetMenu(menuName = "Gameplay Data/Effects/Deal Damage", order = 0)]
     public class DealDamageEffect : EffectTargetingUnit
     {
+        [SerializeField] private DamageType _damageType;
         [SerializeField] private int _damage;
         
         public override void Apply(Unit caster, Unit target)
         {
-            target.Life?.TakeDamage(_damage, caster);
+            target.Life?.TakeDamage(_damage, _damageType, caster);
         }
     }
 }

@@ -70,11 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.g
-      value: 1
+      value: 0.9964248
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.r
-      value: 0.18212408
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7602450841122708521, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._sortingOrder
