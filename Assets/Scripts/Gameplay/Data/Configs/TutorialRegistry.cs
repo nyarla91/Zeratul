@@ -14,10 +14,10 @@ namespace Gameplay.Data.Configs
     [Serializable]
     public class TutorialEntry
     {
-        [SerializeField] private string _label;
+        [SerializeField] private string _header;
         [SerializeField] [TextArea(1, 30)] private string _description;
 
-        public string Label => _label;
+        public string Header => _header;
         public string Description => _description;
     }
 }

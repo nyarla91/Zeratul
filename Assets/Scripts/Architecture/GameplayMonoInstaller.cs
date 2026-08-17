@@ -22,6 +22,7 @@ namespace Architecture
         [SerializeField] private RangeEllipseFactory _rangeEllipseFactory;
         [SerializeField] private Message _message;
         [SerializeField] private TipWindow _tipWindow;
+        [SerializeField] private TutorialScreen _tutorialScreen;
         [SerializeField] private ScenarioLifetime _scenarioLifetime;
         [SerializeField] private GameplaySaveLoad _gameplaySaveLoad;
         [SerializeField] private UnitSpawner _unitSpawner;
@@ -42,6 +43,7 @@ namespace Architecture
             Container.BindInstance(_rangeEllipseFactory).AsSingle();
             Container.BindInstance(_message).AsSingle();
             Container.BindInstance(_tipWindow).AsSingle();
+            Container.BindInstance(_tutorialScreen).AsSingle();
             Container.BindInstance(_scenarioLifetime).AsSingle();
             Container.BindInstance(_gameplaySaveLoad).AsSingle();
             Container.BindInstance(_unitSpawner).AsSingle();
