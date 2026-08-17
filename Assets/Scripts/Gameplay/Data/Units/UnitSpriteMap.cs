@@ -19,11 +19,15 @@ namespace Gameplay.Data.Units
         [SerializeField] private Sprite[] _sprites;
         [SerializeField] private List<UnitAnimation> _animations;
         [SerializeField] private float _spriteHeight;
+        [SerializeField] private Vector2 _interactionColliderSize;
+        [SerializeField] private Vector2 _interactionColliderOffset;
 
         private Dictionary<string, UnitAnimation> _animationsDic;
 
         public Sprite Portrait => _portrait;
         public float SpriteHeight => _spriteHeight;
+        public Vector2 InteractionColliderSize => _interactionColliderSize;
+        public Vector2 InteractionColliderOffset => _interactionColliderOffset;
         
         public Sprite GenericSprite => GetSprite("idle", 0, 225);
 
@@ -51,6 +55,16 @@ namespace Gameplay.Data.Units
             int direction = Mathf.RoundToInt(angle / AngleStep).RepeatIndex(Directions);
             
             return animation.GetSprite(frame, direction);
+        }
+
+        public Vector2 GetAnchorOffset(UnitSpriteAnchor anchor)
+        {
+            return anchor switch
+            {
+                UnitSpriteAnchor.Feet => Vector2.zero,
+                UnitSpriteAnchor.Center => _interactionColliderOffset,
+                _ => throw new ArgumentOutOfRangeException(nameof(anchor), anchor, null)
+            };
         }
 
         private Dictionary<string, UnitAnimation> AnimationsToDictionary(List<UnitAnimation> animations)
@@ -164,5 +178,11 @@ namespace Gameplay.Data.Units
         }
 
         public Sprite GetDirection(int direction) => Directions.Length == 1 ? Directions[0] : Directions[direction];
+    }
+
+    public enum UnitSpriteAnchor
+    {
+        Feet,
+        Center
     }
 }

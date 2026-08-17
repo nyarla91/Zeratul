@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
   m_Name: ShieldBattery
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitSpriteMap
+  _portrait: {fileID: 0}
   _sprites:
   - {fileID: 21300000, guid: 8f6ff83d217f8e84f9027f6fbc9e6b14, type: 3}
   - {fileID: 21300000, guid: 242c22d8769ec1343979deb178f62aa0, type: 3}
@@ -65,3 +66,5 @@ MonoBehaviour:
     - <Directions>k__BackingField:
       - {fileID: 21300000, guid: 6819ee65be931454ea5fdcba8d22f3f8, type: 3}
   _spriteHeight: 0
+  _interactionColliderSize: {x: 1.8, y: 1.6}
+  _interactionColliderOffset: {x: 0, y: 0.4}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.AiEvaluators.PropertyEvaluator
   _countHitPoints: 0
   _countShieldPoints: 0
-  _countEnergy: 0
+  _countEnergy: 1
   _countMissing: 0
   _countPercentage: 0
   _multiplier: 1

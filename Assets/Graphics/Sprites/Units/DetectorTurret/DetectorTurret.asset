@@ -111,3 +111,5 @@ MonoBehaviour:
     - <Directions>k__BackingField:
       - {fileID: 21300000, guid: 402357b532fef1d4f8d7f2083bbdd633, type: 3}
   _spriteHeight: 0
+  _interactionColliderSize: {x: 1.8, y: 2}
+  _interactionColliderOffset: {x: 0, y: 0.58}

@@ -1549,3 +1549,5 @@ MonoBehaviour:
       - {fileID: 21300000, guid: a63282adc993a924cbd1c783ce183351, type: 3}
       - {fileID: 21300000, guid: 41e644efdd73ca34784a1b64a778f649, type: 3}
   _spriteHeight: 0
+  _interactionColliderSize: {x: 1, y: 2}
+  _interactionColliderOffset: {x: 0, y: 0.75}

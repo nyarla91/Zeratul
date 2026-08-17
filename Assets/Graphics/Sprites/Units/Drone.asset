@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43785073b574102b6abd7d7b7a95edd, type: 3}
   m_Name: Drone
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitSpriteMap
+  _portrait: {fileID: 0}
   _sprites: []
   _animations:
   - <Name>k__BackingField: alien-move
@@ -29,3 +30,5 @@ MonoBehaviour:
     - <Directions>k__BackingField:
       - {fileID: 339818388081602080, guid: 97d370b4f0988904a9bda378d1be8036, type: 3}
   _spriteHeight: 2
+  _interactionColliderSize: {x: 1, y: 0.7}
+  _interactionColliderOffset: {x: 0, y: 0.1}

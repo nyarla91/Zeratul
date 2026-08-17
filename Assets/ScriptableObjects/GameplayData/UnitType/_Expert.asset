@@ -43,7 +43,7 @@ MonoBehaviour:
   _innateStatuses:
   - {fileID: 11400000, guid: 5c0f22d6773dae34fb1616ad7629a54d, type: 2}
   _availableOrders:
-  - {fileID: 11400000, guid: b101c89fd63a172448d3f16f00f062fe, type: 2}
+  - {fileID: 11400000, guid: 12b2d58d964965418922fc490d5bb069, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -59,6 +59,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: 496ff24468ab25f4088c17e7ec1f98dd, type: 2}
+  _hideOnMinimap: 0
   _interactionColliderSize: {x: 1, y: 2}
   _interactionColliderOffset: {x: 0, y: 0.75}
   _aiMap: {fileID: 11400000, guid: d027de8ecba73d94b9493dac5d3cb2a8, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: _ExpertAI
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitAiMap
   _aiOrders:
-  - _order: {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
+  - _orderType: {fileID: 11400000, guid: 7b3dcdf1dc716ed43b9a721f89babc15, type: 2}
     _agentValidator:
       _unitValidators:
       - {fileID: 11400000, guid: fe40c85167807844b91e40cf12a4e935, type: 2}
@@ -23,7 +23,7 @@ MonoBehaviour:
     _evaluators:
       _baseWorth: 50
       _evaluators: []
-  - _order: {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
+  - _orderType: {fileID: 11400000, guid: 2f16df7419ec0d64db0e6c9d29edf4e1, type: 2}
     _agentValidator:
       _unitValidators:
       - {fileID: 11400000, guid: fe40c85167807844b91e40cf12a4e935, type: 2}
@@ -35,7 +35,7 @@ MonoBehaviour:
     _evaluators:
       _baseWorth: 100
       _evaluators: []
-  - _order: {fileID: 11400000, guid: b101c89fd63a172448d3f16f00f062fe, type: 2}
+  - _orderType: {fileID: 11400000, guid: b101c89fd63a172448d3f16f00f062fe, type: 2}
     _agentValidator:
       _unitValidators: []
     _targetValidator:
@@ -46,3 +46,14 @@ MonoBehaviour:
     _evaluators:
       _baseWorth: 200
       _evaluators: []
+  - _orderType: {fileID: 11400000, guid: 12b2d58d964965418922fc490d5bb069, type: 2}
+    _agentValidator:
+      _unitValidators: []
+    _targetValidator:
+      _unitValidators:
+      - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+      - {fileID: 11400000, guid: bf9cca8059bc3fb52a9e5b68a5d3c03e, type: 2}
+    _evaluators:
+      _baseWorth: 200
+      _evaluators:
+      - {fileID: 11400000, guid: c8a4dd7a928f5a961947447a13369844, type: 2}
