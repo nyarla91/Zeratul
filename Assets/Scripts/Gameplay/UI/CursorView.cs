@@ -9,7 +9,7 @@ namespace Gameplay.UI
 {
     public class CursorView : MonoBehaviour
     {
-        [SerializeField] private CameraControl _cameraControl;
+        [SerializeField] private PlayerCamera _playerCamera;
         [SerializeField] private CursorDefinition _default;
         [SerializeField] private CursorDefinition _targeting;
         [SerializeField] private CursorDefinition _targetingError;
@@ -26,10 +26,10 @@ namespace Gameplay.UI
         {
             if (GamePause.IsPaused)
                 SetCursor(_default);
-            if (_cameraControl.IsDragging)
+            if (_playerCamera.IsDragging)
                 SetCursor(_drag);
-            else if (_cameraControl.EdgeMoveDirection != Vector2Int.zero)
-                SetCursor(GetCursorForCameraDirection(_cameraControl.EdgeMoveDirection));
+            else if (_playerCamera.EdgeMoveDirection != Vector2Int.zero)
+                SetCursor(GetCursorForCameraDirection(_playerCamera.EdgeMoveDirection));
             else if (OrderTargeter.IsTargeting)
             {
                 bool error = ! OrdersDispatcher.CanIssueWithTarget(OrderTargeter.CurrentOrder, OrderTargeter.CurrentTarget);

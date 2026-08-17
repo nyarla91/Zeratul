@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Data.AiEvaluators;
 using Gameplay.Data.Orders;
 using Gameplay.Data.Validator;
 using Gameplay.Units;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Data.Units
 {
@@ -19,6 +21,8 @@ namespace Gameplay.Data.Units
             float bestWorth = 0;
             foreach (AiOrder aiOrder in _aiOrders)
             {
+                if ( ! agent.Type.AvailableOrders.Contains(aiOrder.OrderType))
+                    continue;
                 Order newOrder = aiOrder.GetOrder(agent, surroundings, out float worth);
                 if (worth < bestWorth)
                     continue;
@@ -31,11 +35,13 @@ namespace Gameplay.Data.Units
         [Serializable]
         private struct AiOrder
         {
-            [SerializeField] private OrderType _order;
+            [FormerlySerializedAs("_order")] [SerializeField] private OrderType _orderType;
             [SerializeField] private UnitValidatorGroup _agentValidator;
             [SerializeField] private UnitValidatorGroup _targetValidator;
             [SerializeField] private AiUnitTargetEvaluatorGroup _evaluators;
-
+            
+            public OrderType OrderType => _orderType;
+            
             public Order GetOrder(Unit agent, HashSet<Unit> surroundings, out float worth)
             {
                 worth = 0;
@@ -46,7 +52,7 @@ namespace Gameplay.Data.Units
                 foreach (Unit target in surroundings)
                 {
                     OrderTarget orderTarget = OrderTarget.FromUnit(target);
-                    if ( ! _order.IsTargetValid(agent, orderTarget, out _))
+                    if ( ! _orderType.IsTargetValid(agent, orderTarget, out _))
                         continue;
                     if (_targetValidator.IsInvalid(agent, target))
                         continue;
@@ -56,7 +62,7 @@ namespace Gameplay.Data.Units
                         continue;
                     
                     worth = newWorth;
-                    result = new Order(_order, agent, orderTarget);
+                    result = new Order(_orderType, agent, orderTarget);
                 }
 
                 return result;
@@ -64,7 +70,7 @@ namespace Gameplay.Data.Units
 
             private bool IsAgentInvalid(Unit agent)
             {
-                if ( ! _order.IsActorValid(agent, out _))
+                if ( ! _orderType.IsActorValid(agent, out _))
                     return true;
                 if (_agentValidator.IsInvalid(agent, agent))
                     return true;

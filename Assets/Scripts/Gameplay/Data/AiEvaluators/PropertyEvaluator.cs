@@ -3,11 +3,12 @@ using UnityEngine;
 
 namespace Gameplay.Data.AiEvaluators
 {
-    [CreateAssetMenu(menuName = "Gameplay Data/AI Evaluator/Unit Life", order = 0)]
-    public class LifeEvaluator : AiUnitTargetEvaluator
+    [CreateAssetMenu(menuName = "Gameplay Data/AI Evaluator/Unit Property", order = 0)]
+    public class PropertyEvaluator : AiUnitTargetEvaluator
     {
         [SerializeField] private bool _countHitPoints;
         [SerializeField] private bool _countShieldPoints;
+        [SerializeField] private bool _countEnergy;
         [SerializeField] private bool _countMissing;
         [SerializeField] private bool _countPercentage;
         [SerializeField] private float _multiplier = 1;
@@ -18,10 +19,12 @@ namespace Gameplay.Data.AiEvaluators
             
             float result = 0;
             
-            if (_countHitPoints)
+            if (_countHitPoints && target.HasLife)
                 result += _countMissing ? target.Life.MissingHitPoints : target.Life.HitPoints;
-            if (_countShieldPoints)
+            if (_countShieldPoints && target.HasLife)
                 result += _countMissing ? target.Life.MissingShieldPoints : target.Life.ShieldPoints;
+            if (_countEnergy)
+                result += _countMissing ? target.Abilities.MissingEnergyPoints : target.Abilities.EnergyPoints;
 
             if (_countPercentage)
             {

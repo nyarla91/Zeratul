@@ -20,17 +20,18 @@ namespace Gameplay.Player
         public Unit[] SelectedPlayerUnits => _selectedUnits.Where(u => u.Alliance.OwnedByPlayer).ToArray();
         
         public bool IsUncontrollableSelected => _selectedUnits.Count == 1 && ! _selectedUnits[0].Alliance.OwnedByPlayer;
-
-        public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
         
         public event Action SelectionUpdated;
-        
+        public event Action<Unit> UnitSelectedTwice;
+
         [Inject]
         public PlayerSelection(PlayerInput input)
         {
             input.FocusNextUnitType.Performed += FocusNextUnitType;
         }
-        
+
+        public bool IsUnitSelected(Unit unit) => _selectedUnits.Contains(unit);
+
         public void AddUnitsToSelection(params Unit[] units)
         {
             foreach (Unit unit in units)
@@ -62,6 +63,10 @@ namespace Gameplay.Player
 
         public void SelectUnits(params Unit[] units)
         {
+            if (_selectedUnits.Count == 1 && units.Length == 1 && _selectedUnits.First() == units.First())
+            {
+                UnitSelectedTwice?.Invoke(units.First());
+            }
             ClearSelection();
             AddUnitsToSelection(units);
         }

@@ -25,6 +25,7 @@ namespace Gameplay.Units
 
         private float _energyPoints;
         public int EnergyPoints => Mathf.FloorToInt(_energyPoints);
+        public int MissingEnergyPoints => MaxEnergyPoints - EnergyPoints;
 
         public int MaxEnergyPoints => UnitType.MaxEnergyPoints; 
         

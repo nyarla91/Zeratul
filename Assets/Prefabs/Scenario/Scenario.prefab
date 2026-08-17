@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionMoveCamera
   _position: {fileID: 904236690518458125}
+  _moveImmediate: 1
 --- !u!1 &655026293341595709
 GameObject:
   m_ObjectHideFlags: 0

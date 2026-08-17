@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e177b279f6442bbb7c7c2e8fdc5d26c, type: 3}
-  m_Name: _HasEnergy
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitFlagValidator
-  _invalidMessage: Target doesn't have energy
+  m_Script: {fileID: 11500000, guid: 0522ba000581474ba0cf50c4c9392e2d, type: 3}
+  m_Name: _EnergyMoreThanOrEquals50
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitEnergyValidator
+  _invalidMessage: 
   _not: 0
-  _flag: 8
+  _propertyComparator: 5
+  _targetValue: 50

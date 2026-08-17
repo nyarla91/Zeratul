@@ -20,7 +20,7 @@ namespace Gameplay.Schemes.Values.Variables
 
         public override string Save()
         {
-            return JsonConvert.SerializeObject(value.Select(u => u.Id).ToHashSet());
+            return JsonConvert.SerializeObject(value.ClearNull().Select(u => u.Id).ToHashSet());
         }
 
         public override void ReproduceFromSaveData(string json)

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c29638cefae4b53acadb2b9738ba9e5, type: 3}
-  m_Name: _AOE3_Damage75
+  m_Name: _AOE3_Damage70
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AOEffect
   _gameplayerInjectPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
   _radius: 3
   _applyValidators:
     _unitValidators: []
   _effects:
-  - {fileID: 11400000, guid: 575005a2a76ea194bbc21a3e1404551a, type: 2}
+  - {fileID: 11400000, guid: 6a7bbb87eaa9d5044bf2cafb4894d2c9, type: 2}

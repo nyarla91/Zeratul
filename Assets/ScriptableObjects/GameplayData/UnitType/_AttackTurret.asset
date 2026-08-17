@@ -36,7 +36,7 @@ MonoBehaviour:
   _isAir: 0
   _maxSpeed: 0
   _size: 2
-  _rotationSpeed: 360
+  _rotationSpeed: 180
   _disableSight: 0
   _sightRadius: 12
   _weaponType: {fileID: 11400000, guid: 68d6cbcfc4a2d0d4584c3b5242f8eac2, type: 2}
@@ -59,6 +59,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: 5f9467d6d85c3754aa43a99df72e992d, type: 2}
+  _hideOnMinimap: 0
   _interactionColliderSize: {x: 1.8, y: 2}
   _interactionColliderOffset: {x: 0, y: 0.58}
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}

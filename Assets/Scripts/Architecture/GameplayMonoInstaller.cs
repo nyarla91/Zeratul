@@ -31,6 +31,7 @@ namespace Architecture
         [SerializeField] private DefeatMenu _defeatMenu;
         [SerializeField] private VictoryMenu _victoryMenu;
         [SerializeField] private ObjectiveViewFactory _objectiveViewFactory;
+        [SerializeField] private PlayerCamera _playerCamera;
         
         public override void InstallBindings()
         {
@@ -50,6 +51,7 @@ namespace Architecture
             Container.BindInstance(_defeatMenu).AsSingle();
             Container.BindInstance(_victoryMenu).AsSingle();
             Container.BindInstance(_objectiveViewFactory).AsSingle();
+            Container.BindInstance(_playerCamera).AsSingle();
         }
     }
 }

@@ -1,14 +1,19 @@
-﻿using _Core;
+﻿using System;
+using _Core;
 using _Core.Pause;
+using DG.Tweening;
+using Gameplay.Player;
+using Gameplay.Units;
 using Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 using PlayerInput = Gameplay.Player.PlayerInput;
+using Range = _Core.Range;
 
 namespace Gameplay.Map
 {
-    public class CameraControl : MonoBehaviour
+    public class PlayerCamera : MonoBehaviour
     { 
         [SerializeField] private BoxCollider2D _mapBounds;
         [SerializeField] private Camera _camera;
@@ -18,14 +23,39 @@ namespace Gameplay.Map
         [SerializeField] private int _edgeTolerance;
         [SerializeField] private float _edgeMoveSpeed;
         [SerializeField] private bool _disableEdgeMovementInEditor;
-        
+        [SerializeField] private float _moveDuration;
+
         public bool IsDragging { get; private set; }
         public Vector2Int EdgeMoveDirection { get; private set; }
         
         [Inject] private PlayerInput PlayerInput { get; set; }
+        [Inject] private PlayerSelection PlayerSelection { get; set; }
         [Inject] private GamePause GamePause { get; set; }
         [Inject] private ISettingsReadService Settings { get; set; }
 
+        private void Awake()
+        {
+            PlayerSelection.UnitSelectedTwice += MoveToUnit;
+        }
+
+        private void MoveToUnit(Unit unit)
+        {
+            MoveTo(unit.Position, false);
+        }
+
+        public void MoveTo(Vector2 position, bool immediately)
+        {
+            Vector3 target = position.WithZ(transform.position.z);
+            transform.DOKill();
+            if (immediately)
+            {
+                transform.position = target;
+                return;
+            }
+            transform.DOMove(target, _moveDuration);
+            BoundCamera();
+        }
+        
         private void Update()
         {
             if (GamePause.IsPaused)
@@ -50,6 +80,7 @@ namespace Gameplay.Map
             if (_disableEdgeMovementInEditor)
                 return;
 #endif
+            transform.DOKill();
             Cursor.lockState = CursorLockMode.Confined;
             Vector2 direction = Vector2.zero;
             Vector2 mousePosition = Mouse.current.position.ReadValue();
@@ -75,6 +106,7 @@ namespace Gameplay.Map
 
         private void DragCamera(Vector2 screenDelta)
         {
+            transform.DOKill();
             Vector3 worldDelta = _camera.ScreenToWorldPoint(screenDelta) - _camera.ScreenToWorldPoint(Vector3.zero);
             transform.position += worldDelta * _dragSpeed * Settings.CameraDragSpeed;
         }

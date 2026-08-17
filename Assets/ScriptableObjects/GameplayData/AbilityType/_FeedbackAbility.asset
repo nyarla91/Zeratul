@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
+  m_Name: _FeedbackAbility
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
+  _isImmediate: 0
+  _windupTime: 5
+  _recoveryTime: 50
+  _cooldown: 0
+  _cooldownGroup: {fileID: 0}
+  _energyCost: 50
+  _startingCharges: 0
+  _chargesToUse: 0
+  _ignoreLock: 0
+  _targetRequirement: 2
+  _maxDistance: 6
+  _casterValidators:
+    _unitValidators: []
+  _targetValidators:
+    _unitValidators:
+    - {fileID: 11400000, guid: f6a4e0b4e72109d4f9c4b97caae5cf77, type: 2}
+  _casterEffects: []
+  _mustLookAtTarget: 1
+  _unitTargetEffects:
+  - {fileID: 11400000, guid: e62079d4b4419133abfbdc80a307756a, type: 2}
+  _pointTargetEffects: []
+  _animationAction: ability

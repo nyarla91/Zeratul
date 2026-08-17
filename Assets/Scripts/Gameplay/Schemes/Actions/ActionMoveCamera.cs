@@ -1,21 +1,22 @@
 ﻿using System;
 using _Core;
+using Gameplay.Map;
 using Gameplay.Schemes.Values;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Schemes.Actions
 {
     public class ActionMoveCamera : SchemeAction
     {
         [SerializeField] private SchemeValue<Vector2> _position;
+        [SerializeField] private bool _moveImmediate;
+        
+        [Inject] private PlayerCamera _playerCamera;
         
         public override void Act()
         {
-            Camera mainCamera = Camera.main;
-            if ( ! mainCamera)
-                return;
-            Vector3 position = _position.Value.WithZ(mainCamera.transform.position.z);
-            mainCamera.transform.position = position;
+            _playerCamera.MoveTo(_position.Value, _moveImmediate);
         }
 
         private void OnValidate()
