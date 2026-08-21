@@ -24,6 +24,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: CloakingField4SR
       objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.b
+      value: 0.54686993
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6edcedfeb1b99794bb0865f03bcabf59, type: 2}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._radiusSource._object
+      value: 
+      objectReference: {fileID: 11400000, guid: 3af562038736206269d93644b4bd66be, type: 2}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Sprite
       value: 

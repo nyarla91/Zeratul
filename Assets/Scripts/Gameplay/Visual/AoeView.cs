@@ -1,4 +1,5 @@
 ﻿using System;
+using _Core;
 using Gameplay.Data;
 using UniRx;
 using UniRx.Triggers;
@@ -8,92 +9,77 @@ namespace Gameplay.Visual
 {
     public class AoeView : PoolElement<AoeView>
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private LineRenderer _lineRenderer;
+        [SerializeField] private int _segments;
+        [SerializeField] private float _widthMultiplier;
         [SerializeField] private AoeVariant _startingVariant;
         
         private float _rotationSpeed;
+        private Camera _mainCamera;
 
-        public float Radius
+        private void Awake()
         {
-            get => _spriteRenderer.transform.localScale.x;
-            set => _spriteRenderer.transform.localScale = Vector3.one * value;
+            _mainCamera = Camera.main;
+            Set(_startingVariant);
+            transform.localScale = new Vector3(1, 0.5f, 1);
         }
 
         public void Set(AoeVariant variant)
         {
-            _spriteRenderer.sprite = variant.Sprite;
-            _spriteRenderer.sortingOrder = variant.SortingOrder;
-            _spriteRenderer.color = variant.Color;
-            Radius = variant.Radius + 0.2f;
+            _lineRenderer.material = variant.Material;
+            _lineRenderer.sortingOrder = variant.SortingOrder;
+            _lineRenderer.colorGradient = variant.Color.ToGradient();
+            SetRadius(variant.Radius);
             _rotationSpeed = variant.RotationSpeed;
         }
-        
-        public override void OnSpawn() => Show();
-        
-        public void Show() => _spriteRenderer.enabled = true;
 
-        public void Hide() => _spriteRenderer.enabled = false;
-        
+        public override void OnSpawn() => Show();
+
+        public void Show() => _lineRenderer.enabled = true;
+
+        public void Hide() => _lineRenderer.enabled = false;
+
         public void Move(Vector2 position) => transform.position = position;
-        
+
         protected override void OnDespawn() => Hide();
 
-        private void Awake()
+        private void SetRadius(float radius)
         {
-            Set(_startingVariant);
-            transform.localScale = new Vector3(1, 0.5f, 1);
-            this.UpdateAsObservable()
-                .Subscribe(_ => UpdateRotation());
+            _lineRenderer.positionCount = _segments;
+            Vector3[] positions = new Vector3[_segments];
+            for (int i = 0; i < _segments; i++)
+            {
+                float angle = 360f / _segments * i;
+                positions[i] = angle.DegreesToVector2() * radius;
+            }
+            _lineRenderer.SetPositions(positions);
         }
 
-        private void UpdateRotation()
+        private void Update()
         {
             float z = Time.time * _rotationSpeed % 360f;
-            _spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, z);
+            _lineRenderer.transform.rotation = Quaternion.Euler(0, 0, z);
+            
+            float width = _mainCamera.orthographicSize * _widthMultiplier;
+            _lineRenderer.widthMultiplier = width;
         }
     }
 
     [Serializable]
     public struct AoeVariant
     {
-        [SerializeField] private Sprite _sprite;
-        [SerializeField] private int _sortingOrder;
-        [SerializeField] private AoeSpriteStep[] _steps;
+        [SerializeField] private Material _material;
         [SerializeField] private Color _color;
+        [SerializeField] private int _sortingOrder;
         [SerializeField] private ReferenceIRadiusSource _radiusSource;
         [SerializeField] private float _radius;
         [SerializeField] private float _rotationSpeed;
 
-        public Sprite Sprite
-        {
-            get
-            {
-                Sprite result = _sprite;
-                foreach (AoeSpriteStep step in _steps)
-                {
-                    if (_radius < step.MinRadius)
-                        break;
-                    result = step.Sprite;
-                }
-                return result;
-            }
-        }
-
+        public Material Material => _material;
         public int SortingOrder => _sortingOrder;
         public Color Color => _color;
         public float Radius => _radiusSource?.I?.Radius ?? _radius;
         public float RotationSpeed => _rotationSpeed;
-
-        public AoeVariant(ReferenceIRadiusSource radiusSource, float radius, Sprite sprite, int sortingOrder, AoeSpriteStep[] steps, Color color, float rotationSpeed)
-        {
-            _radiusSource = radiusSource;
-            _sprite = sprite;
-            _steps = steps;
-            _color = color;
-            _radius = radius;
-            _rotationSpeed = rotationSpeed;
-            _sortingOrder = sortingOrder;
-        }
 
         public AoeVariant WithRadius(float radius)
         {
@@ -101,16 +87,6 @@ namespace Gameplay.Visual
             result._radiusSource = null;
             result._radius = radius;
             return result;
-        }
-
-        [Serializable]
-        public struct AoeSpriteStep
-        {
-            [SerializeField] private Sprite _sprite;
-            [SerializeField] private float _minRadius;
-            
-            public Sprite Sprite => _sprite;
-            public float MinRadius => _minRadius;
         }
     }
 }

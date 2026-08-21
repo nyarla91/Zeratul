@@ -28,6 +28,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MineTriggerSR
       objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._radiusSource._object
+      value: 
+      objectReference: {fileID: 11400000, guid: cbd716f4effa0ad42ad17abcf8bca968, type: 2}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Sprite
       value: 

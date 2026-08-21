@@ -28,6 +28,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackTurret9SR
       objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _startingVariant._radiusSource._object
+      value: 
+      objectReference: {fileID: 11400000, guid: 68d6cbcfc4a2d0d4584c3b5242f8eac2, type: 2}
     - target: {fileID: 5344701913011248549, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: m_Sprite
       value: 
