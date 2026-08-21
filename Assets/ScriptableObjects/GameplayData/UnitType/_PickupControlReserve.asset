@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: _PickupControlReserve
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _displayName: Pickup EMP Charge
+  _displayName: Pickup Control Charge
   _focusPriority: 0
   _nonInteractable: 1
   _tags: []

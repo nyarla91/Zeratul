@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4350e1c8c747419a2522f3cacc40df, type: 3}
+  m_Name: _ClearInstigatedParasite
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.ClearInstigatedStatuses
+  _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
+  _hostsValidator:
+    _unitValidators: []
+  _statusesCleared:
+  - {fileID: 11400000, guid: 30d71f2d735541b009ad8bf434c53149, type: 2}

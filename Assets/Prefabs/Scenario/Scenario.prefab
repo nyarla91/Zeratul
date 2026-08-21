@@ -159252,6 +159252,52 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 54c953249b553d6428f29d151ea1a829, type: 2}
     - {fileID: 11400000, guid: 59b3db44ec86e2c4c91038440d676105, type: 2}
   _not: 0
+--- !u!1 &7371954378757841740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865346317766788149}
+  - component: {fileID: 6395877917978579971}
+  m_Layer: 0
+  m_Name: '> Research _UnlockParasite for Player'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1865346317766788149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371954378757841740}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8985990877338052884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6395877917978579971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371954378757841740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1529c8eb80514c898a05d731905b7ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionResearchUpgrade
+  _owner: 0
+  _upgrade: {fileID: 11400000, guid: ab781acc1b7adac31bd11446a6cc1ec4, type: 2}
 --- !u!1 &7409386448966938806
 GameObject:
   m_ObjectHideFlags: 0
@@ -160501,7 +160547,7 @@ PrefabInstance:
       objectReference: {fileID: 5074315753186333422}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: _actions.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[0]'
@@ -160527,6 +160573,10 @@ PrefabInstance:
       propertyPath: '_actions.Array.data[5]'
       value: 
       objectReference: {fileID: 9003260843972507098}
+    - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
+      propertyPath: '_actions.Array.data[6]'
+      value: 
+      objectReference: {fileID: 6395877917978579971}
     - target: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 78.67584
@@ -160600,6 +160650,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1335383138340948245}
+    - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1865346317766788149}
     - targetCorrespondingSourceObject: {fileID: 8338962420022190733, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2708812910402307267}

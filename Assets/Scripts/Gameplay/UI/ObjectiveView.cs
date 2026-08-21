@@ -20,7 +20,7 @@ namespace Gameplay.UI
 
         public Objective Objective => _objective.Invoke();
         public int Priority { get; private set; }
-        
+         
         public void Init(Func<Objective> objective, int priority)
         {
             if (_objective != null)

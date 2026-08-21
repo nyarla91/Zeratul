@@ -38,7 +38,7 @@ MonoBehaviour:
   _size: 2
   _rotationSpeed: 180
   _disableSight: 0
-  _sightRadius: 12
+  _sightRadius: 10
   _weaponType: {fileID: 11400000, guid: 68d6cbcfc4a2d0d4584c3b5242f8eac2, type: 2}
   _innateStatuses:
   - {fileID: 11400000, guid: e7aea8bc3e9c13645a5f8b68d58129b3, type: 2}

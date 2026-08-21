@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: _AddLocked-300
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Effects.AddStatusEffect
   _statusType: {fileID: 11400000, guid: 77dfc648999e3444db60d7b6eabd82f2, type: 2}
-  _duration: 300
+  _duration: 250
