@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e29f34d5624039a319616cee83391e, type: 3}
   m_Name: _AttackSpeedModifier50
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.ModifierStatus
+  _tag: 1
   _useLock: 0
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 28d3bbbcf5275df49b7575da14a0d132, type: 3}
   _displayName: Staggered
+  _showDuration: 0
+  _showDurationPriority: 0
   _displayDescription: Attack speed reduced by 50%
   _rendererPrefabs: []
   _type: 1

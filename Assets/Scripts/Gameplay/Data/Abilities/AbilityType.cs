@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Gameplay.Data.Abilities
 {
     [CreateAssetMenu(menuName = "Gameplay Data/Ability", order = 0)]
-    public class AbilityType : ScriptableObject
+    public class AbilityType : ScriptableObject, IRadiusSource
     {
         [SerializeField] private bool _isImmediate;
         [SerializeField] private int _windupTime;
@@ -44,6 +44,7 @@ namespace Gameplay.Data.Abilities
         public UnitValidatorGroup CasterValidators => _casterValidators;
         public UnitValidatorGroup TargetValidators => _targetValidators;
         public float MaxDistance => _maxDistance;
+        public float Radius => _maxDistance;
         public int EnergyCost => _energyCost;
         public bool IgnoreLock => _ignoreLock;
         public int WindupTime => _windupTime;
@@ -68,7 +69,7 @@ namespace Gameplay.Data.Abilities
                    && ability.Charges >= ChargesToUse 
                    && ability.IsReady;
         }
-        
+
         public bool IsTargetInRadius(Unit caster, OrderTarget target)
         {
             return TargetRequirement switch

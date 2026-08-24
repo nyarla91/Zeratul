@@ -6,6 +6,7 @@ namespace Gameplay.Data.Statuses
 {
     public abstract class StatusType : ScriptableObject
     {
+        [SerializeField] private StatusTag _tag;
         [SerializeField] private bool _useLock;
         [SerializeField] private bool _display;
         [SerializeField] private Sprite _displayIcon;
@@ -15,6 +16,7 @@ namespace Gameplay.Data.Statuses
         [SerializeField] [TextArea(4, 10)] private string _displayDescription;
         [SerializeField] private StatusRenderer[] _rendererPrefabs;
 
+        public StatusTag Tag => _tag;
         public bool Display => _display;
         public Sprite DisplayIcon => _displayIcon;
         public string DisplayName => _displayName;
@@ -30,5 +32,12 @@ namespace Gameplay.Data.Statuses
         public abstract void OnRemove(Status status);
 
         public bool IsLocked(Status status) => _useLock && status.Host.Abilities.IsLocked;
+    }
+    
+    public enum StatusTag
+    {
+        Neutral,
+        Positive,
+        Negative
     }
 }

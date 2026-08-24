@@ -1,4 +1,6 @@
-﻿using _Core;
+﻿using System;
+using _Core;
+using Gameplay.Data.Statuses;
 using Gameplay.Units;
 using Settings.Localization;
 using UnityEngine;
@@ -13,6 +15,9 @@ namespace Gameplay.UI
         [SerializeField] private Localizer _localizer;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Image _icon;
+        [SerializeField] private Color _neutralColor;
+        [SerializeField] private Color _positiveColor;
+        [SerializeField] private Color _negativeColor;
         [SerializeField] private AnimationCurve _alphaPerFramesLeft;
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _pointerEnterEventIndex;
@@ -39,7 +44,13 @@ namespace Gameplay.UI
             }
             _canvasGroup.alpha = 1;
             _icon.sprite = _currentStatus.Type.DisplayIcon;
-            _icon.color = Color.white.WithA(_alphaPerFramesLeft.Evaluate(status.FramesLeft));
+            Color baseColor = status.Type.Tag switch {
+                StatusTag.Neutral => _neutralColor,
+                StatusTag.Positive => _positiveColor,
+                StatusTag.Negative => _negativeColor,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            _icon.color = baseColor.WithA(_alphaPerFramesLeft.Evaluate(status.FramesLeft));
         }
 
         private void StartShowingTooltip(BaseEventData _)

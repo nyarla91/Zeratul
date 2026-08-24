@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
   m_Name: _BlindAura10
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
+  _tag: 2
   _useLock: 1
   _display: 0
   _displayIcon: {fileID: 0}
   _displayName: 
+  _showDuration: 0
+  _showDurationPriority: 0
   _displayDescription: 
   _rendererPrefabs:
   - {fileID: 1872224104527679214, guid: 8275ed001d421ea48bdbdb7ee3994549, type: 3}
