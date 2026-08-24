@@ -74,7 +74,7 @@ namespace Gameplay.Units
             if (Unit.Alliance.OwnedByPlayer)
                 return;
 
-            if (Threats.Count == 0)
+            if (Threats.Count == 0 && ! UnitType.AIMap.RunWithoutThreats)
             {
                 Patrol();
                 return;

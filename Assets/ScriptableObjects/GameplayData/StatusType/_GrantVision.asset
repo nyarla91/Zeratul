@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd1dacd7f904649a27372b3d51b6b68, type: 3}
   m_Name: _GrantVision
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.GrantVisionStatus
+  _tag: 2
   _useLock: 0
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 1d2f009d62a07d04f9202d0c804e1f3c, type: 3}

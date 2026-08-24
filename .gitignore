@@ -74,6 +74,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /[As]ssets/[Pp]layerData
 /[As]ssets/save
+/[As]ssets/_Recovery
 
 *.blend
 *.blend1

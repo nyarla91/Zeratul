@@ -149,7 +149,7 @@ namespace Gameplay.Data.Orders
 
         protected override void Dispose(Order order)
         {
-            order.Actor.Movement.Stop();
+            order.Actor.Movement?.Stop();
         }
 
         public override bool CanBeDisplayed(Unit actor)

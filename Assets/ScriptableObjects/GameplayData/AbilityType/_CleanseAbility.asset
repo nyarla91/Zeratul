@@ -15,7 +15,7 @@ MonoBehaviour:
   _isImmediate: 0
   _windupTime: 0
   _recoveryTime: 0
-  _cooldown: 0
+  _cooldown: 50
   _cooldownGroup: {fileID: 0}
   _energyCost: 25
   _startingCharges: 0
@@ -32,5 +32,6 @@ MonoBehaviour:
   _unitTargetEffects:
   - {fileID: 11400000, guid: 00dadf170b4bc7c4aaa12a4de779b8db, type: 2}
   - {fileID: 11400000, guid: 3057ce07bf638931dbfdb384ccb5f682, type: 2}
+  - {fileID: 11400000, guid: 6194753b1f4cbc9398b88b046fcb9772, type: 2}
   _pointTargetEffects: []
   _animationAction: idle

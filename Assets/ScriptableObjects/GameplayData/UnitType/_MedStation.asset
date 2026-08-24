@@ -39,10 +39,9 @@ MonoBehaviour:
   _size: 2
   _rotationSpeed: 360
   _disableSight: 0
-  _sightRadius: 5
+  _sightRadius: 9
   _weaponType: {fileID: 0}
-  _innateStatuses:
-  - {fileID: 11400000, guid: 10a20d113c9ba6040b2ea115c43bbe57, type: 2}
+  _innateStatuses: []
   _availableOrders:
   - {fileID: 11400000, guid: a71002cb9954787ea98dc568655eb958, type: 2}
   - {fileID: 0}
@@ -61,7 +60,7 @@ MonoBehaviour:
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: 053df19baa687164eb9465eb01f36fe4, type: 2}
   _hideOnMinimap: 0
-  _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
+  _aiMap: {fileID: 11400000, guid: a8bd19b1bae75b9358708f7cf32e22a2, type: 2}
   _editorRadius:
     _object: {fileID: 11400000, guid: bcdabd3461f7f77b5a847de39d106bad, type: 2}
   _editorRadiusColor: {r: 0, g: 0.971219, b: 0.9811321, a: 0.13333334}

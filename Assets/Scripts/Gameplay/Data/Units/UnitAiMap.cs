@@ -13,7 +13,10 @@ namespace Gameplay.Data.Units
     [CreateAssetMenu(menuName = "Gameplay Data/Unit/Unit AI Map", order = 0)]
     public class UnitAiMap : ScriptableObject
     {
+        [SerializeField] private bool _runWithoutThreats;
         [SerializeField] private AiOrder[] _aiOrders;
+
+        public bool RunWithoutThreats => _runWithoutThreats;
 
         public Order GetBestOrder(Unit agent, HashSet<Unit> surroundings)
         {

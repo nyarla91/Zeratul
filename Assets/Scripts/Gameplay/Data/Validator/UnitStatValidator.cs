@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Gameplay.Data.Validator
 {
-    [CreateAssetMenu(menuName = "Gameplay Data/Unit Validator/Hit Points", order = 0)]
-    public class UnitLifeValidator : UnitPropertyValidator
+    [CreateAssetMenu(menuName = "Gameplay Data/Unit Validator/Stat", order = 0)]
+    public class UnitStatValidator : UnitPropertyValidator
     {
         [SerializeField] private bool _countHitPoints;
         [SerializeField] private bool _countShieldPoints;
@@ -29,7 +29,7 @@ namespace Gameplay.Data.Validator
             if (_countPercentage)
             {
                 float max = (_countHitPoints ? unit.Life.MaxHitPoints : 0) + (_countShieldPoints ? unit.Life.MaxShieldPoints : 0);
-                result /= max;
+                result = Mathf.RoundToInt(result / max * 100);
             }
             return result;
         }
