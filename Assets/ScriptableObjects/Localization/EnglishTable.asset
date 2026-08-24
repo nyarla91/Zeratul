@@ -17,16 +17,26 @@ MonoBehaviour:
     _line: Teleport on a short distance.
   - _key: ability-blink-name
     _line: Transfer
+  - _key: ability-stim-name
+    _line: Stimpack
+  - _key: ability-stim-description
+    _line: Inject yourself with stimulating remedy restoring [hp] hit points and
+      [ep] energy over [duration] s.
+  - _key: ability-parasite-name
+    _line: Parasite
+  - _key: ability-parasite-description
+    _line: Implant an enemy with a parasite, giving you vision to everything that
+      enemy can see.
   - _key: ability-invasion-description
     _line: Take control of target enemy unit. You must have enough <kw>control slots</kw>
       available.
   - _key: ability-invasion-name
     _line: Invasion
   - _key: ability-lockdown-description
-    _line: <kw>Lock</kw> target unit for 6 sec. Lock prevents unit from attacking,
-      using it's active and passive abilities.
+    _line: <kw>Lock</kw> target unit for [duration] sec. Lock prevents unit from
+      attacking, using it's active and passive abilities.
   - _key: ability-lockdown-name
-    _line: Hinderance
+    _line: Hindrance
   - _key: ability-stat-cooldown
     _line: 'Cooldown: # sec.'
   - _key: ability-stat-energy
@@ -60,6 +70,8 @@ MonoBehaviour:
     _line: Ability not ready (# sec. left)
   - _key: ordererror-target-invulnerable
     _line: Target is invulnerable
+  - _key: ordererror-not-enough-charges
+    _line: Not enought charges
   - _key: ordererror-cannot-attack
     _line: Cannot attack
   - _key: ordererror-cannot-move
@@ -120,6 +132,66 @@ MonoBehaviour:
     _line: Has limited lifetime
   - _key: status-temporary-name
     _line: Temporary
+  - _key: tutorial-attack-description
+    _line: 
+  - _key: tutorial-attack-label
+    _line: 
+  - _key: tutorial-basic-controls-description
+    _line: 
+  - _key: tutorial-basic-controls-label
+    _line: 
+  - _key: tutorial-camera-description
+    _line: 
+  - _key: tutorial-camera-label
+    _line: 
+  - _key: tutorial-cloak-description
+    _line: 
+  - _key: tutorial-cloak-label
+    _line: 
+  - _key: tutorial-control-description
+    _line: 
+  - _key: tutorial-control-label
+    _line: 
+  - _key: tutorial-detectors-description
+    _line: 
+  - _key: tutorial-detectors-label
+    _line: 
+  - _key: tutorial-energy-description
+    _line: 
+  - _key: tutorial-energy-label
+    _line: 
+  - _key: tutorial-hinderance-description
+    _line: 
+  - _key: tutorial-hinderance-label
+    _line: 
+  - _key: tutorial-invasion-description
+    _line: 
+  - _key: tutorial-invasion-label
+    _line: 
+  - _key: tutorial-life-description
+    _line: 
+  - _key: tutorial-life-label
+    _line: 
+  - _key: tutorial-order-description
+    _line: 
+  - _key: tutorial-order-label
+    _line: 
+  - _key: tutorial-save-description
+    _line: 
+  - _key: tutorial-save-label
+    _line: 
+  - _key: tutorial-tactical-pause-description
+    _line: 
+  - _key: tutorial-tactical-pause-label
+    _line: 
+  - _key: tutorial-enemy-select-description
+    _line: 
+  - _key: tutorial-enemy-select-name
+    _line: 
+  - _key: tutorial-vision-description
+    _line: 
+  - _key: tutorial-vision-label
+    _line: 
   - _key: ui-choose-a-target
     _line: Choose a target
   - _key: ui-close
@@ -170,10 +242,14 @@ MonoBehaviour:
     _line: Target cannot be hostile
   - _key: validator-is-not-uncontrollable
     _line: Cannot control this unit
+  - _key: validator-kill-counter
+    _line: Kill more Organic enemies (#)
   - _key: ui-load
-    _line: Load
+    _line: Load game
   - _key: ui-save
-    _line: Save
+    _line: Save game
+  - _key: ui-load-last-save
+    _line: Load last save
   - _key: ui-delete
     _line: Delete
   - _key: ui-back
@@ -218,5 +294,19 @@ MonoBehaviour:
     _line: Resolution
   - _key: ui-settings-gameplay
     _line: Gameplay
-  - _key: 
-    _line: 
+  - _key: ui-defeat
+    _line: Mission failed
+  - _key: ui-victory
+    _line: Mission completed
+  - _key: ui-tip
+    _line: Tip
+  - _key: ui-difficulty-easy
+    _line: Rookie
+  - _key: ui-difficulty-medium
+    _line: Operative
+  - _key: ui-difficulty-hard
+    _line: Assassin
+  - _key: ui-difficulty-one-try
+    _line: Phantom
+  - _key: unit-name-fodder
+    _line: Fodder

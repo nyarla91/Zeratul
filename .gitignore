@@ -81,3 +81,5 @@ crashlytics-build.properties
 Assets/config.json
 Assets/config.json.meta
 /Assets/Editor/renders
+Assets/Editor/Localization/credentials.json
+Assets/Editor/Localization/credentials.json.meta

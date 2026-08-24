@@ -1,10 +1,14 @@
 Key;English;Русский^
 ability-blink-description;Teleport on a short distance.;Телепорт на короткую дистанцию^
 ability-blink-name;Transfer;Перенос^
+ability-stim-name;Stimpack;Стимулятор^
+ability-stim-description;Inject yourself with stimulating remedy restoring [hp] hit points and [ep] energy over [duration s.];Инъекция, восстанавливающая [hp] здоровья и [ep] энергии в течение [duration] с.^
+ability-parasite-name;Parasite;Паразит^
+ability-parasite-description;Implant an enemy with a parasite, giving you vision to everything that enemy can see.;Внедряет паразита в противника, позволяя вам видеть всё, что видит этот противник^
 ability-invasion-description;Take control of target enemy unit. You must have enough <kw>control slots</kw> available.;Получите контроль надо выбранным вражеским юнитом У вас должно быть достаточно свободных <kw>ячеек контроля</kw>^
 ability-invasion-name;Invasion;Вторжение^
-ability-lockdown-description;<kw>Lock</kw> target unit for 6 sec. Lock prevents unit from attacking, using it's active and passive abilities.;<kw>Блокирует</kw> выбранного юнита на 6 сек. Блокировка не позволяет юниту атаковать, использовать свои активные и пассивные способности.^
-ability-lockdown-name;Hinderance;Прерывание^
+ability-lockdown-description;<kw>Lock</kw> target unit for [duration] sec. Lock prevents unit from attacking, using it's active and passive abilities.;<kw>Блокирует</kw> выбранного юнита на [duration] сек. Блокировка не позволяет юниту атаковать, использовать свои активные и пассивные способности.^
+ability-lockdown-name;Hindrance;Прерывание^
 ability-stat-cooldown;Cooldown: # sec.;Восстановление: # сек.^
 ability-stat-energy;Cost: # energy;Стоимость: # энергии^
 ability-stat-range;Range: #;Дальность: #^
@@ -21,6 +25,7 @@ order-stop-description;Cancel all current orders.;Отменить все тек
 order-stop-name;Stop;Остановиться^
 ordererror-ability-not-ready;Ability not ready (# sec. left);Способность не готова (# сек.)^
 ordererror-target-invulnerable;Target is invulnerable;Цель неуязвима^
+ordererror-not-enough-charges;Not enought charges;^
 ordererror-cannot-attack;Cannot attack;Невозможно атаковать^
 ordererror-cannot-move;Cannot move;Невозможно двигаться^
 ordererror-cannot-target-self;Cannot target self;Нельзя выбирать целью себя^
@@ -147,8 +152,10 @@ validator-is-not-cloaked;Target cannot be cloaked;Цель не должна б�
 validator-is-not-friendly;Target cannot be friendly;Цель не должна быть дружественной^
 validator-is-not-hostile;Target cannot be hostile;Цель не должна быть враждебной^
 validator-is-not-uncontrollable;Cannot control this unit;Этого юнита нельзя контроллировать^
-ui-load;Load;Загрузить^
-ui-save;Save;Сохранить^
+validator-kill-counter;Kill more Organic enemies (#);Убейте больше Органических противников (#)^
+ui-load;Load game;Загрузить игру^
+ui-save;Save game;Сохранить^
+ui-load-last-save;Load last save;Загрузить последнее сохранение^
 ui-delete;Delete;Удалить^
 ui-back;Back;Назад^
 ui-save-load;Save and load;Сохранение и загрузка^
@@ -171,3 +178,10 @@ ui-settings-camera-move-speed;Camera move speed;Скорость движени�
 ui-settings-camera-drag-speed;Camera drag speed;Скорость перетаскивания камера^
 ui-settings-resolution;Resolution;Разрешение^
 ui-settings-gameplay;Gameplay;Игровой процесс^
+ui-defeat;Mission failed;Миссия провалена^
+ui-victory;Mission completed;Миссия выполнена^
+ui-tip;Tip;Совет^
+ui-difficulty-easy;Rookie;Рекрут^
+ui-difficulty-medium;Operative;Оперативник^
+ui-difficulty-hard;Assassin;Ассассин^
+ui-difficulty-one-try;Phantom;Фантом^

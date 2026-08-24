@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: _IsNotShieldBattery
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitTypeValidator
   _invalidMessage: 
+  _not: 1
   _type: {fileID: 11400000, guid: a18225b12d864614bb6b5659611784aa, type: 2}
-  _required: 0

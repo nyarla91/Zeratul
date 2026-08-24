@@ -38,7 +38,7 @@ namespace Editor.Localization
 
         private string[,] CSVtoArray(string csv)
         {
-            string[] rows = csv.Replace("^\r\n", "^").Split('^');
+            string[] rows = csv.Replace("^\r\n", "^").Replace("^\n", "^").Replace("^\r", "^").Split('^');
             string[,] result =  new string[_columns.Max(c => c.ColumnIndex) + 1, rows.Length];
 
             for (int y = 0; y < result.GetLength(1); y++)
@@ -52,15 +52,5 @@ namespace Editor.Localization
             }
             return result;
         }
-
-        [Serializable]
-        private struct LanguageColumn
-        {
-            [SerializeField] private int _columnIndex;
-            [SerializeField] private LanguageTable _table;
-            
-            public int ColumnIndex => _columnIndex;
-            public LanguageTable Table => _table;
-        } 
     }
 }

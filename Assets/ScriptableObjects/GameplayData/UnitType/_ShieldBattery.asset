@@ -63,5 +63,5 @@ MonoBehaviour:
   _hideOnMinimap: 0
   _aiMap: {fileID: 11400000, guid: c1ffab0ab942f314d857d57c21ed9a2d, type: 2}
   _editorRadius:
-    _object: {fileID: 0}
-  _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}
+    _object: {fileID: 11400000, guid: d1f6394cd8a18c74aa32943aeb12440b, type: 2}
+  _editorRadiusColor: {r: 0, g: 0.971219, b: 0.9811321, a: 0.13333334}
