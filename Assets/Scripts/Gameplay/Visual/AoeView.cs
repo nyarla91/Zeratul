@@ -12,6 +12,7 @@ namespace Gameplay.Visual
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private int _segments;
         [SerializeField] private float _widthMultiplier;
+        [SerializeField] private float _radiusModifier;
         [SerializeField] private AoeVariant _startingVariant;
         
         private float _rotationSpeed;
@@ -22,14 +23,14 @@ namespace Gameplay.Visual
             _mainCamera = Camera.main;
             Set(_startingVariant);
             transform.localScale = new Vector3(1, 0.5f, 1);
-        }
+        }s
 
         public void Set(AoeVariant variant)
         {
             _lineRenderer.material = variant.Material;
             _lineRenderer.sortingOrder = variant.SortingOrder;
             _lineRenderer.colorGradient = variant.Color.ToGradient();
-            SetRadius(variant.Radius);
+            SetRadius(variant.Radius + _radiusModifier);
             _rotationSpeed = variant.RotationSpeed;
         }
 

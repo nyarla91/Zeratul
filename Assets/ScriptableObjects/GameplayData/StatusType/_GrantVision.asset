@@ -20,7 +20,8 @@ MonoBehaviour:
   _showDuration: 0
   _showDurationPriority: 0
   _displayDescription: Grant vision to the caster
-  _rendererPrefabs: []
+  _rendererPrefabs:
+  - {fileID: 5779088532395649615, guid: 04b0392437e50ed1ea77a0948f56365e, type: 3}
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
   _radius: 0
   _useHostRadius: 1

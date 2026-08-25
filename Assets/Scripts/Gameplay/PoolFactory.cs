@@ -54,10 +54,10 @@ namespace Gameplay
             return result;
         }
 
-        public void Despawn(PoolElement<TElement> statusRenderer)
+        public void Despawn(PoolElement<TElement> element)
         {
-            statusRenderer.transform.SetParent(null);
-            statusRenderer.gameObject.SetActive(false);
+            element.transform.SetParent(null);
+            element.gameObject.SetActive(false);
         }
     }
 }

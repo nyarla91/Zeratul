@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bfe865738d4c51be2208716f3b716a, type: 3}
   m_Name: _MedStationAI
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Units.UnitAiMap
+  _runWithoutThreats: 1
   _aiOrders:
   - _orderType: {fileID: 11400000, guid: a71002cb9954787ea98dc568655eb958, type: 2}
     _agentValidator:

@@ -11,9 +11,10 @@ namespace Gameplay.Units.View
     {
         [SerializeField] private Unit _unit;
         [SerializeField] private Canvas _canvas;
-        [SerializeField] private Image _hitPoints;
-        [SerializeField] private Image _shieldPoints;
-        [SerializeField] private Image _energyPoints;
+        [SerializeField] private Image _hitPointsFill;
+        [SerializeField] private UnitStatView _hitPoints;
+        [SerializeField] private UnitStatView _shieldPoints;
+        [SerializeField] private UnitStatView _energyPoints;
         [SerializeField] private Image _status;
         [SerializeField] private Color _playerColor;
         [SerializeField] private Color _allyColor;
@@ -31,11 +32,11 @@ namespace Gameplay.Units.View
             _canvasRectTransform.localPosition = new Vector3(0, canvasYOffset);
 
             if (_unit.Type.IsInvulnerable)
-                _shieldPoints.enabled = false;
+                _hitPoints.gameObject.SetActive(false);
             if (_unit.Type.IsInvulnerable || ! _unit.Life.HasShieldPoints)
-                _shieldPoints.enabled = false;
+                _shieldPoints.gameObject.SetActive(false);
             if ( ! _unit.Abilities.HasEnergyPoints)
-                _energyPoints.enabled = false;
+                _energyPoints.gameObject.SetActive(false);
             
             UpdateOwnershipColor(_unit.Alliance.CurrentOwner);
             _unit.ObserveEveryValueChanged(u => u.Alliance.CurrentOwner)
@@ -52,7 +53,7 @@ namespace Gameplay.Units.View
 
         private void UpdateOwnershipColor(Owner owner)
         {
-            _hitPoints.color = owner switch
+            _hitPointsFill.color = owner switch
             {
                 Owner.Player => _playerColor,
                 Owner.Ally => _allyColor,
@@ -64,9 +65,9 @@ namespace Gameplay.Units.View
 
         private void UpdateStats()
         {
-            _hitPoints.fillAmount = _unit.Life?.HitPercent ?? 0;
-            _shieldPoints.fillAmount = _unit.Life?.ShieldPercent ?? 0;
-            _energyPoints.fillAmount = _unit.Abilities.EnergyPercent;
+            _hitPoints.UpdatePercent(_unit.Life?.HitPercent ?? 0);
+            _shieldPoints.UpdatePercent(_unit.Life?.ShieldPercent ?? 0);
+            _energyPoints.UpdatePercent(_unit.Abilities.EnergyPercent);
         }
 
         private void UpdateStatus()

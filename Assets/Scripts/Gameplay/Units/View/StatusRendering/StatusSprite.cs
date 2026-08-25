@@ -1,5 +1,7 @@
-﻿using Gameplay.Data.Configs;
+﻿using System;
+using Gameplay.Data.Configs;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Units.View.StatusRendering
 {
@@ -7,7 +9,10 @@ namespace Gameplay.Units.View.StatusRendering
     {
         [SerializeField] private SpriteLayeringConfig _config;
         [SerializeField] private Renderer _renderer;
+        [SerializeField] private Animator _animator;
         [SerializeField] private bool _overrideSortingOrder = true;
+        
+        [Inject] private TacticalPause TacticalPause { get; set; }
         
         private void Awake()
         {
@@ -16,5 +21,11 @@ namespace Gameplay.Units.View.StatusRendering
         }
 
         protected override void UpdateVisibility(bool isVisible) => _renderer.enabled = isVisible;
+
+        private void Update()
+        {
+            if (_animator)
+                _animator.speed = TacticalPause.IsPaused ? 0 : 1;
+        }
     }
 }

@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.Entities.VisualEffect
   _spriteRenderer: {fileID: 883609726766018803}
+  _animator: {fileID: 43711118481054933}
   _unitSpriteAnchor: 0

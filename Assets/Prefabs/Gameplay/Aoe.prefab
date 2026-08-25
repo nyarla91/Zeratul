@@ -195,6 +195,7 @@ MonoBehaviour:
   _lineRenderer: {fileID: 6685976343302748885}
   _segments: 64
   _widthMultiplier: 0.003
+  _radiusModifier: 0.7
   _startingVariant:
     _material: {fileID: 2100000, guid: 6edcedfeb1b99794bb0865f03bcabf59, type: 2}
     _color: {r: 1, g: 1, b: 1, a: 1}

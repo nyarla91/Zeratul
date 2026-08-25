@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 485935788325951280}
   - component: {fileID: 2676148986216522732}
   m_Layer: 0
-  m_Name: LockedSR
+  m_Name: AnimatedSpriteSR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   _ignoreLocked: 0
   _config: {fileID: 11400000, guid: a38f394a58a26e54cbef03f0caf8710d, type: 2}
   _renderer: {fileID: 1653221710375583603}
+  _animator: {fileID: 2676148986216522732}
   _overrideSortingOrder: 1
 --- !u!95 &2676148986216522732
 Animator:

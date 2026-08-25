@@ -12,12 +12,14 @@ namespace Gameplay.Entities
     public class VisualEffect : Entity
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Animator _animator;
         [SerializeField] private UnitSpriteAnchor _unitSpriteAnchor;
 
         private IDisposable _visibilityObservable;
         private IDisposable _attachObservable;
         
         [Inject] private VisionMap VisionMap { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         public override void OnSpawn()
         {
@@ -48,6 +50,11 @@ namespace Gameplay.Entities
         {
             Vector2 offset = unit.Type.SpriteMap?.GetAnchorOffset(_unitSpriteAnchor) ?? Vector2.zero;
             transform.position = unit.Position + offset;
+        }
+        private void Update()
+        {
+            if (_animator)
+                _animator.speed = TacticalPause.IsPaused ? 0 : 1;
         }
     }
 }

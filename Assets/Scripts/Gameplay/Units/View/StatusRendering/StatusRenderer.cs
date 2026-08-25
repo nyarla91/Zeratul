@@ -1,6 +1,7 @@
 ﻿using System;
 using _Core;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Units.View.StatusRendering
@@ -10,6 +11,7 @@ namespace Gameplay.Units.View.StatusRendering
         [SerializeField] private DisplayBehaviour _playerDisplayBehaviour;
         [SerializeField] private DisplayBehaviour _enemyDisplayBehaviour;
         [SerializeField] private bool _visibleInFogOfWar;
+        [SerializeField] private bool _ignoreCloak;
         [SerializeField] private bool _ignoreLocked;
         
         public IStatusInfo Status { get; set; }
@@ -47,8 +49,9 @@ namespace Gameplay.Units.View.StatusRendering
         public override void Init(PoolFactory<StatusRenderer> factory, GameObject prefab)
         {
             base.Init(factory, prefab);
-            this.ObserveEveryValueChanged(s => s.IsVisible)
-                .Subscribe(UpdateVisibility);
+            this.UpdateAsObservable()
+                .Where(v => IsSpawned)
+                .Subscribe(_ => UpdateVisibility(IsVisible));
             UpdateVisibility(IsVisible);
         }
 

@@ -11,11 +11,13 @@ namespace Gameplay.Units.View
         private static readonly int Hit = Animator.StringToHash("hit");
         private static readonly int Break = Animator.StringToHash("break");
         
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Animator _animator;
         [SerializeField] private Unit _unit;
         [SerializeField] private int _breakFrameWindow;
 
         [Inject] private GameTime GameTime { get; set; }
+        [Inject] private TacticalPause TacticalPause { get; set; }
 
         private void Start()
         {
@@ -32,6 +34,8 @@ namespace Gameplay.Units.View
         private void Update()
         {
             _animator.SetTrigger(GetCurrentTrigger());
+            _animator.speed = TacticalPause.IsPaused ? 0 : 1;
+            _spriteRenderer.enabled = _unit.CanBeTargetedByPlayer;
         }
 
         private int GetCurrentTrigger()
