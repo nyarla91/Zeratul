@@ -23,7 +23,7 @@ namespace Gameplay.Visual
             _mainCamera = Camera.main;
             Set(_startingVariant);
             transform.localScale = new Vector3(1, 0.5f, 1);
-        }s
+        }
 
         public void Set(AoeVariant variant)
         {

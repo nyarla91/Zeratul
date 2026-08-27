@@ -37,6 +37,8 @@ namespace Gameplay.Units
         public bool IsLocked => _lockSources.Count > 0;
         public bool IsUnlocked => ! IsLocked;
 
+        public HashSet<Ability> Abilities => _abilities.Values.ToHashSet();
+
         public event Action<AbilityType, OrderTarget> CastedAbility;
 
         private IPauseReadonly TacticalPause { get; set; }

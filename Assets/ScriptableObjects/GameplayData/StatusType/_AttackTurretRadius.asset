@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b147ad0748214980a496c7ecbd2c8035, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b84bfd97a664fcfa7b6f2cb8b1872d9, type: 3}
   m_Name: _AttackTurretRadius
-  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.TickingEffectStatus
-  _useLock: 1
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.BlankStatus
+  _tag: 0
+  _useLock: 0
   _display: 0
   _displayIcon: {fileID: 0}
   _displayName: 
+  _showDuration: 0
+  _showDurationPriority: 0
   _displayDescription: 
   _rendererPrefabs:
   - {fileID: 1872224104527679214, guid: 7c08aa871c148284698ee5ee1d3a3e0e, type: 3}
-  _casterType: 0
-  _unitEffects: []
-  _tickPeriod: 999999999
-  _requireSimulation: 0

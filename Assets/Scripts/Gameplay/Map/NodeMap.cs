@@ -155,9 +155,10 @@ namespace Gameplay.Map
                             continue;
 
                         bool diagonal = xOffset != 0 && yOffset != 0;
+                        bool vertical = yOffset != 0;
                         
                         int newG = currentNode.G;
-                        newG += diagonal ? _config.DiagonalTravelCost : _config.OrtogonalTravelCost;
+                        newG += diagonal ? _config.DiagonalTravelCost : (vertical ? _config.VerticalTravelCost : _config.HorizontalTravelCost);
                         if (neightbor.ObstacleDistanceFor(agent.IsAir) < agent.Radius)
                             newG += _config.TooCloseToObstaclePenalty;
 
@@ -256,10 +257,11 @@ namespace Gameplay.Map
             Vector2Int difference = new(Mathf.Abs(node.MapCoordinates.x - target.x), Mathf.Abs(node.MapCoordinates.y - target.y));
             
             int diagonalSteps = Mathf.Min(difference.x, difference.y);
-            int ortogonalSteps = Mathf.Max(difference.x, difference.y) - diagonalSteps;
-            
-            return diagonalSteps * _config.DiagonalTravelCost + ortogonalSteps * _config.OrtogonalTravelCost;
-            
+            int orthogonalSteps = Mathf.Max(difference.x, difference.y) - diagonalSteps;
+
+            return diagonalSteps * _config.DiagonalTravelCost + orthogonalSteps *
+                (difference.y > difference.x ? _config.VerticalTravelCost : _config.HorizontalTravelCost);
+
         }
 
         private Node GetClosestNode(Vector2 worldPosition)

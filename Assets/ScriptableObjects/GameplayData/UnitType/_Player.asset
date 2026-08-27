@@ -36,7 +36,7 @@ MonoBehaviour:
   _isImmobile: 0
   _isAir: 0
   _maxSpeed: 5
-  _size: 1.4
+  _size: 1.2
   _rotationSpeed: 720
   _disableSight: 0
   _sightRadius: 15

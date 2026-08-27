@@ -47,10 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Units.View.StatusRendering.StatusSprite
   _playerDisplayBehaviour: 0
   _enemyDisplayBehaviour: 0
-  _visibleInFogOfWar: 0
+  _visibleInFogOfWar: 1
+  _ignoreCloak: 1
   _ignoreLocked: 0
   _config: {fileID: 11400000, guid: a38f394a58a26e54cbef03f0caf8710d, type: 2}
   _renderer: {fileID: 6024262221090195941}
+  _animator: {fileID: 0}
   _overrideSortingOrder: 1
 --- !u!1001 &1104268789636838192
 PrefabInstance:

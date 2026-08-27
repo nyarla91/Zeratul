@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 329f6b95fd6d5654fa5226468f62ad02, type: 2}
   - {fileID: 11400000, guid: 26e920a68afd14c4b87d256e1b418021, type: 2}
   _controlCost: 4
-  _controlSlots: 2
+  _controlSlots: 1
   _attackWorth:
     _baseWorth: 50
     _evaluators:
@@ -41,7 +41,8 @@ MonoBehaviour:
   _disableSight: 0
   _sightRadius: 9
   _weaponType: {fileID: 0}
-  _innateStatuses: []
+  _innateStatuses:
+  - {fileID: 11400000, guid: 147116026d60db52aa95eb132f47b1f9, type: 2}
   _availableOrders:
   - {fileID: 11400000, guid: a71002cb9954787ea98dc568655eb958, type: 2}
   - {fileID: 0}

@@ -28,6 +28,9 @@ namespace Gameplay.Units.View.StatusRendering
                 if ( ! _visibleInFogOfWar && ! host.IsVisibleToPlayer)
                     return false;
                 
+                if ( ! _ignoreCloak && ! host.CanBeTargetedByPlayer)
+                    return false;
+                
                 if ( ! _ignoreLocked && Status.IsLocked)
                     return false;
                 
