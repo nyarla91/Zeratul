@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.UI;
 using GameState;
 using Save.Data;
 using UniRx;
@@ -11,7 +12,7 @@ namespace Gameplay.Arrangement.Saving
         [Inject] private ScenarioSession ScenarioSession { get; set; }
         [Inject] private GameTime GameTime { get; set; }
         [Inject] private TacticalPause TacticalPause { get; set; }
-        [Inject] private TacticalPauseControl TacticalPauseControl { get; set; }
+        [Inject] private TacticalPauseToggle TacticalPauseToggle { get; set; }
 
         protected override string LoadKey => GeneralSaveSystem.LoadKey;
 
@@ -23,7 +24,7 @@ namespace Gameplay.Arrangement.Saving
                 Observable.EveryUpdate()
                     .Take(1)
                     .Delay(TimeSpan.FromMilliseconds(25))
-                    .Subscribe(_ => TacticalPauseControl.TogglePause());
+                    .Subscribe(_ => TacticalPauseToggle.Toggle());
             }
         }
 

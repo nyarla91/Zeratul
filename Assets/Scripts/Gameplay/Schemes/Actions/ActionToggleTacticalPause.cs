@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.UI;
 using UnityEngine;
 using Zenject;
 
@@ -6,11 +7,11 @@ namespace Gameplay.Schemes.Actions
 {
     public class ActionToggleTacticalPause : SchemeAction
     {
-        [Inject] private TacticalPauseControl TacticalPauseControl { get; set; }
+        [Inject] private TacticalPauseToggle TacticalPauseToggle { get; set; }
         
         public override void Act()
         {
-            TacticalPauseControl.TogglePause();
+            TacticalPauseToggle.Toggle();
         }
 
         private void OnValidate()

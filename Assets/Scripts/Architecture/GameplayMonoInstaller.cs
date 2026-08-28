@@ -28,7 +28,7 @@ namespace Architecture
         [SerializeField] private UnitSpawner _unitSpawner;
         [SerializeField] private GameDataRegistry _gameDataRegistry;
         [SerializeField] private ClickArea _clickArea;
-        [SerializeField] private TacticalPauseControl _tacticalPauseControl;
+        [SerializeField] private TacticalPauseToggle _tacticalPauseToggle;
         [SerializeField] private DefeatMenu _defeatMenu;
         [SerializeField] private VictoryMenu _victoryMenu;
         [SerializeField] private ObjectiveViewFactory _objectiveViewFactory;
@@ -49,7 +49,7 @@ namespace Architecture
             Container.BindInstance(_unitSpawner).AsSingle();
             Container.BindInstance(_gameDataRegistry).AsSingle();
             Container.BindInstance(_clickArea).AsSingle();
-            Container.BindInstance(_tacticalPauseControl).AsSingle();
+            Container.BindInstance(_tacticalPauseToggle).AsSingle();
             Container.BindInstance(_defeatMenu).AsSingle();
             Container.BindInstance(_victoryMenu).AsSingle();
             Container.BindInstance(_objectiveViewFactory).AsSingle();
