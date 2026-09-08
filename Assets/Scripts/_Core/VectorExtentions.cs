@@ -226,18 +226,6 @@ namespace _Core
             int y = Mathf.Abs(vector.y);
             return new Vector2Int(x, y);
         }
-
-        public static float OrthogonalDistance(this Vector2 vector, Vector2 target)
-        {
-            Vector2 difference = (target - vector).Abs();
-            return difference.x + difference.y;
-        }
-
-        public static float OrthogonalDistance(this Vector3 vector, Vector3 target)
-        {
-            Vector3 difference = (target - vector).Abs();
-            return difference.x + difference.y + difference.z;
-        }
     }
 
     public enum Axis

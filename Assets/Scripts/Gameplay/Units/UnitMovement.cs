@@ -21,6 +21,7 @@ namespace Gameplay.Units
         private Vector2 _destination;
         private List<Vector2> _path = new();
         private float _lastPathRecalculationTime;
+        private bool _avoidingObstacle;
 
         private Vector2 BoundingBoxSize => Isometry.Scale * UnitType.Size;
         public bool HasPath => _path.Count > 0;
@@ -128,7 +129,7 @@ namespace Gameplay.Units
             float tolerance = _config.NodeProximityDistance;
             if (!exact)
                 tolerance += UnitType.Size / 2;
-            return point.OrthogonalDistance(Unit.Position) < tolerance;
+            return Vector2.Distance(point, Unit.Position) < tolerance;
         }
 
         private Vector2 AvoidObstaclesForDirection(Vector2 direction, out bool corrected)
@@ -146,49 +147,26 @@ namespace Gameplay.Units
             };
 
             List<RaycastHit2D> results = new();
-            if (_avoidanceCollider.Cast(direction, contactFilter, results, _config.AvoidanceDistance) == 0)
+            float distance = _config.AvoidanceDistance * (_avoidingObstacle ? 2 : 1);
+            if (_avoidanceCollider.Cast(direction, contactFilter, results, distance) == 0)
+            {
+                _avoidingObstacle = false;
                 return direction;
+            }
             
             RaycastHit2D hit = results[0];
-            if ( ! IsColliderAvoidable(hit.collider))
+            if (!IsColliderAvoidable(hit.collider))
+            {
+                _avoidingObstacle = false;
                 return direction;
+            }
             
             Vector2 directionToObstacle = hit.point - Unit.Position;
             directionToObstacle.Normalize();
-
-            /*int closestObtacleSideSign = 0;
-            float angleToClosestObstacle = 180;
-            Vector2 directionToClosestObstacle = Vector2.zero;
-            
-            foreach (Collider2D collider in overlap)
-            {
-                if (collider == null || ! IsColliderAvoidable(collider))
-                    continue;
-                Vector2 contactPoint = collider.ClosestPoint(Unit.Position);
-
-                Vector2 a = Unit.Position;
-                Vector2 b = a + direction;
-                float side =
-                    (b.x - a.x) * (contactPoint.y - a.y) -
-                    (b.y - a.y) * (contactPoint.x - a.x);
-                int sideSign = side.Sign();
-                Debug.Log($"Sign {sideSign}");
-                if (closestObtacleSideSign != 0 && closestObtacleSideSign != sideSign)
-                    return direction;
-                closestObtacleSideSign = sideSign;
-
-                Vector2 directionToObstacle = Unit.Position.DirectionTo(contactPoint);
-                float angle = Vector2.Angle(direction, contactPoint);
-                if (angle > angleToClosestObstacle || angle > _config.AvoidanceArc / 2)
-                    continue;
-
-                directionToClosestObstacle = directionToObstacle;
-                angleToClosestObstacle = angle;
-            }*/
-            
             Vector2 correctedDirection = direction - directionToObstacle;
             correctedDirection.Normalize();
             corrected = true;
+            _avoidingObstacle = true;
             return Vector2.Lerp(direction,  correctedDirection, _config.AvoidanceStrength).normalized;
         }
 
@@ -201,6 +179,8 @@ namespace Gameplay.Units
             if ( ! unit)
                 return false;
             if ( ! unit.CanMove)
+                return true;
+            if (unit.Movement.IsHoldingPosition)
                 return true;
             if (unit.Orders.IsIdle)
                 return false;

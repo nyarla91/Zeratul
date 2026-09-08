@@ -15,7 +15,7 @@ MonoBehaviour:
   _mapOrigin: {x: 0, y: 0}
   _nodesWorldSpacing: {x: 1, y: 0.5}
   _obstacleRecalculationPeriod: 0
-  _bypassDistance: 3
+  _bypassRadius: 25
   _verticalTravelCost: 2
   _horizontalTravelCost: 4
   _diagonalTravelCost: 5

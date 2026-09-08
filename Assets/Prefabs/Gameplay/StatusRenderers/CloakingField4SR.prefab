@@ -39,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._material
       value: 
-      objectReference: {fileID: 2100000, guid: 6edcedfeb1b99794bb0865f03bcabf59, type: 2}
+      objectReference: {fileID: 2100000, guid: cd5f9601ac4bfa34e8d9135d815abe61, type: 2}
     - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._radiusSource._object
       value: 

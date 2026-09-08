@@ -9,7 +9,7 @@ namespace Gameplay.Data.Configs
         [SerializeField] private Vector2 _nodesWorldSpacing;
         [SerializeField] private float _obstacleRecalculationPeriod;
         [Space]
-        [SerializeField] private float _bypassDistance;
+        [SerializeField] private int _bypassRadius;
         [SerializeField] private int _verticalTravelCost;
         [SerializeField] private int _horizontalTravelCost;
         [SerializeField] private int _diagonalTravelCost;
@@ -23,7 +23,7 @@ namespace Gameplay.Data.Configs
 
         public Vector2 MapOrigin => _mapOrigin;
         public Vector2 NodesWorldSpacing => _nodesWorldSpacing;
-        public float BypassDistance => _bypassDistance;
+        public int BypassRadius => _bypassRadius;
         public int VerticalTravelCost => _verticalTravelCost;
         public int HorizontalTravelCost => _horizontalTravelCost;
         public int DiagonalTravelCost => _diagonalTravelCost;

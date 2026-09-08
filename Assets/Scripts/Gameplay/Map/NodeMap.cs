@@ -88,13 +88,13 @@ namespace Gameplay.Map
 
             if ( ! TryFindPath(startNode, targetNode, out path, agent))
             {
-                if ( ! TryFindBypassPath(startNode, worldTarget, out path, agent))
+                if ( ! TryFindBypassPath(startNode, targetNode, out path, agent))
                     return false;
                 Vector2 pathLast = path.Last();
                 Vector2 direction = pathLast.DirectionTo(worldTarget);
                 Ray ray = new Ray(pathLast, direction);
                 LayerMask mask = agent.IsAir ? _config.CommonLayerMask : _config.GroundLayerMask;
-                worldTarget = Physics2D.CircleCast(pathLast, 0.1f, direction, _config.BypassDistance, mask).point;
+                worldTarget = Physics2D.CircleCast(pathLast, 0.1f, direction, 100, mask).point;
             }
             
             path = SimplifyPath(path, worldStart, worldTarget, agent);
@@ -179,32 +179,6 @@ namespace Gameplay.Map
             return false;
         }
 
-        private static Node GetBestPendingNode(List<Node> pendingNodes, out int index)
-        {
-            Node result = null;
-            index = 0;
-            int minF = int.MaxValue;
-            int minH = int.MaxValue;
-            for (int i = 0; i < pendingNodes.Count; i++)
-            {
-                Node pendingNode = pendingNodes[i];
-                if (pendingNode.F < minF)
-                {
-                    index = i;
-                    result = pendingNode;
-                    minH = pendingNode.H;
-                    minF = pendingNode.F;
-                }
-                else if (pendingNode.F == minF && pendingNode.H < minH)
-                {
-                    index = i;
-                    result = pendingNode;
-                    minH = pendingNode.H;
-                }
-            }
-            return result;
-        }
-
         private Node[] GetPathFromFinalNode(Node finalNode, Node originNode)
         {
             List<Node> result = new();
@@ -233,23 +207,39 @@ namespace Gameplay.Map
             return result.ToArray();
         }
 
-        private bool TryFindBypassPath(Node startNode, Vector2 worldTarget, out List<Vector2> path, PathfindingAgent agent)
+        private bool TryFindBypassPath(Node startNode, Node targetNode, out List<Vector2> path, PathfindingAgent agent)
         {
-            int shortestPathNodes = int.MaxValue;
             path = null;
-            
-            foreach (Vector2 bypassDirection in BypassDirections)
+            int maxRadius = _config.BypassRadius;
+            PriorityQueue<Node, float> candidates = new();
+
+            for (int radius = 1; radius <= maxRadius; radius++)
             {
-                Vector2 worldBypassTarget = worldTarget + bypassDirection * _config.BypassDistance;
-                Node targetNBypassNode = GetClosestNode(worldBypassTarget);
-                if ( ! TryFindPath(startNode, targetNBypassNode, out List<Vector2> bypassPath, agent))
-                    continue;
-                if (bypassPath.Count > shortestPathNodes)
-                    continue;
-                shortestPathNodes = bypassPath.Count;
-                path = bypassPath;
+                for (int offset = -radius; offset <= radius; offset++)
+                {
+                    TryAddCandidate(targetNode.MapCoordinates.x + offset, targetNode.MapCoordinates.y - radius);
+                    TryAddCandidate(targetNode.MapCoordinates.x + offset, targetNode.MapCoordinates.y + radius);
+                    TryAddCandidate(targetNode.MapCoordinates.x - radius, targetNode.MapCoordinates.y + offset);
+                    TryAddCandidate(targetNode.MapCoordinates.x + radius, targetNode.MapCoordinates.y + offset);
+                }
+
+                while (candidates.Count > 0)
+                {
+                    Node candidate = candidates.Dequeue();
+                    if (TryFindPath(startNode, candidate, out path, agent))
+                        return true;
+                }
             }
-            return path != null;
+            return false;
+
+            void TryAddCandidate(int x, int y)
+            {
+                if (x < 0 || x >= _mapSize.x || y < 0 || y >= _mapSize.y)
+                    return;
+                Node node = _nodes[x + y * _mapSize.x];
+                if (node.IsPassable(agent.IsAir))
+                    candidates.Enqueue(node, Vector2.Distance(node.WorldPosition, startNode.WorldPosition));
+            }
         }
 
         private int GetNodeH(Node node, Vector2Int target)
