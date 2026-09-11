@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Core;
+using Gameplay.Cheats;
 using Gameplay.Data.Configs;
 using Gameplay.Units;
 using UnityEngine;
@@ -25,9 +26,9 @@ namespace Gameplay.Vision
         public VisionResult Result => _result;
 
         public Vector3 Position => _position.Invoke();
-        public float Radius => Mathf.Max(_radius.Invoke(), _config.MinSight);
+        public float Radius => Owner == Owner.Player && CheatMenu.IsEagleVisionToggled ? 30 : Mathf.Max(_radius.Invoke(), _config.MinSight);
         public Owner Owner => _owner.Invoke();
-        public bool IsAir => _isAir.Invoke();
+        public bool IsAir => Owner == Owner.Player && CheatMenu.IsEagleVisionToggled || _isAir.Invoke();
         
         public Bounds Bounds => new(Position, Radius * 2 * Isometry.Scale);
         public Bounds SimulationBounds => new(Position, Radius * 2 * Isometry.Scale + Vector2.one * _config.SimulationRadius);

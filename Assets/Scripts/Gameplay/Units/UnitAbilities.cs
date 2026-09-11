@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Core.Pause;
 using Cysharp.Threading.Tasks;
+using Gameplay.Cheats;
 using Gameplay.Data;
 using Gameplay.Data.Abilities;
 using Gameplay.Data.Effects;
@@ -97,8 +98,9 @@ namespace Gameplay.Units
             if ( ! await Unit.Stagger.TryBegin(abilityType.WindupTime, abilityType.RecoveryTime, abilityType.AnimationAction))
                 return false;
 
-            if ( ! TrySpendEnergy(abilityType.EnergyCost))
-                return false;
+            if ( ! Unit.Alliance.OwnedByPlayer || ! CheatMenu.IsFreeAbilitiesToggled)
+                if ( ! TrySpendEnergy(abilityType.EnergyCost))
+                    return false;
 
             CastAbility(ability, target);
             return true;
@@ -138,9 +140,13 @@ namespace Gameplay.Units
                     effect.Apply(ability.Caster, target.Point);
                 }
             }
+
+            if ( ! Unit.Alliance.OwnedByPlayer || ! CheatMenu.IsFreeAbilitiesToggled)
+            {
+                ability.SpendCharges();
+                ability.StartCooldown();
+            }
             
-            ability.SpendCharges();
-            ability.StartCooldown();
             foreach (Ability sharedAbility in _abilities.Values)
             {
                 if (sharedAbility.Type.CooldownGroup == null)

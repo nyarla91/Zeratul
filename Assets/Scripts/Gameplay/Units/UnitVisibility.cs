@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using _Core;
+using Gameplay.Cheats;
 using Gameplay.Vision;
 
 namespace Gameplay.Units
@@ -25,8 +26,16 @@ namespace Gameplay.Units
         /// <summary>
         /// Returns true if unit is detected by any source
         /// </summary>
-        public bool IsDetected => _detectionSources.Count > 0;
-        
+        public bool IsDetected
+        {
+            get
+            {
+                if (Unit.Alliance.OwnedByPlayer && CheatMenu.IsUndetectedToggled)
+                    return false;
+                return _detectionSources.Count > 0;
+            }
+        }
+
         /// <summary>
         /// Returns true if unit is cloaked and not detected 
         /// </summary>

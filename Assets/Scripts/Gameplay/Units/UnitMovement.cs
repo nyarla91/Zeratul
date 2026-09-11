@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _Core;
+using Gameplay.Cheats;
 using Gameplay.Data.Configs;
 using Gameplay.Map;
 using UniRx;
@@ -29,7 +30,15 @@ namespace Gameplay.Units
         public Vector2 Velocity => _rigidbody.linearVelocity;
         public bool IsHoldingPosition { get; private set; }
         public Modifier SpeedModifier => _speedModifier;
-        public float Speed => UnitType.MaxSpeed * SpeedModifier.Value;
+        
+        public float Speed
+        {
+            get
+            {
+                int cheatModifier = Unit.Alliance.OwnedByPlayer && CheatMenu.IsSpeedBoostToggled ? 3 : 1;
+                return UnitType.MaxSpeed * SpeedModifier.Value * cheatModifier;
+            }
+        }
 
         public UnitMovement(Unit unit, TacticalPause tacticalPause, NodeMap nodeMap, UnitMovementConfig config,
             Rigidbody2D rigidbody, Collider2D avoidanceCollider) : base(unit)

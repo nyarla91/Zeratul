@@ -1,5 +1,6 @@
 ﻿using System;
 using _Core.Pause;
+using Gameplay.Cheats;
 using Save.Data.Units;
 using UniRx;
 using UniRx.Triggers;
@@ -70,6 +71,8 @@ namespace Gameplay.Units
         public void TakeDamage(int damage, DamageType damageType, Unit damageDealer)
         {
             if (Unit.IsDead || damage <= 0)
+                return;
+            if (Unit.Alliance.OwnedByPlayer && CheatMenu.IsInvulnerableToggled)
                 return;
             
             int shieldDamage = damageType switch

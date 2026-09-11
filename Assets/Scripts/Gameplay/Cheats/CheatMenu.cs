@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using _Core.Pause;
 using Gameplay.Player;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.DebugMenu
+namespace Gameplay.Cheats
 {
-    public class DebugMenu : MonoBehaviour
+    public class CheatMenu : MonoBehaviour
     {
+        public static bool IsInvulnerableToggled { get; private set; }
+        public static bool IsUndetectedToggled { get; private set; }
+        public static bool IsSpeedBoostToggled { get; private set; }
+        public static bool IsFreeAbilitiesToggled { get; private set; }
+        public static bool IsEagleVisionToggled { get; private set; }
+        
         [SerializeField] private KeyCode _toggleKey = KeyCode.Backslash;
         [SerializeField] private EventModifiers _toggleModifiers = EventModifiers.Control | EventModifiers.Shift;
         [SerializeField] private Rect _windowRect = new Rect(16f, 16f, 320f, 400f);
@@ -70,8 +75,18 @@ namespace Gameplay.DebugMenu
 
             if (GUILayout.Button("Add 1 Control Reserve"))
                 PlayerControlResources.AddReserve(1);
+            if (GUILayout.Button("Add 5 Control Reserve"))
+                PlayerControlResources.AddReserve(5);
             if (GUILayout.Button("Add 1 of each consumable"))
-                AddOneOfEachConsumable();
+                AddConsumables(1);
+            if (GUILayout.Button("Add 5 of each consumable"))
+                AddConsumables(5);
+
+            IsInvulnerableToggled = GUILayout.Toggle(IsInvulnerableToggled, "Invulnerable");
+            IsUndetectedToggled = GUILayout.Toggle(IsUndetectedToggled, "Undetectable");
+            IsSpeedBoostToggled = GUILayout.Toggle(IsSpeedBoostToggled, "Speed boost");
+            IsFreeAbilitiesToggled = GUILayout.Toggle(IsFreeAbilitiesToggled, "Free abilities");
+            IsEagleVisionToggled = GUILayout.Toggle(IsEagleVisionToggled, "Eagle vision");
                 
             GUILayout.EndScrollView();
 
@@ -81,11 +96,11 @@ namespace Gameplay.DebugMenu
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
         }
 
-        private void AddOneOfEachConsumable()
+        private void AddConsumables(int count)
         {
             foreach (Ability ability in UnitPool.PlayerUnits.SelectMany(unit => unit.Abilities.Abilities.Where(ability => ability.Type.ChargesToUse != 0)))
             {
-                ability.AddCharges(1);
+                ability.AddCharges(count);
             }
         }
 
