@@ -17,6 +17,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 485935788325951280, guid: d30c2748b5b619b4494900c812ebba35, type: 3}
+      propertyPath: _ignoreSimulation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 485935788325951280, guid: d30c2748b5b619b4494900c812ebba35, type: 3}
       propertyPath: _visibleInFogOfWar
       value: 1
       objectReference: {fileID: 0}

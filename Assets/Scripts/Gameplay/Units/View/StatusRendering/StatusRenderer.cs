@@ -13,6 +13,7 @@ namespace Gameplay.Units.View.StatusRendering
         [SerializeField] private bool _visibleInFogOfWar;
         [SerializeField] private bool _ignoreCloak;
         [SerializeField] private bool _ignoreLocked;
+        [SerializeField] private bool _ignoreSimulation;
         
         public IStatusInfo Status { get; set; }
 
@@ -24,6 +25,9 @@ namespace Gameplay.Units.View.StatusRendering
                     return false;
                 
                 Unit host = Status.Host;
+                
+                if ( ! _ignoreSimulation && ! host.IsSimulated)
+                    return false;
                 
                 if ( ! _visibleInFogOfWar && ! host.IsVisibleToPlayer)
                     return false;

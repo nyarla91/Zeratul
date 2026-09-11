@@ -31,7 +31,8 @@ MonoBehaviour:
   _casterEffects: []
   _mustLookAtTarget: 1
   _unitTargetEffects:
-  - {fileID: 11400000, guid: 0d87b02181b4a9b93a78cff5c190c423, type: 2}
+  - {fileID: 11400000, guid: 5a6db6bfa81845f41b7d8cf004b1bdf6, type: 2}
+  - {fileID: 11400000, guid: 65bce68e228188431a13f665115b5d48, type: 2}
   - {fileID: 11400000, guid: dd7364b49a5bee5539a92d6458bfa25d, type: 2}
   - {fileID: 11400000, guid: a3664d73ef9ae7a56bc5975114e78e66, type: 2}
   _pointTargetEffects: []

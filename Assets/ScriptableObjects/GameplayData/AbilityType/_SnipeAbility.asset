@@ -30,6 +30,6 @@ MonoBehaviour:
   _casterEffects: []
   _mustLookAtTarget: 1
   _unitTargetEffects:
-  - {fileID: 11400000, guid: 0d87b02181b4a9b93a78cff5c190c423, type: 2}
+  - {fileID: 11400000, guid: cb5debcc34fa1f12ba3077113febc082, type: 2}
   _pointTargetEffects: []
   _animationAction: ability

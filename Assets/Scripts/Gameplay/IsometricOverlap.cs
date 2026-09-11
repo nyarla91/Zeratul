@@ -9,6 +9,8 @@ namespace Gameplay
     {
         [SerializeField] private PathfindingConfig _config;
 
+        private readonly List<Collider2D> _buffer = new();
+        
         public HashSet<Unit> GetUnits(Vector2 point, float radius)
         {
             ContactFilter2D contactFilter = new()
@@ -18,11 +20,11 @@ namespace Gameplay
                 layerMask = _config.UnitLayerMask
             };
 
-            List<Collider2D> colliders = new();
-            Physics2D.OverlapCircle(point, radius, contactFilter, colliders);
+            _buffer.Clear();
+            Physics2D.OverlapCircle(point, radius, contactFilter, _buffer);
             
             HashSet<Unit> result = new();
-            foreach (Collider2D collider in colliders)
+            foreach (Collider2D collider in _buffer)
             {
                 Unit unit = collider.GetComponentInParent<Unit>();
                 if (unit && IsUnitInRadius(point, radius, unit))

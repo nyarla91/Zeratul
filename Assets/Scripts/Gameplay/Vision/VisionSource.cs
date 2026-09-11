@@ -20,7 +20,7 @@ namespace Gameplay.Vision
         private Func<Owner> _owner;
         private Func<bool> _isAir;
 
-        public HashSet<Unit> VisibleUnits => _visibleUnits.ToHashSet();
+        public HashSet<Unit> VisibleUnits => _visibleUnits;
 
         public VisionResult Result => _result;
 

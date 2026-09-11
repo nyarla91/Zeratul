@@ -48,6 +48,10 @@ namespace Gameplay.Units
         public bool IsObstacle => ! CanMove && ! Type.DisableCollision;
         public bool CanBeTargetedByPlayer => Visibility?.CanBeTargetedBy(Owner.Player) ?? false;
         public bool IsVisibleToPlayer => Visibility?.IsVisibleTo(Owner.Player) ?? false;
+        public bool IsHighlighted => MouseTargeting.Unit == this;
+        public bool IsSelected => Selection.IsUnitSelected(this);
+        public bool IsFocused => IsSelected && Selection.FocusedUnitType == Type;
+        public bool IsSimulated => VisionMap.IsPointSimulated(Position);
 
         public bool IsDead { get; private set; }
         public bool IsAlive => ! IsDead;
@@ -55,10 +59,6 @@ namespace Gameplay.Units
         public Vector2 Position => this ? transform.position : Vector2.zero;
         public Vector2 InteractionPosition => _interactionCollider.transform.position + (Vector3) _interactionCollider.offset;
         
-        public bool IsHighlighted => MouseTargeting.Unit == this;
-        public bool IsSelected => Selection.IsUnitSelected(this);
-        public bool IsFocused => IsSelected && Selection.FocusedUnitType == Type;
-        public bool IsSimulated => VisionMap.IsPointSimulated(Position);
         
         public UnitType Type { get; private set; }
 

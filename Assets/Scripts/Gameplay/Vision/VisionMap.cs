@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Core;
 using Gameplay.Data.Configs;
+using Gameplay.Units;
 using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
@@ -15,6 +16,8 @@ namespace Gameplay.Vision
     {
         [SerializeField] private FogOfWar _fogOfWar;
         [SerializeField] private VisionConfig _config;
+        
+        private Dictionary<Owner, HashSet<Unit>> _unitsVisibleBy;
 
         public HashSet<VisionSource> VisionSources { get; } = new();
         public HashSet<VisionSource> SimulatedVisionSources { get; } = new();
@@ -26,20 +29,20 @@ namespace Gameplay.Vision
 
         [Inject] private TacticalPause TacticalPause { get; set; }
         [Inject] private IsometricOverlap IsometricOverlap { get; set; }
+        [Inject] private UnitPool UnitPool { get; set; }
 
         private void Awake()
         {
             this.FixedUpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_config.RecalculationPeriod))
                 .Subscribe(_ => Recalculate());
-        }
 
-        public HashSet<Unit> GetUnitsVisibleBy(Owner owner)
-        {
-            return VisionSources
-                .Where(v => v.Owner == owner)
-                .SelectMany(v => v.VisibleUnits)
-                .ToHashSet();
+            _unitsVisibleBy = new Dictionary<Owner, HashSet<Unit>>
+            {
+                { Owner.Player, new HashSet<Unit>() },
+                { Owner.Neutral, new HashSet<Unit>() },
+                { Owner.Enemy, new HashSet<Unit>() }
+            };
         }
         
         public bool IsPointVisibleBy(Vector2 point, Owner owner)
@@ -65,7 +68,12 @@ namespace Gameplay.Vision
             return false;
         }
 
-        public bool IsUnitVisibleBy(Unit unit, Owner owner) => GetUnitsVisibleBy(owner).Contains(unit);
+        public bool IsUnitVisibleBy(Unit unit, Owner owner)
+        {
+            if (owner == Owner.Ally)
+                owner = Owner.Player;
+            return _unitsVisibleBy[owner].Contains(unit);
+        }
 
         public VisionSource CreateSource(Func<Vector3> position, Func<Owner> owner, Func<float> radius, Func<bool> isAir)
         {
@@ -116,6 +124,19 @@ namespace Gameplay.Vision
                 visionSource.Recalculate();
             foreach (VisionSource visionSource in IdleVisionSources)
                 visionSource.Mute();
+
+            foreach (HashSet<Unit> units in _unitsVisibleBy.Values)
+            {
+                units.Clear();
+            }
+
+            foreach (VisionSource visionSource in VisionSources)
+            {
+                Owner owner = visionSource.Owner;
+                if (owner == Owner.Ally)
+                    owner = Owner.Player;
+                _unitsVisibleBy[owner].UnionWith(visionSource.VisibleUnits);
+            }
         }
 
         private void OnDrawGizmos()

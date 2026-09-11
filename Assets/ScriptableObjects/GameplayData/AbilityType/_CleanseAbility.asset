@@ -26,7 +26,8 @@ MonoBehaviour:
   _casterValidators:
     _unitValidators: []
   _targetValidators:
-    _unitValidators: []
+    _unitValidators:
+    - {fileID: 11400000, guid: 7f2504c0303dc9d4988ac5e1f940d5b9, type: 2}
   _casterEffects: []
   _mustLookAtTarget: 1
   _unitTargetEffects:
