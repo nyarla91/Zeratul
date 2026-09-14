@@ -17,16 +17,6 @@ MonoBehaviour:
     _line: Teleport on a short distance.
   - _key: ability-blink-name
     _line: Transfer
-  - _key: ability-stim-name
-    _line: Stimpack
-  - _key: ability-stim-description
-    _line: Inject yourself with stimulating remedy restoring [hp] hit points and
-      [ep] energy over [duration] s.
-  - _key: ability-parasite-name
-    _line: Parasite
-  - _key: ability-parasite-description
-    _line: Implant an enemy with a parasite, giving you vision to everything that
-      enemy can see.
   - _key: ability-invasion-description
     _line: Take control of target enemy unit. You must have enough <kw>control slots</kw>
       available.
@@ -37,12 +27,28 @@ MonoBehaviour:
       attacking, using it's active and passive abilities.
   - _key: ability-lockdown-name
     _line: Hindrance
+  - _key: ability-parasite-description
+    _line: Implant an enemy with a parasite, giving you vision to everything that
+      enemy can see.
+  - _key: ability-parasite-name
+    _line: Parasite
   - _key: ability-stat-cooldown
     _line: 'Cooldown: # sec.'
   - _key: ability-stat-energy
     _line: 'Cost: # energy'
   - _key: ability-stat-range
     _line: 'Range: #'
+  - _key: ability-stim-description
+    _line: Inject yourself with stimulating remedy restoring [hp] hit points and
+      [ep] energy over [duration] s.
+  - _key: ability-stim-name
+    _line: Stimpack
+  - _key: message-save-error
+    _line: Saving has failed
+  - _key: message-save-success
+    _line: Game saved
+  - _key: message-saving-in-progress
+    _line: Saving is in progress
   - _key: order
     _line: Order
   - _key: order-ability
@@ -68,10 +74,6 @@ MonoBehaviour:
     _line: Stop
   - _key: ordererror-ability-not-ready
     _line: Ability not ready (# sec. left)
-  - _key: ordererror-target-invulnerable
-    _line: Target is invulnerable
-  - _key: ordererror-not-enough-charges
-    _line: Not enought charges
   - _key: ordererror-cannot-attack
     _line: Cannot attack
   - _key: ordererror-cannot-move
@@ -84,6 +86,8 @@ MonoBehaviour:
     _line: Cannot use abilities right now
   - _key: ordererror-must-target-unit
     _line: Target a unit
+  - _key: ordererror-not-enough-charges
+    _line: Not enought charges
   - _key: ordererror-not-enough-energy
     _line: Not enough energy (#)
   - _key: ordererror-out-of-range
@@ -92,6 +96,8 @@ MonoBehaviour:
     _line: Cannot use passive ability
   - _key: ordererror-target-invalid
     _line: Target is invalid
+  - _key: ordererror-target-invulnerable
+    _line: Target is invulnerable
   - _key: passive-concussion-description
     _line: "\u041E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u0435"
   - _key: passive-concussion-name
@@ -100,6 +106,8 @@ MonoBehaviour:
     _line: Can detect cloaked hostile units nearby
   - _key: passive-detector-name
     _line: Detector
+  - _key: quick-save-filename
+    _line: Quick save
   - _key: status
     _line: Status
   - _key: status-cloaked-description
@@ -132,74 +140,36 @@ MonoBehaviour:
     _line: Has limited lifetime
   - _key: status-temporary-name
     _line: Temporary
-  - _key: tutorial-attack-description
-    _line: 
-  - _key: tutorial-attack-label
-    _line: 
-  - _key: tutorial-basic-controls-description
-    _line: 
-  - _key: tutorial-basic-controls-label
-    _line: 
-  - _key: tutorial-camera-description
-    _line: 
-  - _key: tutorial-camera-label
-    _line: 
-  - _key: tutorial-cloak-description
-    _line: 
-  - _key: tutorial-cloak-label
-    _line: 
-  - _key: tutorial-control-description
-    _line: 
-  - _key: tutorial-control-label
-    _line: 
-  - _key: tutorial-detectors-description
-    _line: 
-  - _key: tutorial-detectors-label
-    _line: 
-  - _key: tutorial-energy-description
-    _line: 
-  - _key: tutorial-energy-label
-    _line: 
-  - _key: tutorial-hinderance-description
-    _line: 
-  - _key: tutorial-hinderance-label
-    _line: 
-  - _key: tutorial-invasion-description
-    _line: 
-  - _key: tutorial-invasion-label
-    _line: 
-  - _key: tutorial-life-description
-    _line: 
-  - _key: tutorial-life-label
-    _line: 
-  - _key: tutorial-order-description
-    _line: 
-  - _key: tutorial-order-label
-    _line: 
-  - _key: tutorial-save-description
-    _line: 
-  - _key: tutorial-save-label
-    _line: 
-  - _key: tutorial-tactical-pause-description
-    _line: 
-  - _key: tutorial-tactical-pause-label
-    _line: 
-  - _key: tutorial-enemy-select-description
-    _line: 
-  - _key: tutorial-enemy-select-name
-    _line: 
-  - _key: tutorial-vision-description
-    _line: 
-  - _key: tutorial-vision-label
-    _line: 
+  - _key: ui-back
+    _line: Back
   - _key: ui-choose-a-target
     _line: Choose a target
   - _key: ui-close
     _line: Close
   - _key: ui-continue
     _line: Continue
+  - _key: ui-defeat
+    _line: Mission failed
+  - _key: ui-delete
+    _line: Delete
+  - _key: ui-difficulty-easy
+    _line: Rookie
+  - _key: ui-difficulty-hard
+    _line: Assassin
+  - _key: ui-difficulty-medium
+    _line: Operative
+  - _key: ui-difficulty-one-try
+    _line: Phantom
+  - _key: ui-enter-filename
+    _line: Enter save file name
+  - _key: ui-filename-invalid
+    _line: File name invalid
   - _key: ui-game-paused
     _line: Game paused
+  - _key: ui-load
+    _line: Load game
+  - _key: ui-load-last-save
+    _line: Load last save
   - _key: ui-loading
     _line: Loading...
   - _key: ui-quit-the-game
@@ -208,6 +178,52 @@ MonoBehaviour:
     _line: Quit to menu
   - _key: ui-restart
     _line: Restart
+  - _key: ui-save
+    _line: Save game
+  - _key: ui-save-load
+    _line: Save and load
+  - _key: ui-scenario-selection
+    _line: Scenario selection
+  - _key: ui-settings
+    _line: Settings
+  - _key: ui-settings-apply
+    _line: Apply
+  - _key: ui-settings-camera-drag-speed
+    _line: Camera drag speed
+  - _key: ui-settings-camera-move-speed
+    _line: Camera move speed
+  - _key: ui-settings-discard
+    _line: Discard changes
+  - _key: ui-settings-fullscreen
+    _line: Fullscreen
+  - _key: ui-settings-gameplay
+    _line: Gameplay
+  - _key: ui-settings-general
+    _line: General
+  - _key: ui-settings-graphics
+    _line: Graphics
+  - _key: ui-settings-language
+    _line: Language
+  - _key: ui-settings-reset
+    _line: Reset to default
+  - _key: ui-settings-resolution
+    _line: Resolution
+  - _key: ui-tip
+    _line: Tip
+  - _key: ui-victory
+    _line: Mission completed
+  - _key: unit-attack-turret
+    _line: "\u0421\u0438\u043B\u043E\u0432\u0430\u044F \u0442\u0443\u0440\u0435\u043B\u044C"
+  - _key: unit-expert
+    _line: "\xABSpecialist\xBB"
+  - _key: unit-fodder
+    _line: "\xABPrivate\xBB"
+  - _key: unit-mine
+    _line: Mine
+  - _key: unit-player
+    _line: Agent
+  - _key: unit-sensor-tower
+    _line: Sensor tower
   - _key: unit-snake-name
     _line: Snake
   - _key: unittag-mechanical
@@ -244,69 +260,123 @@ MonoBehaviour:
     _line: Cannot control this unit
   - _key: validator-kill-counter
     _line: Kill more Organic enemies (#)
-  - _key: ui-load
-    _line: Load game
-  - _key: ui-save
-    _line: Save game
-  - _key: ui-load-last-save
-    _line: Load last save
-  - _key: ui-delete
-    _line: Delete
-  - _key: ui-back
-    _line: Back
-  - _key: ui-save-load
-    _line: Save and load
-  - _key: ui-filename-invalid
-    _line: File name invalid
-  - _key: ui-enter-filename
-    _line: Enter save file name
-  - _key: quick-save-filename
-    _line: Quick save
-  - _key: message-save-success
-    _line: Game saved
-  - _key: message-save-error
-    _line: Saving has failed
-  - _key: message-saving-in-progress
-    _line: Saving is in progress
-  - _key: ui-scenario-selection
-    _line: Scenario selection
-  - _key: ui-settings
-    _line: Settings
-  - _key: ui-settings-graphics
-    _line: Graphics
-  - _key: ui-settings-fullscreen
-    _line: Fullscreen
-  - _key: ui-settings-language
-    _line: Language
-  - _key: ui-settings-general
-    _line: General
-  - _key: ui-settings-apply
-    _line: Apply
-  - _key: ui-settings-discard
-    _line: Discard changes
-  - _key: ui-settings-reset
-    _line: Reset to default
-  - _key: ui-settings-camera-move-speed
-    _line: Camera move speed
-  - _key: ui-settings-camera-drag-speed
-    _line: Camera drag speed
-  - _key: ui-settings-resolution
-    _line: Resolution
-  - _key: ui-settings-gameplay
-    _line: Gameplay
-  - _key: ui-defeat
-    _line: Mission failed
-  - _key: ui-victory
-    _line: Mission completed
-  - _key: ui-tip
-    _line: Tip
-  - _key: ui-difficulty-easy
-    _line: Rookie
-  - _key: ui-difficulty-medium
-    _line: Operative
-  - _key: ui-difficulty-hard
-    _line: Assassin
-  - _key: ui-difficulty-one-try
-    _line: Phantom
-  - _key: unit-name-fodder
-    _line: Fodder
+  - _key: tutorial-basic-controls
+    _line: 'Press [1] or left click a unit to select it.
+
+
+      Right click anywhere
+      to order selected unit to go to this point.
+
+'
+  - _key: tutorial-basic-controls-header
+    _line: Basic controls
+  - _key: tutorial-camera
+    _line: 'Hold middle mouse button to drag the camera. Alternatively you can bring
+      cursor to any screen edge to move the camera.
+
+
+      Use mouse scroll wheel
+      to zoom in and zoom out.'
+  - _key: tutorial-camera-header
+    _line: Camera control
+  - _key: tutorial-vision
+    _line: 'All enemies have vision area around them. They cannot see through the
+      walls or vision blockers like the one you just passed through.
+
+
+      Press
+      [Alt] or click an eye icon next to minimap to see enemy vision areas.
+
+
+      If
+      you enter an enemy''s vision area, they and all their allies that can see them,
+      will attack you.
+
+
+      Leave enemy vision area and they will return to their
+      posts.
+
+'
+  - _key: tutorial-vision-header
+    _line: Vision areas
+  - _key: tutorial-attack
+    _line: 'Right click an enemy to order selected unit to attack them
+
+
+      Press
+      [A], then left click anywhere to order selected unit to go to this point attacking
+      all enemies along the way.'
+  - _key: tutorial-attack-header
+    _line: Attack
+  - _key: tutorial-shield
+    _line: 'Blue ring around unit represents their shield points. They restore over
+      time if unit is not taking damage.
+
+
+      Hit points DO NOT restore over time.'
+  - _key: tutorial-shield-header
+    _line: Shield points
+  - _key: tutorial-stim
+    _line: 'You picked up a stim. You can use it only once unless you find more.
+
+
+      Press
+      [Z] to spend stim and restore your hit points.'
+  - _key: tutorial-stim-header
+    _line: Stim
+  - _key: tutorial-hindrance
+    _line: 'You''ve gained Hindrance ability.
+
+
+      Press [Q], then left click
+      on a unit to lock it. Locked units cannot attack or use their abilities for
+      a set duration.
+
+
+      Using this ability costs you energy that restores over
+      time.'
+  - _key: tutorial-hindrance-header
+    _line: Hindrance
+  - _key: tutorial-pause
+    _line: 'You can toggle tactical pause anytime using [Space] key or hourglass
+      icon next to minimap.
+
+
+      While it is active you can observe the battlefield,
+      plan your moves and issue orders to your units.
+
+
+      You can queue orders
+      holding [Shift]. Those orders will be executed consequtevily.
+
+
+      Once
+      you ready, hit [Space] again to resume the game.'
+  - _key: tutorial-pause-header
+    _line: Tactical pause
+  - _key: tutorial-slice
+    _line: Using Pierce [W] deals high burst damage to an enemy
+  - _key: tutorial-slice-header
+    _line: Pierce
+  - _key: tutorial-parasite
+    _line: Using Virus [E] lets you see everything infected enemy can see. Use this
+      for gathering intel or targeting other enemies you wouldn't have seen otherwise
+  - _key: tutorial-parasite-header
+    _line: Virus
+  - _key: tutorial-cloak
+    _line: 'Now you are cloaked.
+
+
+      Enemies cannot see you or attack you directly.'
+  - _key: tutorial-cloak-header
+    _line: Cloak
+  - _key: tutorial-detectors
+    _line: Some enemies can detect your presence even when you are cloaked. Standing
+      in detection area negates all benefits of the cloak and lets all enemies see
+      you again.
+  - _key: tutorial-detectors-header
+    _line: Detectors
+  - _key: tutorial-enemy-selection
+    _line: You can also select enemy units to view their stats and abilities.
+  - _key: tutorial-enemy-selection-header
+    _line: Enemy selection

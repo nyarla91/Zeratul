@@ -58,7 +58,7 @@ MonoBehaviour:
   - {fileID: 0}
   _spriteMap: {fileID: 0}
   _hideOnMinimap: 0
-  _aiMap: {fileID: 0}
+  _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
   _editorRadius:
     _object: {fileID: 0}
   _editorRadiusColor: {r: 1, g: 1, b: 1, a: 0.101960786}
