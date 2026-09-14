@@ -22,10 +22,10 @@ namespace Gameplay.Units
         private UnitPatrolPath _patrolPath;
 
         public Unit DirectThreat { get; private set; }
-        public HashSet<Unit> Threats { get; private set; } = new();
-        public HashSet<Unit> SurroundingAllies { get; private set; } = new();
-        public HashSet<Unit> SurroundingHostiles { get; private set; } = new();
-        public HashSet<Unit> SurroundingUnits { get; private set; } = new();
+        public HashSet<Unit> Threats { get; } = new();
+        public HashSet<Unit> SurroundingAllies { get; } = new();
+        public HashSet<Unit> SurroundingHostiles { get; } = new();
+        public HashSet<Unit> SurroundingUnits { get; } = new();
         public Unit PreferredAttackTarget { get; private set; }
         
         public UnitAI(Unit unit, IPauseReadonly tacticalPause, GameTime gameTime, UnitAiConfig config, UnitPatrolPath patrolPath) : base(unit)
@@ -106,17 +106,23 @@ namespace Gameplay.Units
 
         private void UpdateSurroundings()
         {
-            SurroundingUnits = Unit.Sight.VisionSource.VisibleUnits
-                .Where(u => u.Visibility.CanBeTargetedBy(Unit))
-                .ToHashSet();
+            SurroundingUnits.Clear();
+            SurroundingAllies.Clear();
+            SurroundingHostiles.Clear();
 
-            SurroundingAllies = SurroundingUnits
-                .Where(u => Unit.Alliance.IsFriendly(u))
-                .ToHashSet();
+            foreach (Unit unit in Unit.Sight.VisionSource.VisibleUnits)
+            {
+                if ( ! unit.Visibility.CanBeTargetedBy(Unit))
+                    continue;
 
-            SurroundingHostiles = SurroundingUnits
-                .Where(u => Unit.Alliance.IsHostile(u))
-                .ToHashSet();
+                SurroundingUnits.Add(unit);
+
+                if (Unit.Alliance.IsFriendly(unit))
+                    SurroundingAllies.Add(unit);
+
+                if (Unit.Alliance.IsHostile(unit))
+                    SurroundingHostiles.Add(unit);
+            }
         }
 
         private void UpdateThreats()
@@ -128,11 +134,22 @@ namespace Gameplay.Units
                     : null;
             }
 
-            Threats = SurroundingAllies
-                .SelectMany(a => a.AI.SurroundingHostiles)
-                .ToHashSet();
-            
-            PreferredAttackTarget = SurroundingHostiles.MaxElement(t => _config.AutoAttackEvaluator.EvaluteTargetWorth(Unit, t));;
+            Threats.Clear();
+            foreach (Unit ally in SurroundingAllies)
+                foreach (Unit hostile in ally.AI.SurroundingHostiles)
+                    Threats.Add(hostile);
+
+            Unit bestTarget = null;
+            float bestWorth = 0f;
+            foreach (Unit hostile in SurroundingHostiles)
+            {
+                float worth = _config.AutoAttackEvaluator.EvaluteTargetWorth(Unit, hostile);
+                if (bestTarget && worth < bestWorth)
+                    continue;
+                bestTarget = hostile;
+                bestWorth = worth;
+            }
+            PreferredAttackTarget = bestTarget;
         }
     }
 }

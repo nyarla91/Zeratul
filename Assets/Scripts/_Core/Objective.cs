@@ -24,6 +24,8 @@ namespace _Core
             if (value <= 0)
                 return;
             Counter = Math.Clamp(Counter + value, 0, Goal);
+            if (Counter >= Goal)
+                Status = ObjectiveStatus.Completed;
         }
 
         public void UpdateCurrentCounter(int value)

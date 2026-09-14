@@ -34,14 +34,25 @@ namespace Gameplay.Schemes.Values.Variables
             value.Add(unit);
         }
 
+        public void AddGroup(HashSet<Unit> other)
+        {
+            value.UnionWith(other);
+        }
+
         public void RemoveUnit(Unit unit)
         {
             value.Remove(unit);
         }
 
+        public void RemoveGroup(HashSet<Unit> other)
+        {
+            value.ExceptWith(other);
+        }
+
         protected override void Awake()
         {
             base.Awake();
+            value = new HashSet<Unit>();
             foreach (UnitSpawnPoint spawnPoint in _spawnPoints)
             {
                 spawnPoint.Spawned += unit =>

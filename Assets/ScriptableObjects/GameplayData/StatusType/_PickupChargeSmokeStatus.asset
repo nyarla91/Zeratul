@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85200319680843f6b31dec5cae1dafcd, type: 3}
   m_Name: _PickupChargeSmokeStatus
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.MineStatus
+  _tag: 0
   _useLock: 0
   _display: 0
   _displayIcon: {fileID: 0}
@@ -19,7 +20,8 @@ MonoBehaviour:
   _showDuration: 0
   _showDurationPriority: 0
   _displayDescription: 
-  _rendererPrefabs: []
+  _rendererPrefabs:
+  - {fileID: 5624198553192146132, guid: bd1020436046b862a9338ac9014c353d, type: 3}
   _gameplayPresenter: {fileID: 11400000, guid: 709a4b54a359b604a89d2566ccc11544, type: 2}
   _triggerRadius: 1
   _cooldown: 0

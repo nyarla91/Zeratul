@@ -1,15 +1,18 @@
 ﻿using System;
 using _Core;
+using DG.Tweening;
 using Settings.Localization;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Gameplay.UI
 {
     public class ObjectiveView : MonoBehaviour
     {
         [SerializeField] private Localizer _localizer;
+        [SerializeField] private Image _background;
         [SerializeField] private TMP_Text _line;
         [SerializeField] private Color _activeColor;
         [SerializeField] private Color _completedColor;
@@ -20,7 +23,7 @@ namespace Gameplay.UI
 
         public Objective Objective => _objective.Invoke();
         public int Priority { get; private set; }
-         
+        
         public void Init(Func<Objective> objective, int priority)
         {
             if (_objective != null)
@@ -29,6 +32,12 @@ namespace Gameplay.UI
             Priority = priority;
             _observable = Observable.EveryUpdate()
                 .Subscribe(_ => UpdateView());
+
+            _objective.ObserveEveryValueChanged(o => o.Invoke()?.Counter ?? -1)
+                .Subscribe(c => Ping(_activeColor));
+            
+            _objective.ObserveEveryValueChanged(o => o.Invoke()?.Status ?? ObjectiveStatus.Failed)
+                .Subscribe(PingStatus);
         }
 
         private void UpdateView()
@@ -41,7 +50,7 @@ namespace Gameplay.UI
             gameObject.SetActive(true);
             string label = _localizer.Translate(Objective.Label);
             string counter = Objective.Goal > 0 ? $" ({Objective.Counter}/{Objective.Goal})" : "";
-            _line.text = label + counter;
+            _line.text = $"> {label} {counter}";
 
             Color color = Objective.Status switch
             {
@@ -51,6 +60,25 @@ namespace Gameplay.UI
                 _ => throw new ArgumentOutOfRangeException()
             };
             _line.color = color;
+        }
+
+        private void PingStatus(ObjectiveStatus status)
+        {
+            Color color = status switch
+            {
+                ObjectiveStatus.Active => _activeColor,
+                ObjectiveStatus.Completed => _completedColor.WithA(1),
+                ObjectiveStatus.Failed => _failedColor.WithA(1),
+                _ => throw new ArgumentOutOfRangeException(nameof(status), status, null)
+            };
+            Ping(color);
+        }
+
+        private void Ping(Color color)
+        {
+            _background.DOKill();
+            _background.color = color;
+            _background.DOFade(0, 1.2f);
         }
 
         private void OnDestroy()

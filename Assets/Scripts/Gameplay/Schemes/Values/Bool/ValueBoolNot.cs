@@ -11,7 +11,7 @@ namespace Gameplay.Schemes.Values.Bool
 
         private void OnValidate()
         {
-            gameObject.name = $"Not {_a?.name}";
+            gameObject.name = $"(Not {_a?.name})";
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Gameplay.Data.Validator
 
         public override string ToString()
         {
-            return _unitValidators.Length == 0 ? "" : $"({_unitValidators.Enumerate(", ", "", v => v.name)})";
+            return _unitValidators.Length == 0 ? "" : $"({_unitValidators.Enumerate(", ", "", v => v?.name)})";
         }
     }
 }

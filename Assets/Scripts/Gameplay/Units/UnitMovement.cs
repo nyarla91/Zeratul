@@ -115,8 +115,9 @@ namespace Gameplay.Units
                 _rigidbody.linearVelocity = Vector2.zero;
                 return;
             }
-            
-            Vector2 direction = Unit.Position.DirectionTo(_path.First());
+
+            Vector2 vectorToPoint = Unit.Position.DirectionTo(_path.First());
+            Vector2 direction = vectorToPoint;
             direction = AvoidObstaclesForDirection(direction, out bool corrected);
             
             if (HasReachedPoint(_path.First(), ! corrected))
@@ -135,7 +136,7 @@ namespace Gameplay.Units
 
         public bool HasReachedPoint(Vector2 point, bool exact)
         {
-            float tolerance = _config.NodeProximityDistance;
+            float tolerance = _config.NodeProximityDistance + Speed * Time.fixedDeltaTime;
             if (!exact)
                 tolerance += UnitType.Size / 2;
             return Vector2.Distance(point, Unit.Position) < tolerance;

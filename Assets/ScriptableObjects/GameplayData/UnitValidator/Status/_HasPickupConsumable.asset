@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b978ceee0e47b1a7c42418dd694e1e, type: 3}
+  m_Name: _HasPickupConsumable
+  m_EditorClassIdentifier: Gameplay::Gameplay.Data.Validator.UnitAnyValidator
+  _invalidMessage: 
+  _not: 0
+  _validators:
+  - {fileID: 11400000, guid: 706ae086ea3076792a9675284656d9d8, type: 2}
+  - {fileID: 11400000, guid: c66ebc7b47f18207dbc4d804e618d5ce, type: 2}
+  - {fileID: 11400000, guid: c1012dd4d0b9c49aea9a88899b599f3a, type: 2}
+  - {fileID: 11400000, guid: fe4b3ed60ce0a93e4b67dcaeb10ea6f7, type: 2}

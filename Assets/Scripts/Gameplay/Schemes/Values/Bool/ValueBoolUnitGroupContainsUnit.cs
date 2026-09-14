@@ -10,5 +10,10 @@ namespace Gameplay.Schemes.Values.Bool
         [SerializeField] private SchemeValue<Unit> _unit;
 
         public override bool Value => _unitGroup?.Value.Contains(_unit.Value) ?? false;
+
+        private void OnValidate()
+        {
+            gameObject.name = $"({_unitGroup?.name} contains {_unit?.name})";
+        }
     }
 }
