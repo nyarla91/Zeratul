@@ -21,6 +21,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
+      propertyPath: _enemyDisplayBehaviour
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792948037379969, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _playerDisplayBehaviour
       value: 3
       objectReference: {fileID: 0}
@@ -38,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.g
-      value: 0.9725939
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4779138051069486728, guid: 447247dc75a1c054784b22848374db7f, type: 3}
       propertyPath: _startingVariant._material

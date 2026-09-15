@@ -38,7 +38,7 @@ namespace Gameplay.Data
         [Button("Refresh")]
         private void RefreshObjectsFromFolders()
         {
-            List<Object> result = new();
+            HashSet<Object> result = new();
 
             foreach (Object dir in _directories)
             {
@@ -63,8 +63,22 @@ namespace Gameplay.Data
                 }
             }
 
-            _objects = result.ToHashSet().ToArray();
+            ValidateDuplicates(result);
+
+            _objects = result.ToArray();
             EditorUtility.SetDirty(this);
+        }
+
+        private void ValidateDuplicates(HashSet<Object> objects)
+        {
+            HashSet<string> names = new();
+            foreach (Object o in objects)
+            {
+                Debug.Log($"{o.name} {o.GetType()}");
+                if (names.Contains(o.name))
+                    throw new ArgumentException($"{this} contains duplicate objects with name {o.name}");
+                names.Add(o.name);
+            }
         }
 #endif
 

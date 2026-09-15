@@ -18,15 +18,26 @@ namespace Gameplay.Arrangement.Saving
         [Inject] private ISaveFileReadService ReadService { get; set; }
         [Inject] private ScenarioSession ScenarioSession { get; set; }
         
-        private readonly List<ISavingSystem> _systems = new();
+        private List<ISavingSystem> _systems = new();
 
         public void RegisterSystem(ISavingSystem system) => _systems.Add(system);
 
         public void ReproduceFromSaveData(SaveData saveData)
         {
+            _systems = _systems.OrderBy(s => s.LoadPriority).ToList();
             foreach (ISavingSystem savingSystem in _systems)
             {
-                savingSystem.ReproduceFromSaveData(saveData);
+                try
+                {
+                    Debug.Log($"Loading {savingSystem}");
+                    savingSystem.ReproduceFromSaveData(saveData);
+                    Debug.Log($"Loading {savingSystem} completed");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"There was an error loading {savingSystem}. {e.Message}");
+                    throw;
+                }
             }
         }
 

@@ -6,8 +6,10 @@ namespace Gameplay.Arrangement.Saving
     public abstract class SavingSystem<TSystem> : MonoBehaviour, ISavingSystem where TSystem : ISaveSystem
     {
         [SerializeField] private GameplaySaveLoad _saveLoad;
+        [SerializeField] private int _loadPriority;
         
         protected abstract string LoadKey { get; }
+        public int LoadPriority => _loadPriority;
 
         public void ReproduceFromSaveData(SaveData saveData) => ReproduceFromSaveData(saveData.Get<TSystem>(LoadKey));
         
@@ -23,6 +25,7 @@ namespace Gameplay.Arrangement.Saving
 
     public interface ISavingSystem
     {
+        public int LoadPriority { get; }
         public void ReproduceFromSaveData(SaveData payload);
         public ISaveSystem Save();
     }

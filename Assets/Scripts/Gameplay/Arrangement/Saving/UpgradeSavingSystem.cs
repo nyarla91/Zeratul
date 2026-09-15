@@ -4,6 +4,7 @@ using _Core;
 using Gameplay.Data;
 using Gameplay.Upgrades;
 using Save.Data;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Arrangement.Saving
@@ -11,7 +12,7 @@ namespace Gameplay.Arrangement.Saving
     public class UpgradeSavingSystem : SavingSystem<UpgradeSaveSystem>
     {
         protected override string LoadKey => UpgradeSaveSystem.LoadKey;
-        
+
         [Inject] private UpgradeStorage UpgradeStorage { get; set; }
         [Inject] private GameDataRegistry GameDataRegistry { get; set; }
         

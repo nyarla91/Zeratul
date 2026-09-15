@@ -1,8 +1,6 @@
 ﻿using System;
 using _Core;
 using Gameplay.Data;
-using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
 
 namespace Gameplay.Visual
@@ -31,7 +29,7 @@ namespace Gameplay.Visual
             _lineRenderer.sortingOrder = variant.SortingOrder;
             _lineRenderer.colorGradient = variant.Color.ToGradient();
             SetRadius(variant.Radius + _radiusModifier);
-            _rotationSpeed = variant.RotationSpeed;
+            _rotationSpeed = variant.Radius > 0 ? (variant.RotationSpeed / variant.Radius * Mathf.PI * 2) : 0;
         }
 
         public override void OnSpawn() => Show();
