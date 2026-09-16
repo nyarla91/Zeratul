@@ -267,5 +267,5 @@ MonoBehaviour:
   _background: {fileID: 2906128005444899781}
   _line: {fileID: 2706644428503032960}
   _activeColor: {r: 1, g: 1, b: 1, a: 1}
-  _completedColor: {r: 0.078233, g: 1, b: 0, a: 0.101960786}
-  _failedColor: {r: 1, g: 0, b: 0, a: 0.101960786}
+  _completedColor: {r: 0.078233, g: 1, b: 0, a: 0.3137255}
+  _failedColor: {r: 1, g: 0, b: 0, a: 0.3137255}

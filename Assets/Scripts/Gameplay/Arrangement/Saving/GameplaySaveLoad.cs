@@ -35,6 +35,7 @@ namespace Gameplay.Arrangement.Saving
                 }
                 catch (Exception e)
                 {
+                    throw e;
                     Debug.LogError($"There was an error loading {savingSystem}. {e.Message}");
                     throw;
                 }

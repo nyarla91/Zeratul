@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: _DetectorTurret
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _displayName: Sensor Tower
+  _displayName: unit-sensor-tower
   _focusPriority: -100
   _nonInteractable: 0
   _tags:

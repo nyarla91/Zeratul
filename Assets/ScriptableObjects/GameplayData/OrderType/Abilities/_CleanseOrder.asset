@@ -16,7 +16,7 @@ MonoBehaviour:
   _displayName: ability-cleanse-name
   _displayValidators:
     _unitValidators: []
-  _rawDisplayDescription: ability-cleanse-description
+  _rawDisplayDescription: ability-cleanse-description#[shiled]=50
   _icon: {fileID: 21300000, guid: 006f91f72ba2a7a478a1be0cc0fbaf97, type: 3}
   _hotkeyAlias: Ability1
   _highlightControl: 0

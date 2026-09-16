@@ -108,7 +108,11 @@ MonoBehaviour:
   _playerDisplayBehaviour: 0
   _enemyDisplayBehaviour: 0
   _visibleInFogOfWar: 0
+  _ignoreCloak: 0
   _ignoreLocked: 0
+  _ignoreSimulation: 0
   _config: {fileID: 11400000, guid: a38f394a58a26e54cbef03f0caf8710d, type: 2}
   _renderer: {fileID: 1653221710375583603}
+  _animator: {fileID: 0}
   _overrideSortingOrder: 1
+  _popAnimation: 1

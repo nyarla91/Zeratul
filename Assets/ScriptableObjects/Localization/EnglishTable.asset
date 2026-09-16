@@ -17,21 +17,42 @@ MonoBehaviour:
     _line: Teleport on a short distance.
   - _key: ability-blink-name
     _line: Transfer
+  - _key: ability-feedback-description
+    _line: Burn up to [energy] energy points of the target and deal that much damage
+      to them.
+  - _key: ability-feedback-name
+    _line: Overload
   - _key: ability-invasion-description
     _line: Take control of target enemy unit. You must have enough <kw>control slots</kw>
       available.
   - _key: ability-invasion-name
-    _line: Invasion
+    _line: Override
   - _key: ability-lockdown-description
     _line: <kw>Lock</kw> target unit for [duration] sec. Lock prevents unit from
       attacking, using it's active and passive abilities.
   - _key: ability-lockdown-name
     _line: Hindrance
   - _key: ability-parasite-description
-    _line: Implant an enemy with a parasite, giving you vision to everything that
-      enemy can see.
+    _line: 'Infect enemy with a virus, giving you vision to everything that enemy
+      can see.
+
+
+      Only one enemy can be infected at the same time.'
   - _key: ability-parasite-name
-    _line: Parasite
+    _line: Virus
+  - _key: ability-slice-name
+    _line: Pierce
+  - _key: ability-slice-descruption
+    _line: Deal [dmg] damage to the target ([bonusdmg] against Mechanical targets).
+  - _key: ability-snipe-description
+    _line: Deal [dmg] damage to the target.
+  - _key: ability-snipe-name
+    _line: Snipe
+  - _key: ability-cleanse-description
+    _line: 'Remove all timed negative effects from the target and restore [shield]
+      shield points to it. '
+  - _key: ability-cleanse-name
+    _line: Mend
   - _key: ability-stat-cooldown
     _line: 'Cooldown: # sec.'
   - _key: ability-stat-energy
@@ -42,7 +63,7 @@ MonoBehaviour:
     _line: Inject yourself with stimulating remedy restoring [hp] hit points and
       [ep] energy over [duration] s.
   - _key: ability-stim-name
-    _line: Stimpack
+    _line: Stim
   - _key: message-save-error
     _line: Saving has failed
   - _key: message-save-success
@@ -127,7 +148,7 @@ MonoBehaviour:
   - _key: status-invasion-description
     _line: You can control this unit
   - _key: status-invasion-name
-    _line: Invasion
+    _line: Override
   - _key: status-locked-description
     _line: Cannot attack, use active and passive abilities
   - _key: status-locked-name
@@ -140,6 +161,130 @@ MonoBehaviour:
     _line: Has limited lifetime
   - _key: status-temporary-name
     _line: Temporary
+  - _key: status-parasite-description
+    _line: You can see everything this unit can see.
+  - _key: status-parasite-name
+    _line: Virus
+  - _key: tutorial-attack
+    _line: 'Right click an enemy to order selected unit to attack them
+
+
+      Press
+      <stat>[A]</stat>, then left click anywhere to order selected unit to go to
+      this point attacking all enemies along the way.'
+  - _key: tutorial-attack-header
+    _line: Attack
+  - _key: tutorial-basic-controls
+    _line: 'Press [1] or left click a unit to select it.
+
+
+      Right click anywhere
+      to order selected unit to go to this point.
+
+'
+  - _key: tutorial-basic-controls-header
+    _line: Basic controls
+  - _key: tutorial-camera
+    _line: 'Hold middle mouse button to drag the camera. Alternatively you can bring
+      your cursor to any of the screen edges to move the camera in that direction.
+
+
+      Use
+      mouse scroll wheel to zoom in and zoom out.'
+  - _key: tutorial-camera-header
+    _line: Camera control
+  - _key: tutorial-cloak
+    _line: 'Now you are cloaked.
+
+
+      Enemies cannot see you or attack you directly.'
+  - _key: tutorial-cloak-header
+    _line: Cloak
+  - _key: tutorial-detectors
+    _line: Some enemies can detect your presence even when you are cloaked. Standing
+      in detection area negates all benefits of the cloak and lets all enemies see
+      you again.
+  - _key: tutorial-detectors-header
+    _line: Detectors
+  - _key: tutorial-enemy-selection
+    _line: You can also select enemy units to view their stats and abilities.
+  - _key: tutorial-enemy-selection-header
+    _line: Enemy selection
+  - _key: tutorial-hindrance
+    _line: 'You''ve gained Hindrance ability.
+
+
+      Press [Q], then left click
+      on a unit to lock it. Locked units cannot attack or use their abilities for
+      a set duration.
+
+
+      Using this ability costs you energy that restores over
+      time.'
+  - _key: tutorial-hindrance-header
+    _line: Hindrance
+  - _key: tutorial-parasite
+    _line: Using Virus [E] lets you see everything infected enemy can see. Use this
+      for gathering intel or targeting other enemies you wouldn't have seen otherwise
+  - _key: tutorial-parasite-header
+    _line: Virus
+  - _key: tutorial-pause
+    _line: 'You can toggle tactical pause anytime using [Space] key or hourglass
+      icon next to minimap.
+
+
+      While it is active you can observe the battlefield,
+      plan your moves and issue orders to your units.
+
+
+      You can queue orders
+      holding [Shift]. Those orders will be executed consequtevily.
+
+
+      Once
+      you ready, hit [Space] again to resume the game.'
+  - _key: tutorial-pause-header
+    _line: Tactical pause
+  - _key: tutorial-shield
+    _line: 'Blue ring around unit represents their shield points. They restore over
+      time if unit is not taking damage.
+
+
+      Hit points DO NOT restore over time.'
+  - _key: tutorial-shield-header
+    _line: Shield points
+  - _key: tutorial-slice
+    _line: Using Pierce [W] deals high burst damage to an enemy
+  - _key: tutorial-slice-header
+    _line: Pierce
+  - _key: tutorial-stim
+    _line: 'You picked up a stim. You can use it only once unless you find more.
+
+
+      Press
+      [Z] to spend stim and restore your hit points.'
+  - _key: tutorial-stim-header
+    _line: Stim
+  - _key: tutorial-vision
+    _line: 'All enemies have vision area around them. They cannot see through the
+      walls or vision blockers like the one you just passed through.
+
+
+      Press
+      [Alt] or click an eye icon next to minimap to see enemy vision areas.
+
+
+      If
+      you enter an enemy''s vision area, they and all their allies that can see them,
+      will attack you.
+
+
+      Leave enemy vision area and they will return to their
+      posts.
+
+'
+  - _key: tutorial-vision-header
+    _line: Vision areas
   - _key: ui-back
     _line: Back
   - _key: ui-choose-a-target
@@ -222,6 +367,8 @@ MonoBehaviour:
     _line: Mine
   - _key: unit-player
     _line: Agent
+  - _key: unit-medstation
+    _line: Mending station
   - _key: unit-sensor-tower
     _line: Sensor tower
   - _key: unit-snake-name
@@ -260,123 +407,11 @@ MonoBehaviour:
     _line: Cannot control this unit
   - _key: validator-kill-counter
     _line: Kill more Organic enemies (#)
-  - _key: tutorial-basic-controls
-    _line: 'Press [1] or left click a unit to select it.
-
-
-      Right click anywhere
-      to order selected unit to go to this point.
-
-'
-  - _key: tutorial-basic-controls-header
-    _line: Basic controls
-  - _key: tutorial-camera
-    _line: 'Hold middle mouse button to drag the camera. Alternatively you can bring
-      cursor to any screen edge to move the camera.
-
-
-      Use mouse scroll wheel
-      to zoom in and zoom out.'
-  - _key: tutorial-camera-header
-    _line: Camera control
-  - _key: tutorial-vision
-    _line: 'All enemies have vision area around them. They cannot see through the
-      walls or vision blockers like the one you just passed through.
-
-
-      Press
-      [Alt] or click an eye icon next to minimap to see enemy vision areas.
-
-
-      If
-      you enter an enemy''s vision area, they and all their allies that can see them,
-      will attack you.
-
-
-      Leave enemy vision area and they will return to their
-      posts.
-
-'
-  - _key: tutorial-vision-header
-    _line: Vision areas
-  - _key: tutorial-attack
-    _line: 'Right click an enemy to order selected unit to attack them
-
-
-      Press
-      [A], then left click anywhere to order selected unit to go to this point attacking
-      all enemies along the way.'
-  - _key: tutorial-attack-header
-    _line: Attack
-  - _key: tutorial-shield
-    _line: 'Blue ring around unit represents their shield points. They restore over
-      time if unit is not taking damage.
-
-
-      Hit points DO NOT restore over time.'
-  - _key: tutorial-shield-header
-    _line: Shield points
-  - _key: tutorial-stim
-    _line: 'You picked up a stim. You can use it only once unless you find more.
-
-
-      Press
-      [Z] to spend stim and restore your hit points.'
-  - _key: tutorial-stim-header
-    _line: Stim
-  - _key: tutorial-hindrance
-    _line: 'You''ve gained Hindrance ability.
-
-
-      Press [Q], then left click
-      on a unit to lock it. Locked units cannot attack or use their abilities for
-      a set duration.
-
-
-      Using this ability costs you energy that restores over
-      time.'
-  - _key: tutorial-hindrance-header
-    _line: Hindrance
-  - _key: tutorial-pause
-    _line: 'You can toggle tactical pause anytime using [Space] key or hourglass
-      icon next to minimap.
-
-
-      While it is active you can observe the battlefield,
-      plan your moves and issue orders to your units.
-
-
-      You can queue orders
-      holding [Shift]. Those orders will be executed consequtevily.
-
-
-      Once
-      you ready, hit [Space] again to resume the game.'
-  - _key: tutorial-pause-header
-    _line: Tactical pause
-  - _key: tutorial-slice
-    _line: Using Pierce [W] deals high burst damage to an enemy
-  - _key: tutorial-slice-header
-    _line: Pierce
-  - _key: tutorial-parasite
-    _line: Using Virus [E] lets you see everything infected enemy can see. Use this
-      for gathering intel or targeting other enemies you wouldn't have seen otherwise
-  - _key: tutorial-parasite-header
-    _line: Virus
-  - _key: tutorial-cloak
-    _line: 'Now you are cloaked.
-
-
-      Enemies cannot see you or attack you directly.'
-  - _key: tutorial-cloak-header
-    _line: Cloak
-  - _key: tutorial-detectors
-    _line: Some enemies can detect your presence even when you are cloaked. Standing
-      in detection area negates all benefits of the cloak and lets all enemies see
-      you again.
-  - _key: tutorial-detectors-header
-    _line: Detectors
-  - _key: tutorial-enemy-selection
-    _line: You can also select enemy units to view their stats and abilities.
-  - _key: tutorial-enemy-selection-header
-    _line: Enemy selection
+  - _key: objective-1-equipment
+    _line: Recover your equipment
+  - _key: objective-1-escape
+    _line: Escape
+  - _key: objective-1-collect
+    _line: (OPTIONAL) Obtain link cells
+  - _key: objective-1-hitless
+    _line: (OPTIONAL) Do not lose hit points

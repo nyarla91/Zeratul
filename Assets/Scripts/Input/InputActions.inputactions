@@ -232,6 +232,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7a6d4b97-f591-430e-89cd-9f01e03e3945",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DragCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "783729f0-c7b8-4da7-a067-dace62d19088",
                     "path": "<Mouse>/scroll/y",
                     "interactions": "",

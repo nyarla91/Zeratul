@@ -94,9 +94,12 @@ namespace Gameplay.Units
 
             LastDamageDealer = damageDealer;
             LastDamageFrame = _gameTime.Frame;
+            
             DamageTaken?.Invoke(damage);
-            HitPointsLost?.Invoke(hitDamage);
-            ShieldPointsLost?.Invoke(shieldDamage);
+            if (hitDamage > 0)
+                HitPointsLost?.Invoke(hitDamage);
+            if (shieldDamage > 0)
+                ShieldPointsLost?.Invoke(shieldDamage);
             
             if (HitPoints < 1)
                 Unit.Kill();

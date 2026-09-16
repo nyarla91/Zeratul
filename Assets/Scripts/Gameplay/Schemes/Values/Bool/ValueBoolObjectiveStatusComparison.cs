@@ -8,7 +8,7 @@ namespace Gameplay.Schemes.Values.Bool
         [SerializeField] private SchemeValue<_Core.Objective> _objective;
         [SerializeField] private ObjectiveStatus _status;
 
-        public override bool Value => _objective.Value.Status == _status;
+        public override bool Value => _objective.Value != null && _objective.Value.Status == _status;
 
         private void OnValidate()
         {

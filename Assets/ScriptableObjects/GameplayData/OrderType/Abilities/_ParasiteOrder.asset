@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: _ParasiteOrder
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Orders.AbilityOrder
   _localizer: {fileID: 11400000, guid: 798e0297f57244c479c9ea24acaf4c9d, type: 2}
-  _displayName: Parasite
+  _displayName: ability-parasite-name
   _displayValidators:
     _unitValidators:
     - {fileID: 11400000, guid: 1728062946bacb142ac28dff7eb1adee, type: 2}
-  _rawDisplayDescription: Grant vision to enemy unit
+  _rawDisplayDescription: ability-parasite-description
   _icon: {fileID: 21300000, guid: 1d2f009d62a07d04f9202d0c804e1f3c, type: 3}
   _hotkeyAlias: Ability3
   _highlightControl: 0
