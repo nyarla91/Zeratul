@@ -14,7 +14,8 @@ namespace Gameplay.Units
     {
         private readonly NodeMap _nodeMap;
         private readonly TacticalPause _tacticalPause;
-        private readonly UnitMovementConfig _config;
+        private readonly UnitMovementConfig _movementConfig;
+        private readonly PathfindingConfig _pathfindingConfig;
         private readonly Rigidbody2D _rigidbody;
         private readonly Collider2D _avoidanceCollider;
 
@@ -40,14 +41,15 @@ namespace Gameplay.Units
             }
         }
 
-        public UnitMovement(Unit unit, TacticalPause tacticalPause, NodeMap nodeMap, UnitMovementConfig config,
-            Rigidbody2D rigidbody, Collider2D avoidanceCollider) : base(unit)
+        public UnitMovement(Unit unit, TacticalPause tacticalPause, NodeMap nodeMap, UnitMovementConfig movementConfig,
+            PathfindingConfig pathfindingConfig, Rigidbody2D rigidbody, Collider2D avoidanceCollider) : base(unit)
         {
             _tacticalPause = tacticalPause;
             _nodeMap = nodeMap;
-            _config = config;
+            _movementConfig = movementConfig;
             _rigidbody = rigidbody;
             _avoidanceCollider = avoidanceCollider;
+            _pathfindingConfig = pathfindingConfig;
             _avoidanceCollider.gameObject.layer = Unit.gameObject.layer;
             Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
@@ -59,12 +61,12 @@ namespace Gameplay.Units
 
         public void Move(Vector2 destination, float desiredDistance = 0)
         {
-            if (UnitType.IsImmobile || HasPath && Time.time < _lastPathRecalculationTime + _config.MinPathRecalculationPeriod)
+            if (UnitType.IsImmobile || HasPath && Time.time < _lastPathRecalculationTime + _movementConfig.MinPathRecalculationPeriod)
                 return;
 
             if (desiredDistance > 0)
             {
-                _nodeMap.CanPassBetween(Unit.Position, destination, UnitType.PathfindingAgent, out RaycastHit2D hit);
+                _pathfindingConfig.CanPassBetween(Unit.Position, destination, UnitType.PathfindingAgent, out RaycastHit2D hit);
                 if ((Isometry.Distance(hit.point, destination)) < desiredDistance)
                 {
                     destination = hit.point;
@@ -136,7 +138,7 @@ namespace Gameplay.Units
 
         public bool HasReachedPoint(Vector2 point, bool exact)
         {
-            float tolerance = _config.NodeProximityDistance + Speed * Time.fixedDeltaTime;
+            float tolerance = _movementConfig.NodeProximityDistance + Speed * Time.fixedDeltaTime;
             if (!exact)
                 tolerance += UnitType.Size / 2;
             return Vector2.Distance(point, Unit.Position) < tolerance;
@@ -152,12 +154,12 @@ namespace Gameplay.Units
                 useTriggers = false,
                 useLayerMask = true,
                 layerMask = UnitType.IsAir
-                    ? (_config.AirMask | _config.CommonObstacleMask)
-                    : (_config.GroundMask | _config.GroundObstacleMask)
+                    ? (_movementConfig.AirMask | _movementConfig.CommonObstacleMask)
+                    : (_movementConfig.GroundMask | _movementConfig.GroundObstacleMask)
             };
 
             List<RaycastHit2D> results = new();
-            float distance = _config.AvoidanceDistance * (_avoidingObstacle ? 2 : 1);
+            float distance = _movementConfig.AvoidanceDistance * (_avoidingObstacle ? 2 : 1);
             if (_avoidanceCollider.Cast(direction, contactFilter, results, distance) == 0)
             {
                 _avoidingObstacle = false;
@@ -177,12 +179,12 @@ namespace Gameplay.Units
             correctedDirection.Normalize();
             corrected = true;
             _avoidingObstacle = true;
-            return Vector2.Lerp(direction,  correctedDirection, _config.AvoidanceStrength).normalized;
+            return Vector2.Lerp(direction,  correctedDirection, _movementConfig.AvoidanceStrength).normalized;
         }
 
         private bool IsColliderAvoidable(Collider2D collider)
         {
-            LayerMask mask = (_config.CommonObstacleMask | _config.GroundObstacleMask);
+            LayerMask mask = (_movementConfig.CommonObstacleMask | _movementConfig.GroundObstacleMask);
             if (mask.Includes(collider.gameObject.layer))
                 return true;
             Unit unit = collider.GetComponentInParent<Unit>();

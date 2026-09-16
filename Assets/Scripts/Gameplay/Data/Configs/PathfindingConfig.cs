@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Map;
+using UnityEngine;
 
 namespace Gameplay.Data.Configs
 {
@@ -33,5 +34,16 @@ namespace Gameplay.Data.Configs
         public LayerMask CommonLayerMask => _commonLayerMask;
         public float MaxObstacleDistance => _maxObstacleDistance;
         public float DistanceCastStep => _distanceCastStep;
+        
+        public bool CanPassBetween(Vector2 worldStart, Vector2 worldTarget, PathfindingAgent agent, out RaycastHit2D hit)
+        {
+            LayerMask layerMask = agent.IsAir ? CommonLayerMask : GroundLayerMask;
+            
+            Vector2 direction = worldTarget - worldStart;
+            float distance = direction.magnitude;
+
+            hit = Physics2D.BoxCast(worldStart, agent.BoundingBoxSize, 0, direction, distance, layerMask);
+            return hit.collider == null;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using _Core;
+using Gameplay.Data;
 using Gameplay.Units;
 using GameState;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Gameplay.Arrangement
         [Inject] private ScenarioSession ScenarioSession { get; set; }
         [Inject] private IScenarioCompletionInfo ScenarioCompletion { get; set; }
         [Inject] private UnitSpawner UnitSpawner { get; set; }
+        [Inject] private GameDataRegistry GameDataRegistry { get; set; }
         
         public void Instantiate()
         {
@@ -48,6 +50,11 @@ namespace Gameplay.Arrangement
         public void LeaveScenario()
         {
             GameFlowController.LeaveScenario();
+        }
+
+        private void OnDestroy()
+        {
+            GameDataRegistry.DisposeData();
         }
     }
 }

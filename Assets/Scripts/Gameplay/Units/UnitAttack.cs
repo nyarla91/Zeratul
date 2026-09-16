@@ -4,6 +4,7 @@ using _Core.Pause;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Effects;
 using Gameplay.Data.Units;
+using Gameplay.Map;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace Gameplay.Units
 {
     public class UnitAttack : UnitComponent
     {
-        private readonly UnitAttackConfig _config;
+        private readonly UnitAttackConfig _attackConfig;
+        private readonly PathfindingConfig _pathfindingConfig;
         private readonly OrderErrorConfig _errors;
 
         public Unit CurrentTarget { get; private set; }
@@ -24,9 +26,10 @@ namespace Gameplay.Units
         
         public event Action<Unit> Struck;
 
-        public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig config, OrderErrorConfig errors) : base(unit)
+        public UnitAttack(Unit unit, IPauseReadonly tacticalPause, UnitAttackConfig attackConfig, PathfindingConfig pathfindingConfig, OrderErrorConfig errors) : base(unit)
         {
-            _config = config;
+            _attackConfig = attackConfig;
+            _pathfindingConfig = pathfindingConfig;
             _errors = errors;
 
             if ( ! UnitType.WeaponType)
@@ -100,6 +103,13 @@ namespace Gameplay.Units
             return Isometry.Distance(Unit.Position, other) < Weapon.MaxDistance;
         }
 
+        public bool IsUnitInLineOfSight(Unit other)
+        {
+            return UnitType.IsAir
+                   || ! Weapon.RequiresLineOfSight
+                   || _pathfindingConfig.CanPassBetween(Unit.Position, other.Position, new PathfindingAgent(true, 0.1f), out _);
+        }
+
         private void UpdateAttack()
         {
             if ( ! CanAttackUnit(CurrentTarget))
@@ -108,19 +118,23 @@ namespace Gameplay.Units
                 return;
             }
 
-            if ( ! IsUnitInRange(CurrentTarget))
+            bool targetInLineOfSight = IsUnitInLineOfSight(CurrentTarget);
+            if ( ! targetInLineOfSight || ! IsUnitInRange(CurrentTarget))
             {
                 if (Unit.CanMove)
-                    Unit.Movement.Move(CurrentTarget.Position, Weapon.MaxDistance);
+                {
+                    float desiredDistance = targetInLineOfSight ? Weapon.MaxDistance : 0;
+                    Unit.Movement.Move(CurrentTarget.Position, desiredDistance);
+                }
                 else
                     StopAttacking();
                 return;
             }
             Unit.Movement?.Stop();
-                
+            
             float targetAngle = (Unit.Position.DirectionTo(CurrentTarget.Position) / Isometry.Scale).ToDegrees();
             Unit.Direction.RotateTowards(targetAngle);
-            if (Mathf.Abs(Unit.Direction.LookAngle - targetAngle) > _config.DeltaAngleTolerance)
+            if (Mathf.Abs(Unit.Direction.LookAngle - targetAngle) > _attackConfig.DeltaAngleTolerance)
                 return;
             if (Unit.Abilities.IsLocked)
                 return;

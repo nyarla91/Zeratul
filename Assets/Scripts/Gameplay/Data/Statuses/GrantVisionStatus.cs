@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Core;
 using Gameplay.Units;
@@ -8,7 +9,7 @@ using Zenject;
 namespace Gameplay.Data.Statuses
 {
     [CreateAssetMenu(menuName = "Gameplay Data/Statuses/Grant Vision", order = 0)]
-    public class GrantVisionStatus : StatusType
+    public class GrantVisionStatus : StatusType, IDisposable
     {
         [SerializeField] private SOInjectPresenter _gameplayPresenter;
         [SerializeField] private float _radius;
@@ -60,6 +61,11 @@ namespace Gameplay.Data.Statuses
         {
             if (_useHostRadius)
                 _radius = 0;
+        }
+
+        public void Dispose()
+        {
+            _visionSources.Clear();
         }
     }
 }

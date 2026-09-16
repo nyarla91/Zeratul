@@ -4,6 +4,7 @@ using System.Linq;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
+using Zenject;
 using Object = UnityEngine.Object;
 
 namespace Gameplay.Data
@@ -13,8 +14,8 @@ namespace Gameplay.Data
     {
         [SerializeField] private Object[] _directories;
         [SerializeField] private Object[] _objects;
-
         private Dictionary<string, Object> _registry;
+
 
         public T Get<T>(string name) where T : Object
         {
@@ -32,6 +33,15 @@ namespace Gameplay.Data
             if ( ! _registry.TryGetValue(name, out Object result))
                 throw new KeyNotFoundException($"{this.name} does not contain object {name} of type {typeof(T).Name}");
             return (T) result;
+        }
+
+        public void DisposeData()
+        {
+            foreach (Object o in _objects)
+            {
+                if (o is IDisposable disposable)
+                    disposable.Dispose();
+            }
         }
 
 #if UNITY_EDITOR

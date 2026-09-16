@@ -17,7 +17,7 @@ MonoBehaviour:
   _recalculationPeriod: 0.2
   _visionBlockerMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 16640
   _absoluteExtraSight: 0
   _minSight: 2
   _simulationRadius: 20

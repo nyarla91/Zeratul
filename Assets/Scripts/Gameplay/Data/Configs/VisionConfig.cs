@@ -24,5 +24,14 @@ namespace Gameplay.Data.Configs
         public float SimulationRadius => _simulationRadius;
         public float FogPixelScale => _fogPixelScale;
         public Vector2Int FogDimensions => _fogDimensions;
+        
+        public bool HasLineOfSight(Vector2 worldStart, Vector2 worldTarget, out RaycastHit2D hit)
+        {
+            Vector2 direction = worldTarget - worldStart;
+            float distance = direction.magnitude;
+
+            hit = Physics2D.Raycast(worldStart, direction, distance, _visionBlockerMask);
+            return hit.collider == null;
+        }
     }
 }

@@ -102,10 +102,10 @@ namespace Gameplay.Units
             Pathing = new UnitPathing(this, _pathfindingConfig, _unitMovementConfig, NodeMap, _rigidbody, _obstacleCollider, _collider);
             
             if (CanAttack)
-                Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig, _orderErrorConfig);
+                Attack = new UnitAttack(this, TacticalPause, _unitAttackConfig, _pathfindingConfig, _orderErrorConfig);
             
             if (CanMove)
-                Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _rigidbody, _collider);
+                Movement = new UnitMovement(this, TacticalPause, NodeMap, _unitMovementConfig, _pathfindingConfig, _rigidbody, _collider);
             
             UnitPool.AddUnit(this);
         }
