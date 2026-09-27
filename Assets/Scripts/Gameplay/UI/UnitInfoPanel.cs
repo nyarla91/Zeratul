@@ -3,6 +3,7 @@ using _Core;
 using Gameplay.Data.Units;
 using Gameplay.Player;
 using Gameplay.Units;
+using Settings.Localization;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -11,6 +12,7 @@ namespace Gameplay.UI
 {
     public class UnitInfoPanel : MonoBehaviour
     {
+        [SerializeField] private Localizer _localizer;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private TMP_Text _name;
         [SerializeField] private TMP_Text _hitPoints;
@@ -32,7 +34,7 @@ namespace Gameplay.UI
             }
             _canvasGroup.alpha = 1;
 
-            _name.text = CurrentUnit.Type.DisplayName;
+            _name.text = _localizer.Translate(CurrentUnit.Type.DisplayName);
             bool displayHitPoints = CurrentUnit.HasLife;
             bool displayShieldPoints = CurrentUnit.HasLife && CurrentUnit.Life.HasShieldPoints;
             bool displayEnergyPoints = CurrentUnit.Abilities.HasEnergyPoints;

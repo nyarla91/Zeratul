@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: _MineExplosive
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _displayName: Explosive Mine
+  _displayName: unit-mine
   _focusPriority: 0
   _nonInteractable: 0
   _tags:
@@ -38,7 +38,7 @@ MonoBehaviour:
   _size: 0.7
   _rotationSpeed: 0
   _disableSight: 0
-  _sightRadius: 5
+  _sightRadius: 2
   _weaponType: {fileID: 0}
   _innateStatuses:
   - {fileID: 11400000, guid: 67c838e580c0b764e81d52c2dce23756, type: 2}

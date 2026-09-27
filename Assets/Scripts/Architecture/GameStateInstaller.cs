@@ -16,7 +16,7 @@ namespace Architecture
                 Container.Instantiate<GameplayState>(),
             };
 
-            Container.Bind<GameStateMachine>().FromInstance(new GameStateMachine(states)).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameStateMachine>().FromInstance(new GameStateMachine(states)).AsSingle().NonLazy();
             Container.Bind<GameFlowController>().AsSingle().NonLazy();
         }
     }

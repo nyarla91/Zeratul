@@ -22,7 +22,7 @@ MonoBehaviour:
   _chargesToUse: 0
   _ignoreLock: 0
   _targetRequirement: 2
-  _maxDistance: 1.5
+  _maxDistance: 24
   _casterValidators:
     _unitValidators: []
   _targetValidators:

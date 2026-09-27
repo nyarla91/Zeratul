@@ -16,7 +16,7 @@ namespace Gameplay.Units
         
         public UnitDirection(Unit unit, IPauseReadonly tacticalPause, float lookAngle) : base(unit)
         {
-            LookAngle = lookAngle;
+            TargetLookAngle = LookAngle = lookAngle;
             Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Subscribe(_ => UpdateLookAngle());

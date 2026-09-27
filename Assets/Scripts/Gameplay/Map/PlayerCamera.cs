@@ -47,6 +47,7 @@ namespace Gameplay.Map
         {
             Vector3 target = position.WithZ(transform.position.z);
             transform.DOKill();
+            immediately = true;
             if (immediately)
             {
                 transform.position = target;

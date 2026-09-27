@@ -1,0 +1,16 @@
+{
+    "name": "BGM",
+    "rootNamespace": "",
+    "references": [
+        "GUID:39914b199bb14e24eb9ff5fc5140bf67"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,4 +1,5 @@
-﻿using Gameplay.Data.Configs;
+﻿using BGM;
+using Gameplay.Data.Configs;
 using GameState;
 using Save;
 using Settings;
@@ -11,6 +12,7 @@ namespace Architecture
     { 
         [SerializeField] private GameObject _loadingScreenPrefab;
         [SerializeField] private GameObject _sceneLoaderPrefab;
+        [SerializeField] private GameObject _bgmPrefab;
         [SerializeField] private ScenarioRegistry _scenarioRegistry;
         [SerializeField] private TutorialRegistry _tutorialRegistry;
 
@@ -20,6 +22,7 @@ namespace Architecture
             Container.BindInstance(_tutorialRegistry).AsSingle().NonLazy();
             Container.Bind<LoadingScreen>().FromComponentInNewPrefab(_loadingScreenPrefab).AsSingle().NonLazy();
             Container.Bind<SceneLoader>().FromComponentInNewPrefab(_sceneLoaderPrefab).AsSingle().NonLazy();
+            Container.Bind<BgmCycle>().FromComponentInNewPrefab(_bgmPrefab).AsSingle().NonLazy();
             Container.Bind<ScenarioSession>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SaveFileIO>().AsSingle().NonLazy();
             Container.Bind<SaveFileList>().AsSingle().NonLazy();

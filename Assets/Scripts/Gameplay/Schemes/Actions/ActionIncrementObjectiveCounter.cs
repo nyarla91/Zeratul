@@ -11,12 +11,12 @@ namespace Gameplay.Schemes.Actions
         
         public override void Act()
         {
-        _objective.Value.Increment(_increment?.Value ?? 1);
+            _objective.Value.Increment(_increment?.Value ?? 1);
         }
         
         private void OnValidate()
         {
-        gameObject.name = $"> Increment {_objective?.name} counter by {_increment?.name ?? 1.ToString()}";
+            gameObject.name = $"> Increment {_objective?.name} counter by {_increment?.name ?? 1.ToString()}";
         }
     }
 }

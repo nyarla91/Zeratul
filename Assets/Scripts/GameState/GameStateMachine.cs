@@ -6,11 +6,13 @@ using UnityEngine;
 
 namespace GameState
 {
-    public class GameStateMachine
+    public class GameStateMachine : IGameStateTransitionService
     {
         private readonly Dictionary<Type, IGameState> _states;
 
         public IGameState CurrentState { get; private set; }
+
+        public event Action<IGameState, IGameState> Transited;
 
         public GameStateMachine(List<IGameState> states)
         {
@@ -22,7 +24,8 @@ namespace GameState
             CurrentState?.Exit();
             TState state = GetState<TState>();
             state.Enter();
-            Debug.Log($"Game transitioned from {CurrentState} to {state}");
+            Debug.Log($"Game transited from {CurrentState} to {state}");
+            Transited?.Invoke(CurrentState, state);
             CurrentState = state;
             return state;
         }
@@ -33,5 +36,10 @@ namespace GameState
                 throw new InvalidOperationException($"No state of type {typeof(TState)} found.");
             return (TState) state;
         }
+    }
+
+    public interface IGameStateTransitionService
+    {
+        event Action<IGameState, IGameState> Transited;
     }
 }

@@ -17,6 +17,15 @@ MonoBehaviour:
     _line: Teleport on a short distance.
   - _key: ability-blink-name
     _line: Transfer
+  - _key: ability-cleanse-description
+    _line: 'Remove all timed negative effects from the target and restore [shield]
+      shield points to it. '
+  - _key: ability-cleanse-name
+    _line: Mend
+  - _key: ability-dismiss-description
+    _line: Relieve target overriden unit of assigned duties
+  - _key: ability-dismiss-name
+    _line: Done your part
   - _key: ability-feedback-description
     _line: Burn up to [energy] energy points of the target and deal that much damage
       to them.
@@ -40,19 +49,23 @@ MonoBehaviour:
       Only one enemy can be infected at the same time.'
   - _key: ability-parasite-name
     _line: Virus
+  - _key: ability-slice-description
+    _line: Deal [dmg] damage to the target ([bonusdmg] against Mechanical targets).
   - _key: ability-slice-name
     _line: Pierce
-  - _key: ability-slice-descruption
-    _line: Deal [dmg] damage to the target ([bonusdmg] against Mechanical targets).
   - _key: ability-snipe-description
     _line: Deal [dmg] damage to the target.
   - _key: ability-snipe-name
     _line: Snipe
-  - _key: ability-cleanse-description
-    _line: 'Remove all timed negative effects from the target and restore [shield]
-      shield points to it. '
-  - _key: ability-cleanse-name
-    _line: Mend
+  - _key: ability-emp-description
+    _line: All affected units lose [shield] shield points, [energy] energy points
+      and become detected for [duration] sec.
+  - _key: ability-emp-name
+    _line: EMP charge
+  - _key: ability-smoke-description
+    _line: Creates a vision-blocking smoke at a target location for [duration] sec.
+  - _key: ability-smoke-name
+    _line: Smoke grenade
   - _key: ability-stat-cooldown
     _line: 'Cooldown: # sec.'
   - _key: ability-stat-energy
@@ -70,6 +83,22 @@ MonoBehaviour:
     _line: Game saved
   - _key: message-saving-in-progress
     _line: Saving is in progress
+  - _key: objective-1-collect
+    _line: (OPTIONAL) Collect link cores
+  - _key: objective-1-equipment
+    _line: Recover your equipment
+  - _key: objective-1-escape
+    _line: Proceed to evac point
+  - _key: objective-1-hitless
+    _line: (OPTIONAL) Do not lose hit points
+  - _key: objective-2-invasion
+    _line: Obtain Overseer device
+  - _key: objective-2-overseers
+    _line: Eliminate Overseers
+  - _key: objective-2-extra-overseers
+    _line: (OPTIONAL) Eliminate Overseers
+  - _key: obecjtive-2-stbs
+    _line: (OPTIONAL) Destroy Enhanced sensor towers
   - _key: order
     _line: Order
   - _key: order-ability
@@ -149,10 +178,27 @@ MonoBehaviour:
     _line: You can control this unit
   - _key: status-invasion-name
     _line: Override
+  - _key: status-slowed-description
+    _line: Movement speed is reduced by [reduction]%
+  - _key: status-slowed-name
+    _line: Slowed
+  - _key: status-stim-description
+    _line: You restore hit points and energy points over time.
+  - _key: status-stim-name
+    _line: Stim
+  - _key: status-mine-explosive-description
+    _line: When a hostile unit passes through this mine, it detonates and deals [dmg]
+      damage to all hostile units in proximity
+  - _key: status-mine-explosive-name
+    _line: Explosive mine
   - _key: status-locked-description
     _line: Cannot attack, use active and passive abilities
   - _key: status-locked-name
     _line: Locked
+  - _key: status-parasite-description
+    _line: You can see everything this unit can see.
+  - _key: status-parasite-name
+    _line: Virus
   - _key: status-shield-battery-description
     _line: Restores shields to nearby friendly units
   - _key: status-shield-battery-name
@@ -161,17 +207,13 @@ MonoBehaviour:
     _line: Has limited lifetime
   - _key: status-temporary-name
     _line: Temporary
-  - _key: status-parasite-description
-    _line: You can see everything this unit can see.
-  - _key: status-parasite-name
-    _line: Virus
   - _key: tutorial-attack
     _line: 'Right click an enemy to order selected unit to attack them
 
 
       Press
-      <stat>[A]</stat>, then left click anywhere to order selected unit to go to
-      this point attacking all enemies along the way.'
+      [A], then left click anywhere to order selected unit to go to this point attacking
+      all enemies along the way.'
   - _key: tutorial-attack-header
     _line: Attack
   - _key: tutorial-basic-controls
@@ -185,12 +227,12 @@ MonoBehaviour:
   - _key: tutorial-basic-controls-header
     _line: Basic controls
   - _key: tutorial-camera
-    _line: 'Hold middle mouse button to drag the camera. Alternatively you can bring
-      your cursor to any of the screen edges to move the camera in that direction.
+    _line: 'Hold [Ctrl] or middle mouse button to drag the camera. Alternatively
+      you can bring your cursor to any of the screen edges to move the camera in
+      that direction.
 
 
-      Use
-      mouse scroll wheel to zoom in and zoom out.'
+      Use mouse scroll wheel to zoom in and zoom out.'
   - _key: tutorial-camera-header
     _line: Camera control
   - _key: tutorial-cloak
@@ -223,6 +265,20 @@ MonoBehaviour:
       time.'
   - _key: tutorial-hindrance-header
     _line: Hindrance
+  - _key: tutorial-invasion
+    _line: 'Override [T] converts enemy to your side, letting you fully control it
+      and use all of its capabilities against its former allies.
+
+
+      Using Override
+      requires link cores that you can collect throghout the mission. Target enemy
+      with Override to learn how many link cores it will require to control it.
+
+
+      You
+      can only control two enemy units at once. Some units may occupy both slots.'
+  - _key: tutorial-invasion-header
+    _line: Override
   - _key: tutorial-parasite
     _line: Using Virus [E] lets you see everything infected enemy can see. Use this
       for gathering intel or targeting other enemies you wouldn't have seen otherwise
@@ -285,6 +341,11 @@ MonoBehaviour:
 '
   - _key: tutorial-vision-header
     _line: Vision areas
+  - _key: tutorial-save
+    _line: You can save and load the game anytime from pause menu [Esc] or use quick
+      save [F5] and quick load [F8].
+  - _key: tutorial-save-header
+    _line: Saving
   - _key: ui-back
     _line: Back
   - _key: ui-choose-a-target
@@ -358,19 +419,23 @@ MonoBehaviour:
   - _key: ui-victory
     _line: Mission completed
   - _key: unit-attack-turret
-    _line: "\u0421\u0438\u043B\u043E\u0432\u0430\u044F \u0442\u0443\u0440\u0435\u043B\u044C"
+    _line: Force turret
   - _key: unit-expert
     _line: "\xABSpecialist\xBB"
   - _key: unit-fodder
     _line: "\xABPrivate\xBB"
-  - _key: unit-mine
-    _line: Mine
-  - _key: unit-player
-    _line: Agent
   - _key: unit-medstation
     _line: Mending station
+  - _key: unit-mine
+    _line: Mine
+  - _key: unit-overseer
+    _line: Overseer
+  - _key: unit-player
+    _line: Agent
   - _key: unit-sensor-tower
     _line: Sensor tower
+  - _key: unit-sensor-tower-big
+    _line: Enhanced sensor tower
   - _key: unit-snake-name
     _line: Snake
   - _key: unittag-mechanical
@@ -380,11 +445,13 @@ MonoBehaviour:
   - _key: unittag-robotic
     _line: Robotic
   - _key: validator-enough-control-reserve
-    _line: Not enought control points (#)
+    _line: Not enough link cores (# more)
   - _key: validator-enough-control-slots
-    _line: Not enough control slots (#)
+    _line: Not enough control slots (# more)
   - _key: validator-has-different-owner
     _line: Can't target your own units
+  - _key: validator-has-invasion
+    _line: Target must be overriden
   - _key: validator-has-same-owner
     _line: Target your own unit
   - _key: validator-is-air
@@ -407,11 +474,3 @@ MonoBehaviour:
     _line: Cannot control this unit
   - _key: validator-kill-counter
     _line: Kill more Organic enemies (#)
-  - _key: objective-1-equipment
-    _line: Recover your equipment
-  - _key: objective-1-escape
-    _line: Escape
-  - _key: objective-1-collect
-    _line: (OPTIONAL) Obtain link cells
-  - _key: objective-1-hitless
-    _line: (OPTIONAL) Do not lose hit points

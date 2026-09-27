@@ -61,7 +61,7 @@ namespace Gameplay.UI
 
             DisposeHotkey();
             _hotkey = orderType ? PlayerInput.GetOrderHotkeyAction(orderType.HotkeyAlias) : null;
-            _hotkeyPrompt.text = _hotkey?.GetBindingDisplayString() ?? "";
+            _hotkeyPrompt.text = _hotkey?.bindings[0].ToDisplayString() ?? "";
             
             if (_hotkey != null)
             {

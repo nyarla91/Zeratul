@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9efb9ef6e6479f912b1ef656c0963b, type: 3}
   m_Name: _Expert
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitType
-  _displayName: Expert
+  _displayName: unit-expert
   _focusPriority: 2
   _nonInteractable: 0
   _tags:
   - {fileID: 11400000, guid: 8476ef2eb15211843933f7676ec0df46, type: 2}
-  _controlCost: 2
+  _controlCost: 3
   _controlSlots: 1
   _attackWorth:
     _baseWorth: 60
@@ -63,4 +63,4 @@ MonoBehaviour:
   _aiMap: {fileID: 11400000, guid: d027de8ecba73d94b9493dac5d3cb2a8, type: 2}
   _editorRadius:
     _object: {fileID: 11400000, guid: 86182896de5e48541966b47b2e0b01c0, type: 2}
-  _editorRadiusColor: {r: 1, g: 0.99607843, b: 0, a: 0.050980393}
+  _editorRadiusColor: {r: 1, g: 0.99607843, b: 0, a: 0.20392157}

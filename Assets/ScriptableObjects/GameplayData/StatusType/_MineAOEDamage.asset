@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85200319680843f6b31dec5cae1dafcd, type: 3}
   m_Name: _MineAOEDamage
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.MineStatus
+  _tag: 0
   _useLock: 1
   _display: 1
   _displayIcon: {fileID: 21300000, guid: 993b8b434602380458f89fd95222c13d, type: 3}
-  _displayName: 'Mine: Explosive'
-  _rawDisplayDescription: Explode and deal damage to all units around whenever hostile
-    unit passes by.
+  _displayName: status-mine-explosive-name
+  _showDuration: 0
+  _showDurationPriority: 0
+  _displayDescription: status-mine-explosive-description#[dmg]=70
   _rendererPrefabs:
   - {fileID: 485935788325951280, guid: 6d1440aa6d9b86948ac33cf5459fdb6b, type: 3}
   - {fileID: 1872224104527679214, guid: e7497fd3cb0ce4b40ac9ae3a87f30fbb, type: 3}
@@ -28,6 +30,8 @@ MonoBehaviour:
   _triggerValidator:
     _unitValidators:
     - {fileID: 11400000, guid: d6c98aee551e39048aa025e53b1044a3, type: 2}
+    - {fileID: 11400000, guid: c0cb9420b68d42ccb9523ac6d96ffbc4, type: 2}
   _triggerEffects: []
   _mineTriggerEffects:
+  - {fileID: 11400000, guid: 258d6d4cedefd0d119344a8c4444b35a, type: 2}
   - {fileID: 11400000, guid: cbd716f4effa0ad42ad17abcf8bca968, type: 2}

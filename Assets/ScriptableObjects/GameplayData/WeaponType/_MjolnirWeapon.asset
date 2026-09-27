@@ -15,8 +15,8 @@ MonoBehaviour:
   _baseDamage: 18
   _additionalEffects:
   - {fileID: 11400000, guid: 801776ed75b50e14184880ec84e1fed1, type: 2}
-  - {fileID: 11400000, guid: 6cf2b9b3fc6dafc4bb09fb6e57a3e6cd, type: 2}
   _windupTime: 25
   _recoveryTime: 50
   _maxDistance: 2.2
+  _requiresLineOfSight: 1
   _autoAttackDistance: 5

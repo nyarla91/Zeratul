@@ -1,6 +1,8 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using BGM;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace GameState
 {
@@ -14,6 +16,8 @@ namespace GameState
         private float _transitionT;
         private float _targetTransitionT;
         
+        [Inject] private BgmCycle BgmCycle { get; set; }
+        
         private void Awake()
         {
             gameObject.SetActive(false);
@@ -22,6 +26,7 @@ namespace GameState
         public async UniTask Show()
         {
             gameObject.SetActive(true);
+            BgmCycle.Pause();
             _animation.color = Color.clear;
             _targetTransitionT = 1;
             await UniTask.WaitUntil(() => _transitionT.Equals(1));

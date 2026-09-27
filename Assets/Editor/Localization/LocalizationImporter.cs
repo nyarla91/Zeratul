@@ -76,6 +76,7 @@ namespace Editor.Localization
             catch (System.Exception ex)
             {
                 Debug.LogError($"Connection failed: {ex.Message}");
+                throw;
             }
         }
     }
