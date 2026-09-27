@@ -7,6 +7,7 @@ using Gameplay.Data.Orders;
 using Gameplay.Player;
 using Gameplay.Units;
 using TMPro;
+using UIUtility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -28,6 +29,7 @@ namespace Gameplay.UI
         [SerializeField] private int _clickEventIndex;
         [SerializeField] private int _pointerEnterEventIndex;
         [SerializeField] private int _pointerExitEventIndex;
+        [SerializeField] private ClickSound _clickSound;
 
         private InputAction _hotkey;
         private bool _showTooltip;
@@ -97,10 +99,12 @@ namespace Gameplay.UI
             {
                 Dispatcher.IssueOrderToSelection(OrderType, default);
                 Targeter.CancelTargeting();
+                _clickSound.Play();
             }
             else
             {
                 Targeter.StartTargeting(OrderType);
+                _clickSound.Play();
             }
         }
 

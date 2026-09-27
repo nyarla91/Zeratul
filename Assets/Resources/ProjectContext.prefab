@@ -119,6 +119,7 @@ MonoBehaviour:
   _loadingScreenPrefab: {fileID: 7442429249242382348, guid: e2f2fd1e3d982ec4986d19ff7d4f751e, type: 3}
   _sceneLoaderPrefab: {fileID: 699369253501963580, guid: db32131b252ffb8458587488c08c7799, type: 3}
   _bgmPrefab: {fileID: 5811664027340680906, guid: 4342cd660a7c11fbd9dffd3132a62977, type: 3}
+  _globalAudioSourcePrefab: {fileID: 331468007580265058, guid: 129aafd15d9851ba4bacb15978aba2be, type: 3}
   _scenarioRegistry: {fileID: 11400000, guid: 6996ffca75e85724da84099bded356c2, type: 2}
   _tutorialRegistry: {fileID: 11400000, guid: b0b21a7fe9fbc75418396ad86a1ce4c8, type: 2}
   _audioMixer: {fileID: 24100000, guid: 8005f561c42a2fb67b27604378a40ef8, type: 2}

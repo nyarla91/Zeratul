@@ -104,6 +104,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -164,6 +165,7 @@ GameObject:
   - component: {fileID: 2246509825400496241}
   - component: {fileID: 2362837374522289882}
   - component: {fileID: 3789507693694099360}
+  - component: {fileID: 26869357183582342}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -272,4 +274,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2362837374522289882}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 26869357183582342}
+        m_TargetAssemblyTypeName: UIUtility.ClickSound, UIUtility
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &26869357183582342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386158569423927629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c3f7cf3f72429ca32f9fc83d9273a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UIUtility::UIUtility.ClickSound
+  _clip: {fileID: 8300000, guid: 0ac2130a85b11d1cd84a341e6021ea06, type: 3}
+  _negativeClip: {fileID: 0}
+  _pitchAmplitude: 0.5

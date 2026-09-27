@@ -14,6 +14,7 @@ namespace Architecture
         [SerializeField] private GameObject _loadingScreenPrefab;
         [SerializeField] private GameObject _sceneLoaderPrefab;
         [SerializeField] private GameObject _bgmPrefab;
+        [SerializeField] private GameObject _globalAudioSourcePrefab;
         [SerializeField] private ScenarioRegistry _scenarioRegistry;
         [SerializeField] private TutorialRegistry _tutorialRegistry;
         [SerializeField] private AudioMixer _audioMixer;
@@ -25,6 +26,7 @@ namespace Architecture
             Container.Bind<LoadingScreen>().FromComponentInNewPrefab(_loadingScreenPrefab).AsSingle().NonLazy();
             Container.Bind<SceneLoader>().FromComponentInNewPrefab(_sceneLoaderPrefab).AsSingle().NonLazy();
             Container.Bind<BgmCycle>().FromComponentInNewPrefab(_bgmPrefab).AsSingle().NonLazy();
+            Container.Bind<AudioSource>().FromComponentInNewPrefab(_globalAudioSourcePrefab).AsSingle().NonLazy();
             Container.Bind<ScenarioSession>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SaveFileIO>().AsSingle().NonLazy();
             Container.Bind<SaveFileList>().AsSingle().NonLazy();

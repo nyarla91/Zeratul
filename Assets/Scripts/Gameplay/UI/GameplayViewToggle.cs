@@ -1,5 +1,6 @@
 using _Core.Input;
 using Gameplay.Player;
+using UIUtility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ namespace Gameplay.UI
         [SerializeField] private Image _image;
         [SerializeField] private Color _onColor;
         [SerializeField] private Color _offColor;
+        [SerializeField] private ClickSound _clickSound;
 
         [Inject] private PlayerInput PlayerInput { get; set; }
 
@@ -28,6 +30,7 @@ namespace Gameplay.UI
 
         public void Toggle()
         {
+            _clickSound.PlayToggle( ! IsOn);
             if (IsOn)
                 ToggleOff();
             else

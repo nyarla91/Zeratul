@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Units;
@@ -14,6 +16,8 @@ namespace Gameplay.Player
 
         private bool QueueOrder => _playerInput.QueueOrder.IsHeld;
 
+        public event Action OrderIssued;
+
         [Inject]
         public PlayerOrdersDispatcher(PlayerSelection playerSelection, PlayerInput playerInput, OrderErrorConfig errors)
         {
@@ -28,6 +32,7 @@ namespace Gameplay.Player
             {
                 unit.Orders.IssueSmartOrder(target, QueueOrder);
             }   
+            OrderIssued?.Invoke();
         }
         
         public void IssueOrderToSelection(OrderType type, OrderTarget target)
@@ -36,6 +41,7 @@ namespace Gameplay.Player
             {
                 unit.Orders.IssueOrder(new Order(type, unit, target), QueueOrder);
             }
+            OrderIssued?.Invoke();
         }
 
         public bool CanIssueWithoutTarget(OrderType orderType, out string errorMessage)
