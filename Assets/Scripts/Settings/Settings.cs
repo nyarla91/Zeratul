@@ -21,6 +21,9 @@ namespace Settings
         public int Language => _config.GetValue("language");
         public bool Fullscreen => _config.GetValue("fullscreen") == 1;
         public int Resolution => _config.GetValue("resolution");
+        public float MasterVolume => _config.GetValue("masterSound") / 100f;
+        public float MusicVolume => _config.GetValue("music") / 100f;
+        public float SfxVolume => _config.GetValue("sfx") / 100f;
         public int CameraMoveSpeed => _config.GetValue("cameraMoveSpeed");
         public int CameraDragSpeed => _config.GetValue("cameraDragSpeed");
 
@@ -81,6 +84,9 @@ namespace Settings
         public int Language { get; }
         public bool Fullscreen { get; }
         public int Resolution { get; }
+        public float MasterVolume { get; }
+        public float MusicVolume { get; }
+        public float SfxVolume { get; }
         public int CameraMoveSpeed { get; }
         public int CameraDragSpeed { get; }
     }

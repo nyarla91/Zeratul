@@ -121,6 +121,7 @@ MonoBehaviour:
   _bgmPrefab: {fileID: 5811664027340680906, guid: 4342cd660a7c11fbd9dffd3132a62977, type: 3}
   _scenarioRegistry: {fileID: 11400000, guid: 6996ffca75e85724da84099bded356c2, type: 2}
   _tutorialRegistry: {fileID: 11400000, guid: b0b21a7fe9fbc75418396ad86a1ce4c8, type: 2}
+  _audioMixer: {fileID: 24100000, guid: 8005f561c42a2fb67b27604378a40ef8, type: 2}
 --- !u!114 &9203218780266193080
 MonoBehaviour:
   m_ObjectHideFlags: 0

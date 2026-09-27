@@ -4,6 +4,7 @@ using GameState;
 using Save;
 using Settings;
 using UnityEngine;
+using UnityEngine.Audio;
 using Zenject;
 
 namespace Architecture
@@ -15,6 +16,7 @@ namespace Architecture
         [SerializeField] private GameObject _bgmPrefab;
         [SerializeField] private ScenarioRegistry _scenarioRegistry;
         [SerializeField] private TutorialRegistry _tutorialRegistry;
+        [SerializeField] private AudioMixer _audioMixer;
 
         public override void InstallBindings()
         {
@@ -26,7 +28,8 @@ namespace Architecture
             Container.Bind<ScenarioSession>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SaveFileIO>().AsSingle().NonLazy();
             Container.Bind<SaveFileList>().AsSingle().NonLazy();
-            Container.Bind<ScreenSettingsApplier>().AsSingle().NonLazy();
+            Container.Bind<AudioMixer>().FromInstance(_audioMixer).AsSingle().NonLazy();
+            Container.Bind<SettingsApplier>().AsSingle().NonLazy();
         }
     }
 }

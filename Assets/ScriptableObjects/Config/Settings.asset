@@ -17,10 +17,16 @@ MonoBehaviour:
   - key: language
     value: 0
   - key: fullscreen
-    value: 2
-  - key: resolution
     value: 1
+  - key: resolution
+    value: 2
   - key: cameraMoveSpeed
     value: 50
   - key: cameraDragSpeed
+    value: 50
+  - key: music
+    value: 100
+  - key: sfx
+    value: 100
+  - key: masterSound
     value: 50
