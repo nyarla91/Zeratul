@@ -62,3 +62,4 @@ MonoBehaviour:
   _editorRadius:
     _object: {fileID: 11400000, guid: e65daa351364e04409e573c246ebe3c2, type: 2}
   _editorRadiusColor: {r: 0.5568781, g: 0, b: 1, a: 0.101960786}
+  _soundMap: {fileID: 11400000, guid: 8336632696173b42480f6fabd56d9546, type: 2}

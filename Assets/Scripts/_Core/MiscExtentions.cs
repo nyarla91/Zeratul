@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _Core
 {
@@ -92,6 +93,12 @@ namespace _Core
             return new Vector3(Mathf.Lerp(bounds.min.x, bounds.max.x, normalized.x),
                 Mathf.Lerp(bounds.min.y, bounds.max.y, normalized.y),
                 Mathf.Lerp(bounds.min.z, bounds.max.z, normalized.z));
+        }
+
+        public static void PlayPitchedOneShot(this AudioSource audioSource, AudioClip clip, float pitchAmplitude, float volumeScale = 1)
+        {
+            audioSource.pitch = 1 - pitchAmplitude / 2 + Random.value * pitchAmplitude;
+            audioSource.PlayOneShot(clip, volumeScale);
         }
     }
 }

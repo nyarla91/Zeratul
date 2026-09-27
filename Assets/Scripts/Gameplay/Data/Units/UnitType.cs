@@ -55,6 +55,8 @@ namespace Gameplay.Data.Units
         [HorizontalLine(2, EColor.White)]
         [SerializeField] private ReferenceIRadiusSource _editorRadius;
         [SerializeField] private Color _editorRadiusColor;
+        [Space]
+        [Expandable] [SerializeField] private UnitSoundMap _soundMap;
 
         public string DisplayName => _displayName;
         public int FocusPriority => _focusPriority;
@@ -87,6 +89,7 @@ namespace Gameplay.Data.Units
         public UnitAiMap AIMap => _aiMap;
         public float EditorRadius => _editorRadius?.I?.Radius ?? 0;
         public Color EditorRadiusColor => _editorRadiusColor;
+        public UnitSoundMap SoundMap => _soundMap;
 
         public PathfindingAgent PathfindingAgent => new(IsAir, Size / 2);
 

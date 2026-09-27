@@ -57,9 +57,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteMap: {fileID: 11400000, guid: e7544b88e71ce4e49be104bfd8b85708, type: 2}
-  _interactionColliderSize: {x: 1.3, y: 2}
-  _interactionColliderOffset: {x: 0, y: 0.6}
+  _hideOnMinimap: 0
   _aiMap: {fileID: 11400000, guid: 774eb48dc7d3eee42a3790898196f997, type: 2}
   _editorRadius:
     _object: {fileID: 0}
   _editorRadiusColor: {r: 0, g: 0, b: 0, a: 0}
+  _soundMap: {fileID: 11400000, guid: 8336632696173b42480f6fabd56d9546, type: 2}

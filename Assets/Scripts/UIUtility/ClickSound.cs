@@ -1,3 +1,4 @@
+using _Core;
 using UnityEngine;
 using Zenject;
 
@@ -13,18 +14,12 @@ namespace UIUtility
 
         public void Play()
         {
-            PlayClip(_clip);
+            AudioSource.PlayPitchedOneShot(_clip, _pitchAmplitude);
         }
 
         public void PlayToggle(bool toggle)
         {
-            PlayClip(toggle ? _clip : _negativeClip);
-        }
-
-        private void PlayClip(AudioClip clip)
-        {
-            AudioSource.pitch = 1 - Random.value * _pitchAmplitude + Random.value * _pitchAmplitude;
-            AudioSource.PlayOneShot(clip);
+            AudioSource.PlayPitchedOneShot(toggle ? _clip : _negativeClip, _pitchAmplitude);
         }
     }
 }
