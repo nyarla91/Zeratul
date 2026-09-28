@@ -26,6 +26,7 @@ namespace Gameplay.Arrangement
                 GameplaySaveLoad.ReproduceFromSaveData(ScenarioSession.SaveData);
             }
             NodeMap.Init();
+            await UniTask.WaitForEndOfFrame();
             GamePause.Unpause(this);
         }
     }

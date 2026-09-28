@@ -715,7 +715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 11
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
   m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
@@ -10021,9 +10021,15 @@ MonoBehaviour:
   _image: {fileID: 1544542345}
   _text: {fileID: 715806077}
   _errorSprite: {fileID: -906946999, guid: dfaa460de7f80a24aa77b890dfaac3d8, type: 3}
+  _errorClip: {fileID: 8300000, guid: a22d1c87bc403d7748e6bad583d00ce8, type: 3}
   _warningSprite: {fileID: -681363050, guid: dfaa460de7f80a24aa77b890dfaac3d8, type: 3}
+  _warningClip: {fileID: 8300000, guid: a22d1c87bc403d7748e6bad583d00ce8, type: 3}
   _successSprite: {fileID: 1818526557, guid: dfaa460de7f80a24aa77b890dfaac3d8, type: 3}
+  _successClip: {fileID: 8300000, guid: 84ec6e8f3c87cf716b9e721176f800f9, type: 3}
   _infoSprite: {fileID: 4641903, guid: dfaa460de7f80a24aa77b890dfaac3d8, type: 3}
+  _infoClip: {fileID: 8300000, guid: 84ec6e8f3c87cf716b9e721176f800f9, type: 3}
+  _pitchAmplitude: 0.1
+  _volumeScale: 0.5
 --- !u!114 &1544542345
 MonoBehaviour:
   m_ObjectHideFlags: 0

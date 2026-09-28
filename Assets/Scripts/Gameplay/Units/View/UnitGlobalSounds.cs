@@ -1,5 +1,6 @@
 using System;
 using _Core;
+using _Core.Pause;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -14,6 +15,7 @@ namespace Gameplay.Units.View
         [SerializeField] private float _pitchAmplitude;
 
         [Inject] private AudioSource AudioSource { get; set; }
+        [Inject] private GamePause GamePause { get; set; }
         
         private void Awake()
         {
@@ -23,6 +25,8 @@ namespace Gameplay.Units.View
 
         private void PlaySelection(bool isSelected)
         {
+            if (GamePause.IsPaused)
+                return;
             AudioSource.PlayPitchedOneShot(isSelected ? _becomeSelectedClip : _becomeUnselectedClip, _pitchAmplitude);
         }
     }

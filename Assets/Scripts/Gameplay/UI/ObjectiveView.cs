@@ -1,11 +1,13 @@
 ﻿using System;
 using _Core;
+using _Core.Pause;
 using DG.Tweening;
 using Settings.Localization;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Gameplay.UI
 {
@@ -17,12 +19,20 @@ namespace Gameplay.UI
         [SerializeField] private Color _activeColor;
         [SerializeField] private Color _completedColor;
         [SerializeField] private Color _failedColor;
+        [SerializeField] private AudioClip _updatedClip;
+        [SerializeField] private AudioClip _completedClip;
+        [SerializeField] private AudioClip _failedClip;
+        [SerializeField] private float _pitchAmplitude;
+        [SerializeField] private float _volumeScale;
         
         private Func<Objective> _objective;
         private IDisposable _observable;
 
         public Objective Objective => _objective.Invoke();
         public int Priority { get; private set; }
+        
+        [Inject] private AudioSource AudioSource { get; set; }
+        [Inject] private GamePause GamePause { get; set; }
         
         public void Init(Func<Objective> objective, int priority)
         {
@@ -34,7 +44,7 @@ namespace Gameplay.UI
                 .Subscribe(_ => UpdateView());
 
             _objective.ObserveEveryValueChanged(o => o.Invoke()?.Counter ?? -1)
-                .Subscribe(c => Ping(_activeColor));
+                .Subscribe(c => PingStatus(ObjectiveStatus.Active));
             
             _objective.ObserveEveryValueChanged(o => o.Invoke()?.Status ?? ObjectiveStatus.Failed)
                 .Subscribe(PingStatus);
@@ -64,6 +74,9 @@ namespace Gameplay.UI
 
         private void PingStatus(ObjectiveStatus status)
         {
+            if (GamePause.IsPaused)
+                return;
+            
             Color color = status switch
             {
                 ObjectiveStatus.Active => _activeColor,
@@ -72,6 +85,15 @@ namespace Gameplay.UI
                 _ => throw new ArgumentOutOfRangeException(nameof(status), status, null)
             };
             Ping(color);
+            
+            AudioClip clip = status switch {
+                ObjectiveStatus.Active => _updatedClip,
+                ObjectiveStatus.Completed => _completedClip,
+                ObjectiveStatus.Failed => _failedClip,
+                _ => throw new ArgumentOutOfRangeException(nameof(status), status, null)
+            };
+            Debug.Log(clip);
+            AudioSource.PlayPitchedOneShot(clip, _pitchAmplitude, _volumeScale);
         }
 
         private void Ping(Color color)

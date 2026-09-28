@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _Core;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.UI
 {
@@ -10,10 +11,12 @@ namespace Gameplay.UI
         [SerializeField] private GameObject _viewPrefab;
 
         private List<ObjectiveView> _views = new();
+        
+        [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
 
         public void InitView(Func<Objective> objective, int priority)
         {
-            ObjectiveView view = Instantiate(_viewPrefab, transform).GetComponent<ObjectiveView>();
+            ObjectiveView view = ContainerInstantiator.Instantiate<ObjectiveView>(_viewPrefab, transform.position, transform);
             view.Init(objective, priority);
 
             for (int i = _views.Count - 1; i >= 0; i--)
