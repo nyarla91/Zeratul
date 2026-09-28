@@ -1,4 +1,5 @@
 ﻿using _Core;
+using Cysharp.Threading.Tasks;
 using Gameplay.Data;
 using Gameplay.Upgrades;
 using UnityEngine;
@@ -13,9 +14,10 @@ namespace Gameplay.Schemes.Actions
         
         [Inject] private UpgradeStorage UpgradeStorage { get; set; }
         
-        public override void Act()
+        public override UniTask Act()
         {
             UpgradeStorage.ResearchUpgrade(_owner, _upgrade);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

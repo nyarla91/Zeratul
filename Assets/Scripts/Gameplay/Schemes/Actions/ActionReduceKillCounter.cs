@@ -1,4 +1,5 @@
-﻿using Gameplay.Player;
+﻿using Cysharp.Threading.Tasks;
+using Gameplay.Player;
 using UnityEngine;
 using Zenject;
 
@@ -8,9 +9,10 @@ namespace Gameplay.Schemes.Actions
     {
         [Inject] private PlayerControlResources PlayerControlResources { get; set; }
             
-        public override void Act()
+        public override UniTask Act()
         {
             PlayerControlResources.ReduceKillCounter();
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

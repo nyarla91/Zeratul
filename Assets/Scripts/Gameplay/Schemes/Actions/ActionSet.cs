@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Gameplay.Schemes.Values;
 using Gameplay.Schemes.Values.Variables;
 using UnityEngine;
@@ -10,9 +11,10 @@ namespace Gameplay.Schemes.Actions
         [SerializeField] private SchemeVariable<T> _variable;
         [SerializeField] private SchemeValue<T> _value;
         
-        public override void Act()
+        public override UniTask Act()
         {
             _variable.Set(_value.Value);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Gameplay.Schemes.Values;
 using Gameplay.Schemes.Values.Variables;
 using UnityEngine;
@@ -10,9 +11,10 @@ namespace Gameplay.Schemes.Actions
         [SerializeField] private VariableObjective _objective;
         [SerializeField] private SchemeValue<int> _counter;
         
-        public override void Act()
+        public override UniTask Act()
         {
             _objective.Value.UpdateCurrentCounter(_counter.Value);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Gameplay.Data.Configs;
 using Gameplay.UI;
 using Gameplay.UI.Menu;
@@ -15,12 +16,13 @@ namespace Gameplay.Schemes.Actions
         [Inject] private TipWindow TipWindow { get; set; }
         [Inject] private TutorialScreen TutorialScreen { get; set; }
         
-        public override void Act()
+        public override UniTask Act()
         {
             if (_tip)
                 TipWindow.Show(_entry);
             else
                 TutorialScreen.Open(_entry);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

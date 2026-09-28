@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Gameplay.UI.Menu;
 using UnityEngine;
 using Zenject;
@@ -12,7 +13,7 @@ namespace Gameplay.Schemes.Actions
         [Inject] private DefeatMenu DefeatMenu { get; set; }
         [Inject] private VictoryMenu VictoryMenu { get; set; }
         
-        public override void Act()
+        public override UniTask Act()
         {
             switch (_result)
             {
@@ -25,6 +26,7 @@ namespace Gameplay.Schemes.Actions
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

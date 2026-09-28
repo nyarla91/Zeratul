@@ -1,5 +1,6 @@
 ﻿using System;
 using _Core;
+using Cysharp.Threading.Tasks;
 using Gameplay.Map;
 using Gameplay.Schemes.Values;
 using UnityEngine;
@@ -14,9 +15,10 @@ namespace Gameplay.Schemes.Actions
         
         [Inject] private PlayerCamera _playerCamera;
         
-        public override void Act()
+        public override UniTask Act()
         {
             _playerCamera.MoveTo(_position.Value, _moveImmediate);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

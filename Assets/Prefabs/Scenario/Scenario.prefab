@@ -155001,6 +155001,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Scripts::Gameplay.Schemes.Values.Variables.VariableUnit
   _key: iteratedUnit
   _spawnPoint: {fileID: 0}
+--- !u!1 &5574287491455154458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558184002061956874}
+  - component: {fileID: 7618609408538035808}
+  m_Layer: 0
+  m_Name: '> End scenario in Defeat'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &558184002061956874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574287491455154458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8727906006395155639}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7618609408538035808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574287491455154458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acf11abdadd46ff88bc839b86018f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionDefeat
+  _result: 0
 --- !u!1 &6761387043071417744
 GameObject:
   m_ObjectHideFlags: 0
@@ -155452,9 +155497,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1618744241823752596}
-  - component: {fileID: 3005278578734712073}
+  - component: {fileID: 8088293026897580296}
   m_Layer: 0
-  m_Name: '> End scenario in Defeat'
+  m_Name: '> ... Wait for 25 unpaused frames ...'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155475,7 +155520,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8727906006395155639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3005278578734712073
+--- !u!114 &8088293026897580296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155484,10 +155529,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8092033982026095421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1acf11abdadd46ff88bc839b86018f74, type: 3}
+  m_Script: {fileID: 11500000, guid: 26e7aaced5654fc6b9b3edc1ea32494a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionDefeat
-  _result: 0
+  m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionWait
+  _frames: 25
+  _useUnpaused: 1
 --- !u!1 &8205566918221730205
 GameObject:
   m_ObjectHideFlags: 0
@@ -156717,12 +156763,16 @@ PrefabInstance:
       objectReference: {fileID: 7304891568355155171}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: _actions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[0]'
       value: 
-      objectReference: {fileID: 3005278578734712073}
+      objectReference: {fileID: 8088293026897580296}
+    - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
+      propertyPath: '_actions.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7618609408538035808}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: _conditions.Array.size
       value: 1
@@ -156788,6 +156838,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1618744241823752596}
+    - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 558184002061956874}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4407308526153367626, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       insertIndex: -1

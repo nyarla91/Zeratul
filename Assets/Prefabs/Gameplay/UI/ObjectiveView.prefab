@@ -271,6 +271,6 @@ MonoBehaviour:
   _failedColor: {r: 1, g: 0, b: 0, a: 0.3137255}
   _updatedClip: {fileID: 8300000, guid: 7f8cdd59b166cf691897caa96b7ec6b0, type: 3}
   _completedClip: {fileID: 8300000, guid: c5c0d8078e074350eb569acfa4c74909, type: 3}
-  _failedClip: {fileID: 8300000, guid: 8ed63688c3ff67e299fe1499716a40aa, type: 3}
+  _failedClip: {fileID: 8300000, guid: 031c5e4c5bc04f255850a8a46b29da2e, type: 3}
   _pitchAmplitude: 0.1
   _volumeScale: 0.8

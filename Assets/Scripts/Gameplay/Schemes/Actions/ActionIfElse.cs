@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Gameplay.Schemes.Values;
 using UnityEngine;
 
@@ -12,14 +13,14 @@ namespace Gameplay.Schemes.Actions
         [SerializeField] private Transform _elseBlock;
         [SerializeField] private SchemeAction[] _elseActions;
         
-        public override void Act()
+        public override async UniTask Act()
         {
             if (_condition.Value)
                 foreach (SchemeAction action in _actions)
-                    action.Act();
+                    await action.Act();
             else
                 foreach (SchemeAction action in _elseActions)
-                    action.Act();
+                    await action.Act();
         }
 
         private void OnValidate()

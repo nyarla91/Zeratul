@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using Gameplay.Player;
+using Gameplay.Schemes;
 using Gameplay.UI;
 using GameState;
 using Save;
@@ -20,10 +22,14 @@ namespace Gameplay.Arrangement.Saving
         [SerializeField] private string _quickSaveFilename;
         [SerializeField] private int _maxQuickSaves;
         [SerializeField] private string _successMessage;
-        [SerializeField] private string _saveInProgressMessage;
+        [SerializeField] private string _savingProhibitedMessage;
         [SerializeField] private string _errorMessage;
+        [SerializeField] private string _unavailableMessage;
 
         private UniTask _savingTask;
+        private HashSet<Scheme> _schemes;
+
+        private bool IsSavingProhibited => _schemes.Any(s => s.IsInProgress);
         
         [Inject] private Localizer Localizer { get; set; }
         [Inject] private ISaveFileWriteService SaveFileWriteService { get; set; }
@@ -42,6 +48,12 @@ namespace Gameplay.Arrangement.Saving
             PlayerInput.QuickLoad.Performed += QuickLoad;
         }
 
+        private void Start()
+        {
+            _schemes =  InitSchemes();
+        }
+
+
         public void Save(string name, bool quick)
         {
             if (_savingTask.Status == UniTaskStatus.Pending)
@@ -59,11 +71,16 @@ namespace Gameplay.Arrangement.Saving
 
         private async UniTask SaveAsync(string name, bool quick)
         {
+            if (IsSavingProhibited)
+            {
+                Message.Show(Localizer.Translate(_savingProhibitedMessage), MessageType.Error);
+                return;
+            }
             SaveData saveData = _saveLoad.SaveGameplayData();
             saveData.filename = name;
             saveData.quick = quick;
             bool successful = await SaveFileWriteService.Write(saveData);
-            if (!successful)
+            if ( ! successful)
             {
                 Message.Show(Localizer.Translate(_errorMessage), MessageType.Error);
                 return;
@@ -97,6 +114,12 @@ namespace Gameplay.Arrangement.Saving
             string filename = Localizer.Translate(_quickSaveFilename);
             filename += " " + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss");
             Save(filename, true);
+        }
+
+        private HashSet<Scheme> InitSchemes()
+        {
+            return FindObjectsByType<Scheme>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .ToHashSet();
         }
     }
 }

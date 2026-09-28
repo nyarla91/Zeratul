@@ -1,5 +1,6 @@
 ﻿using System;
 using _Core;
+using Cysharp.Threading.Tasks;
 using Gameplay.Data.Effects;
 using Gameplay.Schemes.Values;
 using Gameplay.Units;
@@ -13,16 +14,17 @@ namespace Gameplay.Schemes.Actions
         [SerializeField] private SchemeValue<Unit> _target;
         [SerializeField] private EffectTargetingUnit[] _effects;
         
-        public override void Act()
+        public override UniTask Act()
         {
             if ( ! _target.Value)
-                return;
+                return UniTask.CompletedTask;
             if ( ! _caster.Value)
                 _caster = _target;
             foreach (EffectTargetingUnit effect in _effects)
             {
                 effect.Apply(_caster.Value, _target.Value);
             }
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

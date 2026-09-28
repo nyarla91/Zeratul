@@ -1,4 +1,5 @@
-﻿using Gameplay.Schemes.Values;
+﻿using Cysharp.Threading.Tasks;
+using Gameplay.Schemes.Values;
 using Gameplay.Schemes.Values.Variables;
 using Gameplay.Units;
 using UnityEngine;
@@ -10,9 +11,10 @@ namespace Gameplay.Schemes.Actions
         [SerializeField] private VariableUnitGroup _unitGroup;
         [SerializeField] private SchemeValue<Unit> _unit;
         
-        public override void Act()
+        public override UniTask Act()
         {
             _unitGroup.RemoveUnit(_unit?.Value);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

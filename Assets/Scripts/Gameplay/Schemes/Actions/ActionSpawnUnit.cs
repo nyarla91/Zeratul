@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Gameplay.Data.Units;
 using Gameplay.Schemes.Values;
 using Gameplay.Schemes.Values.Variables;
@@ -17,10 +18,11 @@ namespace Gameplay.Schemes.Actions
         
         [Inject] private UnitSpawner UnitSpawner { get; set; }
             
-        public override void Act()
+        public override UniTask Act()
         {
             Unit unit = UnitSpawner.Spawn(_point.Value, _unitType, -1, _spawnInfo);
             _out?.Set(unit);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

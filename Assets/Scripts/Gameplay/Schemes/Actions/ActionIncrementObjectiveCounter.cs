@@ -1,4 +1,5 @@
-﻿using Gameplay.Schemes.Values;
+﻿using Cysharp.Threading.Tasks;
+using Gameplay.Schemes.Values;
 using Gameplay.Schemes.Values.Variables;
 using UnityEngine;
 
@@ -9,9 +10,10 @@ namespace Gameplay.Schemes.Actions
         [SerializeField] private VariableObjective _objective;
         [SerializeField] private SchemeValue<int> _increment;
         
-        public override void Act()
+        public override UniTask Act()
         {
             _objective.Value.Increment(_increment?.Value ?? 1);
+            return UniTask.CompletedTask;
         }
         
         private void OnValidate()

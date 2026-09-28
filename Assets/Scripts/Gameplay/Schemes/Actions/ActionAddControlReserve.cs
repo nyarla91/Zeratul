@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Gameplay.Player;
 using Gameplay.Schemes.Values;
 using UnityEngine;
@@ -12,9 +14,10 @@ namespace Gameplay.Schemes.Actions
         
         [Inject] private PlayerControlResources PlayerControlResources { get; set; }
         
-        public override void Act()
+        public override UniTask Act()
         {
             PlayerControlResources.AddReserve(_quantity.Value);
+            return UniTask.CompletedTask;
         }
 
         private void OnValidate()

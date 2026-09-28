@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Gameplay.Schemes.Values;
 using Gameplay.Schemes.Values.Variables;
 using UnityEngine;
@@ -14,14 +15,14 @@ namespace Gameplay.Schemes.Actions
         [SerializeField] private SchemeVariable<int> _out;
         [SerializeField] private SchemeAction[] _actions;
         
-        public override void Act()
+        public override async UniTask Act()
         {
             for (int i = _from?.Value ?? 0; i <= _to.Value; i += _step?.Value ?? 1)
             {
                 _out?.Set(i);
                 foreach (SchemeAction action in _actions)
                 {
-                    action.Act();
+                    await action.Act();
                 }
             }
         }
