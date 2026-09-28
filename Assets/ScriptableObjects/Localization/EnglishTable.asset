@@ -26,6 +26,11 @@ MonoBehaviour:
     _line: Relieve target overriden unit of assigned duties
   - _key: ability-dismiss-name
     _line: Done your part
+  - _key: ability-emp-description
+    _line: All affected units lose [shield] shield points, [energy] energy points
+      and become detected for [duration] sec.
+  - _key: ability-emp-name
+    _line: EMP charge
   - _key: ability-feedback-description
     _line: Burn up to [energy] energy points of the target and deal that much damage
       to them.
@@ -53,19 +58,14 @@ MonoBehaviour:
     _line: Deal [dmg] damage to the target ([bonusdmg] against Mechanical targets).
   - _key: ability-slice-name
     _line: Pierce
-  - _key: ability-snipe-description
-    _line: Deal [dmg] damage to the target.
-  - _key: ability-snipe-name
-    _line: Snipe
-  - _key: ability-emp-description
-    _line: All affected units lose [shield] shield points, [energy] energy points
-      and become detected for [duration] sec.
-  - _key: ability-emp-name
-    _line: EMP charge
   - _key: ability-smoke-description
     _line: Creates a vision-blocking smoke at a target location for [duration] sec.
   - _key: ability-smoke-name
     _line: Smoke grenade
+  - _key: ability-snipe-description
+    _line: Deal [dmg] damage to the target.
+  - _key: ability-snipe-name
+    _line: Snipe
   - _key: ability-stat-cooldown
     _line: 'Cooldown: # sec.'
   - _key: ability-stat-energy
@@ -83,6 +83,8 @@ MonoBehaviour:
     _line: Game saved
   - _key: message-saving-in-progress
     _line: Saving is in progress
+  - _key: obecjtive-2-stbs
+    _line: (OPTIONAL) Destroy Enhanced sensor towers
   - _key: objective-1-collect
     _line: (OPTIONAL) Collect link cores
   - _key: objective-1-equipment
@@ -91,14 +93,12 @@ MonoBehaviour:
     _line: Proceed to evac point
   - _key: objective-1-hitless
     _line: (OPTIONAL) Do not lose hit points
+  - _key: objective-2-extra-overseers
+    _line: (OPTIONAL) Eliminate Overseers
   - _key: objective-2-invasion
     _line: Obtain Overseer device
   - _key: objective-2-overseers
     _line: Eliminate Overseers
-  - _key: objective-2-extra-overseers
-    _line: (OPTIONAL) Eliminate Overseers
-  - _key: obecjtive-2-stbs
-    _line: (OPTIONAL) Destroy Enhanced sensor towers
   - _key: order
     _line: Order
   - _key: order-ability
@@ -178,23 +178,15 @@ MonoBehaviour:
     _line: You can control this unit
   - _key: status-invasion-name
     _line: Override
-  - _key: status-slowed-description
-    _line: Movement speed is reduced by [reduction]%
-  - _key: status-slowed-name
-    _line: Slowed
-  - _key: status-stim-description
-    _line: You restore hit points and energy points over time.
-  - _key: status-stim-name
-    _line: Stim
+  - _key: status-locked-description
+    _line: Cannot attack, use active and passive abilities
+  - _key: status-locked-name
+    _line: Locked
   - _key: status-mine-explosive-description
     _line: When a hostile unit passes through this mine, it detonates and deals [dmg]
       damage to all hostile units in proximity
   - _key: status-mine-explosive-name
     _line: Explosive mine
-  - _key: status-locked-description
-    _line: Cannot attack, use active and passive abilities
-  - _key: status-locked-name
-    _line: Locked
   - _key: status-parasite-description
     _line: You can see everything this unit can see.
   - _key: status-parasite-name
@@ -203,6 +195,14 @@ MonoBehaviour:
     _line: Restores shields to nearby friendly units
   - _key: status-shield-battery-name
     _line: Shield restoration
+  - _key: status-slowed-description
+    _line: Movement speed is reduced by [reduction]%
+  - _key: status-slowed-name
+    _line: Slowed
+  - _key: status-stim-description
+    _line: You restore hit points and energy points over time.
+  - _key: status-stim-name
+    _line: Stim
   - _key: status-temporary-description
     _line: Has limited lifetime
   - _key: status-temporary-name
@@ -301,6 +301,11 @@ MonoBehaviour:
       you ready, hit [Space] again to resume the game.'
   - _key: tutorial-pause-header
     _line: Tactical pause
+  - _key: tutorial-save
+    _line: You can save and load the game anytime from pause menu [Esc] or use quick
+      save [F5] and quick load [F8].
+  - _key: tutorial-save-header
+    _line: Saving
   - _key: tutorial-shield
     _line: 'Blue ring around unit represents their shield points. They restore over
       time if unit is not taking damage.
@@ -341,11 +346,6 @@ MonoBehaviour:
 '
   - _key: tutorial-vision-header
     _line: Vision areas
-  - _key: tutorial-save
-    _line: You can save and load the game anytime from pause menu [Esc] or use quick
-      save [F5] and quick load [F8].
-  - _key: tutorial-save-header
-    _line: Saving
   - _key: ui-back
     _line: Back
   - _key: ui-choose-a-target
@@ -359,7 +359,7 @@ MonoBehaviour:
   - _key: ui-delete
     _line: Delete
   - _key: ui-difficulty-easy
-    _line: Rookie
+    _line: Beginner
   - _key: ui-difficulty-hard
     _line: Assassin
   - _key: ui-difficulty-medium
@@ -414,6 +414,16 @@ MonoBehaviour:
     _line: Reset to default
   - _key: ui-settings-resolution
     _line: Resolution
+  - _key: ui-settings-sound
+    _line: Sound
+  - _key: ui-settings-music
+    _line: Background music
+  - _key: ui-settings-sfx
+    _line: Sound effects
+  - _key: ui-settings-master-sound
+    _line: Master sound volume
+  - _key: ui-shift-cancel-targeting
+    _line: Release Shift to cancel targeting
   - _key: ui-tip
     _line: Tip
   - _key: ui-victory
@@ -474,3 +484,5 @@ MonoBehaviour:
     _line: Cannot control this unit
   - _key: validator-kill-counter
     _line: Kill more Organic enemies (#)
+  - _key: message-save-prohibited
+    _line: Saving unavailable at the time

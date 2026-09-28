@@ -26,6 +26,7 @@ namespace Settings
         public float SfxVolume => _config.GetValue("sfx") / 100f;
         public int CameraMoveSpeed => _config.GetValue("cameraMoveSpeed");
         public int CameraDragSpeed => _config.GetValue("cameraDragSpeed");
+        public bool ShiftCancelTargeting => _config.GetValue("shiftCancelTargeting") == 1;
 
         public event Action ConfigChanged;
 
@@ -89,6 +90,7 @@ namespace Settings
         public float SfxVolume { get; }
         public int CameraMoveSpeed { get; }
         public int CameraDragSpeed { get; }
+        public bool ShiftCancelTargeting { get; }
     }
 
     public interface ISettingsWriteService

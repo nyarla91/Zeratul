@@ -75,7 +75,10 @@ namespace Gameplay.UI
         private void PingStatus(ObjectiveStatus status)
         {
             if (GamePause.IsPaused)
+            {
+                _background.color = Color.clear;
                 return;
+            }
             
             Color color = status switch
             {

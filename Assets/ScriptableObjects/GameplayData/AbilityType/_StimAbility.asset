@@ -29,6 +29,7 @@ MonoBehaviour:
     _unitValidators: []
   _casterEffects:
   - {fileID: 11400000, guid: a29821341a6f4d66ab379c53289efbbd, type: 2}
+  - {fileID: 11400000, guid: 18696b84560b8875e8cea0e6847f3c41, type: 2}
   _mustLookAtTarget: 0
   _unitTargetEffects: []
   _pointTargetEffects: []

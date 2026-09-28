@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: _AlienWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
   _baseDamage: 10
-  _additionalEffects: []
+  _attackerEffects: []
+  _additionalEffects:
+  - {fileID: 11400000, guid: 4fd362110913f8eff9c33585f358697e, type: 2}
   _windupTime: 13
   _recoveryTime: 24
   _maxDistance: 1.5
+  _requiresLineOfSight: 1
   _autoAttackDistance: 0

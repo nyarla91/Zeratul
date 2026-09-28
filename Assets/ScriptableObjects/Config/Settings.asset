@@ -30,3 +30,5 @@ MonoBehaviour:
     value: 100
   - key: masterSound
     value: 50
+  - key: shiftCancelTargeting
+    value: 1

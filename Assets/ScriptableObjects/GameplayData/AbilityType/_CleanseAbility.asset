@@ -34,5 +34,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00dadf170b4bc7c4aaa12a4de779b8db, type: 2}
   - {fileID: 11400000, guid: 3057ce07bf638931dbfdb384ccb5f682, type: 2}
   - {fileID: 11400000, guid: 6194753b1f4cbc9398b88b046fcb9772, type: 2}
+  - {fileID: 11400000, guid: 928c8fdc6dba3c7d3931975af0fe8fba, type: 2}
   _pointTargetEffects: []
   _animationAction: idle

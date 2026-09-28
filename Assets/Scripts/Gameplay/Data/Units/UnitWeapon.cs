@@ -7,6 +7,7 @@ namespace Gameplay.Data.Units
     public class UnitWeaponType : ScriptableObject, IRadiusSource
     {
         [SerializeField] private int _baseDamage;
+        [SerializeField] private EffectTargetingUnit[] _attackerEffects;
         [SerializeField] private EffectTargetingUnit[] _additionalEffects;
         [SerializeField] private int _windupTime;
         [SerializeField] private int _recoveryTime;
@@ -15,6 +16,7 @@ namespace Gameplay.Data.Units
         [SerializeField] private float _autoAttackDistance;
         
         public int BaseDamage => _baseDamage;
+        public EffectTargetingUnit[] AttackerEffects => _attackerEffects;
         public EffectTargetingUnit[] AdditionalEffects => _additionalEffects;
         public int WindupTime => _windupTime;
         public int RecoveryTime => _recoveryTime;

@@ -32,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: af9b996eb042a3c5e957e551cbeb88fb, type: 2}
   _mineTriggerEffects:
   - {fileID: 11400000, guid: d2c23c210c9fd63488983c0dc976dc32, type: 2}
+  - {fileID: 11400000, guid: fa24d1c93fc01552a8dd00169f8f31fb, type: 2}

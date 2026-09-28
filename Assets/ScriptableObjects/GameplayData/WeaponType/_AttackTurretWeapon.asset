@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: _AttackTurretWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
   _baseDamage: 40
+  _attackerEffects:
+  - {fileID: 11400000, guid: 9637b4594c13b95bd9e9cc9fc88fccfd, type: 2}
+  - {fileID: 11400000, guid: 82e66864a4557faba8e8d7bcf08ebfaf, type: 2}
   _additionalEffects: []
   _windupTime: 0
   _recoveryTime: 32
   _maxDistance: 9
+  _requiresLineOfSight: 1
   _autoAttackDistance: 10

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Core;
 using Save.Data;
 using UnityEngine;
 using Zenject;
@@ -15,6 +16,7 @@ namespace Save.UI
         
         public event Action<SaveData> LoadRequested; 
 
+        [Inject] private ContainerInstantiator ContainerInstantiator { get; set; }
         [Inject] private SaveFileList SaveFileList { get; set; }
         [Inject] private ISaveFileWriteService SaveFileWriteService { get; set; }
         
@@ -64,7 +66,7 @@ namespace Save.UI
 
         private SaveDataView CreateView()
         {
-            SaveDataView view = Instantiate(_viewPrefab, _content).GetComponent<SaveDataView>();
+            SaveDataView view = ContainerInstantiator.Instantiate<SaveDataView>(_viewPrefab, _content.transform.position, _content);
             view.LoadRequested += LoadRequested;
             view.DeletionRequested += Delete;
             return view;

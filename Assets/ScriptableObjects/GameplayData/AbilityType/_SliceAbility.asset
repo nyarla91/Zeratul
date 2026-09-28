@@ -35,5 +35,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65bce68e228188431a13f665115b5d48, type: 2}
   - {fileID: 11400000, guid: dd7364b49a5bee5539a92d6458bfa25d, type: 2}
   - {fileID: 11400000, guid: a3664d73ef9ae7a56bc5975114e78e66, type: 2}
+  - {fileID: 11400000, guid: 40f0c374342ed0038b730f66280401f6, type: 2}
   _pointTargetEffects: []
   _animationAction: attack

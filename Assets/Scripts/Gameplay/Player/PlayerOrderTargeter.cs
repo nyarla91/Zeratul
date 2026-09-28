@@ -4,6 +4,7 @@ using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.UI;
 using Gameplay.Units;
+using Settings;
 using UniRx;
 using Zenject;
 
@@ -19,7 +20,8 @@ namespace Gameplay.Player
         private readonly GamePause _gamePause;
         private readonly ClickArea _clickArea;
         private readonly Message _message;
-        
+        private readonly ISettingsReadService _settings;
+
         public OrderType CurrentOrder { get; private set; }
         public OrderTarget CurrentTarget { get; private set; }
         public bool IsTargeting => CurrentOrder;
@@ -28,7 +30,7 @@ namespace Gameplay.Player
         [Inject]
         public PlayerOrderTargeter(PlayerInput input, PlayerMouseTargeting mouseTargeting, PlayerSelection selection,
             PlayerOrdersDispatcher ordersDispatcher, OrderErrorConfig errors, GamePause gamePause, ClickArea clickArea,
-            Message message)
+            Message message, ISettingsReadService settings)
         {
             _input = input;
             _mouseTargeting = mouseTargeting;
@@ -38,13 +40,16 @@ namespace Gameplay.Player
             _gamePause = gamePause;
             _clickArea = clickArea;
             _message = message;
-            
+            _settings = settings;
+
             Observable.EveryFixedUpdate()
                 .Subscribe(_ => UpdateCurrentTarget());
             
             this.ObserveEveryValueChanged(t => t.IsTargeting)
                 .Skip(1)
                 .Subscribe(UpdateSubscriptions);
+
+            _input.QueueOrder.Released += QueueReleaseCancelTargeting;
         }
 
         private void UpdateSubscriptions(bool isTargeting)
@@ -67,6 +72,12 @@ namespace Gameplay.Player
                 throw new ArgumentException($"Target is not required");
             CurrentOrder = order;
             UpdateCurrentTarget();
+        }
+
+        private void QueueReleaseCancelTargeting()
+        {
+            if (_settings.ShiftCancelTargeting)
+                CancelTargeting();
         }
 
         public void CancelTargeting()

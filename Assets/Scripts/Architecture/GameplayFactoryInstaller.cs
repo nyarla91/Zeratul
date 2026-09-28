@@ -12,6 +12,7 @@ namespace Architecture
     {
         [SerializeField] private GameObject _aoePrefab;
         [SerializeField] private GameObject _hitMarkerPrefab;
+        [SerializeField] private GameObject _soundInstancePrefab;
         
         public override void InstallBindings()
         {
@@ -20,6 +21,7 @@ namespace Architecture
             BindFactory<Entity>();
             BindFactory<AoeView>(_aoePrefab);
             BindFactory<HitMarker>(_hitMarkerPrefab);
+            BindFactory<SoundInstance>(_soundInstancePrefab);
         }
 
         private void BindFactory<TElement>(GameObject prefab = null) where TElement : PoolElement<TElement>

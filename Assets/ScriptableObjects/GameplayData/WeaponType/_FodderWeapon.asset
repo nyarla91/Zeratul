@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: _FodderWeapon
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.UnitWeaponType
   _baseDamage: 5
+  _attackerEffects:
+  - {fileID: 11400000, guid: 0c683e88b88898677a6dc1e8eb728e88, type: 2}
+  - {fileID: 11400000, guid: 926e6a66245053ec38ce183c57cae56a, type: 2}
   _additionalEffects: []
   _windupTime: 10
   _recoveryTime: 17
   _maxDistance: 7
+  _requiresLineOfSight: 1
   _autoAttackDistance: 8

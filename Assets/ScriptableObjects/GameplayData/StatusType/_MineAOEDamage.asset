@@ -35,3 +35,4 @@ MonoBehaviour:
   _mineTriggerEffects:
   - {fileID: 11400000, guid: 258d6d4cedefd0d119344a8c4444b35a, type: 2}
   - {fileID: 11400000, guid: cbd716f4effa0ad42ad17abcf8bca968, type: 2}
+  - {fileID: 11400000, guid: 95faeea26eb49a998b7f405919656833, type: 2}

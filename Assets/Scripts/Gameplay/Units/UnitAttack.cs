@@ -161,6 +161,10 @@ namespace Gameplay.Units
             int recoveryTime = Mathf.RoundToInt(Weapon.RecoveryTime * staggerMultiplier);
             if ( ! await Unit.Stagger.TryBegin(windupTime, recoveryTime, "attack"))
                 return;
+            foreach (EffectTargetingUnit effect in Weapon.AttackerEffects)
+            {
+                effect?.Apply(Unit, Unit);
+            }
             target.Life.TakeDamage(Weapon.BaseDamage, DamageType.Normal, Unit);
             foreach (EffectTargetingUnit effect in Weapon.AdditionalEffects)
             {

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f11b68939d426ca2adf462933367a8, type: 3}
   m_Name: _SmokeAbility
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Abilities.AbilityType
+  _isImmediate: 0
   _windupTime: 35
   _recoveryTime: 10
   _cooldown: 0
@@ -31,4 +32,5 @@ MonoBehaviour:
   _unitTargetEffects: []
   _pointTargetEffects:
   - {fileID: 11400000, guid: f68cd969008df464985b0cbc4c6b812d, type: 2}
+  - {fileID: 11400000, guid: 8ed9c3cafade8b9fcb36e4e2fc204e04, type: 2}
   _animationAction: ability

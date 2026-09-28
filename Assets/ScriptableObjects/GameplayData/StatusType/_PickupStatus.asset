@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85200319680843f6b31dec5cae1dafcd, type: 3}
   m_Name: _PickupStatus
   m_EditorClassIdentifier: Gameplay::Gameplay.Data.Statuses.MineStatus
+  _tag: 0
   _useLock: 0
   _display: 0
   _displayIcon: {fileID: 0}
@@ -29,3 +30,4 @@ MonoBehaviour:
   _triggerEffects: []
   _mineTriggerEffects:
   - {fileID: 11400000, guid: d2c23c210c9fd63488983c0dc976dc32, type: 2}
+  - {fileID: 11400000, guid: fa24d1c93fc01552a8dd00169f8f31fb, type: 2}

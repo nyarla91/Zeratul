@@ -31,5 +31,7 @@ MonoBehaviour:
   _mustLookAtTarget: 1
   _unitTargetEffects:
   - {fileID: 11400000, guid: cb5debcc34fa1f12ba3077113febc082, type: 2}
+  - {fileID: 11400000, guid: ed0b4b4511ecd9627be0f6bbecb9f0a3, type: 2}
+  - {fileID: 11400000, guid: a23df592ded33af038314e6efc280da0, type: 2}
   _pointTargetEffects: []
   _animationAction: ability
