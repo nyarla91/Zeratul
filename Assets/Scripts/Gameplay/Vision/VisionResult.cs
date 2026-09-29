@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using _Core;
 using UnityEngine;
 
@@ -8,6 +9,20 @@ namespace Gameplay.Vision
     {
         private readonly Vector2 _origin;
         private readonly AnimationCurve _distanceCurve;
+
+        public Vector2[] Points
+        {
+            get
+            {
+                Vector2[] result = new Vector2[_distanceCurve.keys.Length];
+                for (int i = 0; i < _distanceCurve.keys.Length; i++)
+                {
+                    Keyframe key = _distanceCurve.keys[i];
+                    result[i] = _origin + key.time.DegreesToVector2() * key.value * Isometry.Scale;
+                }
+                return result;
+            }
+        }
         
         public VisionResult(Vector2 origin, AnimationCurve distanceCurve)
         {

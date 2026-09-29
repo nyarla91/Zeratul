@@ -68,19 +68,8 @@ namespace Gameplay.Vision
             for (float i = 0; i < _config.VisionPoints; i++)
             {
                 float rawAngle = 360f / _config.VisionPoints * i;
-                bool hit = RaycastInDirection(rawAngle, out Keyframe keyframe);
+                Keyframe keyframe = RaycastInDirection(rawAngle);
                 distanceCurve.AddKey(keyframe);
-                if (i > 0 && hit != previousHit)
-                {
-                    float step = 1f / (_config.VisionCorrectionPoints + 1);
-                    for (float j = i - 1 + step; j < i; j += step)
-                    {
-                        rawAngle = 360f / _config.VisionPoints * j;
-                        RaycastInDirection(rawAngle, out keyframe);
-                        distanceCurve.AddKey(keyframe);
-                    }
-                }
-                previousHit = hit;
             }
 
             Keyframe keyframe360 = new()
@@ -90,6 +79,19 @@ namespace Gameplay.Vision
                 weightedMode = WeightedMode.None
             };
             distanceCurve.AddKey(keyframe360);
+
+            for (int i = distanceCurve.keys.Length - 2; i >= 0; i--)
+            {
+                Keyframe current = distanceCurve.keys[i];
+                Keyframe next = distanceCurve.keys[i + 1];
+                if (Mathf.Abs(current.value - next.value) < _config.VisionCorrectionTolerance)
+                    continue;
+                for (float j = 1; j < _config.VisionCorrectionPoints + 1; j++)
+                {
+                    float angle = Mathf.LerpAngle(current.time, next.time, j / _config.VisionCorrectionTolerance);
+                    distanceCurve.AddKey(RaycastInDirection(angle));
+                }
+            }
             
             _result = new VisionResult(Position, distanceCurve);
 
@@ -103,7 +105,7 @@ namespace Gameplay.Vision
             }
         }
 
-        private bool RaycastInDirection(float rawAngle, out Keyframe keyframe)
+        private Keyframe RaycastInDirection(float rawAngle)
         {
             bool result = false;
             Vector2 isoDirection = rawAngle.DegreesToVector2() * Isometry.Scale;
@@ -124,13 +126,12 @@ namespace Gameplay.Vision
             float rawResult = isoResult / isoDirection.magnitude + _config.AbsoluteExtraSight;
             rawResult = Mathf.Max(rawResult, _config.MinSight);
 
-            keyframe = new Keyframe
+            return new Keyframe
             {
                 time = rawAngle,
                 value = rawResult,
                 weightedMode = WeightedMode.None
             };
-            return result;
         }
     }
 }

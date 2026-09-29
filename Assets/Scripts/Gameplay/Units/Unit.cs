@@ -186,5 +186,16 @@ namespace Gameplay.Units
                 KilledPayload?.Invoke(this);
             }
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            Vector2[] visionPoints = Sight.VisionSource.Result.Points;
+            for (int i = 0; i < visionPoints.Length; i++)
+            {
+                int j = (i == visionPoints.Length - 1) ? 0 : i + 1;
+                Gizmos.color = Color.gray3;
+                Gizmos.DrawLine(visionPoints[i], visionPoints[j]);
+            }
+        }
     }
 }

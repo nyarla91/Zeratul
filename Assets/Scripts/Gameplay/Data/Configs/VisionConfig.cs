@@ -6,6 +6,7 @@ namespace Gameplay.Data.Configs
     public class VisionConfig : ScriptableObject
     {
         [SerializeField] private int _visionPoints;
+        [SerializeField] private int _visionCorrectionTolerance;
         [SerializeField] private int _visionCorrectionPoints;
         [SerializeField] private float _recalculationPeriod;
         [SerializeField] private LayerMask _visionBlockerMask;
@@ -16,6 +17,7 @@ namespace Gameplay.Data.Configs
         [SerializeField] private Vector2Int _fogDimensions;
 
         public int VisionPoints => _visionPoints;
+        public int VisionCorrectionTolerance => _visionCorrectionTolerance;
         public int VisionCorrectionPoints => _visionCorrectionPoints;
         public float RecalculationPeriod => _recalculationPeriod;
         public LayerMask VisionBlockerMask => _visionBlockerMask;
