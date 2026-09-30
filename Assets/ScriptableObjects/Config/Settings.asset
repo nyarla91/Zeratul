@@ -32,3 +32,5 @@ MonoBehaviour:
     value: 50
   - key: shiftCancelTargeting
     value: 1
+  - key: rapidFire
+    value: 0

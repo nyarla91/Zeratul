@@ -6,6 +6,7 @@ using Gameplay.Data.Configs;
 using Gameplay.Data.Orders;
 using Gameplay.Player;
 using Gameplay.Units;
+using Settings;
 using TMPro;
 using UIUtility;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace Gameplay.UI
         [Inject] private Tooltip Tooltip { get; set; } 
         [Inject] private GamePause GamePause { get; set; }
         [Inject] private Message Message { get; set; }
+        [Inject] private ISettingsReadService Settings { get; set; }
 
         private void Awake()
         {
@@ -100,6 +102,10 @@ namespace Gameplay.UI
                 Dispatcher.IssueOrderToSelection(OrderType, default);
                 Targeter.CancelTargeting();
                 _clickSound.Play();
+            }
+            else if (Settings.RapidFire && Targeter.CurrentOrder == OrderType)
+            {
+                Targeter.DispatchOrderWithTarget();
             }
             else
             {

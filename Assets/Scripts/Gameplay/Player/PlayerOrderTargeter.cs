@@ -74,18 +74,7 @@ namespace Gameplay.Player
             UpdateCurrentTarget();
         }
 
-        private void QueueReleaseCancelTargeting()
-        {
-            if (_settings.ShiftCancelTargeting)
-                CancelTargeting();
-        }
-
-        public void CancelTargeting()
-        {
-            CurrentOrder = null;
-        }
-
-        private void DispatchOrderWithTarget()
+        public void DispatchOrderWithTarget()
         {
             if ( ! IsTargeting)
                 return;
@@ -99,12 +88,21 @@ namespace Gameplay.Player
                 CancelTargeting();
         }
 
+        private void QueueReleaseCancelTargeting()
+        {
+            if (_settings.ShiftCancelTargeting)
+                CancelTargeting();
+        }
+
+        public void CancelTargeting()
+        {
+            CurrentOrder = null;
+        }
+
         private void UpdateCurrentTarget()
         {
             if (_gamePause.IsPaused)
-            {
-                DispatchOrderWithTarget();
-            }
+                CancelTargeting();
             CurrentTarget = _mouseTargeting.GetTargetForRequirement(CurrentOrder?.TargetRequirement ?? TargetRequirement.None);
         }
     }

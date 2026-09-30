@@ -27,6 +27,7 @@ namespace Settings
         public int CameraMoveSpeed => _config.GetValue("cameraMoveSpeed");
         public int CameraDragSpeed => _config.GetValue("cameraDragSpeed");
         public bool ShiftCancelTargeting => _config.GetValue("shiftCancelTargeting") == 1;
+        public bool RapidFire => _config.GetValue("rapidFire") == 1;
 
         public event Action ConfigChanged;
 
@@ -91,6 +92,8 @@ namespace Settings
         public int CameraMoveSpeed { get; }
         public int CameraDragSpeed { get; }
         public bool ShiftCancelTargeting { get; }
+        public bool RapidFire { get; }
+
     }
 
     public interface ISettingsWriteService
