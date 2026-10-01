@@ -15,7 +15,7 @@ namespace Gameplay.Entities
 
         private void FixedUpdate()
         {
-            if (_audioSource.clip != null && ! _audioSource.isPlaying)
+            if (IsSpawned && ! _audioSource.isPlaying)
                 Despawn();
         }
     }
