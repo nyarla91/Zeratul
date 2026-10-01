@@ -22,7 +22,7 @@ namespace Gameplay.Arrangement.Saving
         public override ISaveSystem Save()
         {
             SerializableVector2 cameraPosition = SerializableVector2.FromVector2(_camera.transform.position);
-            return new MapSaveSystem(cameraPosition, _camera.orthographicSize, _fogOfWar.Cells);
+            return new MapSaveSystem(cameraPosition, _camera.orthographicSize, _fogOfWar.Cells, _fogOfWar.DisplayEnemyVision);
         }
     }
 }

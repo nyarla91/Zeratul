@@ -14,12 +14,16 @@ namespace Gameplay.UI
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _text;
         [SerializeField] private Sprite _errorSprite;
+        [SerializeField] private Color _errorColor;
         [SerializeField] private AudioClip _errorClip;
         [SerializeField] private Sprite _warningSprite;
+        [SerializeField] private Color _warningColor;
         [SerializeField] private AudioClip _warningClip;
         [SerializeField] private Sprite _successSprite;
+        [SerializeField] private Color _successColor;
         [SerializeField] private AudioClip _successClip;
         [SerializeField] private Sprite _infoSprite;
+        [SerializeField] private Color _infoColor;
         [SerializeField] private AudioClip _infoClip;
         [SerializeField] private float _pitchAmplitude;
         [SerializeField] private float _volumeScale;
@@ -39,6 +43,14 @@ namespace Gameplay.UI
                 MessageType.Warning => _warningSprite,
                 MessageType.Success => _successSprite,
                 MessageType.Info => _infoSprite,
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+            _image.color = type switch
+            {
+                MessageType.Error => _errorColor,
+                MessageType.Warning => _warningColor,
+                MessageType.Success => _successColor,
+                MessageType.Info => _infoColor,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
             AudioClip clip = type switch

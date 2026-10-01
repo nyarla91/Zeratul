@@ -10,7 +10,6 @@ namespace Gameplay.UI
 {
     public abstract class GameplayViewToggle : MonoBehaviour
     {
-        [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _pointerClickEventIndex;
         [SerializeField] private Image _image;
         [SerializeField] private Color _onColor;
@@ -24,7 +23,6 @@ namespace Gameplay.UI
         protected virtual void Awake()
         {
             GetInputBinding(PlayerInput).Performed += Toggle;
-            _eventTrigger.triggers[_pointerClickEventIndex].callback.AddListener(OnPointerClick);
             UpdateImageColor();
         }
 

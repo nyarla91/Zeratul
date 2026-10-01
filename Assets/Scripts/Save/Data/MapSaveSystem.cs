@@ -12,12 +12,14 @@ namespace Save.Data
         public SerializableVector2 cameraPosition;
         public float cameraSize;
         public FogOfWarCell[] cells;
+        public bool displayEnemyVision;
 
-        public MapSaveSystem(SerializableVector2 cameraPosition, float cameraSize, FogOfWarCell[] cells)
+        public MapSaveSystem(SerializableVector2 cameraPosition, float cameraSize, FogOfWarCell[] cells, bool displayEnemyVision)
         {
             this.cameraPosition = cameraPosition;
             this.cameraSize = cameraSize;
             this.cells = cells;
+            this.displayEnemyVision = displayEnemyVision;
         }
     }
 }

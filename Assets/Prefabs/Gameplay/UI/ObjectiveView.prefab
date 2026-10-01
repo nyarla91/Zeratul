@@ -68,8 +68,8 @@ MonoBehaviour:
   m_text: "\u0417\u0430\u0445\u0432\u0430\u0442\u0438\u0442\u044C \u041C\u0430\u043B\u0443\u044E
     \u0422\u043E\u043A\u043C\u0430\u0447\u043A\u0443 (0/1)"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
-  m_sharedMaterial: {fileID: 5057951551536802514, guid: 0caac69914d1abf4d80ac6d5fb68b520, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5130e7d7a89133811a01a2a9b9c5878f, type: 2}
+  m_sharedMaterial: {fileID: 7859957832220256814, guid: 5130e7d7a89133811a01a2a9b9c5878f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,17 +93,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -6.71
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -249,7 +249,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 640, y: 0}
+  m_SizeDelta: {x: 640, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2028521593110691015
 MonoBehaviour:
@@ -267,8 +267,8 @@ MonoBehaviour:
   _background: {fileID: 2906128005444899781}
   _line: {fileID: 2706644428503032960}
   _activeColor: {r: 1, g: 1, b: 1, a: 1}
-  _completedColor: {r: 0.078233, g: 1, b: 0, a: 0.3137255}
-  _failedColor: {r: 1, g: 0, b: 0, a: 0.3137255}
+  _completedColor: {r: 0.19607843, g: 0.9098039, b: 0.45882353, a: 0.3137255}
+  _failedColor: {r: 0.84313726, g: 0, b: 0.2901961, a: 0.3137255}
   _updatedClip: {fileID: 8300000, guid: 7f8cdd59b166cf691897caa96b7ec6b0, type: 3}
   _completedClip: {fileID: 8300000, guid: c5c0d8078e074350eb569acfa4c74909, type: 3}
   _failedClip: {fileID: 8300000, guid: 031c5e4c5bc04f255850a8a46b29da2e, type: 3}

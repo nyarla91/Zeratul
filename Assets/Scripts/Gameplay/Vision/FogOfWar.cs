@@ -101,6 +101,7 @@ namespace Gameplay.Vision
         {
             _cells = payload.cells;
             _loaded = true;
+            DisplayEnemyVision = payload.displayEnemyVision;
             await Paint();
         }
 

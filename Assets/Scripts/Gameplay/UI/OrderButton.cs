@@ -59,8 +59,8 @@ namespace Gameplay.UI
         {
             if (OrderType == orderType)
                 return;
-            
-            _image.color = orderType == null ? Color.clear : Color.white;
+
+            _image.color = orderType ? Color.black : Color.clear;
             _image.sprite = orderType?.Icon;
 
             DisposeHotkey();
