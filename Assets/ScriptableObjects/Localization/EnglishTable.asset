@@ -422,8 +422,10 @@ MonoBehaviour:
     _line: Sound effects
   - _key: ui-settings-master-sound
     _line: Master sound volume
-  - _key: ui-shift-cancel-targeting
+  - _key: ui-settings-shift-cancel-targeting
     _line: Release Shift to cancel targeting
+  - _key: ui-settings-rapid-fire
+    _line: Press order hotkey again to confirm
   - _key: ui-tip
     _line: Tip
   - _key: ui-victory

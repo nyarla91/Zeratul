@@ -50,10 +50,12 @@ MonoBehaviour:
   _visibleInFogOfWar: 1
   _ignoreCloak: 1
   _ignoreLocked: 0
+  _ignoreSimulation: 0
   _config: {fileID: 11400000, guid: a38f394a58a26e54cbef03f0caf8710d, type: 2}
   _renderer: {fileID: 6024262221090195941}
   _animator: {fileID: 0}
   _overrideSortingOrder: 1
+  _popAnimation: 0
 --- !u!1001 &1104268789636838192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73,6 +75,22 @@ PrefabInstance:
     - target: {fileID: 5548942859246638520, guid: 51e79703bc5e0704f84c8281e9139dc9, type: 3}
       propertyPath: _startingVariant._rotationSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628602875755667061, guid: 51e79703bc5e0704f84c8281e9139dc9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685976343302748885, guid: 51e79703bc5e0704f84c8281e9139dc9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685976343302748885, guid: 51e79703bc5e0704f84c8281e9139dc9, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -827489361
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685976343302748885, guid: 51e79703bc5e0704f84c8281e9139dc9, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7666613388046828255, guid: 51e79703bc5e0704f84c8281e9139dc9, type: 3}
       propertyPath: m_LocalPosition.x

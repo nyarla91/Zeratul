@@ -174,7 +174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: General
+  m_text: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
   m_sharedMaterial: {fileID: 5517839805545203364, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound
+  m_text: "\u0417\u0432\u0443\u043A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
   m_sharedMaterial: {fileID: 5517839805545203364, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Graphics
+  m_text: "\u0413\u0440\u0430\u0444\u0438\u043A\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
   m_sharedMaterial: {fileID: 5517839805545203364, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gameplay
+  m_text: "\u0418\u0433\u0440\u043E\u0432\u043E\u0439 \u043F\u0440\u043E\u0446\u0435\u0441\u0441"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
   m_sharedMaterial: {fileID: 5517839805545203364, guid: c4991b4afe7e08b88a512e81b30b0475, type: 2}
@@ -1379,7 +1379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4267548369543591454, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_text
-      value: Apply
+      value: "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 4386158569423927629, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_Name
@@ -1504,7 +1504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7000459553145314599, guid: 0a2440f0244fe7846b04f5b3d0dda09c, type: 3}
       propertyPath: m_text
-      value: Settings
+      value: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
       objectReference: {fileID: 0}
     - target: {fileID: 7000459553145314599, guid: 0a2440f0244fe7846b04f5b3d0dda09c, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -1783,7 +1783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4267548369543591454, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_text
-      value: Discard changes
+      value: "\u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F"
       objectReference: {fileID: 0}
     - target: {fileID: 4386158569423927629, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_Name
@@ -1888,7 +1888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2941670377172429973, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2941670377172429973, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1932,7 +1932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4267548369543591454, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_text
-      value: Back
+      value: "\u041D\u0430\u0437\u0430\u0434"
       objectReference: {fileID: 0}
     - target: {fileID: 4386158569423927629, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_Name
@@ -2120,7 +2120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1537211127954792666, guid: 91575a431a6981a4993de5888776d4e7, type: 3}
       propertyPath: m_text
-      value: Language
+      value: "\u042F\u0437\u044B\u043A"
       objectReference: {fileID: 0}
     - target: {fileID: 6379213687993961782, guid: 91575a431a6981a4993de5888776d4e7, type: 3}
       propertyPath: _key
@@ -2261,7 +2261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1502927258040539660, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_text
-      value: Master sound volume
+      value: "\u041E\u0431\u0449\u0430\u044F \u0433\u0440\u043E\u043C\u043E\u0441\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 1637756821942809780, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2431,7 +2431,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1502927258040539660, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_text
-      value: Camera move speed
+      value: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F
+        \u043A\u0430\u043C\u0435\u0440\u044B"
       objectReference: {fileID: 0}
     - target: {fileID: 1637756821942809780, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2714,7 +2715,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1502927258040539660, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_text
-      value: Camera drag speed
+      value: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u043F\u0435\u0440\u0435\u0442\u0430\u0441\u043A\u0438\u0432\u0430\u043D\u0438\u044F
+        \u043A\u0430\u043C\u0435\u0440\u044B"
       objectReference: {fileID: 0}
     - target: {fileID: 1637756821942809780, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2976,7 +2978,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4267548369543591454, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_text
-      value: Reset to default
+      value: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C
+        \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E"
       objectReference: {fileID: 0}
     - target: {fileID: 4386158569423927629, guid: b6d15d584e81bf841a41317a4f62d5c9, type: 3}
       propertyPath: m_Name
@@ -3014,7 +3017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1502927258040539660, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_text
-      value: Background music
+      value: "\u0424\u043E\u043D\u043E\u0432\u0430\u044F \u043C\u0443\u0437\u044B\u043A\u0430"
       objectReference: {fileID: 0}
     - target: {fileID: 1637756821942809780, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3184,7 +3187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1502927258040539660, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_text
-      value: Sound effects
+      value: "\u0417\u0432\u0443\u043A\u043E\u0432\u044B\u0435 \u044D\u0444\u0444\u0435\u043A\u0442\u044B"
       objectReference: {fileID: 0}
     - target: {fileID: 1637756821942809780, guid: 7b6c1f7cca02cc94fa6edfbca9c75687, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3350,7 +3353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1537211127954792666, guid: 91575a431a6981a4993de5888776d4e7, type: 3}
       propertyPath: m_text
-      value: Resolution
+      value: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435"
       objectReference: {fileID: 0}
     - target: {fileID: 6379213687993961782, guid: 91575a431a6981a4993de5888776d4e7, type: 3}
       propertyPath: _key

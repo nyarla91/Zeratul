@@ -16,6 +16,7 @@ namespace Gameplay.Vision
     public class FogOfWar : MonoBehaviour
     {
         [SerializeField] private VisionConfig _config;
+        [SerializeField] private SpriteMask _spriteMask;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Color32 _hiddenColor;
         [SerializeField] private float _hiddenFadeSpeed;
@@ -34,12 +35,7 @@ namespace Gameplay.Vision
 
         private bool _loaded;
         private FogOfWarCell[] _cells;
-        private bool[] _repaintMask;
         private Color32[] _playerBuffer;
-        
-        private readonly HashSet<Bounds> _playerBounds = new();
-        private readonly HashSet<VisionResult> _playerVision = new();
-        private readonly HashSet<VisionResult> _enemyVision = new(); 
 
         public FogOfWarCell[] Cells => _cells;
         public bool DisplayEnemyVision { get; set; }
@@ -54,7 +50,6 @@ namespace Gameplay.Vision
             int height = _config.FogDimensions.y;
             
             _cells = new FogOfWarCell[width * height];
-            _repaintMask = new bool[width * height];
             _playerBuffer = new Color32[width * height];
             
             CreateTextureForRenderer(_spriteRenderer, width, height);
@@ -85,6 +80,7 @@ namespace Gameplay.Vision
             );
 
             spriteRenderer.sprite = sprite;
+            _spriteMask.sprite = sprite;
         }
 
         private async void Start()
@@ -109,20 +105,22 @@ namespace Gameplay.Vision
         {
             _isBusy = true;
 
-            _playerBounds.Clear();
+            HashSet<Bounds> playerBounds = new();
             foreach (Bounds bounds in VisionMap.PlayerBounds)
             {
-                _playerBounds.Add(bounds);
+                playerBounds.Add(bounds);
             }
-            _playerVision.Clear();
+            HashSet<VisionResult> playerVision = new();
             foreach (VisionSource source in VisionMap.PlayerVisionSources)
             {
-                _playerVision.Add(source.Result);
+                playerVision.Add(source.Result);
             }
-            _enemyVision.Clear();
+            HashSet<VisionResult> enemyVision = new();
             foreach (VisionSource source in VisionMap.EnemyVisionSources)
             {
-                _enemyVision.Add(source.Result);
+                if (source.Result.IsMuted())
+                    continue;
+                enemyVision.Add(source.Result);
             }
             VisionResult highlightedEnemyVision = Selection.IsUncontrollableSelected
             
@@ -136,30 +134,36 @@ namespace Gameplay.Vision
                     int x = i % _config.FogDimensions.x;
                     int y = i / _config.FogDimensions.x;
                     
-                    FogOfWarCell previousCell = _cells[i];
-                    
                     Vector2 point = new Vector2(x + 0.5f, y + 0.5f) * _config.FogPixelScale;
-                    FogOfWarCell rawCell = GetCellForPoint(point, highlightedEnemyVision);
+                    FogOfWarCell rawCell = GetCellForPoint();
                     _cells[i] = rawCell == FogOfWarCell.Hidden
                         ? _cells[i] == FogOfWarCell.Hidden ? FogOfWarCell.Hidden : FogOfWarCell.Scouted
                         : rawCell;
-
-                    _repaintMask[i] = _cells[i] != previousCell;
+            
+                    FogOfWarCell GetCellForPoint()
+                    {
+                        if (IsPointInBounds(point, playerBounds) && IsPointVisible(point, playerVision))
+                        {
+                            if (DisplayEnemyVision && highlightedEnemyVision.IsPointVisible(point))
+                                return FogOfWarCell.EnemyHighlighted;
+                            if (DisplayEnemyVision && IsPointVisible(point, enemyVision))
+                                return FogOfWarCell.EnemyRevealed;
+                            return FogOfWarCell.Revealed;
+                        }
+                        return FogOfWarCell.Hidden;
+                    }
                 }
             });
             await Paint();
             _isBusy = false;
         }
 
-        private async UniTask Paint(bool[] mask = null)
+        private async UniTask Paint()
         {
-            bool paintAll = mask == null;
             await UniTask.RunOnThreadPool(() =>
             {
                 for (int i = 0; i < _cells.Length; i++)
                 {
-                    if ( ! paintAll && ! mask[i])
-                        continue;
                     FogOfWarCell cell = Cells[i];
 
                     float fadeSpeed = cell switch
@@ -180,24 +184,13 @@ namespace Gameplay.Vision
                         FogOfWarCell.EnemyRevealed => _enemyRevealedColor,
                         FogOfWarCell.EnemyHighlighted => _enemyHighlightedColor,
                         _ => throw new ArgumentOutOfRangeException()
-                    };;
+                    };
                     _playerBuffer[i] = Color32.Lerp(_playerBuffer[i], targetPlayerColor, fadeSpeed);
                 }
             });
             
             TargetSprite.texture.SetPixelData(_playerBuffer, 0);
             TargetSprite.texture.Apply(false);
-        }
-
-        private FogOfWarCell GetCellForPoint(Vector2 point, VisionResult highlightedEnemyVision)
-        {
-            if ( ! IsPointInBounds(point, _playerBounds) || ! IsPointVisible(point, _playerVision))
-                return FogOfWarCell.Hidden;
-            if (DisplayEnemyVision && highlightedEnemyVision.IsPointVisible(point))
-                return FogOfWarCell.EnemyHighlighted;
-            if (DisplayEnemyVision && IsPointVisible(point, _enemyVision))
-                return FogOfWarCell.EnemyRevealed;
-            return FogOfWarCell.Revealed;
         }
 
         private bool IsPointInBounds(Vector2 point, HashSet<Bounds> sourceBounds)

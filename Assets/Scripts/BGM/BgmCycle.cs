@@ -15,6 +15,8 @@ namespace BGM
         [SerializeField] private float _fadeInDuration;
         [SerializeField] private float _fadeOutDuration;
 
+        public AudioSource AudioSource => _audioSource;
+
         private void Awake()
         {
             _gameplayClips = _gameplayClips.OrderBy(_ => Random.value).ToList();

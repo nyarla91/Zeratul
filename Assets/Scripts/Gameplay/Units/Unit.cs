@@ -187,8 +187,10 @@ namespace Gameplay.Units
             }
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
+            if ( ! IsSelected)
+                return;
             Vector2[] visionPoints = Sight.VisionSource.Result.Points;
             for (int i = 0; i < visionPoints.Length; i++)
             {

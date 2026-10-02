@@ -7,18 +7,19 @@ namespace Gameplay.Vision
 {
     public struct VisionResult : IEquatable<VisionResult>
     {
+        private const int DistancesCapacity = 90; 
         private readonly Vector2 _origin;
-        private readonly AnimationCurve _distanceCurve;
+        private readonly float[] _distances;
 
         public Vector2[] Points
         {
             get
             {
-                Vector2[] result = new Vector2[_distanceCurve.keys.Length];
-                for (int i = 0; i < _distanceCurve.keys.Length; i++)
+                Vector2[] result = new Vector2[_distances.Length];
+                for (int i = 0; i < _distances.Length; i++)
                 {
-                    Keyframe key = _distanceCurve.keys[i];
-                    result[i] = _origin + key.time.DegreesToVector2() * key.value * Isometry.Scale;
+                    float distance = _distances[i];
+                    result[i] = _origin + distance.DegreesToVector2() * Isometry.Scale;
                 }
                 return result;
             }
@@ -27,12 +28,18 @@ namespace Gameplay.Vision
         public VisionResult(Vector2 origin, AnimationCurve distanceCurve)
         {
             _origin = origin;
-            _distanceCurve = distanceCurve;
+            _distances = new float[DistancesCapacity];
+            for (int i = 0; i < DistancesCapacity; i++)
+            {
+                _distances[i] = distanceCurve.Evaluate((float) i / DistancesCapacity * 360f);
+            }
         }
+
+        public bool IsMuted() => _distances == null;
 
         public bool IsPointVisible(Vector2 vector)
         {
-            if (_distanceCurve == null)
+            if (_distances == null)
                 return false;
             Vector2 delta = vector - _origin;
             delta /= Isometry.Scale;
@@ -45,14 +52,14 @@ namespace Gameplay.Vision
             float angle = delta.ToDegrees();
             while (angle < 0) 
                 angle += 360;
-            while (angle > 360) 
+            while (angle >= 360) 
                 angle -= 360;
-            return _distanceCurve.Evaluate(angle);
+            return _distances[Mathf.FloorToInt(angle / 360 * DistancesCapacity)];
         }
 
         public bool Equals(VisionResult other)
         {
-            return _origin.Equals(other._origin) && Equals(_distanceCurve, other._distanceCurve);
+            return _origin.Equals(other._origin) && Equals(_distances, other._distances);
         }
 
         public override bool Equals(object obj)
@@ -62,7 +69,7 @@ namespace Gameplay.Vision
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_origin, _distanceCurve);
+            return HashCode.Combine(_origin, _distances);
         }
     }
 }

@@ -153942,7 +153942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4217451678658526582}
   - component: {fileID: 2686429235963135636}
-  m_Layer: 1
+  m_Layer: 4
   m_Name: Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154009,8 +154009,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1041405397
+  m_SortingLayer: 1
   m_SortingOrder: -19
   m_MaskInteraction: 1
   m_Sprite: {fileID: 21300000, guid: 0fe77a4e1fd63f8448fd0e65ffa9cdb5, type: 3}
@@ -155546,7 +155546,7 @@ GameObject:
   - component: {fileID: 6210242960133428528}
   - component: {fileID: 111176466376124941}
   - component: {fileID: 1410044971180072178}
-  m_Layer: 2
+  m_Layer: 4
   m_Name: OverlayMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155751,8 +155751,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1041405397
+  m_SortingLayer: 1
   m_SortingOrder: -90
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -155812,13 +155812,13 @@ SpriteMask:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_MaskAlphaCutoff: 0.2
-  m_FrontSortingLayerID: 0
-  m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
-  m_BackSortingLayer: 0
-  m_FrontSortingOrder: 0
-  m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 0
+  m_FrontSortingLayerID: 1041405397
+  m_BackSortingLayerID: 1041405397
+  m_FrontSortingLayer: 1
+  m_BackSortingLayer: 1
+  m_FrontSortingOrder: 32767
+  m_BackSortingOrder: -32768
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
   m_MaskSource: 1
 --- !u!1 &8279466007732933957

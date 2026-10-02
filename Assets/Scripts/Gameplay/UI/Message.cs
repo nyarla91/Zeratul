@@ -45,7 +45,7 @@ namespace Gameplay.UI
                 MessageType.Info => _infoSprite,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
-            _image.color = type switch
+            _text.color = _image.color = type switch
             {
                 MessageType.Error => _errorColor,
                 MessageType.Warning => _warningColor,

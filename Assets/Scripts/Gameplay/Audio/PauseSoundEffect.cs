@@ -1,3 +1,4 @@
+using BGM;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -15,17 +16,18 @@ namespace Gameplay.Audio
         private float _t;
         
         [Inject] private TacticalPause TacticalPause { get; set; }
+        [Inject] private BgmCycle BgmCycle { get; set; }
         
         private void Update()
         {
             float targetT = TacticalPause.IsPaused ? 1 : 0;
             _t = Mathf.Lerp(_t, targetT, Time.deltaTime * _fadeSpeed);
-            _audioMixer.SetFloat(_parameter, Mathf.Lerp(_defaultValue, _pausedValue, _t));
+            BgmCycle.AudioSource.pitch = Mathf.Lerp(_defaultValue, _pausedValue, _t);
         }
 
         private void OnDestroy()
         {
-            _audioMixer.SetFloat(_parameter, _defaultValue);
+            BgmCycle.AudioSource.pitch = _defaultValue;
         }
     }
 }

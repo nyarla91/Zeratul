@@ -20,4 +20,4 @@ MonoBehaviour:
   _recoveryTime: 24
   _maxDistance: 1.5
   _requiresLineOfSight: 1
-  _autoAttackDistance: 0
+  _autoAttackDistance: 2
