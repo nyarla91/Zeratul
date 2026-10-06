@@ -20,9 +20,9 @@ namespace Gameplay.Units
 
         public UniTask CarryOut(CancellationToken ct) => Type.CarryOut(this, ct);
 
-        public bool CanBeIssued() => Type.CanBeIssued(this);
+        public bool CanBeIssued(out string errorMessage) => Type.CanBeIssued(this, out errorMessage);
 
-        public bool MustBeCanceled() => Type.MustBeCanceled(this);
+        public bool MustBeCanceled(out string errorMessage) => Type.MustBeCanceled(this, out errorMessage);
 
         public bool TryCarryOutImmediately() => Type.TryCarryOutImmediately(this);
     }

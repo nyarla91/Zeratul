@@ -32,6 +32,7 @@ namespace Gameplay.Units
 
         public event Action LeftIdle;
         public event Action<Order> CurrentOrderUpdated;
+        public event Action<string> OrderCancelled;
         
         public UnitOrders(Unit unit, IPauseReadonly tacticalPause, GameDataRegistry gameDataRegistry, IGetUnitByIdService getUnitByIdService) : base(unit)
         {
@@ -41,8 +42,7 @@ namespace Gameplay.Units
             Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
                 .Where(_ => CurrentOrder != null)
-                .Where(_ => CurrentOrder.MustBeCanceled() || _currentOrderTask.GetAwaiter().IsCompleted)
-                .Subscribe(_ => CompleteCurrentOrder());
+                .Subscribe(_ => TryCancelCurrentOrder());
             
             Unit.FixedUpdateAsObservable()
                 .Where(_ => tacticalPause.IsUnpaused)
@@ -86,16 +86,15 @@ namespace Gameplay.Units
                 break;
             }
         }
-        
+
         public void IssueOrder(Order order,  bool queue)
         {
             if (order == null)
                 return;
             if ( ! UnitType.AvailableOrders.Contains(order.Type))
                 return;
-            if ( ! order.CanBeIssued())
+            if ( ! order.CanBeIssued(out string _))
                 return;
-
             if (IsIdle)
                 LeftIdle?.Invoke();
             
@@ -106,6 +105,21 @@ namespace Gameplay.Units
                 ClearAllOrders();
             }
             _ordersQueue.Enqueue(order);
+        }
+
+        private void TryCancelCurrentOrder()
+        {
+            if (_currentOrderTask.GetAwaiter().IsCompleted)
+            {
+                CompleteCurrentOrder();
+                return;
+            }
+
+            if ( ! CurrentOrder.MustBeCanceled(out string errorMessage))
+                return;
+            
+            CompleteCurrentOrder();
+            OrderCancelled?.Invoke(errorMessage);
         }
 
         public void CompleteCurrentOrder()
@@ -119,7 +133,13 @@ namespace Gameplay.Units
         {
             if (CurrentOrder != null)
                 return false;
-            CurrentOrder = _ordersQueue.Dequeue();
+            Order nextOrder = _ordersQueue.Dequeue();
+            if (nextOrder.MustBeCanceled(out string errorMessage))
+            {
+                OrderCancelled?.Invoke(errorMessage);
+                return false;
+            }
+            CurrentOrder = nextOrder;
             CurrentOrderUpdated?.Invoke(CurrentOrder);
             _currentOrderCts = new CancellationTokenSource();
             _currentOrderTask = CurrentOrder.CarryOut(_currentOrderCts.Token);

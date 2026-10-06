@@ -18,6 +18,9 @@ namespace UIUtility
 
         public Menu Menu { protected get; set; }
 
+        public UnityEvent onOpen;
+        public UnityEvent onClose;
+        
         public event Action Opened;
         public event Action Closed;
 
@@ -37,17 +40,19 @@ namespace UIUtility
         {
             IsOpened = true;
             Opened?.Invoke();
+            onOpen?.Invoke();
             
             _canvasGroup.interactable = _canvasGroup.blocksRaycasts = true;
-            transform.DOAppear(_canvasGroup);
+            transform.DOFadeIn(_canvasGroup);
         }
 
         public virtual void Close()
         {
             Closed?.Invoke();
+            onClose?.Invoke();
 
             _canvasGroup.interactable = _canvasGroup.blocksRaycasts = false;
-            transform.DODisappear(_canvasGroup);
+            transform.DOFadeOut(_canvasGroup);
             
             IsOpened = false;
         }

@@ -12,7 +12,6 @@ namespace Gameplay.Data.Orders
         [Space]
         [SerializeField] private float _followMinDistance;
         [SerializeField] private int _framesBetweenFollowRecalculation;
-        [SerializeField] private OrderErrorConfig _errors;
 
         public override TargetRequirement TargetRequirement => TargetRequirement.PointOrUnit;
 
@@ -23,7 +22,7 @@ namespace Gameplay.Data.Orders
         {
             if ( ! actor.CanMove)
             {
-                errorMessage = _errors.CannotMove;
+                errorMessage = Errors.CannotMove;
                 return false;
             }
             errorMessage = null;

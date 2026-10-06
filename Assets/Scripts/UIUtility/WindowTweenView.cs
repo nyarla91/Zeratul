@@ -8,12 +8,12 @@ namespace UIUtility
         
         public void OnOpen()
         {
-            transform.DOAppear(_canvasGroup);
+            transform.DOFadeIn(_canvasGroup);
         }
 
         public void OnClose()
         {
-            transform.DODisappear(_canvasGroup);
+            transform.DOFadeOut(_canvasGroup);
         }
     }
 }

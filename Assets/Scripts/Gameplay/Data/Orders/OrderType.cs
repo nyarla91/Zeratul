@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Gameplay.Data.Configs;
 using Gameplay.Data.Validator;
 using Gameplay.UI;
 using Gameplay.Units;
@@ -12,6 +13,7 @@ namespace Gameplay.Data.Orders
     public abstract class OrderType : ScriptableObject
     {
         [SerializeField] private Localizer _localizer;
+        [SerializeField] private OrderErrorConfig _errors;
         
         [SerializeField] private string _displayName;
         [SerializeField] private UnitValidatorGroup _displayValidators;
@@ -21,6 +23,7 @@ namespace Gameplay.Data.Orders
         [SerializeField] private bool _highlightControl;
 
         protected Localizer Localizer => _localizer;
+        protected OrderErrorConfig Errors => _errors;
         public bool HighlightControl => _highlightControl;
 
         public string DisplayName => Localizer.Translate(_displayName);
@@ -40,9 +43,9 @@ namespace Gameplay.Data.Orders
 
         public virtual bool CanBeDisplayed(Unit actor) => _displayValidators.IsValid(actor, actor);
 
-        public bool CanBeIssued(Order order)
+        public bool CanBeIssued(Order order, out string errorMessage)
         {
-            return CanBeDisplayed(order.Actor) && IsTargetValid(order.Actor, order.Target, out _) && IsActorValid(order.Actor, out _);
+            return IsActorValid(order.Actor, out errorMessage) && IsTargetValid(order.Actor, order.Target, out errorMessage) && CanBeDisplayed(order.Actor);
         }
 
         public virtual bool IsTargetValid(Unit actor, OrderTarget target, out string errorMessage)
@@ -57,11 +60,12 @@ namespace Gameplay.Data.Orders
             return true;
         }
 
-        public virtual bool MustBeCanceled(Order order)
+        public virtual bool MustBeCanceled(Order order, out string errorMessage)
         {
-            if ( ! order.CanBeIssued())
+            if ( ! CanBeIssued(order, out errorMessage))
                 return true;
-            if (order.Type.TargetRequirement == TargetRequirement.Unit && ! order.Target.Unit)
+            errorMessage = Errors.TargetLost;
+            if (order.Type.TargetRequirement == TargetRequirement.Unit && !order.Target.Unit)
                 return true;
             if (order.Target.Unit && ! order.Target.Unit.Visibility.CanBeTargetedBy(order.Actor))
                 return true;

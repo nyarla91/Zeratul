@@ -9,7 +9,6 @@ namespace Gameplay.Data.Orders
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Passive Order", order = 0)]
     public class PassiveOrder : OrderType
     {
-        [SerializeField] private OrderErrorConfig _errors;
         
         public override TargetRequirement TargetRequirement => TargetRequirement.None;
         
@@ -19,7 +18,7 @@ namespace Gameplay.Data.Orders
 
         public override bool IsActorValid(Unit actor, out string errorMessage)
         {
-            errorMessage = _errors.Passive;
+            errorMessage = Errors.Passive;
             return false;
         }
 

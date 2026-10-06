@@ -45,7 +45,7 @@ namespace Gameplay.Data.Statuses
             
             foreach (EffectTargetingUnit effect in _triggerEffects)
             {
-                effect.Apply(status.Host, triggeringUnits.First());
+                effect.Apply(status.Host, triggeringUnit);
             }
 
             foreach (EffectTargetingUnit effect in _mineTriggerEffects)
@@ -53,7 +53,7 @@ namespace Gameplay.Data.Statuses
                 effect.Apply(status.Host, status.Host);
             }
             
-            status.Host.Kill();
+            status.Host.Statuses.RemoveStatus(this);
         }
 
         public override void OnRemove(Status status)

@@ -15,7 +15,6 @@ namespace Gameplay.Data.Orders
         [Space]
         [Expandable] [SerializeField] private AbilityType _abilityType;
         [SerializeField] private ReferenceIRadiusSource _aoeEllipseRadius;
-        [SerializeField] private OrderErrorConfig _errors;
 
         public AbilityType AbilityType => _abilityType;
 
@@ -62,26 +61,26 @@ namespace Gameplay.Data.Orders
         {
             if ( ! AbilityType.IgnoreLock && actor.Abilities.IsLocked)
             {
-                errorMessage = _errors.Locked;
+                errorMessage = Errors.Locked;
                 return false;
             }
 
             Ability ability = actor.Abilities.GetAbility(AbilityType);
             if (ability.Charges < ability.Type.ChargesToUse)
             {
-                errorMessage = _errors.NotEnoughCharges;
+                errorMessage = Errors.NotEnoughCharges;
                 return false;
             }
             if ( ! ability.IsReady)
             {
                 int framesLeft = ability.CooldownLeft;
-                errorMessage = _errors.NotReadyAbility.Replace("#", framesLeft.FramesToSeconds());
+                errorMessage = Errors.NotReadyAbility.Replace("#", framesLeft.FramesToSeconds());
                 return false;
             }
             if (actor.Abilities.EnergyPoints < AbilityType.EnergyCost)
             {
                 int missingEnergy = AbilityType.EnergyCost - actor.Abilities.EnergyPoints;
-                errorMessage = _errors.NotEnoughEnergy.Replace("#", missingEnergy.ToString());
+                errorMessage = Errors.NotEnoughEnergy.Replace("#", missingEnergy.ToString());
                 return false;
             }
             if (AbilityType.CasterValidators.IsInvalid(actor, actor, out errorMessage))
@@ -96,7 +95,7 @@ namespace Gameplay.Data.Orders
         {
             if (target.Unit && ! target.Unit.Visibility.CanBeTargetedBy(actor))
             {
-                errorMessage = Localizer.Translate(_errors.TargetInvalid);
+                errorMessage = Localizer.Translate(Errors.TargetInvalid);
                 return false;
             }
             if (target.Unit && AbilityType.TargetValidators.IsInvalid(actor, target.Unit, out errorMessage))
@@ -106,7 +105,7 @@ namespace Gameplay.Data.Orders
             }
             if ( ! actor.CanMove && ! AbilityType.IsTargetInRadius(actor, target))
             {
-                errorMessage = _errors.OutOfRange;
+                errorMessage = Errors.OutOfRange;
                 return false;
             }
             errorMessage = null;

@@ -67,6 +67,7 @@ namespace Save.UI
         private SaveDataView CreateView()
         {
             SaveDataView view = ContainerInstantiator.Instantiate<SaveDataView>(_viewPrefab, _content.transform.position, _content);
+            view.transform.localScale = Vector3.one;
             view.LoadRequested += LoadRequested;
             view.DeletionRequested += Delete;
             return view;

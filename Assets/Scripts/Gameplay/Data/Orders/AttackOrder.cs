@@ -9,9 +9,6 @@ namespace Gameplay.Data.Orders
     [CreateAssetMenu(menuName = "Gameplay Data/Orders/Attack Order", order = 0)]
     public class AttackOrder : OrderType
     {
-        [Space]
-        [SerializeField] private OrderErrorConfig _errors;
-        
         public override TargetRequirement TargetRequirement => TargetRequirement.PointOrUnit;
 
         public override bool IsValidForSmartOrder(OrderTarget target) => target.Unit != null && target.Unit.Alliance.OwnedByEnemy;
@@ -58,7 +55,7 @@ namespace Gameplay.Data.Orders
         {
             if ( ! actor.CanAttack)
             {
-                errorMessage = _errors.CannotAttack;
+                errorMessage = Errors.CannotAttack;
                 return false;
             }
             errorMessage = null;
@@ -70,12 +67,12 @@ namespace Gameplay.Data.Orders
             errorMessage = "";
             if (!actor.CanAttack)
             {
-                errorMessage = _errors.CannotAttack;
+                errorMessage = Errors.CannotAttack;
                 return false;
             }
             if ( ! target.Unit && ! actor.CanMove)
             {
-                errorMessage = _errors.CannotMove;
+                errorMessage = Errors.CannotMove;
                 return false;
             }
             if (target.Unit && ! actor.Attack.CanAttackUnit(target.Unit, out errorMessage))

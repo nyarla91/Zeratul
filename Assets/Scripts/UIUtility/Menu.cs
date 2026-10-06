@@ -56,7 +56,7 @@ namespace UIUtility
         {
             IsOpened = true;
             _canvasGroup.blocksRaycasts = _canvasGroup.interactable = true;
-            transform.DOAppear(_canvasGroup);
+            transform.DOFadeIn(_canvasGroup);
             if (_firstMenuWindow)
                 SwitchToWindow(_firstMenuWindow);
             Opened?.Invoke();
@@ -70,7 +70,7 @@ namespace UIUtility
             if (instant)
                 _canvasGroup.alpha = 0;
             else
-                transform.DODisappear(_canvasGroup);
+                transform.DOFadeOut(_canvasGroup);
 
             foreach (MenuWindow searchedWindow in _windows)
             {
