@@ -53,7 +53,7 @@ namespace Gameplay.Data.Statuses
                 effect.Apply(status.Host, status.Host);
             }
             
-            status.Host.Statuses.RemoveStatus(this);
+            status.Host.Statuses.RemoveStatus(status.Type);
         }
 
         public override void OnRemove(Status status)

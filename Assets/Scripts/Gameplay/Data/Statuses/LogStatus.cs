@@ -13,7 +13,7 @@ namespace Gameplay.Data.Statuses
 
         public override void OnUpdate(Status status)
         {
-            Debug.Log($"{status.Host} has {this}. {status.FramesLeft} frames left");
+            Debug.Log($"{status.Host} has {status.Type}. {status.FramesLeft} frames left");
         }
 
         public override void OnRemove(Status status)
