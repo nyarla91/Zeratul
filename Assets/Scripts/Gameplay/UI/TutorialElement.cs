@@ -16,8 +16,6 @@ namespace Gameplay.UI
         {
             if (_header)
                 _header.text = _localizer.Translate(entry.Header);
-            if (_description)
-                _description.text = _textFormattingConfig.Format(_localizer.Translate(entry.Description));
         }
     }
 }

@@ -171,6 +171,10 @@ namespace Gameplay.Units
                 effect?.Apply(Unit, target);
             }
             Struck?.Invoke(target);
+            if (target.IsDead)
+            {
+                StopAttacking();
+            }
         }
     }
 }

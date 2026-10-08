@@ -594,8 +594,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-attack-header
-    _description: tutorial-attack
-  _tip: 0
+    _pages:
+    - tutorial-attack-1
 --- !u!1 &1379402756939172592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,8 +1218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-cloak-header
-    _description: tutorial-cloak
-  _tip: 1
+    _pages:
+    - tutorial-cloak-1
 --- !u!1 &2509944047890549470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,8 +1596,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-hindrance-header
-    _description: tutorial-hindrance
-  _tip: 0
+    _pages:
+    - tutorial-hindrance-1
+    - tutorial-hindrance-2
 --- !u!1 &3120256882061759093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,8 +1967,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-shield-header
-    _description: tutorial-shield
-  _tip: 1
+    _pages:
+    - tutorial-shield-1
+    - tutorial-shield-2
 --- !u!1 &4093733086465008982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,8 +2108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-parasite-header
-    _description: tutorial-parasite
-  _tip: 0
+    _pages:
+    - tutorial-parasite-1
+    - tutorial-parasite-2
 --- !u!1 &4358001510179774214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,8 +2910,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-basic-controls-header
-    _description: tutorial-basic-controls
-  _tip: 1
+    _pages:
+    - tutorial-basic-controls-1
+    - tutorial-basic-controls-2
 --- !u!1 &5710286493647416373
 GameObject:
   m_ObjectHideFlags: 0
@@ -4115,8 +4119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-slice-header
-    _description: tutorial-slice
-  _tip: 0
+    _pages:
+    - tutorial-slice-1
 --- !u!1 &8953135677547780034
 GameObject:
   m_ObjectHideFlags: 0
@@ -4163,8 +4167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Schemes::Gameplay.Schemes.Actions.ActionShowTutorial
   _entry:
     _header: tutorial-stim-header
-    _description: tutorial-stim
-  _tip: 0
+    _pages:
+    - tutorial-stim-1
 --- !u!1 &8980724029636699926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5142,6 +5146,22 @@ PrefabInstance:
       propertyPath: _entry._description
       value: tutorial-pause
       objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: _entry._pages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[0]'
+      value: tutorial-pause-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[1]'
+      value: tutorial-pause-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[2]'
+      value: tutorial-pause-3
+      objectReference: {fileID: 0}
     - target: {fileID: 3934089813379316844, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: m_Name
       value: TutorialPause
@@ -5587,6 +5607,22 @@ PrefabInstance:
     - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: _entry._description
       value: tutorial-vision
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: _entry._pages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[0]'
+      value: tutorial-vision-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[1]'
+      value: tutorial-vision-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[2]'
+      value: tutorial-vision-3
       objectReference: {fileID: 0}
     - target: {fileID: 3934089813379316844, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: m_Name
@@ -18726,15 +18762,15 @@ PrefabInstance:
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[0]'
       value: 
-      objectReference: {fileID: 2166246199352247538}
+      objectReference: {fileID: 3889628647705263415}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[1]'
       value: 
-      objectReference: {fileID: 8553892775130936251}
+      objectReference: {fileID: 2166246199352247538}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: '_actions.Array.data[2]'
       value: 
-      objectReference: {fileID: 3889628647705263415}
+      objectReference: {fileID: 8553892775130936251}
     - target: {fileID: 2170784846464044340, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       propertyPath: _conditions.Array.size
       value: 2
@@ -18806,13 +18842,13 @@ PrefabInstance:
       addedObject: {fileID: 7489924593675490463}
     - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3591093293863642553}
+    - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3896355335729212062}
     - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7066038162503667631}
-    - targetCorrespondingSourceObject: {fileID: 2842462553428606027, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3591093293863642553}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4407308526153367626, guid: 56ded14762b34ea43a77146da936a6ab, type: 3}
       insertIndex: -1
@@ -19217,6 +19253,14 @@ PrefabInstance:
     - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: _entry._description
       value: tutorial-detectors
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: _entry._pages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[0]'
+      value: tutorial-detectors-1
       objectReference: {fileID: 0}
     - target: {fileID: 3934089813379316844, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: m_Name
@@ -21457,6 +21501,14 @@ PrefabInstance:
       propertyPath: _entry._description
       value: tutorial-enemy-selection
       objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: _entry._pages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[0]'
+      value: tutorial-enemy-selection-1
+      objectReference: {fileID: 0}
     - target: {fileID: 3934089813379316844, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: m_Name
       value: TutorialEnemySelection
@@ -21964,6 +22016,14 @@ PrefabInstance:
     - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: _entry._description
       value: tutorial-save
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: _entry._pages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[0]'
+      value: tutorial-save-1
       objectReference: {fileID: 0}
     - target: {fileID: 3934089813379316844, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: m_Name
@@ -797629,9 +797689,21 @@ PrefabInstance:
       propertyPath: _entry._description
       value: tutorial-camera
       objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: _entry._pages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164190927047696482, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: '_entry._pages.Array.data[0]'
+      value: tutorial-camera-1
+      objectReference: {fileID: 0}
     - target: {fileID: 3934089813379316844, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: m_Name
       value: TutorialCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934089813379316844, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4063363418362877632, guid: 7db2187395b6c73dcaabe32d3601b9a9, type: 3}
       propertyPath: m_Name

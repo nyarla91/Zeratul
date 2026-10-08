@@ -15,9 +15,9 @@ namespace Gameplay.Data.Configs
     public class TutorialEntry
     {
         [SerializeField] private string _header;
-        [SerializeField] [TextArea(1, 30)] private string _description;
+        [SerializeField] [TextArea(1, 30)] private string[] _pages;
 
         public string Header => _header;
-        public string Description => _description;
+        public string[] Pages => _pages;
     }
 }

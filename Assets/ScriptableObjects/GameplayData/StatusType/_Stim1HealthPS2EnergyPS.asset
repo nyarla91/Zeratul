@@ -25,5 +25,5 @@ MonoBehaviour:
   _unitEffects:
   - {fileID: 11400000, guid: a6bb25f93f808d07a83c0e47d8c6ef0f, type: 2}
   - {fileID: 11400000, guid: 2227b534937e620649b3620c9c916212, type: 2}
-  _tickPeriod: 5
+  _tickPeriod: 10
   _requireSimulation: 0

@@ -207,62 +207,62 @@ MonoBehaviour:
     _line: Has limited lifetime
   - _key: status-temporary-name
     _line: Temporary
-  - _key: tutorial-attack
-    _line: 'Right click an enemy to order selected unit to attack them
-
-
-      Press
-      [A], then left click anywhere to order selected unit to go to this point attacking
-      all enemies along the way.'
+  - _key: tutorial-attack-1
+    _line: <stat>[Right Click]</stat> - attack target enemy.
   - _key: tutorial-attack-header
     _line: Attack
-  - _key: tutorial-basic-controls
-    _line: 'Press [1] or left click a unit to select it.
+  - _key: tutorial-basic-controls-1
+    _line: '<stat>[1]</stat> or <stat>[Left Click]</stat> - select a unit
+
+      <stat>[Right
+      Click]</stat> - order selected unit to move.
+
+'
+  - _key: tutorial-basic-controls-2
+    _line: '<stat>[Ctrl]</stat> or <stat>[Middle Click]</stat> - drag the camera
+
+      <stat>[Scroll
+      wheel]</stat>  - zoom camera
 
 
-      Right click anywhere
-      to order selected unit to go to this point.
+      Move the cursor thi edge of the screen
+      to move the camera in respective direction
 
 '
   - _key: tutorial-basic-controls-header
     _line: Basic controls
-  - _key: tutorial-camera
-    _line: 'Hold [Ctrl] or middle mouse button to drag the camera. Alternatively
-      you can bring your cursor to any of the screen edges to move the camera in
-      that direction.
-
-
-      Use mouse scroll wheel to zoom in and zoom out.'
-  - _key: tutorial-camera-header
-    _line: Camera control
-  - _key: tutorial-cloak
+  - _key: tutorial-cloak-1
     _line: 'Now you are cloaked.
 
 
       Enemies cannot see you or attack you directly.'
   - _key: tutorial-cloak-header
     _line: Cloak
-  - _key: tutorial-detectors
+  - _key: tutorial-detectors-1
     _line: Some enemies can detect your presence even when you are cloaked. Standing
-      in detection area negates all benefits of the cloak and lets all enemies see
-      you again.
+      in detection areas negates all benefits of the cloak and allows all enemies
+      to see you again.
   - _key: tutorial-detectors-header
     _line: Detectors
-  - _key: tutorial-enemy-selection
-    _line: You can also select enemy units to view their stats and abilities.
+  - _key: tutorial-enemy-selection-1
+    _line: You can select enemy units to view their stats and abilities.
   - _key: tutorial-enemy-selection-header
     _line: Enemy selection
-  - _key: tutorial-hindrance
-    _line: 'You''ve gained Hindrance ability.
+  - _key: tutorial-hindrance-1
+    _line: '<stat>[Q]</stat> - use Hindrance.
+
+      <stat>[Left Click]</stat> -
+      select a target.
 
 
-      Press [Q], then left click
-      on a unit to lock it. Locked units cannot attack or use their abilities for
-      a set duration.
+      Using Hindrance temporarily locks the target preventing
+      it from attacking and using any abilities.'
+  - _key: tutorial-hindrance-2
+    _line: 'Hindrance requires energy to use.
 
 
-      Using this ability costs you energy that restores over
-      time.'
+      Energy regenerates automatically
+      over time.'
   - _key: tutorial-hindrance-header
     _line: Hindrance
   - _key: tutorial-invasion
@@ -279,71 +279,93 @@ MonoBehaviour:
       can only control two enemy units at once. Some units may occupy both slots.'
   - _key: tutorial-invasion-header
     _line: Override
-  - _key: tutorial-parasite
-    _line: Using Virus [E] lets you see everything infected enemy can see. Use this
-      for gathering intel or targeting other enemies you wouldn't have seen otherwise
-  - _key: tutorial-parasite-header
-    _line: Virus
-  - _key: tutorial-pause
-    _line: 'You can toggle tactical pause anytime using [Space] key or hourglass
-      icon next to minimap.
+  - _key: tutorial-parasite-1
+    _line: '<stat>[E]</stat> - use Virus.
+
+      <stat>[Left Click]</stat> - select
+      a target.
 
 
-      While it is active you can observe the battlefield,
-      plan your moves and issue orders to your units.
-
-
-      You can queue orders
-      holding [Shift]. Those orders will be executed consequtevily.
-
-
-      Once
-      you ready, hit [Space] again to resume the game.'
-  - _key: tutorial-pause-header
-    _line: Tactical pause
-  - _key: tutorial-save
-    _line: You can save and load the game anytime from pause menu [Esc] or use quick
-      save [F5] and quick load [F8].
-  - _key: tutorial-save-header
-    _line: Saving
-  - _key: tutorial-shield
-    _line: 'Blue ring around unit represents their shield points. They restore over
-      time if unit is not taking damage.
-
-
-      Hit points DO NOT restore over time.'
-  - _key: tutorial-shield-header
-    _line: Shield points
-  - _key: tutorial-slice
-    _line: Using Pierce [W] deals high burst damage to an enemy
-  - _key: tutorial-slice-header
-    _line: Pierce
-  - _key: tutorial-stim
-    _line: 'You picked up a stim. You can use it only once unless you find more.
-
-
-      Press
-      [Z] to spend stim and restore your hit points.'
-  - _key: tutorial-stim-header
-    _line: Stim
-  - _key: tutorial-vision
-    _line: 'All enemies have vision area around them. They cannot see through the
-      walls or vision blockers like the one you just passed through.
-
-
-      Press
-      [Alt] or click an eye icon next to minimap to see enemy vision areas.
-
-
-      If
-      you enter an enemy''s vision area, they and all their allies that can see them,
-      will attack you.
-
-
-      Leave enemy vision area and they will return to their
-      posts.
+      Virus infects an enemy, allowing you to see everything they
+      can see. Use this for recon or targeting enemies you coudn''t have seen normally.
 
 '
+  - _key: tutorial-parasite-2
+    _line: Only one enemy can be infected at the same time.
+  - _key: tutorial-parasite-header
+    _line: Virus
+  - _key: tutorial-pause-1
+    _line: '<stat>[Space]</stat> - toggle tactical pause.
+
+
+      While tactical
+      pause is active you can still observe the battlefield, plan your moves and
+      issue orders to your units.'
+  - _key: tutorial-pause-2
+    _line: 'Hold <stat>[Shift]</stat> - queue issued order.
+
+
+      Queued orders
+      will be carried out after the current order is completed.
+
+
+      <stat>[S]</stat>
+      - cancel current order and clear the queue.
+
+'
+  - _key: tutorial-pause-3
+    _line: Once you are ready, press <stat>[Space]</stat> again to resume the game.
+  - _key: tutorial-pause-header
+    _line: Tactical pause
+  - _key: tutorial-save-1
+    _line: '<stat>[F5]</stat> - quick save
+
+      <stat>[F8]</stat> - quick load.
+
+
+      You
+      can save and load the game anytime from the pause menu.'
+  - _key: tutorial-save-header
+    _line: Saving
+  - _key: tutorial-shield-1
+    _line: Blue ring around units represents their shield points. They regenerate
+      over time while unit is not taking damage.
+  - _key: tutorial-shield-2
+    _line: Watch your hit points as they DO NOT regenerate automatically.
+  - _key: tutorial-shield-header
+    _line: Shield and hit poitns
+  - _key: tutorial-slice-1
+    _line: '<stat>[W]</stat> - use Pierce.
+
+      <stat>[Left Click]</stat> - select
+      a target.
+
+
+      Pierce deals high burst damage to the target.'
+  - _key: tutorial-slice-header
+    _line: Pierce
+  - _key: tutorial-stim-1
+    _line: '<stat>[Z]</stat> - use Stim.
+
+
+      Stim is a one-use item that can
+      restore your hit points.'
+  - _key: tutorial-stim-header
+    _line: Stim
+  - _key: tutorial-vision-1
+    _line: '<stat>[Alt]</stat> - toggle enemy vision.
+
+
+
+      Enemies will attack
+      you if you enter their vision area, or vision area of their nearby allies.
+
+'
+  - _key: tutorial-vision-2
+    _line: Hide from enemies and they will immediately return to their positions.
+  - _key: tutorial-vision-3
+    _line: Enemies cannot see through vision blockers like the one you just passed
+      through.
   - _key: tutorial-vision-header
     _line: Vision areas
   - _key: ui-back

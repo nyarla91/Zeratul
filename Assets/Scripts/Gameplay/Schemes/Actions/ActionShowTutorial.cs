@@ -11,17 +11,12 @@ namespace Gameplay.Schemes.Actions
     public class ActionShowTutorial : SchemeAction
     {
         [SerializeField] private TutorialEntry _entry;
-        [SerializeField] private bool _tip;
         
         [Inject] private TipWindow TipWindow { get; set; }
-        [Inject] private TutorialScreen TutorialScreen { get; set; }
         
         public override UniTask Act()
         {
-            if (_tip)
-                TipWindow.Show(_entry);
-            else
-                TutorialScreen.Open(_entry);
+            TipWindow.Show(_entry);
             return UniTask.CompletedTask;
         }
 
