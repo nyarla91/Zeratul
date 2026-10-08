@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using System.Text;
 using _Core;
+using Gameplay.Data.Configs;
 using Gameplay.Data.Units;
 using Gameplay.Player;
 using Gameplay.Units;
@@ -12,13 +14,13 @@ namespace Gameplay.UI
 {
     public class UnitInfoPanel : MonoBehaviour
     {
+        [SerializeField] private TextFormattingConfig _formatting;
         [SerializeField] private Localizer _localizer;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private TMP_Text _name;
-        [SerializeField] private TMP_Text _hitPoints;
-        [SerializeField] private TMP_Text _shieldPoints;
-        [SerializeField] private TMP_Text _energyPoints;
+        [SerializeField] private TMP_Text _stats;
         [SerializeField] private TMP_Text _tags;
+        [SerializeField] private string _statsSpacing;
 
         public Unit CurrentUnit { get; private set; }
 
@@ -33,22 +35,29 @@ namespace Gameplay.UI
                 return;
             }
             _canvasGroup.alpha = 1;
-
+            
             _name.text = _localizer.Translate(CurrentUnit.Type.DisplayName);
-            bool displayHitPoints = CurrentUnit.HasLife;
-            bool displayShieldPoints = CurrentUnit.HasLife && CurrentUnit.Life.HasShieldPoints;
-            bool displayEnergyPoints = CurrentUnit.Abilities.HasEnergyPoints;
-            UpdateStat(_hitPoints, displayHitPoints, "hit", CurrentUnit.Life?.HitPoints ?? 0, CurrentUnit.Life?.MaxHitPoints ?? 0);
-            UpdateStat(_shieldPoints, displayShieldPoints, "shield", CurrentUnit.Life?.ShieldPoints ?? 0, CurrentUnit.Life?.MaxShieldPoints ?? 0);
-            UpdateStat(_energyPoints, displayEnergyPoints, "energy", CurrentUnit.Abilities.EnergyPoints, CurrentUnit.Abilities.MaxEnergyPoints);
             
             UnitTag[] unitTags = CurrentUnit.Type.Tags.Where(t => t.Display).ToArray();
             _tags.text = unitTags.Select(t => t.DisplayName).Enumerate();
-        }
-
-        private void UpdateStat(TMP_Text stat, bool display, string icon, int current, int max)
-        {
-            stat.text = display ? $"<sprite name={icon}> {current} / {max}" : "";
+            
+            StringBuilder stats = new();
+            if (CurrentUnit.HasLife && CurrentUnit.Life.HasShieldPoints)
+            {
+                stats.Append($"<sp>{CurrentUnit.Life.ShieldPoints} / {CurrentUnit.Life.MaxShieldPoints}</sp>");
+                stats.Append(_statsSpacing);
+            }
+            if (CurrentUnit.HasLife)
+            {
+                stats.Append($"<hp>{CurrentUnit.Life.HitPoints} / {CurrentUnit.Life.MaxHitPoints}</hp>");
+                stats.Append(_statsSpacing);
+            }
+            if (CurrentUnit.Abilities.HasEnergyPoints)
+            {
+                stats.Append($"<ep>{CurrentUnit.Abilities.EnergyPoints} / {CurrentUnit.Abilities.MaxEnergyPoints}</ep>");
+                stats.Append(_statsSpacing);
+            }
+            _stats.text = _formatting.Format(stats.ToString().Trim());
         }
     }
 }

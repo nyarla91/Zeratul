@@ -427,6 +427,8 @@ MonoBehaviour:
   _displayGroup: {fileID: 6680603659045899450}
   _errors: {fileID: 11400000, guid: 3552f1a85fd3a484dba31fa864a51a83, type: 2}
   _image: {fileID: 4706880105700213498}
+  _underlay: {fileID: 2729920882442578340}
+  _unusableAlpha: 0.2
   _hotkeyPrompt: {fileID: 4129540327632799636}
   _eventTrigger: {fileID: 3678024432579965045}
   _beginDragEventIndex: 0
@@ -649,7 +651,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6545622681469688427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

@@ -23,6 +23,8 @@ namespace Gameplay.UI
         [SerializeField] private CanvasGroup _displayGroup;
         [SerializeField] private OrderErrorConfig _errors;
         [SerializeField] private Image _image;
+        [SerializeField] private Image _underlay;
+        [SerializeField] private float _unusableAlpha;
         [SerializeField] private TMP_Text _hotkeyPrompt;
         [SerializeField] private EventTrigger _eventTrigger;
         [SerializeField] private int _beginDragEventIndex;
@@ -152,6 +154,9 @@ namespace Gameplay.UI
             }
             if (_showTooltip && OrderType)
                 Tooltip.Show(OrderType.TooltipInfo);
+
+            bool isUsable = ! Selection.IsUncontrollableSelected && Dispatcher.CanIssueWithoutTarget(OrderType, out _);
+            _underlay.color = _underlay.color.WithA(isUsable ? 1 : _unusableAlpha);
         }
 
         private void DisposeHotkey()

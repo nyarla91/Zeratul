@@ -23,8 +23,12 @@ namespace Gameplay.UI
         [SerializeField] private TMP_Text _reserve;
         [SerializeField] private Sprite _availableSprite;
         [SerializeField] private Sprite _highlightedSprite;
+        [SerializeField] private Image _reserveUnderlay;
+        [SerializeField] private Sprite _normalReserveSprite;
+        [SerializeField] private Sprite _highlightReserveSprite;
         [SerializeField] private Color _reserveColor;
         [SerializeField] private Color _unavailableReserveColor;
+        [SerializeField] private Color _availableReserveColor;
         [SerializeField] private UnitValidatorGroup _highlightValidator;
         
         [Inject] private PlayerControlResources ControlResources { get; set; }
@@ -80,7 +84,10 @@ namespace Gameplay.UI
         {
             int reserve = ControlResources.Reserve;
             int reserveRequired = highlightedUnit?.Type.ControlCost ?? 0;
-            _reserve.color = (reserveRequired > reserve) ? _unavailableReserveColor : _reserveColor;
+            
+            _reserveUnderlay.sprite = highlightedUnit ? _highlightReserveSprite : _normalReserveSprite;
+            _reserveUnderlay.color = highlightedUnit ? (reserve >= reserveRequired ? _availableReserveColor : _unavailableReserveColor) : _reserveColor;
+            
             _reserve.text = reserveRequired > 0 ? $"{reserve}/{reserveRequired}" : $"{reserve}";
         }
 

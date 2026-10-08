@@ -225,7 +225,7 @@ MonoBehaviour:
       wheel]</stat>  - zoom camera
 
 
-      Move the cursor thi edge of the screen
+      Move the cursor to an edge of the screen
       to move the camera in respective direction
 
 '
@@ -277,17 +277,34 @@ MonoBehaviour:
 
       You
       can only control two enemy units at once. Some units may occupy both slots.'
+  - _key: tutorial-invasion-1
+    _line: '<stat>[R]</stat> - use Override.
+
+
+      Override converts enemy to your
+      side, allowing you to fully control it and use all of its capabilities against
+      its former allies.
+
+'
+  - _key: tutorial-invasion-2
+    _line: 'Using Override requires link cores that you can collect throghout the
+      mission.
+
+
+      Target enemy with Override to learn how many link cores it
+      will require to control it.'
+  - _key: tutorial-invasion-3
+    _line: You can only control two enemy units at once. Some units may occupy both
+      slots.
   - _key: tutorial-invasion-header
     _line: Override
   - _key: tutorial-parasite-1
     _line: '<stat>[E]</stat> - use Virus.
 
-      <stat>[Left Click]</stat> - select
-      a target.
 
-
-      Virus infects an enemy, allowing you to see everything they
-      can see. Use this for recon or targeting enemies you coudn''t have seen normally.
+      Virus infects an enemy, allowing
+      you to see everything they can see. Use this for recon or targeting enemies
+      you coudn''t have seen normally.
 
 '
   - _key: tutorial-parasite-2
@@ -337,11 +354,9 @@ MonoBehaviour:
   - _key: tutorial-slice-1
     _line: '<stat>[W]</stat> - use Pierce.
 
-      <stat>[Left Click]</stat> - select
-      a target.
 
-
-      Pierce deals high burst damage to the target.'
+      Pierce deals high burst damage
+      to the target.'
   - _key: tutorial-slice-header
     _line: Pierce
   - _key: tutorial-stim-1

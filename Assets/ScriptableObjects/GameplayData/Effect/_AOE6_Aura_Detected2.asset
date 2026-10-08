@@ -17,5 +17,6 @@ MonoBehaviour:
   _applyValidators:
     _unitValidators:
     - {fileID: 11400000, guid: 161b97ff5218e624ab499324e33049ce, type: 2}
+    - {fileID: 11400000, guid: 820d8692e183cce4e8bbaa99739fca88, type: 2}
   _effects:
   - {fileID: 11400000, guid: 58d52fd01efc992459d28c5acadab0b2, type: 2}

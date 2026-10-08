@@ -21,3 +21,15 @@ MonoBehaviour:
     _value: </color=#32E875>
   - _key: </kw>
     _value: </color>
+  - _key: <sp>
+    _value: <color=#56EEF4>
+  - _key: </sp>
+    _value: </color>
+  - _key: <hp>
+    _value: <color=#32E875>
+  - _key: </hp>
+    _value: </color>
+  - _key: <ep>
+    _value: <color=#7A28CB>
+  - _key: </ep>
+    _value: </color>
