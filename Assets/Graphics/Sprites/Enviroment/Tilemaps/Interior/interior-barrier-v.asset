@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: interior-barrier-v
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: b5b49e2ee91a0a76883ef891690dc33c, type: 3}
+  - {fileID: 21300000, guid: 938e72b629819e9048d281f6118f58a4, type: 3}
+  - {fileID: 21300000, guid: be0c3fdeba214d6adb76bf398ae68bd6, type: 3}
+  - {fileID: 21300000, guid: c6f0f3e1a47087817bb40f05f22a39ef, type: 3}
+  - {fileID: 21300000, guid: ef6913815e08ba0c4b6c4d21b1c95317, type: 3}
+  - {fileID: 21300000, guid: 5a27725ec4a67197cb2e24dcb4a6a401, type: 3}
+  - {fileID: 21300000, guid: db0862ecf36d1ac05928c26d9a2b7759, type: 3}
+  - {fileID: 21300000, guid: 2dbeeaf6638dcbd6eb3c23fdb00c8f7f, type: 3}
+  - {fileID: 21300000, guid: d55501fe1ed56e460bd408d23d8294c1, type: 3}
+  - {fileID: 21300000, guid: abc2e917d3e71c728b851080b96eb5d5, type: 3}
+  - {fileID: 21300000, guid: 857b7be14911bdf56a76501f72c45249, type: 3}
+  - {fileID: 21300000, guid: c842b873854cb50b2abbfba66668544d, type: 3}
+  - {fileID: 21300000, guid: 627748aba2d1394d1b8c0634dc00eebb, type: 3}
+  - {fileID: 21300000, guid: 1dd6a422ffe5c7e61803a1b27c5b930e, type: 3}
+  - {fileID: 21300000, guid: 4f86c6190875b6d1496fb07efb0f1bac, type: 3}
+  - {fileID: 21300000, guid: 5da08683f0d88ff72bf6bf7cafb4a828, type: 3}
+  - {fileID: 21300000, guid: cd7cccaff7db7e14e8ccd7d50c9887d8, type: 3}
+  - {fileID: 21300000, guid: 49d46111c86066d629aa8ced20e07b79, type: 3}
+  - {fileID: 21300000, guid: d8b8e643ae9b1696ea21662fe35de8dd, type: 3}
+  - {fileID: 21300000, guid: 1ef1cfd9d5b4639f7b3c10b3c06cd809, type: 3}
+  m_MinSpeed: 8
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

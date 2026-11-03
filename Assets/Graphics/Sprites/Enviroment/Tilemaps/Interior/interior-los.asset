@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: interior-los
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: af12b5f094390b9dcb183ce686d360ce, type: 3}
+  - {fileID: 21300000, guid: 3e5848a312373f76284db451e364b78c, type: 3}
+  - {fileID: 21300000, guid: f496ec6dcc2685a218c4cf1667cb4a37, type: 3}
+  - {fileID: 21300000, guid: c572586d241722f33a8ab3cbed4fa2ae, type: 3}
+  - {fileID: 21300000, guid: 0019a651e8a5ee930a795f854e414c5e, type: 3}
+  - {fileID: 21300000, guid: dcb7764a5ef761fe0b9beab151de80ed, type: 3}
+  - {fileID: 21300000, guid: b5e7bdfb77a575784ae59d02404ac111, type: 3}
+  - {fileID: 21300000, guid: ad9215575e148e842a81c22a7a4b4e65, type: 3}
+  - {fileID: 21300000, guid: 858570aa493cae0a3a037c26091f5f11, type: 3}
+  - {fileID: 21300000, guid: e6ea0a18dab20a7729d4bbc24e04c729, type: 3}
+  m_MinSpeed: 12
+  m_MaxSpeed: 16
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

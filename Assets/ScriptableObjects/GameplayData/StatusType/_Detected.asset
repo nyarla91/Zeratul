@@ -17,7 +17,7 @@ MonoBehaviour:
   _display: 1
   _displayIcon: {fileID: 21300000, guid: e386bd21493374c46821ba14059f76c2, type: 3}
   _displayName: status-detected-name
-  _showDuration: 1
+  _showDuration: 0
   _showDurationPriority: 0
   _displayDescription: status-detected-description
   _rendererPrefabs:
