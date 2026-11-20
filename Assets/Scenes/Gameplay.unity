@@ -3081,7 +3081,7 @@ MonoBehaviour:
   _hiddenFadeSpeed: 1
   _scoutedColor:
     serializedVersion: 2
-    rgba: 3187671040
+    rgba: 2684354560
   _scoutedFadeSpeed: 0.4
   _revealedColor:
     serializedVersion: 2
